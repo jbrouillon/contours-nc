@@ -271,7 +271,9 @@ L’analyse montre également que les effets du regroupement ne sont pas homogè
 Cette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote.
 
 <details class="note-deroulable">
+
 <summary>Avertissement</summary>
+
 Cette note constitue un travail exploratoire et méthodologique réalisé dans un objectif d’analyse spatiale rapide des effets potentiels du regroupement des bureaux de vote à Nouméa. Les résultats présentés doivent être considérés comme des estimations préliminaires destinées à alimenter une réflexion publique et scientifique plus large.
 
 Les traitements, indicateurs et cartes ont vocation à être consolidés dans le cadre d’une publication ultérieure plus complète, intégrant notamment :
@@ -285,6 +287,7 @@ Les traitements, indicateurs et cartes ont vocation à être consolidés dans le
 -   un croisement plus approfondi avec les données socio-électorales et territoriales.
 
 Les résultats présentés ici ne constituent donc pas une mesure définitive des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles.
+
 </details>
 
 ## Introduction
@@ -302,7 +305,6 @@ En effet, deux électeurs inscrits dans une même commune ne font pas nécessair
 Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées : - la configuration habituelle des bureaux de vote ; - un scénario à 8 centres regroupés ; - un scénario à 9 centres regroupés.
 
 L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.
-
 
 ## Pourquoi estimer des temps de trajet ?
 
@@ -668,6 +670,14 @@ Quatrièmement, l’analyse porte uniquement sur l’accessibilité piétonne po
 Cinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.
 
 Enfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives.
+
+## Conclusion
+
+Cette première estimation montre que le regroupement des bureaux de vote ne produit pas seulement un déplacement administratif des lieux de vote : il modifie sensiblement les conditions concrètes d'accès au scrutin. À Nouméa, le passage des bureaux habituels aux centres regroupés augmente le temps moyen d'accès piéton, qui passe de `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "Bureaux de vote habituels"])` dans la configuration de référence à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres.
+
+L'effet le plus important concerne toutefois les situations d'éloignement. La part de population située à plus de 30 minutes à pied d'un centre de vote passe de `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "Bureaux de vote habituels"])` avec les bureaux habituels à `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres. L'ajout d'un neuvième centre améliore une partie de la situation par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais il ne rétablit pas la proximité offerte par le maillage habituel des bureaux.
+
+Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d'accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n'est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.
 
 ## Sources et données utilisées
 
