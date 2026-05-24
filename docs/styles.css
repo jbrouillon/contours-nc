@@ -1,0 +1,42 @@
+/* Contours NC - styles simples, sans logo */
+
+:root {
+  --contours-ink: #253238;
+  --contours-muted: #5f6c72;
+  --contours-accent: #2f6f8f;
+  --contours-soft: #f3f7f8;
+}
+
+body {
+  color: var(--contours-ink);
+}
+
+.navbar-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.quarto-title-banner {
+  background: linear-gradient(135deg, #e8f1f3, #f8fbfb);
+  color: var(--contours-ink);
+}
+
+a {
+  color: var(--contours-accent);
+}
+
+.description,
+.subtitle,
+.quarto-category {
+  color: var(--contours-muted);
+}
+
+.callout-note,
+.callout-important {
+  border-radius: 0.5rem;
+}
+
+.cell-output-display {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}

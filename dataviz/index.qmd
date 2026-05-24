@@ -1,0 +1,13 @@
+---
+title: "Dataviz"
+listing:
+  contents:
+  - "../posts/**/*.qmd"
+  type: default
+  sort: "date desc"
+  categories: true
+  sort-ui: true
+  filter-ui: true
+---
+
+Cette rubrique rassemble les productions orientées cartes, graphiques, visualisations interactives ou notes de méthode liées à la dataviz.

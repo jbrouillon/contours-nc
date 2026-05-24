@@ -1,0 +1,21 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.quarto
+_site
+.DS_Store
+*.html
+*.log
+*.aux
+# Données locales lourdes : à garder hors Git si nécessaire
+data/**/*.tif
+data/**/*.tiff
+data/**/*.gpkg
+data/**/*.shp
+data/**/*.dbf
+data/**/*.shx
+data/**/*.prj
+
+/.quarto/
+**/*.quarto_ipynb

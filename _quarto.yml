@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Contours NC"
+  description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
+  site-url: "https://contours-nc.netlify.app"
+  navbar:
+    title: "Contours NC"
+    left:
+      - text: "Articles"
+        href: articles/index.qmd
+      - text: "Dataviz"
+        href: dataviz/index.qmd
+      - text: "Ressources"
+        href: ressources/index.qmd
+      - text: "À propos"
+        href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/
+  page-footer:
+    left: "© Jonas Brouillon"
+    right: "Fait avec Quarto"
+  search: true
+
+format:
+  html:
+    theme:
+      light: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    code-fold: true
+    code-summary: "Afficher le code"
+    fig-width: 8
+    fig-height: 5
+    lang: fr
+
+execute:
+  freeze: auto
+  warning: false
+  message: false
+
+editor: visual

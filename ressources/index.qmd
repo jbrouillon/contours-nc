@@ -1,0 +1,12 @@
+---
+title: "Ressources"
+---
+
+Cette page regroupera :
+
+-   sources de données utiles en Nouvelle-Calédonie ;
+-   scripts R et gabarits Quarto ;
+-   fonds de carte et ressources QGIS ;
+-   références méthodologiques en cartographie et sciences sociales.
+
+##

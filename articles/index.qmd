@@ -1,0 +1,13 @@
+---
+title: "Articles"
+listing:
+  contents:
+  - "../posts/**/*.qmd"
+  type: default
+  sort: "date desc"
+  categories: true
+  sort-ui: true
+  filter-ui: true
+---
+
+Retrouvez ici les articles publiés sur **Contours NC**.

@@ -1,0 +1,198 @@
+[
+  {
+    "objectID": "ressources/index.html",
+    "href": "ressources/index.html",
+    "title": "Ressources",
+    "section": "",
+    "text": "Cette page regroupera :"
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "",
+    "text": "Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.\nLes résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.\nL’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.\nCette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#résumé",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#résumé",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "",
+    "text": "Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.\nLes résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.\nL’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.\nCette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#introduction",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#introduction",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Introduction",
+    "text": "Introduction\nLa question du regroupement des bureaux de vote s’est imposée dans le débat public calédonien à partir des élections législatives anticipées de 2024, organisées dans le contexte exceptionnel des émeutes et des tensions sécuritaires ayant suivi les événements du 13 mai.\nÀ Nouméa, les 56 bureaux de vote habituels avaient alors été regroupés sur seulement 7 sites afin de sécuriser l’organisation du scrutin. Ce dispositif exceptionnel avait été présenté comme une réponse aux contraintes logistiques et sécuritaires du moment. Malgré cette réorganisation, la participation au second tour des législatives avait atteint un niveau particulièrement élevé à l’échelle du territoire.\nLe regroupement des bureaux de vote n’est cependant pas resté limité à ce seul contexte d’urgence. Le dispositif a ensuite été largement reconduit lors des élections municipales de 2026, avec une organisation reposant sur 8 grands sites de vote à l’échelle de la commune. Cette décision a suscité plusieurs critiques et recours politiques autour des questions d’accessibilité, de proximité du vote et de sincérité du scrutin.\nDerrière ces débats institutionnels se pose une question plus concrète et plus territoriale : comment le regroupement des centres de vote modifie-t-il réellement les conditions d’accès au vote selon les quartiers de Nouméa ?\nEn effet, deux électeurs inscrits dans une même commune ne font pas nécessairement face au même coût de déplacement. La structure du réseau routier, les ruptures urbaines, la distance aux centres ouverts ou encore l’accès à un véhicule peuvent fortement modifier l’accessibilité réelle au vote.\nCette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées : - la configuration habituelle des bureaux de vote ; - un scénario à 8 centres regroupés ; - un scénario à 9 centres regroupés.\nL’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.\n\n\n\n\n\n\nNote\n\n\n\nCette note constitue un travail exploratoire et méthodologique réalisé dans un objectif d’analyse spatiale rapide des effets potentiels du regroupement des bureaux de vote à Nouméa. Les résultats présentés doivent être considérés comme des estimations préliminaires destinées à alimenter une réflexion publique et scientifique plus large.\nLes traitements, indicateurs et cartes ont vocation à être consolidés dans le cadre d’une publication ultérieure plus complète, intégrant notamment :\n\ndes tests de sensibilité méthodologique ;\nune validation plus fine des itinéraires piétons ;\ndes analyses statistiques complémentaires ;\nun croisement plus approfondi avec les données socio-électorales et territoriales.\n\nLes résultats présentés ici ne constituent donc pas une mesure définitive des comportements électoraux ni des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#pourquoi-estimer-des-temps-de-trajet",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#pourquoi-estimer-des-temps-de-trajet",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Pourquoi estimer des temps de trajet ?",
+    "text": "Pourquoi estimer des temps de trajet ?\nLe regroupement de bureaux de vote change la géographie concrète de l’accès au vote. Deux électeurs rattachés administrativement au même scrutin ne font pas nécessairement face au même effort de déplacement selon le quartier, la densité du réseau viaire, la localisation des centres ouverts et la possibilité ou non d’utiliser une voiture.\nCette note documente une estimation des temps de trajet piéton vers le point de vote le plus proche à Nouméa. L’objectif n’est pas de reconstituer les trajets réellement empruntés par chaque électeur, mais de produire un indicateur spatial comparable entre plusieurs configurations :\n\nune configuration de référence avec les bureaux de vote géolocalisés ;\nune configuration à 8 centres de vote regroupés ;\nune configuration à 9 centres de vote regroupés, sans Ko We Kara, avec l’ajout du collège de Kaméré et de la salle de boxe Vincent Kafoa.\n\nLe résultat doit être lu comme une mesure d’accessibilité potentielle. Il devient particulièrement utile lorsqu’il est rapproché de la part des ménages sans véhicule, issue du RGP 2019 à l’échelle IRIS."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#les-données-mobilisées",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#les-données-mobilisées",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Les données mobilisées",
+    "text": "Les données mobilisées\nL’estimation s’appuie sur cinq familles de données locales :\n\nles résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de votes réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul\nla liste des centres regroupés, saisie comme points de destination alternatifs ;\nle réseau routier BDROUTE-NC, transformé en graphe de déplacement ;\nla grille de population NCL_Pop_Grid_2020.tif, utilisée pour ne calculer l’indicateur que sur les cellules habitées ;\nles IRIS du RGP 2019, dont le champ percent_menages_sans_vehicules.\n\nToutes les opérations de distance et de réseau sont réalisées dans le système projeté RGNC91-93 / Lambert New Caledonia, EPSG:3163. Les temps sont exprimés en minutes, avec une hypothèse de marche à 5 km/h.\n\n\n\n\n\n\nImportant\n\n\n\nLes rasters analytiques ne sont renseignés que sur les cellules habitées. Les rasters lissés servent à la cartographie finale, mais les statistiques descriptives ci-dessous sont calculées sur les cellules habitées, pondérées par la population de la grille."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#chaîne-de-traitement",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#chaîne-de-traitement",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Chaîne de traitement",
+    "text": "Chaîne de traitement\n\n\n\n\n\nflowchart LR\n  A[Résultats par bureau et centres regroupés] --&gt; B[Points sources]\n  C[Réseau routier BDROUTE-NC] --&gt; D[Graphe piéton pondéré en minutes]\n  E[Grille population 2020] --&gt; F[Cellules habitées]\n  B --&gt; G[Rattachement au nœud routier le plus proche]\n  F --&gt; H[Rattachement au nœud routier le plus proche]\n  D --&gt; I[Plus courts chemins vers la source la plus proche]\n  G --&gt; I\n  H --&gt; I\n  I --&gt; J[Temps par cellule habitée]\n  J --&gt; K[Comparaison bureaux complets / 8 centres / 9 centres]\n  K --&gt; L[Croisement avec IRIS RGP 2019]\n\n\n\n\n\n\nLe principe est le suivant. Chaque segment du réseau routier devient une arête de graphe. Son poids correspond au temps nécessaire pour le parcourir à pied. Les bureaux ou centres de vote sont rattachés au nœud routier le plus proche ; les cellules habitées le sont également. On ajoute ensuite une source artificielle connectée à tous les points de vote, puis on calcule le plus court chemin vers l’ensemble des nœuds du réseau. Le temps final d’une cellule correspond au temps d’accès au réseau plus le temps de réseau jusqu’au point de vote le plus proche.\nCe choix permet de comparer des configurations de manière homogène. Il évite aussi une lecture purement à vol d’oiseau, qui sous-estime souvent les contraintes réelles dans une ville structurée par les routes, les ruptures de pente, les baies, les emprises et les détours."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#trois-configurations-comparées",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#trois-configurations-comparées",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Trois configurations comparées",
+    "text": "Trois configurations comparées\n\n\n\n\n\n\n\n\nscénario\npopulation couverte\nmoyenne (min)\nmédiane (min)\nP75 (min)\nP90 (min)\npopulation &gt; 15 min (%)\npopulation &gt; 30 min (%)\n\n\n\n\nBureaux de vote habituels\n93 084\n13,3\n10,9\n15,5\n22,4\n28,1\n5,2\n\n\n8 centres regroupés\n93 084\n24,9\n22,1\n30,3\n47,0\n75,7\n25,7\n\n\n9 centres regroupés\n93 084\n21,8\n19,2\n26,4\n38,7\n68,1\n17,2\n\n\n\nLecture : statistiques pondérées par la population de la grille habitée.\n\n\n\n\n\n\n\n\nDans la configuration de référence, le temps moyen pondéré est de 13,3 min. Il passe à 24,9 min dans le scénario à 8 centres, puis à 21,8 min dans le scénario à 9 centres.\nLa différence entre les scénarios ne se résume pas à une hausse uniforme. Le regroupement agit surtout sur la queue de distribution : dans le scénario à 9 centres, 17,2 % de la population couverte dépasse 30 minutes à pied, contre 5,2 % dans la configuration de référence.\n\n\n\n\n\nDistribution pondérée des temps de trajet par configuration.\n\n\n\n\n\n\n\n\n\nPart cumulée de la population selon le temps maximal d’accès."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#mesurer-leffet-du-regroupement",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#mesurer-leffet-du-regroupement",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Mesurer l’effet du regroupement",
+    "text": "Mesurer l’effet du regroupement\n\n\n\n\n\n\n\n\ncomparaison\nmoyenne (min)\nmédiane (min)\nP75 (min)\nP90 (min)\npopulation &gt; +5 min (%)\npopulation &gt; +10 min (%)\npopulation avec baisse (%)\n\n\n\n\n8 centres - bureaux habituels\n11,6\n10,5\n17,6\n27,8\n64,5\n51,3\n9,1\n\n\n9 centres - bureaux habituels\n8,5\n6,2\n14,6\n22,1\n53,3\n39,2\n14,4\n\n\n9 centres - 8 centres\n−3,1\n0,0\n0,0\n0,0\n0,0\n0,0\n17,3\n\n\n\nLecture : un delta positif indique un temps plus long que dans la configuration de référence.\n\n\n\n\n\n\n\n\nLe scénario à 8 centres ajoute en moyenne 11,6 min par rapport aux bureaux habituels. Le scénario à 9 centres réduit cette hausse moyenne à 8,5 min. L’ajout de Kaméré et de la salle Vincent Kafoa ne compense pas tout l’effet du regroupement, mais il améliore nettement l’accessibilité des quartiers du nord de Nouméa.\n\n\n\n\n\nDistribution pondérée des écarts de temps entre configurations."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#où-le-manque-de-véhicule-pèse-le-plus",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#où-le-manque-de-véhicule-pèse-le-plus",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Où le manque de véhicule pèse le plus ?",
+    "text": "Où le manque de véhicule pèse le plus ?\nLe croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l’absence de véhicule rend le déplacement plus contraint.\nÀ l’échelle des IRIS couverts par la grille habitée, la part moyenne agrégée des ménages sans véhicule est de 27,4 %. La corrélation simple entre la part de ménages sans véhicule et le temps moyen en scénario à 9 centres est de -0,02; celle avec le delta 9 centres moins bureaux habituels est de -0,36.\nLe signal n’est pas une relation linéaire simple. Certains IRIS très peu motorisés sont proches d’un centre, tandis que d’autres quartiers plus motorisés peuvent connaître une forte hausse. L’analyse pertinente est donc celle du cumul local entre forte part de ménages sans véhicule et hausse de temps.\n\n\n\n\n\nPart de ménages sans véhicule et hausse moyenne de temps à l’IRIS.\n\n\n\n\n\n\n\n\n\n\n\n\nIRIS\nprofil\nménages sans véhicule\nménages sans véhicule (%)\nbureaux habituels (min)\n9 centres (min)\nhausse (min)\n\n\n\n\nVallée des Colons Sud Ouest\nhausse de temps très forte\n286\n24,5\n5,6\n27,3\n21,7\n\n\nN'Géa\ncumul intermédiaire\n361\n26,7\n7,7\n22,8\n15,0\n\n\nMagenta Est\ncumul intermédiaire\n382\n24,6\n13,0\n26,9\n13,9\n\n\nPortes de Fer - Nord\nforte part sans véhicule et hausse forte\n369\n52,0\n8,1\n21,2\n13,1\n\n\nFaubourg Blanchot\ncumul intermédiaire\n257\n22,2\n8,0\n26,8\n18,8\n\n\nNormandie Sud\nhausse de temps très forte\n150\n25,0\n19,5\n48,9\n29,4\n\n\nQuartier Latin - Vallée du Génie\ncumul intermédiaire\n439\n33,7\n6,5\n16,3\n9,8\n\n\nVallée des Colons Sud Est\ncumul intermédiaire\n189\n15,2\n7,3\n25,2\n17,9\n\n\nTrianon\ncumul intermédiaire\n251\n17,5\n9,1\n21,1\n12,0\n\n\nOuémo\nhausse de temps très forte\n88\n11,9\n9,8\n43,7\n34,0\n\n\nMagenta Tours\ntrès forte part sans véhicule\n515\n71,9\n10,4\n15,9\n5,5\n\n\nAérodrome Sud\ncumul intermédiaire\n368\n33,9\n5,1\n12,7\n7,6\n\n\n\nClassement par indice de cumul : ménages sans véhicule estimés × hausse moyenne positive.\n\n\n\n\n\n\n\n\nCes zones prioritaires ne racontent pas toutes la même chose.\nDans un premier groupe, Vallée des Colons Sud Ouest, N’Géa, Magenta Est, Faubourg Blanchot, Vallée des Colons Sud Est et Trianon combinent surtout un volume important de ménages sans véhicule avec une hausse nette du temps de marche. La question à documenter cartographiquement est alors celle de la perte de proximité : le changement de lieu de vote transforme un déplacement court en trajet plus long, y compris dans des quartiers résidentiels relativement denses.\nUn deuxième groupe relève davantage de la vulnérabilité sociale à l’accessibilité. Portes de Fer - Nord et Magenta Tours ressortent parce que la part de ménages sans véhicule y est très élevée. Même lorsque la hausse moyenne n’est pas la plus spectaculaire, l’absence de véhicule rend le déplacement plus dépendant de la marche, du transport collectif ou de l’accompagnement par un tiers.\nEnfin, Normandie Sud et Ouémo doivent être lus comme des cas de géographie du réseau : la hausse moyenne y est forte, voire très forte, ce qui invite à vérifier les itinéraires piétons, les ruptures urbaines et la position réelle du centre le plus proche.\n\n\n\n\n\nTemps et hausse moyenne selon la part de ménages sans véhicule dans l’IRIS."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#cartographie-de-laccessibilité-aux-bureaux-de-vote",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#cartographie-de-laccessibilité-aux-bureaux-de-vote",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Cartographie de l’accessibilité aux bureaux de vote",
+    "text": "Cartographie de l’accessibilité aux bureaux de vote\nLes graphiques précédents donnent les distributions et les classements. Les cartes QGIS finales peuvent venir compléter la lecture spatiale à trois endroits :\n\ncarte des temps avec bureaux habituels ;\ncarte des temps avec centres regroupés ;\ncarte des ménages sans véhicule RGP 2019 ;\ncarte de l’abstention au premier tour, si l’on veut discuter l’accessibilité avec le comportement électoral observé.\n\n\n\n\n\n\nExports cartographiques effectués sous QGIS\n\n\n\n\n\n\n\nExports cartographiques effectués sous QGIS\n\n\n\n\n\n\n\nExports cartographiques effectués sous QGIS\n\n\n\n\n\n\n\nExports cartographiques effectués sous QGIS\n\n\n\n\n\n\n\nExports cartographiques effectués sous QGIS"
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#lecture-synthétique",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#lecture-synthétique",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Lecture synthétique",
+    "text": "Lecture synthétique\nLa configuration de référence maintient une proximité moyenne relativement faible avec les bureaux habituels. Le passage à des centres regroupés augmente nettement le temps d’accès piéton, surtout pour les cellules déjà situées à distance des nouveaux centres. Le scénario à 9 centres réduit une partie de cet effet par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais laisse subsister des hausses importantes dans plusieurs IRIS.\nLa mise en regard avec le RGP 2019 nuance l’interprétation. Les IRIS les moins motorisés ne sont pas mécaniquement ceux où la hausse est la plus forte. Les zones à regarder en priorité sont plutôt celles où les deux dimensions se cumulent : Vallée des Colons Sud Ouest, N’Géa, Magenta Est, Portes de Fer - Nord, Faubourg Blanchot, Normandie Sud, Quartier Latin - Vallée du Génie, Vallée des Colons Sud Est, Trianon, Ouémo, Magenta Tours et Aérodrome Sud. Elles ne relèvent pas toutes du même mécanisme, mais elles donnent une bonne grille de lecture pour articuler la carte des temps, la carte des ménages sans véhicule et, ensuite, la carte de l’abstention."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#limites-méthodologiques",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#limites-méthodologiques",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Limites méthodologiques",
+    "text": "Limites méthodologiques\nPlusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.\nPremièrement, les temps de trajet estimés reposent sur un modèle théorique de déplacement piéton. Les calculs utilisent une vitesse uniforme de marche fixée à 5 km/h et ne prennent pas en compte les différences d’âge, de mobilité réduite, de conditions climatiques, de sécurité piétonne ou de fatigue.\nDeuxièmement, le réseau routier utilisé comme support de calcul ne représente pas nécessairement l’ensemble des cheminements réellement empruntés par les habitants. Certains raccourcis, escaliers, passages piétons informels ou chemins secondaires peuvent être absents du réseau utilisé.\nTroisièmement, les estimations reposent sur un rattachement des cellules habitées et des bureaux de vote au nœud routier le plus proche. Cette opération introduit une approximation spatiale qui peut localement modifier les temps calculés, notamment dans les secteurs de faible densité ou proches de ruptures du réseau.\nQuatrièmement, l’analyse porte uniquement sur l’accessibilité piétonne potentielle et ne prend pas en compte les autres modes de déplacement (voiture, transport collectif, covoiturage, taxi, etc.). Les résultats ne doivent donc pas être interprétés comme une estimation directe de la difficulté réelle d’accès au vote pour l’ensemble de la population.\nCinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.\nEnfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives."
+  },
+  {
+    "objectID": "posts/regroupement-bureaux-vote-noumea/index.html#sources-et-données-utilisées",
+    "href": "posts/regroupement-bureaux-vote-noumea/index.html#sources-et-données-utilisées",
+    "title": "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?",
+    "section": "Sources et données utilisées",
+    "text": "Sources et données utilisées\nLes analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.\n\nDonnées électorales\n\nRésultats électoraux par bureau de vote — Gouvernement de la Nouvelle-Calédonie / services électoraux.\n\n\n\nRéseau routier\n\nBase de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).\n\n\n\nPopulation et occupation humaine\n\nHuman Settlement Footprint / grille de population 2020 — Pacific Community (SPC).\nhttps://pacificdata.org/data/dataset\n\n\n\nDonnées socio-démographiques\n\nRecensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).\nhttps://www.isee.nc/population/recensement-de-la-population\n\n\n\nDonnées géographiques et traitements\n\nSystème de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).\nTraitements spatiaux réalisés sous R et QGIS.\nCalculs de réseau réalisés à partir d’une représentation graphe du réseau routier."
+  },
+  {
+    "objectID": "dataviz/index.html",
+    "href": "dataviz/index.html",
+    "title": "Dataviz",
+    "section": "",
+    "text": "Cette rubrique rassemble les productions orientées cartes, graphiques, visualisations interactives ou notes de méthode liées à la dataviz.\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "À propos",
+    "section": "",
+    "text": "Contours est un espace de publication consacré aux sciences sociales, à la cartographie et à la dataviz en Nouvelle-Calédonie.\nL’objectif est de proposer des analyses accessibles, documentées et reproductibles sur les dynamiques territoriales calédoniennes : populations, élections, mobilités, alimentation, infrastructures, environnement, inégalités spatiales et politiques publiques."
+  },
+  {
+    "objectID": "about.html#contours",
+    "href": "about.html#contours",
+    "title": "À propos",
+    "section": "",
+    "text": "Contours est un espace de publication consacré aux sciences sociales, à la cartographie et à la dataviz en Nouvelle-Calédonie.\nL’objectif est de proposer des analyses accessibles, documentées et reproductibles sur les dynamiques territoriales calédoniennes : populations, élections, mobilités, alimentation, infrastructures, environnement, inégalités spatiales et politiques publiques."
+  },
+  {
+    "objectID": "about.html#auteur",
+    "href": "about.html#auteur",
+    "title": "À propos",
+    "section": "Auteur",
+    "text": "Auteur\nLe blog est présenté par Jonas Brouillon, ingénieur d’études en sciences sociales à l’IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.\nCe blog et ces travaux sont une initiative purement personnelle, ayant pour but de rendre accessible des analyses scientifiques au grand public sur des sujets d’interets pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n’est parfois pas compatible avec la volonté de partager des analyses sur des sujets d’actualité, d’où le choix de ce format de blog. Les analyses publiées ici n’engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résulats doivent être considérés comme des éléments d’information et de réflexion, et non comme des recommandations ou des prescriptions d’action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées."
+  },
+  {
+    "objectID": "about.html#ligne-éditoriale",
+    "href": "about.html#ligne-éditoriale",
+    "title": "À propos",
+    "section": "Ligne éditoriale",
+    "text": "Ligne éditoriale\nLes articles peuvent prendre plusieurs formes :\n\nanalyses courtes appuyées sur des cartes ou graphiques ;\nnotes méthodologiques en R, Quarto ou QGIS ;\nexplorations de données publiques ;\nvisualisations commentées ;\ndossiers territoriaux sur la Nouvelle-Calédonie et le Pacifique."
+  },
+  {
+    "objectID": "articles/index.html",
+    "href": "articles/index.html",
+    "title": "Articles",
+    "section": "",
+    "text": "Retrouvez ici les articles publiés sur Contours NC.\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Contours",
+    "section": "",
+    "text": "Contours est un carnet de recherche et de datavisualisation consacré aux territoires calédoniens : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.\nCe blog est crée et alimenté par Jonas Brouillon, ingénieur d’études en sciences sociales."
+  },
+  {
+    "objectID": "index.html#derniers-articles",
+    "href": "index.html#derniers-articles",
+    "title": "Contours",
+    "section": "Derniers articles",
+    "text": "Derniers articles"
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html",
+    "href": "README_PREMIER_ARTICLE.html",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "Article concerné : posts/regroupement-bureaux-vote-noumea/index.qmd\nLe site peut être prévisualisé sans ces fichiers. L’article affiche alors une note de prévisualisation et les calculs dépendants des données sont désactivés. Pour activer les tableaux, graphiques et cartes, ajoutez les fichiers ci-dessous.\n\n\nÀ placer dans : data/outputs_noumea_municipales_2026_v2/\n\nnoumea_temps_pieton_bureaux_complets_min_cellules_habitees.tif\nnoumea_temps_pieton_centres_regroupes_8_min_cellules_habitees.tif\nnoumea_temps_pieton_centres_regroupes_9_sans_kowe_kara_kamere_kafoa_min_cellules_habitees.tif\n\n\n\n\nÀ placer dans : data/02_geospatial/vecteurs/\n\niris_rgp_2019.geojson\n\nÀ placer dans : data/02_geospatial/rasters/\n\nNCL_Pop_Grid_2020.tif\n\n\n\n\nÀ placer dans : data/cartes/municipales 2026/\n\ntemps trajet nouméa bureaux complets.png\ntemps trajet nouméa bureaux regroupés.png\ntemps trajet nouméa bureaux regroupés sans koe kara.png\nmenages sans véhicules noumea 2019.png\nabstention nouméa 2026 bureaux complets.png\n\n\n\n\nL’article utilise : dplyr, ggplot2, gt, scales, sf, terra, tidyr, knitr.\n\n\n\nDepuis le dossier du projet :\nquarto preview\nou :\nquarto render"
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html#rasters-de-temps",
+    "href": "README_PREMIER_ARTICLE.html#rasters-de-temps",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "À placer dans : data/outputs_noumea_municipales_2026_v2/\n\nnoumea_temps_pieton_bureaux_complets_min_cellules_habitees.tif\nnoumea_temps_pieton_centres_regroupes_8_min_cellules_habitees.tif\nnoumea_temps_pieton_centres_regroupes_9_sans_kowe_kara_kamere_kafoa_min_cellules_habitees.tif"
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html#données-géographiques",
+    "href": "README_PREMIER_ARTICLE.html#données-géographiques",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "À placer dans : data/02_geospatial/vecteurs/\n\niris_rgp_2019.geojson\n\nÀ placer dans : data/02_geospatial/rasters/\n\nNCL_Pop_Grid_2020.tif"
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html#cartes-qgis-optionnelles",
+    "href": "README_PREMIER_ARTICLE.html#cartes-qgis-optionnelles",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "À placer dans : data/cartes/municipales 2026/\n\ntemps trajet nouméa bureaux complets.png\ntemps trajet nouméa bureaux regroupés.png\ntemps trajet nouméa bureaux regroupés sans koe kara.png\nmenages sans véhicules noumea 2019.png\nabstention nouméa 2026 bureaux complets.png"
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html#packages-r-nécessaires",
+    "href": "README_PREMIER_ARTICLE.html#packages-r-nécessaires",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "L’article utilise : dplyr, ggplot2, gt, scales, sf, terra, tidyr, knitr."
+  },
+  {
+    "objectID": "README_PREMIER_ARTICLE.html#rendu-local",
+    "href": "README_PREMIER_ARTICLE.html#rendu-local",
+    "title": "Fichiers à ajouter pour rendre le premier article entièrement reproductible",
+    "section": "",
+    "text": "Depuis le dossier du projet :\nquarto preview\nou :\nquarto render"
+  }
+]
