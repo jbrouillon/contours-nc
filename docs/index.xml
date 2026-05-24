@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Contours NC</title>
-<link>https://contours-nc.netlify.app/</link>
-<atom:link href="https://contours-nc.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://jbrouillon.github.io/contours-nc/</link>
+<atom:link href="https://jbrouillon.github.io/contours-nc/index.xml" rel="self" type="application/rss+xml"/>
 <description>Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie</description>
 <generator>quarto-1.8.27</generator>
 <lastBuildDate>Sat, 23 May 2026 13:00:00 GMT</lastBuildDate>
 <item>
   <title>Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</title>
   <dc:creator>Jonas Brouillon</dc:creator>
-  <link>https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/</link>
+  <link>https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/</link>
   <description><![CDATA[ 
 
 
@@ -638,7 +638,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-temps-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-temps-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Distribution pondérée des temps de trajet par configuration.</figcaption>
 </figure>
 </div>
@@ -648,7 +648,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/courbes-cumulees-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/courbes-cumulees-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Part cumulée de la population selon le temps maximal d’accès.</figcaption>
 </figure>
 </div>
@@ -1169,7 +1169,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-deltas-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-deltas-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Distribution pondérée des écarts de temps entre configurations.</figcaption>
 </figure>
 </div>
@@ -1185,7 +1185,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/scatter-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/scatter-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Part de ménages sans véhicule et hausse moyenne de temps à l’IRIS.</figcaption>
 </figure>
 </div>
@@ -1783,7 +1783,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/classes-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/classes-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Temps et hausse moyenne selon la part de ménages sans véhicule dans l’IRIS.</figcaption>
 </figure>
 </div>
@@ -1803,7 +1803,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Exports cartographiques effectués sous QGIS</figcaption>
 </figure>
 </div>
@@ -1811,7 +1811,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Exports cartographiques effectués sous QGIS</figcaption>
 </figure>
 </div>
@@ -1819,7 +1819,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés sans koe kara.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés sans koe kara.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Exports cartographiques effectués sous QGIS</figcaption>
 </figure>
 </div>
@@ -1827,7 +1827,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/data/cartes/municipales 2026/menages sans véhicules noumea 2019.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/menages sans véhicules noumea 2019.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Exports cartographiques effectués sous QGIS</figcaption>
 </figure>
 </div>
@@ -1835,7 +1835,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://contours-nc.netlify.app/data/cartes/municipales 2026/abstention nouméa 2026 bureaux complets.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/abstention nouméa 2026 bureaux complets.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Exports cartographiques effectués sous QGIS</figcaption>
 </figure>
 </div>
@@ -1902,7 +1902,7 @@ Important
   <category>Cartographie</category>
   <category>Élections</category>
   <category>Nouméa</category>
-  <guid>https://contours-nc.netlify.app/posts/regroupement-bureaux-vote-noumea/</guid>
+  <guid>https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/</guid>
   <pubDate>Sat, 23 May 2026 13:00:00 GMT</pubDate>
 </item>
 </channel>

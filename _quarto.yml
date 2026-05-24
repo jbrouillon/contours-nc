@@ -5,7 +5,7 @@ project:
 website:
   title: "Contours NC"
   description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
-  site-url: "https://contours-nc.netlify.app"
+  site-url: "https://jbrouillon.github.io/contours-nc/"
   navbar:
     title: "Contours NC"
     left:

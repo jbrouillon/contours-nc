@@ -1,1 +1,1 @@
-Sitemap: https://contours-nc.netlify.app/sitemap.xml
+Sitemap: https://jbrouillon.github.io/contours-nc/sitemap.xml
