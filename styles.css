@@ -40,3 +40,16 @@ a {
   margin-top: 1rem;
   margin-bottom: 1.5rem;
 }
+.note-deroulable {
+  border-left: 4px solid #2f6f8f;
+  background: #f6f8f9;
+  padding: 0.9rem 1rem;
+  margin: 1.2rem 0;
+  border-radius: 0.4rem;
+}
+
+.note-deroulable summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #1f4f63;
+}

@@ -1,13 +1,10 @@
 ---
 title: "Dataviz"
-listing:
-  contents:
-  - "../posts/**/*.qmd"
-  type: default
-  sort: "date desc"
-  categories: true
-  sort-ui: true
-  filter-ui: true
+page-layout: full
 ---
 
-Cette rubrique rassemble les productions orientées cartes, graphiques, visualisations interactives ou notes de méthode liées à la dataviz.
+# Dataviz
+
+Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur Contours.
+
+Pour le moment, les visualisations sont intégrées directement dans les articles.

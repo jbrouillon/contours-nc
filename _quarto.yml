@@ -3,11 +3,11 @@ project:
   output-dir: docs
 
 website:
-  title: "Contours NC"
+  title: "Contours"
   description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
   site-url: "https://jbrouillon.github.io/contours-nc/"
   navbar:
-    title: "Contours NC"
+    title: "Contours"
     left:
       - text: "Articles"
         href: articles/index.qmd
@@ -19,7 +19,7 @@ website:
         href: about.qmd
     right:
       - icon: github
-        href: https://github.com/
+        href: https://github.com/jbrouillon/contours-nc
   page-footer:
     left: "© Jonas Brouillon"
     right: "Fait avec Quarto"
