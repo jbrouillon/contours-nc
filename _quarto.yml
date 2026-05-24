@@ -7,6 +7,7 @@ website:
   description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
   site-url: "https://jbrouillon.github.io/contours-nc/"
   navbar:
+    logo: images/logo.png
     title: "Contours"
     left:
       - text: "Articles"
@@ -31,7 +32,11 @@ format:
       light: cosmo
     css: styles.css
     toc: true
-    toc-location: right
+    number-sections: true
+    fig-cap-location: bottom
+    tbl-cap-location: top
+    lof: true
+    lot: true
     code-fold: true
     code-summary: "Afficher le code"
     fig-width: 8

@@ -399,6 +399,21 @@ scenario_stats |>
 
 Dans la configuration de référence, le temps moyen pondéré est de `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "Bureaux de vote habituels"])`. Il passe à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "8 centres regroupés"])` dans le scénario à 8 centres, puis à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres.
 
+```{r temps-bureaux-complets, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux complets.png"))
+
+```
+
+```{r temps-bureaux-8, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 8 bureaux regroupés)"}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés.png"))
+
+```
+
+```{r temps-bureaux-9, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 9 bureaux regroupés)"}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés sans koe kara.png"))
+
+```
+
 La différence entre les scénarios ne se résume pas à une hausse uniforme. Le regroupement agit surtout sur la queue de distribution : dans le scénario à 9 centres, `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "9 centres regroupés"])` de la population couverte dépasse 30 minutes à pied, contre `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "Bureaux de vote habituels"])` dans la configuration de référence.
 
 ```{r distribution-temps, fig.cap="Distribution pondérée des temps de trajet par configuration."}
@@ -527,6 +542,11 @@ ggplot(delta_long, aes(x = delta_min, weight = pop, fill = comparaison)) +
 
 Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l'absence de véhicule rend le déplacement plus contraint.
 
+```{r menages-sans-vehicules, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "menages sans véhicules noumea 2019.png"))
+
+```
+
 À l'échelle des IRIS couverts par la grille habitée, la part moyenne agrégée des ménages sans véhicule est de `r fmt_pct(vehicle_summary$part_menages_sans_vehicules)`. La corrélation simple entre la part de ménages sans véhicule et le temps moyen en scénario à 9 centres est de `r number(cor_vehicle_time9, accuracy = 0.01, decimal.mark = ",")`; celle avec le delta 9 centres moins bureaux habituels est de `r number(cor_vehicle_delta9, accuracy = 0.01, decimal.mark = ",")`.
 
 Le signal n'est pas une relation linéaire simple. Certains IRIS très peu motorisés sont proches d'un centre, tandis que d'autres quartiers plus motorisés peuvent connaître une forte hausse. L'analyse pertinente est donc celle du cumul local entre forte part de ménages sans véhicule et hausse de temps.
@@ -625,35 +645,16 @@ ggplot(vehicle_classes, aes(x = classe_sans_vehicule, y = minutes, fill = indica
   theme(legend.position = "bottom")
 ```
 
-## Cartographie de l'accessibilité aux bureaux de vote
+## Accessibilité et absention
 
-Les graphiques précédents donnent les distributions et les classements. Les cartes QGIS finales peuvent venir compléter la lecture spatiale à trois endroits :
+La carte de l'abstention au 1er tour permet de donner un apperçu des zones les abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
 
--   carte des temps avec bureaux habituels ;
--   carte des temps avec centres regroupés ;
--   carte des ménages sans véhicule RGP 2019 ;
--   carte de l'abstention au premier tour, si l'on veut discuter l'accessibilité avec le comportement électoral observé.
+```{r abstention-2026, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.png"))
 
-```{r cartes-qgis, fig.cap="Exports cartographiques effectués sous QGIS", out.width="100%"}
-map_paths <- c(
-  data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux complets.png"),
-  data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés.png"),
-  data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés sans koe kara.png"),
-  data_path("cartes", "municipales 2026", "menages sans véhicules noumea 2019.png"),
-  data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.png")
-)
-
-map_paths <- map_paths[file.exists(map_paths)]
-if (length(map_paths) > 0) {
-  knitr::include_graphics(map_paths)
-}
 ```
 
-## Lecture synthétique
 
-La configuration de référence maintient une proximité moyenne relativement faible avec les bureaux habituels. Le passage à des centres regroupés augmente nettement le temps d'accès piéton, surtout pour les cellules déjà situées à distance des nouveaux centres. Le scénario à 9 centres réduit une partie de cet effet par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais laisse subsister des hausses importantes dans plusieurs IRIS.
-
-La mise en regard avec le RGP 2019 nuance l'interprétation. Les IRIS les moins motorisés ne sont pas mécaniquement ceux où la hausse est la plus forte. Les zones à regarder en priorité sont plutôt celles où les deux dimensions se cumulent : Vallée des Colons Sud Ouest, N'Géa, Magenta Est, Portes de Fer - Nord, Faubourg Blanchot, Normandie Sud, Quartier Latin - Vallée du Génie, Vallée des Colons Sud Est, Trianon, Ouémo, Magenta Tours et Aérodrome Sud. Elles ne relèvent pas toutes du même mécanisme, mais elles donnent une bonne grille de lecture pour articuler la carte des temps, la carte des ménages sans véhicule et, ensuite, la carte de l'abstention.
 
 ## Limites méthodologiques
 
@@ -710,3 +711,4 @@ Les analyses présentées dans cette note reposent sur plusieurs jeux de donnée
 -   Traitements spatiaux réalisés sous R et QGIS.
 
 -   Calculs de réseau réalisés à partir d’une représentation graphe du réseau routier.
+

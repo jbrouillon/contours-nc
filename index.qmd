@@ -1,8 +1,10 @@
 ---
 title: "Contours"
-subtitle: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
+subtitle: ""
+title-block-banner: false
 page-layout: full
-title-block-banner: true
+format: html
+toc: false
 listing:
   contents: posts
   type: default
@@ -12,7 +14,20 @@ listing:
   sort-ui: false
   filter-ui: true
 ---
+::: {.hero-title}
 
+![](images/logo.png){.hero-logo}
+
+::: {.hero-text}
+
+
+::: {.hero-subtitle}
+Blog de recherche en sciences sociales en Nouvelle-Calédonie
+:::
+
+:::
+
+:::
 **Contours** est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
 
 Ce blog est crée et alimenté par **Jonas Brouillon**, ingénieur d'études en sciences sociales.
