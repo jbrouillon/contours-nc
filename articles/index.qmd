@@ -1,5 +1,5 @@
 ---
-title: "Articles"
+title: "articles"
 listing:
   contents:
   - "../posts/**/*.qmd"
@@ -10,4 +10,4 @@ listing:
   filter-ui: true
 ---
 
-Retrouvez ici les articles publiés sur **Contours NC**.
+Retrouvez ici les articles publiés sur <span class="contours-word">contours</span>

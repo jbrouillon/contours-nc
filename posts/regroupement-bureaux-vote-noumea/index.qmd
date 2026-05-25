@@ -654,8 +654,6 @@ knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention noum
 
 ```
 
-
-
 ## Limites méthodologiques
 
 Plusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.
@@ -711,4 +709,3 @@ Les analyses présentées dans cette note reposent sur plusieurs jeux de donnée
 -   Traitements spatiaux réalisés sous R et QGIS.
 
 -   Calculs de réseau réalisés à partir d’une représentation graphe du réseau routier.
-

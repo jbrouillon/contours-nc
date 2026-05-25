@@ -21,8 +21,8 @@
 
 
 
-<section id="résumé" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="résumé"><span class="header-section-number">1</span> Résumé</h2>
+<section id="résumé" class="level2">
+<h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
 <p>Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.</p>
 <p>Les résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.</p>
 <p>L’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.</p>
@@ -42,8 +42,8 @@ Avertissement
 <p>Les résultats présentés ici ne constituent donc pas une mesure définitive des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles.</p>
 </details>
 </section>
-<section id="introduction" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2</span> Introduction</h2>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>La question du regroupement des bureaux de vote s’est imposée dans le débat public calédonien à partir des élections législatives anticipées de 2024, organisées dans le contexte exceptionnel des émeutes et des tensions sécuritaires ayant suivi les événements du 13 mai.</p>
 <p>À Nouméa, les 56 bureaux de vote habituels avaient alors été regroupés sur seulement 7 sites afin de sécuriser l’organisation du scrutin. Ce dispositif exceptionnel avait été présenté comme une réponse aux contraintes logistiques et sécuritaires du moment. Malgré cette réorganisation, la participation au second tour des législatives avait atteint un niveau particulièrement élevé à l’échelle du territoire.</p>
 <p>Le regroupement des bureaux de vote n’est cependant pas resté limité à ce seul contexte d’urgence. Le dispositif a ensuite été largement reconduit lors des élections municipales de 2026, avec une organisation reposant sur 8 grands sites de vote à l’échelle de la commune. Cette décision a suscité plusieurs critiques et recours politiques autour des questions d’accessibilité, de proximité du vote et de sincérité du scrutin.</p>
@@ -52,8 +52,8 @@ Avertissement
 <p>Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées : - la configuration habituelle des bureaux de vote ; - un scénario à 8 centres regroupés ; - un scénario à 9 centres regroupés.</p>
 <p>L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.</p>
 </section>
-<section id="pourquoi-estimer-des-temps-de-trajet" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="pourquoi-estimer-des-temps-de-trajet"><span class="header-section-number">3</span> Pourquoi estimer des temps de trajet ?</h2>
+<section id="pourquoi-estimer-des-temps-de-trajet" class="level2">
+<h2 class="anchored" data-anchor-id="pourquoi-estimer-des-temps-de-trajet">Pourquoi estimer des temps de trajet ?</h2>
 <p>Le regroupement de bureaux de vote change la géographie concrète de l’accès au vote. Deux électeurs rattachés administrativement au même scrutin ne font pas nécessairement face au même effort de déplacement selon le quartier, la densité du réseau viaire, la localisation des centres ouverts et la possibilité ou non d’utiliser une voiture.</p>
 <p>Cette note documente une estimation des temps de trajet piéton vers le point de vote le plus proche à Nouméa. L’objectif n’est pas de reconstituer les trajets réellement empruntés par chaque électeur, mais de produire un indicateur spatial comparable entre plusieurs configurations :</p>
 <ul>
@@ -63,8 +63,8 @@ Avertissement
 </ul>
 <p>Le résultat doit être lu comme une mesure d’accessibilité potentielle. Il devient particulièrement utile lorsqu’il est rapproché de la part des ménages sans véhicule, issue du RGP 2019 à l’échelle IRIS.</p>
 </section>
-<section id="les-données-mobilisées" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="les-données-mobilisées"><span class="header-section-number">4</span> Les données mobilisées</h2>
+<section id="les-données-mobilisées" class="level2">
+<h2 class="anchored" data-anchor-id="les-données-mobilisées">Les données mobilisées</h2>
 <p>L’estimation s’appuie sur cinq familles de données locales :</p>
 <ul>
 <li>les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de votes réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul</li>
@@ -88,8 +88,8 @@ Important
 </div>
 </div>
 </section>
-<section id="chaîne-de-traitement" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="chaîne-de-traitement"><span class="header-section-number">5</span> Chaîne de traitement</h2>
+<section id="chaîne-de-traitement" class="level2">
+<h2 class="anchored" data-anchor-id="chaîne-de-traitement">Chaîne de traitement</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -116,27 +116,27 @@ Important
 <p>Le principe est le suivant. Chaque segment du réseau routier devient une arête de graphe. Son poids correspond au temps nécessaire pour le parcourir à pied. Les bureaux ou centres de vote sont rattachés au nœud routier le plus proche ; les cellules habitées le sont également. On ajoute ensuite une source artificielle connectée à tous les points de vote, puis on calcule le plus court chemin vers l’ensemble des nœuds du réseau. Le temps final d’une cellule correspond au temps d’accès au réseau plus le temps de réseau jusqu’au point de vote le plus proche.</p>
 <p>Ce choix permet de comparer des configurations de manière homogène. Il évite aussi une lecture purement à vol d’oiseau, qui sous-estime souvent les contraintes réelles dans une ville structurée par les routes, les ruptures de pente, les baies, les emprises et les détours.</p>
 </section>
-<section id="trois-configurations-comparées" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="trois-configurations-comparées"><span class="header-section-number">6</span> Trois configurations comparées</h2>
+<section id="trois-configurations-comparées" class="level2">
+<h2 class="anchored" data-anchor-id="trois-configurations-comparées">Trois configurations comparées</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="miaawgrick" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#miaawgrick table {
+<div id="gzmyazgyta" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gzmyazgyta table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#miaawgrick thead, #miaawgrick tbody, #miaawgrick tfoot, #miaawgrick tr, #miaawgrick td, #miaawgrick th {
+#gzmyazgyta thead, #gzmyazgyta tbody, #gzmyazgyta tfoot, #gzmyazgyta tr, #gzmyazgyta td, #gzmyazgyta th {
   border-style: none;
 }
 
-#miaawgrick p {
+#gzmyazgyta p {
   margin: 0;
   padding: 0;
 }
 
-#miaawgrick .gt_table {
+#gzmyazgyta .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -162,12 +162,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#miaawgrick .gt_caption {
+#gzmyazgyta .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#miaawgrick .gt_title {
+#gzmyazgyta .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -179,7 +179,7 @@ Important
   border-bottom-width: 0;
 }
 
-#miaawgrick .gt_subtitle {
+#gzmyazgyta .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -191,7 +191,7 @@ Important
   border-top-width: 0;
 }
 
-#miaawgrick .gt_heading {
+#gzmyazgyta .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -203,13 +203,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#miaawgrick .gt_bottom_border {
+#gzmyazgyta .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#miaawgrick .gt_col_headings {
+#gzmyazgyta .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -224,7 +224,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#miaawgrick .gt_col_heading {
+#gzmyazgyta .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -244,7 +244,7 @@ Important
   overflow-x: hidden;
 }
 
-#miaawgrick .gt_column_spanner_outer {
+#gzmyazgyta .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -256,15 +256,15 @@ Important
   padding-right: 4px;
 }
 
-#miaawgrick .gt_column_spanner_outer:first-child {
+#gzmyazgyta .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#miaawgrick .gt_column_spanner_outer:last-child {
+#gzmyazgyta .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#miaawgrick .gt_column_spanner {
+#gzmyazgyta .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -276,11 +276,11 @@ Important
   width: 100%;
 }
 
-#miaawgrick .gt_spanner_row {
+#gzmyazgyta .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#miaawgrick .gt_group_heading {
+#gzmyazgyta .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -306,7 +306,7 @@ Important
   text-align: left;
 }
 
-#miaawgrick .gt_empty_group_heading {
+#gzmyazgyta .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -321,15 +321,15 @@ Important
   vertical-align: middle;
 }
 
-#miaawgrick .gt_from_md > :first-child {
+#gzmyazgyta .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#miaawgrick .gt_from_md > :last-child {
+#gzmyazgyta .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#miaawgrick .gt_row {
+#gzmyazgyta .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -348,7 +348,7 @@ Important
   overflow-x: hidden;
 }
 
-#miaawgrick .gt_stub {
+#gzmyazgyta .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -361,7 +361,7 @@ Important
   padding-right: 5px;
 }
 
-#miaawgrick .gt_stub_row_group {
+#gzmyazgyta .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,15 +375,15 @@ Important
   vertical-align: top;
 }
 
-#miaawgrick .gt_row_group_first td {
+#gzmyazgyta .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#miaawgrick .gt_row_group_first th {
+#gzmyazgyta .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#miaawgrick .gt_summary_row {
+#gzmyazgyta .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -393,16 +393,16 @@ Important
   padding-right: 5px;
 }
 
-#miaawgrick .gt_first_summary_row {
+#gzmyazgyta .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#miaawgrick .gt_first_summary_row.thick {
+#gzmyazgyta .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#miaawgrick .gt_last_summary_row {
+#gzmyazgyta .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -412,7 +412,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#miaawgrick .gt_grand_summary_row {
+#gzmyazgyta .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -422,7 +422,7 @@ Important
   padding-right: 5px;
 }
 
-#miaawgrick .gt_first_grand_summary_row {
+#gzmyazgyta .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -432,7 +432,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#miaawgrick .gt_last_grand_summary_row_top {
+#gzmyazgyta .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -442,11 +442,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#miaawgrick .gt_striped {
+#gzmyazgyta .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#miaawgrick .gt_table_body {
+#gzmyazgyta .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -455,7 +455,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#miaawgrick .gt_footnotes {
+#gzmyazgyta .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -469,7 +469,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#miaawgrick .gt_footnote {
+#gzmyazgyta .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -478,7 +478,7 @@ Important
   padding-right: 5px;
 }
 
-#miaawgrick .gt_sourcenotes {
+#gzmyazgyta .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -492,7 +492,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#miaawgrick .gt_sourcenote {
+#gzmyazgyta .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -500,72 +500,72 @@ Important
   padding-right: 5px;
 }
 
-#miaawgrick .gt_left {
+#gzmyazgyta .gt_left {
   text-align: left;
 }
 
-#miaawgrick .gt_center {
+#gzmyazgyta .gt_center {
   text-align: center;
 }
 
-#miaawgrick .gt_right {
+#gzmyazgyta .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#miaawgrick .gt_font_normal {
+#gzmyazgyta .gt_font_normal {
   font-weight: normal;
 }
 
-#miaawgrick .gt_font_bold {
+#gzmyazgyta .gt_font_bold {
   font-weight: bold;
 }
 
-#miaawgrick .gt_font_italic {
+#gzmyazgyta .gt_font_italic {
   font-style: italic;
 }
 
-#miaawgrick .gt_super {
+#gzmyazgyta .gt_super {
   font-size: 65%;
 }
 
-#miaawgrick .gt_footnote_marks {
+#gzmyazgyta .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#miaawgrick .gt_asterisk {
+#gzmyazgyta .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#miaawgrick .gt_indent_1 {
+#gzmyazgyta .gt_indent_1 {
   text-indent: 5px;
 }
 
-#miaawgrick .gt_indent_2 {
+#gzmyazgyta .gt_indent_2 {
   text-indent: 10px;
 }
 
-#miaawgrick .gt_indent_3 {
+#gzmyazgyta .gt_indent_3 {
   text-indent: 15px;
 }
 
-#miaawgrick .gt_indent_4 {
+#gzmyazgyta .gt_indent_4 {
   text-indent: 20px;
 }
 
-#miaawgrick .gt_indent_5 {
+#gzmyazgyta .gt_indent_5 {
   text-indent: 25px;
 }
 
-#miaawgrick .katex-display {
+#gzmyazgyta .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#miaawgrick div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gzmyazgyta div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -678,27 +678,27 @@ Important
 </div>
 </div>
 </section>
-<section id="mesurer-leffet-du-regroupement" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="mesurer-leffet-du-regroupement"><span class="header-section-number">7</span> Mesurer l’effet du regroupement</h2>
+<section id="mesurer-leffet-du-regroupement" class="level2">
+<h2 class="anchored" data-anchor-id="mesurer-leffet-du-regroupement">Mesurer l’effet du regroupement</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ghxnmvdagp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ghxnmvdagp table {
+<div id="ebdplbpdyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ebdplbpdyv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ghxnmvdagp thead, #ghxnmvdagp tbody, #ghxnmvdagp tfoot, #ghxnmvdagp tr, #ghxnmvdagp td, #ghxnmvdagp th {
+#ebdplbpdyv thead, #ebdplbpdyv tbody, #ebdplbpdyv tfoot, #ebdplbpdyv tr, #ebdplbpdyv td, #ebdplbpdyv th {
   border-style: none;
 }
 
-#ghxnmvdagp p {
+#ebdplbpdyv p {
   margin: 0;
   padding: 0;
 }
 
-#ghxnmvdagp .gt_table {
+#ebdplbpdyv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -724,12 +724,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_caption {
+#ebdplbpdyv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ghxnmvdagp .gt_title {
+#ebdplbpdyv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -741,7 +741,7 @@ Important
   border-bottom-width: 0;
 }
 
-#ghxnmvdagp .gt_subtitle {
+#ebdplbpdyv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -753,7 +753,7 @@ Important
   border-top-width: 0;
 }
 
-#ghxnmvdagp .gt_heading {
+#ebdplbpdyv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -765,13 +765,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_bottom_border {
+#ebdplbpdyv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_col_headings {
+#ebdplbpdyv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -786,7 +786,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_col_heading {
+#ebdplbpdyv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -806,7 +806,7 @@ Important
   overflow-x: hidden;
 }
 
-#ghxnmvdagp .gt_column_spanner_outer {
+#ebdplbpdyv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -818,15 +818,15 @@ Important
   padding-right: 4px;
 }
 
-#ghxnmvdagp .gt_column_spanner_outer:first-child {
+#ebdplbpdyv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ghxnmvdagp .gt_column_spanner_outer:last-child {
+#ebdplbpdyv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ghxnmvdagp .gt_column_spanner {
+#ebdplbpdyv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -838,11 +838,11 @@ Important
   width: 100%;
 }
 
-#ghxnmvdagp .gt_spanner_row {
+#ebdplbpdyv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ghxnmvdagp .gt_group_heading {
+#ebdplbpdyv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -868,7 +868,7 @@ Important
   text-align: left;
 }
 
-#ghxnmvdagp .gt_empty_group_heading {
+#ebdplbpdyv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -883,15 +883,15 @@ Important
   vertical-align: middle;
 }
 
-#ghxnmvdagp .gt_from_md > :first-child {
+#ebdplbpdyv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ghxnmvdagp .gt_from_md > :last-child {
+#ebdplbpdyv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ghxnmvdagp .gt_row {
+#ebdplbpdyv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -910,7 +910,7 @@ Important
   overflow-x: hidden;
 }
 
-#ghxnmvdagp .gt_stub {
+#ebdplbpdyv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -923,7 +923,7 @@ Important
   padding-right: 5px;
 }
 
-#ghxnmvdagp .gt_stub_row_group {
+#ebdplbpdyv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -937,15 +937,15 @@ Important
   vertical-align: top;
 }
 
-#ghxnmvdagp .gt_row_group_first td {
+#ebdplbpdyv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ghxnmvdagp .gt_row_group_first th {
+#ebdplbpdyv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ghxnmvdagp .gt_summary_row {
+#ebdplbpdyv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -955,16 +955,16 @@ Important
   padding-right: 5px;
 }
 
-#ghxnmvdagp .gt_first_summary_row {
+#ebdplbpdyv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_first_summary_row.thick {
+#ebdplbpdyv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ghxnmvdagp .gt_last_summary_row {
+#ebdplbpdyv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -974,7 +974,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_grand_summary_row {
+#ebdplbpdyv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -984,7 +984,7 @@ Important
   padding-right: 5px;
 }
 
-#ghxnmvdagp .gt_first_grand_summary_row {
+#ebdplbpdyv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -994,7 +994,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_last_grand_summary_row_top {
+#ebdplbpdyv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1004,11 +1004,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_striped {
+#ebdplbpdyv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ghxnmvdagp .gt_table_body {
+#ebdplbpdyv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1017,7 +1017,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_footnotes {
+#ebdplbpdyv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1031,7 +1031,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_footnote {
+#ebdplbpdyv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1040,7 +1040,7 @@ Important
   padding-right: 5px;
 }
 
-#ghxnmvdagp .gt_sourcenotes {
+#ebdplbpdyv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1054,7 +1054,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#ghxnmvdagp .gt_sourcenote {
+#ebdplbpdyv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1062,72 +1062,72 @@ Important
   padding-right: 5px;
 }
 
-#ghxnmvdagp .gt_left {
+#ebdplbpdyv .gt_left {
   text-align: left;
 }
 
-#ghxnmvdagp .gt_center {
+#ebdplbpdyv .gt_center {
   text-align: center;
 }
 
-#ghxnmvdagp .gt_right {
+#ebdplbpdyv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ghxnmvdagp .gt_font_normal {
+#ebdplbpdyv .gt_font_normal {
   font-weight: normal;
 }
 
-#ghxnmvdagp .gt_font_bold {
+#ebdplbpdyv .gt_font_bold {
   font-weight: bold;
 }
 
-#ghxnmvdagp .gt_font_italic {
+#ebdplbpdyv .gt_font_italic {
   font-style: italic;
 }
 
-#ghxnmvdagp .gt_super {
+#ebdplbpdyv .gt_super {
   font-size: 65%;
 }
 
-#ghxnmvdagp .gt_footnote_marks {
+#ebdplbpdyv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ghxnmvdagp .gt_asterisk {
+#ebdplbpdyv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ghxnmvdagp .gt_indent_1 {
+#ebdplbpdyv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ghxnmvdagp .gt_indent_2 {
+#ebdplbpdyv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ghxnmvdagp .gt_indent_3 {
+#ebdplbpdyv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ghxnmvdagp .gt_indent_4 {
+#ebdplbpdyv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ghxnmvdagp .gt_indent_5 {
+#ebdplbpdyv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ghxnmvdagp .katex-display {
+#ebdplbpdyv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ghxnmvdagp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ebdplbpdyv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1199,8 +1199,8 @@ Important
 </div>
 </div>
 </section>
-<section id="où-le-manque-de-véhicule-pèse-le-plus" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="où-le-manque-de-véhicule-pèse-le-plus"><span class="header-section-number">8</span> Où le manque de véhicule pèse le plus ?</h2>
+<section id="où-le-manque-de-véhicule-pèse-le-plus" class="level2">
+<h2 class="anchored" data-anchor-id="où-le-manque-de-véhicule-pèse-le-plus">Où le manque de véhicule pèse le plus ?</h2>
 <p>Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l’absence de véhicule rend le déplacement plus contraint.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1226,23 +1226,23 @@ Important
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="upkdlxgziq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#upkdlxgziq table {
+<div id="iefawhzelu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iefawhzelu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#upkdlxgziq thead, #upkdlxgziq tbody, #upkdlxgziq tfoot, #upkdlxgziq tr, #upkdlxgziq td, #upkdlxgziq th {
+#iefawhzelu thead, #iefawhzelu tbody, #iefawhzelu tfoot, #iefawhzelu tr, #iefawhzelu td, #iefawhzelu th {
   border-style: none;
 }
 
-#upkdlxgziq p {
+#iefawhzelu p {
   margin: 0;
   padding: 0;
 }
 
-#upkdlxgziq .gt_table {
+#iefawhzelu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1268,12 +1268,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_caption {
+#iefawhzelu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#upkdlxgziq .gt_title {
+#iefawhzelu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1285,7 +1285,7 @@ Important
   border-bottom-width: 0;
 }
 
-#upkdlxgziq .gt_subtitle {
+#iefawhzelu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1297,7 +1297,7 @@ Important
   border-top-width: 0;
 }
 
-#upkdlxgziq .gt_heading {
+#iefawhzelu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1309,13 +1309,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_bottom_border {
+#iefawhzelu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_col_headings {
+#iefawhzelu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1330,7 +1330,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_col_heading {
+#iefawhzelu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1350,7 +1350,7 @@ Important
   overflow-x: hidden;
 }
 
-#upkdlxgziq .gt_column_spanner_outer {
+#iefawhzelu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1362,15 +1362,15 @@ Important
   padding-right: 4px;
 }
 
-#upkdlxgziq .gt_column_spanner_outer:first-child {
+#iefawhzelu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#upkdlxgziq .gt_column_spanner_outer:last-child {
+#iefawhzelu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#upkdlxgziq .gt_column_spanner {
+#iefawhzelu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1382,11 +1382,11 @@ Important
   width: 100%;
 }
 
-#upkdlxgziq .gt_spanner_row {
+#iefawhzelu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#upkdlxgziq .gt_group_heading {
+#iefawhzelu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1412,7 +1412,7 @@ Important
   text-align: left;
 }
 
-#upkdlxgziq .gt_empty_group_heading {
+#iefawhzelu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1427,15 +1427,15 @@ Important
   vertical-align: middle;
 }
 
-#upkdlxgziq .gt_from_md > :first-child {
+#iefawhzelu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#upkdlxgziq .gt_from_md > :last-child {
+#iefawhzelu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#upkdlxgziq .gt_row {
+#iefawhzelu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1454,7 +1454,7 @@ Important
   overflow-x: hidden;
 }
 
-#upkdlxgziq .gt_stub {
+#iefawhzelu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1467,7 +1467,7 @@ Important
   padding-right: 5px;
 }
 
-#upkdlxgziq .gt_stub_row_group {
+#iefawhzelu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1481,15 +1481,15 @@ Important
   vertical-align: top;
 }
 
-#upkdlxgziq .gt_row_group_first td {
+#iefawhzelu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#upkdlxgziq .gt_row_group_first th {
+#iefawhzelu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#upkdlxgziq .gt_summary_row {
+#iefawhzelu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1499,16 +1499,16 @@ Important
   padding-right: 5px;
 }
 
-#upkdlxgziq .gt_first_summary_row {
+#iefawhzelu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_first_summary_row.thick {
+#iefawhzelu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#upkdlxgziq .gt_last_summary_row {
+#iefawhzelu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1518,7 +1518,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_grand_summary_row {
+#iefawhzelu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1528,7 +1528,7 @@ Important
   padding-right: 5px;
 }
 
-#upkdlxgziq .gt_first_grand_summary_row {
+#iefawhzelu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1538,7 +1538,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_last_grand_summary_row_top {
+#iefawhzelu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1548,11 +1548,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_striped {
+#iefawhzelu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#upkdlxgziq .gt_table_body {
+#iefawhzelu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1561,7 +1561,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_footnotes {
+#iefawhzelu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1575,7 +1575,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_footnote {
+#iefawhzelu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1584,7 +1584,7 @@ Important
   padding-right: 5px;
 }
 
-#upkdlxgziq .gt_sourcenotes {
+#iefawhzelu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1598,7 +1598,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#upkdlxgziq .gt_sourcenote {
+#iefawhzelu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1606,72 +1606,72 @@ Important
   padding-right: 5px;
 }
 
-#upkdlxgziq .gt_left {
+#iefawhzelu .gt_left {
   text-align: left;
 }
 
-#upkdlxgziq .gt_center {
+#iefawhzelu .gt_center {
   text-align: center;
 }
 
-#upkdlxgziq .gt_right {
+#iefawhzelu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#upkdlxgziq .gt_font_normal {
+#iefawhzelu .gt_font_normal {
   font-weight: normal;
 }
 
-#upkdlxgziq .gt_font_bold {
+#iefawhzelu .gt_font_bold {
   font-weight: bold;
 }
 
-#upkdlxgziq .gt_font_italic {
+#iefawhzelu .gt_font_italic {
   font-style: italic;
 }
 
-#upkdlxgziq .gt_super {
+#iefawhzelu .gt_super {
   font-size: 65%;
 }
 
-#upkdlxgziq .gt_footnote_marks {
+#iefawhzelu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#upkdlxgziq .gt_asterisk {
+#iefawhzelu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#upkdlxgziq .gt_indent_1 {
+#iefawhzelu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#upkdlxgziq .gt_indent_2 {
+#iefawhzelu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#upkdlxgziq .gt_indent_3 {
+#iefawhzelu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#upkdlxgziq .gt_indent_4 {
+#iefawhzelu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#upkdlxgziq .gt_indent_5 {
+#iefawhzelu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#upkdlxgziq .katex-display {
+#iefawhzelu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#upkdlxgziq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iefawhzelu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1823,8 +1823,8 @@ Important
 </div>
 </div>
 </section>
-<section id="accessibilité-et-absention" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="accessibilité-et-absention"><span class="header-section-number">9</span> Accessibilité et absention</h2>
+<section id="accessibilité-et-absention" class="level2">
+<h2 class="anchored" data-anchor-id="accessibilité-et-absention">Accessibilité et absention</h2>
 <p>La carte de l’abstention au 1er tour permet de donner un apperçu des zones les abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n’est pas possible d’établir de corrélation directe étant donné que les causes de l’abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d’isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1837,8 +1837,8 @@ Important
 </div>
 </div>
 </section>
-<section id="limites-méthodologiques" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="limites-méthodologiques"><span class="header-section-number">10</span> Limites méthodologiques</h2>
+<section id="limites-méthodologiques" class="level2">
+<h2 class="anchored" data-anchor-id="limites-méthodologiques">Limites méthodologiques</h2>
 <p>Plusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.</p>
 <p>Premièrement, les temps de trajet estimés reposent sur un modèle théorique de déplacement piéton. Les calculs utilisent une vitesse uniforme de marche fixée à 5 km/h et ne prennent pas en compte les différences d’âge, de mobilité réduite, de conditions climatiques, de sécurité piétonne ou de fatigue.</p>
 <p>Deuxièmement, le réseau routier utilisé comme support de calcul ne représente pas nécessairement l’ensemble des cheminements réellement empruntés par les habitants. Certains raccourcis, escaliers, passages piétons informels ou chemins secondaires peuvent être absents du réseau utilisé.</p>
@@ -1847,43 +1847,43 @@ Important
 <p>Cinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.</p>
 <p>Enfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives.</p>
 </section>
-<section id="conclusion" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11</span> Conclusion</h2>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Cette première estimation montre que le regroupement des bureaux de vote ne produit pas seulement un déplacement administratif des lieux de vote : il modifie sensiblement les conditions concrètes d’accès au scrutin. À Nouméa, le passage des bureaux habituels aux centres regroupés augmente le temps moyen d’accès piéton, qui passe de 13,3 min dans la configuration de référence à 21,8 min dans le scénario à 9 centres.</p>
 <p>L’effet le plus important concerne toutefois les situations d’éloignement. La part de population située à plus de 30 minutes à pied d’un centre de vote passe de 5,2 % avec les bureaux habituels à 17,2 % dans le scénario à 9 centres. L’ajout d’un neuvième centre améliore une partie de la situation par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais il ne rétablit pas la proximité offerte par le maillage habituel des bureaux.</p>
 <p>Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d’accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n’est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.</p>
 </section>
-<section id="sources-et-données-utilisées" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="sources-et-données-utilisées"><span class="header-section-number">12</span> Sources et données utilisées</h2>
+<section id="sources-et-données-utilisées" class="level2">
+<h2 class="anchored" data-anchor-id="sources-et-données-utilisées">Sources et données utilisées</h2>
 <p>Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.</p>
-<section id="données-électorales" class="level3" data-number="12.1">
-<h3 data-number="12.1" class="anchored" data-anchor-id="données-électorales"><span class="header-section-number">12.1</span> Données électorales</h3>
+<section id="données-électorales" class="level3">
+<h3 class="anchored" data-anchor-id="données-électorales">Données électorales</h3>
 <ul>
 <li>Résultats électoraux par bureau de vote — Ministère de l’intérieur</li>
 </ul>
 </section>
-<section id="réseau-routier" class="level3" data-number="12.2">
-<h3 data-number="12.2" class="anchored" data-anchor-id="réseau-routier"><span class="header-section-number">12.2</span> Réseau routier</h3>
+<section id="réseau-routier" class="level3">
+<h3 class="anchored" data-anchor-id="réseau-routier">Réseau routier</h3>
 <ul>
 <li>Base de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).</li>
 </ul>
 </section>
-<section id="population-et-occupation-humaine" class="level3" data-number="12.3">
-<h3 data-number="12.3" class="anchored" data-anchor-id="population-et-occupation-humaine"><span class="header-section-number">12.3</span> Population et occupation humaine</h3>
+<section id="population-et-occupation-humaine" class="level3">
+<h3 class="anchored" data-anchor-id="population-et-occupation-humaine">Population et occupation humaine</h3>
 <ul>
 <li><p>Human Settlement Footprint / grille de population 2020 — Pacific Community (SPC).</p>
 <p>https://pacificdata.org/data/dataset</p></li>
 </ul>
 </section>
-<section id="données-socio-démographiques" class="level3" data-number="12.4">
-<h3 data-number="12.4" class="anchored" data-anchor-id="données-socio-démographiques"><span class="header-section-number">12.4</span> Données socio-démographiques</h3>
+<section id="données-socio-démographiques" class="level3">
+<h3 class="anchored" data-anchor-id="données-socio-démographiques">Données socio-démographiques</h3>
 <ul>
 <li><p>Recensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).</p>
 <p>https://www.isee.nc/population/recensement-de-la-population</p></li>
 </ul>
 </section>
-<section id="données-géographiques-et-traitements" class="level3" data-number="12.5">
-<h3 data-number="12.5" class="anchored" data-anchor-id="données-géographiques-et-traitements"><span class="header-section-number">12.5</span> Données géographiques et traitements</h3>
+<section id="données-géographiques-et-traitements" class="level3">
+<h3 class="anchored" data-anchor-id="données-géographiques-et-traitements">Données géographiques et traitements</h3>
 <ul>
 <li><p>Système de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).</p></li>
 <li><p>Traitements spatiaux réalisés sous R et QGIS.</p></li>

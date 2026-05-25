@@ -32,7 +32,7 @@ format:
       light: cosmo
     css: styles.css
     toc: true
-    number-sections: true
+    number-sections: false
     fig-cap-location: bottom
     tbl-cap-location: top
     lof: true

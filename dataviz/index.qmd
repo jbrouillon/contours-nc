@@ -1,10 +1,8 @@
 ---
-title: "Dataviz"
+title: "dataviz"
 page-layout: full
 ---
 
-# Dataviz
-
-Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur Contours.
+Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur <span class="contours-word">contours</span> 
 
 Pour le moment, les visualisations sont intégrées directement dans les articles.
