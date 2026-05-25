@@ -2,7 +2,9 @@
 title: "dataviz"
 page-layout: full
 listing:
-  contents: "*.qmd"
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
   type: grid
   sort: "date desc"
   categories: true
