@@ -1,0 +1,20 @@
+---
+title: "Mobilités électorales à Nouméa (version animée)"
+toc: true
+---
+
+## Contexte
+
+Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote, les évolutions induites par les différents scénarios de regroupement.
+
+[Lire l’article complet](../posts/regroupement-bureaux-vote-noumea)
+
+## Animation
+
+::: viz-card
+![](../data/cartes/municipales 2026/temps trajet nouméa bureaux 3 scénarios.gif){.viz-gif}
+
+*Animation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales.*
+[⬇ Télécharger le GIF](../data/cartes/municipales 2026/temps trajet nouméa bureaux 3 scénarios.gif){download="" .download-btn}
+
+:::

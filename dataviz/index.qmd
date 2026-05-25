@@ -1,8 +1,13 @@
 ---
 title: "dataviz"
 page-layout: full
+listing:
+  contents: "*.qmd"
+  type: grid
+  sort: "date desc"
+  categories: true
 ---
 
-Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur <span class="contours-word">contours</span> 
+Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur [contours]{.contours-word}
 
 Pour le moment, les visualisations sont intégrées directement dans les articles.

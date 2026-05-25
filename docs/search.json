@@ -98,11 +98,32 @@
     "text": "Sources et données utilisées\nLes analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.\n\nRésultats électoraux par bureau de vote — Ministère de l’intérieur\nBase de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).\nHuman Settlement Footprint / grille de population 2020 — Pacific Community (SPC).\nhttps://pacificdata.org/data/dataset\nRecensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).\nhttps://www.isee.nc/population/recensement-de-la-population\n\n\nDonnées géographiques et traitements\n\nSystème de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).\nTraitements spatiaux réalisés sous R et QGIS.\nCalculs de réseau réalisés à partir d’une représentation graphe du réseau routier."
   },
   {
-    "objectID": "dataviz/index.html",
-    "href": "dataviz/index.html",
-    "title": "dataviz",
+    "objectID": "dataviz/temps-trajet-bureaux-animation.html",
+    "href": "dataviz/temps-trajet-bureaux-animation.html",
+    "title": "Mobilités électorales à Nouméa (version animée)",
     "section": "",
-    "text": "Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur contours\nPour le moment, les visualisations sont intégrées directement dans les articles."
+    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote, les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+  },
+  {
+    "objectID": "dataviz/temps-trajet-bureaux-animation.html#contexte",
+    "href": "dataviz/temps-trajet-bureaux-animation.html#contexte",
+    "title": "Mobilités électorales à Nouméa (version animée)",
+    "section": "",
+    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote, les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+  },
+  {
+    "objectID": "dataviz/temps-trajet-bureaux-animation.html#animation",
+    "href": "dataviz/temps-trajet-bureaux-animation.html#animation",
+    "title": "Mobilités électorales à Nouméa (version animée)",
+    "section": "Animation",
+    "text": "Animation\n\n\nAnimation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales. ⬇ Télécharger le GIF"
+  },
+  {
+    "objectID": "articles/index.html",
+    "href": "articles/index.html",
+    "title": "articles",
+    "section": "",
+    "text": "Retrouvez ici les articles publiés sur contours\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
   },
   {
     "objectID": "about.html",
@@ -133,11 +154,11 @@
     "text": "contact\n\n\n jonas.brouillon@iac.nc\n\n\n LinkedIn\n\n\n GitHub"
   },
   {
-    "objectID": "articles/index.html",
-    "href": "articles/index.html",
-    "title": "articles",
+    "objectID": "dataviz/index.html",
+    "href": "dataviz/index.html",
+    "title": "dataviz",
     "section": "",
-    "text": "Retrouvez ici les articles publiés sur contours\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
+    "text": "Cette section accueillera progressivement des visualisations autonomes : cartes, graphiques, explorations interactives et exports issus des analyses publiées sur contours\nPour le moment, les visualisations sont intégrées directement dans les articles.\n\n\n\n\n\n\n\n\n\n\n\n\nMobilités électorales à Nouméa (version animée)\n\n\n\n\n\n\n\n\n\n\n\n\n\nAucun article correspondant"
   },
   {
     "objectID": "index.html",
