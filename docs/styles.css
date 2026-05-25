@@ -187,27 +187,7 @@ h1 {
 
   -webkit-text-fill-color: #1f1f1f;
 }
-h1::after {
-  content: "";
-  display: block;
-  width: 220px;
-  height: 5px;
-  margin-top: 0.4rem;
 
-  background: linear-gradient(
-    90deg,
-    #2f6b45 0%,
-    #2f6b45 30%,
-    #d6a21f 30%,
-    #d6a21f 55%,
-    #c54832 55%,
-    #c54832 80%,
-    #222 80%,
-    #222 100%
-  );
-
-  border-radius: 999px;
-}
 /* =========================
    TITRES STYLE CONTOURS
 ========================= */

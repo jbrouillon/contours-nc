@@ -647,7 +647,7 @@ ggplot(vehicle_classes, aes(x = classe_sans_vehicule, y = minutes, fill = indica
 
 ## Accessibilité et absention
 
-La carte de l'abstention au 1er tour permet de donner un apperçu des zones les abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
+La carte de l'abstention au 1er tour permet de donner un apperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
 
 ```{r abstention-2026, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
 knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.png"))
@@ -682,21 +682,13 @@ Le croisement avec la part de ménages sans véhicule invite enfin à lire ces r
 
 Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.
 
-### Données électorales
-
 -   Résultats électoraux par bureau de vote — Ministère de l'intérieur
 
-### Réseau routier
-
 -   Base de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).
-
-### Population et occupation humaine
 
 -   Human Settlement Footprint / grille de population 2020 — Pacific Community (SPC).
 
     https://pacificdata.org/data/dataset
-
-### Données socio-démographiques
 
 -   Recensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).
 
