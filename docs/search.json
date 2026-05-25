@@ -115,15 +115,22 @@
     "objectID": "about.html#auteur",
     "href": "about.html#auteur",
     "title": "à propos",
-    "section": "Auteur",
-    "text": "Auteur\nLe blog est présenté par Jonas Brouillon, ingénieur d’études en sciences sociales à l’IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.\nCe blog et ces travaux sont une initiative purement personnelle, ayant pour but de rendre accessible des analyses scientifiques au grand public sur des sujets d’interets pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n’est parfois pas compatible avec la volonté de partager des analyses sur des sujets d’actualité, d’où le choix de ce format de blog. Les analyses publiées ici n’engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résulats doivent être considérés comme des éléments d’information et de réflexion, et non comme des recommandations ou des prescriptions d’action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées."
+    "section": "auteur",
+    "text": "auteur\nLe blog est présenté par Jonas Brouillon, ingénieur d’études en sciences sociales à l’IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.\nCe blog et ces travaux sont une initiative purement personnelle, ayant pour but de rendre accessible des analyses scientifiques au grand public sur des sujets d’interets pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n’est parfois pas compatible avec la volonté de partager des analyses sur des sujets d’actualité, d’où le choix de ce format de blog. Les analyses publiées ici n’engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résulats doivent être considérés comme des éléments d’information et de réflexion, et non comme des recommandations ou des prescriptions d’action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées."
   },
   {
     "objectID": "about.html#ligne-éditoriale",
     "href": "about.html#ligne-éditoriale",
     "title": "à propos",
-    "section": "Ligne éditoriale",
-    "text": "Ligne éditoriale\nLes articles peuvent prendre plusieurs formes :\n\nanalyses courtes appuyées sur des cartes ou graphiques ;\nnotes méthodologiques en R, Quarto ou QGIS ;\nexplorations de données publiques ;\nvisualisations commentées ;\ndossiers territoriaux sur la Nouvelle-Calédonie et le Pacifique."
+    "section": "ligne éditoriale",
+    "text": "ligne éditoriale\nLes articles peuvent prendre plusieurs formes :\n\nanalyses courtes appuyées sur des cartes ou graphiques ;\nnotes méthodologiques en R, Quarto ou QGIS ;\nexplorations de données publiques ;\nvisualisations commentées ;\ndossiers territoriaux sur la Nouvelle-Calédonie et le Pacifique."
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "à propos",
+    "section": "contact",
+    "text": "contact\n\n\n jonas.brouillon@iac.nc\n\n\n LinkedIn\n\n\n GitHub"
   },
   {
     "objectID": "articles/index.html",

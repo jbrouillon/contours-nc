@@ -559,3 +559,74 @@ h3 {
 
   font-family: "Cabin Sketch", sans-serif !important;
 }
+
+/* =========================
+   CONTACT CARD
+========================= */
+
+.contact-card {
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  padding: 1.4rem 1.6rem;
+
+  box-shadow: var(--shadow);
+
+  margin-top: 1.5rem;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.contact-card:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow: var(--shadow-hover);
+}
+
+.contact-card p {
+  margin-bottom: 1rem;
+}
+
+.contact-card a {
+
+  color: var(--red);
+
+  text-decoration: none;
+
+  font-weight: 600;
+}
+
+.contact-card a:hover {
+  color: var(--green);
+}
+
+.contact-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.7rem;
+
+  margin-bottom: 0.7rem;
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+.contact-item i {
+
+  font-size: 1.1rem;
+
+  color: var(--green);
+
+  width: 20px;
+}

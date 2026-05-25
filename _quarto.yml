@@ -31,6 +31,10 @@ format:
     theme:
       light: cosmo
     css: styles.css
+    include-in-header:
+      - text: |
+          <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     toc: true
     number-sections: false
     fig-cap-location: bottom
