@@ -6,6 +6,7 @@ website:
   title: "Contours"
   description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
   site-url: "https://jbrouillon.github.io/contours-nc/"
+  favicon: images/logo.png
   navbar:
     logo: images/logo.png
     title: "Contours"
