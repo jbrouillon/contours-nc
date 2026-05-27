@@ -36,6 +36,13 @@ Les articles peuvent prendre plusieurs formes :
 <a href="mailto:jonas.brouillon@iac.nc">jonas.brouillon@iac.nc</a>
 </div>
 
+
+<div class="contact-item">
+<i class="bi bi-facebook"></i>
+<a href="https://www.facebook.com/share/1RSsPGfKF4/">Facebook</a>
+</div>
+
+
 <div class="contact-item">
 <i class="bi bi-linkedin"></i>
 <a href="https://www.linkedin.com/in/jonas-brouillon-65477a174/">LinkedIn</a>
