@@ -12,7 +12,7 @@ categories:
 
 Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote, les évolutions induites par les différents scénarios de regroupement.
 
-[Lire l’article complet](../posts/regroupement-bureaux-vote-noumea)
+[Lire l’article complet](../posts/regroupement-bureaux-vote-noumea/index.qmd)
 
 ## Animation
 

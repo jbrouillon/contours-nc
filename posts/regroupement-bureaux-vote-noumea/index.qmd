@@ -6,6 +6,8 @@ date: "2026-05-24"
 categories: ["Cartographie", "Élections", "Nouméa"]
 tags: ["accessibilité", "dataviz", "R", "Nouvelle-Calédonie", "sciences sociales"]
 description: "Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres."
+image: "../../data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png"
+image-alt: "Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa"
 title-block-banner: true
 toc: true
 toc-depth: 3

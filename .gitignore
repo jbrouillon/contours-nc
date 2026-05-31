@@ -17,6 +17,9 @@ data/**/*.shp
 data/**/*.dbf
 data/**/*.shx
 data/**/*.prj
+data/outputs_capital_socio_economique/
+posts/**/*.knit.md
+posts/**/index_files/
 
 /.quarto/
 **/*.quarto_ipynb

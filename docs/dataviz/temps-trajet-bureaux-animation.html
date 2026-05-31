@@ -175,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="contexte" class="level2">
 <h2 class="anchored" data-anchor-id="contexte">Contexte</h2>
 <p>Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote, les évolutions induites par les différents scénarios de regroupement.</p>
-<p><a href="../posts/regroupement-bureaux-vote-noumea">Lire l’article complet</a></p>
+<p><a href="../posts/regroupement-bureaux-vote-noumea/index.html">Lire l’article complet</a></p>
 </section>
 <section id="animation" class="level2">
 <h2 class="anchored" data-anchor-id="animation">Animation</h2>
@@ -602,6 +602,78 @@ ul.task-list li input[type="checkbox"] {
 </div>
   </div>
 </footer>
+<div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+  <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
+  <figure class="image-lightbox__figure figure">
+    <img class="image-lightbox__img figure-img" alt="">
+    <figcaption class="image-lightbox__caption"></figcaption>
+  </figure>
+</div>
+<script>
+(() => {
+  const lightbox = document.getElementById("image-lightbox");
+  if (!lightbox) return;
+
+  const lightboxImg = lightbox.querySelector(".image-lightbox__img");
+  const caption = lightbox.querySelector(".image-lightbox__caption");
+  const closeButton = lightbox.querySelector(".image-lightbox__close");
+
+  const getCaption = (img) => {
+    const figureCaption = img.closest("figure")?.querySelector("figcaption");
+    return (figureCaption?.innerText || img.alt || "").trim();
+  };
+
+  const isEligible = (img) => {
+    if (img.closest("a, nav, footer, .navbar, .page-footer")) return false;
+    if (img.closest(".no-lightbox") || img.classList.contains("no-lightbox")) return false;
+    return true;
+  };
+
+  const openLightbox = (img) => {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || "";
+    const text = getCaption(img);
+    caption.textContent = text;
+    caption.hidden = !text;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeButton.focus();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    lightboxImg.removeAttribute("src");
+  };
+
+  document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
+    if (!isEligible(img)) return;
+    img.classList.add("quarto-lightbox-enabled");
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", "Agrandir l’image");
+    img.addEventListener("click", () => openLightbox(img));
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
 
 
 

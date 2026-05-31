@@ -1,21 +1,209 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
-      xmlns:media="http://search.yahoo.com/mrss/" 
-      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
-      xmlns:dc="http://purl.org/dc/elements/1.1/" 
-      version="2.0">
-<channel>
-<title>Contours</title>
-<link>https://jbrouillon.github.io/contours-nc/</link>
-<atom:link href="https://jbrouillon.github.io/contours-nc/index.xml" rel="self" type="application/rss+xml"/>
-<description>Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie</description>
-<generator>quarto-1.8.27</generator>
-<lastBuildDate>Thu, 28 May 2026 13:00:00 GMT</lastBuildDate>
-<item>
-  <title>Cartographier le capital socio-économique en Nouvelle-Calédonie</title>
-  <dc:creator>Jonas Brouillon</dc:creator>
-  <link>https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/</link>
-  <description><![CDATA[ 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jonas Brouillon">
+<meta name="description" content="Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.">
+
+<title>Cartographier le capital socio-économique en Nouvelle-Calédonie – Contours</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Contours</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../dataviz/index.html"> 
+<span class="menu-text">Dataviz</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../ressources/index.html"> 
+<span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jbrouillon/contours-nc"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Cartographier le capital socio-économique en Nouvelle-Calédonie</h1>
+            <p class="subtitle lead">Une lecture exploratoire des contrastes territoriaux à partir du RGP 2019</p>
+                  <div>
+        <div class="description">
+          Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Cartographie</div>
+                <div class="quarto-category">Inégalités</div>
+                <div class="quarto-category">Nouvelle-Calédonie</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Auteur·rice</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jonas Brouillon </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Date de publication</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">29 mai 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#résumé" id="toc-résumé" class="nav-link active" data-scroll-target="#résumé">Résumé</a></li>
+  <li><a href="#pourquoi-construire-un-indice" id="toc-pourquoi-construire-un-indice" class="nav-link" data-scroll-target="#pourquoi-construire-un-indice">Pourquoi construire un indice ?</a></li>
+  <li><a href="#les-données-mobilisées" id="toc-les-données-mobilisées" class="nav-link" data-scroll-target="#les-données-mobilisées">Les données mobilisées</a></li>
+  <li><a href="#lire-les-cartes" id="toc-lire-les-cartes" class="nav-link" data-scroll-target="#lire-les-cartes">Lire les cartes</a></li>
+  <li><a href="#comment-lindice-est-construit" id="toc-comment-lindice-est-construit" class="nav-link" data-scroll-target="#comment-lindice-est-construit">Comment l’indice est construit</a>
+  <ul class="collapse">
+  <li><a href="#chaîne-de-traitement" id="toc-chaîne-de-traitement" class="nav-link" data-scroll-target="#chaîne-de-traitement">Chaîne de traitement</a></li>
+  </ul></li>
+  <li><a href="#ce-que-résume-lacp" id="toc-ce-que-résume-lacp" class="nav-link" data-scroll-target="#ce-que-résume-lacp">Ce que résume l’ACP</a></li>
+  <li><a href="#distribution-de-lindice" id="toc-distribution-de-lindice" class="nav-link" data-scroll-target="#distribution-de-lindice">Distribution de l’indice</a></li>
+  <li><a href="#profils-par-niveau-dindice" id="toc-profils-par-niveau-dindice" class="nav-link" data-scroll-target="#profils-par-niveau-dindice">Profils par niveau d’indice</a></li>
+  <li><a href="#nouméa-et-le-reste-du-territoire" id="toc-nouméa-et-le-reste-du-territoire" class="nav-link" data-scroll-target="#nouméa-et-le-reste-du-territoire">Nouméa et le reste du territoire</a></li>
+  <li><a href="#deux-variables-pour-comprendre-le-gradient" id="toc-deux-variables-pour-comprendre-le-gradient" class="nav-link" data-scroll-target="#deux-variables-pour-comprendre-le-gradient">Deux variables pour comprendre le gradient</a></li>
+  <li><a href="#iris-extrêmes" id="toc-iris-extrêmes" class="nav-link" data-scroll-target="#iris-extrêmes">IRIS extrêmes</a></li>
+  <li><a href="#limites-méthodologiques" id="toc-limites-méthodologiques" class="nav-link" data-scroll-target="#limites-méthodologiques">Limites méthodologiques</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#sources-et-données-utilisées" id="toc-sources-et-données-utilisées" class="nav-link" data-scroll-target="#sources-et-données-utilisées">Sources et données utilisées</a>
+  <ul class="collapse">
+  <li><a href="#données-géographiques-et-traitements" id="toc-données-géographiques-et-traitements" class="nav-link" data-scroll-target="#données-géographiques-et-traitements">Données géographiques et traitements</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
@@ -84,7 +272,7 @@ Comment le lissage est construit ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/capital socio-economique/capital_acp_lisse_nc.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_nc.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Indice de capital socio-économique lissé - Nouvelle-Calédonie.</figcaption>
 </figure>
 </div>
@@ -95,7 +283,7 @@ Comment le lissage est construit ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/capital socio-economique/capital_acp_lisse_noumea_echelle_locale.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_noumea_echelle_locale.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Indice de capital socio-économique lissé - Nouméa, échelle locale.</figcaption>
 </figure>
 </div>
@@ -669,7 +857,7 @@ Comprendre l’ACP en quelques minutes
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/variance-acp-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/variance-acp-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Part de l’information résumée par les premières dimensions de l’ACP.</figcaption>
 </figure>
 </div>
@@ -680,7 +868,7 @@ Comprendre l’ACP en quelques minutes
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/plan-acp-iris-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/plan-acp-iris-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Position des IRIS dans le plan de l’ACP.</figcaption>
 </figure>
 </div>
@@ -699,7 +887,7 @@ Comment lire le deuxième axe ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/contributions-acp-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/contributions-acp-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Lien des indicateurs avec l’indice synthétique.</figcaption>
 </figure>
 </div>
@@ -714,7 +902,7 @@ Comment lire le deuxième axe ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/distribution-score-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/distribution-score-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Distribution de l’indice de capital socio-économique 0-100, pondérée par la population des IRIS.</figcaption>
 </figure>
 </div>
@@ -1279,7 +1467,7 @@ Variables de construction de l’indice
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/profil-indice-heatmap-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/profil-indice-heatmap-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Profil relatif des indicateurs selon le niveau d’indice.</figcaption>
 </figure>
 </div>
@@ -1290,7 +1478,7 @@ Variables de construction de l’indice
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/profils-quintiles-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/profils-quintiles-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Repères descriptifs médians selon le niveau de capital socio-économique.</figcaption>
 </figure>
 </div>
@@ -1305,7 +1493,7 @@ Variables de construction de l’indice
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/distribution-territoires-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/distribution-territoires-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Distribution de l’indice à Nouméa et dans le reste de la Nouvelle-Calédonie.</figcaption>
 </figure>
 </div>
@@ -1831,7 +2019,7 @@ Variables de construction de l’indice
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index_files/figure-html/nuage-diplome-chomage-1.png" class="img-fluid figure-img" width="768"></p>
+<p><img src="index_files/figure-html/nuage-diplome-chomage-1.png" class="img-fluid figure-img" width="768"></p>
 <figcaption>Diplôme supérieur, chômage et indice synthétique par IRIS.</figcaption>
 </figure>
 </div>
@@ -2549,1886 +2737,495 @@ Variables de construction de l’indice
 </section>
 </section>
 
- ]]></description>
-  <category>Cartographie</category>
-  <category>Inégalités</category>
-  <category>Nouvelle-Calédonie</category>
-  <guid>https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/</guid>
-  <pubDate>Thu, 28 May 2026 13:00:00 GMT</pubDate>
-  <media:content url="https://jbrouillon.github.io/contours-nc/data/cartes/capital socio-economique/capital_acp_lisse_nc.png" medium="image" type="image/png" height="102" width="144"/>
-</item>
-<item>
-  <title>Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</title>
-  <dc:creator>Jonas Brouillon</dc:creator>
-  <link>https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<section id="résumé" class="level2">
-<h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
-<p>Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.</p>
-<p>Les résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.</p>
-<p>L’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.</p>
-<p>Cette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote.</p>
-<details class="note-deroulable">
-<summary>
-Avertissement
-</summary>
-<p>Cette note constitue un travail exploratoire et méthodologique réalisé dans un objectif d’analyse spatiale rapide des effets potentiels du regroupement des bureaux de vote à Nouméa. Les résultats présentés doivent être considérés comme des estimations préliminaires destinées à alimenter une réflexion publique et scientifique plus large.</p>
-<p>Les traitements, indicateurs et cartes ont vocation à être consolidés dans le cadre d’une publication ultérieure plus complète, intégrant notamment :</p>
-<ul>
-<li><p>des tests de sensibilité méthodologique ;</p></li>
-<li><p>une validation plus fine des itinéraires piétons ;</p></li>
-<li><p>des analyses statistiques complémentaires ;</p></li>
-<li><p>un croisement plus approfondi avec les données socio-électorales et territoriales.</p></li>
-</ul>
-<p>Les résultats présentés ici ne constituent donc pas une mesure définitive des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles.</p>
-</details>
-</section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>La question du regroupement des bureaux de vote s’est imposée dans le débat public calédonien à partir des élections législatives anticipées de 2024, organisées dans le contexte exceptionnel des émeutes et des tensions sécuritaires ayant suivi les événements du 13 mai.</p>
-<p>À Nouméa, les 56 bureaux de vote habituels avaient alors été regroupés sur seulement 7 sites afin de sécuriser l’organisation du scrutin. Ce dispositif exceptionnel avait été présenté comme une réponse aux contraintes logistiques et sécuritaires du moment. Malgré cette réorganisation, la participation au second tour des législatives avait atteint un niveau particulièrement élevé à l’échelle du territoire.</p>
-<p>Le regroupement des bureaux de vote n’est cependant pas resté limité à ce seul contexte d’urgence. Le dispositif a ensuite été largement reconduit lors des élections municipales de 2026, avec une organisation reposant sur 8 grands sites de vote à l’échelle de la commune. Cette décision a suscité plusieurs critiques et recours politiques autour des questions d’accessibilité, de proximité du vote et de sincérité du scrutin.</p>
-<p>Derrière ces débats institutionnels se pose une question plus concrète et plus territoriale : comment le regroupement des centres de vote modifie-t-il réellement les conditions d’accès au vote selon les quartiers de Nouméa ?</p>
-<p>En effet, deux électeurs inscrits dans une même commune ne font pas nécessairement face au même coût de déplacement. La structure du réseau routier, les ruptures urbaines, la distance aux centres ouverts ou encore l’accès à un véhicule peuvent fortement modifier l’accessibilité réelle au vote.</p>
-<p>Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées : - la configuration habituelle des bureaux de vote ; - un scénario à 8 centres regroupés ; - un scénario à 9 centres regroupés.</p>
-<p>L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.</p>
-</section>
-<section id="pourquoi-estimer-des-temps-de-trajet" class="level2">
-<h2 class="anchored" data-anchor-id="pourquoi-estimer-des-temps-de-trajet">Pourquoi estimer des temps de trajet ?</h2>
-<p>Le regroupement de bureaux de vote change la géographie concrète de l’accès au vote. Deux électeurs rattachés administrativement au même scrutin ne font pas nécessairement face au même effort de déplacement selon le quartier, la densité du réseau viaire, la localisation des centres ouverts et la possibilité ou non d’utiliser une voiture.</p>
-<p>Cette note documente une estimation des temps de trajet piéton vers le point de vote le plus proche à Nouméa. L’objectif n’est pas de reconstituer les trajets réellement empruntés par chaque électeur, mais de produire un indicateur spatial comparable entre plusieurs configurations :</p>
-<ul>
-<li>une configuration de référence avec les bureaux de vote géolocalisés ;</li>
-<li>une configuration à 8 centres de vote regroupés ;</li>
-<li>une configuration à 9 centres de vote regroupés, sans Ko We Kara, avec l’ajout du collège de Kaméré et de la salle de boxe Vincent Kafoa.</li>
-</ul>
-<p>Le résultat doit être lu comme une mesure d’accessibilité potentielle. Il devient particulièrement utile lorsqu’il est rapproché de la part des ménages sans véhicule, issue du RGP 2019 à l’échelle IRIS.</p>
-</section>
-<section id="les-données-mobilisées" class="level2">
-<h2 class="anchored" data-anchor-id="les-données-mobilisées">Les données mobilisées</h2>
-<p>L’estimation s’appuie sur cinq familles de données locales :</p>
-<ul>
-<li>les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de votes réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul</li>
-<li>la liste des centres regroupés, saisie comme points de destination alternatifs ;</li>
-<li>le réseau routier BDROUTE-NC, transformé en graphe de déplacement ;</li>
-<li>la grille de population <code>NCL_Pop_Grid_2020.tif</code>, utilisée pour ne calculer l’indicateur que sur les cellules habitées ;</li>
-<li>les IRIS du RGP 2019, dont le champ <code>percent_menages_sans_vehicules</code>.</li>
-</ul>
-<p>Toutes les opérations de distance et de réseau sont réalisées dans le système projeté RGNC91-93 / Lambert New Caledonia, EPSG:3163. Les temps sont exprimés en minutes, avec une hypothèse de marche à <code>5 km/h</code>.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jbrouillon\.github\.io\/contours-nc\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Jonas Brouillon</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Fait avec Quarto</p>
 </div>
-<div class="callout-title-container flex-fill">
-Important
+  </div>
+</footer>
+<div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+  <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
+  <figure class="image-lightbox__figure figure">
+    <img class="image-lightbox__img figure-img" alt="">
+    <figcaption class="image-lightbox__caption"></figcaption>
+  </figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Les rasters analytiques ne sont renseignés que sur les cellules habitées. Les rasters lissés servent à la cartographie finale, mais les statistiques descriptives ci-dessous sont calculées sur les cellules habitées, pondérées par la population de la grille.</p>
-</div>
-</div>
-</section>
-<section id="chaîne-de-traitement" class="level2">
-<h2 class="anchored" data-anchor-id="chaîne-de-traitement">Chaîne de traitement</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Résultats par bureau et centres regroupés] --&gt; B[Points sources]
-  C[Réseau routier BDROUTE-NC] --&gt; D[Graphe piéton pondéré en minutes]
-  E[Grille population 2020] --&gt; F[Cellules habitées]
-  B --&gt; G[Rattachement au nœud routier le plus proche]
-  F --&gt; H[Rattachement au nœud routier le plus proche]
-  D --&gt; I[Plus courts chemins vers la source la plus proche]
-  G --&gt; I
-  H --&gt; I
-  I --&gt; J[Temps par cellule habitée]
-  J --&gt; K[Comparaison bureaux complets / 8 centres / 9 centres]
-  K --&gt; L[Croisement avec IRIS RGP 2019]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Le principe est le suivant. Chaque segment du réseau routier devient une arête de graphe. Son poids correspond au temps nécessaire pour le parcourir à pied. Les bureaux ou centres de vote sont rattachés au nœud routier le plus proche ; les cellules habitées le sont également. On ajoute ensuite une source artificielle connectée à tous les points de vote, puis on calcule le plus court chemin vers l’ensemble des nœuds du réseau. Le temps final d’une cellule correspond au temps d’accès au réseau plus le temps de réseau jusqu’au point de vote le plus proche.</p>
-<p>Ce choix permet de comparer des configurations de manière homogène. Il évite aussi une lecture purement à vol d’oiseau, qui sous-estime souvent les contraintes réelles dans une ville structurée par les routes, les ruptures de pente, les baies, les emprises et les détours.</p>
-</section>
-<section id="trois-configurations-comparées" class="level2">
-<h2 class="anchored" data-anchor-id="trois-configurations-comparées">Trois configurations comparées</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="ajoqciomyi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ajoqciomyi table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#ajoqciomyi thead, #ajoqciomyi tbody, #ajoqciomyi tfoot, #ajoqciomyi tr, #ajoqciomyi td, #ajoqciomyi th {
-  border-style: none;
-}
-
-#ajoqciomyi p {
-  margin: 0;
-  padding: 0;
-}
-
-#ajoqciomyi .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#ajoqciomyi .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#ajoqciomyi .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#ajoqciomyi .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#ajoqciomyi .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#ajoqciomyi .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#ajoqciomyi .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#ajoqciomyi .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#ajoqciomyi .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#ajoqciomyi .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#ajoqciomyi .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ajoqciomyi .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#ajoqciomyi .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#ajoqciomyi .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#ajoqciomyi .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ajoqciomyi .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#ajoqciomyi .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#ajoqciomyi .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#ajoqciomyi .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ajoqciomyi .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#ajoqciomyi .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ajoqciomyi .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#ajoqciomyi .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ajoqciomyi .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ajoqciomyi .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ajoqciomyi .gt_left {
-  text-align: left;
-}
-
-#ajoqciomyi .gt_center {
-  text-align: center;
-}
-
-#ajoqciomyi .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#ajoqciomyi .gt_font_normal {
-  font-weight: normal;
-}
-
-#ajoqciomyi .gt_font_bold {
-  font-weight: bold;
-}
-
-#ajoqciomyi .gt_font_italic {
-  font-style: italic;
-}
-
-#ajoqciomyi .gt_super {
-  font-size: 65%;
-}
-
-#ajoqciomyi .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#ajoqciomyi .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#ajoqciomyi .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#ajoqciomyi .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#ajoqciomyi .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#ajoqciomyi .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#ajoqciomyi .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#ajoqciomyi .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#ajoqciomyi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="scénario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">scénario</th>
-<th id="population-couverte" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population couverte</th>
-<th id="moyenne" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">moyenne (min)</th>
-<th id="médiane" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">médiane (min)</th>
-<th id="a75-%-sous" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P75 (min)</th>
-<th id="a90-%-sous" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P90 (min)</th>
-<th id="pop.->-15-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; 15 min (%)</th>
-<th id="pop.->-30-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; 30 min (%)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="scénario">Bureaux de vote habituels</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">13,3</td>
-<td class="gt_row gt_right" headers="médiane">10,9</td>
-<td class="gt_row gt_right" headers="75 % sous">15,5</td>
-<td class="gt_row gt_right" headers="90 % sous">22,4</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">28,1</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">5,2</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="scénario">8 centres regroupés</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">24,9</td>
-<td class="gt_row gt_right" headers="médiane">22,1</td>
-<td class="gt_row gt_right" headers="75 % sous">30,3</td>
-<td class="gt_row gt_right" headers="90 % sous">47,0</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">75,7</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">25,7</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="scénario">9 centres regroupés</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">21,8</td>
-<td class="gt_row gt_right" headers="médiane">19,2</td>
-<td class="gt_row gt_right" headers="75 % sous">26,4</td>
-<td class="gt_row gt_right" headers="90 % sous">38,7</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">68,1</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">17,2</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="8" class="gt_sourcenote">Lecture : statistiques pondérées par la population de la grille habitée.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Dans la configuration de référence, le temps moyen pondéré est de 13,3 min. Il passe à 24,9 min dans le scénario à 8 centres, puis à 21,8 min dans le scénario à 9 centres.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png" class="img-fluid figure-img" width="3508"></p>
-<figcaption>Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés.png" class="img-fluid figure-img" width="3508"></p>
-<figcaption>Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 8 bureaux regroupés)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés sans koe kara.png" class="img-fluid figure-img" width="3508"></p>
-<figcaption>Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 9 bureaux regroupés)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>La différence entre les scénarios ne se résume pas à une hausse uniforme. Le regroupement agit surtout sur la queue de distribution : dans le scénario à 9 centres, 17,2 % de la population couverte dépasse 30 minutes à pied, contre 5,2 % dans la configuration de référence.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-temps-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Distribution pondérée des temps de trajet par configuration.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/courbes-cumulees-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Part cumulée de la population selon le temps maximal d’accès.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="mesurer-leffet-du-regroupement" class="level2">
-<h2 class="anchored" data-anchor-id="mesurer-leffet-du-regroupement">Mesurer l’effet du regroupement</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="wcugchzayu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wcugchzayu table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#wcugchzayu thead, #wcugchzayu tbody, #wcugchzayu tfoot, #wcugchzayu tr, #wcugchzayu td, #wcugchzayu th {
-  border-style: none;
-}
-
-#wcugchzayu p {
-  margin: 0;
-  padding: 0;
-}
-
-#wcugchzayu .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#wcugchzayu .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#wcugchzayu .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#wcugchzayu .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#wcugchzayu .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#wcugchzayu .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#wcugchzayu .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#wcugchzayu .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#wcugchzayu .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#wcugchzayu .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#wcugchzayu .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#wcugchzayu .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#wcugchzayu .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#wcugchzayu .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#wcugchzayu .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wcugchzayu .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#wcugchzayu .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#wcugchzayu .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#wcugchzayu .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wcugchzayu .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#wcugchzayu .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wcugchzayu .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#wcugchzayu .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wcugchzayu .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#wcugchzayu .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wcugchzayu .gt_left {
-  text-align: left;
-}
-
-#wcugchzayu .gt_center {
-  text-align: center;
-}
-
-#wcugchzayu .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#wcugchzayu .gt_font_normal {
-  font-weight: normal;
-}
-
-#wcugchzayu .gt_font_bold {
-  font-weight: bold;
-}
-
-#wcugchzayu .gt_font_italic {
-  font-style: italic;
-}
-
-#wcugchzayu .gt_super {
-  font-size: 65%;
-}
-
-#wcugchzayu .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#wcugchzayu .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#wcugchzayu .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#wcugchzayu .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#wcugchzayu .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#wcugchzayu .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#wcugchzayu .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#wcugchzayu .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#wcugchzayu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="comparaison" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">comparaison</th>
-<th id="hausse-moyenne" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">moyenne (min)</th>
-<th id="hausse-médiane" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">médiane (min)</th>
-<th id="P75" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P75 (min)</th>
-<th id="P90" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P90 (min)</th>
-<th id="pop.-+5-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; +5 min (%)</th>
-<th id="pop.-+10-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; +10 min (%)</th>
-<th id="pop.-temps-réduit" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population avec baisse (%)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="comparaison">8 centres - bureaux habituels</td>
-<td class="gt_row gt_right" headers="hausse moyenne">11,6</td>
-<td class="gt_row gt_right" headers="hausse médiane">10,5</td>
-<td class="gt_row gt_right" headers="P75">17,6</td>
-<td class="gt_row gt_right" headers="P90">27,8</td>
-<td class="gt_row gt_right" headers="pop. +5 min">64,5</td>
-<td class="gt_row gt_right" headers="pop. +10 min">51,3</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">9,1</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="comparaison">9 centres - bureaux habituels</td>
-<td class="gt_row gt_right" headers="hausse moyenne">8,5</td>
-<td class="gt_row gt_right" headers="hausse médiane">6,2</td>
-<td class="gt_row gt_right" headers="P75">14,6</td>
-<td class="gt_row gt_right" headers="P90">22,1</td>
-<td class="gt_row gt_right" headers="pop. +5 min">53,3</td>
-<td class="gt_row gt_right" headers="pop. +10 min">39,2</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">14,4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="comparaison">9 centres - 8 centres</td>
-<td class="gt_row gt_right" headers="hausse moyenne">−3,1</td>
-<td class="gt_row gt_right" headers="hausse médiane">0,0</td>
-<td class="gt_row gt_right" headers="P75">0,0</td>
-<td class="gt_row gt_right" headers="P90">0,0</td>
-<td class="gt_row gt_right" headers="pop. +5 min">0,0</td>
-<td class="gt_row gt_right" headers="pop. +10 min">0,0</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">17,3</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="8" class="gt_sourcenote">Lecture : un delta positif indique un temps plus long que dans la configuration de référence.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Le scénario à 8 centres ajoute en moyenne 11,6 min par rapport aux bureaux habituels. Le scénario à 9 centres réduit cette hausse moyenne à 8,5 min. L’ajout de Kaméré et de la salle Vincent Kafoa ne compense pas tout l’effet du regroupement, mais il améliore nettement l’accessibilité des quartiers du nord de Nouméa.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/distribution-deltas-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Distribution pondérée des écarts de temps entre configurations.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="où-le-manque-de-véhicule-pèse-le-plus" class="level2">
-<h2 class="anchored" data-anchor-id="où-le-manque-de-véhicule-pèse-le-plus">Où le manque de véhicule pèse le plus ?</h2>
-<p>Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l’absence de véhicule rend le déplacement plus contraint.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/menages sans véhicules noumea 2019.png" class="img-fluid figure-img" width="3508"></p>
-<figcaption>Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>À l’échelle des IRIS couverts par la grille habitée, la part moyenne agrégée des ménages sans véhicule est de 27,4 %. La corrélation simple entre la part de ménages sans véhicule et le temps moyen en scénario à 9 centres est de -0,02; celle avec le delta 9 centres moins bureaux habituels est de -0,36.</p>
-<p>Le signal n’est pas une relation linéaire simple. Certains IRIS très peu motorisés sont proches d’un centre, tandis que d’autres quartiers plus motorisés peuvent connaître une forte hausse. L’analyse pertinente est donc celle du cumul local entre forte part de ménages sans véhicule et hausse de temps.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/scatter-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Part de ménages sans véhicule et hausse moyenne de temps à l’IRIS.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="brndgjxrzo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#brndgjxrzo table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#brndgjxrzo thead, #brndgjxrzo tbody, #brndgjxrzo tfoot, #brndgjxrzo tr, #brndgjxrzo td, #brndgjxrzo th {
-  border-style: none;
-}
-
-#brndgjxrzo p {
-  margin: 0;
-  padding: 0;
-}
-
-#brndgjxrzo .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#brndgjxrzo .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#brndgjxrzo .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#brndgjxrzo .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#brndgjxrzo .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#brndgjxrzo .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#brndgjxrzo .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#brndgjxrzo .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#brndgjxrzo .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#brndgjxrzo .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#brndgjxrzo .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#brndgjxrzo .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#brndgjxrzo .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#brndgjxrzo .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#brndgjxrzo .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#brndgjxrzo .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#brndgjxrzo .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#brndgjxrzo .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#brndgjxrzo .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#brndgjxrzo .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#brndgjxrzo .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#brndgjxrzo .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#brndgjxrzo .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#brndgjxrzo .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#brndgjxrzo .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#brndgjxrzo .gt_left {
-  text-align: left;
-}
-
-#brndgjxrzo .gt_center {
-  text-align: center;
-}
-
-#brndgjxrzo .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#brndgjxrzo .gt_font_normal {
-  font-weight: normal;
-}
-
-#brndgjxrzo .gt_font_bold {
-  font-weight: bold;
-}
-
-#brndgjxrzo .gt_font_italic {
-  font-style: italic;
-}
-
-#brndgjxrzo .gt_super {
-  font-size: 65%;
-}
-
-#brndgjxrzo .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#brndgjxrzo .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#brndgjxrzo .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#brndgjxrzo .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#brndgjxrzo .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#brndgjxrzo .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#brndgjxrzo .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#brndgjxrzo .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#brndgjxrzo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="IRIS" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">IRIS</th>
-<th id="profil" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">profil</th>
-<th id="ménages-sans-véhicule" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ménages sans véhicule</th>
-<th id="sans-véhicule" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ménages sans véhicule (%)</th>
-<th id="temps-bureaux" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bureaux habituels (min)</th>
-<th id="temps-9-centres" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">9 centres (min)</th>
-<th id="delta" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hausse (min)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Vallée des Colons Sud Ouest</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">286</td>
-<td class="gt_row gt_right" headers="sans véhicule">24,5</td>
-<td class="gt_row gt_right" headers="temps bureaux">5,6</td>
-<td class="gt_row gt_right" headers="temps 9 centres">27,3</td>
-<td class="gt_row gt_right" headers="delta">21,7</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">N'Géa</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">361</td>
-<td class="gt_row gt_right" headers="sans véhicule">26,7</td>
-<td class="gt_row gt_right" headers="temps bureaux">7,7</td>
-<td class="gt_row gt_right" headers="temps 9 centres">22,8</td>
-<td class="gt_row gt_right" headers="delta">15,0</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Magenta Est</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">382</td>
-<td class="gt_row gt_right" headers="sans véhicule">24,6</td>
-<td class="gt_row gt_right" headers="temps bureaux">13,0</td>
-<td class="gt_row gt_right" headers="temps 9 centres">26,9</td>
-<td class="gt_row gt_right" headers="delta">13,9</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Portes de Fer - Nord</td>
-<td class="gt_row gt_left" headers="profil">forte part sans véhicule et hausse forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">369</td>
-<td class="gt_row gt_right" headers="sans véhicule">52,0</td>
-<td class="gt_row gt_right" headers="temps bureaux">8,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">21,2</td>
-<td class="gt_row gt_right" headers="delta">13,1</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Faubourg Blanchot</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">257</td>
-<td class="gt_row gt_right" headers="sans véhicule">22,2</td>
-<td class="gt_row gt_right" headers="temps bureaux">8,0</td>
-<td class="gt_row gt_right" headers="temps 9 centres">26,8</td>
-<td class="gt_row gt_right" headers="delta">18,8</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Normandie Sud</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">150</td>
-<td class="gt_row gt_right" headers="sans véhicule">25,0</td>
-<td class="gt_row gt_right" headers="temps bureaux">19,5</td>
-<td class="gt_row gt_right" headers="temps 9 centres">48,9</td>
-<td class="gt_row gt_right" headers="delta">29,4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Quartier Latin - Vallée du Génie</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">439</td>
-<td class="gt_row gt_right" headers="sans véhicule">33,7</td>
-<td class="gt_row gt_right" headers="temps bureaux">6,5</td>
-<td class="gt_row gt_right" headers="temps 9 centres">16,3</td>
-<td class="gt_row gt_right" headers="delta">9,8</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Vallée des Colons Sud Est</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">189</td>
-<td class="gt_row gt_right" headers="sans véhicule">15,2</td>
-<td class="gt_row gt_right" headers="temps bureaux">7,3</td>
-<td class="gt_row gt_right" headers="temps 9 centres">25,2</td>
-<td class="gt_row gt_right" headers="delta">17,9</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Trianon</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">251</td>
-<td class="gt_row gt_right" headers="sans véhicule">17,5</td>
-<td class="gt_row gt_right" headers="temps bureaux">9,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">21,1</td>
-<td class="gt_row gt_right" headers="delta">12,0</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Ouémo</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">88</td>
-<td class="gt_row gt_right" headers="sans véhicule">11,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">9,8</td>
-<td class="gt_row gt_right" headers="temps 9 centres">43,7</td>
-<td class="gt_row gt_right" headers="delta">34,0</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Magenta Tours</td>
-<td class="gt_row gt_left" headers="profil">très forte part sans véhicule</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">515</td>
-<td class="gt_row gt_right" headers="sans véhicule">71,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">10,4</td>
-<td class="gt_row gt_right" headers="temps 9 centres">15,9</td>
-<td class="gt_row gt_right" headers="delta">5,5</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Aérodrome Sud</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">368</td>
-<td class="gt_row gt_right" headers="sans véhicule">33,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">5,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">12,7</td>
-<td class="gt_row gt_right" headers="delta">7,6</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="7" class="gt_sourcenote">Classement par indice de cumul : ménages sans véhicule estimés × hausse moyenne positive.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Ces zones prioritaires ne racontent pas toutes la même chose.</p>
-<p>Dans un premier groupe, <strong>Vallée des Colons Sud Ouest</strong>, <strong>N’Géa</strong>, <strong>Magenta Est</strong>, <strong>Faubourg Blanchot</strong>, <strong>Vallée des Colons Sud Est</strong> et <strong>Trianon</strong> combinent surtout un volume important de ménages sans véhicule avec une hausse nette du temps de marche. La question à documenter cartographiquement est alors celle de la perte de proximité : le changement de lieu de vote transforme un déplacement court en trajet plus long, y compris dans des quartiers résidentiels relativement denses.</p>
-<p>Un deuxième groupe relève davantage de la vulnérabilité sociale à l’accessibilité. <strong>Portes de Fer - Nord</strong> et <strong>Magenta Tours</strong> ressortent parce que la part de ménages sans véhicule y est très élevée. Même lorsque la hausse moyenne n’est pas la plus spectaculaire, l’absence de véhicule rend le déplacement plus dépendant de la marche, du transport collectif ou de l’accompagnement par un tiers.</p>
-<p>Enfin, <strong>Normandie Sud</strong> et <strong>Ouémo</strong> doivent être lus comme des cas de géographie du réseau : la hausse moyenne y est forte, voire très forte, ce qui invite à vérifier les itinéraires piétons, les ruptures urbaines et la position réelle du centre le plus proche.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index_files/figure-html/classes-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Temps et hausse moyenne selon la part de ménages sans véhicule dans l’IRIS.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="accessibilité-et-absention" class="level2">
-<h2 class="anchored" data-anchor-id="accessibilité-et-absention">Accessibilité et absention</h2>
-<p>La carte de l’abstention au 1er tour permet de donner un apperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n’est pas possible d’établir de corrélation directe étant donné que les causes de l’abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d’isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/abstention nouméa 2026 bureaux complets.png" class="img-fluid figure-img" width="3508"></p>
-<figcaption>Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="limites-méthodologiques" class="level2">
-<h2 class="anchored" data-anchor-id="limites-méthodologiques">Limites méthodologiques</h2>
-<p>Plusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.</p>
-<p>Premièrement, les temps de trajet estimés reposent sur un modèle théorique de déplacement piéton. Les calculs utilisent une vitesse uniforme de marche fixée à 5 km/h et ne prennent pas en compte les différences d’âge, de mobilité réduite, de conditions climatiques, de sécurité piétonne ou de fatigue.</p>
-<p>Deuxièmement, le réseau routier utilisé comme support de calcul ne représente pas nécessairement l’ensemble des cheminements réellement empruntés par les habitants. Certains raccourcis, escaliers, passages piétons informels ou chemins secondaires peuvent être absents du réseau utilisé.</p>
-<p>Troisièmement, les estimations reposent sur un rattachement des cellules habitées et des bureaux de vote au nœud routier le plus proche. Cette opération introduit une approximation spatiale qui peut localement modifier les temps calculés, notamment dans les secteurs de faible densité ou proches de ruptures du réseau.</p>
-<p>Quatrièmement, l’analyse porte uniquement sur l’accessibilité piétonne potentielle et ne prend pas en compte les autres modes de déplacement (voiture, transport collectif, covoiturage, taxi, etc.). Les résultats ne doivent donc pas être interprétés comme une estimation directe de la difficulté réelle d’accès au vote pour l’ensemble de la population.</p>
-<p>Cinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.</p>
-<p>Enfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Cette première estimation montre que le regroupement des bureaux de vote ne produit pas seulement un déplacement administratif des lieux de vote : il modifie sensiblement les conditions concrètes d’accès au scrutin. À Nouméa, le passage des bureaux habituels aux centres regroupés augmente le temps moyen d’accès piéton, qui passe de 13,3 min dans la configuration de référence à 21,8 min dans le scénario à 9 centres.</p>
-<p>L’effet le plus important concerne toutefois les situations d’éloignement. La part de population située à plus de 30 minutes à pied d’un centre de vote passe de 5,2 % avec les bureaux habituels à 17,2 % dans le scénario à 9 centres. L’ajout d’un neuvième centre améliore une partie de la situation par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais il ne rétablit pas la proximité offerte par le maillage habituel des bureaux.</p>
-<p>Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d’accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n’est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.</p>
-</section>
-<section id="sources-et-données-utilisées" class="level2">
-<h2 class="anchored" data-anchor-id="sources-et-données-utilisées">Sources et données utilisées</h2>
-<p>Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.</p>
-<ul>
-<li><p>Résultats électoraux par bureau de vote — Ministère de l’intérieur</p></li>
-<li><p>Base de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).</p></li>
-<li><p>Human Settlement Footprint / grille de population 2020 — Pacific Community (SPC).</p>
-<p>https://pacificdata.org/data/dataset</p></li>
-<li><p>Recensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).</p>
-<p>https://www.isee.nc/population/recensement-de-la-population</p></li>
-</ul>
-<section id="données-géographiques-et-traitements" class="level3">
-<h3 class="anchored" data-anchor-id="données-géographiques-et-traitements">Données géographiques et traitements</h3>
-<ul>
-<li><p>Système de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).</p></li>
-<li><p>Traitements spatiaux réalisés sous R et QGIS.</p></li>
-<li><p>Calculs de réseau réalisés à partir d’une représentation graphe du réseau routier.</p></li>
-</ul>
-
-
-</section>
-</section>
-
- ]]></description>
-  <category>Cartographie</category>
-  <category>Élections</category>
-  <category>Nouméa</category>
-  <guid>https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/</guid>
-  <pubDate>Sat, 23 May 2026 13:00:00 GMT</pubDate>
-  <media:content url="https://jbrouillon.github.io/contours-nc/data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png" medium="image" type="image/png" height="102" width="144"/>
-</item>
-</channel>
-</rss>
+<script>
+(() => {
+  const lightbox = document.getElementById("image-lightbox");
+  if (!lightbox) return;
+
+  const lightboxImg = lightbox.querySelector(".image-lightbox__img");
+  const caption = lightbox.querySelector(".image-lightbox__caption");
+  const closeButton = lightbox.querySelector(".image-lightbox__close");
+
+  const getCaption = (img) => {
+    const figureCaption = img.closest("figure")?.querySelector("figcaption");
+    return (figureCaption?.innerText || img.alt || "").trim();
+  };
+
+  const isEligible = (img) => {
+    if (img.closest("a, nav, footer, .navbar, .page-footer")) return false;
+    if (img.closest(".no-lightbox") || img.classList.contains("no-lightbox")) return false;
+    return true;
+  };
+
+  const openLightbox = (img) => {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || "";
+    const text = getCaption(img);
+    caption.textContent = text;
+    caption.hidden = !text;
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lightbox-open");
+    closeButton.focus();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lightbox-open");
+    lightboxImg.removeAttribute("src");
+  };
+
+  document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
+    if (!isEligible(img)) return;
+    img.classList.add("quarto-lightbox-enabled");
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", "Agrandir l’image");
+    img.addEventListener("click", () => openLightbox(img));
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(img);
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
+
+
+
+
+</body></html>
