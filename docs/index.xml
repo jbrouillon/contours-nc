@@ -32,7 +32,6 @@
 </div>
 </div>
 <p>Ce billet examine cette déduction, sans chercher à trancher plus que les données ne le permettent. Il ne tranche pas juridiquement ou politiquement le débat ; il vérifie la solidité d’un raisonnement statistique. La hausse de participation est bien réelle. Mais elle laisse une autre question ouverte : est-ce que le regroupement des bureaux a rendu le vote plus difficile pour certains électeurs ?</p>
-<p>Le périmètre est volontairement restreint aux municipales de 2026 : les 57 bureaux administratifs de Nouméa y étaient regroupés sur 8 centres de vote. Le scénario à 9 centres, évoqué ensuite dans le débat public, relève d’une configuration différente. Il peut modifier les conditions d’accès futures, mais il ne doit pas être mélangé à l’analyse du scrutin municipal déjà passé.</p>
 <p>Le point important est simple : une hausse de participation ne prouve pas, à elle seule, qu’il n’y a pas eu de problème d’accès. Si la participation remonte partout pour des raisons politiques ou conjoncturelles, un quartier peut voter davantage qu’en 2020 tout en progressant moins que les autres. C’est ce décalage qu’il faut regarder.</p>
 <p>En résumé, quatre points guident l’analyse :</p>
 <ul>
@@ -124,23 +123,23 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
 <p>Le zoom dit la même chose plus clairement. Entre 2020 et 2026, plusieurs secteurs passent dans une classe supérieure. Mais, avec la même échelle que le reste de la Nouvelle-Calédonie, une grande partie de Nouméa reste encore sous les niveaux de participation observés ailleurs sur le territoire.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="meunzlpsgd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#meunzlpsgd table {
+<div id="gztqeefecy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gztqeefecy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#meunzlpsgd thead, #meunzlpsgd tbody, #meunzlpsgd tfoot, #meunzlpsgd tr, #meunzlpsgd td, #meunzlpsgd th {
+#gztqeefecy thead, #gztqeefecy tbody, #gztqeefecy tfoot, #gztqeefecy tr, #gztqeefecy td, #gztqeefecy th {
   border-style: none;
 }
 
-#meunzlpsgd p {
+#gztqeefecy p {
   margin: 0;
   padding: 0;
 }
 
-#meunzlpsgd .gt_table {
+#gztqeefecy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -166,12 +165,12 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-left-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_caption {
+#gztqeefecy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#meunzlpsgd .gt_title {
+#gztqeefecy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -183,7 +182,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-bottom-width: 0;
 }
 
-#meunzlpsgd .gt_subtitle {
+#gztqeefecy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -195,7 +194,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-top-width: 0;
 }
 
-#meunzlpsgd .gt_heading {
+#gztqeefecy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -207,13 +206,13 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-right-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_bottom_border {
+#gztqeefecy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_col_headings {
+#gztqeefecy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -228,7 +227,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-right-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_col_heading {
+#gztqeefecy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -248,7 +247,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   overflow-x: hidden;
 }
 
-#meunzlpsgd .gt_column_spanner_outer {
+#gztqeefecy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -260,15 +259,15 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 4px;
 }
 
-#meunzlpsgd .gt_column_spanner_outer:first-child {
+#gztqeefecy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#meunzlpsgd .gt_column_spanner_outer:last-child {
+#gztqeefecy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#meunzlpsgd .gt_column_spanner {
+#gztqeefecy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -280,11 +279,11 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   width: 100%;
 }
 
-#meunzlpsgd .gt_spanner_row {
+#gztqeefecy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#meunzlpsgd .gt_group_heading {
+#gztqeefecy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -310,7 +309,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   text-align: left;
 }
 
-#meunzlpsgd .gt_empty_group_heading {
+#gztqeefecy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -325,15 +324,15 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   vertical-align: middle;
 }
 
-#meunzlpsgd .gt_from_md > :first-child {
+#gztqeefecy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#meunzlpsgd .gt_from_md > :last-child {
+#gztqeefecy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#meunzlpsgd .gt_row {
+#gztqeefecy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -352,7 +351,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   overflow-x: hidden;
 }
 
-#meunzlpsgd .gt_stub {
+#gztqeefecy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -365,7 +364,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 5px;
 }
 
-#meunzlpsgd .gt_stub_row_group {
+#gztqeefecy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -379,15 +378,15 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   vertical-align: top;
 }
 
-#meunzlpsgd .gt_row_group_first td {
+#gztqeefecy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#meunzlpsgd .gt_row_group_first th {
+#gztqeefecy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#meunzlpsgd .gt_summary_row {
+#gztqeefecy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -397,16 +396,16 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 5px;
 }
 
-#meunzlpsgd .gt_first_summary_row {
+#gztqeefecy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_first_summary_row.thick {
+#gztqeefecy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#meunzlpsgd .gt_last_summary_row {
+#gztqeefecy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -416,7 +415,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-bottom-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_grand_summary_row {
+#gztqeefecy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -426,7 +425,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 5px;
 }
 
-#meunzlpsgd .gt_first_grand_summary_row {
+#gztqeefecy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -436,7 +435,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-top-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_last_grand_summary_row_top {
+#gztqeefecy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -446,11 +445,11 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-bottom-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_striped {
+#gztqeefecy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#meunzlpsgd .gt_table_body {
+#gztqeefecy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -459,7 +458,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-bottom-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_footnotes {
+#gztqeefecy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -473,7 +472,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-right-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_footnote {
+#gztqeefecy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -482,7 +481,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 5px;
 }
 
-#meunzlpsgd .gt_sourcenotes {
+#gztqeefecy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -496,7 +495,7 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   border-right-color: #D3D3D3;
 }
 
-#meunzlpsgd .gt_sourcenote {
+#gztqeefecy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -504,72 +503,72 @@ Figure&nbsp;2: Zoom sur Nouméa avec la même échelle de couleurs que la carte 
   padding-right: 5px;
 }
 
-#meunzlpsgd .gt_left {
+#gztqeefecy .gt_left {
   text-align: left;
 }
 
-#meunzlpsgd .gt_center {
+#gztqeefecy .gt_center {
   text-align: center;
 }
 
-#meunzlpsgd .gt_right {
+#gztqeefecy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#meunzlpsgd .gt_font_normal {
+#gztqeefecy .gt_font_normal {
   font-weight: normal;
 }
 
-#meunzlpsgd .gt_font_bold {
+#gztqeefecy .gt_font_bold {
   font-weight: bold;
 }
 
-#meunzlpsgd .gt_font_italic {
+#gztqeefecy .gt_font_italic {
   font-style: italic;
 }
 
-#meunzlpsgd .gt_super {
+#gztqeefecy .gt_super {
   font-size: 65%;
 }
 
-#meunzlpsgd .gt_footnote_marks {
+#gztqeefecy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#meunzlpsgd .gt_asterisk {
+#gztqeefecy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#meunzlpsgd .gt_indent_1 {
+#gztqeefecy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#meunzlpsgd .gt_indent_2 {
+#gztqeefecy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#meunzlpsgd .gt_indent_3 {
+#gztqeefecy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#meunzlpsgd .gt_indent_4 {
+#gztqeefecy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#meunzlpsgd .gt_indent_5 {
+#gztqeefecy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#meunzlpsgd .katex-display {
+#gztqeefecy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#meunzlpsgd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gztqeefecy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -777,23 +776,23 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
 <p>Le tableau ci-dessous se limite donc à ces quartiers. Il donne leur abstention en 2026, leur écart à la hausse moyenne de Nouméa et les temps d’accès moyens vers les 8 centres. Ces temps d’accès donnent un ordre de grandeur concret. Ils ne servent pas ici de test statistique.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ufukxnaake" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ufukxnaake table {
+<div id="ooxcsmqovd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ooxcsmqovd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ufukxnaake thead, #ufukxnaake tbody, #ufukxnaake tfoot, #ufukxnaake tr, #ufukxnaake td, #ufukxnaake th {
+#ooxcsmqovd thead, #ooxcsmqovd tbody, #ooxcsmqovd tfoot, #ooxcsmqovd tr, #ooxcsmqovd td, #ooxcsmqovd th {
   border-style: none;
 }
 
-#ufukxnaake p {
+#ooxcsmqovd p {
   margin: 0;
   padding: 0;
 }
 
-#ufukxnaake .gt_table {
+#ooxcsmqovd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -819,12 +818,12 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-left-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_caption {
+#ooxcsmqovd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ufukxnaake .gt_title {
+#ooxcsmqovd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -836,7 +835,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-bottom-width: 0;
 }
 
-#ufukxnaake .gt_subtitle {
+#ooxcsmqovd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -848,7 +847,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-top-width: 0;
 }
 
-#ufukxnaake .gt_heading {
+#ooxcsmqovd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -860,13 +859,13 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-right-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_bottom_border {
+#ooxcsmqovd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_col_headings {
+#ooxcsmqovd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +880,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-right-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_col_heading {
+#ooxcsmqovd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,7 +900,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   overflow-x: hidden;
 }
 
-#ufukxnaake .gt_column_spanner_outer {
+#ooxcsmqovd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,15 +912,15 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 4px;
 }
 
-#ufukxnaake .gt_column_spanner_outer:first-child {
+#ooxcsmqovd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ufukxnaake .gt_column_spanner_outer:last-child {
+#ooxcsmqovd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ufukxnaake .gt_column_spanner {
+#ooxcsmqovd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -933,11 +932,11 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   width: 100%;
 }
 
-#ufukxnaake .gt_spanner_row {
+#ooxcsmqovd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ufukxnaake .gt_group_heading {
+#ooxcsmqovd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,7 +962,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   text-align: left;
 }
 
-#ufukxnaake .gt_empty_group_heading {
+#ooxcsmqovd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -978,15 +977,15 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   vertical-align: middle;
 }
 
-#ufukxnaake .gt_from_md > :first-child {
+#ooxcsmqovd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ufukxnaake .gt_from_md > :last-child {
+#ooxcsmqovd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ufukxnaake .gt_row {
+#ooxcsmqovd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1005,7 +1004,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   overflow-x: hidden;
 }
 
-#ufukxnaake .gt_stub {
+#ooxcsmqovd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1018,7 +1017,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 5px;
 }
 
-#ufukxnaake .gt_stub_row_group {
+#ooxcsmqovd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1032,15 +1031,15 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   vertical-align: top;
 }
 
-#ufukxnaake .gt_row_group_first td {
+#ooxcsmqovd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ufukxnaake .gt_row_group_first th {
+#ooxcsmqovd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ufukxnaake .gt_summary_row {
+#ooxcsmqovd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1050,16 +1049,16 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 5px;
 }
 
-#ufukxnaake .gt_first_summary_row {
+#ooxcsmqovd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_first_summary_row.thick {
+#ooxcsmqovd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ufukxnaake .gt_last_summary_row {
+#ooxcsmqovd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1069,7 +1068,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-bottom-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_grand_summary_row {
+#ooxcsmqovd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1079,7 +1078,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 5px;
 }
 
-#ufukxnaake .gt_first_grand_summary_row {
+#ooxcsmqovd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1089,7 +1088,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-top-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_last_grand_summary_row_top {
+#ooxcsmqovd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1099,11 +1098,11 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-bottom-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_striped {
+#ooxcsmqovd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ufukxnaake .gt_table_body {
+#ooxcsmqovd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1112,7 +1111,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-bottom-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_footnotes {
+#ooxcsmqovd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1126,7 +1125,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-right-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_footnote {
+#ooxcsmqovd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1135,7 +1134,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 5px;
 }
 
-#ufukxnaake .gt_sourcenotes {
+#ooxcsmqovd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1149,7 +1148,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   border-right-color: #D3D3D3;
 }
 
-#ufukxnaake .gt_sourcenote {
+#ooxcsmqovd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1157,72 +1156,72 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
   padding-right: 5px;
 }
 
-#ufukxnaake .gt_left {
+#ooxcsmqovd .gt_left {
   text-align: left;
 }
 
-#ufukxnaake .gt_center {
+#ooxcsmqovd .gt_center {
   text-align: center;
 }
 
-#ufukxnaake .gt_right {
+#ooxcsmqovd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ufukxnaake .gt_font_normal {
+#ooxcsmqovd .gt_font_normal {
   font-weight: normal;
 }
 
-#ufukxnaake .gt_font_bold {
+#ooxcsmqovd .gt_font_bold {
   font-weight: bold;
 }
 
-#ufukxnaake .gt_font_italic {
+#ooxcsmqovd .gt_font_italic {
   font-style: italic;
 }
 
-#ufukxnaake .gt_super {
+#ooxcsmqovd .gt_super {
   font-size: 65%;
 }
 
-#ufukxnaake .gt_footnote_marks {
+#ooxcsmqovd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ufukxnaake .gt_asterisk {
+#ooxcsmqovd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ufukxnaake .gt_indent_1 {
+#ooxcsmqovd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ufukxnaake .gt_indent_2 {
+#ooxcsmqovd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ufukxnaake .gt_indent_3 {
+#ooxcsmqovd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ufukxnaake .gt_indent_4 {
+#ooxcsmqovd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ufukxnaake .gt_indent_5 {
+#ooxcsmqovd .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ufukxnaake .katex-display {
+#ooxcsmqovd .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ufukxnaake div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ooxcsmqovd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1312,7 +1311,7 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
 </div>
 </div>
 </div>
-<p>Ce tableau donne une lecture concrète : on voit les quartiers où les deux signaux se superposent, leur niveau d’abstention en 2026 et l’ordre de grandeur de leur accès aux centres de vote. La conclusion reste prudente : ces indicateurs décrivent une situation, ils ne suffisent pas à attribuer une cause unique à l’abstention.</p>
+<p>Ce tableau donne une lecture concrète : on voit les quartiers où les deux signaux se superposent, leur niveau d’abstention en 2026 et l’ordre de grandeur de leur accès aux centres de vote. Ces indicateurs décrivent une situation, ils ne prétendent et ne suffisent pas à attribuer une cause unique à l’abstention.</p>
 </section>
 <section id="ce-que-les-données-permettent-de-dire" class="level2">
 <h2 class="anchored" data-anchor-id="ce-que-les-données-permettent-de-dire">Ce que les données permettent de dire</h2>

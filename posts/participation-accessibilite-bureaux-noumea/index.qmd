@@ -475,8 +475,6 @@ Le même principe vaut pour l'argument inverse. Dans la réponse publique, un ra
 
 Ce billet examine cette déduction, sans chercher à trancher plus que les données ne le permettent. Il ne tranche pas juridiquement ou politiquement le débat ; il vérifie la solidité d'un raisonnement statistique. La hausse de participation est bien réelle. Mais elle laisse une autre question ouverte : est-ce que le regroupement des bureaux a rendu le vote plus difficile pour certains électeurs ?
 
-Le périmètre est volontairement restreint aux municipales de 2026 : les 57 bureaux administratifs de Nouméa y étaient regroupés sur 8 centres de vote. Le scénario à 9 centres, évoqué ensuite dans le débat public, relève d'une configuration différente. Il peut modifier les conditions d'accès futures, mais il ne doit pas être mélangé à l'analyse du scrutin municipal déjà passé.
-
 Le point important est simple : une hausse de participation ne prouve pas, à elle seule, qu'il n'y a pas eu de problème d'accès. Si la participation remonte partout pour des raisons politiques ou conjoncturelles, un quartier peut voter davantage qu'en 2020 tout en progressant moins que les autres. C'est ce décalage qu'il faut regarder.
 
 En résumé, quatre points guident l'analyse :
@@ -915,7 +913,7 @@ quartiers_cumul_signal |>
   tab_source_note("Lecture : quartiers qui cumulent une hausse de participation inférieure à la moyenne de Nouméa et une abstention 2026 supérieure à la moyenne communale. Les temps d'accès sont descriptifs.")
 ```
 
-Ce tableau donne une lecture concrète : on voit les quartiers où les deux signaux se superposent, leur niveau d'abstention en 2026 et l'ordre de grandeur de leur accès aux centres de vote. La conclusion reste prudente : ces indicateurs décrivent une situation, ils ne suffisent pas à attribuer une cause unique à l'abstention.
+Ce tableau donne une lecture concrète : on voit les quartiers où les deux signaux se superposent, leur niveau d'abstention en 2026 et l'ordre de grandeur de leur accès aux centres de vote. Ces indicateurs décrivent une situation, ils ne prétendent et ne suffisent pas à attribuer une cause unique à l'abstention.
 
 ## Ce que les données permettent de dire
 

@@ -187,37 +187,69 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <nav class="floating-social" aria-label="Contacts et réseaux">
+
   <a class="floating-social__link" href="../contact/" aria-label="Contacter Contours.nc">
+
     <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+
     <span class="floating-social__label">Contacter Contours.nc</span>
+
   </a>
+
   <a class="floating-social__link" href="../newsletter/" aria-label="Newsletter Contours.nc">
+
     <i class="bi bi-envelope-paper-fill" aria-hidden="true"></i>
+
     <span class="floating-social__label">Recevoir la newsletter</span>
+
   </a>
+
   <a class="floating-social__link" href="https://www.facebook.com/share/1RSsPGfKF4/" target="_blank" rel="noopener noreferrer" aria-label="Suivez Contours sur Facebook !">
+
     <i class="bi bi-facebook" aria-hidden="true"></i>
+
     <span class="floating-social__label">Suivez Contours sur Facebook !</span>
+
   </a>
+
   <a class="floating-social__link" href="https://www.linkedin.com/in/jonas-brouillon-65477a174/" target="_blank" rel="noopener noreferrer" aria-label="Je suis aussi sur LinkedIn">
+
     <i class="bi bi-linkedin" aria-hidden="true"></i>
+
     <span class="floating-social__label">Je suis aussi sur LinkedIn</span>
+
   </a>
+
 </nav>
+
 <script>
+
 (() => {
+
   const path = window.location.pathname.replace(/\/index\.html$/, "/");
+
   if (!/\/posts\/[^/]+\/?$/.test(path)) return;
 
+
+
   const main = document.querySelector("main.content");
+
   if (!main || main.querySelector(".article-newsletter-cta")) return;
 
+
+
   const cta = document.createElement("aside");
+
   cta.className = "article-newsletter-cta";
+
   cta.innerHTML = '<span aria-hidden="true">—</span> <a href="/newsletter">Recevoir les prochaines publications →</a>';
+
   main.appendChild(cta);
+
 })();
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
