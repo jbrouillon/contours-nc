@@ -15,13 +15,13 @@ listing:
   filter-ui: true
 ---
 
-![](images/banniere.png){.hero-banner}
+![](images/banniere.webp){.hero-banner}
 
 
 
 
 <span class="contours-word">contours</span> est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
 
-Ce blog est crée et alimenté par  <span class="contours-word">Jonas Brouillon</span>, ingénieur d'études en sciences sociales.
+Ce blog est créé et alimenté par <span class="contours-word">Jonas Brouillon</span>, ingénieur d'études en sciences sociales.
 
 ## Derniers articles

@@ -1,0 +1,15 @@
+---
+title: "cartes"
+page-layout: full
+listing:
+  contents:
+    - "*.qmd"
+    - "!index.qmd"
+  type: grid
+  sort: "date desc"
+  categories: true
+---
+
+Cette section rassemble les cartes autonomes et animations cartographiques issues des analyses publiées sur [contours]{.contours-word}.
+
+Pour le moment, elle est volontairement centrée sur les cartes. Si d'autres formats deviennent réguliers, comme des graphiques, tableaux interactifs ou explorations visuelles, ils pourront faire l'objet d'une section dédiée.

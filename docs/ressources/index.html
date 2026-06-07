@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../images/logo.png" rel="icon" type="image/png">
+<link href="../images/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -73,6 +73,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="ressources – Contours">
+<meta property="og:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
+<meta property="og:site_name" content="Contours">
+<meta name="twitter:title" content="ressources – Contours">
+<meta name="twitter:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -83,8 +89,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/logo.png" alt="" class="navbar-logo light-content">
-    <img src="../images/logo.png" alt="" class="navbar-logo dark-content">
+    <img src="../images/logo.webp" alt="" class="navbar-logo light-content">
+    <img src="../images/logo.webp" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Contours</span>
@@ -101,23 +107,26 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../dataviz/index.html"> 
-<span class="menu-text">Dataviz</span></a>
+    <a class="nav-link" href="../cartes/index.html"> 
+<span class="menu-text">Cartes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../ressources/index.html" aria-current="page"> 
 <span class="menu-text">Ressources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../contact/index.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../newsletter/index.html"> 
+<span class="menu-text">Newsletter</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jbrouillon/contours-nc"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">À propos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -130,14 +139,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Sur cette page</h2>
-   
-  <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -168,13 +171,42 @@ ul.task-list li input[type="checkbox"] {
 <li>fonds de carte et ressources QGIS ;</li>
 <li>références méthodologiques en cartographie et sciences sociales.</li>
 </ul>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
 
 
-</section>
 
 </main> <!-- /main -->
+<nav class="floating-social" aria-label="Contacts et réseaux">
+  <a class="floating-social__link" href="../contact/" aria-label="Contacter Contours.nc">
+    <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+    <span class="floating-social__label">Contacter Contours.nc</span>
+  </a>
+  <a class="floating-social__link" href="../newsletter/" aria-label="Newsletter Contours.nc">
+    <i class="bi bi-envelope-paper-fill" aria-hidden="true"></i>
+    <span class="floating-social__label">Recevoir la newsletter</span>
+  </a>
+  <a class="floating-social__link" href="https://www.facebook.com/share/1RSsPGfKF4/" target="_blank" rel="noopener noreferrer" aria-label="Suivez Contours sur Facebook !">
+    <i class="bi bi-facebook" aria-hidden="true"></i>
+    <span class="floating-social__label">Suivez Contours sur Facebook !</span>
+  </a>
+  <a class="floating-social__link" href="https://www.linkedin.com/in/jonas-brouillon-65477a174/" target="_blank" rel="noopener noreferrer" aria-label="Je suis aussi sur LinkedIn">
+    <i class="bi bi-linkedin" aria-hidden="true"></i>
+    <span class="floating-social__label">Je suis aussi sur LinkedIn</span>
+  </a>
+</nav>
+<script>
+(() => {
+  const path = window.location.pathname.replace(/\/index\.html$/, "/");
+  if (!/\/posts\/[^/]+\/?$/.test(path)) return;
+
+  const main = document.querySelector("main.content");
+  if (!main || main.querySelector(".article-newsletter-cta")) return;
+
+  const cta = document.createElement("aside");
+  cta.className = "article-newsletter-cta";
+  cta.innerHTML = '<span aria-hidden="true">—</span> <a href="/newsletter">Recevoir les prochaines publications →</a>';
+  main.appendChild(cta);
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -248,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/jbrouillon\.github\.io\/contours-nc\/");
+        var filterRegex = new RegExp("https:\/\/contours\.nc\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -637,6 +669,8 @@ ul.task-list li input[type="checkbox"] {
 
   document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
     if (!isEligible(img)) return;
+    if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+    if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
     img.classList.add("quarto-lightbox-enabled");
     img.setAttribute("tabindex", "0");
     img.setAttribute("role", "button");

@@ -1,0 +1,38 @@
+---
+title: "Contacter Contours.nc"
+toc: false
+---
+
+Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous.
+
+```{=html}
+<!-- TODO: remplacer contact simple par formulaire popup avec routage :
+- collaboration scientifique -> @iac.nc
+- autres -> contact@contours.nc
+-->
+```
+
+::: contact-section
+## Contact général
+
+[contact\@contours.nc](mailto:contact@contours.nc){.contact-email}
+
+Questions, réactions aux articles, propositions de sujets, demandes diverses.
+:::
+
+::: contact-section
+## Réseaux sociaux
+
+Suivre les publications et actualités de Contours.nc :
+
+-   [Facebook](https://www.facebook.com/share/1RSsPGfKF4/){target="_blank" rel="noopener noreferrer"}
+-   [LinkedIn](https://www.linkedin.com/in/jonas-brouillon-65477a174/){target="_blank" rel="noopener noreferrer"}
+:::
+
+::: {.contact-section .contact-section--specialized}
+## Collaboration scientifique
+
+[jonas.brouillon\@iac.nc](mailto:jonas.brouillon@iac.nc){.contact-email}
+
+Pour les collaborations de recherche, projets scientifiques ou demandes liées aux activités scientifiques.
+:::

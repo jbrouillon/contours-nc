@@ -1,0 +1,41 @@
+---
+title: "Participation aux municipales 2020-2026"
+subtitle: "Cartes animées de la participation au premier tour"
+toc: true
+date: 2026-06-06
+image: "../data/cartes/municipales 2026/municipales_participation_noumea_echelle_interne_2020_2026.gif"
+categories:
+  - cartes
+  - élections
+  - Nouméa
+---
+
+## Contexte
+
+Ces animations mettent en regard les cartes de participation au premier tour des municipales 2020 et 2026. Elles accompagnent l'article consacré à la participation et à l'accessibilité des bureaux de vote à Nouméa.
+
+[Lire l'article complet](../posts/participation-accessibilite-bureaux-noumea/index.qmd)
+
+## Nouvelle-Calédonie
+
+::: viz-card
+![](../data/cartes/municipales%202026/municipales_participation_nc_2020_2026.gif){.viz-gif}
+
+*Participation au premier tour des municipales, avec une échelle commune à l'ensemble de la Nouvelle-Calédonie.* [Télécharger le GIF](../data/cartes/municipales%202026/municipales_participation_nc_2020_2026.gif){.download-btn download="municipales-participation-nc-2020-2026.gif"}
+:::
+
+## Nouméa, échelle territoriale
+
+::: viz-card
+![](../data/cartes/municipales%202026/municipales_participation_noumea_echelle_nc_2020_2026.gif){.viz-gif}
+
+*Zoom sur Nouméa avec la même échelle de couleurs que la carte de la Nouvelle-Calédonie.* [Télécharger le GIF](../data/cartes/municipales%202026/municipales_participation_noumea_echelle_nc_2020_2026.gif){.download-btn download="municipales-participation-noumea-echelle-nc-2020-2026.gif"}
+:::
+
+## Nouméa, contrastes internes
+
+::: viz-card
+![](../data/cartes/municipales%202026/municipales_participation_noumea_echelle_interne_2020_2026.gif){.viz-gif}
+
+*Participation à Nouméa avec une échelle ajustée aux contrastes internes de la commune.* [Télécharger le GIF](../data/cartes/municipales%202026/municipales_participation_noumea_echelle_interne_2020_2026.gif){.download-btn download="municipales-participation-noumea-echelle-interne-2020-2026.gif"}
+:::

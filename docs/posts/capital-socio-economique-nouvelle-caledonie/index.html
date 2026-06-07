@@ -32,7 +32,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../images/logo.png" rel="icon" type="image/png">
+<link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -78,6 +78,16 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Cartographier le capital socio-économique en Nouvelle-Calédonie – Contours">
+<meta property="og:description" content="Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.">
+<meta property="og:image" content="https://contours.nc/images/previews/capital-socio-economique-nc.jpg">
+<meta property="og:site_name" content="Contours">
+<meta property="og:image:alt" content="Carte lissée du capital socio-économique en Nouvelle-Calédonie">
+<meta name="twitter:title" content="Cartographier le capital socio-économique en Nouvelle-Calédonie – Contours">
+<meta name="twitter:description" content="Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.">
+<meta name="twitter:image" content="https://contours.nc/images/previews/capital-socio-economique-nc.jpg">
+<meta name="twitter:image:alt" content="Carte lissée du capital socio-économique en Nouvelle-Calédonie">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -88,8 +98,8 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/logo.png" alt="" class="navbar-logo light-content">
-    <img src="../../images/logo.png" alt="" class="navbar-logo dark-content">
+    <img src="../../images/logo.webp" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo.webp" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Contours</span>
@@ -106,23 +116,26 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../dataviz/index.html"> 
-<span class="menu-text">Dataviz</span></a>
+    <a class="nav-link" href="../../cartes/index.html"> 
+<span class="menu-text">Cartes</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../ressources/index.html"> 
 <span class="menu-text">Ressources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../contact/index.html"> 
+<span class="menu-text">Contact</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../newsletter/index.html"> 
+<span class="menu-text">Newsletter</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jbrouillon/contours-nc"> <i class="bi bi-github" role="img">
-</i> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -252,7 +265,7 @@ C’est quoi un IRIS ?
 <summary>
 Pourquoi certaines variables ne sont pas dans l’indice ?
 </summary>
-<p>Lorsque 2 variables sont trop corrélées entre elles, le choix est fait de n’en garder qu’une seule car inclure les 2 reviendrait à donner un poids trop important à une même dimension. Par exemple, la part de cadres et professions intermédiaires est très corrélée à la part de diplômés bac +3 ou plus : 0,93. Pour éviter de donner trop de poids à une même dimension, une seule variable de formation est donc conservée.</p>
+<p>Lorsque deux variables sont trop corrélées entre elles, le choix est fait de n’en garder qu’une seule car inclure les deux reviendrait à donner un poids trop important à une même dimension. Par exemple, la part de cadres et professions intermédiaires est très corrélée à la part de diplômés bac +3 ou plus : 0,93. Pour éviter de donner trop de poids à une même dimension, une seule variable de formation est donc conservée.</p>
 <p>Plus généralement, lorsqu’une variable apporte surtout une information déjà présente dans une autre variable retenue, elle est laissée de côté pour la construction de l’indice.</p>
 </details>
 </section>
@@ -272,8 +285,8 @@ Comment le lissage est construit ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_nc.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Indice de capital socio-économique lissé - Nouvelle-Calédonie.</figcaption>
+<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_nc.webp" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Indice de capital socio-économique lissé en Nouvelle-Calédonie.</figcaption>
 </figure>
 </div>
 </div>
@@ -283,8 +296,8 @@ Comment le lissage est construit ?
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_noumea_echelle_locale.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Indice de capital socio-économique lissé - Nouméa, échelle locale.</figcaption>
+<p><img src="../../data/cartes/capital socio-economique/capital_acp_lisse_noumea_echelle_locale.webp" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Indice de capital socio-économique lissé à Nouméa, échelle locale.</figcaption>
 </figure>
 </div>
 </div>
@@ -297,23 +310,23 @@ Comment le lissage est construit ?
 <p>Le tableau suivant montre quelles variables suivent le plus fortement l’indice final. Il sert à vérifier que l’indice <code>0-100</code> correspond bien au gradient attendu, et pas à une variable isolée.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="tkxqpzlwgv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tkxqpzlwgv table {
+<div id="kkuvbaocot" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kkuvbaocot table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tkxqpzlwgv thead, #tkxqpzlwgv tbody, #tkxqpzlwgv tfoot, #tkxqpzlwgv tr, #tkxqpzlwgv td, #tkxqpzlwgv th {
+#kkuvbaocot thead, #kkuvbaocot tbody, #kkuvbaocot tfoot, #kkuvbaocot tr, #kkuvbaocot td, #kkuvbaocot th {
   border-style: none;
 }
 
-#tkxqpzlwgv p {
+#kkuvbaocot p {
   margin: 0;
   padding: 0;
 }
 
-#tkxqpzlwgv .gt_table {
+#kkuvbaocot .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -339,12 +352,12 @@ Comment le lissage est construit ?
   border-left-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_caption {
+#kkuvbaocot .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tkxqpzlwgv .gt_title {
+#kkuvbaocot .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -356,7 +369,7 @@ Comment le lissage est construit ?
   border-bottom-width: 0;
 }
 
-#tkxqpzlwgv .gt_subtitle {
+#kkuvbaocot .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -368,7 +381,7 @@ Comment le lissage est construit ?
   border-top-width: 0;
 }
 
-#tkxqpzlwgv .gt_heading {
+#kkuvbaocot .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -380,13 +393,13 @@ Comment le lissage est construit ?
   border-right-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_bottom_border {
+#kkuvbaocot .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_col_headings {
+#kkuvbaocot .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -401,7 +414,7 @@ Comment le lissage est construit ?
   border-right-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_col_heading {
+#kkuvbaocot .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -421,7 +434,7 @@ Comment le lissage est construit ?
   overflow-x: hidden;
 }
 
-#tkxqpzlwgv .gt_column_spanner_outer {
+#kkuvbaocot .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -433,15 +446,15 @@ Comment le lissage est construit ?
   padding-right: 4px;
 }
 
-#tkxqpzlwgv .gt_column_spanner_outer:first-child {
+#kkuvbaocot .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tkxqpzlwgv .gt_column_spanner_outer:last-child {
+#kkuvbaocot .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tkxqpzlwgv .gt_column_spanner {
+#kkuvbaocot .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -453,11 +466,11 @@ Comment le lissage est construit ?
   width: 100%;
 }
 
-#tkxqpzlwgv .gt_spanner_row {
+#kkuvbaocot .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tkxqpzlwgv .gt_group_heading {
+#kkuvbaocot .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -483,7 +496,7 @@ Comment le lissage est construit ?
   text-align: left;
 }
 
-#tkxqpzlwgv .gt_empty_group_heading {
+#kkuvbaocot .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -498,15 +511,15 @@ Comment le lissage est construit ?
   vertical-align: middle;
 }
 
-#tkxqpzlwgv .gt_from_md > :first-child {
+#kkuvbaocot .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tkxqpzlwgv .gt_from_md > :last-child {
+#kkuvbaocot .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tkxqpzlwgv .gt_row {
+#kkuvbaocot .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -525,7 +538,7 @@ Comment le lissage est construit ?
   overflow-x: hidden;
 }
 
-#tkxqpzlwgv .gt_stub {
+#kkuvbaocot .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -538,7 +551,7 @@ Comment le lissage est construit ?
   padding-right: 5px;
 }
 
-#tkxqpzlwgv .gt_stub_row_group {
+#kkuvbaocot .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -552,15 +565,15 @@ Comment le lissage est construit ?
   vertical-align: top;
 }
 
-#tkxqpzlwgv .gt_row_group_first td {
+#kkuvbaocot .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tkxqpzlwgv .gt_row_group_first th {
+#kkuvbaocot .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tkxqpzlwgv .gt_summary_row {
+#kkuvbaocot .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -570,16 +583,16 @@ Comment le lissage est construit ?
   padding-right: 5px;
 }
 
-#tkxqpzlwgv .gt_first_summary_row {
+#kkuvbaocot .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_first_summary_row.thick {
+#kkuvbaocot .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tkxqpzlwgv .gt_last_summary_row {
+#kkuvbaocot .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -589,7 +602,7 @@ Comment le lissage est construit ?
   border-bottom-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_grand_summary_row {
+#kkuvbaocot .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -599,7 +612,7 @@ Comment le lissage est construit ?
   padding-right: 5px;
 }
 
-#tkxqpzlwgv .gt_first_grand_summary_row {
+#kkuvbaocot .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,7 +622,7 @@ Comment le lissage est construit ?
   border-top-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_last_grand_summary_row_top {
+#kkuvbaocot .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,11 +632,11 @@ Comment le lissage est construit ?
   border-bottom-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_striped {
+#kkuvbaocot .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tkxqpzlwgv .gt_table_body {
+#kkuvbaocot .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -632,7 +645,7 @@ Comment le lissage est construit ?
   border-bottom-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_footnotes {
+#kkuvbaocot .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -646,7 +659,7 @@ Comment le lissage est construit ?
   border-right-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_footnote {
+#kkuvbaocot .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -655,7 +668,7 @@ Comment le lissage est construit ?
   padding-right: 5px;
 }
 
-#tkxqpzlwgv .gt_sourcenotes {
+#kkuvbaocot .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -669,7 +682,7 @@ Comment le lissage est construit ?
   border-right-color: #D3D3D3;
 }
 
-#tkxqpzlwgv .gt_sourcenote {
+#kkuvbaocot .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -677,72 +690,72 @@ Comment le lissage est construit ?
   padding-right: 5px;
 }
 
-#tkxqpzlwgv .gt_left {
+#kkuvbaocot .gt_left {
   text-align: left;
 }
 
-#tkxqpzlwgv .gt_center {
+#kkuvbaocot .gt_center {
   text-align: center;
 }
 
-#tkxqpzlwgv .gt_right {
+#kkuvbaocot .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tkxqpzlwgv .gt_font_normal {
+#kkuvbaocot .gt_font_normal {
   font-weight: normal;
 }
 
-#tkxqpzlwgv .gt_font_bold {
+#kkuvbaocot .gt_font_bold {
   font-weight: bold;
 }
 
-#tkxqpzlwgv .gt_font_italic {
+#kkuvbaocot .gt_font_italic {
   font-style: italic;
 }
 
-#tkxqpzlwgv .gt_super {
+#kkuvbaocot .gt_super {
   font-size: 65%;
 }
 
-#tkxqpzlwgv .gt_footnote_marks {
+#kkuvbaocot .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tkxqpzlwgv .gt_asterisk {
+#kkuvbaocot .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tkxqpzlwgv .gt_indent_1 {
+#kkuvbaocot .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tkxqpzlwgv .gt_indent_2 {
+#kkuvbaocot .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tkxqpzlwgv .gt_indent_3 {
+#kkuvbaocot .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tkxqpzlwgv .gt_indent_4 {
+#kkuvbaocot .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tkxqpzlwgv .gt_indent_5 {
+#kkuvbaocot .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tkxqpzlwgv .katex-display {
+#kkuvbaocot .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tkxqpzlwgv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kkuvbaocot div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -916,23 +929,23 @@ Comment lire le deuxième axe ?
 <p>Les tableaux ci-dessous séparent volontairement deux usages. Le premier reprend les variables qui construisent directement l’indice. Le second ajoute des repères descriptifs, qui n’entrent pas dans l’ACP mais aident à comprendre les profils sociaux associés à chaque niveau d’indice.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="xillvxdzkg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xillvxdzkg table {
+<div id="syyixhtfja" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#syyixhtfja table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xillvxdzkg thead, #xillvxdzkg tbody, #xillvxdzkg tfoot, #xillvxdzkg tr, #xillvxdzkg td, #xillvxdzkg th {
+#syyixhtfja thead, #syyixhtfja tbody, #syyixhtfja tfoot, #syyixhtfja tr, #syyixhtfja td, #syyixhtfja th {
   border-style: none;
 }
 
-#xillvxdzkg p {
+#syyixhtfja p {
   margin: 0;
   padding: 0;
 }
 
-#xillvxdzkg .gt_table {
+#syyixhtfja .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -958,12 +971,12 @@ Comment lire le deuxième axe ?
   border-left-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_caption {
+#syyixhtfja .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xillvxdzkg .gt_title {
+#syyixhtfja .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -975,7 +988,7 @@ Comment lire le deuxième axe ?
   border-bottom-width: 0;
 }
 
-#xillvxdzkg .gt_subtitle {
+#syyixhtfja .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -987,7 +1000,7 @@ Comment lire le deuxième axe ?
   border-top-width: 0;
 }
 
-#xillvxdzkg .gt_heading {
+#syyixhtfja .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -999,13 +1012,13 @@ Comment lire le deuxième axe ?
   border-right-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_bottom_border {
+#syyixhtfja .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_col_headings {
+#syyixhtfja .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1020,7 +1033,7 @@ Comment lire le deuxième axe ?
   border-right-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_col_heading {
+#syyixhtfja .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1040,7 +1053,7 @@ Comment lire le deuxième axe ?
   overflow-x: hidden;
 }
 
-#xillvxdzkg .gt_column_spanner_outer {
+#syyixhtfja .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1052,15 +1065,15 @@ Comment lire le deuxième axe ?
   padding-right: 4px;
 }
 
-#xillvxdzkg .gt_column_spanner_outer:first-child {
+#syyixhtfja .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xillvxdzkg .gt_column_spanner_outer:last-child {
+#syyixhtfja .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xillvxdzkg .gt_column_spanner {
+#syyixhtfja .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1072,11 +1085,11 @@ Comment lire le deuxième axe ?
   width: 100%;
 }
 
-#xillvxdzkg .gt_spanner_row {
+#syyixhtfja .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xillvxdzkg .gt_group_heading {
+#syyixhtfja .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1102,7 +1115,7 @@ Comment lire le deuxième axe ?
   text-align: left;
 }
 
-#xillvxdzkg .gt_empty_group_heading {
+#syyixhtfja .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1117,15 +1130,15 @@ Comment lire le deuxième axe ?
   vertical-align: middle;
 }
 
-#xillvxdzkg .gt_from_md > :first-child {
+#syyixhtfja .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xillvxdzkg .gt_from_md > :last-child {
+#syyixhtfja .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xillvxdzkg .gt_row {
+#syyixhtfja .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1144,7 +1157,7 @@ Comment lire le deuxième axe ?
   overflow-x: hidden;
 }
 
-#xillvxdzkg .gt_stub {
+#syyixhtfja .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1157,7 +1170,7 @@ Comment lire le deuxième axe ?
   padding-right: 5px;
 }
 
-#xillvxdzkg .gt_stub_row_group {
+#syyixhtfja .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1171,15 +1184,15 @@ Comment lire le deuxième axe ?
   vertical-align: top;
 }
 
-#xillvxdzkg .gt_row_group_first td {
+#syyixhtfja .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xillvxdzkg .gt_row_group_first th {
+#syyixhtfja .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xillvxdzkg .gt_summary_row {
+#syyixhtfja .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1189,16 +1202,16 @@ Comment lire le deuxième axe ?
   padding-right: 5px;
 }
 
-#xillvxdzkg .gt_first_summary_row {
+#syyixhtfja .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_first_summary_row.thick {
+#syyixhtfja .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xillvxdzkg .gt_last_summary_row {
+#syyixhtfja .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1208,7 +1221,7 @@ Comment lire le deuxième axe ?
   border-bottom-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_grand_summary_row {
+#syyixhtfja .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1218,7 +1231,7 @@ Comment lire le deuxième axe ?
   padding-right: 5px;
 }
 
-#xillvxdzkg .gt_first_grand_summary_row {
+#syyixhtfja .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1228,7 +1241,7 @@ Comment lire le deuxième axe ?
   border-top-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_last_grand_summary_row_top {
+#syyixhtfja .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1238,11 +1251,11 @@ Comment lire le deuxième axe ?
   border-bottom-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_striped {
+#syyixhtfja .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xillvxdzkg .gt_table_body {
+#syyixhtfja .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1251,7 +1264,7 @@ Comment lire le deuxième axe ?
   border-bottom-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_footnotes {
+#syyixhtfja .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1265,7 +1278,7 @@ Comment lire le deuxième axe ?
   border-right-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_footnote {
+#syyixhtfja .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1274,7 +1287,7 @@ Comment lire le deuxième axe ?
   padding-right: 5px;
 }
 
-#xillvxdzkg .gt_sourcenotes {
+#syyixhtfja .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1288,7 +1301,7 @@ Comment lire le deuxième axe ?
   border-right-color: #D3D3D3;
 }
 
-#xillvxdzkg .gt_sourcenote {
+#syyixhtfja .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1296,72 +1309,72 @@ Comment lire le deuxième axe ?
   padding-right: 5px;
 }
 
-#xillvxdzkg .gt_left {
+#syyixhtfja .gt_left {
   text-align: left;
 }
 
-#xillvxdzkg .gt_center {
+#syyixhtfja .gt_center {
   text-align: center;
 }
 
-#xillvxdzkg .gt_right {
+#syyixhtfja .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xillvxdzkg .gt_font_normal {
+#syyixhtfja .gt_font_normal {
   font-weight: normal;
 }
 
-#xillvxdzkg .gt_font_bold {
+#syyixhtfja .gt_font_bold {
   font-weight: bold;
 }
 
-#xillvxdzkg .gt_font_italic {
+#syyixhtfja .gt_font_italic {
   font-style: italic;
 }
 
-#xillvxdzkg .gt_super {
+#syyixhtfja .gt_super {
   font-size: 65%;
 }
 
-#xillvxdzkg .gt_footnote_marks {
+#syyixhtfja .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xillvxdzkg .gt_asterisk {
+#syyixhtfja .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xillvxdzkg .gt_indent_1 {
+#syyixhtfja .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xillvxdzkg .gt_indent_2 {
+#syyixhtfja .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xillvxdzkg .gt_indent_3 {
+#syyixhtfja .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xillvxdzkg .gt_indent_4 {
+#syyixhtfja .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xillvxdzkg .gt_indent_5 {
+#syyixhtfja .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xillvxdzkg .katex-display {
+#syyixhtfja .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xillvxdzkg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#syyixhtfja div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1501,23 +1514,23 @@ Variables de construction de l’indice
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="qmidxvjjnf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qmidxvjjnf table {
+<div id="bqdjnqlwag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bqdjnqlwag table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qmidxvjjnf thead, #qmidxvjjnf tbody, #qmidxvjjnf tfoot, #qmidxvjjnf tr, #qmidxvjjnf td, #qmidxvjjnf th {
+#bqdjnqlwag thead, #bqdjnqlwag tbody, #bqdjnqlwag tfoot, #bqdjnqlwag tr, #bqdjnqlwag td, #bqdjnqlwag th {
   border-style: none;
 }
 
-#qmidxvjjnf p {
+#bqdjnqlwag p {
   margin: 0;
   padding: 0;
 }
 
-#qmidxvjjnf .gt_table {
+#bqdjnqlwag .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1543,12 +1556,12 @@ Variables de construction de l’indice
   border-left-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_caption {
+#bqdjnqlwag .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qmidxvjjnf .gt_title {
+#bqdjnqlwag .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1560,7 +1573,7 @@ Variables de construction de l’indice
   border-bottom-width: 0;
 }
 
-#qmidxvjjnf .gt_subtitle {
+#bqdjnqlwag .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1572,7 +1585,7 @@ Variables de construction de l’indice
   border-top-width: 0;
 }
 
-#qmidxvjjnf .gt_heading {
+#bqdjnqlwag .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1584,13 +1597,13 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_bottom_border {
+#bqdjnqlwag .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_col_headings {
+#bqdjnqlwag .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1605,7 +1618,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_col_heading {
+#bqdjnqlwag .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1625,7 +1638,7 @@ Variables de construction de l’indice
   overflow-x: hidden;
 }
 
-#qmidxvjjnf .gt_column_spanner_outer {
+#bqdjnqlwag .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1637,15 +1650,15 @@ Variables de construction de l’indice
   padding-right: 4px;
 }
 
-#qmidxvjjnf .gt_column_spanner_outer:first-child {
+#bqdjnqlwag .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qmidxvjjnf .gt_column_spanner_outer:last-child {
+#bqdjnqlwag .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qmidxvjjnf .gt_column_spanner {
+#bqdjnqlwag .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1657,11 +1670,11 @@ Variables de construction de l’indice
   width: 100%;
 }
 
-#qmidxvjjnf .gt_spanner_row {
+#bqdjnqlwag .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qmidxvjjnf .gt_group_heading {
+#bqdjnqlwag .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1687,7 +1700,7 @@ Variables de construction de l’indice
   text-align: left;
 }
 
-#qmidxvjjnf .gt_empty_group_heading {
+#bqdjnqlwag .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1702,15 +1715,15 @@ Variables de construction de l’indice
   vertical-align: middle;
 }
 
-#qmidxvjjnf .gt_from_md > :first-child {
+#bqdjnqlwag .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qmidxvjjnf .gt_from_md > :last-child {
+#bqdjnqlwag .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qmidxvjjnf .gt_row {
+#bqdjnqlwag .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1729,7 +1742,7 @@ Variables de construction de l’indice
   overflow-x: hidden;
 }
 
-#qmidxvjjnf .gt_stub {
+#bqdjnqlwag .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1742,7 +1755,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#qmidxvjjnf .gt_stub_row_group {
+#bqdjnqlwag .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1756,15 +1769,15 @@ Variables de construction de l’indice
   vertical-align: top;
 }
 
-#qmidxvjjnf .gt_row_group_first td {
+#bqdjnqlwag .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qmidxvjjnf .gt_row_group_first th {
+#bqdjnqlwag .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qmidxvjjnf .gt_summary_row {
+#bqdjnqlwag .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1774,16 +1787,16 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#qmidxvjjnf .gt_first_summary_row {
+#bqdjnqlwag .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_first_summary_row.thick {
+#bqdjnqlwag .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qmidxvjjnf .gt_last_summary_row {
+#bqdjnqlwag .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1793,7 +1806,7 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_grand_summary_row {
+#bqdjnqlwag .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1803,7 +1816,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#qmidxvjjnf .gt_first_grand_summary_row {
+#bqdjnqlwag .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1813,7 +1826,7 @@ Variables de construction de l’indice
   border-top-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_last_grand_summary_row_top {
+#bqdjnqlwag .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1823,11 +1836,11 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_striped {
+#bqdjnqlwag .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qmidxvjjnf .gt_table_body {
+#bqdjnqlwag .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1836,7 +1849,7 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_footnotes {
+#bqdjnqlwag .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1850,7 +1863,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_footnote {
+#bqdjnqlwag .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1859,7 +1872,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#qmidxvjjnf .gt_sourcenotes {
+#bqdjnqlwag .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1873,7 +1886,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#qmidxvjjnf .gt_sourcenote {
+#bqdjnqlwag .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1881,72 +1894,72 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#qmidxvjjnf .gt_left {
+#bqdjnqlwag .gt_left {
   text-align: left;
 }
 
-#qmidxvjjnf .gt_center {
+#bqdjnqlwag .gt_center {
   text-align: center;
 }
 
-#qmidxvjjnf .gt_right {
+#bqdjnqlwag .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qmidxvjjnf .gt_font_normal {
+#bqdjnqlwag .gt_font_normal {
   font-weight: normal;
 }
 
-#qmidxvjjnf .gt_font_bold {
+#bqdjnqlwag .gt_font_bold {
   font-weight: bold;
 }
 
-#qmidxvjjnf .gt_font_italic {
+#bqdjnqlwag .gt_font_italic {
   font-style: italic;
 }
 
-#qmidxvjjnf .gt_super {
+#bqdjnqlwag .gt_super {
   font-size: 65%;
 }
 
-#qmidxvjjnf .gt_footnote_marks {
+#bqdjnqlwag .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qmidxvjjnf .gt_asterisk {
+#bqdjnqlwag .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qmidxvjjnf .gt_indent_1 {
+#bqdjnqlwag .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qmidxvjjnf .gt_indent_2 {
+#bqdjnqlwag .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qmidxvjjnf .gt_indent_3 {
+#bqdjnqlwag .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qmidxvjjnf .gt_indent_4 {
+#bqdjnqlwag .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qmidxvjjnf .gt_indent_5 {
+#bqdjnqlwag .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qmidxvjjnf .katex-display {
+#bqdjnqlwag .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qmidxvjjnf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bqdjnqlwag div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2032,23 +2045,23 @@ Variables de construction de l’indice
 <p>Le tableau suivant liste les IRIS situés aux deux extrémités de l’indice. Il ne s’agit pas d’un classement social définitif, mais d’un outil de vérification : les noms qui ressortent doivent être confrontés à la connaissance du terrain, aux cartes et aux autres indicateurs disponibles.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="srlaidfngx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#srlaidfngx table {
+<div id="hivvuynfvg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hivvuynfvg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#srlaidfngx thead, #srlaidfngx tbody, #srlaidfngx tfoot, #srlaidfngx tr, #srlaidfngx td, #srlaidfngx th {
+#hivvuynfvg thead, #hivvuynfvg tbody, #hivvuynfvg tfoot, #hivvuynfvg tr, #hivvuynfvg td, #hivvuynfvg th {
   border-style: none;
 }
 
-#srlaidfngx p {
+#hivvuynfvg p {
   margin: 0;
   padding: 0;
 }
 
-#srlaidfngx .gt_table {
+#hivvuynfvg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2074,12 +2087,12 @@ Variables de construction de l’indice
   border-left-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_caption {
+#hivvuynfvg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#srlaidfngx .gt_title {
+#hivvuynfvg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2091,7 +2104,7 @@ Variables de construction de l’indice
   border-bottom-width: 0;
 }
 
-#srlaidfngx .gt_subtitle {
+#hivvuynfvg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2103,7 +2116,7 @@ Variables de construction de l’indice
   border-top-width: 0;
 }
 
-#srlaidfngx .gt_heading {
+#hivvuynfvg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2115,13 +2128,13 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_bottom_border {
+#hivvuynfvg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_col_headings {
+#hivvuynfvg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2136,7 +2149,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_col_heading {
+#hivvuynfvg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2156,7 +2169,7 @@ Variables de construction de l’indice
   overflow-x: hidden;
 }
 
-#srlaidfngx .gt_column_spanner_outer {
+#hivvuynfvg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2168,15 +2181,15 @@ Variables de construction de l’indice
   padding-right: 4px;
 }
 
-#srlaidfngx .gt_column_spanner_outer:first-child {
+#hivvuynfvg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#srlaidfngx .gt_column_spanner_outer:last-child {
+#hivvuynfvg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#srlaidfngx .gt_column_spanner {
+#hivvuynfvg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2188,11 +2201,11 @@ Variables de construction de l’indice
   width: 100%;
 }
 
-#srlaidfngx .gt_spanner_row {
+#hivvuynfvg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#srlaidfngx .gt_group_heading {
+#hivvuynfvg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2218,7 +2231,7 @@ Variables de construction de l’indice
   text-align: left;
 }
 
-#srlaidfngx .gt_empty_group_heading {
+#hivvuynfvg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2233,15 +2246,15 @@ Variables de construction de l’indice
   vertical-align: middle;
 }
 
-#srlaidfngx .gt_from_md > :first-child {
+#hivvuynfvg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#srlaidfngx .gt_from_md > :last-child {
+#hivvuynfvg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#srlaidfngx .gt_row {
+#hivvuynfvg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2260,7 +2273,7 @@ Variables de construction de l’indice
   overflow-x: hidden;
 }
 
-#srlaidfngx .gt_stub {
+#hivvuynfvg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2273,7 +2286,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#srlaidfngx .gt_stub_row_group {
+#hivvuynfvg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2287,15 +2300,15 @@ Variables de construction de l’indice
   vertical-align: top;
 }
 
-#srlaidfngx .gt_row_group_first td {
+#hivvuynfvg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#srlaidfngx .gt_row_group_first th {
+#hivvuynfvg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#srlaidfngx .gt_summary_row {
+#hivvuynfvg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2305,16 +2318,16 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#srlaidfngx .gt_first_summary_row {
+#hivvuynfvg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_first_summary_row.thick {
+#hivvuynfvg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#srlaidfngx .gt_last_summary_row {
+#hivvuynfvg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2324,7 +2337,7 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_grand_summary_row {
+#hivvuynfvg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2334,7 +2347,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#srlaidfngx .gt_first_grand_summary_row {
+#hivvuynfvg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2344,7 +2357,7 @@ Variables de construction de l’indice
   border-top-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_last_grand_summary_row_top {
+#hivvuynfvg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2354,11 +2367,11 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_striped {
+#hivvuynfvg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#srlaidfngx .gt_table_body {
+#hivvuynfvg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2367,7 +2380,7 @@ Variables de construction de l’indice
   border-bottom-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_footnotes {
+#hivvuynfvg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2381,7 +2394,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_footnote {
+#hivvuynfvg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2390,7 +2403,7 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#srlaidfngx .gt_sourcenotes {
+#hivvuynfvg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2404,7 +2417,7 @@ Variables de construction de l’indice
   border-right-color: #D3D3D3;
 }
 
-#srlaidfngx .gt_sourcenote {
+#hivvuynfvg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2412,72 +2425,72 @@ Variables de construction de l’indice
   padding-right: 5px;
 }
 
-#srlaidfngx .gt_left {
+#hivvuynfvg .gt_left {
   text-align: left;
 }
 
-#srlaidfngx .gt_center {
+#hivvuynfvg .gt_center {
   text-align: center;
 }
 
-#srlaidfngx .gt_right {
+#hivvuynfvg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#srlaidfngx .gt_font_normal {
+#hivvuynfvg .gt_font_normal {
   font-weight: normal;
 }
 
-#srlaidfngx .gt_font_bold {
+#hivvuynfvg .gt_font_bold {
   font-weight: bold;
 }
 
-#srlaidfngx .gt_font_italic {
+#hivvuynfvg .gt_font_italic {
   font-style: italic;
 }
 
-#srlaidfngx .gt_super {
+#hivvuynfvg .gt_super {
   font-size: 65%;
 }
 
-#srlaidfngx .gt_footnote_marks {
+#hivvuynfvg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#srlaidfngx .gt_asterisk {
+#hivvuynfvg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#srlaidfngx .gt_indent_1 {
+#hivvuynfvg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#srlaidfngx .gt_indent_2 {
+#hivvuynfvg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#srlaidfngx .gt_indent_3 {
+#hivvuynfvg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#srlaidfngx .gt_indent_4 {
+#hivvuynfvg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#srlaidfngx .gt_indent_5 {
+#hivvuynfvg .gt_indent_5 {
   text-indent: 25px;
 }
 
-#srlaidfngx .katex-display {
+#hivvuynfvg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#srlaidfngx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hivvuynfvg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2738,6 +2751,38 @@ Variables de construction de l’indice
 </section>
 
 </main> <!-- /main -->
+<nav class="floating-social" aria-label="Contacts et réseaux">
+  <a class="floating-social__link" href="../../contact/" aria-label="Contacter Contours.nc">
+    <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+    <span class="floating-social__label">Contacter Contours.nc</span>
+  </a>
+  <a class="floating-social__link" href="../../newsletter/" aria-label="Newsletter Contours.nc">
+    <i class="bi bi-envelope-paper-fill" aria-hidden="true"></i>
+    <span class="floating-social__label">Recevoir la newsletter</span>
+  </a>
+  <a class="floating-social__link" href="https://www.facebook.com/share/1RSsPGfKF4/" target="_blank" rel="noopener noreferrer" aria-label="Suivez Contours sur Facebook !">
+    <i class="bi bi-facebook" aria-hidden="true"></i>
+    <span class="floating-social__label">Suivez Contours sur Facebook !</span>
+  </a>
+  <a class="floating-social__link" href="https://www.linkedin.com/in/jonas-brouillon-65477a174/" target="_blank" rel="noopener noreferrer" aria-label="Je suis aussi sur LinkedIn">
+    <i class="bi bi-linkedin" aria-hidden="true"></i>
+    <span class="floating-social__label">Je suis aussi sur LinkedIn</span>
+  </a>
+</nav>
+<script>
+(() => {
+  const path = window.location.pathname.replace(/\/index\.html$/, "/");
+  if (!/\/posts\/[^/]+\/?$/.test(path)) return;
+
+  const main = document.querySelector("main.content");
+  if (!main || main.querySelector(".article-newsletter-cta")) return;
+
+  const cta = document.createElement("aside");
+  cta.className = "article-newsletter-cta";
+  cta.innerHTML = '<span aria-hidden="true">—</span> <a href="/newsletter">Recevoir les prochaines publications →</a>';
+  main.appendChild(cta);
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2811,7 +2856,7 @@ Variables de construction de l’indice
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/jbrouillon\.github\.io\/contours-nc\/");
+        var filterRegex = new RegExp("https:\/\/contours\.nc\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -3200,6 +3245,8 @@ Variables de construction de l’indice
 
   document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
     if (!isEligible(img)) return;
+    if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+    if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
     img.classList.add("quarto-lightbox-enabled");
     img.setAttribute("tabindex", "0");
     img.setAttribute("role", "button");

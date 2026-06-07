@@ -1,0 +1,1175 @@
+commune_norm,election,tour,province_code,province,type_resultat,option,nuance,commune,voix,exprimes,inscrits,pct_exprimes,pct_inscrits,rang
+BELEP,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Belep,259,277,934,93.5,27.73,1
+BELEP,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Belep,10,277,934,3.61,1.07,2
+BELEP,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Belep,3,277,934,1.08,0.32,3
+BELEP,legislatives_2022,1,,,candidat,Joannes ITITIATY,DIV,Belep,2,277,934,0.72,0.21,4
+BELEP,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Belep,2,277,934,0.72,0.21,5
+BELEP,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Belep,444,446,934,99.55,47.54,1
+BELEP,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Belep,2,446,934,0.45,0.21,2
+BELEP,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Belep,526,535,933,98.32,56.38,1
+BELEP,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Belep,4,535,933,0.75,0.43,2
+BELEP,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Belep,2,535,933,0.37,0.21,3
+BELEP,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Belep,2,535,933,0.37,0.21,4
+BELEP,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Belep,1,535,933,0.19,0.11,5
+BELEP,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Belep,676,676,932,100,72.53,1
+BELEP,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Belep,0,676,932,0,0,2
+BELEP,municipales_2020,1,,,liste,DAU AR POUR TOUS,LNC,Belep,330,656,944,50.3,34.96,1
+BELEP,municipales_2020,1,,,liste,BELEP : IDENTITE ET DESTIN PARTAGE,LNC,Belep,326,656,944,49.7,34.53,2
+BELEP,municipales_2026,1,,,liste,Albert WAHOULO BELEP POUR LA RECONCILIATION,,Belep,343,698,943,49.14,36.37,1
+BELEP,municipales_2026,1,,,liste,Ignacia TEANYOUEN UNIS POUR DAU AR,,Belep,191,698,943,27.36,20.25,2
+BELEP,municipales_2026,1,,,liste,Gianni TEAMBOUEON YAGUË LI MOLEP,,Belep,87,698,943,12.46,9.23,3
+BELEP,municipales_2026,1,,,liste,Yan MOILOU FEDERATION METANOÏA,,Belep,46,698,943,6.59,4.88,4
+BELEP,municipales_2026,1,,,liste,Franck Mac Kane BOUANAOUE DAU AR POUR TOUS,,Belep,31,698,943,4.44,3.29,5
+BELEP,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Bélep,234,487,912,48.05,25.66,1
+BELEP,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Bélep,193,487,912,39.63,21.16,2
+BELEP,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Bélep,47,487,912,9.65,5.15,3
+BELEP,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Bélep,6,487,912,1.23,0.66,4
+BELEP,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Bélep,6,487,912,1.23,0.66,5
+BELEP,referendum_2018,,,,choix,oui,,BELEP,664,703,920,94.45,72.17,1
+BELEP,referendum_2018,,,,choix,non,,BELEP,39,703,920,5.55,4.24,2
+BELEP,referendum_2020,,,Province Nord,choix,oui,,Belep,734,761,937,96.45,78.34,1
+BELEP,referendum_2020,,,Province Nord,choix,non,,Belep,27,761,937,3.55,2.88,2
+BELEP,referendum_2021,,,Province Nord,choix,non,,Belep,4,6,930,66.67,0.43,1
+BELEP,referendum_2021,,,Province Nord,choix,oui,,Belep,2,6,930,33.33,0.22,2
+BOULOUPARI,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Boulouparis,575,1354,3275,42.47,17.56,1
+BOULOUPARI,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Boulouparis,433,1354,3275,31.98,13.22,2
+BOULOUPARI,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Boulouparis,200,1354,3275,14.77,6.11,3
+BOULOUPARI,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Boulouparis,87,1354,3275,6.43,2.66,4
+BOULOUPARI,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Boulouparis,22,1354,3275,1.62,0.67,5
+BOULOUPARI,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Boulouparis,1376,1770,3275,77.74,42.02,1
+BOULOUPARI,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Boulouparis,394,1770,3275,22.26,12.03,2
+BOULOUPARI,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Bouloupari,1341,2265,3345,59.21,40.09,1
+BOULOUPARI,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Bouloupari,653,2265,3345,28.83,19.52,2
+BOULOUPARI,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Bouloupari,126,2265,3345,5.56,3.77,3
+BOULOUPARI,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Bouloupari,98,2265,3345,4.33,2.93,4
+BOULOUPARI,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Bouloupari,28,2265,3345,1.24,0.84,5
+BOULOUPARI,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Bouloupari,1672,2576,3345,64.91,49.99,1
+BOULOUPARI,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Bouloupari,904,2576,3345,35.09,27.03,2
+BOULOUPARI,municipales_2020,1,,,liste,BOULOUPARIS POUR VOUS,LNC,Boulouparis,1181,2165,3143,54.55,37.58,1
+BOULOUPARI,municipales_2020,1,,,liste,ENSEMBLE DEVELOPPONS BOULOUPARIS,LNC,Boulouparis,738,2165,3143,34.09,23.48,2
+BOULOUPARI,municipales_2020,1,,,liste,FA MURU BEREPWARI,LNC,Boulouparis,246,2165,3143,11.36,7.83,3
+BOULOUPARI,municipales_2026,1,,,liste,Pascal VITTORI Boulouparis pour vous,,Bouloupari,962,2265,3381,42.47,28.45,1
+BOULOUPARI,municipales_2026,1,,,liste,Karlheinz CREUGNET Boulouparis au coeur de nos vies,,Bouloupari,859,2265,3381,37.92,25.41,2
+BOULOUPARI,municipales_2026,1,,,liste,"Roger Philippe THEVEDIN Construire ensemble, Berepwari",,Bouloupari,444,2265,3381,19.6,13.13,3
+BOULOUPARI,municipales_2026,2,,,liste,Pascal VITTORIBoulouparispour vous,,Bouloupari,1054,2435,3381,43.29,31.17,1
+BOULOUPARI,municipales_2026,2,,,liste,Karlheinz CREUGNETBoulouparisau coeur de nos vies,,Bouloupari,932,2435,3381,38.28,27.57,2
+BOULOUPARI,municipales_2026,2,,,liste,"Roger Philippe THEVEDINConstruire ensemble, Berepwari",,Bouloupari,449,2435,3381,18.44,13.28,3
+BOULOUPARI,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Boulouparis,835,1794,2659,46.54,31.4,1
+BOULOUPARI,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Boulouparis,348,1794,2659,19.4,13.09,2
+BOULOUPARI,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Boulouparis,293,1794,2659,16.33,11.02,3
+BOULOUPARI,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Boulouparis,92,1794,2659,5.13,3.46,4
+BOULOUPARI,provinciales_2019,,PS,Province Sud,liste,PS_liste_08,,Boulouparis,54,1794,2659,3.01,2.03,5
+BOULOUPARI,referendum_2018,,,,choix,non,,BOULOUPARIS,1657,2376,2645,69.74,62.65,1
+BOULOUPARI,referendum_2018,,,,choix,oui,,BOULOUPARIS,719,2376,2645,30.26,27.18,2
+BOULOUPARI,referendum_2020,,,Province Sud,choix,non,,Boulouparis,1790,2587,2819,69.19,63.5,1
+BOULOUPARI,referendum_2020,,,Province Sud,choix,oui,,Boulouparis,797,2587,2819,30.81,28.27,2
+BOULOUPARI,referendum_2021,,,Province Sud,choix,non,,Boulouparis,1711,1750,2893,97.77,59.14,1
+BOULOUPARI,referendum_2021,,,Province Sud,choix,oui,,Boulouparis,39,1750,2893,2.23,1.35,2
+BOURAIL,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Bourail,788,1748,4667,45.08,16.88,1
+BOURAIL,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Bourail,534,1748,4667,30.55,11.44,2
+BOURAIL,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Bourail,198,1748,4667,11.33,4.24,3
+BOURAIL,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Bourail,92,1748,4667,5.26,1.97,4
+BOURAIL,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Bourail,51,1748,4667,2.92,1.09,5
+BOURAIL,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Bourail,1845,2426,4666,76.05,39.54,1
+BOURAIL,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Bourail,581,2426,4666,23.95,12.45,2
+BOURAIL,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Bourail,1680,3183,4752,52.78,35.35,1
+BOURAIL,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Bourail,914,3183,4752,28.72,19.23,2
+BOURAIL,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Bourail,283,3183,4752,8.89,5.96,3
+BOURAIL,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Bourail,206,3183,4752,6.47,4.34,4
+BOURAIL,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Bourail,54,3183,4752,1.7,1.14,5
+BOURAIL,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Bourail,2204,3696,4752,59.63,46.38,1
+BOURAIL,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Bourail,1492,3696,4752,40.37,31.4,2
+BOURAIL,municipales_2020,1,,,liste,BOURAIL EN ACCORD,LDIV,Bourail,1179,2543,4501,46.36,26.19,1
+BOURAIL,municipales_2020,1,,,liste,RENOUVEAU POUR BOURAIL,LDVD,Bourail,563,2543,4501,22.14,12.51,2
+BOURAIL,municipales_2020,1,,,liste,DESSINONS BOURAIL,LDIV,Bourail,409,2543,4501,16.08,9.09,3
+BOURAIL,municipales_2020,1,,,liste,FLKNS,LREG,Bourail,264,2543,4501,10.38,5.87,4
+BOURAIL,municipales_2020,1,,,liste,ENSEMBLE POUR BOURAIL,LDIV,Bourail,128,2543,4501,5.03,2.84,5
+BOURAIL,municipales_2026,1,,,liste,Patrick ROBELIN Bourail en accord,LDVC,Bourail,1204,3033,4880,39.7,24.67,1
+BOURAIL,municipales_2026,1,,,liste,Levay ROY BOURAIL DEMAIN,LDVD,Bourail,1101,3033,4880,36.3,22.56,2
+BOURAIL,municipales_2026,1,,,liste,Jean-Paul ROBELIN Ambition Bourail,LDIV,Bourail,728,3033,4880,24,14.92,3
+BOURAIL,municipales_2026,2,,,liste,Patrick ROBELIN Bourail en accord,LDVC,Bourail,1546,3466,4876,44.6,31.71,1
+BOURAIL,municipales_2026,2,,,liste,LevayROY BOURAIL DEMAIN,LDVD,Bourail,1400,3466,4876,40.39,28.71,2
+BOURAIL,municipales_2026,2,,,liste,Jean-Paul ROBELIN Ambition Bourail,LDIV,Bourail,520,3466,4876,15,10.66,3
+BOURAIL,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Bourail,923,2605,3949,35.43,23.37,1
+BOURAIL,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Bourail,630,2605,3949,24.18,15.95,2
+BOURAIL,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Bourail,554,2605,3949,21.27,14.03,3
+BOURAIL,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Bourail,120,2605,3949,4.61,3.04,4
+BOURAIL,provinciales_2019,,PS,Province Sud,liste,PS_liste_10,,Bourail,100,2605,3949,3.84,2.53,5
+BOURAIL,referendum_2018,,,,choix,non,,BOURAIL,2371,3432,3934,69.09,60.27,1
+BOURAIL,referendum_2018,,,,choix,oui,,BOURAIL,1061,3432,3934,30.91,26.97,2
+BOURAIL,referendum_2020,,,Province Sud,choix,non,,Bourail,2463,3661,4083,67.28,60.32,1
+BOURAIL,referendum_2020,,,Province Sud,choix,oui,,Bourail,1198,3661,4083,32.72,29.34,2
+BOURAIL,referendum_2021,,,Province Sud,choix,non,,Bourail,2382,2452,4152,97.15,57.37,1
+BOURAIL,referendum_2021,,,Province Sud,choix,oui,,Bourail,70,2452,4152,2.85,1.69,2
+CANALA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Canala,1315,1450,3589,90.69,36.64,1
+CANALA,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Canala,61,1450,3589,4.21,1.7,2
+CANALA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Canala,22,1450,3589,1.52,0.61,3
+CANALA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Canala,22,1450,3589,1.52,0.61,4
+CANALA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Canala,19,1450,3589,1.31,0.53,5
+CANALA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Canala,2195,2256,3589,97.3,61.16,1
+CANALA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Canala,61,2256,3589,2.7,1.7,2
+CANALA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Canala,2329,2486,3620,93.68,64.34,1
+CANALA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Canala,108,2486,3620,4.34,2.98,2
+CANALA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Canala,19,2486,3620,0.76,0.52,3
+CANALA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Canala,17,2486,3620,0.68,0.47,4
+CANALA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Canala,7,2486,3620,0.28,0.19,5
+CANALA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Canala,2991,3029,3620,98.75,82.62,1
+CANALA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Canala,38,3029,3620,1.25,1.05,2
+CANALA,municipales_2020,1,,,liste,UC FLNKS,LREG,Canala,1089,2311,3500,47.12,31.11,1
+CANALA,municipales_2020,1,,,liste,XARACUU TAATOA,LREG,Canala,528,2311,3500,22.85,15.09,2
+CANALA,municipales_2020,1,,,liste,FEDERATION COMMUNALE DE COMPETENCES AU SERVICE DE L'INNOVATION,LREG,Canala,356,2311,3500,15.4,10.17,3
+CANALA,municipales_2020,1,,,liste,MURU XORU CANALA ALTERNATIVE,LDIV,Canala,338,2311,3500,14.63,9.66,4
+CANALA,municipales_2026,1,,,liste,Gilbert TYUIENON TEPE AEE CE KANAKY DAAWANI,LREG,Canala,1045,2544,3620,41.08,28.87,1
+CANALA,municipales_2026,1,,,liste,Caril BERONON XWAMAABWI ADOPOO,LREG,Canala,672,2544,3620,26.42,18.56,2
+CANALA,municipales_2026,1,,,liste,Jean Michel MAYET MURU XORU,LDIV,Canala,461,2544,3620,18.12,12.73,3
+CANALA,municipales_2026,1,,,liste,Raymond - Freddy TYUIENON UNI XARACUU ARE,LREG,Canala,366,2544,3620,14.39,10.11,4
+CANALA,municipales_2026,2,,,liste,Caril BERONON XARACUU XEBUTU,LREG,Canala,1462,2895,3620,50.5,40.39,1
+CANALA,municipales_2026,2,,,liste,Gilbert TYUIENON TEPE AEE CE KANAKY DAAWANI,LREG,Canala,1433,2895,3620,49.5,39.59,2
+CANALA,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Canala,1232,2077,3384,59.32,36.41,1
+CANALA,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Canala,686,2077,3384,33.03,20.27,2
+CANALA,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Canala,60,2077,3384,2.89,1.77,3
+CANALA,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Canala,44,2077,3384,2.12,1.3,4
+CANALA,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Canala,29,2077,3384,1.4,0.86,5
+CANALA,referendum_2018,,,,choix,oui,,CANALA,2762,2930,3406,94.27,81.09,1
+CANALA,referendum_2018,,,,choix,non,,CANALA,168,2930,3406,5.73,4.93,2
+CANALA,referendum_2020,,,Province Nord,choix,oui,,Canala,3024,3169,3498,95.42,86.45,1
+CANALA,referendum_2020,,,Province Nord,choix,non,,Canala,145,3169,3498,4.58,4.15,2
+CANALA,referendum_2021,,,Province Nord,choix,non,,Canala,28,44,3551,63.64,0.79,1
+CANALA,referendum_2021,,,Province Nord,choix,oui,,Canala,16,44,3551,36.36,0.45,2
+DUMBEA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Dumbéa,3375,7158,22794,47.15,14.81,1
+DUMBEA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Dumbéa,2157,7158,22794,30.13,9.46,2
+DUMBEA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Dumbéa,588,7158,22794,8.21,2.58,3
+DUMBEA,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Dumbéa,417,7158,22794,5.83,1.83,4
+DUMBEA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Dumbéa,241,7158,22794,3.37,1.06,5
+DUMBEA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Dumbéa,7934,9768,22794,81.22,34.81,1
+DUMBEA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Dumbéa,1834,9768,22794,18.78,8.05,2
+DUMBEA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Dumbéa,7048,14174,23579,49.72,29.89,1
+DUMBEA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Dumbéa,3242,14174,23579,22.87,13.75,2
+DUMBEA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Dumbéa,2459,14174,23579,17.35,10.43,3
+DUMBEA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Dumbéa,1007,14174,23579,7.1,4.27,4
+DUMBEA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Dumbéa,242,14174,23579,1.71,1.03,5
+DUMBEA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Dumbéa,10218,16189,23579,63.12,43.34,1
+DUMBEA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Dumbéa,5971,16189,23579,36.88,25.32,2
+DUMBEA,municipales_2020,1,,,liste,Pour une ville à votre image,LDVD,Dumbéa,4886,9970,21301,49.01,22.94,1
+DUMBEA,municipales_2020,1,,,liste,NOTRE DUMBEA LE REVEIL,LDIV,Dumbéa,1908,9970,21301,19.14,8.96,2
+DUMBEA,municipales_2020,1,,,liste,GÉNÉRATIONS DUMBEA,LDVC,Dumbéa,1327,9970,21301,13.31,6.23,3
+DUMBEA,municipales_2020,1,,,liste,DUMBEA UNE VILLE OCEANIENNE,LDIV,Dumbéa,1080,9970,21301,10.83,5.07,4
+DUMBEA,municipales_2020,1,,,liste,DUMBEA AUTREMENT UNE NOUVELLE AMBITION POUR NOTRE VILLE,LDVC,Dumbéa,769,9970,21301,7.71,3.61,5
+DUMBEA,municipales_2026,1,,,liste,Cynthia JAN NÉE METZDORF UNIR POUR l'AVENIR,LDVD,Dumbéa,4826,12180,24283,39.62,19.87,1
+DUMBEA,municipales_2026,1,,,liste,Yoann LECOURIEUX DUMBEA AVANT TOUT!,LDVD,Dumbéa,2312,12180,24283,18.98,9.52,2
+DUMBEA,municipales_2026,1,,,liste,"Rachel AUCHER DUMBEA, AU SERVICE DU PEUPLE",LREG,Dumbéa,1737,12180,24283,14.26,7.15,3
+DUMBEA,municipales_2026,1,,,liste,Muriel MALFAR-PAUGA PASSIONNEMENT DUMBEA,LDVD,Dumbéa,1647,12180,24283,13.52,6.78,4
+DUMBEA,municipales_2026,1,,,liste,Vaimua MULIAVA DUMBEA COLLECTIF,LDVC,Dumbéa,1337,12180,24283,10.98,5.51,5
+DUMBEA,municipales_2026,2,,,liste,Cynthia JAN NÉE METZDORF UNIR POUR l'AVENIR,LDVD,Dumbéa,5955,13136,24283,45.33,24.52,1
+DUMBEA,municipales_2026,2,,,liste,Yoann LECOURIEUX DUMBEA AVANTTOUT!,LDVD,Dumbéa,2608,13136,24283,19.85,10.74,2
+DUMBEA,municipales_2026,2,,,liste,"Rachel AUCHER DUMBEA, AU SERVICE DU PEUPLE",LREG,Dumbéa,1920,13136,24283,14.62,7.91,3
+DUMBEA,municipales_2026,2,,,liste,Muriel MALFAR-PAUGA PASSIONNEMENT DUMBEA,LDVD,Dumbéa,1436,13136,24283,10.93,5.91,4
+DUMBEA,municipales_2026,2,,,liste,Vaimua MULIAVA DUMBEA COLLECTIF,LDVC,Dumbéa,1217,13136,24283,9.26,5.01,5
+DUMBEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Dumbéa,3991,10612,15787,37.61,25.28,1
+DUMBEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Dumbéa,2024,10612,15787,19.07,12.82,2
+DUMBEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,Dumbéa,1509,10612,15787,14.22,9.56,3
+DUMBEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Dumbéa,1290,10612,15787,12.16,8.17,4
+DUMBEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Dumbéa,465,10612,15787,4.38,2.95,5
+DUMBEA,referendum_2018,,,,choix,non,,DUMBEA,10536,13466,16546,78.24,63.68,1
+DUMBEA,referendum_2018,,,,choix,oui,,DUMBEA,2930,13466,16546,21.76,17.71,2
+DUMBEA,referendum_2020,,,Province Sud,choix,non,,Dumbéa,11250,15262,17759,73.71,63.35,1
+DUMBEA,referendum_2020,,,Province Sud,choix,oui,,Dumbéa,4012,15262,17759,26.29,22.59,2
+DUMBEA,referendum_2021,,,Province Sud,choix,non,,Dumbéa,10925,11275,18649,96.9,58.58,1
+DUMBEA,referendum_2021,,,Province Sud,choix,oui,,Dumbéa,350,11275,18649,3.1,1.88,2
+FARINO,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Farino,207,356,668,58.15,30.99,1
+FARINO,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Farino,110,356,668,30.9,16.47,2
+FARINO,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Farino,13,356,668,3.65,1.95,3
+FARINO,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Farino,12,356,668,3.37,1.8,4
+FARINO,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Farino,9,356,668,2.53,1.35,5
+FARINO,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Farino,401,436,668,91.97,60.03,1
+FARINO,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Farino,35,436,668,8.03,5.24,2
+FARINO,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Farino,319,481,681,66.32,46.84,1
+FARINO,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Farino,69,481,681,14.35,10.13,2
+FARINO,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Farino,54,481,681,11.23,7.93,3
+FARINO,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Farino,27,481,681,5.61,3.96,4
+FARINO,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Farino,10,481,681,2.08,1.47,5
+FARINO,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Farino,441,554,681,79.6,64.76,1
+FARINO,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Farino,113,554,681,20.4,16.59,2
+FARINO,municipales_2020,1,,,liste,AGISSONS ENSEMBLE POUR FARINO,LNC,Farino,269,512,644,52.54,41.77,1
+FARINO,municipales_2020,1,,,liste,GENERATIONS FARINO,LNC,Farino,137,512,644,26.76,21.27,2
+FARINO,municipales_2020,1,,,liste,LABEL'LE VERTE,LNC,Farino,106,512,644,20.7,16.46,3
+FARINO,municipales_2026,1,,,liste,Luté BARBOU FARINO SOLIDAIRE & ENGAGEE,,Farino,166,559,696,29.7,23.85,1
+FARINO,municipales_2026,1,,,liste,Jean-Christophe NIAUTOU AGIR POUR FARINO,,Farino,164,559,696,29.34,23.56,2
+FARINO,municipales_2026,1,,,liste,Sandrine KABAR Unis pour Farino,,Farino,153,559,696,27.37,21.98,3
+FARINO,municipales_2026,1,,,liste,"Martha AIMOA FARINO, UN NOUVEAU SOUFFLE",,Farino,76,559,696,13.6,10.92,4
+FARINO,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Farino,195,454,568,42.95,34.33,1
+FARINO,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Farino,169,454,568,37.22,29.75,2
+FARINO,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Farino,23,454,568,5.07,4.05,3
+FARINO,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Farino,20,454,568,4.41,3.52,4
+FARINO,provinciales_2019,,PS,Province Sud,liste,PS_liste_10,,Farino,14,454,568,3.08,2.46,5
+FARINO,referendum_2018,,,,choix,non,,FARINO,465,512,548,90.82,84.85,1
+FARINO,referendum_2018,,,,choix,oui,,FARINO,47,512,548,9.18,8.58,2
+FARINO,referendum_2020,,,Province Sud,choix,non,,Farino,479,541,577,88.54,83.02,1
+FARINO,referendum_2020,,,Province Sud,choix,oui,,Farino,62,541,577,11.46,10.75,2
+FARINO,referendum_2021,,,Province Sud,choix,non,,Farino,473,496,596,95.36,79.36,1
+FARINO,referendum_2021,,,Province Sud,choix,oui,,Farino,23,496,596,4.64,3.86,2
+HIENGHENE,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Hienghène,798,879,2504,90.78,31.87,1
+HIENGHENE,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Hienghène,33,879,2504,3.75,1.32,2
+HIENGHENE,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Hienghène,21,879,2504,2.39,0.84,3
+HIENGHENE,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Hienghène,7,879,2504,0.8,0.28,4
+HIENGHENE,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Hienghène,7,879,2504,0.8,0.28,5
+HIENGHENE,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Hienghène,1279,1308,2504,97.78,51.08,1
+HIENGHENE,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Hienghène,29,1308,2504,2.22,1.16,2
+HIENGHENE,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Hienghène,1771,1831,2500,96.72,70.84,1
+HIENGHENE,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Hienghène,25,1831,2500,1.37,1,2
+HIENGHENE,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Hienghène,15,1831,2500,0.82,0.6,3
+HIENGHENE,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Hienghène,9,1831,2500,0.49,0.36,4
+HIENGHENE,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Hienghène,6,1831,2500,0.33,0.24,5
+HIENGHENE,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Hienghène,2074,2091,2500,99.19,82.96,1
+HIENGHENE,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Hienghène,17,2091,2500,0.81,0.68,2
+HIENGHENE,municipales_2020,1,,,liste,UC FLNKS HYEHEN,LNC,Hienghène,528,1275,2472,41.41,21.36,1
+HIENGHENE,municipales_2020,1,,,liste,SOWEI FLNKS HYEEHEN,LNC,Hienghène,420,1275,2472,32.94,16.99,2
+HIENGHENE,municipales_2020,1,,,liste,UNE AUTRE VOIE POUR LE DEVELOPPEMENT ET L INNOVATION,LNC,Hienghène,279,1275,2472,21.88,11.29,3
+HIENGHENE,municipales_2020,1,,,liste,HIENGHENE AUTREMENT,LNC,Hienghène,48,1275,2472,3.76,1.94,4
+HIENGHENE,municipales_2026,1,,,liste,Mireille TJIBAOU VEUVE COUHIA UC HYEHEN,,Hienghène,830,1599,2498,51.91,33.23,1
+HIENGHENE,municipales_2026,1,,,liste,Jean-Claude ATHEA SOWEI,,Hienghène,769,1599,2498,48.09,30.78,2
+HIENGHENE,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Hienghène,858,1520,2404,56.45,35.69,1
+HIENGHENE,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Hienghène,595,1520,2404,39.14,24.75,2
+HIENGHENE,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Hienghène,25,1520,2404,1.64,1.04,3
+HIENGHENE,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Hienghène,17,1520,2404,1.12,0.71,4
+HIENGHENE,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Hienghène,13,1520,2404,0.86,0.54,5
+HIENGHENE,referendum_2018,,,,choix,oui,,HIENGHENE,1933,2040,2390,94.75,80.88,1
+HIENGHENE,referendum_2018,,,,choix,non,,HIENGHENE,107,2040,2390,5.25,4.48,2
+HIENGHENE,referendum_2020,,,Province Nord,choix,oui,,Hienghène,2160,2244,2469,96.26,87.48,1
+HIENGHENE,referendum_2020,,,Province Nord,choix,non,,Hienghène,84,2244,2469,3.74,3.4,2
+HIENGHENE,referendum_2021,,,Province Nord,choix,non,,Hienghène,14,23,2479,60.87,0.56,1
+HIENGHENE,referendum_2021,,,Province Nord,choix,oui,,Hienghène,9,23,2479,39.13,0.36,2
+HOUAILOU,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Houailou,638,870,3752,73.33,17,1
+HOUAILOU,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Houailou,78,870,3752,8.97,2.08,2
+HOUAILOU,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Houailou,72,870,3752,8.28,1.92,3
+HOUAILOU,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Houailou,43,870,3752,4.94,1.15,4
+HOUAILOU,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Houailou,25,870,3752,2.87,0.67,5
+HOUAILOU,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Houailou,1536,1702,3752,90.25,40.94,1
+HOUAILOU,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Houailou,166,1702,3752,9.75,4.42,2
+HOUAILOU,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Houaïlou,0,0,3766,,0,1
+HOUAILOU,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Houaïlou,0,0,3766,,0,2
+HOUAILOU,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Houaïlou,0,0,3766,,0,3
+HOUAILOU,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Houaïlou,0,0,3766,,0,4
+HOUAILOU,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Houaïlou,0,0,3766,,0,5
+HOUAILOU,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Houaïlou,2528,2656,3768,95.18,67.09,1
+HOUAILOU,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Houaïlou,128,2656,3768,4.82,3.4,2
+HOUAILOU,municipales_2020,1,,,liste,LISTE UNITAIRE NATIONALISTE FLNKS,LREG,Houailou,1244,2181,3723,57.04,33.41,1
+HOUAILOU,municipales_2020,1,,,liste,UNION POUR L'INDEPENDANCE,LREG,Houailou,543,2181,3723,24.9,14.59,2
+HOUAILOU,municipales_2020,1,,,liste,WAA WILUU 2020  POUR UN CHANGEMENT DURABLE,LDIV,Houailou,394,2181,3723,18.07,10.58,3
+HOUAILOU,municipales_2026,1,,,liste,Pascal SAWA LISTE UNITAIRE NATIONALISTE FLNKS (UC - UPM - PT),LREG,Houaïlou,1084,2187,3713,49.57,29.19,1
+HOUAILOU,municipales_2026,1,,,liste,Jean Luc Louka MAHE UNI WAA WI LUU,LREG,Houaïlou,340,2187,3713,15.55,9.16,2
+HOUAILOU,municipales_2026,1,,,liste,Angie - Singride BOEHE ERE MA WAA,LDIV,Houaïlou,336,2187,3713,15.36,9.05,3
+HOUAILOU,municipales_2026,1,,,liste,Maurice WATANABÉ WAWILU 2026 POUR LE CHANGEMENT,LDVD,Houaïlou,255,2187,3713,11.66,6.87,4
+HOUAILOU,municipales_2026,1,,,liste,Nadège MINDIA GERE GUNIMA MA VI TA BE VEKI WAAWIILII,LDIV,Houaïlou,172,2187,3713,7.86,4.63,5
+HOUAILOU,municipales_2026,2,,,liste,Pascal SAWA LISTE UNITAIRE NATIONALISTE FLNKS(UC - UPM - PT),LREG,Houaïlou,1435,2420,3713,59.3,38.65,1
+HOUAILOU,municipales_2026,2,,,liste,Angie - Singride BOEHE ERE MA WAA,LDIV,Houaïlou,462,2420,3713,19.09,12.44,2
+HOUAILOU,municipales_2026,2,,,liste,Jean LucLouka MAHE UNI WAA WILUU,LREG,Houaïlou,317,2420,3713,13.1,8.54,3
+HOUAILOU,municipales_2026,2,,,liste,Maurice WATANABÉ WAWILU 2026 POUR LE CHANGEMENT,LDVD,Houaïlou,206,2420,3713,8.51,5.55,4
+HOUAILOU,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Houailou,820,2031,3579,40.37,22.91,1
+HOUAILOU,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Houailou,759,2031,3579,37.37,21.21,2
+HOUAILOU,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Houailou,168,2031,3579,8.27,4.69,3
+HOUAILOU,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Houailou,136,2031,3579,6.7,3.8,4
+HOUAILOU,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Houailou,99,2031,3579,4.87,2.77,5
+HOUAILOU,referendum_2018,,,,choix,oui,,HOUAILOU,2434,2901,3578,83.9,68.03,1
+HOUAILOU,referendum_2018,,,,choix,non,,HOUAILOU,467,2901,3578,16.1,13.05,2
+HOUAILOU,referendum_2020,,,Province Nord,choix,oui,,Houaïlou,2783,3183,3688,87.43,75.46,1
+HOUAILOU,referendum_2020,,,Province Nord,choix,non,,Houaïlou,400,3183,3688,12.57,10.85,2
+HOUAILOU,referendum_2021,,,Province Nord,choix,non,,Houaïlou,195,238,3710,81.93,5.26,1
+HOUAILOU,referendum_2021,,,Province Nord,choix,oui,,Houaïlou,43,238,3710,18.07,1.16,2
+ILEDESPINS,legislatives_2022,1,,,candidat,Walisaune WAHETRA,REG,Ile des Pins,248,450,1842,55.11,13.46,1
+ILEDESPINS,legislatives_2022,1,,,candidat,Virginie RUFFENACH,LR,Ile des Pins,101,450,1842,22.44,5.48,2
+ILEDESPINS,legislatives_2022,1,,,candidat,Philippe DUNOYER,ENS,Ile des Pins,59,450,1842,13.11,3.2,3
+ILEDESPINS,legislatives_2022,1,,,candidat,Joël KASARHEROU,DVC,Ile des Pins,18,450,1842,4,0.98,4
+ILEDESPINS,legislatives_2022,1,,,candidat,Pascal LAFLEUR,DVD,Ile des Pins,12,450,1842,2.67,0.65,5
+ILEDESPINS,legislatives_2022,2,,,candidat,Walisaune WAHETRA,REG,Ile des Pins,462,630,1842,73.33,25.08,1
+ILEDESPINS,legislatives_2022,2,,,candidat,Philippe DUNOYER,ENS,Ile des Pins,168,630,1842,26.67,9.12,2
+ILEDESPINS,legislatives_2024,1,,,candidat,Omayra Lisa Meun NAISSELINE,REG,L'Ile-des-Pins,893,1183,1847,75.49,48.35,1
+ILEDESPINS,legislatives_2024,1,,,candidat,Nicolas METZDORF,DVD,L'Ile-des-Pins,90,1183,1847,7.61,4.87,2
+ILEDESPINS,legislatives_2024,1,,,candidat,Philippe DUNOYER,HOR,L'Ile-des-Pins,76,1183,1847,6.42,4.11,3
+ILEDESPINS,legislatives_2024,1,,,candidat,Muneiko HAOCAS,REG,L'Ile-des-Pins,51,1183,1847,4.31,2.76,4
+ILEDESPINS,legislatives_2024,1,,,candidat,Veylma FALAEO,DVG,L'Ile-des-Pins,50,1183,1847,4.23,2.71,5
+ILEDESPINS,legislatives_2024,2,,,candidat,Omayra Lisa Meun NAISSELINE,REG,L'Ile-des-Pins,1268,1432,1846,88.55,68.69,1
+ILEDESPINS,legislatives_2024,2,,,candidat,Nicolas METZDORF,DVD,L'Ile-des-Pins,164,1432,1846,11.45,8.88,2
+ILEDESPINS,municipales_2020,1,,,liste,Les Républicains-Kunié,LNC,Ile des Pins,399,1230,1786,32.44,22.34,1
+ILEDESPINS,municipales_2020,1,,,liste,UC FLNKS,LNC,Ile des Pins,363,1230,1786,29.51,20.32,2
+ILEDESPINS,municipales_2020,1,,,liste,FLNKS,LNC,Ile des Pins,278,1230,1786,22.6,15.57,3
+ILEDESPINS,municipales_2020,1,,,liste,Sur les traces de l'excellence,LNC,Ile des Pins,101,1230,1786,8.21,5.66,4
+ILEDESPINS,municipales_2020,1,,,liste,CALEDONIE ENSEMBLE,LNC,Ile des Pins,89,1230,1786,7.24,4.98,5
+ILEDESPINS,municipales_2026,1,,,liste,Daniel Patrick KOUATHE FLNKS KWENYII,,L'Ile-des-Pins,380,1281,1868,29.66,20.34,1
+ILEDESPINS,municipales_2026,1,,,liste,Regis Wadieme VENDEGOU KWENYII UNI,,L'Ile-des-Pins,296,1281,1868,23.11,15.85,2
+ILEDESPINS,municipales_2026,1,,,liste,Guillaume KOUATHE KUNIE ENTENTE COMMUNALE,,L'Ile-des-Pins,257,1281,1868,20.06,13.76,3
+ILEDESPINS,municipales_2026,1,,,liste,Eugène VAMA MOUVEMENT DE LA JEUNESSE KWENYII,,L'Ile-des-Pins,186,1281,1868,14.52,9.96,4
+ILEDESPINS,municipales_2026,1,,,liste,Christophe VAKIE Eveil Kunié,,L'Ile-des-Pins,162,1281,1868,12.65,8.67,5
+ILEDESPINS,municipales_2026,2,,,liste,RegisWadieme VENDEGOUKWENYII DANS LA DIVERSITE,,L'Ile-des-Pins,650,1412,1868,46.03,34.8,1
+ILEDESPINS,municipales_2026,2,,,liste,Daniel PatrickKOUATHEFLNKS KWENYII,,L'Ile-des-Pins,610,1412,1868,43.2,32.66,2
+ILEDESPINS,municipales_2026,2,,,liste,Christophe VAKIEEveil Kunié,,L'Ile-des-Pins,152,1412,1868,10.76,8.14,3
+ILEDESPINS,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Ile des Pins,622,1089,1712,57.12,36.33,1
+ILEDESPINS,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Ile des Pins,199,1089,1712,18.27,11.62,2
+ILEDESPINS,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Ile des Pins,148,1089,1712,13.59,8.64,3
+ILEDESPINS,provinciales_2019,,PS,Province Sud,liste,PS_liste_01,,Ile des Pins,40,1089,1712,3.67,2.34,4
+ILEDESPINS,provinciales_2019,,PS,Province Sud,liste,PS_liste_08,,Ile des Pins,29,1089,1712,2.66,1.69,5
+ILEDESPINS,referendum_2018,,,,choix,oui,,ILE DES PINS,933,1386,1711,67.32,54.53,1
+ILEDESPINS,referendum_2018,,,,choix,non,,ILE DES PINS,453,1386,1711,32.68,26.48,2
+ILEDESPINS,referendum_2020,,,Province Sud,choix,oui,,Ile des Pins,1040,1489,1764,69.85,58.96,1
+ILEDESPINS,referendum_2020,,,Province Sud,choix,non,,Ile des Pins,449,1489,1764,30.15,25.45,2
+ILEDESPINS,referendum_2021,,,Province Sud,choix,non,,Ile des Pins,340,395,1802,86.08,18.87,1
+ILEDESPINS,referendum_2021,,,Province Sud,choix,oui,,Ile des Pins,55,395,1802,13.92,3.05,2
+KAALAGOMEN,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Kaala-Gomen,354,520,1761,68.08,20.1,1
+KAALAGOMEN,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Kaala-Gomen,70,520,1761,13.46,3.98,2
+KAALAGOMEN,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Kaala-Gomen,54,520,1761,10.38,3.07,3
+KAALAGOMEN,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Kaala-Gomen,28,520,1761,5.38,1.59,4
+KAALAGOMEN,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Kaala-Gomen,6,520,1761,1.15,0.34,5
+KAALAGOMEN,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Kaala-Gomen,557,726,1761,76.72,31.63,1
+KAALAGOMEN,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Kaala-Gomen,169,726,1761,23.28,9.6,2
+KAALAGOMEN,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Kaala-Gomen,1068,1298,1780,82.28,60,1
+KAALAGOMEN,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Kaala-Gomen,152,1298,1780,11.71,8.54,2
+KAALAGOMEN,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Kaala-Gomen,39,1298,1780,3,2.19,3
+KAALAGOMEN,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Kaala-Gomen,16,1298,1780,1.23,0.9,4
+KAALAGOMEN,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Kaala-Gomen,13,1298,1780,1,0.73,5
+KAALAGOMEN,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Kaala-Gomen,1272,1494,1782,85.14,71.38,1
+KAALAGOMEN,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Kaala-Gomen,222,1494,1782,14.86,12.46,2
+KAALAGOMEN,municipales_2020,1,,,liste,ENTENTE COMMUNALE,LNC,Kaala-Gomen,534,1137,1697,46.97,31.47,1
+KAALAGOMEN,municipales_2020,1,,,liste,UNION CALEDONIENNE BWAPANU,LNC,Kaala-Gomen,353,1137,1697,31.05,20.8,2
+KAALAGOMEN,municipales_2020,1,,,liste,Uni pour Bwapanu,LNC,Kaala-Gomen,192,1137,1697,16.89,11.31,3
+KAALAGOMEN,municipales_2020,1,,,liste,BWAPANU EN AVANT !,LNC,Kaala-Gomen,58,1137,1697,5.1,3.42,4
+KAALAGOMEN,municipales_2026,1,,,liste,Alain LEVANT ENTENTE COMMUNALE,,Kaala-Gomen,593,1353,1808,43.83,32.8,1
+KAALAGOMEN,municipales_2026,1,,,liste,Hervé Maguei TEIN-TAOUVA UNION CITOYENNE DE BWAPANU,,Kaala-Gomen,478,1353,1808,35.33,26.44,2
+KAALAGOMEN,municipales_2026,1,,,liste,Pablo POY-YETHY UNIS POUR BWAPANU,,Kaala-Gomen,282,1353,1808,20.84,15.6,3
+KAALAGOMEN,municipales_2026,2,,,liste,Alain LEVANTENTENTE COMMUNALE,,Kaala-Gomen,724,1503,1808,48.17,40.04,1
+KAALAGOMEN,municipales_2026,2,,,liste,Hervé Maguei TEIN-TAOUVAUNION CITOYENNE DE BWAPANU,,Kaala-Gomen,552,1503,1808,36.73,30.53,2
+KAALAGOMEN,municipales_2026,2,,,liste,Pablo POY-YETHYUNIS POUR BWAPANU,,Kaala-Gomen,227,1503,1808,15.1,12.56,3
+KAALAGOMEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Kaala Gomen,470,1035,1611,45.41,29.17,1
+KAALAGOMEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Kaala Gomen,331,1035,1611,31.98,20.55,2
+KAALAGOMEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Kaala Gomen,84,1035,1611,8.12,5.21,3
+KAALAGOMEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Kaala Gomen,83,1035,1611,8.02,5.15,4
+KAALAGOMEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Kaala Gomen,50,1035,1611,4.83,3.1,5
+KAALAGOMEN,referendum_2018,,,,choix,oui,,KAALA-GOMEN,1068,1416,1634,75.42,65.36,1
+KAALAGOMEN,referendum_2018,,,,choix,non,,KAALA-GOMEN,348,1416,1634,24.58,21.3,2
+KAALAGOMEN,referendum_2020,,,Province Nord,choix,oui,,Kaala-Gomen,1143,1506,1697,75.9,67.35,1
+KAALAGOMEN,referendum_2020,,,Province Nord,choix,non,,Kaala-Gomen,363,1506,1697,24.1,21.39,2
+KAALAGOMEN,referendum_2021,,,Province Nord,choix,non,,Kaala-Gomen,274,288,1734,95.14,15.8,1
+KAALAGOMEN,referendum_2021,,,Province Nord,choix,oui,,Kaala-Gomen,14,288,1734,4.86,0.81,2
+KONE,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Koné,880,1660,5089,53.01,17.29,1
+KONE,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Koné,335,1660,5089,20.18,6.58,2
+KONE,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Koné,267,1660,5089,16.08,5.25,3
+KONE,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Koné,71,1660,5089,4.28,1.4,4
+KONE,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Koné,49,1660,5089,2.95,0.96,5
+KONE,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Koné,1624,2497,5089,65.04,31.91,1
+KONE,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Koné,873,2497,5089,34.96,17.15,2
+KONE,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Koné,2295,3522,5275,65.16,43.51,1
+KONE,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Koné,753,3522,5275,21.38,14.27,2
+KONE,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Koné,210,3522,5275,5.96,3.98,3
+KONE,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Koné,173,3522,5275,4.91,3.28,4
+KONE,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Koné,64,3522,5275,1.82,1.21,5
+KONE,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Koné,2961,3963,5275,74.72,56.13,1
+KONE,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Koné,1002,3963,5275,25.28,19,2
+KONE,municipales_2020,1,,,liste,UC-FLNKS KOOHNÊ,LREG,Koné,1059,2942,4974,36,21.29,1
+KONE,municipales_2020,1,,,liste,UNI POUR KOOHNE,LREG,Koné,1027,2942,4974,34.91,20.65,2
+KONE,municipales_2020,1,,,liste,KONE AUTREMENT,LDVD,Koné,856,2942,4974,29.1,17.21,3
+KONE,municipales_2026,1,,,liste,Mike SAMADI AGISSONS POUR KONE,LDVD,Koné,1009,3242,5339,31.12,18.9,1
+KONE,municipales_2026,1,,,liste,Joseph Apangou GOROMIDO UNI KOOHNE,LREG,Koné,978,3242,5339,30.17,18.32,2
+KONE,municipales_2026,1,,,liste,Thierry GOWECEE UC FLNKS,LREG,Koné,824,3242,5339,25.42,15.43,3
+KONE,municipales_2026,1,,,liste,"Jean-Yves Pama MY ENSEMBLE, CONSTRUISONS LA COMMUNE DE DEMAIN",LDIV,Koné,431,3242,5339,13.29,8.07,4
+KONE,municipales_2026,2,,,liste,Mike SAMADI AGISSONS POUR KONE,LDVD,Koné,1224,3628,5339,33.74,22.93,1
+KONE,municipales_2026,2,,,liste,Joseph Apangou GOROMIDO UNI KOOHNE,LREG,Koné,1106,3628,5339,30.49,20.72,2
+KONE,municipales_2026,2,,,liste,ThierryGOWECEE UC FLNKS,LREG,Koné,963,3628,5339,26.54,18.04,3
+KONE,municipales_2026,2,,,liste,"Jean-Yves Pama MY ENSEMBLE, CONSTRUISONS LACOMMUNE DE DEMAIN",LDIV,Koné,335,3628,5339,9.23,6.27,4
+KONE,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Koné,988,2851,4129,34.65,23.93,1
+KONE,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Koné,916,2851,4129,32.13,22.18,2
+KONE,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Koné,476,2851,4129,16.7,11.53,3
+KONE,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Koné,348,2851,4129,12.21,8.43,4
+KONE,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Koné,73,2851,4129,2.56,1.77,5
+KONE,referendum_2018,,,,choix,oui,,KONE,2307,3587,4149,64.32,55.6,1
+KONE,referendum_2018,,,,choix,non,,KONE,1280,3587,4149,35.68,30.85,2
+KONE,referendum_2020,,,Province Nord,choix,oui,,Koné,2601,3903,4412,66.64,58.95,1
+KONE,referendum_2020,,,Province Nord,choix,non,,Koné,1302,3903,4412,33.36,29.51,2
+KONE,referendum_2021,,,Province Nord,choix,non,,Koné,1115,1207,4500,92.38,24.78,1
+KONE,referendum_2021,,,Province Nord,choix,oui,,Koné,92,1207,4500,7.62,2.04,2
+KOUAOUA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Kouaoua,275,423,1196,65.01,22.99,1
+KOUAOUA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Kouaoua,91,423,1196,21.51,7.61,2
+KOUAOUA,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Kouaoua,17,423,1196,4.02,1.42,3
+KOUAOUA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Kouaoua,16,423,1196,3.78,1.34,4
+KOUAOUA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Kouaoua,15,423,1196,3.55,1.25,5
+KOUAOUA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Kouaoua,559,669,1196,83.56,46.74,1
+KOUAOUA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Kouaoua,110,669,1196,16.44,9.2,2
+KOUAOUA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Kouaoua,584,743,1191,78.6,49.03,1
+KOUAOUA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Kouaoua,112,743,1191,15.07,9.4,2
+KOUAOUA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Kouaoua,31,743,1191,4.17,2.6,3
+KOUAOUA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Kouaoua,8,743,1191,1.08,0.67,4
+KOUAOUA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Kouaoua,4,743,1191,0.54,0.34,5
+KOUAOUA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Kouaoua,772,908,1190,85.02,64.87,1
+KOUAOUA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Kouaoua,136,908,1190,14.98,11.43,2
+KOUAOUA,municipales_2020,1,,,liste,"KAAWIIPAA TERRE, COMMUNE ET AVENIR",LNC,Kouaoua,383,797,1175,48.06,32.6,1
+KOUAOUA,municipales_2020,1,,,liste,ARRO NA NÂBO ROA MÖRRÖ UC FLNKS,LNC,Kouaoua,220,797,1175,27.6,18.72,2
+KOUAOUA,municipales_2020,1,,,liste,PALIKA KAAWIIPAA NI DAWANI,LNC,Kouaoua,194,797,1175,24.34,16.51,3
+KOUAOUA,municipales_2026,1,,,liste,Franck DIOPOUE NOORE KAAWIIPAA NA TRU NEWE NIARREHI RI - KOUOUA MAITRE DE SON AVENIR,,Kouaoua,323,881,1206,36.66,26.78,1
+KOUAOUA,municipales_2026,1,,,liste,Alcide PONGA KAAWIIPAA TERRE COMMUNE ET AVENIR,,Kouaoua,258,881,1206,29.28,21.39,2
+KOUAOUA,municipales_2026,1,,,liste,Thérèse - Jacqueline COUIEMOIN TO CHAA TRUNODO VEII KANAKY,,Kouaoua,193,881,1206,21.91,16,3
+KOUAOUA,municipales_2026,1,,,liste,Suzanne - Poawe MEREATU VISION KAAWIIPAA,,Kouaoua,107,881,1206,12.15,8.87,4
+KOUAOUA,municipales_2026,2,,,liste,Franck DIOPOUENOORE KAAWIIPAA NA TRU NEWE NIARREHI RI-KOUOUA MAITRE DE SON AVENIR,,Kouaoua,433,980,1206,44.18,35.9,1
+KOUAOUA,municipales_2026,2,,,liste,Alcide PONGAUNIS POUR KAAWIIPAA,,Kouaoua,423,980,1206,43.16,35.07,2
+KOUAOUA,municipales_2026,2,,,liste,Suzanne - Poawe MEREATUVISION KAAWIIPAA,,Kouaoua,124,980,1206,12.65,10.28,3
+KOUAOUA,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Kouaoua,274,730,1109,37.53,24.71,1
+KOUAOUA,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Kouaoua,204,730,1109,27.95,18.39,2
+KOUAOUA,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Kouaoua,199,730,1109,27.26,17.94,3
+KOUAOUA,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Kouaoua,30,730,1109,4.11,2.71,4
+KOUAOUA,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Kouaoua,14,730,1109,1.92,1.26,5
+KOUAOUA,referendum_2018,,,,choix,oui,,KOUAOUA,692,941,1132,73.54,61.13,1
+KOUAOUA,referendum_2018,,,,choix,non,,KOUAOUA,249,941,1132,26.46,22,2
+KOUAOUA,referendum_2020,,,Province Nord,choix,oui,,Kouaoua,828,1042,1169,79.46,70.83,1
+KOUAOUA,referendum_2020,,,Province Nord,choix,non,,Kouaoua,214,1042,1169,20.54,18.31,2
+KOUAOUA,referendum_2021,,,Province Nord,choix,non,,Kouaoua,146,172,1180,84.88,12.37,1
+KOUAOUA,referendum_2021,,,Province Nord,choix,oui,,Kouaoua,26,172,1180,15.12,2.2,2
+KOUMAC,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Koumac,395,1043,3127,37.87,12.63,1
+KOUMAC,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Koumac,326,1043,3127,31.26,10.43,2
+KOUMAC,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Koumac,226,1043,3127,21.67,7.23,3
+KOUMAC,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Koumac,37,1043,3127,3.55,1.18,4
+KOUMAC,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Koumac,23,1043,3127,2.21,0.74,5
+KOUMAC,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Koumac,1013,1416,3127,71.54,32.4,1
+KOUMAC,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Koumac,403,1416,3127,28.46,12.89,2
+KOUMAC,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Koumac,990,2065,3159,47.94,31.34,1
+KOUMAC,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Koumac,770,2065,3159,37.29,24.37,2
+KOUMAC,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Koumac,156,2065,3159,7.55,4.94,3
+KOUMAC,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Koumac,97,2065,3159,4.7,3.07,4
+KOUMAC,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Koumac,26,2065,3159,1.26,0.82,5
+KOUMAC,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Koumac,1271,2400,3156,52.96,40.27,1
+KOUMAC,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Koumac,1129,2400,3156,47.04,35.77,2
+KOUMAC,municipales_2020,1,,,liste,POUR LE PROGRES COMMUNAL,LDIV,Koumac,741,1707,3044,43.41,24.34,1
+KOUMAC,municipales_2020,1,,,liste,CONSTRUISONS ENSEMBLE KOUMAC,LDIV,Koumac,528,1707,3044,30.93,17.35,2
+KOUMAC,municipales_2020,1,,,liste,BATISSON KOUMAC DE DEMAIN,LREG,Koumac,298,1707,3044,17.46,9.79,3
+KOUMAC,municipales_2020,1,,,liste,UNION POUR L'INDEPENDANCE,LREG,Koumac,140,1707,3044,8.2,4.6,4
+KOUMAC,municipales_2026,1,,,liste,Wilfrid WEISS POUR LE PROGRES COMMUNAL,LDVD,Koumac,606,1943,3138,31.19,19.31,1
+KOUMAC,municipales_2026,1,,,liste,Yann GASTALDI BATISSONS ENSEMBLE KOUMAC,LDIV,Koumac,436,1943,3138,22.44,13.89,2
+KOUMAC,municipales_2026,1,,,liste,Antonio MARTIN KOUMAC RENOUVEAU,LDIV,Koumac,294,1943,3138,15.13,9.37,3
+KOUMAC,municipales_2026,1,,,liste,Olivier BESANÇON KOUMAC UNION CITOYENNE,LDIV,Koumac,253,1943,3138,13.02,8.06,4
+KOUMAC,municipales_2026,1,,,liste,Josée KONDOLO UNION CALEDONIENNE,LREG,Koumac,230,1943,3138,11.84,7.33,5
+KOUMAC,municipales_2026,2,,,liste,Yann GASTALDI BATISSONS ENSEMBLE KOUMAC,LDIV,Koumac,942,2182,3138,43.17,30.02,1
+KOUMAC,municipales_2026,2,,,liste,Wilfrid WEISS POUR LE PROGRES COMMUNAL,LDVD,Koumac,782,2182,3138,35.84,24.92,2
+KOUMAC,municipales_2026,2,,,liste,Antonio MARTIN KOUMAC RENOUVEAU,LDIV,Koumac,238,2182,3138,10.91,7.58,3
+KOUMAC,municipales_2026,2,,,liste,Josée KONDOLO UNION CALEDONIENNE,LREG,Koumac,193,2182,3138,8.85,6.15,4
+KOUMAC,municipales_2026,2,,,liste,Olivier BESANÇON KOUMAC UNION CITOYENNE,LDIV,Koumac,27,2182,3138,1.24,0.86,5
+KOUMAC,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Koumac,633,1595,2639,39.69,23.99,1
+KOUMAC,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Koumac,341,1595,2639,21.38,12.92,2
+KOUMAC,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Koumac,293,1595,2639,18.37,11.1,3
+KOUMAC,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Koumac,270,1595,2639,16.93,10.23,4
+KOUMAC,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Koumac,44,1595,2639,2.76,1.67,5
+KOUMAC,referendum_2018,,,,choix,non,,KOUMAC,1486,2339,2660,63.53,55.86,1
+KOUMAC,referendum_2018,,,,choix,oui,,KOUMAC,853,2339,2660,36.47,32.07,2
+KOUMAC,referendum_2020,,,Province Nord,choix,non,,Koumac,1495,2430,2728,61.52,54.8,1
+KOUMAC,referendum_2020,,,Province Nord,choix,oui,,Koumac,935,2430,2728,38.48,34.27,2
+KOUMAC,referendum_2021,,,Province Nord,choix,non,,Koumac,1407,1444,2776,97.44,50.68,1
+KOUMAC,referendum_2021,,,Province Nord,choix,oui,,Koumac,37,1444,2776,2.56,1.33,2
+LAFOA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,La Foa,709,1592,3442,44.54,20.6,1
+LAFOA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,La Foa,418,1592,3442,26.26,12.14,2
+LAFOA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,La Foa,310,1592,3442,19.47,9.01,3
+LAFOA,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,La Foa,56,1592,3442,3.52,1.63,4
+LAFOA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,La Foa,39,1592,3442,2.45,1.13,5
+LAFOA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,La Foa,1453,2064,3440,70.4,42.24,1
+LAFOA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,La Foa,611,2064,3440,29.6,17.76,2
+LAFOA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,La Foa,1033,2334,3467,44.26,29.8,1
+LAFOA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,La Foa,682,2334,3467,29.22,19.67,2
+LAFOA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,La Foa,300,2334,3467,12.85,8.65,3
+LAFOA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,La Foa,282,2334,3467,12.08,8.13,4
+LAFOA,legislatives_2024,1,,,candidat,Ronald FRERE,REG,La Foa,22,2334,3467,0.94,0.63,5
+LAFOA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,La Foa,1523,2674,3467,56.96,43.93,1
+LAFOA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,La Foa,1151,2674,3467,43.04,33.2,2
+LAFOA,municipales_2020,1,,,liste,GENERATIONS LA FOA,LDVC,La Foa,702,2472,3345,28.4,20.99,1
+LAFOA,municipales_2020,1,,,liste,LA FOA AVANT TOUT C'EST VOUS,LDVC,La Foa,635,2472,3345,25.69,18.98,2
+LAFOA,municipales_2020,1,,,liste,LA FOA POUR TOUS,LDIV,La Foa,518,2472,3345,20.95,15.49,3
+LAFOA,municipales_2020,1,,,liste,CIRI,LREG,La Foa,382,2472,3345,15.45,11.42,4
+LAFOA,municipales_2020,1,,,liste,LA FOA EN NOUS,LDIV,La Foa,235,2472,3345,9.51,7.03,5
+LAFOA,municipales_2026,1,,,liste,Pierre MONEFARA Cîrî,,La Foa,810632,2453,3483,33046.56,23273.96,1
+LAFOA,municipales_2026,1,,,liste,Stevens KAOUDA OSONS LA FOA,,La Foa,1104,2453,3483,45.01,31.7,2
+LAFOA,municipales_2026,1,,,liste,Florence ROLLAND L'UNION POUR LA FOA,,La Foa,975,2453,3483,39.75,27.99,3
+LAFOA,municipales_2026,1,,,liste,Sandrine Arella NINDUMA NOS RACINES POUR CONSTRUIRE L'AVENIR,,La Foa,142,2453,3483,5.79,4.08,4
+LAFOA,municipales_2026,2,,,liste,StevensKAOUDAOSONS LA FOA,,La Foa,1512,2661,3483,56.82,43.41,1
+LAFOA,municipales_2026,2,,,liste,Florence ROLLANDL'UNION POUR LA FOA,,La Foa,1149,2661,3483,43.18,32.99,2
+LAFOA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,La Foa,726,2139,2905,33.94,24.99,1
+LAFOA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,La Foa,568,2139,2905,26.55,19.55,2
+LAFOA,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,La Foa,460,2139,2905,21.51,15.83,3
+LAFOA,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,La Foa,103,2139,2905,4.82,3.55,4
+LAFOA,provinciales_2019,,PS,Province Sud,liste,PS_liste_04,,La Foa,63,2139,2905,2.95,2.17,5
+LAFOA,referendum_2018,,,,choix,non,,LA FOA,1814,2590,2879,70.04,63.01,1
+LAFOA,referendum_2018,,,,choix,oui,,LA FOA,776,2590,2879,29.96,26.95,2
+LAFOA,referendum_2020,,,Province Sud,choix,non,,La Foa,1840,2728,2991,67.45,61.52,1
+LAFOA,referendum_2020,,,Province Sud,choix,oui,,La Foa,888,2728,2991,32.55,29.69,2
+LAFOA,referendum_2021,,,Province Sud,choix,non,,La Foa,1774,1860,3034,95.38,58.47,1
+LAFOA,referendum_2021,,,Province Sud,choix,oui,,La Foa,86,1860,3034,4.62,2.83,2
+LIFOU,legislatives_2022,1,,,candidat,Walisaune WAHETRA,REG,Lifou,2898,3221,10999,89.97,26.35,1
+LIFOU,legislatives_2022,1,,,candidat,Philippe DUNOYER,ENS,Lifou,178,3221,10999,5.53,1.62,2
+LIFOU,legislatives_2022,1,,,candidat,Virginie RUFFENACH,LR,Lifou,47,3221,10999,1.46,0.43,3
+LIFOU,legislatives_2022,1,,,candidat,Joël KASARHEROU,DVC,Lifou,44,3221,10999,1.37,0.4,4
+LIFOU,legislatives_2022,1,,,candidat,Pascal LAFLEUR,DVD,Lifou,35,3221,10999,1.09,0.32,5
+LIFOU,legislatives_2022,2,,,candidat,Walisaune WAHETRA,REG,Lifou,4902,5220,11006,93.91,44.54,1
+LIFOU,legislatives_2022,2,,,candidat,Philippe DUNOYER,ENS,Lifou,318,5220,11006,6.09,2.89,2
+LIFOU,legislatives_2024,1,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Lifou,5960,6696,11135,89.01,53.52,1
+LIFOU,legislatives_2024,1,,,candidat,Philippe DUNOYER,HOR,Lifou,226,6696,11135,3.38,2.03,2
+LIFOU,legislatives_2024,1,,,candidat,Muneiko HAOCAS,REG,Lifou,202,6696,11135,3.02,1.81,3
+LIFOU,legislatives_2024,1,,,candidat,Juanita Ciane ANGEXETINE ÉP RAILATI,REG,Lifou,98,6696,11135,1.46,0.88,4
+LIFOU,legislatives_2024,1,,,candidat,Veylma FALAEO,DVG,Lifou,94,6696,11135,1.4,0.84,5
+LIFOU,legislatives_2024,2,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Lifou,8382,8599,11135,97.48,75.28,1
+LIFOU,legislatives_2024,2,,,candidat,Nicolas METZDORF,DVD,Lifou,217,8599,11135,2.52,1.95,2
+LIFOU,municipales_2020,1,,,liste,UNION CITOYENNE NE DREHU,LREG,Lifou,3916,5669,10923,69.08,35.85,1
+LIFOU,municipales_2020,1,,,liste,PARTI TRAVAILLISTE DREHU TOKA,LREG,Lifou,932,5669,10923,16.44,8.53,2
+LIFOU,municipales_2020,1,,,liste,MEKU THE THEW POUR KANAKY,LDIV,Lifou,426,5669,10923,7.51,3.9,3
+LIFOU,municipales_2020,1,,,liste,UNE NOUVELLE AMBITION POUR LIFOU,LDVC,Lifou,395,5669,10923,6.97,3.62,4
+LIFOU,municipales_2026,1,,,liste,Pierre Ijone QAEZE Union Citoyenne Nöje Drehu,LREG,Lifou,3256,5645,10915,57.68,29.83,1
+LIFOU,municipales_2026,1,,,liste,Pascal Hunemu TUPAISSI Drehu Uni,LREG,Lifou,1405,5645,10915,24.89,12.87,2
+LIFOU,municipales_2026,1,,,liste,Rene KAUDRE Unité nationaliste Drehu - Toka,LREG,Lifou,984,5645,10915,17.43,9.02,3
+LIFOU,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_02,,Lifou,3414,6526,10343,52.31,33.01,1
+LIFOU,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_08,,Lifou,1187,6526,10343,18.19,11.48,2
+LIFOU,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_03,,Lifou,906,6526,10343,13.88,8.76,3
+LIFOU,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_06,,Lifou,562,6526,10343,8.61,5.43,4
+LIFOU,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_05,,Lifou,162,6526,10343,2.48,1.57,5
+LIFOU,referendum_2018,,,,choix,oui,,LIFOU,5147,6440,10477,79.92,49.13,1
+LIFOU,referendum_2018,,,,choix,non,,LIFOU,1293,6440,10477,20.08,12.34,2
+LIFOU,referendum_2020,,,Province des Iles,choix,oui,,Lifou,7074,8179,10795,86.49,65.53,1
+LIFOU,referendum_2020,,,Province des Iles,choix,non,,Lifou,1105,8179,10795,13.51,10.24,2
+LIFOU,referendum_2021,,,Province des Iles,choix,non,,Lifou,435,502,10797,86.65,4.03,1
+LIFOU,referendum_2021,,,Province des Iles,choix,oui,,Lifou,67,502,10797,13.35,0.62,2
+MARE,legislatives_2022,1,,,candidat,Walisaune WAHETRA,REG,Maré,1052,1274,6948,82.57,15.14,1
+MARE,legislatives_2022,1,,,candidat,Philippe DUNOYER,ENS,Maré,96,1274,6948,7.54,1.38,2
+MARE,legislatives_2022,1,,,candidat,Virginie RUFFENACH,LR,Maré,67,1274,6948,5.26,0.96,3
+MARE,legislatives_2022,1,,,candidat,Pascal LAFLEUR,DVD,Maré,27,1274,6948,2.12,0.39,4
+MARE,legislatives_2022,1,,,candidat,Joël KASARHEROU,DVC,Maré,22,1274,6948,1.73,0.32,5
+MARE,legislatives_2022,2,,,candidat,Walisaune WAHETRA,REG,Maré,2292,2496,6948,91.83,32.99,1
+MARE,legislatives_2022,2,,,candidat,Philippe DUNOYER,ENS,Maré,204,2496,6948,8.17,2.94,2
+MARE,legislatives_2024,1,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Maré,4230,4480,7042,94.42,60.07,1
+MARE,legislatives_2024,1,,,candidat,Muneiko HAOCAS,REG,Maré,77,4480,7042,1.72,1.09,2
+MARE,legislatives_2024,1,,,candidat,Veylma FALAEO,DVG,Maré,71,4480,7042,1.58,1.01,3
+MARE,legislatives_2024,1,,,candidat,Philippe DUNOYER,HOR,Maré,44,4480,7042,0.98,0.62,4
+MARE,legislatives_2024,1,,,candidat,Juanita Ciane ANGEXETINE ÉP RAILATI,REG,Maré,16,4480,7042,0.36,0.23,5
+MARE,legislatives_2024,2,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Maré,5563,5610,7043,99.16,78.99,1
+MARE,legislatives_2024,2,,,candidat,Nicolas METZDORF,DVD,Maré,47,5610,7043,0.84,0.67,2
+MARE,municipales_2020,1,,,liste,DYNAMIQUE AUTOCHTONE,LREG,Maré,1644,4996,6864,32.91,23.95,1
+MARE,municipales_2020,1,,,liste,UC-FLNKS NENGONE,LREG,Maré,1184,4996,6864,23.7,17.25,2
+MARE,municipales_2020,1,,,liste,EJE SESE SO NENGONE,LREG,Maré,1014,4996,6864,20.3,14.77,3
+MARE,municipales_2020,1,,,liste,DYNAMIQUE UNITAIRE NENGONE,LREG,Maré,641,4996,6864,12.83,9.34,4
+MARE,municipales_2020,1,,,liste,PARTI TRAVAILLISTE,LREG,Maré,461,4996,6864,9.23,6.72,5
+MARE,municipales_2026,1,,,liste,Robert Gada CAWIDRONE DYNAMIQUE AUTOCHTONE,LREG,Maré,1862,4529,6984,41.11,26.66,1
+MARE,municipales_2026,1,,,liste,Maryline Ciwa SINEWAMI UC FLNKS NENGONE,LREG,Maré,1049,4529,6984,23.16,15.02,2
+MARE,municipales_2026,1,,,liste,Clément Sewate WAYA UNION NATIONALE POUR L'INDEPENDANCE NENGONE,LREG,Maré,772,4529,6984,17.05,11.05,3
+MARE,municipales_2026,1,,,liste,Jean WAHEO UC NENGONE SOUVERAINE,LREG,Maré,619,4529,6984,13.67,8.86,4
+MARE,municipales_2026,1,,,liste,Pierre Ateroy NGAIOHNI DYNAMIQUE UNITAIRE NENGONE,LREG,Maré,227,4529,6984,5.01,3.25,5
+MARE,municipales_2026,2,,,liste,RobertGada CAWIDRONE DYNAMIQUE AUTOCHTONE,LREG,Maré,2263,4844,6984,46.72,32.4,1
+MARE,municipales_2026,2,,,liste,Maryline Ciwa SINEWAMI UC FLNKS NENGONE,LREG,Maré,1246,4844,6984,25.72,17.84,2
+MARE,municipales_2026,2,,,liste,ClémentSewate WAYA UNION NATIONALE POURL'INDEPENDANCE NENGONE,LREG,Maré,761,4844,6984,15.71,10.9,3
+MARE,municipales_2026,2,,,liste,Jean WAHEO UC NENGONE SOUVERAINE,LREG,Maré,574,4844,6984,11.85,8.22,4
+MARE,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_05,,Maré,1349,4753,6562,28.38,20.56,1
+MARE,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_08,,Maré,934,4753,6562,19.65,14.23,2
+MARE,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_02,,Maré,889,4753,6562,18.7,13.55,3
+MARE,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_03,,Maré,662,4753,6562,13.93,10.09,4
+MARE,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_01,,Maré,519,4753,6562,10.92,7.91,5
+MARE,referendum_2018,,,,choix,oui,,MARE,3324,3930,7385,84.58,45.01,1
+MARE,referendum_2018,,,,choix,non,,MARE,606,3930,7385,15.42,8.21,2
+MARE,referendum_2020,,,Province des Iles,choix,oui,,Maré,3878,4891,6858,79.29,56.55,1
+MARE,referendum_2020,,,Province des Iles,choix,non,,Maré,1013,4891,6858,20.71,14.77,2
+MARE,referendum_2021,,,Province des Iles,choix,non,,Maré,184,226,6937,81.42,2.65,1
+MARE,referendum_2021,,,Province des Iles,choix,oui,,Maré,42,226,6937,18.58,0.61,2
+MOINDOU,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Moindou,136,353,822,38.53,16.55,1
+MOINDOU,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Moindou,106,353,822,30.03,12.9,2
+MOINDOU,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Moindou,74,353,822,20.96,9,3
+MOINDOU,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Moindou,15,353,822,4.25,1.82,4
+MOINDOU,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Moindou,11,353,822,3.12,1.34,5
+MOINDOU,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Moindou,275,466,822,59.01,33.45,1
+MOINDOU,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Moindou,191,466,822,40.99,23.24,2
+MOINDOU,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Moindou,273,603,832,45.27,32.81,1
+MOINDOU,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Moindou,244,603,832,40.46,29.33,2
+MOINDOU,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Moindou,36,603,832,5.97,4.33,3
+MOINDOU,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Moindou,36,603,832,5.97,4.33,4
+MOINDOU,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Moindou,9,603,832,1.49,1.08,5
+MOINDOU,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Moindou,369,671,832,54.99,44.35,1
+MOINDOU,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Moindou,302,671,832,45.01,36.3,2
+MOINDOU,municipales_2020,1,,,liste,ENSEMBLE POUR MOINDOU,LNC,Moindou,275,644,827,42.7,33.25,1
+MOINDOU,municipales_2020,1,,,liste,GÉNÉRATIONS MOINDOU,LNC,Moindou,182,644,827,28.26,22.01,2
+MOINDOU,municipales_2020,1,,,liste,UNI MWÂRU,LNC,Moindou,159,644,827,24.69,19.23,3
+MOINDOU,municipales_2020,1,,,liste,ALTERNATIVES 2020,LNC,Moindou,28,644,827,4.35,3.39,4
+MOINDOU,municipales_2026,1,,,liste,Léon-Joseph PEYRONNET Ensemble pour Moindou,,Moindou,219,659,863,33.23,25.38,1
+MOINDOU,municipales_2026,1,,,liste,"Loïc MOKRIS MOINDOU, CONSTRUISONS DEMAIN",,Moindou,178,659,863,27.01,20.63,2
+MOINDOU,municipales_2026,1,,,liste,"Amandine DARRAS MOINDOU NOTRE COMMUNE, NOTRE AVENIR Union indépendantiste, nationaliste, progressiste",,Moindou,125,659,863,18.97,14.48,3
+MOINDOU,municipales_2026,1,,,liste,Marguerite MONAWA UNI MWÂRÛ,,Moindou,88,659,863,13.35,10.2,4
+MOINDOU,municipales_2026,1,,,liste,"Sélélino KELETAONA MOINDOU, L'EQUITE POUR TOUS",,Moindou,49,659,863,7.44,5.68,5
+MOINDOU,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Moindou,201,579,755,34.72,26.62,1
+MOINDOU,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Moindou,141,579,755,24.35,18.68,2
+MOINDOU,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Moindou,140,579,755,24.18,18.54,3
+MOINDOU,provinciales_2019,,PS,Province Sud,liste,PS_liste_01,,Moindou,39,579,755,6.74,5.17,4
+MOINDOU,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Moindou,17,579,755,2.94,2.25,5
+MOINDOU,referendum_2018,,,,choix,non,,MOINDOU,373,672,747,55.51,49.93,1
+MOINDOU,referendum_2018,,,,choix,oui,,MOINDOU,299,672,747,44.49,40.03,2
+MOINDOU,referendum_2020,,,Province Sud,choix,non,,Moindou,387,718,789,53.9,49.05,1
+MOINDOU,referendum_2020,,,Province Sud,choix,oui,,Moindou,331,718,789,46.1,41.95,2
+MOINDOU,referendum_2021,,,Province Sud,choix,non,,Moindou,378,403,794,93.8,47.61,1
+MOINDOU,referendum_2021,,,Province Sud,choix,oui,,Moindou,25,403,794,6.2,3.15,2
+MONTDORE,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Mont-Dore,2950,7204,22119,40.95,13.34,1
+MONTDORE,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Mont-Dore,2328,7204,22119,32.32,10.52,2
+MONTDORE,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Mont-Dore,839,7204,22119,11.65,3.79,3
+MONTDORE,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Mont-Dore,440,7204,22119,6.11,1.99,4
+MONTDORE,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Mont-Dore,246,7204,22119,3.41,1.11,5
+MONTDORE,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Mont-Dore,7370,9530,22120,77.33,33.32,1
+MONTDORE,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Mont-Dore,2160,9530,22120,22.67,9.76,2
+MONTDORE,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Le Mont-Dore,6292,12204,22508,51.56,27.95,1
+MONTDORE,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Le Mont-Dore,2850,12204,22508,23.35,12.66,2
+MONTDORE,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Le Mont-Dore,1812,12204,22508,14.85,8.05,3
+MONTDORE,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Le Mont-Dore,890,12204,22508,7.29,3.95,4
+MONTDORE,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Le Mont-Dore,181,12204,22508,1.48,0.8,5
+MONTDORE,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Le Mont-Dore,9007,14450,22507,62.33,40.02,1
+MONTDORE,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Le Mont-Dore,5443,14450,22507,37.67,24.18,2
+MONTDORE,municipales_2020,1,,,liste,VIVRE AU MONT-DORE,LLR,Mont-Dore,4414,10566,21527,41.78,20.5,1
+MONTDORE,municipales_2020,1,,,liste,Générations Mont-Dore,LDVC,Mont-Dore,2330,10566,21527,22.05,10.82,2
+MONTDORE,municipales_2020,1,,,liste,LE MONT DORE NOTRE VILLE VERS UNE NATION ARC EN CIEL,LREG,Mont-Dore,1708,10566,21527,16.17,7.93,3
+MONTDORE,municipales_2020,1,,,liste,TOUS POUR NOTRE MONT-DORE,LDIV,Mont-Dore,1177,10566,21527,11.14,5.47,4
+MONTDORE,municipales_2020,1,,,liste,LE MONT DORE SOLIDAIRE,LDVC,Mont-Dore,937,10566,21527,8.87,4.35,5
+MONTDORE,municipales_2026,1,,,liste,Nina JULIÉ IL EST TEMPS !,LDVD,Le Mont-Dore,4677,11539,22199,40.53,21.07,1
+MONTDORE,municipales_2026,1,,,liste,Elizabeth RIVIERE NEE DABIN TOUS ENSEMBLE POUR LE MONT- DORE,LDVD,Le Mont-Dore,3089,11539,22199,26.77,13.92,2
+MONTDORE,municipales_2026,1,,,liste,"Tania OUAKA LE MONT-DORE, NOTRE VILLE POUR UNE NATION SOUVERAINE",LREG,Le Mont-Dore,1978,11539,22199,17.14,8.91,3
+MONTDORE,municipales_2026,1,,,liste,Petelo Maximino SAO NOUS POUR LE MONT DORE,LDVC,Le Mont-Dore,896,11539,22199,7.76,4.04,4
+MONTDORE,municipales_2026,1,,,liste,Jinézi Annie QAEZE POUR UN MONT-DORE QUI NOUS RESSEMBLE ET QUI NOUS RASSEMBLE,LDVC,Le Mont-Dore,500,11539,22199,4.33,2.25,5
+MONTDORE,municipales_2026,2,,,liste,Nina JULIÉ IL ESTTEMPS !,LDVD,Le Mont-Dore,5860,12346,22200,47.46,26.4,1
+MONTDORE,municipales_2026,2,,,liste,Elizabeth RIVIERE NEE DABIN TOUS ENSEMBLE POUR LE MONT-DORE,LDVD,Le Mont-Dore,4497,12346,22200,36.42,20.26,2
+MONTDORE,municipales_2026,2,,,liste,"Tania OUAKA LE MONT-DORE, NOTRE VILLE POURUNE NATION SOUVERAINE",LREG,Le Mont-Dore,1989,12346,22200,16.11,8.96,3
+MONTDORE,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Mont-Dore,3889,10840,16758,35.88,23.21,1
+MONTDORE,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Mont-Dore,1940,10840,16758,17.9,11.58,2
+MONTDORE,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Mont-Dore,1724,10840,16758,15.9,10.29,3
+MONTDORE,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,Mont-Dore,1274,10840,16758,11.75,7.6,4
+MONTDORE,provinciales_2019,,PS,Province Sud,liste,PS_liste_10,,Mont-Dore,445,10840,16758,4.11,2.66,5
+MONTDORE,referendum_2018,,,,choix,non,,MONT-DORE,10559,14185,17369,74.44,60.79,1
+MONTDORE,referendum_2018,,,,choix,oui,,MONT-DORE,3626,14185,17369,25.56,20.88,2
+MONTDORE,referendum_2020,,,Province Sud,choix,non,,Mont-Dore,10898,15170,17898,71.84,60.89,1
+MONTDORE,referendum_2020,,,Province Sud,choix,oui,,Mont-Dore,4272,15170,17898,28.16,23.87,2
+MONTDORE,referendum_2021,,,Province Sud,choix,non,,Mont-Dore,10495,10919,18264,96.12,57.46,1
+MONTDORE,referendum_2021,,,Province Sud,choix,oui,,Mont-Dore,424,10919,18264,3.88,2.32,2
+NOUMEA,legislatives_2022,1,,,candidat,Philippe DUNOYER,ENS,Nouméa,11598,23693,72724,48.95,15.95,1
+NOUMEA,legislatives_2022,1,,,candidat,Virginie RUFFENACH,LR,Nouméa,3880,23693,72724,16.38,5.34,2
+NOUMEA,legislatives_2022,1,,,candidat,Pascal LAFLEUR,DVD,Nouméa,2084,23693,72724,8.8,2.87,3
+NOUMEA,legislatives_2022,1,,,candidat,Guy-Olivier CUENOT,RN,Nouméa,1917,23693,72724,8.09,2.64,4
+NOUMEA,legislatives_2022,1,,,candidat,Walisaune WAHETRA,REG,Nouméa,1543,23693,72724,6.51,2.12,5
+NOUMEA,legislatives_2022,2,,,candidat,Philippe DUNOYER,ENS,Nouméa,24878,28868,72730,86.18,34.21,1
+NOUMEA,legislatives_2022,2,,,candidat,Walisaune WAHETRA,REG,Nouméa,3990,28868,72730,13.82,5.49,2
+NOUMEA,legislatives_2024,1,,,candidat,Nicolas METZDORF,DVD,Nouméa,22167,41325,72749,53.64,30.47,1
+NOUMEA,legislatives_2024,1,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Nouméa,7160,41325,72749,17.33,9.84,2
+NOUMEA,legislatives_2024,1,,,candidat,Philippe DUNOYER,HOR,Nouméa,5425,41325,72749,13.13,7.46,3
+NOUMEA,legislatives_2024,1,,,candidat,Veylma FALAEO,DVG,Nouméa,2506,41325,72749,6.06,3.44,4
+NOUMEA,legislatives_2024,1,,,candidat,Simon LOUECKHOTE,RN,Nouméa,2401,41325,72749,5.81,3.3,5
+NOUMEA,legislatives_2024,2,,,candidat,Nicolas METZDORF,DVD,Nouméa,34090,46941,72750,72.62,46.86,1
+NOUMEA,legislatives_2024,2,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Nouméa,12851,46941,72750,27.38,17.66,2
+NOUMEA,municipales_2020,1,,,liste,"AVEC VOUS, POUR NOUMEA",LDVD,Nouméa,18689,29229,71352,63.94,26.19,1
+NOUMEA,municipales_2020,1,,,liste,"NOUMEA AUTREMENT, UNE VILLE POUR TOUS LES NOUMEENS",LDVC,Nouméa,2578,29229,71352,8.82,3.61,2
+NOUMEA,municipales_2020,1,,,liste,UNITE PAYS,LREG,Nouméa,2438,29229,71352,8.34,3.42,3
+NOUMEA,municipales_2020,1,,,liste,"NOUMEA, C'EST VOUS !",LDIV,Nouméa,2052,29229,71352,7.02,2.88,4
+NOUMEA,municipales_2020,1,,,liste,"Générations Nouméa, un nouvel horizon",LDVC,Nouméa,1769,29229,71352,6.05,2.48,5
+NOUMEA,municipales_2026,1,,,liste,Sonia LAGARDE AVEC VOUS POUR NOUMEA,LDVD,Nouméa,16402,32818,68483,49.98,23.95,1
+NOUMEA,municipales_2026,1,,,liste,"Virginie RUFFENACH POUR NOUMEA, UNE ENERGIE NOUVELLE",LLR,Nouméa,6947,32818,68483,21.17,10.14,2
+NOUMEA,municipales_2026,1,,,liste,Philippe DUNOYER Nouméa : l'après,LDVC,Nouméa,3675,32818,68483,11.2,5.37,3
+NOUMEA,municipales_2026,1,,,liste,Lesse ADJOUHGNIOPE UNITE PAYS,LREG,Nouméa,3125,32818,68483,9.52,4.56,4
+NOUMEA,municipales_2026,1,,,liste,Muneiko HAOCAS Nouméa coeur battant - justice sociale,LREG,Nouméa,991,32818,68483,3.02,1.45,5
+NOUMEA,municipales_2026,2,,,liste,Sonia LAGARDE AVEC VOUS POUR NOUMEA,LDVD,Nouméa,19540,31521,68467,61.99,28.54,1
+NOUMEA,municipales_2026,2,,,liste,"Virginie RUFFENACH POUR NOUMEA, UNE ENERGIENOUVELLE",LLR,Nouméa,6027,31521,68467,19.12,8.8,2
+NOUMEA,municipales_2026,2,,,liste,Philippe DUNOYER Nouméa : l'après,LDVC,Nouméa,5954,31521,68467,18.89,8.7,3
+NOUMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Nouméa,15589,30944,48196,50.38,32.35,1
+NOUMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Nouméa,5757,30944,48196,18.6,11.94,2
+NOUMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Nouméa,2794,30944,48196,9.03,5.8,3
+NOUMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,Nouméa,1700,30944,48196,5.49,3.53,4
+NOUMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Nouméa,1199,30944,48196,3.87,2.49,5
+NOUMEA,referendum_2018,,,,choix,non,,NOUMEA,32290,40108,50686,80.51,63.71,1
+NOUMEA,referendum_2018,,,,choix,oui,,NOUMEA,7818,40108,50686,19.49,15.42,2
+NOUMEA,referendum_2020,,,Province Sud,choix,non,,Nouméa,33405,43559,52050,76.69,64.18,1
+NOUMEA,referendum_2020,,,Province Sud,choix,oui,,Nouméa,10154,43559,52050,23.31,19.51,2
+NOUMEA,referendum_2021,,,Province Sud,choix,non,,Nouméa,32329,33129,52819,97.59,61.21,1
+NOUMEA,referendum_2021,,,Province Sud,choix,oui,,Nouméa,800,33129,52819,2.41,1.51,2
+OUEGOA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Ouégoa,252,542,2224,46.49,11.33,1
+OUEGOA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Ouégoa,202,542,2224,37.27,9.08,2
+OUEGOA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Ouégoa,39,542,2224,7.2,1.75,3
+OUEGOA,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Ouégoa,26,542,2224,4.8,1.17,4
+OUEGOA,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Ouégoa,14,542,2224,2.58,0.63,5
+OUEGOA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Ouégoa,617,992,2224,62.2,27.74,1
+OUEGOA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Ouégoa,375,992,2224,37.8,16.86,2
+OUEGOA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Ouégoa,1002,1461,2235,68.58,44.83,1
+OUEGOA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Ouégoa,386,1461,2235,26.42,17.27,2
+OUEGOA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Ouégoa,29,1461,2235,1.98,1.3,3
+OUEGOA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Ouégoa,18,1461,2235,1.23,0.81,4
+OUEGOA,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Ouégoa,14,1461,2235,0.96,0.63,5
+OUEGOA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Ouégoa,1249,1701,2235,73.43,55.88,1
+OUEGOA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Ouégoa,452,1701,2235,26.57,20.22,2
+OUEGOA,municipales_2020,1,,,liste,UNION NATIONALE POUR L'INDEPENDANCE,LNC,Ouégoa,392,1144,2181,34.27,17.97,1
+OUEGOA,municipales_2020,1,,,liste,UNION CALEDONIENNE,LNC,Ouégoa,269,1144,2181,23.51,12.33,2
+OUEGOA,municipales_2020,1,,,liste,OUEGOA AUTREMENT,LNC,Ouégoa,238,1144,2181,20.8,10.91,3
+OUEGOA,municipales_2020,1,,,liste,100% OUEGOA,LNC,Ouégoa,177,1144,2181,15.47,8.12,4
+OUEGOA,municipales_2020,1,,,liste,OUEGOA CONSTRUCTIF ET SOLIDAIRE,LNC,Ouégoa,68,1144,2181,5.94,3.12,5
+OUEGOA,municipales_2026,1,,,liste,Barnabe Koé PEBOU HAMENE UNI,,Ouégoa,451,1342,2232,33.61,20.21,1
+OUEGOA,municipales_2026,1,,,liste,Henri Steeve PEBOU-TIDJINE UNION CITOYENNE,,Ouégoa,387,1342,2232,28.84,17.34,2
+OUEGOA,municipales_2026,1,,,liste,Caryl Edouard NORMANDON DYNAMIQUE OUEGOA,,Ouégoa,266,1342,2232,19.82,11.92,3
+OUEGOA,municipales_2026,1,,,liste,Elisse Zole OUAHIO UNION NATIONALE POUR L'INITIATIVE CITOYENNE- OUEGOA,,Ouégoa,238,1342,2232,17.73,10.66,4
+OUEGOA,municipales_2026,2,,,liste,Barnabe Koé PEBOU HAMENEUNI,,Ouégoa,584,1602,2232,36.45,26.16,1
+OUEGOA,municipales_2026,2,,,liste,Henri Steeve PEBOU-TIDJINEUNION CITOYENNE,,Ouégoa,519,1602,2232,32.4,23.25,2
+OUEGOA,municipales_2026,2,,,liste,Elisse Zole OUAHIODYNAMIQUE UNITAIRE NOUVELLE POURL'INITIATIVE COMMUNALE - OUEGOA,,Ouégoa,499,1602,2232,31.15,22.36,3
+OUEGOA,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Ouégoa,451,1267,2130,35.6,21.17,1
+OUEGOA,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Ouégoa,408,1267,2130,32.2,19.15,2
+OUEGOA,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Ouégoa,229,1267,2130,18.07,10.75,3
+OUEGOA,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Ouégoa,110,1267,2130,8.68,5.16,4
+OUEGOA,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Ouégoa,43,1267,2130,3.39,2.02,5
+OUEGOA,referendum_2018,,,,choix,oui,,OUEGOA,1271,1820,2157,69.84,58.92,1
+OUEGOA,referendum_2018,,,,choix,non,,OUEGOA,549,1820,2157,30.16,25.45,2
+OUEGOA,referendum_2020,,,Province Nord,choix,oui,,Ouégoa,1340,1866,2174,71.81,61.64,1
+OUEGOA,referendum_2020,,,Province Nord,choix,non,,Ouégoa,526,1866,2174,28.19,24.2,2
+OUEGOA,referendum_2021,,,Province Nord,choix,non,,Ouégoa,486,496,2201,97.98,22.08,1
+OUEGOA,referendum_2021,,,Province Nord,choix,oui,,Ouégoa,10,496,2201,2.02,0.45,2
+OUVEA,legislatives_2022,1,,,candidat,Walisaune WAHETRA,REG,Ouvéa,619,710,4406,87.18,14.05,1
+OUVEA,legislatives_2022,1,,,candidat,Philippe DUNOYER,ENS,Ouvéa,51,710,4406,7.18,1.16,2
+OUVEA,legislatives_2022,1,,,candidat,Joël KASARHEROU,DVC,Ouvéa,16,710,4406,2.25,0.36,3
+OUVEA,legislatives_2022,1,,,candidat,Pascal LAFLEUR,DVD,Ouvéa,13,710,4406,1.83,0.3,4
+OUVEA,legislatives_2022,1,,,candidat,Virginie RUFFENACH,LR,Ouvéa,7,710,4406,0.99,0.16,5
+OUVEA,legislatives_2022,2,,,candidat,Walisaune WAHETRA,REG,Ouvéa,1333,1417,4406,94.07,30.25,1
+OUVEA,legislatives_2022,2,,,candidat,Philippe DUNOYER,ENS,Ouvéa,84,1417,4406,5.93,1.91,2
+OUVEA,legislatives_2024,1,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Ouvéa,2127,2366,4390,89.9,48.45,1
+OUVEA,legislatives_2024,1,,,candidat,Muneiko HAOCAS,REG,Ouvéa,94,2366,4390,3.97,2.14,2
+OUVEA,legislatives_2024,1,,,candidat,Simon LOUECKHOTE,RN,Ouvéa,83,2366,4390,3.51,1.89,3
+OUVEA,legislatives_2024,1,,,candidat,Philippe DUNOYER,HOR,Ouvéa,20,2366,4390,0.85,0.46,4
+OUVEA,legislatives_2024,1,,,candidat,Juanita Ciane ANGEXETINE ÉP RAILATI,REG,Ouvéa,11,2366,4390,0.46,0.25,5
+OUVEA,legislatives_2024,2,,,candidat,Omayra Lisa Meun NAISSELINE,REG,Ouvéa,3335,3394,4388,98.26,76,1
+OUVEA,legislatives_2024,2,,,candidat,Nicolas METZDORF,DVD,Ouvéa,59,3394,4388,1.74,1.34,2
+OUVEA,municipales_2020,1,,,liste,OUVEA CAP SUR L AVENIR,LNC,Ouvéa,1251,2838,4447,44.08,28.13,1
+OUVEA,municipales_2020,1,,,liste,PALIKA UNI IAAI,LNC,Ouvéa,447,2838,4447,15.75,10.05,2
+OUVEA,municipales_2020,1,,,liste,PARTI TRAVAILLISTE / MNIS,LNC,Ouvéa,446,2838,4447,15.72,10.03,3
+OUVEA,municipales_2020,1,,,liste,ENSEMBLE OSONS LE CHANGEMENT,LNC,Ouvéa,364,2838,4447,12.83,8.19,4
+OUVEA,municipales_2020,1,,,liste,INITIATIVE DYNAMIQUE COMMUNALE,LNC,Ouvéa,226,2838,4447,7.96,5.08,5
+OUVEA,municipales_2026,1,,,liste,Maurice TILLEWA UC-FLNKS,,Ouvéa,1044,2465,4343,42.35,24.04,1
+OUVEA,municipales_2026,1,,,liste,Jean Joel IHILY PARTI TRAVAILLISTE ET NATIONALISTES,,Ouvéa,477,2465,4343,19.35,10.98,2
+OUVEA,municipales_2026,1,,,liste,Moïse BAOUMA UNI IAAI,,Ouvéa,367,2465,4343,14.89,8.45,3
+OUVEA,municipales_2026,1,,,liste,Victor GOGNY ALTERNATIVE UNITAIRE IAAI,,Ouvéa,321,2465,4343,13.02,7.39,4
+OUVEA,municipales_2026,1,,,liste,Karyl TRENYIWA OSER LE CHANGEMENT POUR OUVEA !,,Ouvéa,236,2465,4343,9.57,5.43,5
+OUVEA,municipales_2026,2,,,liste,Maurice TILLEWAUC-FLNKS,,Ouvéa,1383,2850,4343,48.53,31.84,1
+OUVEA,municipales_2026,2,,,liste,Jean Joel IHILYUNITE NATIONALISTES FLNKS IAAI,,Ouvéa,973,2850,4343,34.14,22.4,2
+OUVEA,municipales_2026,2,,,liste,Moïse BAOUMAUNI IAAI,,Ouvéa,494,2850,4343,17.33,11.37,3
+OUVEA,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_02,,Ouvéa,883,2704,4300,32.66,20.53,1
+OUVEA,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_08,,Ouvéa,849,2704,4300,31.4,19.74,2
+OUVEA,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_03,,Ouvéa,437,2704,4300,16.16,10.16,3
+OUVEA,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_04,,Ouvéa,272,2704,4300,10.06,6.33,4
+OUVEA,provinciales_2019,,PIL,Province des Iles,liste,PIL_liste_01,,Ouvéa,162,2704,4300,5.99,3.77,5
+OUVEA,referendum_2018,,,,choix,oui,,OUVEA,2160,2566,4374,84.18,49.38,1
+OUVEA,referendum_2018,,,,choix,non,,OUVEA,406,2566,4374,15.82,9.28,2
+OUVEA,referendum_2020,,,Province des Iles,choix,oui,,Ouvéa,2824,3277,4418,86.18,63.92,1
+OUVEA,referendum_2020,,,Province des Iles,choix,non,,Ouvéa,453,3277,4418,13.82,10.25,2
+OUVEA,referendum_2021,,,Province des Iles,choix,non,,Ouvéa,184,210,4385,87.62,4.2,1
+OUVEA,referendum_2021,,,Province des Iles,choix,oui,,Ouvéa,26,210,4385,12.38,0.59,2
+PAITA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Païta,2675,4929,15928,54.27,16.79,1
+PAITA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Païta,1138,4929,15928,23.09,7.14,2
+PAITA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Païta,511,4929,15928,10.37,3.21,3
+PAITA,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Païta,255,4929,15928,5.17,1.6,4
+PAITA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Païta,129,4929,15928,2.62,0.81,5
+PAITA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Païta,5489,7012,15915,78.28,34.49,1
+PAITA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Païta,1523,7012,15915,21.72,9.57,2
+PAITA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Païta,4710,10192,16589,46.21,28.39,1
+PAITA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Païta,2307,10192,16589,22.64,13.91,2
+PAITA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Païta,2226,10192,16589,21.84,13.42,3
+PAITA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Païta,659,10192,16589,6.47,3.97,4
+PAITA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Païta,170,10192,16589,1.67,1.02,5
+PAITA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Païta,6978,11654,16582,59.88,42.08,1
+PAITA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Païta,4676,11654,16582,40.12,28.2,2
+PAITA,municipales_2020,1,,,liste,PAITA EN CONFIANCE,LDVD,Païta,2939,8290,14809,35.45,19.85,1
+PAITA,municipales_2020,1,,,liste,L'EVEIL DE PAïTA,LDIV,Païta,1593,8290,14809,19.22,10.76,2
+PAITA,municipales_2020,1,,,liste,PAITA VOTRE IDENTITE NOTRE RICHESSE,LREG,Païta,1462,8290,14809,17.64,9.87,3
+PAITA,municipales_2020,1,,,liste,PAITA RASSEMBLES,LLR,Païta,857,8290,14809,10.34,5.79,4
+PAITA,municipales_2020,1,,,liste,GENERATIONS NC,LDVC,Païta,749,8290,14809,9.03,5.06,5
+PAITA,municipales_2026,1,,,liste,Antoine ROMAIN Paita J'y crois,LDVD,Païta,2802,9186,17300,30.5,16.2,1
+PAITA,municipales_2026,1,,,liste,"Milakulo TUKUMULI PAÏTA, UN NOUVEAU SOUFFLE!",LDVC,Païta,2427,9186,17300,26.42,14.03,2
+PAITA,municipales_2026,1,,,liste,Nikita Aurélie GAIA EP ALOSIO LISTE CITOYENNE FLNKS PAITA,LREG,Païta,1173,9186,17300,12.77,6.78,3
+PAITA,municipales_2026,1,,,liste,Patrick GREPPO ESPRIT PAITA,LDIV,Païta,939,9186,17300,10.22,5.43,4
+PAITA,municipales_2026,1,,,liste,Sylvia ABEL UN COEUR POUR PAITA,LDIV,Païta,799,9186,17300,8.7,4.62,5
+PAITA,municipales_2026,2,,,liste,Antoine ROMAIN Paita J'y crois,LDVD,Païta,4407,10209,17299,43.17,25.48,1
+PAITA,municipales_2026,2,,,liste,"Milakulo TUKUMULI PAÏTA,UN NOUVEAU SOUFFLE!",LDVC,Païta,3486,10209,17299,34.15,20.15,2
+PAITA,municipales_2026,2,,,liste,Nikita Aurélie GAIA EP ALOSIO LISTE CITOYENNE FLNKS PAITA,LREG,Païta,1395,10209,17299,13.66,8.06,3
+PAITA,municipales_2026,2,,,liste,Patrick GREPPO ESPRIT PAITA,LDIV,Païta,921,10209,17299,9.02,5.32,4
+PAITA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Païta,2314,7015,10694,32.99,21.64,1
+PAITA,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,Païta,1328,7015,10694,18.93,12.42,2
+PAITA,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Païta,1121,7015,10694,15.98,10.48,3
+PAITA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Païta,1081,7015,10694,15.41,10.11,4
+PAITA,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Païta,285,7015,10694,4.06,2.67,5
+PAITA,referendum_2018,,,,choix,non,,PAITA,6951,9381,11147,74.1,62.36,1
+PAITA,referendum_2018,,,,choix,oui,,PAITA,2430,9381,11147,25.9,21.8,2
+PAITA,referendum_2020,,,Province Sud,choix,non,,Païta,7399,10387,12013,71.23,61.59,1
+PAITA,referendum_2020,,,Province Sud,choix,oui,,Païta,2988,10387,12013,28.77,24.87,2
+PAITA,referendum_2021,,,Province Sud,choix,non,,Païta,7369,7632,12703,96.55,58.01,1
+PAITA,referendum_2021,,,Province Sud,choix,oui,,Païta,263,7632,12703,3.45,2.07,2
+POINDIMIE,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Poindimié,867,1262,4373,68.7,19.83,1
+POINDIMIE,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Poindimié,145,1262,4373,11.49,3.32,2
+POINDIMIE,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Poindimié,123,1262,4373,9.75,2.81,3
+POINDIMIE,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Poindimié,66,1262,4373,5.23,1.51,4
+POINDIMIE,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Poindimié,38,1262,4373,3.01,0.87,5
+POINDIMIE,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Poindimié,1834,2214,4373,82.84,41.94,1
+POINDIMIE,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Poindimié,380,2214,4373,17.16,8.69,2
+POINDIMIE,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Poindimié,2435,2988,4426,81.49,55.02,1
+POINDIMIE,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Poindimié,294,2988,4426,9.84,6.64,2
+POINDIMIE,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Poindimié,128,2988,4426,4.28,2.89,3
+POINDIMIE,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Poindimié,59,2988,4426,1.97,1.33,4
+POINDIMIE,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Poindimié,52,2988,4426,1.74,1.17,5
+POINDIMIE,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Poindimié,3102,3482,4420,89.09,70.18,1
+POINDIMIE,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Poindimié,380,3482,4420,10.91,8.6,2
+POINDIMIE,municipales_2020,1,,,liste,UNION NATIONALE POUR L'INDEPENDANCE,LDVG,Poindimié,1274,2593,4284,49.13,29.74,1
+POINDIMIE,municipales_2020,1,,,liste,UC AVEC LES CITOYENS DE PWËËDI WIIMIÂ,LREG,Poindimié,713,2593,4284,27.5,16.64,2
+POINDIMIE,municipales_2020,1,,,liste,"POINDIMIE, OSONS LE CHANGEMENT",LDVC,Poindimié,606,2593,4284,23.37,14.15,3
+POINDIMIE,municipales_2026,1,,,liste,Patrick - Jean-Luc WATANABE UN NOUVEL ELAN POUR POINDIMIE,LDIV,Poindimié,866,2833,4411,30.57,19.63,1
+POINDIMIE,municipales_2026,1,,,liste,Paul Tyaou NEAOUTYINE UNI,LREG,Poindimié,844,2833,4411,29.79,19.13,2
+POINDIMIE,municipales_2026,1,,,liste,Cyrille OUMATTU UNITE CITOYENNE ET NATIONALISTE,LREG,Poindimié,700,2833,4411,24.71,15.87,3
+POINDIMIE,municipales_2026,1,,,liste,Christian GROCHAIN PWEEDI WIIMIA RENOUVEAU,LREG,Poindimié,423,2833,4411,14.93,9.59,4
+POINDIMIE,municipales_2026,2,,,liste,Paul Tyaou NEAOUTYINE UNI,LREG,Poindimié,1150,3221,4411,35.7,26.07,1
+POINDIMIE,municipales_2026,2,,,liste,Patrick - Jean-LucWATANABE UN NOUVEL ELAN POUR POINDIMIE,LDIV,Poindimié,1034,3221,4411,32.1,23.44,2
+POINDIMIE,municipales_2026,2,,,liste,Cyrille OUMATTU UNITE CITOYENNE ETNATIONALISTE,LREG,Poindimié,744,3221,4411,23.1,16.87,3
+POINDIMIE,municipales_2026,2,,,liste,Christian GROCHAIN PWEEDI WIIMIA RENOUVEAU,LREG,Poindimié,293,3221,4411,9.1,6.64,4
+POINDIMIE,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Poindimié,1586,2675,4090,59.29,38.78,1
+POINDIMIE,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Poindimié,536,2675,4090,20.04,13.11,2
+POINDIMIE,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Poindimié,238,2675,4090,8.9,5.82,3
+POINDIMIE,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Poindimié,220,2675,4090,8.22,5.38,4
+POINDIMIE,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Poindimié,53,2675,4090,1.98,1.3,5
+POINDIMIE,referendum_2018,,,,choix,oui,,POINDIMIE,2782,3510,4057,79.26,68.57,1
+POINDIMIE,referendum_2018,,,,choix,non,,POINDIMIE,728,3510,4057,20.74,17.94,2
+POINDIMIE,referendum_2020,,,Province Nord,choix,oui,,Poindimié,3082,3735,4146,82.52,74.34,1
+POINDIMIE,referendum_2020,,,Province Nord,choix,non,,Poindimié,653,3735,4146,17.48,15.75,2
+POINDIMIE,referendum_2021,,,Province Nord,choix,non,,Poindimié,418,466,4192,89.7,9.97,1
+POINDIMIE,referendum_2021,,,Province Nord,choix,oui,,Poindimié,48,466,4192,10.3,1.15,2
+PONERIHOUEN,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Ponérihouen,968,1133,2689,85.44,36,1
+PONERIHOUEN,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Ponérihouen,53,1133,2689,4.68,1.97,2
+PONERIHOUEN,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Ponérihouen,50,1133,2689,4.41,1.86,3
+PONERIHOUEN,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Ponérihouen,43,1133,2689,3.8,1.6,4
+PONERIHOUEN,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Ponérihouen,10,1133,2689,0.88,0.37,5
+PONERIHOUEN,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Ponérihouen,1509,1634,2689,92.35,56.12,1
+PONERIHOUEN,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Ponérihouen,125,1634,2689,7.65,4.65,2
+PONERIHOUEN,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Ponérihouen,825,1053,2720,78.35,30.33,1
+PONERIHOUEN,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Ponérihouen,112,1053,2720,10.64,4.12,2
+PONERIHOUEN,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Ponérihouen,70,1053,2720,6.65,2.57,3
+PONERIHOUEN,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Ponérihouen,20,1053,2720,1.9,0.74,4
+PONERIHOUEN,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Ponérihouen,17,1053,2720,1.61,0.62,5
+PONERIHOUEN,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Ponérihouen,1688,1798,2721,93.88,62.04,1
+PONERIHOUEN,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Ponérihouen,110,1798,2721,6.12,4.04,2
+PONERIHOUEN,municipales_2020,1,,,liste,"UC PALIKA ""pour une commune solidaire et dynamique""...",LNC,Ponérihouen,933,1810,2675,51.55,34.88,1
+PONERIHOUEN,municipales_2020,1,,,liste,UNION NATIONALE POUR L'INDEPENDANCE PWARAIRIWA,LNC,Ponérihouen,877,1810,2675,48.45,32.79,2
+PONERIHOUEN,municipales_2026,1,,,liste,Ocea NAAOUTCHOUE UC FLNKS ET NATIONALISTES PWARAIRIWA,,Ponérihouen,629,1714,2695,36.7,23.34,1
+PONERIHOUEN,municipales_2026,1,,,liste,Eugène MENREMPON TOIMIRI BWETI PWARAIRIWA,,Ponérihouen,550,1714,2695,32.09,20.41,2
+PONERIHOUEN,municipales_2026,1,,,liste,Astrid GOPOEA UNION NATIONALE pour l'INDEPENDANCE PWARAIRIWA,,Ponérihouen,535,1714,2695,31.21,19.85,3
+PONERIHOUEN,municipales_2026,2,,,liste,Ocea NAAOUTCHOUEUC FLNKS ETNATIONALISTES PWARAIRIWA,,Ponérihouen,745,1982,2695,37.59,27.64,1
+PONERIHOUEN,municipales_2026,2,,,liste,Eugène MENREMPONTOIMIRIBWETI PWARAIRIWA,,Ponérihouen,665,1982,2695,33.55,24.68,2
+PONERIHOUEN,municipales_2026,2,,,liste,Astrid GOPOEAUNION NATIONALE pour l'INDEPENDANCEPWARAIRIWA,,Ponérihouen,572,1982,2695,28.86,21.22,3
+PONERIHOUEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Ponérihouen,918,1718,2605,53.43,35.24,1
+PONERIHOUEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Ponérihouen,516,1718,2605,30.03,19.81,2
+PONERIHOUEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Ponérihouen,113,1718,2605,6.58,4.34,3
+PONERIHOUEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Ponérihouen,65,1718,2605,3.78,2.5,4
+PONERIHOUEN,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Ponérihouen,54,1718,2605,3.14,2.07,5
+PONERIHOUEN,referendum_2018,,,,choix,oui,,PONERIHOUEN,1887,2204,2596,85.62,72.69,1
+PONERIHOUEN,referendum_2018,,,,choix,non,,PONERIHOUEN,317,2204,2596,14.38,12.21,2
+PONERIHOUEN,referendum_2020,,,Province Nord,choix,oui,,Ponérihouen,2093,2347,2671,89.18,78.36,1
+PONERIHOUEN,referendum_2020,,,Province Nord,choix,non,,Ponérihouen,254,2347,2671,10.82,9.51,2
+PONERIHOUEN,referendum_2021,,,Province Nord,choix,non,,Ponérihouen,138,153,2675,90.2,5.16,1
+PONERIHOUEN,referendum_2021,,,Province Nord,choix,oui,,Ponérihouen,15,153,2675,9.8,0.56,2
+POUEBO,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Pouébo,534,582,2405,91.75,22.2,1
+POUEBO,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Pouébo,29,582,2405,4.98,1.21,2
+POUEBO,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Pouébo,7,582,2405,1.2,0.29,3
+POUEBO,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Pouébo,3,582,2405,0.52,0.12,4
+POUEBO,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Pouébo,3,582,2405,0.52,0.12,5
+POUEBO,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Pouébo,1051,1071,2405,98.13,43.7,1
+POUEBO,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Pouébo,20,1071,2405,1.87,0.83,2
+POUEBO,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Pouébo,1351,1504,2427,89.83,55.67,1
+POUEBO,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Pouébo,96,1504,2427,6.38,3.96,2
+POUEBO,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Pouébo,25,1504,2427,1.66,1.03,3
+POUEBO,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Pouébo,13,1504,2427,0.86,0.54,4
+POUEBO,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Pouébo,12,1504,2427,0.8,0.49,5
+POUEBO,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Pouébo,1776,1805,2427,98.39,73.18,1
+POUEBO,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Pouébo,29,1805,2427,1.61,1.19,2
+POUEBO,municipales_2020,1,,,liste,Union calédonienne Pouébo,LNC,Pouébo,404,1272,2400,31.76,16.83,1
+POUEBO,municipales_2020,1,,,liste,ENTENTE COMMUNALE POUR LE CHANGEMENT,LNC,Pouébo,343,1272,2400,26.97,14.29,2
+POUEBO,municipales_2020,1,,,liste,PWEEVO UNI,LNC,Pouébo,326,1272,2400,25.63,13.58,3
+POUEBO,municipales_2020,1,,,liste,WEDO HI OWA,LNC,Pouébo,199,1272,2400,15.64,8.29,4
+POUEBO,municipales_2026,1,,,liste,Florentin DEDANE UNION CALEDONIENNE PWEEVO,,Pouébo,526,1340,2414,39.25,21.79,1
+POUEBO,municipales_2026,1,,,liste,Nadia HEO UNI PWEEVO PIINYENIWîî NYA,,Pouébo,481,1340,2414,35.9,19.93,2
+POUEBO,municipales_2026,1,,,liste,Rock DOUI WEDO DI OWA COLLECTIF COMMUNAL,,Pouébo,333,1340,2414,24.85,13.79,3
+POUEBO,municipales_2026,2,,,liste,Nadia HEOUNI WEDO IOWA,,Pouébo,801,1515,2414,52.87,33.18,1
+POUEBO,municipales_2026,2,,,liste,Florentin DEDANEUNION CALEDONIENNE PWEEVO,,Pouébo,714,1515,2414,47.13,29.58,2
+POUEBO,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Pouébo,557,1261,2301,44.17,24.21,1
+POUEBO,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Pouébo,420,1261,2301,33.31,18.25,2
+POUEBO,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Pouébo,212,1261,2301,16.81,9.21,3
+POUEBO,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Pouébo,33,1261,2301,2.62,1.43,4
+POUEBO,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Pouébo,20,1261,2301,1.59,0.87,5
+POUEBO,referendum_2018,,,,choix,oui,,POUEBO,1769,1877,2335,94.25,75.76,1
+POUEBO,referendum_2018,,,,choix,non,,POUEBO,108,1877,2335,5.75,4.63,2
+POUEBO,referendum_2020,,,Province Nord,choix,oui,,Pouébo,1912,2010,2392,95.12,79.93,1
+POUEBO,referendum_2020,,,Province Nord,choix,non,,Pouébo,98,2010,2392,4.88,4.1,2
+POUEBO,referendum_2021,,,Province Nord,choix,non,,Pouébo,26,33,2386,78.79,1.09,1
+POUEBO,referendum_2021,,,Province Nord,choix,oui,,Pouébo,7,33,2386,21.21,0.29,2
+POUEMBOUT,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Pouembout,236,613,1821,38.5,12.96,1
+POUEMBOUT,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Pouembout,158,613,1821,25.77,8.68,2
+POUEMBOUT,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Pouembout,138,613,1821,22.51,7.58,3
+POUEMBOUT,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Pouembout,33,613,1821,5.38,1.81,4
+POUEMBOUT,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Pouembout,22,613,1821,3.59,1.21,5
+POUEMBOUT,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Pouembout,562,933,1821,60.24,30.86,1
+POUEMBOUT,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Pouembout,371,933,1821,39.76,20.37,2
+POUEMBOUT,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Pouembout,537,1293,1908,41.53,28.14,1
+POUEMBOUT,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Pouembout,536,1293,1908,41.45,28.09,2
+POUEMBOUT,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Pouembout,121,1293,1908,9.36,6.34,3
+POUEMBOUT,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Pouembout,76,1293,1908,5.88,3.98,4
+POUEMBOUT,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Pouembout,14,1293,1908,1.08,0.73,5
+POUEMBOUT,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Pouembout,752,1449,1908,51.9,39.41,1
+POUEMBOUT,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Pouembout,697,1449,1908,48.1,36.53,2
+POUEMBOUT,municipales_2020,1,,,liste,MOUVEMENT CITOYEN,LNC,Pouembout,581,1110,1711,52.34,33.96,1
+POUEMBOUT,municipales_2020,1,,,liste,ENSEMBLE POUR UN DESTIN COMMUN,LNC,Pouembout,529,1110,1711,47.66,30.92,2
+POUEMBOUT,municipales_2026,1,,,liste,Yann PERALDI MOUVEMENT CITOYEN,,Pouembout,597,1254,2005,47.61,29.78,1
+POUEMBOUT,municipales_2026,1,,,liste,Jean-Francois Boaé PORIN-POUEA MAIN DANS LA MAIN POUR POUEMBOUT,,Pouembout,501,1254,2005,39.95,24.99,2
+POUEMBOUT,municipales_2026,1,,,liste,Jimmy NAOUNA UNIS POUR UN DESTIN COMMUN,,Pouembout,156,1254,2005,12.44,7.78,3
+POUEMBOUT,municipales_2026,2,,,liste,Yann PERALDIMOUVEMENTCITOYEN,,Pouembout,691,1377,2005,50.18,34.46,1
+POUEMBOUT,municipales_2026,2,,,liste,Jean-Francois Boaé PORIN-POUEAMAIN DANS LA MAIN POUR POUEMBOUT,,Pouembout,578,1377,2005,41.98,28.83,2
+POUEMBOUT,municipales_2026,2,,,liste,Jimmy NAOUNAUNIS POUR UN DESTIN COMMUN,,Pouembout,108,1377,2005,7.84,5.39,3
+POUEMBOUT,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Pouembout,300,954,1387,31.45,21.63,1
+POUEMBOUT,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Pouembout,288,954,1387,30.19,20.76,2
+POUEMBOUT,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Pouembout,222,954,1387,23.27,16.01,3
+POUEMBOUT,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Pouembout,123,954,1387,12.89,8.87,4
+POUEMBOUT,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Pouembout,15,954,1387,1.57,1.08,5
+POUEMBOUT,referendum_2018,,,,choix,non,,POUEMBOUT,639,1195,1383,53.47,46.2,1
+POUEMBOUT,referendum_2018,,,,choix,oui,,POUEMBOUT,556,1195,1383,46.53,40.2,2
+POUEMBOUT,referendum_2020,,,Province Nord,choix,non,,Pouembout,679,1310,1482,51.83,45.82,1
+POUEMBOUT,referendum_2020,,,Province Nord,choix,oui,,Pouembout,631,1310,1482,48.17,42.58,2
+POUEMBOUT,referendum_2021,,,Province Nord,choix,non,,Pouembout,671,709,1545,94.64,43.43,1
+POUEMBOUT,referendum_2021,,,Province Nord,choix,oui,,Pouembout,38,709,1545,5.36,2.46,2
+POUM,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Poum,329,411,1492,80.05,22.05,1
+POUM,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Poum,29,411,1492,7.06,1.94,2
+POUM,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Poum,26,411,1492,6.33,1.74,3
+POUM,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Poum,16,411,1492,3.89,1.07,4
+POUM,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Poum,5,411,1492,1.22,0.34,5
+POUM,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Poum,610,704,1492,86.65,40.88,1
+POUM,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Poum,94,704,1492,13.35,6.3,2
+POUM,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Poum,727,964,1533,75.41,47.42,1
+POUM,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Poum,110,964,1533,11.41,7.18,2
+POUM,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Poum,81,964,1533,8.4,5.28,3
+POUM,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Poum,25,964,1533,2.59,1.63,4
+POUM,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Poum,15,964,1533,1.56,0.98,5
+POUM,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Poum,1040,1163,1533,89.42,67.84,1
+POUM,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Poum,123,1163,1533,10.58,8.02,2
+POUM,municipales_2020,1,,,liste,UNION CITOYENNE,LNC,Poum,406,1010,1452,40.2,27.96,1
+POUM,municipales_2020,1,,,liste,POUM AUTREMENT,LNC,Poum,374,1010,1452,37.03,25.76,2
+POUM,municipales_2020,1,,,liste,S'UNIR POUR DEMAIN,LNC,Poum,230,1010,1452,22.77,15.84,3
+POUM,municipales_2026,1,,,liste,Henriette TIDJINE - HMAE UNION CITOYENNE,,Poum,462,1235,1541,37.41,29.98,1
+POUM,municipales_2026,1,,,liste,Marc TIDJINE S'UNIR POUR DEMAIN,,Poum,449,1235,1541,36.36,29.14,2
+POUM,municipales_2026,1,,,liste,Gill ARNAL UNI POUM,,Poum,324,1235,1541,26.23,21.03,3
+POUM,municipales_2026,2,,,liste,MarcTIDJINES'UNIR POUR DEMAIN UNI,,Poum,734,1321,1541,55.56,47.63,1
+POUM,municipales_2026,2,,,liste,Henriette TIDJINE - HMAEUNION CITOYENNE,,Poum,587,1321,1541,44.44,38.09,2
+POUM,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Poum,375,911,1381,41.16,27.15,1
+POUM,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Poum,338,911,1381,37.1,24.48,2
+POUM,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Poum,64,911,1381,7.03,4.63,3
+POUM,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Poum,57,911,1381,6.26,4.13,4
+POUM,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Poum,46,911,1381,5.05,3.33,5
+POUM,referendum_2018,,,,choix,oui,,POUM,948,1133,1366,83.67,69.4,1
+POUM,referendum_2018,,,,choix,non,,POUM,185,1133,1366,16.33,13.54,2
+POUM,referendum_2020,,,Province Nord,choix,oui,,Poum,1066,1252,1422,85.14,74.96,1
+POUM,referendum_2020,,,Province Nord,choix,non,,Poum,186,1252,1422,14.86,13.08,2
+POUM,referendum_2021,,,Province Nord,choix,non,,Poum,102,106,1438,96.23,7.09,1
+POUM,referendum_2021,,,Province Nord,choix,oui,,Poum,4,106,1438,3.77,0.28,2
+POYA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Poya,528,1075,2547,49.12,20.73,1
+POYA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Poya,321,1075,2547,29.86,12.6,2
+POYA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Poya,130,1075,2547,12.09,5.1,3
+POYA,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Poya,55,1075,2547,5.12,2.16,4
+POYA,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Poya,16,1075,2547,1.49,0.63,5
+POYA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Poya,899,1478,2547,60.83,35.3,1
+POYA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Poya,579,1478,2547,39.17,22.73,2
+POYA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Poya,1141,1849,2593,61.71,44,1
+POYA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Poya,415,1849,2593,22.44,16,2
+POYA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Poya,164,1849,2593,8.87,6.32,3
+POYA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Poya,68,1849,2593,3.68,2.62,4
+POYA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Poya,50,1849,2593,2.7,1.93,5
+POYA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Poya,1503,2077,2597,72.36,57.87,1
+POYA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Poya,574,2077,2597,27.64,22.1,2
+POYA,municipales_2020,1,,,liste,FLNKS NEKO POYA,LNC,Poya,737,1570,2486,46.94,29.65,1
+POYA,municipales_2020,1,,,liste,POYA NEKO HORIZON 2026,LNC,Poya,582,1570,2486,37.07,23.41,2
+POYA,municipales_2020,1,,,liste,Construisons et développons POYA autrement pour l'avenir,LNC,Poya,251,1570,2486,15.99,10.1,3
+POYA,municipales_2026,1,,,liste,François Joseph Poindi MEANDU-POVEU UNITE POYA NEKO,,Poya,4498367,1764,2597,255009.47,173213.98,1
+POYA,municipales_2026,1,,,liste,Jacques GOSSOIN NEKO POYA POUR TOUS,,Poya,393,1764,2597,22.28,15.13,2
+POYA,municipales_2026,1,,,liste,Julien MEUREUREU-GOWE ALTERNATIVE NATIONALISTE NEKO POYA,,Poya,307,1764,2597,17.4,11.82,3
+POYA,municipales_2026,1,,,liste,Guy Michel MACHORO UNE NOUVELLE DYNAMIQUE NEKÖ POYA,,Poya,259,1764,2597,14.68,9.97,4
+POYA,municipales_2026,1,,,liste,Evelyne GORO-ATU NEKO POYA ENSEMBLE POUR UNE COMMUNE SOLIDAIRE,,Poya,158,1764,2597,8.96,6.08,5
+POYA,municipales_2026,2,,,liste,FrançoisJoseph Poindi MEANDU-POVEUUNITE POYA NEKO,,Poya,6504310,1886,2597,344873.28,250454.76,1
+POYA,municipales_2026,2,,,liste,JacquesGOSSOINNEKO POYA POUR TOUS,,Poya,434,1886,2597,23.01,16.71,2
+POYA,municipales_2026,2,,,liste,Julien MEUREUREU-GOWEALTERNATIVE NATIONALISTE NEKO POYA,,Poya,389,1886,2597,20.63,14.98,3
+POYA,municipales_2026,2,,,liste,GuyMichel MACHOROUNE NOUVELLE DYNAMIQUE NEKÖ POYA,,Poya,213,1886,2597,11.29,8.2,4
+POYA,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Poya Nord,573,1358,2078,42.19,27.57,1
+POYA,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Poya Nord,350,1358,2078,25.77,16.84,2
+POYA,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Poya Nord,204,1358,2078,15.02,9.82,3
+POYA,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Poya Nord,185,1358,2078,13.62,8.9,4
+POYA,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Poya Nord,24,1358,2078,1.77,1.15,5
+POYA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Poya Sud,70,131,164,53.44,42.68,1
+POYA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Poya Sud,43,131,164,32.82,26.22,2
+POYA,provinciales_2019,,PS,Province Sud,liste,PS_liste_02,,Poya Sud,11,131,164,8.4,6.71,3
+POYA,provinciales_2019,,PS,Province Sud,liste,PS_liste_08,,Poya Sud,3,131,164,2.29,1.83,4
+POYA,provinciales_2019,,PS,Province Sud,liste,PS_liste_04,,Poya Sud,2,131,164,1.53,1.22,5
+POYA,referendum_2018,,,,choix,oui,,POYA,1147,1929,2242,59.46,51.16,1
+POYA,referendum_2018,,,,choix,non,,POYA,782,1929,2242,40.54,34.88,2
+POYA,referendum_2020,,,Province Nord,choix,oui,,Poya Nord,1301,1933,2176,67.3,59.79,1
+POYA,referendum_2020,,,Province Nord,choix,non,,Poya Nord,632,1933,2176,32.7,29.04,2
+POYA,referendum_2020,,,Province Sud,choix,non,,Poya Sud,169,173,189,97.69,89.42,1
+POYA,referendum_2020,,,Province Sud,choix,oui,,Poya Sud,4,173,189,2.31,2.12,2
+POYA,referendum_2021,,,Province Nord,choix,non,,Poya Nord,542,577,2216,93.93,24.46,1
+POYA,referendum_2021,,,Province Nord,choix,oui,,Poya Nord,35,577,2216,6.07,1.58,2
+POYA,referendum_2021,,,Province Sud,choix,non,,Poya Sud,171,171,197,100,86.8,1
+POYA,referendum_2021,,,Province Sud,choix,oui,,Poya Sud,0,171,197,0,0,2
+SARRAMEA,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Sarraméa,99,168,528,58.93,18.75,1
+SARRAMEA,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Sarraméa,22,168,528,13.1,4.17,2
+SARRAMEA,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Sarraméa,20,168,528,11.9,3.79,3
+SARRAMEA,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Sarraméa,18,168,528,10.71,3.41,4
+SARRAMEA,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Sarraméa,5,168,528,2.98,0.95,5
+SARRAMEA,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Sarraméa,213,265,528,80.38,40.34,1
+SARRAMEA,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Sarraméa,52,265,528,19.62,9.85,2
+SARRAMEA,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Sarraméa,258,340,532,75.88,48.5,1
+SARRAMEA,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Sarraméa,39,340,532,11.47,7.33,2
+SARRAMEA,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Sarraméa,28,340,532,8.24,5.26,3
+SARRAMEA,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Sarraméa,7,340,532,2.06,1.32,4
+SARRAMEA,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Sarraméa,5,340,532,1.47,0.94,5
+SARRAMEA,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Sarraméa,364,416,532,87.5,68.42,1
+SARRAMEA,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Sarraméa,52,416,532,12.5,9.77,2
+SARRAMEA,municipales_2020,1,,,liste,UNION CITOYENNE,LNC,Sarraméa,114,387,529,29.46,21.55,1
+SARRAMEA,municipales_2020,1,,,liste,SARRAMEA KANAKY,LNC,Sarraméa,106,387,529,27.39,20.04,2
+SARRAMEA,municipales_2020,1,,,liste,ENTENTE COMMUNALE,LNC,Sarraméa,95,387,529,24.55,17.96,3
+SARRAMEA,municipales_2020,1,,,liste,SARRAMEA AUTREMENT,LNC,Sarraméa,72,387,529,18.6,13.61,4
+SARRAMEA,municipales_2026,1,,,liste,Charles Albert BRINON Entente communale de Sarraméa,,Sarraméa,143,393,541,36.39,26.43,1
+SARRAMEA,municipales_2026,1,,,liste,Tony KAWA ARII FACHA POUR UNE DIVERSITE COMMUNALE,,Sarraméa,117,393,541,29.77,21.63,2
+SARRAMEA,municipales_2026,1,,,liste,Karmen HOLERO CONTINUONS A OEUVRER POUR SARRAMEA,,Sarraméa,69,393,541,17.56,12.75,3
+SARRAMEA,municipales_2026,1,,,liste,Prisca HOLERO UNION CITOYENNE,,Sarraméa,64,393,541,16.28,11.83,4
+SARRAMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Sarraméa,229,358,502,63.97,45.62,1
+SARRAMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Sarraméa,47,358,502,13.13,9.36,2
+SARRAMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Sarraméa,29,358,502,8.1,5.78,3
+SARRAMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_04,,Sarraméa,20,358,502,5.59,3.98,4
+SARRAMEA,provinciales_2019,,PS,Province Sud,liste,PS_liste_01,,Sarraméa,8,358,502,2.23,1.59,5
+SARRAMEA,referendum_2018,,,,choix,oui,,SARRAMEA,339,465,506,72.9,67,1
+SARRAMEA,referendum_2018,,,,choix,non,,SARRAMEA,126,465,506,27.1,24.9,2
+SARRAMEA,referendum_2020,,,Province Sud,choix,oui,,Sarraméa,373,472,510,79.03,73.14,1
+SARRAMEA,referendum_2020,,,Province Sud,choix,non,,Sarraméa,99,472,510,20.97,19.41,2
+SARRAMEA,referendum_2021,,,Province Sud,choix,non,,Sarraméa,70,78,518,89.74,13.51,1
+SARRAMEA,referendum_2021,,,Province Sud,choix,oui,,Sarraméa,8,78,518,10.26,1.54,2
+THIO,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Thio,442,552,2231,80.07,19.81,1
+THIO,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Thio,36,552,2231,6.52,1.61,2
+THIO,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Thio,35,552,2231,6.34,1.57,3
+THIO,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Thio,21,552,2231,3.8,0.94,4
+THIO,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Thio,12,552,2231,2.17,0.54,5
+THIO,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Thio,857,966,2231,88.72,38.41,1
+THIO,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Thio,109,966,2231,11.28,4.89,2
+THIO,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Thio,1013,1246,2262,81.3,44.78,1
+THIO,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Thio,118,1246,2262,9.47,5.22,2
+THIO,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Thio,70,1246,2262,5.62,3.09,3
+THIO,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Thio,26,1246,2262,2.09,1.15,4
+THIO,legislatives_2024,1,,,candidat,Ronald FRERE,REG,Thio,10,1246,2262,0.8,0.44,5
+THIO,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Thio,1465,1587,2260,92.31,64.82,1
+THIO,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Thio,122,1587,2260,7.69,5.4,2
+THIO,municipales_2020,1,,,liste,THIO POUR TOUS,LNC,Thio,514,1233,2189,41.69,23.48,1
+THIO,municipales_2020,1,,,liste,UNIR POUR BATIR THIO ET BORENDY,LNC,Thio,329,1233,2189,26.68,15.03,2
+THIO,municipales_2020,1,,,liste,CITOYENS SOLIDAIRES,LNC,Thio,275,1233,2189,22.3,12.56,3
+THIO,municipales_2020,1,,,liste,UNIR NOS FORCES NOS RELATIONS POUR NOTRE COMMUNE,LNC,Thio,115,1233,2189,9.33,5.25,4
+THIO,municipales_2026,1,,,liste,Téva PUAHIO Notre jeunesse au coeur du changement,,Thio,666,1470,2290,45.31,29.08,1
+THIO,municipales_2026,1,,,liste,"Lorenza M'BOUERI THIO,TERRE D'AVENIR-C'EST MAINTENANT!",,Thio,371,1470,2290,25.24,16.2,2
+THIO,municipales_2026,1,,,liste,Eric TOURA THIO EN MARCHE,,Thio,195,1470,2290,13.27,8.52,3
+THIO,municipales_2026,1,,,liste,Pierre Chanel NONMOIRA MURU RE COO - LE BIEN-ETRE DE THIO,,Thio,186,1470,2290,12.65,8.12,4
+THIO,municipales_2026,1,,,liste,"Jean Marie Vianney AYAWA AVEC LE FLNKS, L'AVENIR C'EST MAINTENANT !",,Thio,52,1470,2290,3.54,2.27,5
+THIO,municipales_2026,2,,,liste,Téva PUAHIONotre jeunesse au coeur du changement,,Thio,721,1526,2290,47.25,31.48,1
+THIO,municipales_2026,2,,,liste,"Lorenza M'BOUERITHIO,TERRE D'AVENIR-C'ESTMAINTENANT!",,Thio,420,1526,2290,27.52,18.34,2
+THIO,municipales_2026,2,,,liste,EricTOURAUC/PALIKA CÖÖ,,Thio,385,1526,2290,25.23,16.81,3
+THIO,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Thio,835,1206,2091,69.24,39.93,1
+THIO,provinciales_2019,,PS,Province Sud,liste,PS_liste_04,,Thio,82,1206,2091,6.8,3.92,2
+THIO,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Thio,74,1206,2091,6.14,3.54,3
+THIO,provinciales_2019,,PS,Province Sud,liste,PS_liste_06,,Thio,64,1206,2091,5.31,3.06,4
+THIO,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Thio,59,1206,2091,4.89,2.82,5
+THIO,referendum_2018,,,,choix,oui,,THIO,1483,1785,2114,83.08,70.15,1
+THIO,referendum_2018,,,,choix,non,,THIO,302,1785,2114,16.92,14.29,2
+THIO,referendum_2020,,,Province Sud,choix,oui,,Thio,1632,1901,2177,85.85,74.97,1
+THIO,referendum_2020,,,Province Sud,choix,non,,Thio,269,1901,2177,14.15,12.36,2
+THIO,referendum_2021,,,Province Sud,choix,non,,Thio,177,194,2218,91.24,7.98,1
+THIO,referendum_2021,,,Province Sud,choix,oui,,Thio,17,194,2218,8.76,0.77,2
+TOUHO,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Touho,490,646,2008,75.85,24.4,1
+TOUHO,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Touho,54,646,2008,8.36,2.69,2
+TOUHO,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Touho,44,646,2008,6.81,2.19,3
+TOUHO,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Touho,33,646,2008,5.11,1.64,4
+TOUHO,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Touho,10,646,2008,1.55,0.5,5
+TOUHO,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Touho,763,892,2008,85.54,38,1
+TOUHO,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Touho,129,892,2008,14.46,6.42,2
+TOUHO,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Touho,1183,1336,2027,88.55,58.36,1
+TOUHO,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Touho,107,1336,2027,8.01,5.28,2
+TOUHO,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Touho,26,1336,2027,1.95,1.28,3
+TOUHO,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Touho,13,1336,2027,0.97,0.64,4
+TOUHO,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Touho,5,1336,2027,0.37,0.25,5
+TOUHO,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Touho,1397,1538,2027,90.83,68.92,1
+TOUHO,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Touho,141,1538,2027,9.17,6.96,2
+TOUHO,municipales_2020,1,,,liste,UNI TOUHO CEMUKI,LNC,Touho,646,1145,1962,56.42,32.93,1
+TOUHO,municipales_2020,1,,,liste,UNION CITOYENNE DE TOUHO,LNC,Touho,499,1145,1962,43.58,25.43,2
+TOUHO,municipales_2026,1,,,liste,Donald SOEKIR UNION CITOYENNE de TOUHO,,Touho,647,1199,2008,53.96,32.22,1
+TOUHO,municipales_2026,1,,,liste,Alphonse Boulet POININE UNI,,Touho,552,1199,2008,46.04,27.49,2
+TOUHO,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Touho,724,1216,1894,59.54,38.23,1
+TOUHO,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Touho,306,1216,1894,25.16,16.16,2
+TOUHO,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Touho,107,1216,1894,8.8,5.65,3
+TOUHO,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Touho,60,1216,1894,4.93,3.17,4
+TOUHO,provinciales_2019,,PN,Province Nord,liste,PN_liste_05,,Touho,13,1216,1894,1.07,0.69,5
+TOUHO,referendum_2018,,,,choix,oui,,TOUHO,1320,1598,1889,82.6,69.88,1
+TOUHO,referendum_2018,,,,choix,non,,TOUHO,278,1598,1889,17.4,14.72,2
+TOUHO,referendum_2020,,,Province Nord,choix,oui,,Touho,1423,1666,1933,85.41,73.62,1
+TOUHO,referendum_2020,,,Province Nord,choix,non,,Touho,243,1666,1933,14.59,12.57,2
+TOUHO,referendum_2021,,,Province Nord,choix,non,,Touho,176,185,1953,95.14,9.01,1
+TOUHO,referendum_2021,,,Province Nord,choix,oui,,Touho,9,185,1953,4.86,0.46,2
+VOH,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Voh,475,781,2456,60.82,19.34,1
+VOH,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Voh,168,781,2456,21.51,6.84,2
+VOH,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Voh,59,781,2456,7.55,2.4,3
+VOH,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Voh,41,781,2456,5.25,1.67,4
+VOH,legislatives_2022,1,,,candidat,Alain DESCOMBELS,RN,Voh,19,781,2456,2.43,0.77,5
+VOH,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Voh,930,1290,2455,72.09,37.88,1
+VOH,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Voh,360,1290,2455,27.91,14.66,2
+VOH,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Voh,1181,1714,2478,68.9,47.66,1
+VOH,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Voh,306,1714,2478,17.85,12.35,2
+VOH,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Voh,122,1714,2478,7.12,4.92,3
+VOH,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Voh,54,1714,2478,3.15,2.18,4
+VOH,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Voh,29,1714,2478,1.69,1.17,5
+VOH,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Voh,1507,1946,2478,77.44,60.82,1
+VOH,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Voh,439,1946,2478,22.56,17.72,2
+VOH,municipales_2020,1,,,liste,BOATATE KOLEKOLE,LNC,Voh,756,1555,2417,48.62,31.28,1
+VOH,municipales_2020,1,,,liste,ENSEMBLE VOOK,LNC,Voh,408,1555,2417,26.24,16.88,2
+VOH,municipales_2020,1,,,liste,"AVEC VOUS POUR LE RENOU""VOH""",LNC,Voh,251,1555,2417,16.14,10.38,3
+VOH,municipales_2020,1,,,liste,POUR UNE COMMUNE PLUS CITOYENNE,LNC,Voh,140,1555,2417,9,5.79,4
+VOH,municipales_2026,1,,,liste,Joel BOATATE KOLEKOLE UNION NATIONALE POUR L'INDEPENDANCE,,Voh,641,1554,2494,41.25,25.7,1
+VOH,municipales_2026,1,,,liste,David POITHILY UC ET NATIONALISTES,,Voh,412,1554,2494,26.51,16.52,2
+VOH,municipales_2026,1,,,liste,Emmanuel LOUISY-GABRIEL RENOUVOH,,Voh,354,1554,2494,22.78,14.19,3
+VOH,municipales_2026,1,,,liste,Thierry POUYA SOUVERAINETE CALEDONIENNE,,Voh,147,1554,2494,9.46,5.89,4
+VOH,municipales_2026,2,,,liste,Joel BOATATE KOLEKOLEUNION NATIONALE POUR L'INDEPENDANCE,,Voh,696,1698,2494,40.99,27.91,1
+VOH,municipales_2026,2,,,liste,David POITHILYUC ET NATIONALISTES,,Voh,606,1698,2494,35.69,24.3,2
+VOH,municipales_2026,2,,,liste,Emmanuel LOUISY-GABRIELRENOUVOH,,Voh,396,1698,2494,23.32,15.88,3
+VOH,provinciales_2019,,PN,Province Nord,liste,PN_liste_01,,Voh,789,1535,2270,51.4,34.76,1
+VOH,provinciales_2019,,PN,Province Nord,liste,PN_liste_06,,Voh,286,1535,2270,18.63,12.6,2
+VOH,provinciales_2019,,PN,Province Nord,liste,PN_liste_02,,Voh,203,1535,2270,13.22,8.94,3
+VOH,provinciales_2019,,PN,Province Nord,liste,PN_liste_03,,Voh,141,1535,2270,9.19,6.21,4
+VOH,provinciales_2019,,PN,Province Nord,liste,PN_liste_04,,Voh,62,1535,2270,4.04,2.73,5
+VOH,referendum_2018,,,,choix,oui,,VOH,1357,1978,2312,68.6,58.69,1
+VOH,referendum_2018,,,,choix,non,,VOH,621,1978,2312,31.4,26.86,2
+VOH,referendum_2020,,,Province Nord,choix,oui,,Voh,1481,2069,2355,71.58,62.89,1
+VOH,referendum_2020,,,Province Nord,choix,non,,Voh,588,2069,2355,28.42,24.97,2
+VOH,referendum_2021,,,Province Nord,choix,non,,Voh,505,532,2362,94.92,21.38,1
+VOH,referendum_2021,,,Province Nord,choix,oui,,Voh,27,532,2362,5.08,1.14,2
+YATE,legislatives_2022,1,,,candidat,Gérard REIGNIER,REG,Yaté,524,621,1802,84.38,29.08,1
+YATE,legislatives_2022,1,,,candidat,Muneiko HAOCAS,REG,Yaté,44,621,1802,7.09,2.44,2
+YATE,legislatives_2022,1,,,candidat,Nicolas METZDORF,ENS,Yaté,20,621,1802,3.22,1.11,3
+YATE,legislatives_2022,1,,,candidat,Thierry SANTA,LR,Yaté,20,621,1802,3.22,1.11,4
+YATE,legislatives_2022,1,,,candidat,Michèle HOMBOE,DVC,Yaté,5,621,1802,0.81,0.28,5
+YATE,legislatives_2022,2,,,candidat,Gérard REIGNIER,REG,Yaté,920,967,1797,95.14,51.2,1
+YATE,legislatives_2022,2,,,candidat,Nicolas METZDORF,ENS,Yaté,47,967,1797,4.86,2.62,2
+YATE,legislatives_2024,1,,,candidat,Emmanuel TJIBAOU,REG,Yaté,955,1074,1833,88.92,52.1,1
+YATE,legislatives_2024,1,,,candidat,Milakulo TUKUMULI,DVG,Yaté,56,1074,1833,5.21,3.06,2
+YATE,legislatives_2024,1,,,candidat,Luther VOUDJO,REG,Yaté,25,1074,1833,2.33,1.36,3
+YATE,legislatives_2024,1,,,candidat,Alcide PONGA,DVD,Yaté,21,1074,1833,1.96,1.15,4
+YATE,legislatives_2024,1,,,candidat,Gérard POADJA,HOR,Yaté,14,1074,1833,1.3,0.76,5
+YATE,legislatives_2024,2,,,candidat,Emmanuel TJIBAOU,REG,Yaté,1359,1401,1833,97,74.14,1
+YATE,legislatives_2024,2,,,candidat,Alcide PONGA,DVD,Yaté,42,1401,1833,3,2.29,2
+YATE,municipales_2020,1,,,liste,"YATE, SUR LE CHEMIN DE LA SOUVERAINETE",LNC,Yaté,421,1290,1763,32.64,23.88,1
+YATE,municipales_2020,1,,,liste,EBUNUIRE NE YATRE ITEA,LNC,Yaté,355,1290,1763,27.52,20.14,2
+YATE,municipales_2020,1,,,liste,UNIR POUR BATIR YATE,LNC,Yaté,283,1290,1763,21.94,16.05,3
+YATE,municipales_2020,1,,,liste,UC-FLNKS,LNC,Yaté,153,1290,1763,11.86,8.68,4
+YATE,municipales_2020,1,,,liste,BIEN VIVRE A YATE,LNC,Yaté,78,1290,1763,6.05,4.42,5
+YATE,municipales_2026,1,,,liste,Louis Pidjot HOMOU YATE VERS UNE NATION SOUVERAINE,,Yaté,811,1357,1830,59.76,44.32,1
+YATE,municipales_2026,1,,,liste,Sandrine AOURIGNA EP ATINOUA TREE YATRE VE TRAPE DRÜU YË KANAKY-NC,,Yaté,351,1357,1830,25.87,19.18,2
+YATE,municipales_2026,1,,,liste,Marie Renee Vanessa TIHA EBUMUIRE ME YATRE ITEA,,Yaté,195,1357,1830,14.37,10.66,3
+YATE,provinciales_2019,,PS,Province Sud,liste,PS_liste_07,,Yaté,994,1193,1704,83.32,58.33,1
+YATE,provinciales_2019,,PS,Province Sud,liste,PS_liste_11,,Yaté,100,1193,1704,8.38,5.87,2
+YATE,provinciales_2019,,PS,Province Sud,liste,PS_liste_01,,Yaté,29,1193,1704,2.43,1.7,3
+YATE,provinciales_2019,,PS,Province Sud,liste,PS_liste_03,,Yaté,26,1193,1704,2.18,1.53,4
+YATE,provinciales_2019,,PS,Province Sud,liste,PS_liste_04,,Yaté,18,1193,1704,1.51,1.06,5
+YATE,referendum_2018,,,,choix,oui,,YATE,1357,1538,1721,88.23,78.85,1
+YATE,referendum_2018,,,,choix,non,,YATE,181,1538,1721,11.77,10.52,2
+YATE,referendum_2020,,,Province Sud,choix,oui,,Yaté,1469,1615,1760,90.96,83.47,1
+YATE,referendum_2020,,,Province Sud,choix,non,,Yaté,146,1615,1760,9.04,8.3,2
+YATE,referendum_2021,,,Province Sud,choix,non,,Yaté,76,96,1778,79.17,4.27,1
+YATE,referendum_2021,,,Province Sud,choix,oui,,Yaté,20,96,1778,20.83,1.12,2

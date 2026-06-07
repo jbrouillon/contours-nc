@@ -6,7 +6,7 @@ date: "2026-05-24"
 categories: ["Cartographie", "Élections", "Nouméa"]
 tags: ["accessibilité", "dataviz", "R", "Nouvelle-Calédonie", "sciences sociales"]
 description: "Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres."
-image: "../../data/cartes/municipales 2026/temps trajet nouméa bureaux complets.png"
+image: "../../images/previews/regroupement-bureaux-vote-noumea.jpg"
 image-alt: "Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa"
 title-block-banner: true
 toc: true
@@ -304,7 +304,11 @@ Derrière ces débats institutionnels se pose une question plus concrète et plu
 
 En effet, deux électeurs inscrits dans une même commune ne font pas nécessairement face au même coût de déplacement. La structure du réseau routier, les ruptures urbaines, la distance aux centres ouverts ou encore l’accès à un véhicule peuvent fortement modifier l’accessibilité réelle au vote.
 
-Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées : - la configuration habituelle des bureaux de vote ; - un scénario à 8 centres regroupés ; - un scénario à 9 centres regroupés.
+Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées :
+
+-   la configuration habituelle des bureaux de vote ;
+-   un scénario à 8 centres regroupés ;
+-   un scénario à 9 centres regroupés.
 
 L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.
 
@@ -324,7 +328,7 @@ Le résultat doit être lu comme une mesure d'accessibilité potentielle. Il dev
 
 L'estimation s'appuie sur cinq familles de données locales :
 
--   les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de votes réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul
+-   les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de vote réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul ;
 -   la liste des centres regroupés, saisie comme points de destination alternatifs ;
 -   le réseau routier BDROUTE-NC, transformé en graphe de déplacement ;
 -   la grille de population `NCL_Pop_Grid_2020.tif`, utilisée pour ne calculer l'indicateur que sur les cellules habitées ;
@@ -401,18 +405,18 @@ scenario_stats |>
 
 Dans la configuration de référence, le temps moyen pondéré est de `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "Bureaux de vote habituels"])`. Il passe à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "8 centres regroupés"])` dans le scénario à 8 centres, puis à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres.
 
-```{r temps-bureaux-complets, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux complets.png"))
+```{r temps-bureaux-complets, fig.cap="Temps de trajet à pied (5 km/h) vers le bureau de vote le plus proche (configuration de référence, 54 bureaux retenus)."}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux complets.webp"))
 
 ```
 
-```{r temps-bureaux-8, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 8 bureaux regroupés)"}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés.png"))
+```{r temps-bureaux-8, fig.cap="Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 8 centres regroupés)."}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés.webp"))
 
 ```
 
-```{r temps-bureaux-9, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 9 bureaux regroupés)"}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés sans koe kara.png"))
+```{r temps-bureaux-9, fig.cap="Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 9 centres regroupés)."}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés sans koe kara.webp"))
 
 ```
 
@@ -544,8 +548,8 @@ ggplot(delta_long, aes(x = delta_min, weight = pop, fill = comparaison)) +
 
 Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l'absence de véhicule rend le déplacement plus contraint.
 
-```{r menages-sans-vehicules, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "menages sans véhicules noumea 2019.png"))
+```{r menages-sans-vehicules, fig.cap="Part des ménages sans véhicule à Nouméa, par IRIS, d'après le RGP 2019."}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "menages sans véhicules noumea 2019.webp"))
 
 ```
 
@@ -647,12 +651,12 @@ ggplot(vehicle_classes, aes(x = classe_sans_vehicule, y = minutes, fill = indica
   theme(legend.position = "bottom")
 ```
 
-## Accessibilité et absention
+## Accessibilité et abstention
 
-La carte de l'abstention au 1er tour permet de donner un apperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajets les plus importants. Cependant il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
+La carte de l'abstention au 1er tour permet de donner un aperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajet les plus importants. Cependant, il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
 
-```{r abstention-2026, fig.cap="Temps de trajet à pied (5km/h) vers le bureau de vote le plus proche (configuration 54 bureaux)"}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.png"))
+```{r abstention-2026, fig.cap="Abstention au premier tour des municipales 2026 par bureau de vote à Nouméa."}
+knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.webp"))
 
 ```
 

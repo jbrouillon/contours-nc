@@ -1,0 +1,23 @@
+---
+title: "Mobilités électorales à Nouméa (version animée)"
+toc: true
+date: 2026-02-05
+image: "../data/cartes/municipales 2026/temps trajet nouméa municipales 2026.gif"
+categories:
+  - cartes
+  - cartographie
+---
+
+## Contexte
+
+Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote et les évolutions induites par les différents scénarios de regroupement.
+
+[Lire l’article complet](../posts/regroupement-bureaux-vote-noumea/index.qmd)
+
+## Animation
+
+::: viz-card
+![](../data/cartes/municipales%202026/temps%20trajet%20nouméa%20municipales%202026.gif){.viz-gif}
+
+*Animation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales.* [⬇ Télécharger le GIF](../data/cartes/municipales%202026/temps%20trajet%20nouméa%20municipales%202026.gif){.download-btn download="temps-trajet-noumea-bureaux.gif"}
+:::

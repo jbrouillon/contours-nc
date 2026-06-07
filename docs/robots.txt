@@ -1,1 +1,1 @@
-Sitemap: https://jbrouillon.github.io/contours-nc/sitemap.xml
+Sitemap: https://contours.nc/sitemap.xml

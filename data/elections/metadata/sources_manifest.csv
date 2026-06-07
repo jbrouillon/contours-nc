@@ -1,0 +1,64 @@
+scrutin,tour,type_source,chemin,statut,notes
+provinciales_2019,,pdf,compilation_elections_nc/data_raw/provinciales_2019/20190513_PIL_par_bv.pdf,copie,Province des Iles
+provinciales_2019,,pdf,compilation_elections_nc/data_raw/provinciales_2019/20190513_PN_par_bv.pdf,copie,Province Nord
+provinciales_2019,,pdf,compilation_elections_nc/data_raw/provinciales_2019/20190513_PS_par_bv.pdf,copie,Province Sud
+provinciales_2019,,csv,compilation_elections_nc/data_processed/provinciales_2019_bureaux_geolocalises.csv,produit,286 bureaux tous geolocalises
+provinciales_2019,,csv,compilation_elections_nc/data_processed/provinciales_2019_listes_long_geolocalisees.csv,produit,2548 lignes listes
+referendum_2018,,csv,compilation_elections_nc/data_raw/referendum_2018/referendum_2018_bureaux.csv,telecharge,Source Open Data NC referendum 2018
+referendum_2018,,csv,compilation_elections_nc/data_processed/referendum_2018_bureaux_geolocalises.csv,produit,284 lignes dont 281 geolocalisees
+referendum_2018,,csv,compilation_elections_nc/data_processed/referendum_2018_choix_long_geolocalises.csv,produit,568 lignes choix oui non
+referendum_2020,,csv,compilation_elections_nc/data_raw/referendum_2020/referendum_2020_bureaux.csv,copie,Source brute par bureau
+referendum_2020,,csv,compilation_elections_nc/data_processed/referendum_2020_bureaux_geolocalises.csv,produit,304 lignes dont 296 geolocalisees
+referendum_2020,,csv,compilation_elections_nc/data_processed/referendum_2020_choix_long_geolocalises.csv,produit,608 lignes choix oui non
+referendum_2021,,pdf,compilation_elections_nc/data_raw/referendum_2021/Résultats définitifs Référendum NC du 12 décembre 2021.pdf,copie,Source PDF officielle
+referendum_2021,,csv,compilation_elections_nc/data_processed/referendum_2021_bureaux_geolocalises.csv,produit,307 lignes dont 299 geolocalisees
+referendum_2021,,csv,compilation_elections_nc/data_processed/referendum_2021_choix_long_geolocalises.csv,produit,614 lignes choix oui non
+legislatives_2022,1,rds,resultats_2022_t1.rds,local,Source locale tour 1
+legislatives_2022,2,rds,resultats_2022_t2.rds,local,Source locale tour 2
+legislatives_2022,1-2,csv,compilation_elections_nc/data_processed/legislatives_2022_bureaux_geolocalises.csv,produit,594 lignes bureaux tours toutes geolocalisees
+legislatives_2022,1-2,csv,compilation_elections_nc/data_processed/legislatives_2022_candidats_long_geolocalises.csv,produit,3160 lignes candidats
+legislatives_2024,1,xlsx,compilation_elections_nc/data_raw/legislatives_2024/legislatives_2024_t1_resultats_provisoires_par_bureau.xlsx,copie,Source Excel locale
+legislatives_2024,2,xlsx,compilation_elections_nc/data_raw/legislatives_2024/legislatives_2024_t2_resultats_definitifs_par_bureau.xlsx,copie,Source Excel locale
+legislatives_2024,1-2,csv,compilation_elections_nc/data_processed/legislatives_2024_bureaux_geolocalises.csv,produit,594 lignes bureaux tours
+legislatives_2024,1-2,csv,compilation_elections_nc/data_processed/legislatives_2024_candidats_long_geolocalises.csv,produit,3024 lignes candidats
+corpus_initial,,csv,compilation_elections_nc/data_processed/scrutins_bureaux_compile_initial.csv,produit,2369 lignes bureau scrutin incluant les cas non geolocalises
+corpus_initial,,csv,compilation_elections_nc/data_processed/scrutins_bureaux_geolocalises_initial.csv,produit,2350 lignes bureau scrutin avec coordonnees
+corpus_initial,,csv,compilation_elections_nc/data_processed/scrutins_resultats_long_compile_initial.csv,produit,10522 lignes de resultats au format long
+blocs,,csv,compilation_elections_nc/metadata/blocs_reference.csv,produit,Reference initiale des blocs politiques
+blocs,,csv,compilation_elections_nc/data_processed/scrutins_resultats_long_blocs.csv,produit,Resultats long annotes par bloc
+blocs,,csv,compilation_elections_nc/data_processed/scrutins_blocs_bureaux.csv,produit,5981 lignes bureau bloc
+blocs,,csv,compilation_elections_nc/data_processed/scrutins_blocs_communes.csv,produit,658 lignes commune bloc
+cartes_blocs,,tif,compilation_elections_nc/outputs/rasters_blocs/,produit,15 rasters GeoTIFF lisses IDW
+cartes_blocs,,png,compilation_elections_nc/outputs/cartes_blocs/,produit,15 PNG ameliores listes dans le manifeste: 10 classes Spectral fond aliceblue lieux habites communes echelle nord
+cartes_blocs,,csv,compilation_elections_nc/outputs/cartes_blocs/manifest_cartes_blocs.csv,produit,Manifeste des cartes de blocs
+referentiel_bureaux,,csv,compilation_elections_nc/data_processed/bureaux_reference_geolocalises.csv,copie,298 bureaux tous geolocalises
+referentiel_bureaux,,geojson,compilation_elections_nc/data_processed/bureaux_reference_geolocalises.geojson,copie,Version spatiale du referentiel
+referentiel_bureaux,,pdf,compilation_elections_nc/data_raw/referentiels_geographiques/bureaux_vote/liste_bureaux_vote_nc.pdf,copie,Liste locale des bureaux
+referentiel_geographique,,geojson,compilation_elections_nc/data_raw/referentiels_geographiques/etablissements_publics/etablissements_publics_nc.geojson,copie,Source d aide a la geolocalisation
+referentiel_geographique,,shapefile,compilation_elections_nc/data_raw/referentiels_geographiques/tribus_villages_nc/,copie,Source d aide a la geolocalisation
+scripts_legacy,,script,compilation_elections_nc/scripts/legacy/compile_elections_nc.py,copie,Script existant a reprendre partiellement
+scripts_legacy,,script,compilation_elections_nc/scripts/legacy/update_bureaux_geoloc.R,copie,Script existant a reprendre partiellement
+scripts_R,,script,compilation_elections_nc/scripts/R/01_parse_provinciales_2019.R,produit,Parse les PDF provinciales 2019
+scripts_R,,script,compilation_elections_nc/scripts/R/02_apply_geoloc_overrides.R,produit,Applique les geolocalisations manuelles documentees
+scripts_R,,script,compilation_elections_nc/scripts/R/03_build_corpus_initial.R,produit,Reconstruit les tables combinees initiales
+scripts_R,,script,compilation_elections_nc/scripts/R/04_parse_referendums.R,produit,Parse les referendums 2018 2020 et 2021
+scripts_R,,script,compilation_elections_nc/scripts/R/05_build_commune_fiche_data.R,produit,Construit les syntheses communales et un prototype de fiche data
+scripts_R,,script,compilation_elections_nc/scripts/R/06_parse_legislatives_2024.R,produit,Reparse les Excel legislatives 2024 avec compteurs numeriques corriges
+scripts_R,,script,compilation_elections_nc/scripts/R/07_parse_legislatives_2022.R,produit,Parse les RDS legislatives 2022 depuis data_raw ou fallback legacy
+scripts_R,,script,compilation_elections_nc/scripts/R/08_build_bloc_scores.R,produit,Construit les scores par blocs politiques
+scripts_R,,script,compilation_elections_nc/scripts/R/09_make_bloc_rasters_maps.R,produit,Produit les rasters et PNG de blocs
+scripts_python,,script,compilation_elections_nc/scripts/python/10_export_qgis_map.py,produit,Exporte les rasters lisses en PNG via le template QGIS
+fonctions_R,,script,compilation_elections_nc/R/00_utils.R,produit,Fonctions utilitaires
+fonctions_R,,script,compilation_elections_nc/R/01_data.R,produit,Fonctions de lecture des tables compilees
+fonctions_R,,script,compilation_elections_nc/R/02_commune_summary.R,produit,Fonctions de synthese communale
+fonctions_R,,script,compilation_elections_nc/R/03_rasters.R,produit,Fonctions candidates pour interpolation IDW
+fonctions_R,,script,compilation_elections_nc/R/04_blocs.R,produit,Fonctions de regroupement et lecture des blocs
+fonctions_R,,script,compilation_elections_nc/R/05_maps.R,produit,Fonction parametrique de cartographie par scrutin type echelle et commune
+communes,,csv,compilation_elections_nc/data_processed/communes_synthese_scrutins_initiale.csv,produit,267 lignes indicateurs commune scrutin
+communes,,csv,compilation_elections_nc/data_processed/communes_resultats_top_initial.csv,produit,834 lignes principaux resultats commune scrutin
+communes,,csv,compilation_elections_nc/quality/communes_bureaux_non_geolocalises.csv,produit,19 lignes bureaux sans coordonnees
+communes,,csv,compilation_elections_nc/outputs/fiches_data/NOUMEA/scores_blocs.csv,produit,Prototype scores blocs Noumea
+metadata,,csv,compilation_elections_nc/metadata/geoloc_overrides.csv,produit,Overrides geographiques documentes
+metadata,,md,compilation_elections_nc/metadata/fiche_commune_cible.md,produit,Cadrage de la fiche communale cible
+metadata,,md,compilation_elections_nc/metadata/cartographie_usage.md,produit,Exemples d usage de nce_make_carte_resultat
+metadata,,md,compilation_elections_nc/metadata/qgis_export_usage.md,produit,Exemples d export PNG via PyQGIS et le template QGIS

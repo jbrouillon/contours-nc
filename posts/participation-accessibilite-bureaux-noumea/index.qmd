@@ -1,0 +1,935 @@
+---
+title: "Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?"
+subtitle: "Ce que dit, et ne dit pas, la participation en hausse aux municipales 2026"
+author: "Jonas Brouillon"
+date: "2026-06-07"
+categories: ["Cartographie", "Élections", "Nouméa", "Débat public"]
+tags: ["participation", "abstention", "municipales", "bureaux de vote", "Nouvelle-Calédonie"]
+description: "Une vérification prudente de l'argument de la participation en hausse aux municipales 2026, dans le débat sur le regroupement des bureaux de vote à Nouméa."
+image: "../../images/previews/ecart-participation-noumea-2020-2026.jpg"
+image-alt: "Carte des écarts de participation entre les municipales 2020 et 2026 à Nouméa"
+title-block-banner: true
+toc: true
+toc-depth: 3
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(dplyr)
+library(forcats)
+library(ggplot2)
+library(gt)
+library(readr)
+library(scales)
+library(sf)
+library(terra)
+library(tidyr)
+library(here)
+
+theme_set(theme_minimal(base_size = 12))
+theme_update(
+  plot.margin = margin(8, 14, 16, 8),
+  legend.position = "bottom"
+)
+
+project_dir <- here::here()
+data_path <- function(...) file.path(project_dir, "data", ...)
+
+fmt_num <- function(x, digits = 1) {
+  number(x, accuracy = 10^-digits, decimal.mark = ",", big.mark = " ")
+}
+
+fmt_signed_num <- function(x, digits = 0) {
+  paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits))
+}
+
+fmt_pct <- function(x, digits = 1) {
+  paste0(fmt_num(x, digits), " %")
+}
+
+fmt_pp <- function(x, digits = 1) {
+  paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits), " pt")
+}
+
+fmt_p <- function(x) {
+  case_when(
+    is.na(x) ~ NA_character_,
+    x < 0.001 ~ "< 0,001",
+    TRUE ~ fmt_num(x, 3)
+  )
+}
+
+label_iris <- function(x) {
+  recode(
+    x,
+    "Centre ville" = "Centre-ville",
+    "Portes de Fer - Nord" = "Portes de Fer Nord",
+    "Riviére Salée Nord Est" = "Rivière Salée Nord-Est",
+    "Riviére Salée Sud" = "Rivière Salée Sud",
+    "Vallée des Colons Nord Est" = "Vallée des Colons Nord-Est",
+    "Vallée des Colons Sud Ouest" = "Vallée des Colons Sud-Ouest",
+    .default = x
+  )
+}
+
+collapse_and <- function(x) {
+  x <- x[!is.na(x)]
+  if (length(x) == 0) return("")
+  if (length(x) == 1) return(x)
+  paste0(paste(head(x, -1), collapse = ", "), " et ", tail(x, 1))
+}
+
+weighted_mean <- function(x, w) {
+  ok <- is.finite(x) & is.finite(w) & w > 0
+  if (!any(ok)) return(NA_real_)
+  sum(x[ok] * w[ok], na.rm = TRUE) / sum(w[ok], na.rm = TRUE)
+}
+
+weighted_share <- function(condition, w) {
+  ok <- !is.na(condition) & is.finite(w) & w > 0
+  if (!any(ok)) return(NA_real_)
+  100 * sum(w[ok & condition], na.rm = TRUE) / sum(w[ok], na.rm = TRUE)
+}
+
+municipales_2020_path <- data_path("elections", "data_processed", "municipales_2020_bureaux_geolocalises.csv")
+municipales_2026_path <- data_path("elections", "data_processed", "municipales_2026_bureaux_geolocalises.csv")
+iris_path <- data_path("02_geospatial", "vecteurs", "iris_rgp_2019.geojson")
+pop_path <- data_path("02_geospatial", "rasters", "NCL_Pop_Grid_2020.tif")
+time_paths <- c(
+  bureaux_complets = data_path("outputs_noumea_municipales_2026_v2", "noumea_temps_pieton_bureaux_complets_min_cellules_habitees.tif"),
+  centres_regroupes = data_path("outputs_noumea_municipales_2026_v2", "noumea_temps_pieton_centres_regroupes_8_min_cellules_habitees.tif")
+)
+
+required_files <- c(
+  municipales_2020 = municipales_2020_path,
+  municipales_2026 = municipales_2026_path,
+  iris = iris_path
+)
+
+missing_files <- required_files[!file.exists(required_files)]
+if (length(missing_files) > 0) {
+  stop("Fichiers manquants :\n", paste(missing_files, collapse = "\n"))
+}
+
+mun20 <- read_csv(municipales_2020_path, show_col_types = FALSE) |>
+  filter(tour == 1)
+
+mun26 <- read_csv(municipales_2026_path, show_col_types = FALSE) |>
+  filter(tour == 1)
+
+iris_context <- st_read(iris_path, quiet = TRUE) |>
+  st_drop_geometry() |>
+  mutate(
+    iris_codgeo_num = suppressWarnings(as.numeric(codgeo)),
+    population_totale = as.numeric(population_totale)
+  ) |>
+  filter(iris_codgeo_num >= 1800, iris_codgeo_num < 1900) |>
+  select(
+    iris_codgeo_num,
+    population_totale
+  )
+
+has_access_data <- all(file.exists(c(time_paths, iris_path, pop_path)))
+
+access_iris <- if (has_access_data) {
+  crs_proj <- 3163
+  time_rasters <- rast(time_paths)
+  names(time_rasters) <- names(time_paths)
+
+  iris_geom <- st_read(iris_path, quiet = TRUE) |>
+    st_make_valid() |>
+    mutate(iris_codgeo_num = suppressWarnings(as.numeric(codgeo))) |>
+    filter(iris_codgeo_num >= 1800, iris_codgeo_num < 1900) |>
+    st_transform(crs_proj) |>
+    select(iris_codgeo_num)
+
+  noumea_geom <- iris_geom |>
+    st_union() |>
+    st_make_valid() |>
+    st_buffer(0)
+
+  pop_raster <- rast(pop_path)
+  noumea_pop_crs <- st_transform(noumea_geom, crs(pop_raster))
+
+  pop_noumea <- pop_raster |>
+    crop(vect(noumea_pop_crs)) |>
+    mask(vect(noumea_pop_crs), touches = TRUE) |>
+    project(time_rasters[[1]], method = "near") |>
+    mask(time_rasters[[1]])
+  names(pop_noumea) <- "pop"
+
+  cell_df <- as.data.frame(c(time_rasters, pop_noumea), xy = TRUE, na.rm = FALSE) |>
+    filter(!is.na(pop), pop > 0, !is.na(bureaux_complets)) |>
+    mutate(delta_regroupes_vs_full = centres_regroupes - bureaux_complets)
+
+  points_sf <- st_as_sf(cell_df, coords = c("x", "y"), crs = crs_proj, remove = FALSE)
+
+  st_join(points_sf, iris_geom, join = st_within, left = FALSE) |>
+    st_drop_geometry() |>
+    group_by(iris_codgeo_num) |>
+    summarise(
+      temps_bureaux_habituels = weighted_mean(bureaux_complets, pop),
+      temps_8_centres = weighted_mean(centres_regroupes, pop),
+      hausse_temps_8_centres = weighted_mean(delta_regroupes_vs_full, pop),
+      part_plus_30_8_centres = weighted_share(centres_regroupes > 30, pop),
+      .groups = "drop"
+    )
+} else {
+  tibble(
+    iris_codgeo_num = numeric(),
+    temps_bureaux_habituels = numeric(),
+    temps_8_centres = numeric(),
+    hausse_temps_8_centres = numeric(),
+    part_plus_30_8_centres = numeric()
+  )
+}
+
+commune_20 <- mun20 |>
+  group_by(code_commune, commune_norm) |>
+  summarise(
+    commune_2020 = first(commune),
+    inscrits_2020 = sum(inscrits, na.rm = TRUE),
+    votants_2020 = sum(votants, na.rm = TRUE),
+    part_2020 = 100 * votants_2020 / inscrits_2020,
+    .groups = "drop"
+  )
+
+commune_26 <- mun26 |>
+  group_by(code_commune, commune_norm) |>
+  summarise(
+    commune = first(commune),
+    inscrits_2026 = sum(inscrits, na.rm = TRUE),
+    votants_2026 = sum(votants, na.rm = TRUE),
+    part_2026 = 100 * votants_2026 / inscrits_2026,
+    .groups = "drop"
+  )
+
+communes_cmp <- inner_join(commune_20, commune_26, by = c("code_commune", "commune_norm")) |>
+  mutate(
+    delta_part = part_2026 - part_2020,
+    delta_votants = votants_2026 - votants_2020,
+    delta_inscrits = inscrits_2026 - inscrits_2020,
+    commune_label = if_else(commune_norm == "NOUMEA", "Nouméa", commune)
+  )
+
+territoire_stats <- communes_cmp |>
+  summarise(
+    inscrits_2020 = sum(inscrits_2020, na.rm = TRUE),
+    votants_2020 = sum(votants_2020, na.rm = TRUE),
+    part_2020 = 100 * votants_2020 / inscrits_2020,
+    inscrits_2026 = sum(inscrits_2026, na.rm = TRUE),
+    votants_2026 = sum(votants_2026, na.rm = TRUE),
+    part_2026 = 100 * votants_2026 / inscrits_2026,
+    delta_part = part_2026 - part_2020
+  )
+
+noumea_stats <- communes_cmp |>
+  filter(commune_norm == "NOUMEA")
+
+municipales_historique <- tibble(
+  annee = rep(c(2008, 2014, 2020, 2026), each = 2),
+  territoire = rep(c("Nouméa", "Nouvelle-Calédonie"), times = 4),
+  participation = c(
+    53.81, 62.248338953624256,
+    60.87, 66.95518390837346,
+    noumea_stats$part_2020, territoire_stats$part_2020,
+    noumea_stats$part_2026, territoire_stats$part_2026
+  )
+) |>
+  mutate(
+    annee_label = factor(as.character(annee), levels = as.character(unique(annee))),
+    territoire = factor(territoire, levels = c("Nouméa", "Nouvelle-Calédonie"))
+  )
+
+noumea_municipales_historique <- municipales_historique |>
+  filter(territoire == "Nouméa")
+
+noumea_municipales_2020 <- noumea_municipales_historique |>
+  filter(annee == 2020) |>
+  slice(1)
+
+noumea_municipales_2008 <- noumea_municipales_historique |>
+  filter(annee == 2008) |>
+  slice(1)
+
+noumea_municipales_2014 <- noumea_municipales_historique |>
+  filter(annee == 2014) |>
+  slice(1)
+
+noumea_municipales_2026 <- noumea_municipales_historique |>
+  filter(annee == 2026) |>
+  slice(1)
+
+noumea_municipales_avant_2020 <- noumea_municipales_historique |>
+  filter(annee < 2020)
+
+hors_noumea_stats <- communes_cmp |>
+  mutate(type = if_else(commune_norm == "NOUMEA", "Nouméa", "Autres communes")) |>
+  group_by(type) |>
+  summarise(
+    inscrits_2020 = sum(inscrits_2020, na.rm = TRUE),
+    votants_2020 = sum(votants_2020, na.rm = TRUE),
+    part_2020 = 100 * votants_2020 / inscrits_2020,
+    inscrits_2026 = sum(inscrits_2026, na.rm = TRUE),
+    votants_2026 = sum(votants_2026, na.rm = TRUE),
+    part_2026 = 100 * votants_2026 / inscrits_2026,
+    delta_part = part_2026 - part_2020,
+    .groups = "drop"
+  )
+
+delta_nc <- territoire_stats$delta_part
+delta_noumea <- noumea_stats$delta_part
+
+noumea_bureaux <- inner_join(
+  mun20 |>
+    filter(commune_norm == "NOUMEA") |>
+    select(
+      code_bv,
+      inscrits_2020 = inscrits,
+      votants_2020 = votants,
+      abstentions_2020 = abstentions,
+      bureau_2020 = bureau_nom
+    ),
+  mun26 |>
+    filter(commune_norm == "NOUMEA") |>
+    select(
+      code_bv,
+      inscrits_2026 = inscrits,
+      votants_2026 = votants,
+      abstentions_2026 = abstentions,
+      bureau_2026 = bureau_nom,
+      etablissement_nom,
+      iris_codgeo,
+      iris_libgeo
+    ),
+  by = "code_bv"
+) |>
+  mutate(
+    part_2020 = 100 * votants_2020 / inscrits_2020,
+    part_2026 = 100 * votants_2026 / inscrits_2026,
+    delta_part = part_2026 - part_2020,
+    delta_inscrits = inscrits_2026 - inscrits_2020,
+    delta_votants = votants_2026 - votants_2020,
+    delta_abstentions = abstentions_2026 - abstentions_2020,
+    delta_vs_nc = delta_part - delta_nc,
+    delta_vs_noumea = delta_part - delta_noumea,
+    num_bv = suppressWarnings(as.integer(code_bv)),
+    iris_label = label_iris(iris_libgeo),
+    classe_tendance = case_when(
+      delta_part < delta_nc ~ "Moins que la hausse du territoire",
+      delta_part < delta_noumea ~ "Moins que la hausse de Nouméa",
+      TRUE ~ "Au-dessus de la hausse de Nouméa"
+    ),
+    classe_tendance = factor(
+      classe_tendance,
+      levels = c("Moins que la hausse du territoire", "Moins que la hausse de Nouméa", "Au-dessus de la hausse de Nouméa")
+    ),
+    sous_tendance_nc = delta_part < delta_nc,
+    sous_tendance_noumea = delta_part < delta_noumea,
+    iris_codgeo_num = suppressWarnings(as.numeric(iris_codgeo))
+  )
+
+bureaux_counts <- noumea_bureaux |>
+  summarise(
+    n_bureaux = n(),
+    baisse = sum(delta_part < 0, na.rm = TRUE),
+    sous_tendance_nc = sum(sous_tendance_nc, na.rm = TRUE),
+    sous_tendance_noumea = sum(sous_tendance_noumea, na.rm = TRUE),
+    participation_sous_moyenne_2026 = sum(part_2026 < noumea_stats$part_2026, na.rm = TRUE),
+    votants_hausse = sum(delta_votants > 0, na.rm = TRUE),
+    votants_baisse = sum(delta_votants < 0, na.rm = TRUE),
+    inscrits_baisse = sum(delta_inscrits < 0, na.rm = TRUE),
+    abstentions_baisse = sum(delta_abstentions < 0, na.rm = TRUE)
+)
+
+noumea_iris <- noumea_bureaux |>
+  group_by(iris_codgeo_num, iris_libgeo, iris_label) |>
+  summarise(
+    n_bv = n(),
+    inscrits_2020 = sum(inscrits_2020, na.rm = TRUE),
+    votants_2020 = sum(votants_2020, na.rm = TRUE),
+    inscrits_2026 = sum(inscrits_2026, na.rm = TRUE),
+    votants_2026 = sum(votants_2026, na.rm = TRUE),
+    part_2020 = 100 * votants_2020 / inscrits_2020,
+    part_2026 = 100 * votants_2026 / inscrits_2026,
+    abstention_2020 = 100 - part_2020,
+    abstention_2026 = 100 - part_2026,
+    delta_part = part_2026 - part_2020,
+    delta_abstention = abstention_2026 - abstention_2020,
+    delta_inscrits = inscrits_2026 - inscrits_2020,
+    delta_votants = votants_2026 - votants_2020,
+    delta_vs_nc = delta_part - delta_nc,
+    delta_vs_noumea = delta_part - delta_noumea,
+    classe_tendance = case_when(
+      delta_part < delta_nc ~ "Moins que la hausse du territoire",
+      delta_part < delta_noumea ~ "Moins que la hausse de Nouméa",
+      TRUE ~ "Au-dessus de la hausse de Nouméa"
+    ),
+    classe_tendance = factor(
+      classe_tendance,
+      levels = c("Moins que la hausse du territoire", "Moins que la hausse de Nouméa", "Au-dessus de la hausse de Nouméa")
+    ),
+    .groups = "drop"
+  )
+
+noumea_iris <- noumea_iris |>
+  left_join(iris_context, by = "iris_codgeo_num") |>
+  left_join(access_iris, by = "iris_codgeo_num")
+
+quartiers_sous_tendance <- noumea_iris |>
+  filter(classe_tendance != "Au-dessus de la hausse de Nouméa") |>
+  arrange(classe_tendance, delta_part)
+
+quartiers_nc <- noumea_iris |>
+  filter(classe_tendance == "Moins que la hausse du territoire") |>
+  arrange(delta_part)
+
+quartiers_sous_noumea <- noumea_iris |>
+  filter(classe_tendance == "Moins que la hausse de Nouméa") |>
+  arrange(delta_part)
+
+abstention_noumea_2026 <- 100 - noumea_stats$part_2026
+
+quartiers_cumul_signal <- quartiers_sous_tendance |>
+  filter(abstention_2026 > abstention_noumea_2026) |>
+  arrange(desc(abstention_2026))
+
+quartiers_nc_names <- collapse_and(quartiers_nc$iris_label)
+quartiers_sous_noumea_names <- collapse_and(quartiers_sous_noumea$iris_label)
+quartiers_cumul_signal_names <- collapse_and(quartiers_cumul_signal$iris_label)
+
+iris_tendance_counts <- noumea_iris |>
+  count(classe_tendance, name = "n_iris") |>
+  complete(classe_tendance, fill = list(n_iris = 0))
+
+noumea_iris <- noumea_iris |>
+  mutate(
+    groupe_lecture = if_else(
+      classe_tendance != "Au-dessus de la hausse de Nouméa" & abstention_2026 > abstention_noumea_2026,
+      "Cumul des deux signaux",
+      "Autres quartiers"
+    ),
+    groupe_lecture = factor(
+      groupe_lecture,
+      levels = c("Cumul des deux signaux", "Autres quartiers")
+    )
+  )
+
+groupes_description <- noumea_iris |>
+  group_by(groupe_lecture) |>
+  summarise(
+    `IRIS` = n(),
+    `inscrits 2026` = sum(inscrits_2026, na.rm = TRUE),
+    `abstention 2026` = weighted_mean(abstention_2026, inscrits_2026),
+    `écart vs Nouméa` = weighted_mean(delta_vs_noumea, inscrits_2026),
+    `temps 8 centres` = weighted_mean(temps_8_centres, population_totale),
+    `hausse temps` = weighted_mean(hausse_temps_8_centres, population_totale),
+    `population >30 min` = weighted_mean(part_plus_30_8_centres, population_totale),
+    .groups = "drop"
+  )
+
+groupe_cumul_signal <- groupes_description |>
+  filter(groupe_lecture == "Cumul des deux signaux")
+
+groupe_reste_noumea <- groupes_description |>
+  filter(groupe_lecture == "Autres quartiers")
+
+noumea_components <- tibble(
+  indicateur = factor(
+    c("Inscrits", "Votants", "Abstentions"),
+    levels = c("Inscrits", "Votants", "Abstentions")
+  ),
+  valeur_2020 = c(
+    noumea_stats$inscrits_2020,
+    noumea_stats$votants_2020,
+    noumea_stats$inscrits_2020 - noumea_stats$votants_2020
+  ),
+  valeur_2026 = c(
+    noumea_stats$inscrits_2026,
+    noumea_stats$votants_2026,
+    noumea_stats$inscrits_2026 - noumea_stats$votants_2026
+  )
+) |>
+  mutate(delta = valeur_2026 - valeur_2020)
+
+```
+
+La première note publiée ici sur le regroupement des bureaux de vote à Nouméa avait un objectif assez simple : donner des ordres de grandeur sur les temps d'accès, pour apporter des repères chiffrés dans un débat public déjà très chargé. Elle a ensuite été reprise dans le débat public, notamment par [Les Nouvelles calédoniennes](https://www.lnc.nc/article/une-etude-relance-le-debat-sur-le-nombre-de-bureaux-de-vote-a-noumea), puis dans le contexte de l'interpellation du gouvernement par le sénateur Robert Xowie, relayée par [NC La 1ère](https://la1ere.franceinfo.fr/nouvellecaledonie/provinciales-2026-le-senateur-robert-xowie-interpelle-le-gouvernement-sur-la-repartition-des-bureaux-de-vote-a-noumea-1707136.html).
+
+Il faut toutefois situer correctement ce type de travail. La note sur les temps d'accès n'est pas une étude d'impact complète du regroupement des bureaux de vote. Elle est une estimation exploratoire, fondée sur des hypothèses de distance et de population, destinée à objectiver une contrainte possible. C'est utile pour le débat public, mais cela ne suffit pas à établir si un scrutin est sincère ou non.
+
+Le même principe vaut pour l'argument inverse. Dans la réponse publique, un raisonnement revient : la participation aurait augmenté aux municipales de 2026, y compris dans les quartiers où le regroupement était contesté. L'idée implicite est simple : si les électeurs sont venus plus nombreux, le regroupement n'aurait donc pas eu d'incidence.
+
+:::: portrait-callout
+![](../../images/naima-moutchou-croquis.webp){.portrait-sketch}
+
+::: quote-bubble
+« Les chiffres sont en hausse par rapport aux élections de 2020 »
+
+[Déclaration rapportée par NC La 1ère / Franceinfo dans l'article cité en introduction.]{.quote-source}
+:::
+::::
+
+Ce billet examine cette déduction, sans chercher à trancher plus que les données ne le permettent. Il ne tranche pas juridiquement ou politiquement le débat ; il vérifie la solidité d'un raisonnement statistique. La hausse de participation est bien réelle. Mais elle laisse une autre question ouverte : est-ce que le regroupement des bureaux a rendu le vote plus difficile pour certains électeurs ?
+
+Le périmètre est volontairement restreint aux municipales de 2026 : les 57 bureaux administratifs de Nouméa y étaient regroupés sur 8 centres de vote. Le scénario à 9 centres, évoqué ensuite dans le débat public, relève d'une configuration différente. Il peut modifier les conditions d'accès futures, mais il ne doit pas être mélangé à l'analyse du scrutin municipal déjà passé.
+
+Le point important est simple : une hausse de participation ne prouve pas, à elle seule, qu'il n'y a pas eu de problème d'accès. Si la participation remonte partout pour des raisons politiques ou conjoncturelles, un quartier peut voter davantage qu'en 2020 tout en progressant moins que les autres. C'est ce décalage qu'il faut regarder.
+
+En résumé, quatre points guident l'analyse :
+
+-   la participation augmente bien à Nouméa ;
+-   cette hausse s'inscrit dans une hausse plus large du scrutin ;
+-   Nouméa reste très abstentionniste par rapport au reste du territoire ;
+-   à l'intérieur de Nouméa, certains quartiers progressent moins que la moyenne communale.
+
+## Nouméa progresse, mais reste très abstentionniste
+
+Au premier tour des municipales, la participation à Nouméa passe de `r fmt_pct(noumea_stats$part_2020)` en 2020 à `r fmt_pct(noumea_stats$part_2026)` en 2026. L'augmentation est donc de `r fmt_pp(noumea_stats$delta_part)` : en ce sens, l'affirmation d'une hausse est correcte.
+
+Mais cette hausse n'est pas un argument suffisant pour écarter un effet du regroupement. Sur l'ensemble des 33 communes calédoniennes, la participation progresse aussi, de `r fmt_pct(territoire_stats$part_2020)` à `r fmt_pct(territoire_stats$part_2026)`, soit `r fmt_pp(territoire_stats$delta_part)`. Dans les communes hors Nouméa, la hausse agrégée est plus limitée : `r fmt_pp(hors_noumea_stats$delta_part[hors_noumea_stats$type == "Autres communes"])`. Une partie de la hausse observée à Nouméa appartient donc à une dynamique plus générale du scrutin, qui ne peut pas être attribuée aux emplacements des bureaux de vote nouméens.
+
+Il faut en outre distinguer la progression et le niveau. En 2026, malgré sa hausse, Nouméa reste à `r fmt_pct(noumea_stats$part_2026)` de participation, donc `r fmt_pct(100 - noumea_stats$part_2026)` d'abstention. C'est `r fmt_pp(noumea_stats$part_2026 - territoire_stats$part_2026)` par rapport à la moyenne de Nouvelle-Calédonie et `r fmt_pp(noumea_stats$part_2026 - hors_noumea_stats$part_2026[hors_noumea_stats$type == "Autres communes"])` par rapport aux autres communes prises ensemble. La ville progresse davantage, mais elle part de très bas et reste très abstentionniste.
+
+:::: column-page
+::: {#fig-participation-nc layout-ncol="2"}
+![Participation 2020 en Nouvelle-Calédonie](../../data/cartes/municipales%202026/municipales_2020_t1_nc_participation_comparable.webp){#fig-participation-nc-2020}
+
+![Participation 2026 en Nouvelle-Calédonie](../../data/cartes/municipales%202026/municipales_2026_t1_nc_participation_comparable.webp){#fig-participation-nc-2026}
+
+Participation au premier tour des municipales, avec les mêmes classes de couleurs en 2020 et 2026.
+:::
+::::
+
+À l'échelle de la Nouvelle-Calédonie, la carte confirme que la participation progresse largement. Mais elle montre aussi que Nouméa reste dans les classes basses du territoire : la hausse existe, sans faire disparaître la position très abstentionniste de la ville.
+
+:::: column-page
+::: {#fig-participation-noumea-echelle-nc layout-ncol="2"}
+![Participation 2020 à Nouméa, même échelle que la Nouvelle-Calédonie](../../data/cartes/municipales%202026/municipales_2020_t1_noumea_participation_echelle_nc.webp){#fig-participation-noumea-echelle-nc-2020}
+
+![Participation 2026 à Nouméa, même échelle que la Nouvelle-Calédonie](../../data/cartes/municipales%202026/municipales_2026_t1_noumea_participation_echelle_nc.webp){#fig-participation-noumea-echelle-nc-2026}
+
+Zoom sur Nouméa avec la même échelle de couleurs que la carte de l'ensemble du territoire.
+:::
+::::
+
+Le zoom dit la même chose plus clairement. Entre 2020 et 2026, plusieurs secteurs passent dans une classe supérieure. Mais, avec la même échelle que le reste de la Nouvelle-Calédonie, une grande partie de Nouméa reste encore sous les niveaux de participation observés ailleurs sur le territoire.
+
+```{r tableau-synthese}
+bind_rows(
+  territoire_stats |>
+    mutate(espace = "Nouvelle-Calédonie"),
+  noumea_stats |>
+    transmute(
+      espace = "Nouméa",
+      inscrits_2020,
+      votants_2020,
+      part_2020,
+      inscrits_2026,
+      votants_2026,
+      part_2026,
+      delta_part
+    ),
+  hors_noumea_stats |>
+    filter(type == "Autres communes") |>
+    transmute(
+      espace = "Autres communes",
+      inscrits_2020,
+      votants_2020,
+      part_2020,
+      inscrits_2026,
+      votants_2026,
+      part_2026,
+      delta_part
+    )
+) |>
+  select(
+    espace,
+    inscrits_2020,
+    votants_2020,
+    part_2020,
+    inscrits_2026,
+    votants_2026,
+    part_2026,
+    delta_part
+  ) |>
+  gt() |>
+  fmt_number(
+    columns = c(inscrits_2020, votants_2020, inscrits_2026, votants_2026),
+    decimals = 0,
+    sep_mark = " ",
+    dec_mark = ","
+  ) |>
+  fmt_number(
+    columns = c(part_2020, part_2026, delta_part),
+    decimals = 1,
+    dec_mark = ","
+  ) |>
+  cols_label(
+    espace = "Espace",
+    inscrits_2020 = "Inscrits 2020",
+    votants_2020 = "Votants 2020",
+    part_2020 = "Participation 2020 (%)",
+    inscrits_2026 = "Inscrits 2026",
+    votants_2026 = "Votants 2026",
+    part_2026 = "Participation 2026 (%)",
+    delta_part = "Écart 2026-2020 (points)"
+  ) |>
+  tab_source_note("Lecture : premier tour des municipales 2020 et 2026.")
+```
+
+Un autre point de prudence concerne le choix de 2020 comme point de comparaison. Pour éviter de mélanger des scrutins de nature très différente, il vaut mieux rester ici sur les municipales : les référendums et les législatives ont des contextes politiques trop particuliers pour servir de jauge simple. On ne retient aussi que le premier tour, puisque le second tour des municipales 2020 avait été décalé du fait de la crise sanitaire.
+
+Sous cet angle, 2020 ressort nettement comme un point bas à Nouméa : `r fmt_pct(noumea_municipales_2020$participation)`, contre `r fmt_pct(noumea_municipales_2008$participation)` en 2008 et `r fmt_pct(noumea_municipales_2014$participation)` en 2014. Le niveau de 2026 (`r fmt_pct(noumea_municipales_2026$participation)`) est donc bien en hausse par rapport à 2020, mais il reste inférieur aux deux municipales précédentes. Les municipales de 2026 sont donc un rebond à partir d'un niveau exceptionnellement bas.
+
+```{r participation-municipales-noumea, fig.cap="Participation au premier tour des municipales à Nouméa et en Nouvelle-Calédonie depuis 2008."}
+municipales_historique |>
+  ggplot(aes(x = annee_label, y = participation, fill = territoire)) +
+  geom_col(position = position_dodge(width = 0.7), width = 0.58) +
+  geom_text(
+    aes(label = paste0(number(participation, accuracy = 0.1, decimal.mark = ","), " %")),
+    position = position_dodge(width = 0.7),
+    vjust = -0.35,
+    size = 3
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Nouméa" = "#d08b39",
+      "Nouvelle-Calédonie" = "#7a8c8d"
+    )
+  ) +
+  scale_y_continuous(
+    labels = label_number(suffix = " %", decimal.mark = ","),
+    limits = c(0, 70),
+    expand = expansion(mult = c(0, 0.12))
+  ) +
+  labs(
+    x = "Année",
+    y = "Participation",
+    fill = NULL
+  )
+```
+
+Le graphique invite donc à garder deux idées ensemble : le creux de 2020 n'est pas propre à Nouméa, puisqu'il apparaît aussi à l'échelle de la Nouvelle-Calédonie ; mais Nouméa reste en dessous du niveau territorial à chaque municipale observée.
+
+La hausse du taux de participation ne vient pas seulement d'un effet de dénominateur. À Nouméa, le nombre d'inscrits diminue de `r fmt_num(abs(noumea_stats$delta_inscrits), 0)` entre 2020 et 2026, mais le nombre de votants augmente de `r fmt_num(noumea_stats$delta_votants, 0)`. L'abstention recule de `r fmt_num(abs(noumea_components$delta[noumea_components$indicateur == "Abstentions"]), 0)`.
+
+```{r composantes-noumea, fig.cap="Inscrits, votants et abstentions à Nouméa aux municipales 2020 et 2026."}
+noumea_components |>
+  pivot_longer(
+    c(valeur_2020, valeur_2026),
+    names_to = "annee",
+    values_to = "effectif"
+  ) |>
+  mutate(
+    annee = recode(annee, valeur_2020 = "2020", valeur_2026 = "2026")
+  ) |>
+  ggplot(aes(x = indicateur, y = effectif, fill = annee)) +
+  geom_col(position = position_dodge(width = 0.72), width = 0.62) +
+  geom_text(
+    aes(label = number(effectif, accuracy = 1, big.mark = " ", decimal.mark = ",")),
+    position = position_dodge(width = 0.72),
+    vjust = -0.35,
+    size = 3
+  ) +
+  scale_y_continuous(labels = label_number(big.mark = " ", decimal.mark = ","), expand = expansion(mult = c(0, 0.12))) +
+  scale_fill_manual(values = c("2020" = "#7a8c8d", "2026" = "#2f6f8f")) +
+  labs(x = NULL, y = "Effectifs", fill = NULL)
+```
+
+Cette première comparaison invite donc à la retenue. Elle ne permet pas de dire que le regroupement a empêché la participation de progresser. Elle ne permet pas non plus de dire que le regroupement n'a eu aucun effet. Elle montre seulement que, malgré le regroupement, la participation a augmenté dans un contexte où la participation augmente aussi ailleurs. Ce que l'on ne sait pas, c'est le niveau qu'aurait atteint la participation à Nouméa avec le maillage habituel des bureaux.
+
+Le graphique suivant aide à situer cette hausse. Sur les 33 communes, `r sum(communes_cmp$delta_part > 0)` enregistrent une hausse de participation et `r sum(communes_cmp$delta_part < 0)` une baisse. Nouméa se situe dans le haut de la distribution des progressions, avec `r fmt_pp(noumea_stats$delta_part)`, soit `r fmt_pp(noumea_stats$delta_part - territoire_stats$delta_part)` au-dessus de la hausse moyenne observée sur l'ensemble du territoire. Cela confirme que la mobilisation nouméenne a réellement progressé ; cela ne suffit pas à conclure sur les conditions d'accès au vote.
+
+```{r evolution-communes, fig.cap="Évolution de la participation entre les municipales 2020 et 2026, par commune."}
+communes_cmp |>
+  mutate(
+    commune_plot = fct_reorder(commune_label, delta_part),
+    statut = if_else(commune_norm == "NOUMEA", "Nouméa", "Autres communes")
+  ) |>
+  ggplot(aes(x = commune_plot, y = delta_part, fill = statut)) +
+  geom_col(width = 0.72) +
+  geom_hline(yintercept = territoire_stats$delta_part, linetype = "dashed", color = "#4b5563") +
+  coord_flip() +
+  scale_fill_manual(values = c("Autres communes" = "#7a8c8d", "Nouméa" = "#d08b39")) +
+  scale_y_continuous(labels = label_number(suffix = " pts", decimal.mark = ",")) +
+  labs(
+    x = NULL,
+    y = "Écart de participation 2026-2020",
+    fill = NULL
+  )
+```
+
+Autrement dit, la hausse communale est un fait important, mais c'est un indicateur trop large. Elle agrège des dynamiques politiques, démographiques et territoriales très différentes : baisse du nombre d'inscrits, intensité de la compétition municipale, contexte post-crise, mobilisation différentielle selon les quartiers, et modification des lieux de vote. Pour évaluer l'argument avec un minimum de prudence, il faut donc descendre à l'intérieur de Nouméa.
+
+## À Nouméa, quels quartiers restent en retrait ?
+
+À l'échelle des 57 bureaux de Nouméa, la participation progresse dans la quasi-totalité des cas. Seuls `r bureaux_counts$baisse` bureaux enregistrent une baisse en points de participation entre 2020 et 2026. Mais cette lecture en "hausse ou baisse" est trop grossière.
+
+Un second critère consiste à comparer chaque bureau à la hausse moyenne observée en Nouvelle-Calédonie (`r fmt_pp(delta_nc)`). Sous cet angle, `r bureaux_counts$sous_tendance_nc` bureaux de Nouméa progressent moins vite que l'ensemble du territoire. Si l'on compare chaque bureau à la hausse moyenne de Nouméa (`r fmt_pp(delta_noumea)`), `r bureaux_counts$sous_tendance_noumea` bureaux progressent moins vite que la commune.
+
+```{r distribution-bureaux, fig.cap="Distribution des évolutions de participation par bureau de vote à Nouméa."}
+ggplot(noumea_bureaux, aes(x = delta_part)) +
+  geom_histogram(binwidth = 1.5, boundary = 0, fill = "#2f6f8f", color = "white") +
+  geom_vline(xintercept = delta_nc, linetype = "dashed", color = "#4b5563", linewidth = 0.8) +
+  geom_vline(xintercept = delta_noumea, linetype = "solid", color = "#d08b39", linewidth = 0.8) +
+  annotate(
+    "text",
+    x = delta_nc,
+    y = Inf,
+    label = "hausse territoire",
+    vjust = 1.4,
+    hjust = 1.05,
+    size = 3,
+    color = "#4b5563"
+  ) +
+  annotate(
+    "text",
+    x = delta_noumea,
+    y = Inf,
+    label = "hausse Nouméa",
+    vjust = 2.8,
+    hjust = -0.05,
+    size = 3,
+    color = "#9a5f1c"
+  ) +
+  scale_x_continuous(labels = label_number(suffix = " pts", decimal.mark = ",")) +
+  labs(
+    x = "Écart de participation 2026-2020",
+    y = "Nombre de bureaux"
+  )
+```
+
+À ce stade, l'échelle décisive n'est plus le bureau isolé. Pour comprendre quels territoires restent en retrait, il faut agréger les 57 bureaux par IRIS de rattachement, utilisé ici comme approximation de quartier. Ce n'est pas le quartier vécu au sens strict, mais c'est une maille stable pour comparer les secteurs. La question devient alors : quels quartiers progressent moins vite que la hausse moyenne de Nouméa ?
+
+:::: column-page
+::: {#fig-participation-noumea-interne layout-ncol="2"}
+![Participation 2020 à Nouméa, échelle ajustée à la commune](../../data/cartes/municipales%202026/municipales_2020_t1_noumea_participation_comparable.webp){#fig-participation-noumea-interne-2020}
+
+![Participation 2026 à Nouméa, échelle ajustée à la commune](../../data/cartes/municipales%202026/municipales_2026_t1_noumea_participation_comparable.webp){#fig-participation-noumea-interne-2026}
+
+Participation à Nouméa avec une échelle de couleurs ajustée aux contrastes internes de la commune.
+:::
+::::
+
+Cette seconde échelle change la focale. Elle ne sert plus à comparer Nouméa au reste de la Nouvelle-Calédonie, mais à voir les contrastes entre quartiers. On distingue mieux les secteurs du nord et de l'ouest qui restent dans les niveaux les plus bas, alors que les secteurs du sud et du sud-est ressortent davantage.
+
+La réponse tient en trois groupes. `r nrow(quartiers_nc)` IRIS progressent moins que la moyenne de Nouvelle-Calédonie (`r fmt_pp(delta_nc)`) : **`r quartiers_nc_names`**. `r nrow(quartiers_sous_noumea)` autres IRIS dépassent cette moyenne territoriale mais progressent moins que la moyenne de Nouméa (`r fmt_pp(delta_noumea)`) : **`r quartiers_sous_noumea_names`**. Les autres quartiers progressent davantage que la moyenne communale et tirent donc la moyenne nouméenne vers le haut.
+
+![Écart de participation entre les municipales 2020 et 2026 à Nouméa](../../data/cartes/municipales%202026/municipales_2026_moins_2020_t1_noumea_ecart_participation.webp){#fig-ecart-participation-noumea width="86%"}
+
+La carte des écarts rend visible le point central de cette note : même quand la participation progresse, elle ne progresse pas partout avec la même intensité. Les hausses les plus faibles se concentrent notamment dans une partie du nord et de l'ouest de Nouméa, tandis que d'autres secteurs tirent la moyenne communale vers le haut.
+
+Dans les deux graphiques qui suivent, les couleurs gardent la même lecture : rouge pour les quartiers qui progressent moins que la moyenne territoriale, orange pour ceux qui progressent moins que la moyenne de Nouméa, bleu pour ceux qui progressent davantage que la moyenne communale.
+
+```{r quartiers-tendance, fig.cap="Écart de chaque quartier/IRIS à la hausse moyenne de Nouméa entre 2020 et 2026."}
+noumea_iris |>
+  mutate(
+    iris_plot = fct_reorder(iris_label, delta_vs_noumea, .desc = TRUE),
+    label_ecart = paste0(
+      if_else(delta_vs_noumea > 0, "+", ""),
+      number(delta_vs_noumea, accuracy = 0.1, decimal.mark = ","),
+      " pt"
+    )
+  ) |>
+  ggplot(aes(x = iris_plot, y = delta_vs_noumea, fill = classe_tendance)) +
+  geom_col(width = 0.72) +
+  geom_hline(yintercept = 0, color = "#1f2937", linewidth = 0.7) +
+  geom_hline(yintercept = delta_nc - delta_noumea, linetype = "dashed", color = "#4b5563", linewidth = 0.8) +
+  geom_label(
+    aes(label = label_ecart, hjust = if_else(delta_vs_noumea >= 0, -0.12, 1.12)),
+    size = 3,
+    fill = "white",
+    label.size = 0,
+    label.padding = grid::unit(0.08, "lines")
+  ) +
+  coord_flip(clip = "off") +
+  scale_fill_manual(
+    values = c(
+      "Moins que la hausse du territoire" = "#b65f45",
+      "Moins que la hausse de Nouméa" = "#d08b39",
+      "Au-dessus de la hausse de Nouméa" = "#2f6f8f"
+    )
+  ) +
+  scale_y_continuous(
+    labels = label_number(suffix = " pts", decimal.mark = ","),
+    expand = expansion(mult = c(0.16, 0.18))
+  ) +
+  labs(
+    x = NULL,
+    y = "Écart à la hausse moyenne de Nouméa",
+    fill = NULL
+  ) +
+  theme(legend.position = "none")
+```
+
+La lecture est directe : tout ce qui se situe à gauche de zéro progresse moins vite que la moyenne de Nouméa. La ligne pointillée correspond à l'écart qu'il faut atteindre pour progresser moins vite que la moyenne de Nouvelle-Calédonie. C'est le seuil le plus sévère : il ne concerne que Logicoop et Rivière Salée Sud.
+
+Il faut ensuite regarder les volumes, parce qu'un écart en points peut venir d'une progression limitée du nombre de votants, d'une baisse du nombre d'inscrits, ou des deux. Dans les `r nrow(quartiers_sous_tendance)` IRIS en retrait par rapport à la moyenne de Nouméa, le solde agrégé est de `r fmt_signed_num(sum(quartiers_sous_tendance$delta_votants), 0)` votants entre 2020 et 2026, pour `r fmt_num(sum(quartiers_sous_tendance$inscrits_2026), 0)` inscrits en 2026.
+
+```{r quartiers-votants, fig.cap="Variation absolue du nombre de votants par quartier/IRIS à Nouméa."}
+noumea_iris |>
+  mutate(
+    iris_plot = fct_reorder(iris_label, delta_votants, .desc = TRUE),
+    label_votants = fmt_signed_num(delta_votants, 0)
+  ) |>
+  ggplot(aes(x = iris_plot, y = delta_votants, fill = classe_tendance)) +
+  geom_col(width = 0.72) +
+  geom_hline(yintercept = 0, color = "#1f2937", linewidth = 0.7) +
+  geom_text(
+    aes(label = label_votants, hjust = if_else(delta_votants >= 0, -0.12, 1.12)),
+    size = 3
+  ) +
+  coord_flip(clip = "off") +
+  scale_fill_manual(
+    values = c(
+      "Moins que la hausse du territoire" = "#b65f45",
+      "Moins que la hausse de Nouméa" = "#d08b39",
+      "Au-dessus de la hausse de Nouméa" = "#2f6f8f"
+    )
+  ) +
+  scale_y_continuous(
+    labels = label_number(big.mark = " ", decimal.mark = ","),
+    expand = expansion(mult = c(0.16, 0.18))
+  ) +
+  labs(
+    x = NULL,
+    y = "Votants 2026 - votants 2020",
+    fill = NULL
+  ) +
+  theme(legend.position = "none")
+```
+
+Ce second graphique évite une confusion importante. Les quartiers en retrait ne sont pas nécessairement des quartiers où la participation s'effondre en volume : Logicoop gagne légèrement des votants, tandis que Rivière Salée Sud en perd. Le signal est plutôt différentiel : ces quartiers ne suivent pas la hausse observée ailleurs dans Nouméa.
+
+À l'échelle des quartiers, la hausse nouméenne est portée par une partie de la commune, pendant que Logicoop, Rivière Salée Sud et onze autres IRIS restent en retrait par rapport à la moyenne communale.
+
+## Ces quartiers sont-ils aussi plus abstentionnistes ?
+
+À ce stade, il faut éviter de surinterpréter. Le croisement direct entre distance au bureau et participation est trop fragile pour servir de preuve : il dépend du découpage spatial retenu, du rattachement des électeurs au bureau, d'hypothèses de pondération par population et ne serait que partiel sans prendre en compte l'ensemble des autres facteurs pouvant influencer la participation. Ici, on fait autre chose : on décrit les quartiers qui progressent moins vite que la moyenne de Nouméa.
+
+La lecture la plus utile est donc le cumul de deux signaux. D'un côté, une hausse de participation moins forte que la moyenne de Nouméa. De l'autre, une abstention 2026 plus élevée que la moyenne communale (`r fmt_pct(abstention_noumea_2026)`). Ce cumul concerne `r nrow(quartiers_cumul_signal)` IRIS : **`r quartiers_cumul_signal_names`**.
+
+```{r quartiers-dynamique-abstention, fig.cap="Croisement entre écart à la hausse moyenne de Nouméa et abstention 2026, par IRIS."}
+label_layer <- if (requireNamespace("ggrepel", quietly = TRUE)) {
+  ggrepel::geom_label_repel(
+    aes(label = label),
+    size = 3,
+    fill = "white",
+    label.size = 0,
+    label.padding = grid::unit(0.08, "lines"),
+    box.padding = 0.28,
+    point.padding = 0.15,
+    max.overlaps = Inf,
+    min.segment.length = 0,
+    seed = 2026,
+    na.rm = TRUE,
+    show.legend = FALSE
+  )
+} else {
+  geom_label(
+    aes(label = label),
+    nudge_y = 0.55,
+    size = 2.8,
+    fill = "white",
+    label.size = 0,
+    label.padding = grid::unit(0.08, "lines"),
+    na.rm = TRUE,
+    show.legend = FALSE
+  )
+}
+
+noumea_iris |>
+  mutate(
+    label = if_else(
+      groupe_lecture == "Cumul des deux signaux",
+      iris_label,
+      NA_character_
+    )
+  ) |>
+  ggplot(aes(x = delta_vs_noumea, y = abstention_2026, color = groupe_lecture, size = inscrits_2026)) +
+  geom_vline(xintercept = 0, color = "#1f2937", linewidth = 0.7) +
+  geom_vline(xintercept = delta_nc - delta_noumea, linetype = "dashed", color = "#4b5563", linewidth = 0.8) +
+  geom_hline(yintercept = abstention_noumea_2026, color = "#1f2937", linewidth = 0.7) +
+  geom_point(alpha = 0.84) +
+  label_layer +
+  scale_color_manual(
+    values = c(
+      "Cumul des deux signaux" = "#b65f45",
+      "Autres quartiers" = "#7a8c8d"
+    ),
+    labels = c(
+      "Cumul des deux signaux" = "Hausse plus faible + abstention plus élevée",
+      "Autres quartiers" = "Autres quartiers"
+    )
+  ) +
+  scale_x_continuous(labels = label_number(suffix = " pts", decimal.mark = ",")) +
+  scale_y_continuous(labels = label_number(suffix = " %", decimal.mark = ",")) +
+  scale_size_continuous(name = "Inscrits 2026", range = c(2.5, 7)) +
+  guides(
+    size = "none",
+    color = guide_legend(nrow = 2, byrow = TRUE)
+  ) +
+  labs(
+    x = "Écart à la hausse moyenne de Nouméa",
+    y = "Abstention 2026",
+    color = NULL
+  )
+```
+
+La ligne verticale noire marque la hausse moyenne de Nouméa : à gauche, les quartiers progressent moins vite que la commune. La ligne horizontale marque l'abstention moyenne de Nouméa : au-dessus, les quartiers sont plus abstentionnistes que la moyenne communale. Les points rouges sont donc ceux qui cumulent les deux signaux. Leur abstention moyenne aux municipales de 2026 est de `r fmt_pct(groupe_cumul_signal[["abstention 2026"]])`, contre `r fmt_pct(groupe_reste_noumea[["abstention 2026"]])` dans le reste de Nouméa.
+
+On pourrait chercher des points de comparaison dans d'autres élections, mais ce serait vite trompeur : référendums, législatives et provinciales obéissent à des logiques de mobilisation très différentes. Pour ne pas mélanger les registres, on reste donc ici sur les municipales, et plus précisément sur ce que les données de 2026 disent des quartiers en retrait.
+
+Le tableau ci-dessous se limite donc à ces quartiers. Il donne leur abstention en 2026, leur écart à la hausse moyenne de Nouméa et les temps d'accès moyens vers les 8 centres. Ces temps d'accès donnent un ordre de grandeur concret. Ils ne servent pas ici de test statistique.
+
+```{r tableau-quartiers-description}
+quartiers_cumul_signal |>
+  transmute(
+    `IRIS` = iris_label,
+    `abstention 2026` = abstention_2026,
+    `écart vs Nouméa` = delta_vs_noumea,
+    `temps 8 centres` = temps_8_centres,
+    `hausse temps` = hausse_temps_8_centres
+  ) |>
+  gt() |>
+  fmt_number(
+    columns = c(
+      `abstention 2026`,
+      `écart vs Nouméa`,
+      `temps 8 centres`,
+      `hausse temps`
+    ),
+    decimals = 1,
+    dec_mark = ","
+  ) |>
+  cols_label(
+    `abstention 2026` = "abstention 2026 (%)",
+    `écart vs Nouméa` = "écart à la hausse de Nouméa",
+    `temps 8 centres` = "temps moyen 8 centres (min)",
+    `hausse temps` = "hausse vs bureaux habituels (min)"
+  ) |>
+  tab_source_note("Lecture : quartiers qui cumulent une hausse de participation inférieure à la moyenne de Nouméa et une abstention 2026 supérieure à la moyenne communale. Les temps d'accès sont descriptifs.")
+```
+
+Ce tableau donne une lecture concrète : on voit les quartiers où les deux signaux se superposent, leur niveau d'abstention en 2026 et l'ordre de grandeur de leur accès aux centres de vote. La conclusion reste prudente : ces indicateurs décrivent une situation, ils ne suffisent pas à attribuer une cause unique à l'abstention.
+
+## Ce que les données permettent de dire
+
+L'affirmation selon laquelle la participation a augmenté à Nouméa entre les municipales de 2020 et celles de 2026 ne clôt pas le débat : elle montre que la participation a augmenté malgré le regroupement, dans un contexte où elle remonte aussi ailleurs. Elle ne dit pas ce qu'aurait été la participation avec le maillage habituel des bureaux. Autrement dit, elle ne permet pas de conclure mécaniquement à l'absence d'effet du regroupement.
+
+Derrière le débat statistique, il y a aussi une question démocratique plus simple : tous les citoyens d'une même commune disposent-ils de conditions concrètes comparables pour aller voter ? Dire que la participation a augmenté ne répond pas non plus à cette question. Une hausse générale peut coexister avec des contraintes d'accès plus fortes dans certains quartiers.
+
+La lecture la plus prudente est donc la suivante : Nouméa progresse, tout en restant très abstentionniste ; certains quartiers progressent moins vite que la moyenne communale ; et plusieurs d'entre eux cumulent aussi une abstention supérieure à la moyenne en 2026. Ces résultats ne démontrent pas, à eux seuls, un effet causal du regroupement. Ils montrent plutôt pourquoi le débat ne peut pas être refermé par le seul constat d'une hausse de participation. C'est dans cet espace, entre alerte exploratoire et preuve définitive, que les données peuvent utilement nourrir le débat public.
+
+## Sources et données utilisées
+
+-   Articles de contexte : [Les Nouvelles calédoniennes, "Une étude relance le débat sur le nombre de bureaux de vote à Nouméa"](https://www.lnc.nc/article/une-etude-relance-le-debat-sur-le-nombre-de-bureaux-de-vote-a-noumea) ; [NC La 1ère / Franceinfo, "Provinciales 2026 : le sénateur Robert Xowie interpelle le gouvernement sur la répartition des bureaux de vote à Nouméa"](https://la1ere.franceinfo.fr/nouvellecaledonie/provinciales-2026-le-senateur-robert-xowie-interpelle-le-gouvernement-sur-la-repartition-des-bureaux-de-vote-a-noumea-1707136.html).
+-   Résultats électoraux par bureau de vote — Ministère de l'Intérieur, pour les municipales 2020 et 2026.
+-   Participation aux municipales 2008 et 2014 — pages Wikipédia dédiées aux [élections municipales de 2008 à Nouméa](https://fr.wikipedia.org/wiki/%C3%89lections_municipales_de_2008_%C3%A0_Noum%C3%A9a) et aux [élections municipales de 2014 à Nouméa](https://fr.wikipedia.org/wiki/%C3%89lections_municipales_de_2014_%C3%A0_Noum%C3%A9a).
+-   IRIS RGP 2019 — ISEE Nouvelle-Calédonie, utilisés pour rattacher les bureaux aux quartiers.
+-   Temps d'accès piéton — mêmes sources et mêmes traitements que dans [l'article sur le regroupement des bureaux de vote à Nouméa](../regroupement-bureaux-vote-noumea/) : réseau BDROUTE-NC de la DITTT, grille de population 2020 / Human Settlement Footprint de la Pacific Community (SPC), calculs de réseau en RGNC91-93 / Lambert New Caledonia (EPSG:3163).
+-   Cartes réalisées à partir des résultats harmonisés, sous R et QGIS.

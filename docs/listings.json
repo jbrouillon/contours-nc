@@ -2,19 +2,22 @@
   {
     "listing": "/articles/index.html",
     "items": [
+      "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"
     ]
   },
   {
-    "listing": "/dataviz/index.html",
+    "listing": "/cartes/index.html",
     "items": [
-      "/dataviz/temps-trajet-bureaux-animation.html"
+      "/cartes/participation-municipales-animation.html",
+      "/cartes/temps-trajet-bureaux-animation.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"
     ]

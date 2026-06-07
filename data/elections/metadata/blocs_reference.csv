@@ -1,0 +1,68 @@
+election,option_norm,bloc,camp_institutionnel,parti,libelle,source,notes
+referendum_2018,OUI,independantiste,independantiste,OUI,Oui,wikipedia_referendum,Assimile au vote pour l'independance
+referendum_2018,NON,loyaliste,anti_independantiste,NON,Non,wikipedia_referendum,Assimile au vote contre l'independance
+referendum_2020,OUI,independantiste,independantiste,OUI,Oui,wikipedia_referendum,Assimile au vote pour l'independance
+referendum_2020,NON,loyaliste,anti_independantiste,NON,Non,wikipedia_referendum,Assimile au vote contre l'independance
+referendum_2021,OUI,independantiste,independantiste,OUI,Oui,wikipedia_referendum,Assimile au vote pour l'independance
+referendum_2021,NON,loyaliste,anti_independantiste,NON,Non,wikipedia_referendum,Assimile au vote contre l'independance
+provinciales_2019,PIL LISTE 01,independantiste,independantiste,UKG,Unitaire Kanaky generation,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 02,independantiste,independantiste,UC-FLNKS,Union caledonienne - FLNKS,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 03,independantiste,independantiste,PT,Parti travailliste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 04,loyaliste,anti_independantiste,AVEC NOUS,Avec nous,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 05,independantiste,independantiste,LKS,Liberation kanak socialiste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 06,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_provinciales_2019,CE compte dans anti-independantistes mais isole comme centriste
+provinciales_2019,PIL LISTE 07,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PIL LISTE 08,independantiste,independantiste,UNI-PLK,Union nationale pour l'independance - Palika,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PN LISTE 01,independantiste,independantiste,UNI,Union nationale pour l'independance,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PN LISTE 02,loyaliste,anti_independantiste,AGISSONS NORD,Agissons pour le Nord,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PN LISTE 03,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_provinciales_2019,CE compte dans anti-independantistes mais isole comme centriste
+provinciales_2019,PN LISTE 04,independantiste,independantiste,PT,Parti travailliste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PN LISTE 05,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PN LISTE 06,independantiste,independantiste,UC-FLNKS,Union caledonienne - FLNKS,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 01,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 02,loyaliste,anti_independantiste,RN,Rassemblement national,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 03,loyaliste,anti_independantiste,AVENIR CONFIANCE,L'Avenir en confiance,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 04,independantiste,independantiste,PT,Parti travailliste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 05,loyaliste,anti_independantiste,CNR,Caledonie nouvelle et reunie,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 06,centriste,anti_independantiste,LEO,L'Eveil oceanien,wikipedia_provinciales_2019,Classe comme centre anti-independantiste
+provinciales_2019,PS LISTE 07,independantiste,independantiste,FLNKS,Front de liberation nationale kanak et socialiste,wikipedia_provinciales_2019,Mapping par total de voix
+provinciales_2019,PS LISTE 08,autre,neutre,ACT,Alliance citoyenne pour la transition,wikipedia_provinciales_2019,Autres listes selon Wikipedia
+provinciales_2019,PS LISTE 09,autre,neutre,CA,Construire autrement,wikipedia_provinciales_2019,Autres listes selon Wikipedia
+provinciales_2019,PS LISTE 10,centriste,anti_independantiste,DCC,Destin commun caledonien,wikipedia_provinciales_2019,Centre anti-independantiste
+provinciales_2019,PS LISTE 11,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_provinciales_2019,CE compte dans anti-independantistes mais isole comme centriste
+legislatives_2022,NICOLAS METZDORF,loyaliste,anti_independantiste,GNC,Generations NC,wikipedia_legislatives_2022,GNC dans Union loyaliste - Ensemble
+legislatives_2022,PHILIPPE DUNOYER,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_legislatives_2022,CE isole comme centriste
+legislatives_2022,GERARD REIGNIER,independantiste,independantiste,UC,Union caledonienne,wikipedia_legislatives_2022,FLNKS
+legislatives_2022,WALISAUNE WAHETRA,independantiste,independantiste,PALIKA,Palika,wikipedia_legislatives_2022,FLNKS
+legislatives_2022,THIERRY SANTA,loyaliste,anti_independantiste,R-LR,Rassemblement - LR,wikipedia_legislatives_2022,UDC
+legislatives_2022,VIRGINIE RUFFENACH,loyaliste,anti_independantiste,R-LR,Rassemblement - LR,wikipedia_legislatives_2022,UDC
+legislatives_2022,ALAIN DESCOMBELS,loyaliste,anti_independantiste,RN,Rassemblement national,wikipedia_legislatives_2022,RN
+legislatives_2022,GUY OLIVIER CUENOT,loyaliste,anti_independantiste,RN,Rassemblement national,wikipedia_legislatives_2022,RN
+legislatives_2022,MUNEIKO HAOCAS,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_legislatives_2022,REG
+legislatives_2022,MICHELE HOMBOE,autre,neutre,CA,Construire autrement,wikipedia_legislatives_2022,DVC
+legislatives_2022,JOEL KASARHEROU,autre,neutre,CA,Construire autrement,wikipedia_legislatives_2022,DVC
+legislatives_2022,PASCAL LAFLEUR,loyaliste,anti_independantiste,SE,Sans etiquette droite,wikipedia_legislatives_2022,DVD
+legislatives_2022,ANTOINE GIL,loyaliste,anti_independantiste,MCF,Mouvement des citoyens francais,wikipedia_legislatives_2022,DVD
+legislatives_2022,JEREMY SIMON,loyaliste,anti_independantiste,LP,Les Patriotes,wikipedia_legislatives_2022,DSV
+legislatives_2022,VERONIQUE PAGAND,loyaliste,anti_independantiste,DLF,Debout la France,wikipedia_legislatives_2022,DSV
+legislatives_2022,JOANNES ITITIATY,autre,neutre,SE,Sans etiquette,wikipedia_legislatives_2022,DIV
+legislatives_2022,MANUEL MILLAR,autre,neutre,SE,Sans etiquette,wikipedia_legislatives_2022,DIV
+legislatives_2024,NICOLAS METZDORF,loyaliste,anti_independantiste,GNC,Generations NC,wikipedia_legislatives_2024,LL-LR
+legislatives_2024,ALCIDE PONGA,loyaliste,anti_independantiste,R-LR,Rassemblement - LR,wikipedia_legislatives_2024,LL-LR
+legislatives_2024,OMAYRA LISA MEUN NAISSELINE,independantiste,independantiste,UC,Union caledonienne,wikipedia_legislatives_2024,REG
+legislatives_2024,EMMANUEL TJIBAOU,independantiste,independantiste,UC,Union caledonienne,wikipedia_legislatives_2024,REG
+legislatives_2024,PHILIPPE DUNOYER,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_legislatives_2024,ENS
+legislatives_2024,GERARD POADJA,centriste,anti_independantiste,CE,Caledonie ensemble,wikipedia_legislatives_2024,ENS
+legislatives_2024,VEYLMA FALAEO,centriste,anti_independantiste,LEO,L'Eveil oceanien,wikipedia_legislatives_2024,DVG
+legislatives_2024,MILAKULO TUKUMULI,centriste,anti_independantiste,LEO,L'Eveil oceanien,wikipedia_legislatives_2024,DVG
+legislatives_2024,SIMON LOUECKHOTE,loyaliste,anti_independantiste,RN,Rassemblement national,wikipedia_legislatives_2024,RN
+legislatives_2024,MUNEIKO HAOCAS,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_legislatives_2024,REG
+legislatives_2024,LUTHER VOUDJO,independantiste,independantiste,MNIS,Mouvement neo-independantiste et souverainiste,wikipedia_legislatives_2024,REG
+legislatives_2024,RONALD FRERE,independantiste,independantiste,SC,Souverainete caledonienne,wikipedia_legislatives_2024,REG
+legislatives_2024,JUANITA CIANE ANGEXETINE EP RAILATI,independantiste,independantiste,SE,Sans etiquette regionaliste,wikipedia_legislatives_2024,Classification tentative
+legislatives_2024,GERMAINE NEMIA BISHOP,independantiste,independantiste,RA,Rassemblement autochtone,wikipedia_legislatives_2024,Classification tentative
+legislatives_2024,GERMAINE TOLETA NEMIA EP BISHOP,independantiste,independantiste,RA,Rassemblement autochtone,wikipedia_legislatives_2024,Variante du libelle source; classification tentative
+legislatives_2024,CEDRIC DEVAUD,autre,neutre,UPA,Union populaire avec animaux,wikipedia_legislatives_2024,ECO
+legislatives_2024,PIERRE HENRI CUENOT,loyaliste,anti_independantiste,MCF,Mouvement des citoyens francais,wikipedia_legislatives_2024,DVD
+legislatives_2024,THOMAS NASRI,loyaliste,anti_independantiste,REC,Reconquete,wikipedia_legislatives_2024,REC
+legislatives_2024,MANUEL MILLAR,autre,neutre,CDH,CDH,wikipedia_legislatives_2024,DIV

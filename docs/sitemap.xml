@@ -1,35 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/ressources/index.html</loc>
-    <lastmod>2026-05-25T01:18:41.529Z</lastmod>
+    <loc>https://contours.nc/ressources/index.html</loc>
+    <lastmod>2026-06-07T01:39:12.085Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/posts/capital-socio-economique-nouvelle-caledonie/index.html</loc>
-    <lastmod>2026-05-31T02:23:53.618Z</lastmod>
+    <loc>https://contours.nc/posts/participation-accessibilite-bureaux-noumea/index.html</loc>
+    <lastmod>2026-06-07T02:38:17.889Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/dataviz/temps-trajet-bureaux-animation.html</loc>
-    <lastmod>2026-05-31T00:45:15.476Z</lastmod>
+    <loc>https://contours.nc/newsletter/index.html</loc>
+    <lastmod>2026-06-07T01:05:26.839Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/articles/index.html</loc>
+    <loc>https://contours.nc/contact/index.html</loc>
+    <lastmod>2026-06-07T02:32:41.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/cartes/participation-municipales-animation.html</loc>
+    <lastmod>2026-06-06T12:50:00.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/articles/index.html</loc>
     <lastmod>2026-05-25T01:18:01.367Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/about.html</loc>
-    <lastmod>2026-05-31T00:07:48.560Z</lastmod>
+    <loc>https://contours.nc/about.html</loc>
+    <lastmod>2026-06-06T12:48:11.438Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/dataviz/index.html</loc>
-    <lastmod>2026-05-25T04:31:47.524Z</lastmod>
+    <loc>https://contours.nc/cartes/index.html</loc>
+    <lastmod>2026-06-07T01:40:43.892Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/index.html</loc>
-    <lastmod>2026-05-25T01:19:45.998Z</lastmod>
+    <loc>https://contours.nc/cartes/temps-trajet-bureaux-animation.html</loc>
+    <lastmod>2026-06-07T01:39:12.092Z</lastmod>
   </url>
   <url>
-    <loc>https://jbrouillon.github.io/contours-nc/posts/regroupement-bureaux-vote-noumea/index.html</loc>
-    <lastmod>2026-05-31T00:56:33.126Z</lastmod>
+    <loc>https://contours.nc/index.html</loc>
+    <lastmod>2026-06-07T02:04:31.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/index.html</loc>
+    <lastmod>2026-06-07T02:17:50.963Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/posts/regroupement-bureaux-vote-noumea/index.html</loc>
+    <lastmod>2026-06-07T02:17:42.714Z</lastmod>
   </url>
 </urlset>

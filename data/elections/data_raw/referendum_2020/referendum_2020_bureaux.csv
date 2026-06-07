@@ -1,0 +1,305 @@
+province;commune;num_bv;bv;inscrits;votants;abstention;nuls;blancs;exprimes;oui;non
+Province Nord;Belep;1;Mairie;740;582;158;1;1;580;559;21
+Province Sud;Boulouparis;4;Centre culturel;598;548;50;2;1;545;118;427
+Province Sud;Bourail;2;Pothé;844;736;108;8;6;722;615;107
+Province Sud;Bourail;4;École Les Lys d’Eau;857;795;62;6;2;787;133;654
+Province Nord;Canala;5;Gélima;728;657;71;2;0;655;636;19
+Province Nord;Canala;6;Mérénémé;302;261;41;2;1;258;242;16
+Province Sud;Dumbéa;2;Hôtel de ville 2;750;660;90;2;11;647;216;431
+Province Sud;Dumbéa;3;Hôtel de ville 3;823;714;109;4;2;708;257;451
+Province Sud;Dumbéa;10;Centre culturel de Dumbéa 3;705;609;96;2;5;602;186;416
+Province Sud;Dumbéa;13;Ecole maternelle l'Oasis 1;725;647;78;3;2;642;145;497
+Province Sud;Dumbéa;14;Ecole maternelle l'Oasis 2;690;596;94;3;2;591;160;431
+Province Sud;Dumbéa;15;Groupe scolaire Michelle Delacharlerie-Rolly 1;534;497;37;3;4;490;59;431
+Province Sud;Dumbéa;19;Mairie du Nord 1;665;583;82;3;2;578;73;505
+Province Sud;Dumbéa;22;Ecole primaire Paul Duboisé 1;843;777;66;6;5;766;134;632
+Province Sud;Dumbéa;24;Ecole maternelle les Colibris;785;694;91;9;2;683;143;540
+Province Nord;Hienghène;1;Mairie;553;494;59;2;1;491;462;29
+Province Nord;Hienghène;7;Oué-Hawa;70;63;7;0;0;63;63;0
+Province Nord;Hienghène;8;Tiendanite;99;96;3;0;0;96;96;0
+Province Nord;Houaïlou;2;Warai;664;585;79;4;5;576;476;100
+Province Nord;Houaïlou;4;Nessakoéa;307;272;35;1;1;270;251;19
+Province Nord;Houaïlou;8;Nédivin;519;465;54;4;0;461;419;42
+Province Sud;Ile des Pins;2;Bâtiment communal Point Information;689;588;101;2;2;584;418;166
+Province Nord;Kaala-Gomen;2;Ouéholle;372;331;41;0;1;330;327;3
+Province Nord;Koné;4;Tiaoué;269;257;12;1;0;256;249;7
+Province Nord;Koné;5;Atéou;128;117;11;1;0;116;115;1
+Province Nord;Koné;9;École primaire Les Cigales;690;622;68;8;3;611;376;235
+Province Nord;Koné;11;École Téari;563;499;64;7;7;485;206;279
+Province Nord;Koné;12;Les Allamandas;429;391;38;3;0;388;124;264
+Province Nord;Kouaoua;4;Méa-Mébara;174;156;18;1;2;153;127;26
+Province Nord;Koumac;2;École primaire Charles Mermoud 2;1534;1367;167;9;6;1352;404;948
+Province Sud;La Foa;3;Centre socio-culturel;828;759;69;10;4;745;230;515
+Province des Iles;Lifou;4;Jozip;274;219;55;0;1;218;188;30
+Province des Iles;Lifou;5;Jokin;336;234;102;2;1;231;217;14
+Province des Iles;Lifou;12;Tiga;143;64;79;2;1;61;58;3
+Province des Iles;Lifou;13;Luecila;551;449;102;3;4;442;354;88
+Province des Iles;Lifou;19;Traput;269;168;101;3;0;165;131;34
+Province des Iles;Lifou;20;Kedeigne;327;228;99;1;1;226;199;27
+Province des Iles;Lifou;21;Tingeting;235;132;103;0;2;130;98;32
+Province des Iles;Lifou;23;Luengoni;241;195;46;1;1;193;170;23
+Province des Iles;Lifou;28;Lieu de vote délocalisé n°2 de Lifou à Nouméa;599;554;45;4;1;549;483;66
+Province des Iles;Lifou;29;Lieu de vote délocalisé n°3;579;537;42;3;0;534;471;63
+Province des Iles;Maré;2;Hnawayatche;521;277;244;3;0;274;160;114
+Province des Iles;Maré;3;Tenane;290;186;104;0;0;186;144;42
+Province des Iles;Maré;5;Tawainedre;353;238;115;2;2;234;197;37
+Province des Iles;Maré;6;Penelo;567;402;165;2;0;400;345;55
+Province des Iles;Maré;7;Wabao;488;333;155;0;0;333;261;72
+Province des Iles;Maré;9;Ménaku;217;131;86;3;0;128;86;42
+Province des Iles;Maré;11;Roh;234;140;94;1;0;139;81;58
+Province Sud;Moindou;1;Mairie;789;734;55;9;7;718;331;387
+Province Sud;Mont-Dore;2;Groupe scolaire Hélène CHANIEL;489;420;69;4;2;414;54;360
+Province Sud;Mont-Dore;5;École La Rizière 1;1069;905;164;4;6;895;800;95
+Province Sud;Mont-Dore;8;Groupe scolaire de Boulari 1;821;727;94;4;10;713;100;613
+Province Sud;Mont-Dore;18;Groupe scolaire de Boulari 3;812;697;115;0;3;694;115;579
+Province Sud;Mont-Dore;19;Groupe scolaire de Saint-Michel 2;605;522;83;11;10;501;63;438
+Province Sud;Mont-Dore;21;École La Rizière 3;622;515;107;6;11;498;169;329
+Province Sud;Mont-Dore;22;École de la Briqueterie 1;683;595;88;14;7;574;187;387
+Province Sud;Nouméa;1;Mairie 1;631;482;149;0;2;480;118;362
+Province Sud;Nouméa;8;École Fernande LERICHE 1;599;553;46;1;1;551;24;527
+Province Sud;Nouméa;10;École Jean MERMOUD 1;718;655;63;4;1;650;23;627
+Province Sud;Nouméa;11;École Jean MERMOUD 2;829;784;45;6;2;776;9;767
+Province Sud;Nouméa;12;École Ernest RISBEC 1;767;682;85;5;3;674;49;625
+Province Sud;Nouméa;13;École Ernest RISBEC 2;786;696;90;1;4;691;53;638
+Province Sud;Nouméa;16;École Candide KOCH 1;795;687;108;6;2;679;87;592
+Province Sud;Nouméa;21;École Marie HAVET 1;832;753;79;1;3;749;62;687
+Province Sud;Nouméa;22;École Marie HAVET 2;868;773;95;0;3;770;50;720
+Province Sud;Nouméa;23;École Christine BOLETTI 1;883;781;102;6;5;770;84;686
+Province Sud;Nouméa;24;École Christine BOLETTI 2;1025;839;186;4;9;826;315;511
+Province Sud;Nouméa;26;École Michel CACOT 2;862;711;151;1;4;706;73;633
+Province Sud;Nouméa;28;École Gustave MOUCHET 1;1204;879;325;7;6;866;623;243
+Province Sud;Nouméa;37;École Mauricette DEVAMBEZ 1;1309;993;316;15;5;973;516;457
+Province Sud;Nouméa;44;École Louise VERGES;1135;902;233;8;10;884;585;299
+Province Sud;Nouméa;50;École Albert PERRAUD;1416;1154;262;8;14;1132;590;542
+Province Sud;Nouméa;54;École le PETIT POUCET;993;831;162;4;6;821;191;630
+Province Nord;Ouégoa;4;Tiari;147;134;13;0;0;134;123;11
+Province des Iles;Ouvéa;4;Mouli;254;206;48;0;1;205;196;9
+Province des Iles;Ouvéa;7;Lekine;201;160;41;0;0;160;151;9
+Province Sud;Païta;8;École James Paddon;607;531;76;4;4;523;95;428
+Province Sud;Païta;11;École maternelle Scheffleras 1;750;655;95;4;2;649;165;484
+Province Sud;Païta;14;École primaire Jean Ounou COTTIN 2;593;536;57;1;3;532;445;87
+Province Sud;Païta;15;Mairie annexe de Tontouta;608;542;66;2;4;536;120;416
+Province Sud;Païta;17;École Robert Abel- 2;654;566;88;5;3;558;127;431
+Province Sud;Païta;19;Ecole Jean Ounou Cottin 3;454;408;46;4;5;399;64;335
+Province Nord;Poindimié;2;Ouindo;509;453;56;7;3;443;396;47
+Province Nord;Poindimié;5;Tyé;559;515;44;2;2;511;485;26
+Province Nord;Poindimié;7;Tiéti;563;526;37;5;2;519;470;49
+Province Nord;Ponérihouen;2;Monéo;456;395;61;4;0;391;341;50
+Province Nord;Ponérihouen;4;Goa (maison commune);400;357;43;0;0;357;352;5
+Province Nord;Ponérihouen;5;Grondu (maison commune);507;457;50;1;5;451;433;18
+Province Nord;Ponérihouen;6;Mou (chefferie);165;150;15;0;0;150;142;8
+Province Nord;Ponérihouen;7;Goyetta Commune de POUEBO;332;301;31;0;0;301;289;12
+Province Nord;Pouébo;4;Saint-Louis;558;471;87;7;0;464;452;12
+Province Nord;Pouébo;5;Colnett - maison commune;119;90;29;1;0;89;79;10
+Province Nord;Poum;1;Mairie;618;565;53;2;2;561;422;139
+Province Nord;Poum;2;Tiabet;409;359;50;0;1;358;337;21
+Province Sud;Poya Sud;5;Maison Moindah;189;173;16;0;0;173;4;169
+Province Nord;Touho;1;Mairie;979;846;133;3;3;840;646;194
+Province Sud;Yaté;3;Goro;228;217;11;0;0;217;183;34
+Province Sud;Yaté;4;Unia;770;698;72;2;1;695;663;32
+Province Nord;Belep;2;Lieu de vote délocalisé de Bélep à Nouméa;197;181;16;0;0;181;175;6
+Province Sud;Boulouparis;2;Centre Culturel;592;559;33;2;0;557;137;420
+Province Nord;Canala;2;Nakéty;490;463;27;0;1;462;458;4
+Province Nord;Canala;7;Tenda Koumendi;332;315;17;4;0;311;302;9
+Province Sud;Dumbéa;1;Hôtel de Ville 1;867;748;119;4;4;740;92;648
+Province Sud;Dumbéa;4;Ecole primaire Mainguet 1;840;735;105;6;5;724;277;447
+Province Sud;Dumbéa;6;Maison de la jeunesse 1;811;701;110;7;9;685;142;543
+Province Sud;Dumbéa;7;Maison de la jeunesse 2;765;668;97;2;7;659;111;548
+Province Sud;Dumbéa;8;Centre culturel de Dumbéa 1;800;654;146;5;2;647;171;476
+Province Sud;Dumbéa;9;Centre culturel de Dumbéa 2;888;776;112;4;5;767;233;534
+Province Sud;Dumbéa;12;Ecole primaire Gustave Clain 2;732;638;94;6;3;629;242;387
+Province Sud;Dumbéa;16;Groupe scolaire Michelle Delacharlerie-Rolly 2;657;548;109;8;2;538;223;315
+Province Sud;Dumbéa;17;Groupe scolaire Renée Fong 1;590;526;64;4;4;518;97;421
+Province Sud;Dumbéa;21;Mairie du Nord 3;636;534;102;2;2;530;60;470
+Province Nord;Hienghène;3;Bas-Coulna;117;105;12;0;0;105;96;9
+Province Nord;Hienghène;5;Ouayaguette;189;161;28;0;0;161;150;11
+Province Nord;Hienghène;6;Ouaième;216;197;19;2;0;195;185;10
+Province Nord;Hienghène;10;Léwarap;296;270;26;1;0;269;265;4
+Province Nord;Houaïlou;1;Mairie;428;368;60;2;1;365;309;56
+Province Nord;Houaïlou;3;Bâ;379;333;46;5;1;327;290;37
+Province Nord;Houaïlou;6;Coula;509;434;75;2;0;432;388;44
+Province Sud;Ile des Pins;1;Mairie 1;895;749;146;4;6;739;489;250
+Province Sud;Ile des Pins;3;Lieu de vote délocalisé de l’Ile-des-Pins à Nouméa;180;167;13;1;0;166;133;33
+Province Nord;Kaala-Gomen;1;Mairie;511;444;67;4;0;440;247;193
+Province Nord;Kaala-Gomen;3;Maison Païta;280;253;27;1;0;252;224;28
+Province Nord;Kaala-Gomen;5;Maison Baoui;139;130;9;1;1;128;119;9
+Province Nord;Kaala-Gomen;6;Ouaco;204;192;12;2;1;189;76;113
+Province Nord;Koné;1;Salle Au Pitiri;674;586;88;3;5;578;181;397
+Province Nord;Koné;3;Netchaot;400;358;42;3;2;353;328;25
+Province Nord;Koné;7;Néami;222;193;29;2;0;191;177;14
+Province Sud;La Foa;4;Centre socio-culturel;569;525;44;5;1;519;153;366
+Province des Iles;Lifou;2;Xepenehe;561;397;164;3;1;393;359;34
+Province des Iles;Lifou;3;Drueulu;530;384;146;5;0;379;362;17
+Province des Iles;Lifou;6;Hmelek;502;306;196;7;0;299;247;52
+Province des Iles;Lifou;7;Mou;435;289;146;5;1;283;214;69
+Province des Iles;Lifou;8;Hnathalo;483;385;98;3;1;381;350;31
+Province des Iles;Lifou;9;Hnacaöm;148;107;41;1;1;105;76;29
+Province des Iles;Lifou;10;Siloam;238;186;52;2;2;182;167;15
+Province des Iles;Lifou;11;Wasany;283;190;93;0;0;190;162;28
+Province des Iles;Lifou;17;Huiwatrul;342;245;97;2;1;242;216;26
+Province des Iles;Lifou;22;Hunëtë;156;111;45;0;0;111;104;7
+Province des Iles;Lifou;24;Hnanemuhaetra;116;80;36;0;1;79;64;15
+Province des Iles;Lifou;27;Lieu de vote délocalisé n°1 de Lifou à Nouméa;846;784;62;2;3;779;684;95
+Province des Iles;Lifou;30;Lieu de vote délocalisé n°4;748;696;52;1;0;695;612;83
+Province des Iles;Maré;4;Atha;259;188;71;0;1;187;172;15
+Province des Iles;Maré;13;La Roche;551;403;148;4;0;399;360;39
+Province des Iles;Maré;15;Lieu de vote délocalisé de Maré à Nouméa n°1;742;676;66;4;2;670;583;87
+Province des Iles;Maré;16;Lieu de vote délocalisé de Maré à Nouméa n°2;781;713;68;0;3;710;638;72
+Province Sud;Mont-Dore;3;École primaire Adolphe BOUTAN;747;684;63;6;17;661;119;542
+Province Sud;Mont-Dore;6;École primaire du Vallon Dore;725;636;89;10;12;614;114;500
+Province Sud;Mont-Dore;7;Ouara;101;86;15;0;0;86;79;7
+Province Sud;Mont-Dore;13;École maternelle Les Fougères;419;357;62;1;0;356;94;262
+Province Sud;Mont-Dore;14;École maternelle Les Dauphins;765;683;82;9;4;670;130;540
+Province Sud;Mont-Dore;15;École maternelle Les Coccinelles;1071;934;137;18;5;911;279;632
+Province Sud;Mont-Dore;16;École Saint-Joseph de CLUNY;1003;895;108;9;8;878;334;544
+Province Sud;Mont-Dore;17;École primaire Louis Henri GALINIE 2;806;688;118;7;2;679;118;561
+Province Sud;Mont-Dore;25;Groupe scolaire de Yahoué;756;648;108;3;5;640;175;465
+Province Sud;Nouméa;3;École Frédéric SURLEAU;693;591;102;2;0;589;84;505
+Province Sud;Nouméa;4;École Marguerite LEFRANCOIS;640;574;66;0;2;572;22;550
+Province Sud;Nouméa;15;École les CAPUCINES;752;676;76;6;3;667;57;610
+Province Sud;Nouméa;18;École Emily PANNE 1;772;668;104;3;2;663;72;591
+Province Sud;Nouméa;19;École Emily PANNE 2;866;703;163;4;5;694;129;565
+Province Sud;Nouméa;20;École Antoinette CHARBONNEAUX;771;721;50;1;2;718;31;687
+Province Sud;Nouméa;27;École Céline TEYSSANDIER de LAUBAREDE;1001;790;211;6;6;778;356;422
+Province Sud;Nouméa;30;École Mathilde BROQUET 1;1098;935;163;9;3;923;254;669
+Province Sud;Nouméa;31;École Marie COURTOT 1;1182;1011;171;9;9;993;263;730
+Province Sud;Nouméa;33;École Robert BURCK;1039;876;163;4;7;865;351;514
+Province Sud;Nouméa;34;École les ROSES;942;810;132;9;7;794;255;539
+Province Sud;Nouméa;38;École Mauricette DEVAMBEZ 2;1062;935;127;6;4;925;254;671
+Province Sud;Nouméa;40;École Adrienne LOMONT 2;1292;1074;218;7;7;1060;280;780
+Province Sud;Nouméa;42;École Gustave LODS 2;1209;996;213;8;7;981;333;648
+Province Sud;Nouméa;47;École Paul BOYER 2;716;644;72;3;2;639;31;608
+Province Sud;Nouméa;48;École Marguerite ARSAPIN;942;782;160;8;5;769;277;492
+Province Sud;Nouméa;49;École les PERVENCHES;860;777;83;6;2;769;76;693
+Province Sud;Nouméa;53;École les LYS;679;617;62;1;6;610;33;577
+Province Sud;Nouméa;55;École Serge LAIGLE;932;873;59;2;6;865;30;835
+Province Nord;Ouégoa;2;Bondé;832;734;98;12;1;721;708;13
+Province des Iles;Ouvéa;2;Fayaoué;661;422;239;3;5;414;322;92
+Province des Iles;Ouvéa;5;Wénéki;631;436;195;3;0;433;401;32
+Province des Iles;Ouvéa;6;Ognahut;344;202;142;2;2;198;158;40
+Province des Iles;Ouvéa;9;Lieu de vote délocalisé n°2;564;525;39;0;0;525;469;56
+Province Sud;Païta;1;Dock socio-culturel 1;599;480;119;2;1;477;155;322
+Province Sud;Païta;2;Dock socio-culturel 2;725;615;110;3;4;608;142;466
+Province Sud;Païta;3;Dock socio-culturel 3;594;525;69;1;2;522;123;399
+Province Sud;Païta;6;Mairie;767;675;92;3;0;672;373;299
+Province Sud;Païta;7;École Vi Vete;771;673;98;4;6;663;154;509
+Province Sud;Païta;9;École élémentaire Scheffleras 1;713;589;124;6;9;574;209;365
+Province Sud;Païta;13;École primaire Jean Ounou COTTIN 1;606;542;64;3;6;533;163;370
+Province Sud;Païta;18;Ecole James Paddon 2;591;531;60;4;6;521;139;382
+Province Nord;Poindimié;3;Bayes;564;520;44;0;1;519;469;50
+Province Nord;Ponérihouen;1;Mairie;491;425;66;6;5;414;286;128
+Province Nord;Ponérihouen;3;Tchamba;320;286;34;3;0;283;250;33
+Province Nord;Pouébo;1;Mairie;754;644;110;4;1;639;610;29
+Province Nord;Pouébo;2;Saint Denis Ballade;560;472;88;0;0;472;433;39
+Province Sud;Sarraméa;1;Mairie;510;477;33;3;2;472;373;99
+Province Sud;Thio;4;Saint-Pierre;467;414;53;3;0;411;392;19
+Province Nord;Touho;3;Kokingone;304;260;44;3;1;256;251;5
+Province Nord;Voh;2;Témala;288;261;27;5;3;253;101;152
+Province Nord;Voh;3;Ouengo;51;48;3;0;0;48;45;3
+Province Nord;Voh;4;Local socio-éducatif de Tieta;276;248;28;0;2;246;242;4
+Province Nord;Voh;5;Local socio-éducatif de Oundjo;346;299;47;1;0;298;289;9
+Province Nord;Voh;6;Local socio-éducatif de Boyen;186;167;19;8;2;157;138;19
+Province Sud;Boulouparis;1;Mairie;861;791;70;6;3;782;221;561
+Province Sud;Boulouparis;3;Mairie (Maison des associations);768;712;56;4;5;703;321;382
+Province Sud;Bourail;1;Mairie;623;565;58;3;4;558;136;422
+Province Sud;Bourail;3;Colisée;872;811;61;7;3;801;144;657
+Province Sud;Bourail;5;École Louise Michel;887;806;81;8;5;793;170;623
+Province Nord;Canala;1;Mairie;400;360;40;3;2;355;326;29
+Province Nord;Canala;3;Nanon;462;426;36;2;3;421;397;24
+Province Nord;Canala;4;Méhoué;784;712;72;4;1;707;663;44
+Province Sud;Dumbéa;5;Ecole primaire Mainguet 2;716;594;122;4;6;584;257;327
+Province Sud;Dumbéa;11;Ecole primaire Gustave Clain 1;771;657;114;2;5;650;203;447
+Province Sud;Dumbéa;18;Groupe scolaire Renée Fong 2;808;703;105;2;6;695;306;389
+Province Sud;Dumbéa;20;Mairie du Nord 2;581;532;49;1;2;529;61;468
+Province Sud;Dumbéa;23;Ecole primaire Paul Duboisé 2;777;673;104;6;7;660;164;496
+Province Sud;Farino;1;Mairie;577;547;30;5;1;541;62;479
+Province Nord;Hienghène;2;Tendo;223;200;23;0;0;200;191;9
+Province Nord;Hienghène;4;Haut-Coulna;106;93;13;2;0;91;87;4
+Province Nord;Hienghène;9;Ouaré;600;579;21;6;0;573;565;8
+Province Nord;Houaïlou;5;Poro;541;459;82;5;1;453;359;94
+Province Nord;Houaïlou;7;Néaoua;341;299;42;0;0;299;291;8
+Province Nord;Kaala-Gomen;4;Maison Gamaï;191;169;22;2;0;167;150;17
+Province Nord;Koné;2;Poindah;163;145;18;2;2;141;123;18
+Province Nord;Koné;6;Bopope;226;194;32;1;0;193;172;21
+Province Nord;Koné;8;Baco;428;395;33;6;1;388;354;34
+Province Nord;Koné;10;Noëlly;220;206;14;2;1;203;196;7
+Province Nord;Kouaoua;1;Mairie;572;513;59;2;1;510;356;154
+Province Nord;Kouaoua;2;Maison commune de Ouérou-Pimet;274;239;35;2;0;237;214;23
+Province Nord;Kouaoua;3;Koh;149;143;6;0;1;142;131;11
+Province Nord;Koumac;1;Mairie 1 et centralisateur;1194;1090;104;8;4;1078;531;547
+Province Sud;La Foa;1;Centre socio-culturel;872;808;64;7;3;798;210;588
+Province Sud;La Foa;2;Centre socio-culturel;722;673;49;4;3;666;295;371
+Province des Iles;Lifou;1;Faré des îles;516;371;145;0;1;370;282;88
+Province des Iles;Lifou;14;Hapetra;305;236;69;0;1;235;207;28
+Province des Iles;Lifou;15;Nang;305;209;96;0;0;209;186;23
+Province des Iles;Lifou;16;Xodre;136;84;52;0;0;84;62;22
+Province des Iles;Lifou;18;Wedrumel;275;186;89;0;0;186;155;31
+Province des Iles;Lifou;25;Hnassé;188;137;51;0;1;136;113;23
+Province des Iles;Lifou;26;Kirinata;128;92;36;0;0;92;83;9
+Province des Iles;Maré;1;Tadine;421;320;101;5;0;315;266;49
+Province des Iles;Maré;8;Nece;560;346;214;3;0;343;177;166
+Province des Iles;Maré;10;Mebuet;265;156;109;2;1;153;89;64
+Province des Iles;Maré;12;Eni;285;201;84;0;0;201;179;22
+Province des Iles;Maré;14;Tuho;324;221;103;1;1;219;140;79
+Province Sud;Mont-Dore;1;Mairie de BOULARI;731;615;116;2;3;610;180;430
+Province Sud;Mont-Dore;4;École primaire Louis Henri GALINIE 1;781;708;73;7;10;691;146;545
+Province Sud;Mont-Dore;9;Mairie annexe de Plum 1;944;788;156;13;10;765;232;533
+Province Sud;Mont-Dore;10;École La Rizière 2;874;742;132;9;9;724;235;489
+Province Sud;Mont-Dore;11;Groupe scolaire de Boulari 2;699;613;86;5;4;604;79;525
+Province Sud;Mont-Dore;12;Groupe scolaire Saint-Michel 1;690;595;95;9;6;580;189;391
+Province Sud;Mont-Dore;20;Groupe scolaire de Plum;554;472;82;3;2;467;125;342
+Province Sud;Mont-Dore;23;École de la Briqueterie 2;610;529;81;4;4;521;88;433
+Province Sud;Mont-Dore;24;Mairie 2;521;429;92;1;4;424;68;356
+Province Sud;Nouméa;2;Mairie 2;1086;786;300;4;4;778;359;419
+Province Sud;Nouméa;5;École Yvonne DUPONT 1;677;613;64;1;3;609;19;590
+Province Sud;Nouméa;6;École Eloi FRANC 1;840;746;94;2;5;739;87;652
+Province Sud;Nouméa;7;École Eloi FRANC 2;715;639;76;1;2;636;38;598
+Province Sud;Nouméa;9;École Fernande LERICHE 2;790;722;68;6;0;716;37;679
+Province Sud;Nouméa;14;École Paul BOYER 1;673;584;89;3;3;578;73;505
+Province Sud;Nouméa;17;École Candide KOCH 2;870;784;86;4;8;772;48;724
+Province Sud;Nouméa;25;École Michel CACOT 1;899;816;83;0;5;811;72;739
+Province Sud;Nouméa;29;École Gustave MOUCHET 2;1016;769;247;8;5;756;391;365
+Province Sud;Nouméa;32;École Marie COURTOT 2;869;799;70;2;7;790;43;747
+Province Sud;Nouméa;35;École les ŒILLETS;915;773;142;4;3;766;220;546
+Province Sud;Nouméa;36;École Jacques TROUILLOT;891;763;128;6;12;745;250;495
+Province Sud;Nouméa;39;École Adrienne LOMONT 1;754;597;157;6;4;587;235;352
+Province Sud;Nouméa;41;École Gustave LODS 1;1052;874;178;5;8;861;231;630
+Province Sud;Nouméa;43;École Daniel TALON;1788;1384;404;12;12;1360;632;728
+Province Sud;Nouméa;45;École Mathilde BROQUET 2;1241;1075;166;6;10;1059;244;815
+Province Sud;Nouméa;46;École Yvonne DUPONT 2;530;485;45;0;2;483;8;475
+Province Sud;Nouméa;51;École Michel AMIOT;985;875;110;3;4;868;134;734
+Province Sud;Nouméa;52;École Charles BICHON;548;486;62;5;3;478;47;431
+Province Sud;Nouméa;56;École Guy CHAMPMOREAU;1241;1071;170;3;9;1059;213;846
+Province Sud;Nouméa;57;Mairie 3;570;245;325;4;5;236;133;103
+Province Nord;Ouégoa;1;Mairie;803;704;99;8;4;692;198;494
+Province Nord;Ouégoa;3;Paimboas;392;320;72;1;0;319;311;8
+Province des Iles;Ouvéa;1;Mairie;732;494;238;4;0;490;374;116
+Province des Iles;Ouvéa;3;Heo;372;256;116;1;0;255;222;33
+Province des Iles;Ouvéa;8;Lieu de vote délocalisé d’Ouvéa à Nouméa;659;604;55;4;3;597;531;66
+Province Sud;Païta;4;Dock socio-culturel 4;434;386;48;1;1;384;68;316
+Province Sud;Païta;5;Dock socio-culturel 5;693;621;72;3;4;614;121;493
+Province Sud;Païta;10;École élémentaire Scheffleras 2;763;647;116;2;10;635;193;442
+Province Sud;Païta;12;École maternelle Scheffleras 2;603;544;59;2;7;535;107;428
+Province Sud;Païta;16;École Robert Abel- 1;488;454;34;0;2;452;25;427
+Province Nord;Poindimié;1;Mairie;1127;994;133;7;4;983;571;412
+Province Nord;Poindimié;4;Amoa;495;471;24;3;1;467;427;40
+Province Nord;Poindimié;6;Tiwaka;329;294;35;0;1;293;264;29
+Province Nord;Pouébo;3;Yambé;401;347;54;1;0;346;338;8
+Province Nord;Pouembout;1;Mairie;1181;1048;133;4;5;1039;370;669
+Province Nord;Pouembout;2;Paouta;162;151;11;3;2;146;138;8
+Province Nord;Pouembout;3;Ouaté;139;126;13;0;1;125;123;2
+Province Nord;Poum;3;École catholique d’Arama;395;335;60;2;0;333;307;26
+Province Nord;Poya Nord;1;Mairie 1;543;495;48;3;2;490;273;217
+Province Nord;Poya Nord;2;Gohapin;468;419;49;1;1;417;403;14
+Province Nord;Poya Nord;3;Népoui;713;631;82;6;1;624;245;379
+Province Nord;Poya Nord;4;Montfaoué;264;234;30;0;0;234;223;11
+Province Nord;Poya Nord;6;Nékliai;188;169;19;1;0;168;157;11
+Province Sud;Thio;1;Mairie;808;715;93;2;2;711;495;216
+Province Sud;Thio;2;Mairie;589;526;63;4;1;521;492;29
+Province Sud;Thio;3;Grand Borendy;313;264;49;6;0;258;253;5
+Province Nord;Touho;2;Tiouandé;234;202;32;2;1;199;176;23
+Province Nord;Touho;4;Paola;416;373;43;1;1;371;350;21
+Province Nord;Voh;1;Mairie;847;748;99;5;14;729;335;394
+Province Nord;Voh;7;Local socio-éducatif de Témala;361;339;22;1;0;338;331;7
+Province Sud;Yaté;1;Mairie;282;263;19;1;0;262;219;43
+Province Sud;Yaté;2;Touaourou;480;443;37;1;1;441;404;37

@@ -1,0 +1,29 @@
+---
+title: "Newsletter"
+toc: false
+---
+
+Recevez les nouvelles publications de Contours.nc.
+
+Environ un email par mois.
+
+La lettre sert surtout à suivre :
+
+::: {.newsletter-points}
+- nouvelles publications
+- cartes et analyses
+- projets à venir
+:::
+
+```{=html}
+<form action="https://buttondown.com/api/emails/embed-subscribe/contoursnc" method="post" class="embeddable-buttondown-form newsletter-form">
+  <label for="bd-email">Adresse email</label>
+  <div class="newsletter-form__row">
+    <input type="email" name="email" id="bd-email" required>
+    <input type="submit" value="S'abonner">
+  </div>
+  <p>
+    <a href="https://buttondown.com/refer/contoursnc" target="_blank" rel="noopener noreferrer">Powered by Buttondown.</a>
+  </p>
+</form>
+```

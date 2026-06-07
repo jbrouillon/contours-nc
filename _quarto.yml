@@ -1,35 +1,44 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    watch-inputs: false
   resources:
     - .nojekyll
+    - CNAME
   render:
     - "*.qmd"
     - "articles/*.qmd"
-    - "dataviz/*.qmd"
+    - "cartes/*.qmd"
+    - "contact/*.qmd"
+    - "newsletter/*.qmd"
     - "posts/*/index.qmd"
     - "ressources/*.qmd"
 
 website:
   title: "Contours"
-  description: "Sciences sociales, cartographie et dataviz en Nouvelle-Calédonie"
-  site-url: "https://jbrouillon.github.io/contours-nc/"
-  favicon: images/logo.png
+  description: "Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie"
+  site-url: "https://contours.nc/"
+  favicon: images/favicon.png
+  open-graph: true
+  twitter-card: true
   navbar:
-    logo: images/logo.png
+    logo: images/logo.webp
     title: "Contours"
     left:
       - text: "Articles"
         href: articles/index.qmd
-      - text: "Dataviz"
-        href: dataviz/index.qmd
+      - text: "Cartes"
+        href: cartes/index.qmd
       - text: "Ressources"
         href: ressources/index.qmd
+      - text: "Contact"
+        href: contact/index.qmd
+      - text: "Newsletter"
+        href: newsletter/index.qmd
+    right:
       - text: "À propos"
         href: about.qmd
-    right:
-      - icon: github
-        href: https://github.com/jbrouillon/contours-nc
   page-footer:
     left: "© Jonas Brouillon"
     right: "Fait avec Quarto"
@@ -45,6 +54,8 @@ format:
           <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     include-after-body:
+      - includes/social-floating.html
+      - includes/article-newsletter.html
       - text: |
           <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
             <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
@@ -94,6 +105,8 @@ format:
 
             document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
               if (!isEligible(img)) return;
+              if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
+              if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
               img.classList.add("quarto-lightbox-enabled");
               img.setAttribute("tabindex", "0");
               img.setAttribute("role", "button");

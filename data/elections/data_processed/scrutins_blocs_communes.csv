@@ -1,0 +1,814 @@
+election,tour,commune_norm,commune,bloc,camp_institutionnel,nb_bureaux,nb_bureaux_geolocalises,inscrits,votants,abstentions,exprimes,voix_bloc,options,pct_exprimes,pct_inscrits
+legislatives_2022,1,BELEP,Belep,autre,neutre,1,1,934,280,654,277,5,Construire autrement | Sans etiquette,1.81,0.54
+legislatives_2022,1,BELEP,Belep,independantiste,independantiste,1,1,934,280,654,277,269,Mouvement neo-independantiste et souverainiste | Union caledonienne,97.11,28.8
+legislatives_2022,1,BELEP,Belep,loyaliste,anti_independantiste,1,1,934,280,654,277,3,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,1.08,0.32
+legislatives_2022,1,BOULOUPARI,Boulouparis,autre,neutre,4,4,3275,1387,1888,1354,21,Construire autrement | Sans etiquette,1.55,0.64
+legislatives_2022,1,BOULOUPARI,Boulouparis,independantiste,independantiste,4,4,3275,1387,1888,1354,222,Mouvement neo-independantiste et souverainiste | Union caledonienne,16.4,6.78
+legislatives_2022,1,BOULOUPARI,Boulouparis,loyaliste,anti_independantiste,4,4,3275,1387,1888,1354,1111,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,82.05,33.92
+legislatives_2022,1,BOURAIL,Bourail,autre,neutre,5,5,4667,1799,2868,1748,69,Construire autrement | Sans etiquette,3.95,1.48
+legislatives_2022,1,BOURAIL,Bourail,independantiste,independantiste,5,5,4667,1799,2868,1748,244,Mouvement neo-independantiste et souverainiste | Union caledonienne,13.96,5.23
+legislatives_2022,1,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4667,1799,2868,1748,1435,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,82.09,30.75
+legislatives_2022,1,CANALA,Canala,autre,neutre,7,7,3589,1466,2123,1450,26,Construire autrement | Sans etiquette,1.79,0.72
+legislatives_2022,1,CANALA,Canala,independantiste,independantiste,7,7,3589,1466,2123,1450,1376,Mouvement neo-independantiste et souverainiste | Union caledonienne,94.9,38.34
+legislatives_2022,1,CANALA,Canala,loyaliste,anti_independantiste,7,7,3589,1466,2123,1450,48,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,3.31,1.34
+legislatives_2022,1,DUMBEA,Dumbéa,autre,neutre,26,26,22794,7416,15378,7158,326,Construire autrement | Sans etiquette,4.55,1.43
+legislatives_2022,1,DUMBEA,Dumbéa,independantiste,independantiste,26,26,22794,7416,15378,7158,768,Mouvement neo-independantiste et souverainiste | Union caledonienne,10.73,3.37
+legislatives_2022,1,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,22794,7416,15378,7158,6064,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,84.72,26.6
+legislatives_2022,1,FARINO,Farino,autre,neutre,1,1,668,369,299,356,10,Construire autrement | Sans etiquette,2.81,1.5
+legislatives_2022,1,FARINO,Farino,independantiste,independantiste,1,1,668,369,299,356,13,Mouvement neo-independantiste et souverainiste | Union caledonienne,3.65,1.95
+legislatives_2022,1,FARINO,Farino,loyaliste,anti_independantiste,1,1,668,369,299,356,333,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,93.54,49.85
+legislatives_2022,1,HIENGHENE,Hienghène,autre,neutre,10,10,2504,887,1617,879,11,Construire autrement | Sans etiquette,1.25,0.44
+legislatives_2022,1,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2504,887,1617,879,831,Mouvement neo-independantiste et souverainiste | Union caledonienne,94.54,33.19
+legislatives_2022,1,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2504,887,1617,879,37,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,4.21,1.48
+legislatives_2022,1,HOUAILOU,Houailou,autre,neutre,8,8,3752,890,2862,870,27,Construire autrement | Sans etiquette,3.1,0.72
+legislatives_2022,1,HOUAILOU,Houailou,independantiste,independantiste,8,8,3752,890,2862,870,710,Mouvement neo-independantiste et souverainiste | Union caledonienne,81.61,18.92
+legislatives_2022,1,HOUAILOU,Houailou,loyaliste,anti_independantiste,8,8,3752,890,2862,870,133,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,15.29,3.54
+legislatives_2022,1,ILEDESPINS,Ile des Pins,autre,neutre,2,2,1842,456,1386,450,18,Construire autrement,4,0.98
+legislatives_2022,1,ILEDESPINS,Ile des Pins,centriste,anti_independantiste,2,2,1842,456,1386,450,59,Caledonie ensemble,13.11,3.2
+legislatives_2022,1,ILEDESPINS,Ile des Pins,independantiste,independantiste,2,2,1842,456,1386,450,248,Palika,55.11,13.46
+legislatives_2022,1,ILEDESPINS,Ile des Pins,loyaliste,anti_independantiste,2,2,1842,456,1386,450,125,Les Patriotes | Mouvement des citoyens francais | Rassemblement - LR | Rassemblement national | Sans etiquette droite,27.78,6.79
+legislatives_2022,1,KAALAGOMEN,Kaala-Gomen,autre,neutre,6,6,1761,525,1236,520,8,Construire autrement | Sans etiquette,1.54,0.45
+legislatives_2022,1,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1761,525,1236,520,382,Mouvement neo-independantiste et souverainiste | Union caledonienne,73.46,21.69
+legislatives_2022,1,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1761,525,1236,520,130,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,25,7.38
+legislatives_2022,1,KONE,Koné,autre,neutre,12,12,5089,1699,3390,1660,49,Construire autrement | Sans etiquette,2.95,0.96
+legislatives_2022,1,KONE,Koné,independantiste,independantiste,12,12,5089,1699,3390,1660,951,Mouvement neo-independantiste et souverainiste | Union caledonienne,57.29,18.69
+legislatives_2022,1,KONE,Koné,loyaliste,anti_independantiste,12,12,5089,1699,3390,1660,660,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,39.76,12.97
+legislatives_2022,1,KOUAOUA,Kouaoua,autre,neutre,4,4,1196,428,768,423,17,Construire autrement | Sans etiquette,4.02,1.42
+legislatives_2022,1,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1196,428,768,423,292,Mouvement neo-independantiste et souverainiste | Union caledonienne,69.03,24.41
+legislatives_2022,1,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1196,428,768,423,114,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,26.95,9.53
+legislatives_2022,1,KOUMAC,Koumac,autre,neutre,2,2,3127,1048,2079,1043,29,Construire autrement | Sans etiquette,2.78,0.93
+legislatives_2022,1,KOUMAC,Koumac,independantiste,independantiste,2,2,3127,1048,2079,1043,249,Mouvement neo-independantiste et souverainiste | Union caledonienne,23.87,7.96
+legislatives_2022,1,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3127,1048,2079,1043,765,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,73.35,24.46
+legislatives_2022,1,LAFOA,La Foa,autre,neutre,4,4,3442,1640,1802,1592,49,Construire autrement | Sans etiquette,3.08,1.42
+legislatives_2022,1,LAFOA,La Foa,independantiste,independantiste,4,4,3442,1640,1802,1592,349,Mouvement neo-independantiste et souverainiste | Union caledonienne,21.92,10.14
+legislatives_2022,1,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3442,1640,1802,1592,1194,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,75,34.69
+legislatives_2022,1,LIFOU,Lifou,autre,neutre,28,28,10999,3240,7759,3221,44,Construire autrement,1.37,0.4
+legislatives_2022,1,LIFOU,Lifou,centriste,anti_independantiste,28,28,10999,3240,7759,3221,178,Caledonie ensemble,5.53,1.62
+legislatives_2022,1,LIFOU,Lifou,independantiste,independantiste,28,28,10999,3240,7759,3221,2898,Palika,89.97,26.35
+legislatives_2022,1,LIFOU,Lifou,loyaliste,anti_independantiste,28,28,10999,3240,7759,3221,101,Les Patriotes | Mouvement des citoyens francais | Rassemblement - LR | Rassemblement national | Sans etiquette droite,3.14,0.92
+legislatives_2022,1,MARE,Maré,autre,neutre,14,14,6948,1279,5669,1274,22,Construire autrement,1.73,0.32
+legislatives_2022,1,MARE,Maré,centriste,anti_independantiste,14,14,6948,1279,5669,1274,96,Caledonie ensemble,7.54,1.38
+legislatives_2022,1,MARE,Maré,independantiste,independantiste,14,14,6948,1279,5669,1274,1052,Palika,82.57,15.14
+legislatives_2022,1,MARE,Maré,loyaliste,anti_independantiste,14,14,6948,1279,5669,1274,104,Les Patriotes | Mouvement des citoyens francais | Rassemblement - LR | Rassemblement national | Sans etiquette droite,8.16,1.5
+legislatives_2022,1,MOINDOU,Moindou,autre,neutre,1,1,822,366,456,353,9,Construire autrement | Sans etiquette,2.55,1.09
+legislatives_2022,1,MOINDOU,Moindou,independantiste,independantiste,1,1,822,366,456,353,121,Mouvement neo-independantiste et souverainiste | Union caledonienne,34.28,14.72
+legislatives_2022,1,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,822,366,456,353,223,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,63.17,27.13
+legislatives_2022,1,MONTDORE,Mont-Dore,autre,neutre,25,25,22119,7424,14695,7204,317,Construire autrement | Sans etiquette,4.4,1.43
+legislatives_2022,1,MONTDORE,Mont-Dore,independantiste,independantiste,25,25,22119,7424,14695,7204,1036,Mouvement neo-independantiste et souverainiste | Union caledonienne,14.38,4.68
+legislatives_2022,1,MONTDORE,Mont-Dore,loyaliste,anti_independantiste,25,25,22119,7424,14695,7204,5851,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,81.22,26.45
+legislatives_2022,1,NOUMEA,Nouméa,autre,neutre,56,56,72724,24367,48357,23693,1361,Construire autrement,5.74,1.87
+legislatives_2022,1,NOUMEA,Nouméa,centriste,anti_independantiste,56,56,72724,24367,48357,23693,11598,Caledonie ensemble,48.95,15.95
+legislatives_2022,1,NOUMEA,Nouméa,independantiste,independantiste,56,56,72724,24367,48357,23693,1543,Palika,6.51,2.12
+legislatives_2022,1,NOUMEA,Nouméa,loyaliste,anti_independantiste,56,56,72724,24367,48357,23693,9191,Les Patriotes | Mouvement des citoyens francais | Rassemblement - LR | Rassemblement national | Sans etiquette droite,38.79,12.64
+legislatives_2022,1,OUEGOA,Ouégoa,autre,neutre,4,4,2224,550,1674,542,5,Construire autrement | Sans etiquette,0.92,0.22
+legislatives_2022,1,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2224,550,1674,542,278,Mouvement neo-independantiste et souverainiste | Union caledonienne,51.29,12.5
+legislatives_2022,1,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2224,550,1674,542,259,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,47.79,11.65
+legislatives_2022,1,OUVEA,Ouvéa,autre,neutre,7,7,4406,718,3688,710,16,Construire autrement,2.25,0.36
+legislatives_2022,1,OUVEA,Ouvéa,centriste,anti_independantiste,7,7,4406,718,3688,710,51,Caledonie ensemble,7.18,1.16
+legislatives_2022,1,OUVEA,Ouvéa,independantiste,independantiste,7,7,4406,718,3688,710,619,Palika,87.18,14.05
+legislatives_2022,1,OUVEA,Ouvéa,loyaliste,anti_independantiste,7,7,4406,718,3688,710,24,Les Patriotes | Mouvement des citoyens francais | Rassemblement - LR | Rassemblement national | Sans etiquette droite,3.38,0.54
+legislatives_2022,1,PAITA,Païta,autre,neutre,19,19,15928,5062,10866,4929,170,Construire autrement | Sans etiquette,3.45,1.07
+legislatives_2022,1,PAITA,Païta,independantiste,independantiste,19,19,15928,5062,10866,4929,627,Mouvement neo-independantiste et souverainiste | Union caledonienne,12.72,3.94
+legislatives_2022,1,PAITA,Païta,loyaliste,anti_independantiste,19,19,15928,5062,10866,4929,4132,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,83.83,25.94
+legislatives_2022,1,POINDIMIE,Poindimié,autre,neutre,7,7,4373,1279,3094,1262,45,Construire autrement | Sans etiquette,3.57,1.03
+legislatives_2022,1,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4373,1279,3094,1262,933,Mouvement neo-independantiste et souverainiste | Union caledonienne,73.93,21.34
+legislatives_2022,1,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4373,1279,3094,1262,284,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,22.5,6.49
+legislatives_2022,1,PONERIHOUEN,Ponérihouen,autre,neutre,7,7,2689,1148,1541,1133,16,Construire autrement | Sans etiquette,1.41,0.6
+legislatives_2022,1,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2689,1148,1541,1133,1018,Mouvement neo-independantiste et souverainiste | Union caledonienne,89.85,37.86
+legislatives_2022,1,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2689,1148,1541,1133,99,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,8.74,3.68
+legislatives_2022,1,POUEBO,Pouébo,autre,neutre,5,5,2405,585,1820,582,6,Construire autrement | Sans etiquette,1.03,0.25
+legislatives_2022,1,POUEBO,Pouébo,independantiste,independantiste,5,5,2405,585,1820,582,563,Mouvement neo-independantiste et souverainiste | Union caledonienne,96.74,23.41
+legislatives_2022,1,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2405,585,1820,582,13,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,2.23,0.54
+legislatives_2022,1,POUEMBOUT,Pouembout,autre,neutre,3,3,1821,626,1195,613,25,Construire autrement | Sans etiquette,4.08,1.37
+legislatives_2022,1,POUEMBOUT,Pouembout,independantiste,independantiste,3,3,1821,626,1195,613,176,Mouvement neo-independantiste et souverainiste | Union caledonienne,28.71,9.67
+legislatives_2022,1,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,3,3,1821,626,1195,613,412,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,67.21,22.62
+legislatives_2022,1,POUM,Poum,autre,neutre,3,3,1492,415,1077,411,4,Construire autrement | Sans etiquette,0.97,0.27
+legislatives_2022,1,POUM,Poum,independantiste,independantiste,3,3,1492,415,1077,411,355,Mouvement neo-independantiste et souverainiste | Union caledonienne,86.37,23.79
+legislatives_2022,1,POUM,Poum,loyaliste,anti_independantiste,3,3,1492,415,1077,411,52,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,12.65,3.49
+legislatives_2022,1,POYA,Poya,autre,neutre,6,6,2547,1097,1450,1075,24,Construire autrement | Sans etiquette,2.23,0.94
+legislatives_2022,1,POYA,Poya,independantiste,independantiste,6,6,2547,1097,1450,1075,583,Mouvement neo-independantiste et souverainiste | Union caledonienne,54.23,22.89
+legislatives_2022,1,POYA,Poya,loyaliste,anti_independantiste,6,6,2547,1097,1450,1075,468,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,43.53,18.37
+legislatives_2022,1,SARRAMEA,Sarraméa,autre,neutre,1,1,528,176,352,168,4,Construire autrement | Sans etiquette,2.38,0.76
+legislatives_2022,1,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,528,176,352,168,121,Mouvement neo-independantiste et souverainiste | Union caledonienne,72.02,22.92
+legislatives_2022,1,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,528,176,352,168,43,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,25.6,8.14
+legislatives_2022,1,THIO,Thio,autre,neutre,4,4,2231,557,1674,552,13,Construire autrement | Sans etiquette,2.36,0.58
+legislatives_2022,1,THIO,Thio,independantiste,independantiste,4,4,2231,557,1674,552,463,Mouvement neo-independantiste et souverainiste | Union caledonienne,83.88,20.75
+legislatives_2022,1,THIO,Thio,loyaliste,anti_independantiste,4,4,2231,557,1674,552,76,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,13.77,3.41
+legislatives_2022,1,TOUHO,Touho,autre,neutre,4,4,2008,654,1354,646,17,Construire autrement | Sans etiquette,2.63,0.85
+legislatives_2022,1,TOUHO,Touho,independantiste,independantiste,4,4,2008,654,1354,646,523,Mouvement neo-independantiste et souverainiste | Union caledonienne,80.96,26.05
+legislatives_2022,1,TOUHO,Touho,loyaliste,anti_independantiste,4,4,2008,654,1354,646,106,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,16.41,5.28
+legislatives_2022,1,VOH,Voh,autre,neutre,7,7,2456,795,1661,781,15,Construire autrement | Sans etiquette,1.92,0.61
+legislatives_2022,1,VOH,Voh,independantiste,independantiste,7,7,2456,795,1661,781,516,Mouvement neo-independantiste et souverainiste | Union caledonienne,66.07,21.01
+legislatives_2022,1,VOH,Voh,loyaliste,anti_independantiste,7,7,2456,795,1661,781,250,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,32.01,10.18
+legislatives_2022,1,YATE,Yaté,autre,neutre,4,4,1802,622,1180,621,10,Construire autrement | Sans etiquette,1.61,0.55
+legislatives_2022,1,YATE,Yaté,independantiste,independantiste,4,4,1802,622,1180,621,568,Mouvement neo-independantiste et souverainiste | Union caledonienne,91.47,31.52
+legislatives_2022,1,YATE,Yaté,loyaliste,anti_independantiste,4,4,1802,622,1180,621,43,Debout la France | Generations NC | Rassemblement - LR | Rassemblement national,6.92,2.39
+legislatives_2022,2,BELEP,Belep,independantiste,independantiste,1,1,934,446,488,446,444,Union caledonienne,99.55,47.54
+legislatives_2022,2,BELEP,Belep,loyaliste,anti_independantiste,1,1,934,446,488,446,2,Generations NC,0.45,0.21
+legislatives_2022,2,BOULOUPARI,Boulouparis,independantiste,independantiste,4,4,3275,1821,1454,1770,394,Union caledonienne,22.26,12.03
+legislatives_2022,2,BOULOUPARI,Boulouparis,loyaliste,anti_independantiste,4,4,3275,1821,1454,1770,1376,Generations NC,77.74,42.02
+legislatives_2022,2,BOURAIL,Bourail,independantiste,independantiste,5,5,4666,2500,2166,2426,581,Union caledonienne,23.95,12.45
+legislatives_2022,2,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4666,2500,2166,2426,1845,Generations NC,76.05,39.54
+legislatives_2022,2,CANALA,Canala,independantiste,independantiste,7,7,3589,2268,1321,2256,2195,Union caledonienne,97.3,61.16
+legislatives_2022,2,CANALA,Canala,loyaliste,anti_independantiste,7,7,3589,2268,1321,2256,61,Generations NC,2.7,1.7
+legislatives_2022,2,DUMBEA,Dumbéa,independantiste,independantiste,26,26,22794,10047,12747,9768,1834,Union caledonienne,18.78,8.05
+legislatives_2022,2,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,22794,10047,12747,9768,7934,Generations NC,81.22,34.81
+legislatives_2022,2,FARINO,Farino,independantiste,independantiste,1,1,668,453,215,436,35,Union caledonienne,8.03,5.24
+legislatives_2022,2,FARINO,Farino,loyaliste,anti_independantiste,1,1,668,453,215,436,401,Generations NC,91.97,60.03
+legislatives_2022,2,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2504,1315,1189,1308,1279,Union caledonienne,97.78,51.08
+legislatives_2022,2,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2504,1315,1189,1308,29,Generations NC,2.22,1.16
+legislatives_2022,2,HOUAILOU,Houailou,independantiste,independantiste,8,8,3752,1730,2022,1702,1536,Union caledonienne,90.25,40.94
+legislatives_2022,2,HOUAILOU,Houailou,loyaliste,anti_independantiste,8,8,3752,1730,2022,1702,166,Generations NC,9.75,4.42
+legislatives_2022,2,ILEDESPINS,Ile des Pins,centriste,anti_independantiste,2,2,1842,630,1212,630,168,Caledonie ensemble,26.67,9.12
+legislatives_2022,2,ILEDESPINS,Ile des Pins,independantiste,independantiste,2,2,1842,630,1212,630,462,Palika,73.33,25.08
+legislatives_2022,2,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1761,736,1025,726,557,Union caledonienne,76.72,31.63
+legislatives_2022,2,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1761,736,1025,726,169,Generations NC,23.28,9.6
+legislatives_2022,2,KONE,Koné,independantiste,independantiste,12,12,5089,2548,2541,2497,1624,Union caledonienne,65.04,31.91
+legislatives_2022,2,KONE,Koné,loyaliste,anti_independantiste,12,12,5089,2548,2541,2497,873,Generations NC,34.96,17.15
+legislatives_2022,2,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1196,680,516,669,559,Union caledonienne,83.56,46.74
+legislatives_2022,2,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1196,680,516,669,110,Generations NC,16.44,9.2
+legislatives_2022,2,KOUMAC,Koumac,independantiste,independantiste,2,2,3127,1439,1688,1416,403,Union caledonienne,28.46,12.89
+legislatives_2022,2,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3127,1439,1688,1416,1013,Generations NC,71.54,32.4
+legislatives_2022,2,LAFOA,La Foa,independantiste,independantiste,4,4,3440,2144,1296,2064,611,Union caledonienne,29.6,17.76
+legislatives_2022,2,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3440,2144,1296,2064,1453,Generations NC,70.4,42.24
+legislatives_2022,2,LIFOU,Lifou,centriste,anti_independantiste,28,28,11006,5243,5763,5220,318,Caledonie ensemble,6.09,2.89
+legislatives_2022,2,LIFOU,Lifou,independantiste,independantiste,28,28,11006,5243,5763,5220,4902,Palika,93.91,44.54
+legislatives_2022,2,MARE,Maré,centriste,anti_independantiste,14,14,6948,2513,4435,2496,204,Caledonie ensemble,8.17,2.94
+legislatives_2022,2,MARE,Maré,independantiste,independantiste,14,14,6948,2513,4435,2496,2292,Palika,91.83,32.99
+legislatives_2022,2,MOINDOU,Moindou,independantiste,independantiste,1,1,822,486,336,466,191,Union caledonienne,40.99,23.24
+legislatives_2022,2,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,822,486,336,466,275,Generations NC,59.01,33.45
+legislatives_2022,2,MONTDORE,Mont-Dore,independantiste,independantiste,25,25,22120,9860,12260,9530,2160,Union caledonienne,22.67,9.76
+legislatives_2022,2,MONTDORE,Mont-Dore,loyaliste,anti_independantiste,25,25,22120,9860,12260,9530,7370,Generations NC,77.33,33.32
+legislatives_2022,2,NOUMEA,Nouméa,centriste,anti_independantiste,56,56,72730,29912,42818,28868,24878,Caledonie ensemble,86.18,34.21
+legislatives_2022,2,NOUMEA,Nouméa,independantiste,independantiste,56,56,72730,29912,42818,28868,3990,Palika,13.82,5.49
+legislatives_2022,2,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2224,1000,1224,992,617,Union caledonienne,62.2,27.74
+legislatives_2022,2,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2224,1000,1224,992,375,Generations NC,37.8,16.86
+legislatives_2022,2,OUVEA,Ouvéa,centriste,anti_independantiste,7,7,4406,1429,2977,1417,84,Caledonie ensemble,5.93,1.91
+legislatives_2022,2,OUVEA,Ouvéa,independantiste,independantiste,7,7,4406,1429,2977,1417,1333,Palika,94.07,30.25
+legislatives_2022,2,PAITA,Païta,independantiste,independantiste,19,19,15915,7194,8721,7012,1523,Union caledonienne,21.72,9.57
+legislatives_2022,2,PAITA,Païta,loyaliste,anti_independantiste,19,19,15915,7194,8721,7012,5489,Generations NC,78.28,34.49
+legislatives_2022,2,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4373,2247,2126,2214,1834,Union caledonienne,82.84,41.94
+legislatives_2022,2,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4373,2247,2126,2214,380,Generations NC,17.16,8.69
+legislatives_2022,2,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2689,1649,1040,1634,1509,Union caledonienne,92.35,56.12
+legislatives_2022,2,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2689,1649,1040,1634,125,Generations NC,7.65,4.65
+legislatives_2022,2,POUEBO,Pouébo,independantiste,independantiste,5,5,2405,1074,1331,1071,1051,Union caledonienne,98.13,43.7
+legislatives_2022,2,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2405,1074,1331,1071,20,Generations NC,1.87,0.83
+legislatives_2022,2,POUEMBOUT,Pouembout,independantiste,independantiste,3,3,1821,954,867,933,371,Union caledonienne,39.76,20.37
+legislatives_2022,2,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,3,3,1821,954,867,933,562,Generations NC,60.24,30.86
+legislatives_2022,2,POUM,Poum,independantiste,independantiste,3,3,1492,706,786,704,610,Union caledonienne,86.65,40.88
+legislatives_2022,2,POUM,Poum,loyaliste,anti_independantiste,3,3,1492,706,786,704,94,Generations NC,13.35,6.3
+legislatives_2022,2,POYA,Poya,independantiste,independantiste,6,6,2547,1505,1042,1478,899,Union caledonienne,60.83,35.3
+legislatives_2022,2,POYA,Poya,loyaliste,anti_independantiste,6,6,2547,1505,1042,1478,579,Generations NC,39.17,22.73
+legislatives_2022,2,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,528,270,258,265,213,Union caledonienne,80.38,40.34
+legislatives_2022,2,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,528,270,258,265,52,Generations NC,19.62,9.85
+legislatives_2022,2,THIO,Thio,independantiste,independantiste,4,4,2231,974,1257,966,857,Union caledonienne,88.72,38.41
+legislatives_2022,2,THIO,Thio,loyaliste,anti_independantiste,4,4,2231,974,1257,966,109,Generations NC,11.28,4.89
+legislatives_2022,2,TOUHO,Touho,independantiste,independantiste,4,4,2008,908,1100,892,763,Union caledonienne,85.54,38
+legislatives_2022,2,TOUHO,Touho,loyaliste,anti_independantiste,4,4,2008,908,1100,892,129,Generations NC,14.46,6.42
+legislatives_2022,2,VOH,Voh,independantiste,independantiste,7,7,2455,1304,1151,1290,930,Union caledonienne,72.09,37.88
+legislatives_2022,2,VOH,Voh,loyaliste,anti_independantiste,7,7,2455,1304,1151,1290,360,Generations NC,27.91,14.66
+legislatives_2022,2,YATE,Yaté,independantiste,independantiste,4,4,1797,973,824,967,920,Union caledonienne,95.14,51.2
+legislatives_2022,2,YATE,Yaté,loyaliste,anti_independantiste,4,4,1797,973,824,967,47,Generations NC,4.86,2.62
+legislatives_2024,1,BELEP,Belep,centriste,anti_independantiste,1,1,933,538,395,535,6,Caledonie ensemble | L'Eveil oceanien,1.12,0.64
+legislatives_2024,1,BELEP,Belep,independantiste,independantiste,1,1,933,538,395,535,529,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,98.88,56.7
+legislatives_2024,1,BELEP,Belep,loyaliste,anti_independantiste,1,1,933,538,395,535,0,Rassemblement - LR,0,0
+legislatives_2024,1,BOULOUPARI,Bouloupari,centriste,anti_independantiste,4,4,3345,2298,1047,2265,224,Caledonie ensemble | L'Eveil oceanien,9.89,6.7
+legislatives_2024,1,BOULOUPARI,Bouloupari,independantiste,independantiste,4,4,3345,2298,1047,2265,700,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,30.91,20.93
+legislatives_2024,1,BOULOUPARI,Bouloupari,loyaliste,anti_independantiste,4,4,3345,2298,1047,2265,1341,Rassemblement - LR,59.21,40.09
+legislatives_2024,1,BOURAIL,Bourail,centriste,anti_independantiste,5,5,4752,3252,1500,3183,489,Caledonie ensemble | L'Eveil oceanien,15.36,10.29
+legislatives_2024,1,BOURAIL,Bourail,independantiste,independantiste,5,5,4752,3252,1500,3183,1014,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,31.86,21.34
+legislatives_2024,1,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4752,3252,1500,3183,1680,Rassemblement - LR,52.78,35.35
+legislatives_2024,1,CANALA,Canala,centriste,anti_independantiste,7,7,3620,2502,1118,2486,115,Caledonie ensemble | L'Eveil oceanien,4.63,3.18
+legislatives_2024,1,CANALA,Canala,independantiste,independantiste,7,7,3620,2502,1118,2486,2354,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,94.69,65.03
+legislatives_2024,1,CANALA,Canala,loyaliste,anti_independantiste,7,7,3620,2502,1118,2486,17,Rassemblement - LR,0.68,0.47
+legislatives_2024,1,DUMBEA,Dumbéa,centriste,anti_independantiste,26,26,23579,14566,9013,14174,3466,Caledonie ensemble | L'Eveil oceanien,24.45,14.7
+legislatives_2024,1,DUMBEA,Dumbéa,independantiste,independantiste,26,26,23579,14566,9013,14174,3660,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,25.82,15.52
+legislatives_2024,1,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,23579,14566,9013,14174,7048,Rassemblement - LR,49.72,29.89
+legislatives_2024,1,FARINO,Farino,centriste,anti_independantiste,1,1,681,498,183,481,96,Caledonie ensemble | L'Eveil oceanien,19.96,14.1
+legislatives_2024,1,FARINO,Farino,independantiste,independantiste,1,1,681,498,183,481,66,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,13.72,9.69
+legislatives_2024,1,FARINO,Farino,loyaliste,anti_independantiste,1,1,681,498,183,481,319,Rassemblement - LR,66.32,46.84
+legislatives_2024,1,HIENGHENE,Hienghène,centriste,anti_independantiste,10,10,2500,1842,658,1831,30,Caledonie ensemble | L'Eveil oceanien,1.64,1.2
+legislatives_2024,1,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2500,1842,658,1831,1792,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,97.87,71.68
+legislatives_2024,1,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2500,1842,658,1831,9,Rassemblement - LR,0.49,0.36
+legislatives_2024,1,HOUAILOU,Houaïlou,centriste,anti_independantiste,8,8,3766,0,3766,0,0,Caledonie ensemble | L'Eveil oceanien,,0
+legislatives_2024,1,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3766,0,3766,0,0,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,,0
+legislatives_2024,1,HOUAILOU,Houaïlou,loyaliste,anti_independantiste,8,8,3766,0,3766,0,0,Rassemblement - LR,,0
+legislatives_2024,1,ILEDESPINS,L'Ile-des-Pins,autre,neutre,2,2,1847,1197,650,1183,3,CDH | Union populaire avec animaux,0.25,0.16
+legislatives_2024,1,ILEDESPINS,L'Ile-des-Pins,centriste,anti_independantiste,2,2,1847,1197,650,1183,126,Caledonie ensemble | L'Eveil oceanien,10.65,6.82
+legislatives_2024,1,ILEDESPINS,L'Ile-des-Pins,independantiste,independantiste,2,2,1847,1197,650,1183,950,Mouvement neo-independantiste et souverainiste | Rassemblement autochtone | Sans etiquette regionaliste | Union caledonienne,80.3,51.43
+legislatives_2024,1,ILEDESPINS,L'Ile-des-Pins,loyaliste,anti_independantiste,2,2,1847,1197,650,1183,104,Generations NC | Mouvement des citoyens francais | Rassemblement national | Reconquete,8.79,5.63
+legislatives_2024,1,KAALAGOMEN,Kaala-Gomen,centriste,anti_independantiste,6,6,1780,1315,465,1298,52,Caledonie ensemble | L'Eveil oceanien,4.01,2.92
+legislatives_2024,1,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1780,1315,465,1298,1094,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,84.28,61.46
+legislatives_2024,1,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1780,1315,465,1298,152,Rassemblement - LR,11.71,8.54
+legislatives_2024,1,KONE,Koné,centriste,anti_independantiste,12,12,5275,3590,1685,3522,383,Caledonie ensemble | L'Eveil oceanien,10.87,7.26
+legislatives_2024,1,KONE,Koné,independantiste,independantiste,12,12,5275,3590,1685,3522,2386,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,67.75,45.23
+legislatives_2024,1,KONE,Koné,loyaliste,anti_independantiste,12,12,5275,3590,1685,3522,753,Rassemblement - LR,21.38,14.27
+legislatives_2024,1,KOUAOUA,Kouaoua,centriste,anti_independantiste,4,4,1191,749,442,743,35,Caledonie ensemble | L'Eveil oceanien,4.71,2.94
+legislatives_2024,1,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1191,749,442,743,596,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,80.22,50.04
+legislatives_2024,1,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1191,749,442,743,112,Rassemblement - LR,15.07,9.4
+legislatives_2024,1,KOUMAC,Koumac,centriste,anti_independantiste,2,2,3159,2092,1067,2065,253,Caledonie ensemble | L'Eveil oceanien,12.25,8.01
+legislatives_2024,1,KOUMAC,Koumac,independantiste,independantiste,2,2,3159,2092,1067,2065,822,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,39.81,26.02
+legislatives_2024,1,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3159,2092,1067,2065,990,Rassemblement - LR,47.94,31.34
+legislatives_2024,1,LAFOA,La Foa,centriste,anti_independantiste,4,4,3467,2385,1082,2334,582,Caledonie ensemble | L'Eveil oceanien,24.94,16.79
+legislatives_2024,1,LAFOA,La Foa,independantiste,independantiste,4,4,3467,2385,1082,2334,719,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,30.81,20.74
+legislatives_2024,1,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3467,2385,1082,2334,1033,Rassemblement - LR,44.26,29.8
+legislatives_2024,1,LIFOU,Lifou,autre,neutre,28,28,11135,6756,4379,6696,10,CDH | Union populaire avec animaux,0.15,0.09
+legislatives_2024,1,LIFOU,Lifou,centriste,anti_independantiste,28,28,11135,6756,4379,6696,320,Caledonie ensemble | L'Eveil oceanien,4.78,2.87
+legislatives_2024,1,LIFOU,Lifou,independantiste,independantiste,28,28,11135,6756,4379,6696,6265,Mouvement neo-independantiste et souverainiste | Rassemblement autochtone | Sans etiquette regionaliste | Union caledonienne,93.56,56.26
+legislatives_2024,1,LIFOU,Lifou,loyaliste,anti_independantiste,28,28,11135,6756,4379,6696,101,Generations NC | Mouvement des citoyens francais | Rassemblement national | Reconquete,1.51,0.91
+legislatives_2024,1,MARE,Maré,autre,neutre,14,14,7042,4520,2522,4480,1,CDH | Union populaire avec animaux,0.02,0.01
+legislatives_2024,1,MARE,Maré,centriste,anti_independantiste,14,14,7042,4520,2522,4480,115,Caledonie ensemble | L'Eveil oceanien,2.57,1.63
+legislatives_2024,1,MARE,Maré,independantiste,independantiste,14,14,7042,4520,2522,4480,4338,Mouvement neo-independantiste et souverainiste | Rassemblement autochtone | Sans etiquette regionaliste | Union caledonienne,96.83,61.6
+legislatives_2024,1,MARE,Maré,loyaliste,anti_independantiste,14,14,7042,4520,2522,4480,26,Generations NC | Mouvement des citoyens francais | Rassemblement national | Reconquete,0.58,0.37
+legislatives_2024,1,MOINDOU,Moindou,centriste,anti_independantiste,1,1,832,613,219,603,72,Caledonie ensemble | L'Eveil oceanien,11.94,8.65
+legislatives_2024,1,MOINDOU,Moindou,independantiste,independantiste,1,1,832,613,219,603,287,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,47.6,34.5
+legislatives_2024,1,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,832,613,219,603,244,Rassemblement - LR,40.46,29.33
+legislatives_2024,1,MONTDORE,Le Mont-Dore,centriste,anti_independantiste,25,25,22508,12590,9918,12204,2702,Caledonie ensemble | L'Eveil oceanien,22.14,12
+legislatives_2024,1,MONTDORE,Le Mont-Dore,independantiste,independantiste,25,25,22508,12590,9918,12204,3210,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,26.3,14.26
+legislatives_2024,1,MONTDORE,Le Mont-Dore,loyaliste,anti_independantiste,25,25,22508,12590,9918,12204,6292,Rassemblement - LR,51.56,27.95
+legislatives_2024,1,NOUMEA,Nouméa,autre,neutre,57,57,72749,42053,30696,41325,274,CDH | Union populaire avec animaux,0.66,0.38
+legislatives_2024,1,NOUMEA,Nouméa,centriste,anti_independantiste,57,57,72749,42053,30696,41325,7931,Caledonie ensemble | L'Eveil oceanien,19.19,10.9
+legislatives_2024,1,NOUMEA,Nouméa,independantiste,independantiste,57,57,72749,42053,30696,41325,8229,Mouvement neo-independantiste et souverainiste | Rassemblement autochtone | Sans etiquette regionaliste | Union caledonienne,19.91,11.31
+legislatives_2024,1,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,72749,42053,30696,41325,24891,Generations NC | Mouvement des citoyens francais | Rassemblement national | Reconquete,60.23,34.21
+legislatives_2024,1,OUEGOA,Ouégoa,centriste,anti_independantiste,4,4,2235,1478,757,1461,47,Caledonie ensemble | L'Eveil oceanien,3.22,2.1
+legislatives_2024,1,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2235,1478,757,1461,1028,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,70.36,46
+legislatives_2024,1,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2235,1478,757,1461,386,Rassemblement - LR,26.42,17.27
+legislatives_2024,1,OUVEA,Ouvéa,autre,neutre,7,7,4390,2390,2000,2366,10,CDH | Union populaire avec animaux,0.42,0.23
+legislatives_2024,1,OUVEA,Ouvéa,centriste,anti_independantiste,7,7,4390,2390,2000,2366,30,Caledonie ensemble | L'Eveil oceanien,1.27,0.68
+legislatives_2024,1,OUVEA,Ouvéa,independantiste,independantiste,7,7,4390,2390,2000,2366,2239,Mouvement neo-independantiste et souverainiste | Rassemblement autochtone | Sans etiquette regionaliste | Union caledonienne,94.63,51
+legislatives_2024,1,OUVEA,Ouvéa,loyaliste,anti_independantiste,7,7,4390,2390,2000,2366,87,Generations NC | Mouvement des citoyens francais | Rassemblement national | Reconquete,3.68,1.98
+legislatives_2024,1,PAITA,Païta,centriste,anti_independantiste,19,19,16589,10473,6116,10192,2885,Caledonie ensemble | L'Eveil oceanien,28.31,17.39
+legislatives_2024,1,PAITA,Païta,independantiste,independantiste,19,19,16589,10473,6116,10192,2597,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,25.48,15.65
+legislatives_2024,1,PAITA,Païta,loyaliste,anti_independantiste,19,19,16589,10473,6116,10192,4710,Rassemblement - LR,46.21,28.39
+legislatives_2024,1,POINDIMIE,Poindimié,centriste,anti_independantiste,7,7,4426,3051,1375,2988,187,Caledonie ensemble | L'Eveil oceanien,6.26,4.23
+legislatives_2024,1,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4426,3051,1375,2988,2507,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,83.9,56.64
+legislatives_2024,1,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4426,3051,1375,2988,294,Rassemblement - LR,9.84,6.64
+legislatives_2024,1,PONERIHOUEN,Ponérihouen,centriste,anti_independantiste,7,7,2720,1071,1649,1053,121,Caledonie ensemble | L'Eveil oceanien,11.49,4.45
+legislatives_2024,1,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2720,1071,1649,1053,862,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,81.86,31.69
+legislatives_2024,1,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2720,1071,1649,1053,70,Rassemblement - LR,6.65,2.57
+legislatives_2024,1,POUEBO,Pouébo,centriste,anti_independantiste,5,5,2427,1520,907,1504,108,Caledonie ensemble | L'Eveil oceanien,7.18,4.45
+legislatives_2024,1,POUEBO,Pouébo,independantiste,independantiste,5,5,2427,1520,907,1504,1383,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,91.95,56.98
+legislatives_2024,1,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2427,1520,907,1504,13,Rassemblement - LR,0.86,0.54
+legislatives_2024,1,POUEMBOUT,Pouembout,centriste,anti_independantiste,2,2,1908,1324,584,1293,197,Caledonie ensemble | L'Eveil oceanien,15.24,10.32
+legislatives_2024,1,POUEMBOUT,Pouembout,independantiste,independantiste,2,2,1908,1324,584,1293,560,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,43.31,29.35
+legislatives_2024,1,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,2,2,1908,1324,584,1293,536,Rassemblement - LR,41.45,28.09
+legislatives_2024,1,POUM,Poum,centriste,anti_independantiste,3,3,1533,984,549,964,125,Caledonie ensemble | L'Eveil oceanien,12.97,8.15
+legislatives_2024,1,POUM,Poum,independantiste,independantiste,3,3,1533,984,549,964,758,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,78.63,49.45
+legislatives_2024,1,POUM,Poum,loyaliste,anti_independantiste,3,3,1533,984,549,964,81,Rassemblement - LR,8.4,5.28
+legislatives_2024,1,POYA,Poya,centriste,anti_independantiste,6,6,2593,1877,716,1849,232,Caledonie ensemble | L'Eveil oceanien,12.55,8.95
+legislatives_2024,1,POYA,Poya,independantiste,independantiste,6,6,2593,1877,716,1849,1202,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,65.01,46.36
+legislatives_2024,1,POYA,Poya,loyaliste,anti_independantiste,6,6,2593,1877,716,1849,415,Rassemblement - LR,22.44,16
+legislatives_2024,1,SARRAMEA,Sarraméa,centriste,anti_independantiste,1,1,532,347,185,340,33,Caledonie ensemble | L'Eveil oceanien,9.71,6.2
+legislatives_2024,1,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,532,347,185,340,268,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,78.82,50.38
+legislatives_2024,1,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,532,347,185,340,39,Rassemblement - LR,11.47,7.33
+legislatives_2024,1,THIO,Thio,centriste,anti_independantiste,4,4,2262,1257,1005,1246,127,Caledonie ensemble | L'Eveil oceanien,10.19,5.61
+legislatives_2024,1,THIO,Thio,independantiste,independantiste,4,4,2262,1257,1005,1246,1049,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,84.19,46.37
+legislatives_2024,1,THIO,Thio,loyaliste,anti_independantiste,4,4,2262,1257,1005,1246,70,Rassemblement - LR,5.62,3.09
+legislatives_2024,1,TOUHO,Touho,centriste,anti_independantiste,4,4,2027,1350,677,1336,39,Caledonie ensemble | L'Eveil oceanien,2.92,1.92
+legislatives_2024,1,TOUHO,Touho,independantiste,independantiste,4,4,2027,1350,677,1336,1190,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,89.07,58.71
+legislatives_2024,1,TOUHO,Touho,loyaliste,anti_independantiste,4,4,2027,1350,677,1336,107,Rassemblement - LR,8.01,5.28
+legislatives_2024,1,VOH,Voh,centriste,anti_independantiste,7,7,2478,1746,732,1714,176,Caledonie ensemble | L'Eveil oceanien,10.27,7.1
+legislatives_2024,1,VOH,Voh,independantiste,independantiste,7,7,2478,1746,732,1714,1232,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,71.88,49.72
+legislatives_2024,1,VOH,Voh,loyaliste,anti_independantiste,7,7,2478,1746,732,1714,306,Rassemblement - LR,17.85,12.35
+legislatives_2024,1,YATE,Yaté,centriste,anti_independantiste,4,4,1833,1081,752,1074,70,Caledonie ensemble | L'Eveil oceanien,6.52,3.82
+legislatives_2024,1,YATE,Yaté,independantiste,independantiste,4,4,1833,1081,752,1074,983,Mouvement neo-independantiste et souverainiste | Souverainete caledonienne | Union caledonienne,91.53,53.63
+legislatives_2024,1,YATE,Yaté,loyaliste,anti_independantiste,4,4,1833,1081,752,1074,21,Rassemblement - LR,1.96,1.15
+legislatives_2024,2,BELEP,Belep,independantiste,independantiste,1,1,932,676,256,676,676,Union caledonienne,100,72.53
+legislatives_2024,2,BELEP,Belep,loyaliste,anti_independantiste,1,1,932,676,256,676,0,Rassemblement - LR,0,0
+legislatives_2024,2,BOULOUPARI,Bouloupari,independantiste,independantiste,4,4,3345,2604,741,2576,904,Union caledonienne,35.09,27.03
+legislatives_2024,2,BOULOUPARI,Bouloupari,loyaliste,anti_independantiste,4,4,3345,2604,741,2576,1672,Rassemblement - LR,64.91,49.99
+legislatives_2024,2,BOURAIL,Bourail,independantiste,independantiste,5,5,4752,3749,1003,3696,1492,Union caledonienne,40.37,31.4
+legislatives_2024,2,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4752,3749,1003,3696,2204,Rassemblement - LR,59.63,46.38
+legislatives_2024,2,CANALA,Canala,independantiste,independantiste,7,7,3620,3042,578,3029,2991,Union caledonienne,98.75,82.62
+legislatives_2024,2,CANALA,Canala,loyaliste,anti_independantiste,7,7,3620,3042,578,3029,38,Rassemblement - LR,1.25,1.05
+legislatives_2024,2,DUMBEA,Dumbéa,independantiste,independantiste,26,26,23579,16456,7123,16189,5971,Union caledonienne,36.88,25.32
+legislatives_2024,2,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,23579,16456,7123,16189,10218,Rassemblement - LR,63.12,43.34
+legislatives_2024,2,FARINO,Farino,independantiste,independantiste,1,1,681,566,115,554,113,Union caledonienne,20.4,16.59
+legislatives_2024,2,FARINO,Farino,loyaliste,anti_independantiste,1,1,681,566,115,554,441,Rassemblement - LR,79.6,64.76
+legislatives_2024,2,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2500,2107,393,2091,2074,Union caledonienne,99.19,82.96
+legislatives_2024,2,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2500,2107,393,2091,17,Rassemblement - LR,0.81,0.68
+legislatives_2024,2,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3768,2680,1088,2656,2528,Union caledonienne,95.18,67.09
+legislatives_2024,2,HOUAILOU,Houaïlou,loyaliste,anti_independantiste,8,8,3768,2680,1088,2656,128,Rassemblement - LR,4.82,3.4
+legislatives_2024,2,ILEDESPINS,L'Ile-des-Pins,independantiste,independantiste,2,2,1846,1449,397,1432,1268,Union caledonienne,88.55,68.69
+legislatives_2024,2,ILEDESPINS,L'Ile-des-Pins,loyaliste,anti_independantiste,2,2,1846,1449,397,1432,164,Generations NC,11.45,8.88
+legislatives_2024,2,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1782,1504,278,1494,1272,Union caledonienne,85.14,71.38
+legislatives_2024,2,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1782,1504,278,1494,222,Rassemblement - LR,14.86,12.46
+legislatives_2024,2,KONE,Koné,independantiste,independantiste,12,12,5275,4017,1258,3963,2961,Union caledonienne,74.72,56.13
+legislatives_2024,2,KONE,Koné,loyaliste,anti_independantiste,12,12,5275,4017,1258,3963,1002,Rassemblement - LR,25.28,19
+legislatives_2024,2,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1190,909,281,908,772,Union caledonienne,85.02,64.87
+legislatives_2024,2,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1190,909,281,908,136,Rassemblement - LR,14.98,11.43
+legislatives_2024,2,KOUMAC,Koumac,independantiste,independantiste,2,2,3156,2437,719,2400,1129,Union caledonienne,47.04,35.77
+legislatives_2024,2,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3156,2437,719,2400,1271,Rassemblement - LR,52.96,40.27
+legislatives_2024,2,LAFOA,La Foa,independantiste,independantiste,4,4,3467,2719,748,2674,1151,Union caledonienne,43.04,33.2
+legislatives_2024,2,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3467,2719,748,2674,1523,Rassemblement - LR,56.96,43.93
+legislatives_2024,2,LIFOU,Lifou,independantiste,independantiste,28,28,11135,8661,2474,8599,8382,Union caledonienne,97.48,75.28
+legislatives_2024,2,LIFOU,Lifou,loyaliste,anti_independantiste,28,28,11135,8661,2474,8599,217,Generations NC,2.52,1.95
+legislatives_2024,2,MARE,Maré,independantiste,independantiste,14,14,7043,5638,1405,5610,5563,Union caledonienne,99.16,78.99
+legislatives_2024,2,MARE,Maré,loyaliste,anti_independantiste,14,14,7043,5638,1405,5610,47,Generations NC,0.84,0.67
+legislatives_2024,2,MOINDOU,Moindou,independantiste,independantiste,1,1,832,682,150,671,369,Union caledonienne,54.99,44.35
+legislatives_2024,2,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,832,682,150,671,302,Rassemblement - LR,45.01,36.3
+legislatives_2024,2,MONTDORE,Le Mont-Dore,independantiste,independantiste,25,25,22507,14730,7777,14450,5443,Union caledonienne,37.67,24.18
+legislatives_2024,2,MONTDORE,Le Mont-Dore,loyaliste,anti_independantiste,25,25,22507,14730,7777,14450,9007,Rassemblement - LR,62.33,40.02
+legislatives_2024,2,NOUMEA,Nouméa,independantiste,independantiste,57,57,72750,48003,24747,46941,12851,Union caledonienne,27.38,17.66
+legislatives_2024,2,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,72750,48003,24747,46941,34090,Generations NC,72.62,46.86
+legislatives_2024,2,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2235,1713,522,1701,1249,Union caledonienne,73.43,55.88
+legislatives_2024,2,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2235,1713,522,1701,452,Rassemblement - LR,26.57,20.22
+legislatives_2024,2,OUVEA,Ouvéa,independantiste,independantiste,7,7,4388,3426,962,3394,3335,Union caledonienne,98.26,76
+legislatives_2024,2,OUVEA,Ouvéa,loyaliste,anti_independantiste,7,7,4388,3426,962,3394,59,Generations NC,1.74,1.34
+legislatives_2024,2,PAITA,Païta,independantiste,independantiste,19,19,16582,11854,4728,11654,4676,Union caledonienne,40.12,28.2
+legislatives_2024,2,PAITA,Païta,loyaliste,anti_independantiste,19,19,16582,11854,4728,11654,6978,Rassemblement - LR,59.88,42.08
+legislatives_2024,2,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4420,3531,889,3482,3102,Union caledonienne,89.09,70.18
+legislatives_2024,2,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4420,3531,889,3482,380,Rassemblement - LR,10.91,8.6
+legislatives_2024,2,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2721,1814,907,1798,1688,Union caledonienne,93.88,62.04
+legislatives_2024,2,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2721,1814,907,1798,110,Rassemblement - LR,6.12,4.04
+legislatives_2024,2,POUEBO,Pouébo,independantiste,independantiste,5,5,2427,1814,613,1805,1776,Union caledonienne,98.39,73.18
+legislatives_2024,2,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2427,1814,613,1805,29,Rassemblement - LR,1.61,1.19
+legislatives_2024,2,POUEMBOUT,Pouembout,independantiste,independantiste,2,2,1908,1474,434,1449,752,Union caledonienne,51.9,39.41
+legislatives_2024,2,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,2,2,1908,1474,434,1449,697,Rassemblement - LR,48.1,36.53
+legislatives_2024,2,POUM,Poum,independantiste,independantiste,3,3,1533,1170,363,1163,1040,Union caledonienne,89.42,67.84
+legislatives_2024,2,POUM,Poum,loyaliste,anti_independantiste,3,3,1533,1170,363,1163,123,Rassemblement - LR,10.58,8.02
+legislatives_2024,2,POYA,Poya,independantiste,independantiste,6,6,2597,2095,502,2077,1503,Union caledonienne,72.36,57.87
+legislatives_2024,2,POYA,Poya,loyaliste,anti_independantiste,6,6,2597,2095,502,2077,574,Rassemblement - LR,27.64,22.1
+legislatives_2024,2,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,532,421,111,416,364,Union caledonienne,87.5,68.42
+legislatives_2024,2,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,532,421,111,416,52,Rassemblement - LR,12.5,9.77
+legislatives_2024,2,THIO,Thio,independantiste,independantiste,4,4,2260,1596,664,1587,1465,Union caledonienne,92.31,64.82
+legislatives_2024,2,THIO,Thio,loyaliste,anti_independantiste,4,4,2260,1596,664,1587,122,Rassemblement - LR,7.69,5.4
+legislatives_2024,2,TOUHO,Touho,independantiste,independantiste,4,4,2027,1553,474,1538,1397,Union caledonienne,90.83,68.92
+legislatives_2024,2,TOUHO,Touho,loyaliste,anti_independantiste,4,4,2027,1553,474,1538,141,Rassemblement - LR,9.17,6.96
+legislatives_2024,2,VOH,Voh,independantiste,independantiste,7,7,2478,1966,512,1946,1507,Union caledonienne,77.44,60.82
+legislatives_2024,2,VOH,Voh,loyaliste,anti_independantiste,7,7,2478,1966,512,1946,439,Rassemblement - LR,22.56,17.72
+legislatives_2024,2,YATE,Yaté,independantiste,independantiste,4,4,1833,1405,428,1401,1359,Union caledonienne,97,74.14
+legislatives_2024,2,YATE,Yaté,loyaliste,anti_independantiste,4,4,1833,1405,428,1401,42,Rassemblement - LR,3,2.29
+municipales_2020,1,BELEP,Belep,non_classe,non_classe,1,1,944,659,285,656,656,BELEP : IDENTITE ET DESTIN PARTAGE | DAU AR POUR TOUS,100,69.49
+municipales_2020,1,BOULOUPARI,Boulouparis,non_classe,non_classe,2,2,3143,2210,933,2165,2165,BOULOUPARIS POUR VOUS | ENSEMBLE DEVELOPPONS BOULOUPARIS | FA MURU BEREPWARI,100,68.88
+municipales_2020,1,BOURAIL,Bourail,non_classe,non_classe,5,5,4501,2641,1860,2543,2543,BOURAIL EN ACCORD | DESSINONS BOURAIL | ENSEMBLE POUR BOURAIL | FLKNS | RENOUVEAU POUR BOURAIL,100,56.5
+municipales_2020,1,CANALA,Canala,non_classe,non_classe,6,6,3500,2342,1158,2311,2311,FEDERATION COMMUNALE DE COMPETENCES AU SERVICE DE L'INNOVATION | MURU XORU CANALA ALTERNATIVE | UC FLNKS | XARACUU TAATOA,100,66.03
+municipales_2020,1,DUMBEA,Dumbéa,non_classe,non_classe,24,24,21301,10237,11064,9970,9970,DUMBEA AUTREMENT UNE NOUVELLE AMBITION POUR NOTRE VILLE | DUMBEA UNE VILLE OCEANIENNE | GÉNÉRATIONS DUMBEA | NOTRE DUMBEA LE REVEIL | Pour une ville à votre image,100,46.81
+municipales_2020,1,FARINO,Farino,non_classe,non_classe,1,1,644,526,118,512,512,AGISSONS ENSEMBLE POUR FARINO | GENERATIONS FARINO | LABEL'LE VERTE,100,79.5
+municipales_2020,1,HIENGHENE,Hienghène,non_classe,non_classe,10,10,2472,1286,1186,1275,1275,HIENGHENE AUTREMENT | SOWEI FLNKS HYEEHEN | UC FLNKS HYEHEN | UNE AUTRE VOIE POUR LE DEVELOPPEMENT ET L INNOVATION,100,51.58
+municipales_2020,1,HOUAILOU,Houailou,non_classe,non_classe,8,8,3723,2221,1502,2181,2181,LISTE UNITAIRE NATIONALISTE FLNKS | UNION POUR L'INDEPENDANCE | WAA WILUU 2020  POUR UN CHANGEMENT DURABLE,100,58.58
+municipales_2020,1,ILEDESPINS,Ile des Pins,non_classe,non_classe,2,2,1786,1244,542,1230,1230,CALEDONIE ENSEMBLE | FLNKS | Les Républicains-Kunié | Sur les traces de l'excellence | UC FLNKS,100,68.87
+municipales_2020,1,KAALAGOMEN,Kaala-Gomen,non_classe,non_classe,6,6,1697,1146,551,1137,1137,BWAPANU EN AVANT ! | ENTENTE COMMUNALE | Uni pour Bwapanu | UNION CALEDONIENNE BWAPANU,100,67
+municipales_2020,1,KONE,Koné,non_classe,non_classe,12,12,4974,3009,1965,2942,2942,KONE AUTREMENT | UC-FLNKS KOOHNÊ | UNI POUR KOOHNE,100,59.15
+municipales_2020,1,KOUAOUA,Kouaoua,non_classe,non_classe,4,4,1175,806,369,797,797,"ARRO NA NÂBO ROA MÖRRÖ UC FLNKS | KAAWIIPAA TERRE, COMMUNE ET AVENIR | PALIKA KAAWIIPAA NI DAWANI",100,67.83
+municipales_2020,1,KOUMAC,Koumac,non_classe,non_classe,2,2,3044,1736,1308,1707,1707,BATISSON KOUMAC DE DEMAIN | CONSTRUISONS ENSEMBLE KOUMAC | POUR LE PROGRES COMMUNAL | UNION POUR L'INDEPENDANCE,100,56.08
+municipales_2020,1,LAFOA,La Foa,non_classe,non_classe,4,4,3345,2521,824,2472,2472,CIRI | GENERATIONS LA FOA | LA FOA AVANT TOUT C'EST VOUS | LA FOA EN NOUS | LA FOA POUR TOUS,100,73.9
+municipales_2020,1,LIFOU,Lifou,non_classe,non_classe,26,26,10923,5727,5196,5669,5669,MEKU THE THEW POUR KANAKY | PARTI TRAVAILLISTE DREHU TOKA | UNE NOUVELLE AMBITION POUR LIFOU | UNION CITOYENNE NE DREHU,100,51.9
+municipales_2020,1,MARE,Maré,non_classe,non_classe,14,14,6864,5016,1848,4996,4996,DYNAMIQUE AUTOCHTONE | DYNAMIQUE UNITAIRE NENGONE | EJE SESE SO NENGONE | NENGONE AVEC NOUS | PARTI TRAVAILLISTE | UC-FLNKS NENGONE,100,72.79
+municipales_2020,1,MOINDOU,Moindou,non_classe,non_classe,1,1,827,657,170,644,644,ALTERNATIVES 2020 | ENSEMBLE POUR MOINDOU | GÉNÉRATIONS MOINDOU | UNI MWÂRU,100,77.87
+municipales_2020,1,MONTDORE,Mont-Dore,non_classe,non_classe,25,25,21527,10842,10685,10566,10566,Générations Mont-Dore | LE MONT DORE NOTRE VILLE VERS UNE NATION ARC EN CIEL | LE MONT DORE SOLIDAIRE | TOUS POUR NOTRE MONT-DORE | VIVRE AU MONT-DORE,100,49.08
+municipales_2020,1,NOUMEA,Nouméa,non_classe,non_classe,57,57,71352,30006,41346,29229,29229,"AVEC VOUS, POUR NOUMEA | Générations Nouméa, un nouvel horizon | NÂ BWAU | NOS QUARTIERS, NOTRE VILLE | NOUMEA AUTREMENT, UNE VILLE POUR TOUS LES NOUMEENS | NOUMEA, C'EST VOUS ! | UNITE PAYS",100,40.96
+municipales_2020,1,OUEGOA,Ouégoa,non_classe,non_classe,4,4,2181,1159,1022,1144,1144,100% OUEGOA | OUEGOA AUTREMENT | OUEGOA CONSTRUCTIF ET SOLIDAIRE | UNION CALEDONIENNE | UNION NATIONALE POUR L'INDEPENDANCE,100,52.45
+municipales_2020,1,OUVEA,Ouvéa,non_classe,non_classe,7,7,4447,2852,1595,2838,2838,ENSEMBLE OSONS LE CHANGEMENT | INITIATIVE DYNAMIQUE COMMUNALE | OUVEA CAP SUR L AVENIR | PALIKA UNI IAAI | PARTI TRAVAILLISTE / MNIS | REAGIR MAINTENANT POUR OUVEA | UPM IAAI,100,63.82
+municipales_2020,1,PAITA,Païta,non_classe,non_classe,19,19,14809,8494,6315,8290,8290,"GENERATIONS NC | L'EVEIL DE PAïTA | PAITA AUTREMENT, une nouvelle énergie pour notre commune | PAITA EN CONFIANCE | PAITA EN MOUVEMENT | PAITA RASSEMBLES | PAITA VOTRE IDENTITE NOTRE RICHESSE",100,55.98
+municipales_2020,1,POINDIMIE,Poindimié,non_classe,non_classe,7,7,4284,2642,1642,2593,2593,"POINDIMIE, OSONS LE CHANGEMENT | UC AVEC LES CITOYENS DE PWËËDI WIIMIÂ | UNION NATIONALE POUR L'INDEPENDANCE",100,60.53
+municipales_2020,1,PONERIHOUEN,Ponérihouen,non_classe,non_classe,7,7,2675,1858,817,1810,1810,"UC PALIKA ""pour une commune solidaire et dynamique""... | UNION NATIONALE POUR L'INDEPENDANCE PWARAIRIWA",100,67.66
+municipales_2020,1,POUEBO,Pouébo,non_classe,non_classe,5,5,2400,1291,1109,1272,1272,ENTENTE COMMUNALE POUR LE CHANGEMENT | PWEEVO UNI | Union calédonienne Pouébo | WEDO HI OWA,100,53
+municipales_2020,1,POUEMBOUT,Pouembout,non_classe,non_classe,3,3,1711,1160,551,1110,1110,ENSEMBLE POUR UN DESTIN COMMUN | MOUVEMENT CITOYEN,100,64.87
+municipales_2020,1,POUM,Poum,non_classe,non_classe,3,3,1452,1014,438,1010,1010,POUM AUTREMENT | S'UNIR POUR DEMAIN | UNION CITOYENNE,100,69.56
+municipales_2020,1,POYA,Poya,non_classe,non_classe,6,6,2486,1622,864,1570,1570,Construisons et développons POYA autrement pour l'avenir | FLNKS NEKO POYA | POYA NEKO HORIZON 2026,100,63.15
+municipales_2020,1,SARRAMEA,Sarraméa,non_classe,non_classe,1,1,529,399,130,387,387,ENTENTE COMMUNALE | SARRAMEA AUTREMENT | SARRAMEA KANAKY | UNION CITOYENNE,100,73.16
+municipales_2020,1,THIO,Thio,non_classe,non_classe,4,4,2189,1284,905,1233,1233,CITOYENS SOLIDAIRES | THIO POUR TOUS | UNIR NOS FORCES NOS RELATIONS POUR NOTRE COMMUNE | UNIR POUR BATIR THIO ET BORENDY,100,56.33
+municipales_2020,1,TOUHO,Touho,non_classe,non_classe,4,4,1962,1192,770,1145,1145,UNI TOUHO CEMUKI | UNION CITOYENNE DE TOUHO,100,58.36
+municipales_2020,1,VOH,Voh,non_classe,non_classe,7,7,2417,1582,835,1555,1555,"AVEC VOUS POUR LE RENOU""VOH"" | BOATATE KOLEKOLE | ENSEMBLE VOOK | POUR UNE COMMUNE PLUS CITOYENNE",100,64.34
+municipales_2020,1,YATE,Yaté,non_classe,non_classe,4,4,1763,1300,463,1290,1290,"BIEN VIVRE A YATE | EBUNUIRE NE YATRE ITEA | UC-FLNKS | UNIR POUR BATIR YATE | YATE, SUR LE CHEMIN DE LA SOUVERAINETE",100,73.17
+municipales_2026,1,BELEP,Belep,independantiste,independantiste,1,1,943,703,240,698,698,Albert WAHOULO BELEP POUR LA RECONCILIATION | Franck Mac Kane BOUANAOUE DAU AR POUR TOUS | Gianni TEAMBOUEON YAGUË LI MOLEP | Ignacia TEANYOUEN UNIS POUR DAU AR | Yan MOILOU FEDERATION METANOÏA,100,74.02
+municipales_2026,1,BOULOUPARI,Bouloupari,independantiste,independantiste,4,4,3381,2326,1055,2265,444,"Roger Philippe THEVEDIN Construire ensemble, Berepwari",19.6,13.13
+municipales_2026,1,BOULOUPARI,Bouloupari,loyaliste,anti_independantiste,4,4,3381,2326,1055,2265,1821,Karlheinz CREUGNET Boulouparis au coeur de nos vies | Pascal VITTORI Boulouparis pour vous,80.4,53.86
+municipales_2026,1,BOURAIL,Bourail,centriste,anti_independantiste,5,5,4880,3122,1758,3033,1932,Jean-Paul ROBELIN Ambition Bourail | Patrick ROBELIN Bourail en accord,63.7,39.59
+municipales_2026,1,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4880,3122,1758,3033,1101,Levay ROY BOURAIL DEMAIN,36.3,22.56
+municipales_2026,1,CANALA,Canala,independantiste,independantiste,7,7,3620,2576,1044,2544,2544,Caril BERONON XWAMAABWI ADOPOO | Gilbert TYUIENON TEPE AEE CE KANAKY DAAWANI | Jean Michel MAYET MURU XORU | Raymond - Freddy TYUIENON UNI XARACUU ARE,100,70.28
+municipales_2026,1,DUMBEA,Dumbéa,centriste,anti_independantiste,26,26,24283,12513,11770,12180,3649,Vaimua MULIAVA DUMBEA COLLECTIF | Yoann LECOURIEUX DUMBEA AVANT TOUT!,29.96,15.03
+municipales_2026,1,DUMBEA,Dumbéa,independantiste,independantiste,26,26,24283,12513,11770,12180,2058,"Julia Danielle QENEGEI ÉPOUSE GUAENERE UNI SOLIDARITE DUMBEA | Rachel AUCHER DUMBEA, AU SERVICE DU PEUPLE",16.9,8.48
+municipales_2026,1,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,24283,12513,11770,12180,6473,Cynthia JAN NÉE METZDORF UNIR POUR l'AVENIR | Muriel MALFAR-PAUGA PASSIONNEMENT DUMBEA,53.14,26.66
+municipales_2026,1,FARINO,Farino,centriste,anti_independantiste,1,1,696,571,125,559,164,Jean-Christophe NIAUTOU AGIR POUR FARINO,29.34,23.56
+municipales_2026,1,FARINO,Farino,independantiste,independantiste,1,1,696,571,125,559,76,"Martha AIMOA FARINO, UN NOUVEAU SOUFFLE",13.6,10.92
+municipales_2026,1,FARINO,Farino,loyaliste,anti_independantiste,1,1,696,571,125,559,319,Luté BARBOU FARINO SOLIDAIRE & ENGAGEE | Sandrine KABAR Unis pour Farino,57.07,45.83
+municipales_2026,1,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2498,1610,888,1599,1599,Jean-Claude ATHEA SOWEI | Mireille TJIBAOU VEUVE COUHIA UC HYEHEN,100,64.01
+municipales_2026,1,HOUAILOU,Houaïlou,autre,neutre,8,8,3713,2220,1493,2187,591,Angie - Singride BOEHE ERE MA WAA | Maurice WATANABÉ WAWILU 2026 POUR LE CHANGEMENT,27.02,15.92
+municipales_2026,1,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3713,2220,1493,2187,1596,Jean Luc Louka MAHE UNI WAA WI LUU | Nadège MINDIA GERE GUNIMA MA VI TA BE VEKI WAAWIILII | Pascal SAWA LISTE UNITAIRE NATIONALISTE FLNKS (UC - UPM - PT),72.98,42.98
+municipales_2026,1,ILEDESPINS,L'Ile-des-Pins,autre,neutre,2,2,1868,1294,574,1281,296,Regis Wadieme VENDEGOU KWENYII UNI,23.11,15.85
+municipales_2026,1,ILEDESPINS,L'Ile-des-Pins,independantiste,independantiste,2,2,1868,1294,574,1281,566,Daniel Patrick KOUATHE FLNKS KWENYII | Eugène VAMA MOUVEMENT DE LA JEUNESSE KWENYII,44.18,30.3
+municipales_2026,1,ILEDESPINS,L'Ile-des-Pins,loyaliste,anti_independantiste,2,2,1868,1294,574,1281,419,Christophe VAKIE Eveil Kunié | Guillaume KOUATHE KUNIE ENTENTE COMMUNALE,32.71,22.43
+municipales_2026,1,KAALAGOMEN,Kaala-Gomen,autre,neutre,6,6,1808,1364,444,1353,593,Alain LEVANT ENTENTE COMMUNALE,43.83,32.8
+municipales_2026,1,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1808,1364,444,1353,760,Hervé Maguei TEIN-TAOUVA UNION CITOYENNE DE BWAPANU | Pablo POY-YETHY UNIS POUR BWAPANU,56.17,42.04
+municipales_2026,1,KONE,Koné,centriste,anti_independantiste,12,12,5339,3294,2045,3242,431,"Jean-Yves Pama MY ENSEMBLE, CONSTRUISONS LA COMMUNE DE DEMAIN",13.29,8.07
+municipales_2026,1,KONE,Koné,independantiste,independantiste,12,12,5339,3294,2045,3242,1802,Joseph Apangou GOROMIDO UNI KOOHNE | Thierry GOWECEE UC FLNKS,55.58,33.75
+municipales_2026,1,KONE,Koné,loyaliste,anti_independantiste,12,12,5339,3294,2045,3242,1009,Mike SAMADI AGISSONS POUR KONE,31.12,18.9
+municipales_2026,1,KOUAOUA,Kouaoua,autre,neutre,4,4,1206,889,317,881,107,Suzanne - Poawe MEREATU VISION KAAWIIPAA,12.15,8.87
+municipales_2026,1,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1206,889,317,881,516,Franck DIOPOUE NOORE KAAWIIPAA NA TRU NEWE NIARREHI RI - KOUOUA MAITRE DE SON AVENIR | Thérèse - Jacqueline COUIEMOIN TO CHAA TRUNODO VEII KANAKY,58.57,42.79
+municipales_2026,1,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1206,889,317,881,258,Alcide PONGA KAAWIIPAA TERRE COMMUNE ET AVENIR,29.28,21.39
+municipales_2026,1,KOUMAC,Koumac,autre,neutre,2,2,3138,1980,1158,1943,547,Antonio MARTIN KOUMAC RENOUVEAU | Olivier BESANÇON KOUMAC UNION CITOYENNE,28.15,17.43
+municipales_2026,1,KOUMAC,Koumac,centriste,anti_independantiste,2,2,3138,1980,1158,1943,436,Yann GASTALDI BATISSONS ENSEMBLE KOUMAC,22.44,13.89
+municipales_2026,1,KOUMAC,Koumac,independantiste,independantiste,2,2,3138,1980,1158,1943,354,Josée KONDOLO UNION CALEDONIENNE | Jürgen WHALA-WINDI UNIS POUR KOUMAC,18.22,11.28
+municipales_2026,1,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3138,1980,1158,1943,606,Wilfrid WEISS POUR LE PROGRES COMMUNAL,31.19,19.31
+municipales_2026,1,LAFOA,La Foa,centriste,anti_independantiste,4,4,3483,2498,985,2453,1104,Stevens KAOUDA OSONS LA FOA,45.01,31.7
+municipales_2026,1,LAFOA,La Foa,independantiste,independantiste,4,4,3483,2498,985,2453,810774,Pierre MONEFARA Cîrî | Sandrine Arella NINDUMA NOS RACINES POUR CONSTRUIRE L'AVENIR,33052.34,23278.04
+municipales_2026,1,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3483,2498,985,2453,975,Florence ROLLAND L'UNION POUR LA FOA,39.75,27.99
+municipales_2026,1,LIFOU,Lifou,independantiste,independantiste,28,28,10915,5682,5233,5645,5645,Pascal Hunemu TUPAISSI Drehu Uni | Pierre Ijone QAEZE Union Citoyenne Nöje Drehu | Rene KAUDRE Unité nationaliste Drehu - Toka,100,51.72
+municipales_2026,1,MARE,Maré,independantiste,independantiste,14,14,6984,4553,2431,4529,4529,Clément Sewate WAYA UNION NATIONALE POUR L'INDEPENDANCE NENGONE | Jean WAHEO UC NENGONE SOUVERAINE | Maryline Ciwa SINEWAMI UC FLNKS NENGONE | Pierre Ateroy NGAIOHNI DYNAMIQUE UNITAIRE NENGONE | Robert Gada CAWIDRONE DYNAMIQUE AUTOCHTONE,100,64.85
+municipales_2026,1,MOINDOU,Moindou,centriste,anti_independantiste,1,1,863,671,192,659,268,"Léon-Joseph PEYRONNET Ensemble pour Moindou | Sélélino KELETAONA MOINDOU, L'EQUITE POUR TOUS",40.67,31.05
+municipales_2026,1,MOINDOU,Moindou,independantiste,independantiste,1,1,863,671,192,659,213,"Amandine DARRAS MOINDOU NOTRE COMMUNE, NOTRE AVENIR Union indépendantiste, nationaliste, progressiste | Marguerite MONAWA UNI MWÂRÛ",32.32,24.68
+municipales_2026,1,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,863,671,192,659,178,"Loïc MOKRIS MOINDOU, CONSTRUISONS DEMAIN",27.01,20.63
+municipales_2026,1,MONTDORE,Le Mont-Dore,centriste,anti_independantiste,24,24,22199,11858,10341,11539,1396,Jinézi Annie QAEZE POUR UN MONT-DORE QUI NOUS RESSEMBLE ET QUI NOUS RASSEMBLE | Petelo Maximino SAO NOUS POUR LE MONT DORE,12.1,6.29
+municipales_2026,1,MONTDORE,Le Mont-Dore,independantiste,independantiste,24,24,22199,11858,10341,11539,2377,"Emma MALAVAL UNI POUR LE MONT-DORE | Maria Isabella SALIGA-LUTOVIKA NCMCP | Tania OUAKA LE MONT-DORE, NOTRE VILLE POUR UNE NATION SOUVERAINE",20.6,10.71
+municipales_2026,1,MONTDORE,Le Mont-Dore,loyaliste,anti_independantiste,24,24,22199,11858,10341,11539,7766,Elizabeth RIVIERE NEE DABIN TOUS ENSEMBLE POUR LE MONT- DORE | Nina JULIÉ IL EST TEMPS !,67.3,34.98
+municipales_2026,1,NOUMEA,Nouméa,autre,neutre,57,57,68483,33383,35100,32818,1191,Claude SIRET NOUMEA POUR TOUS | Véronique FORESTIER NOUMEA LE RENOUVEAU,3.63,1.74
+municipales_2026,1,NOUMEA,Nouméa,centriste,anti_independantiste,57,57,68483,33383,35100,32818,3675,Philippe DUNOYER Nouméa : l'après,11.2,5.37
+municipales_2026,1,NOUMEA,Nouméa,independantiste,independantiste,57,57,68483,33383,35100,32818,4603,Lesse ADJOUHGNIOPE UNITE PAYS | Muneiko HAOCAS Nouméa coeur battant - justice sociale | Pierre WONG KONG TAO UNI DANS LA DIVERSITE,14.03,6.72
+municipales_2026,1,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,68483,33383,35100,32818,23349,"Sonia LAGARDE AVEC VOUS POUR NOUMEA | Virginie RUFFENACH POUR NOUMEA, UNE ENERGIE NOUVELLE",71.15,34.09
+municipales_2026,1,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2232,1367,865,1342,1076,Barnabe Koé PEBOU HAMENE UNI | Elisse Zole OUAHIO UNION NATIONALE POUR L'INITIATIVE CITOYENNE- OUEGOA | Henri Steeve PEBOU-TIDJINE UNION CITOYENNE,80.18,48.21
+municipales_2026,1,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2232,1367,865,1342,266,Caryl Edouard NORMANDON DYNAMIQUE OUEGOA,19.82,11.92
+municipales_2026,1,OUVEA,Ouvéa,independantiste,independantiste,7,7,4343,2486,1857,2465,2209,Jean Joel IHILY PARTI TRAVAILLISTE ET NATIONALISTES | Maurice TILLEWA UC-FLNKS | Moïse BAOUMA UNI IAAI | Victor GOGNY ALTERNATIVE UNITAIRE IAAI,89.61,50.86
+municipales_2026,1,OUVEA,Ouvéa,loyaliste,anti_independantiste,7,7,4343,2486,1857,2465,236,Karyl TRENYIWA OSER LE CHANGEMENT POUR OUVEA !,9.57,5.43
+municipales_2026,1,PAITA,Païta,autre,neutre,19,19,17300,9470,7830,9186,1738,Patrick GREPPO ESPRIT PAITA | Sylvia ABEL UN COEUR POUR PAITA,18.92,10.05
+municipales_2026,1,PAITA,Païta,centriste,anti_independantiste,19,19,17300,9470,7830,9186,2427,"Milakulo TUKUMULI PAÏTA, UN NOUVEAU SOUFFLE!",26.42,14.03
+municipales_2026,1,PAITA,Païta,independantiste,independantiste,19,19,17300,9470,7830,9186,1605,"Eymard GAIA PAITA TON IDENTITE, NOTRE RICHESSE | Nikita Aurélie GAIA EP ALOSIO LISTE CITOYENNE FLNKS PAITA",17.47,9.28
+municipales_2026,1,PAITA,Païta,loyaliste,anti_independantiste,19,19,17300,9470,7830,9186,3416,Antoine ROMAIN Paita J'y crois | Christopher BOURGINE PAITA.CITY,37.19,19.75
+municipales_2026,1,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4411,2879,1532,2833,1967,Christian GROCHAIN PWEEDI WIIMIA RENOUVEAU | Cyrille OUMATTU UNITE CITOYENNE ET NATIONALISTE | Paul Tyaou NEAOUTYINE UNI,69.43,44.59
+municipales_2026,1,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4411,2879,1532,2833,866,Patrick - Jean-Luc WATANABE UN NOUVEL ELAN POUR POINDIMIE,30.57,19.63
+municipales_2026,1,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2695,1751,944,1714,1714,Astrid GOPOEA UNION NATIONALE pour l'INDEPENDANCE PWARAIRIWA | Eugène MENREMPON TOIMIRI BWETI PWARAIRIWA | Ocea NAAOUTCHOUE UC FLNKS ET NATIONALISTES PWARAIRIWA,100,63.6
+municipales_2026,1,POUEBO,Pouébo,autre,neutre,5,5,2414,1362,1052,1340,333,Rock DOUI WEDO DI OWA COLLECTIF COMMUNAL,24.85,13.79
+municipales_2026,1,POUEBO,Pouébo,independantiste,independantiste,5,5,2414,1362,1052,1340,1007,Florentin DEDANE UNION CALEDONIENNE PWEEVO | Nadia HEO UNI PWEEVO PIINYENIWîî NYA,75.15,41.71
+municipales_2026,1,POUEMBOUT,Pouembout,autre,neutre,2,2,2005,1274,731,1254,597,Yann PERALDI MOUVEMENT CITOYEN,47.61,29.78
+municipales_2026,1,POUEMBOUT,Pouembout,independantiste,independantiste,2,2,2005,1274,731,1254,657,Jean-Francois Boaé PORIN-POUEA MAIN DANS LA MAIN POUR POUEMBOUT | Jimmy NAOUNA UNIS POUR UN DESTIN COMMUN,52.39,32.77
+municipales_2026,1,POUM,Poum,independantiste,independantiste,3,3,1541,1241,300,1235,1235,Gill ARNAL UNI POUM | Henriette TIDJINE - HMAE UNION CITOYENNE | Marc TIDJINE S'UNIR POUR DEMAIN,100,80.14
+municipales_2026,1,POYA,Poya,autre,neutre,6,6,2597,1796,801,1764,4499177,Evelyne GORO-ATU NEKO POYA ENSEMBLE POUR UNE COMMUNE SOLIDAIRE | François Joseph Poindi MEANDU-POVEU UNITE POYA NEKO | Guy Michel MACHORO UNE NOUVELLE DYNAMIQUE NEKÖ POYA | Jacques GOSSOIN NEKO POYA POUR TOUS,255055.39,173245.17
+municipales_2026,1,POYA,Poya,independantiste,independantiste,6,6,2597,1796,801,1764,307,Julien MEUREUREU-GOWE ALTERNATIVE NATIONALISTE NEKO POYA,17.4,11.82
+municipales_2026,1,SARRAMEA,Sarraméa,autre,neutre,1,1,541,401,140,393,329,Charles Albert BRINON Entente communale de Sarraméa | Karmen HOLERO CONTINUONS A OEUVRER POUR SARRAMEA | Tony KAWA ARII FACHA POUR UNE DIVERSITE COMMUNALE,83.72,60.81
+municipales_2026,1,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,541,401,140,393,64,Prisca HOLERO UNION CITOYENNE,16.28,11.83
+municipales_2026,1,THIO,Thio,centriste,anti_independantiste,4,4,2290,1483,807,1470,666,Téva PUAHIO Notre jeunesse au coeur du changement,45.31,29.08
+municipales_2026,1,THIO,Thio,independantiste,independantiste,4,4,2290,1483,807,1470,804,"Eric TOURA THIO EN MARCHE | Jean Marie Vianney AYAWA AVEC LE FLNKS, L'AVENIR C'EST MAINTENANT ! | Lorenza M'BOUERI THIO,TERRE D'AVENIR-C'EST MAINTENANT! | Pierre Chanel NONMOIRA MURU RE COO - LE BIEN-ETRE DE THIO",54.69,35.11
+municipales_2026,1,TOUHO,Touho,independantiste,independantiste,4,4,2008,1226,782,1199,1199,Alphonse Boulet POININE UNI | Donald SOEKIR UNION CITOYENNE de TOUHO,100,59.71
+municipales_2026,1,VOH,Voh,autre,neutre,8,8,2494,1595,899,1554,354,Emmanuel LOUISY-GABRIEL RENOUVOH,22.78,14.19
+municipales_2026,1,VOH,Voh,independantiste,independantiste,8,8,2494,1595,899,1554,1200,David POITHILY UC ET NATIONALISTES | Joel BOATATE KOLEKOLE UNION NATIONALE POUR L'INDEPENDANCE | Thierry POUYA SOUVERAINETE CALEDONIENNE,77.22,48.12
+municipales_2026,1,YATE,Yaté,independantiste,independantiste,4,4,1830,1366,464,1357,1357,Louis Pidjot HOMOU YATE VERS UNE NATION SOUVERAINE | Marie Renee Vanessa TIHA EBUMUIRE ME YATRE ITEA | Sandrine AOURIGNA EP ATINOUA TREE YATRE VE TRAPE DRÜU YË KANAKY-NC,100,74.15
+municipales_2026,2,BOULOUPARI,Bouloupari,independantiste,independantiste,4,4,3381,2484,897,2435,932,Karlheinz CREUGNETBoulouparisau coeur de nos vies,38.28,27.57
+municipales_2026,2,BOULOUPARI,Bouloupari,loyaliste,anti_independantiste,4,4,3381,2484,897,2435,1503,"Pascal VITTORIBoulouparispour vous | Roger Philippe THEVEDINConstruire ensemble, Berepwari",61.72,44.45
+municipales_2026,2,BOURAIL,Bourail,centriste,anti_independantiste,5,5,4876,3531,1345,3466,2066,Jean-Paul ROBELIN Ambition Bourail | Patrick ROBELIN Bourail en accord,59.61,42.37
+municipales_2026,2,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4876,3531,1345,3466,1400,LevayROY BOURAIL DEMAIN,40.39,28.71
+municipales_2026,2,CANALA,Canala,independantiste,independantiste,7,7,3620,2916,704,2895,2895,Caril BERONON XARACUU XEBUTU | Gilbert TYUIENON TEPE AEE CE KANAKY DAAWANI,100,79.97
+municipales_2026,2,DUMBEA,Dumbéa,centriste,anti_independantiste,26,26,24283,13373,10910,13136,3825,Vaimua MULIAVA DUMBEA COLLECTIF | Yoann LECOURIEUX DUMBEA AVANTTOUT!,29.12,15.75
+municipales_2026,2,DUMBEA,Dumbéa,independantiste,independantiste,26,26,24283,13373,10910,13136,1920,"Rachel AUCHER DUMBEA, AU SERVICE DU PEUPLE",14.62,7.91
+municipales_2026,2,DUMBEA,Dumbéa,loyaliste,anti_independantiste,26,26,24283,13373,10910,13136,7391,Cynthia JAN NÉE METZDORF UNIR POUR l'AVENIR | Muriel MALFAR-PAUGA PASSIONNEMENT DUMBEA,56.27,30.44
+municipales_2026,2,HOUAILOU,Houaïlou,autre,neutre,8,8,3713,2444,1269,2420,668,Angie - Singride BOEHE ERE MA WAA | Maurice WATANABÉ WAWILU 2026 POUR LE CHANGEMENT,27.6,17.99
+municipales_2026,2,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3713,2444,1269,2420,1752,Jean LucLouka MAHE UNI WAA WILUU | Pascal SAWA LISTE UNITAIRE NATIONALISTE FLNKS (UC - UPM - PT),72.4,47.19
+municipales_2026,2,ILEDESPINS,L'Ile-des-Pins,autre,neutre,2,2,1868,1422,446,1412,650,RegisWadieme VENDEGOUKWENYII DANS LA DIVERSITE,46.03,34.8
+municipales_2026,2,ILEDESPINS,L'Ile-des-Pins,independantiste,independantiste,2,2,1868,1422,446,1412,610,Daniel PatrickKOUATHEFLNKS KWENYII,43.2,32.66
+municipales_2026,2,ILEDESPINS,L'Ile-des-Pins,loyaliste,anti_independantiste,2,2,1868,1422,446,1412,152,Christophe VAKIEEveil Kunié,10.76,8.14
+municipales_2026,2,KAALAGOMEN,Kaala-Gomen,autre,neutre,6,6,1808,1516,292,1503,724,Alain LEVANTENTENTE COMMUNALE,48.17,40.04
+municipales_2026,2,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1808,1516,292,1503,779,Hervé Maguei TEIN-TAOUVAUNION CITOYENNE DE BWAPANU | Pablo POY-YETHYUNIS POUR BWAPANU,51.83,43.09
+municipales_2026,2,KONE,Koné,autre,neutre,12,12,5339,3665,1674,3628,335,"Jean-Yves Pama MY ENSEMBLE, CONSTRUISONS LACOMMUNE DE DEMAIN",9.23,6.27
+municipales_2026,2,KONE,Koné,independantiste,independantiste,12,12,5339,3665,1674,3628,2069,Joseph Apangou GOROMIDO UNI KOOHNE | ThierryGOWECEE UC FLNKS,57.03,38.75
+municipales_2026,2,KONE,Koné,loyaliste,anti_independantiste,12,12,5339,3665,1674,3628,1224,Mike SAMADI AGISSONS POUR KONE,33.74,22.93
+municipales_2026,2,KOUAOUA,Kouaoua,autre,neutre,4,4,1206,987,219,980,124,Suzanne - Poawe MEREATUVISION KAAWIIPAA,12.65,10.28
+municipales_2026,2,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1206,987,219,980,856,Alcide PONGAUNIS POUR KAAWIIPAA | Franck DIOPOUENOORE KAAWIIPAA NA TRU NEWE NIARREHI RI-KOUOUA MAITRE DE SON AVENIR,87.35,70.98
+municipales_2026,2,KOUMAC,Koumac,autre,neutre,2,2,3138,2201,937,2182,265,Antonio MARTIN KOUMAC RENOUVEAU | Olivier BESANÇON KOUMAC UNION CITOYENNE,12.14,8.44
+municipales_2026,2,KOUMAC,Koumac,centriste,anti_independantiste,2,2,3138,2201,937,2182,942,Yann GASTALDI BATISSONS ENSEMBLE KOUMAC,43.17,30.02
+municipales_2026,2,KOUMAC,Koumac,independantiste,independantiste,2,2,3138,2201,937,2182,193,Josée KONDOLO UNION CALEDONIENNE,8.85,6.15
+municipales_2026,2,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,3138,2201,937,2182,782,Wilfrid WEISS POUR LE PROGRES COMMUNAL,35.84,24.92
+municipales_2026,2,LAFOA,La Foa,centriste,anti_independantiste,4,4,3483,2726,757,2661,1512,StevensKAOUDAOSONS LA FOA,56.82,43.41
+municipales_2026,2,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3483,2726,757,2661,1149,Florence ROLLANDL'UNION POUR LA FOA,43.18,32.99
+municipales_2026,2,MARE,Maré,independantiste,independantiste,14,14,6984,4864,2120,4844,4844,ClémentSewate WAYA UNION NATIONALE POURL'INDEPENDANCE NENGONE | Jean WAHEO UC NENGONE SOUVERAINE | Maryline Ciwa SINEWAMI UC FLNKS NENGONE | RobertGada CAWIDRONE DYNAMIQUE AUTOCHTONE,100,69.36
+municipales_2026,2,MONTDORE,Le Mont-Dore,independantiste,independantiste,24,24,22200,12640,9560,12346,1989,"Tania OUAKA LE MONT-DORE, NOTRE VILLE POURUNE NATION SOUVERAINE",16.11,8.96
+municipales_2026,2,MONTDORE,Le Mont-Dore,loyaliste,anti_independantiste,24,24,22200,12640,9560,12346,10357,Elizabeth RIVIERE NEE DABIN TOUS ENSEMBLE POUR LE MONT- DORE | Nina JULIÉ IL ESTTEMPS !,83.89,46.65
+municipales_2026,2,NOUMEA,Nouméa,centriste,anti_independantiste,57,57,68467,32540,35927,31521,5954,Philippe DUNOYER Nouméa : l'après,18.89,8.7
+municipales_2026,2,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,68467,32540,35927,31521,25567,"Sonia LAGARDE AVEC VOUS POUR NOUMEA | Virginie RUFFENACH POUR NOUMEA, UNE ENERGIENOUVELLE",81.11,37.34
+municipales_2026,2,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2232,1627,605,1602,1602,Barnabe Koé PEBOU HAMENEUNI | Elisse Zole OUAHIODYNAMIQUE UNITAIRE NOUVELLE POURL'INITIATIVE COMMUNALE - OUEGOA | Henri Steeve PEBOU-TIDJINEUNION CITOYENNE,100,71.77
+municipales_2026,2,OUVEA,Ouvéa,independantiste,independantiste,7,7,4343,2867,1476,2850,2850,Jean Joel IHILYUNITE NATIONALISTES FLNKS IAAI | Maurice TILLEWAUC-FLNKS | Moïse BAOUMAUNI IAAI,100,65.62
+municipales_2026,2,PAITA,Païta,autre,neutre,19,19,17299,10423,6876,10209,921,Patrick GREPPO ESPRIT PAITA,9.02,5.32
+municipales_2026,2,PAITA,Païta,centriste,anti_independantiste,19,19,17299,10423,6876,10209,3486,"Milakulo TUKUMULI PAÏTA, UN NOUVEAU SOUFFLE!",34.15,20.15
+municipales_2026,2,PAITA,Païta,independantiste,independantiste,19,19,17299,10423,6876,10209,1395,Nikita Aurélie GAIA EP ALOSIO LISTE CITOYENNE FLNKS PAITA,13.66,8.06
+municipales_2026,2,PAITA,Païta,loyaliste,anti_independantiste,19,19,17299,10423,6876,10209,4407,Antoine ROMAIN Paita J'y crois,43.17,25.48
+municipales_2026,2,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4411,3261,1150,3221,2187,Christian GROCHAIN PWEEDI WIIMIA RENOUVEAU | Cyrille OUMATTU UNITE CITOYENNE ETNATIONALISTE | Paul Tyaou NEAOUTYINE UNI,67.9,49.58
+municipales_2026,2,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4411,3261,1150,3221,1034,Patrick - Jean-LucWATANABE UN NOUVEL ELAN POUR POINDIMIE,32.1,23.44
+municipales_2026,2,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2695,2013,682,1982,1982,Astrid GOPOEAUNION NATIONALE pour l'INDEPENDANCEPWARAIRIWA | Eugène MENREMPONTOIMIRIBWETI PWARAIRIWA | Ocea NAAOUTCHOUEUC FLNKS ETNATIONALISTES PWARAIRIWA,100,73.54
+municipales_2026,2,POUEBO,Pouébo,independantiste,independantiste,5,5,2414,1529,885,1515,1515,Florentin DEDANEUNION CALEDONIENNE PWEEVO | Nadia HEOUNI WEDO IOWA,100,62.76
+municipales_2026,2,POUEMBOUT,Pouembout,autre,neutre,2,2,2005,1396,609,1377,691,Yann PERALDIMOUVEMENTCITOYEN,50.18,34.46
+municipales_2026,2,POUEMBOUT,Pouembout,independantiste,independantiste,2,2,2005,1396,609,1377,686,Jean-Francois Boaé PORIN-POUEAMAIN DANS LA MAIN POUR POUEMBOUT | Jimmy NAOUNAUNIS POUR UN DESTIN COMMUN,49.82,34.21
+municipales_2026,2,POUM,Poum,independantiste,independantiste,3,3,1541,1332,209,1321,1321,Henriette TIDJINE - HMAEUNION CITOYENNE | MarcTIDJINES'UNIR POUR DEMAIN UNI,100,85.72
+municipales_2026,2,POYA,Poya,autre,neutre,6,6,2597,1931,666,1886,434,JacquesGOSSOINNEKO POYA POUR TOUS,23.01,16.71
+municipales_2026,2,POYA,Poya,independantiste,independantiste,6,6,2597,1931,666,1886,6504912,FrançoisJoseph Poindi MEANDU-POVEUUNITE POYA NEKO | GuyMichel MACHOROUNE NOUVELLE DYNAMIQUE NEKÖ POYA | Julien MEUREUREU-GOWEALTERNATIVE NATIONALISTE NEKO POYA,344905.2,250477.94
+municipales_2026,2,THIO,Thio,autre,neutre,4,4,2290,1536,754,1526,420,"Lorenza M'BOUERITHIO,TERRE D'AVENIR-C'ESTMAINTENANT!",27.52,18.34
+municipales_2026,2,THIO,Thio,centriste,anti_independantiste,4,4,2290,1536,754,1526,721,Téva PUAHIONotre jeunesse au coeur du changement,47.25,31.48
+municipales_2026,2,THIO,Thio,independantiste,independantiste,4,4,2290,1536,754,1526,385,EricTOURAUC/PALIKA CÖÖ,25.23,16.81
+municipales_2026,2,VOH,Voh,autre,neutre,8,8,2494,1729,765,1698,396,Emmanuel LOUISY-GABRIELRENOUVOH,23.32,15.88
+municipales_2026,2,VOH,Voh,independantiste,independantiste,8,8,2494,1729,765,1698,1302,David POITHILYUC ET NATIONALISTES | Joel BOATATE KOLEKOLEUNION NATIONALE POUR L'INDEPENDANCE,76.68,52.21
+provinciales_2019,,BELEP,Bélep,centriste,anti_independantiste,1,1,912,490,422,487,6,Caledonie ensemble,1.23,0.66
+provinciales_2019,,BELEP,Bélep,independantiste,independantiste,1,1,912,490,422,487,475,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,97.54,52.08
+provinciales_2019,,BELEP,Bélep,loyaliste,anti_independantiste,1,1,912,490,422,487,6,Agissons pour le Nord,1.23,0.66
+provinciales_2019,,BOULOUPARI,Boulouparis,autre,neutre,2,2,2659,1835,824,1794,89,Alliance citoyenne pour la transition | Construire autrement,4.96,3.35
+provinciales_2019,,BOULOUPARI,Boulouparis,centriste,anti_independantiste,2,2,2659,1835,824,1794,372,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,20.74,13.99
+provinciales_2019,,BOULOUPARI,Boulouparis,independantiste,independantiste,2,2,2659,1835,824,1794,391,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,21.79,14.7
+provinciales_2019,,BOULOUPARI,Boulouparis,loyaliste,anti_independantiste,2,2,2659,1835,824,1794,942,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,52.51,35.43
+provinciales_2019,,BOURAIL,Bourail,autre,neutre,5,5,3949,2686,1263,2605,149,Alliance citoyenne pour la transition | Construire autrement,5.72,3.77
+provinciales_2019,,BOURAIL,Bourail,centriste,anti_independantiste,5,5,3949,2686,1263,2605,693,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,26.6,17.55
+provinciales_2019,,BOURAIL,Bourail,independantiste,independantiste,5,5,3949,2686,1263,2605,697,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,26.76,17.65
+provinciales_2019,,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,3949,2686,1263,2605,1066,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,40.92,26.99
+provinciales_2019,,CANALA,Canala,centriste,anti_independantiste,6,6,3384,2158,1226,2077,44,Caledonie ensemble,2.12,1.3
+provinciales_2019,,CANALA,Canala,independantiste,independantiste,6,6,3384,2158,1226,2077,1973,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,94.99,58.3
+provinciales_2019,,CANALA,Canala,loyaliste,anti_independantiste,6,6,3384,2158,1226,2077,60,Agissons pour le Nord,2.89,1.77
+provinciales_2019,,DUMBEA,Dumbéa,autre,neutre,24,24,15787,10983,4804,10612,559,Alliance citoyenne pour la transition | Construire autrement,5.27,3.54
+provinciales_2019,,DUMBEA,Dumbéa,centriste,anti_independantiste,24,24,15787,10983,4804,10612,3838,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,36.17,24.31
+provinciales_2019,,DUMBEA,Dumbéa,independantiste,independantiste,24,24,15787,10983,4804,10612,1595,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,15.03,10.1
+provinciales_2019,,DUMBEA,Dumbéa,loyaliste,anti_independantiste,24,24,15787,10983,4804,10612,4620,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,43.54,29.26
+provinciales_2019,,FARINO,Farino,autre,neutre,1,1,568,471,97,454,18,Alliance citoyenne pour la transition | Construire autrement,3.96,3.17
+provinciales_2019,,FARINO,Farino,centriste,anti_independantiste,1,1,568,471,97,454,214,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,47.14,37.68
+provinciales_2019,,FARINO,Farino,independantiste,independantiste,1,1,568,471,97,454,24,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,5.29,4.23
+provinciales_2019,,FARINO,Farino,loyaliste,anti_independantiste,1,1,568,471,97,454,198,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,43.61,34.86
+provinciales_2019,,HIENGHENE,Hienghène,centriste,anti_independantiste,10,10,2404,1530,874,1520,17,Caledonie ensemble,1.12,0.71
+provinciales_2019,,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2404,1530,874,1520,1478,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,97.24,61.48
+provinciales_2019,,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2404,1530,874,1520,25,Agissons pour le Nord,1.64,1.04
+provinciales_2019,,HOUAILOU,Houailou,centriste,anti_independantiste,8,8,3579,2104,1475,2031,99,Caledonie ensemble,4.87,2.77
+provinciales_2019,,HOUAILOU,Houailou,independantiste,independantiste,8,8,3579,2104,1475,2031,1764,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,86.85,49.29
+provinciales_2019,,HOUAILOU,Houailou,loyaliste,anti_independantiste,8,8,3579,2104,1475,2031,168,Agissons pour le Nord,8.27,4.69
+provinciales_2019,,ILEDESPINS,Ile des Pins,autre,neutre,2,2,1712,1102,610,1089,47,Alliance citoyenne pour la transition | Construire autrement,4.32,2.75
+provinciales_2019,,ILEDESPINS,Ile des Pins,centriste,anti_independantiste,2,2,1712,1102,610,1089,159,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,14.6,9.29
+provinciales_2019,,ILEDESPINS,Ile des Pins,independantiste,independantiste,2,2,1712,1102,610,1089,670,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,61.52,39.14
+provinciales_2019,,ILEDESPINS,Ile des Pins,loyaliste,anti_independantiste,2,2,1712,1102,610,1089,213,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,19.56,12.44
+provinciales_2019,,KAALAGOMEN,Kaala Gomen,centriste,anti_independantiste,6,6,1611,1044,567,1035,83,Caledonie ensemble,8.02,5.15
+provinciales_2019,,KAALAGOMEN,Kaala Gomen,independantiste,independantiste,6,6,1611,1044,567,1035,868,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,83.86,53.88
+provinciales_2019,,KAALAGOMEN,Kaala Gomen,loyaliste,anti_independantiste,6,6,1611,1044,567,1035,84,Agissons pour le Nord,8.12,5.21
+provinciales_2019,,KONE,Koné,centriste,anti_independantiste,12,12,4129,2919,1210,2851,348,Caledonie ensemble,12.21,8.43
+provinciales_2019,,KONE,Koné,independantiste,independantiste,12,12,4129,2919,1210,2851,2027,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,71.1,49.09
+provinciales_2019,,KONE,Koné,loyaliste,anti_independantiste,12,12,4129,2919,1210,2851,476,Agissons pour le Nord,16.7,11.53
+provinciales_2019,,KOUAOUA,Kouaoua,centriste,anti_independantiste,4,4,1109,738,371,730,30,Caledonie ensemble,4.11,2.71
+provinciales_2019,,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1109,738,371,730,501,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,68.63,45.18
+provinciales_2019,,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1109,738,371,730,199,Agissons pour le Nord,27.26,17.94
+provinciales_2019,,KOUMAC,Koumac,centriste,anti_independantiste,2,2,2639,1654,985,1595,341,Caledonie ensemble,21.38,12.92
+provinciales_2019,,KOUMAC,Koumac,independantiste,independantiste,2,2,2639,1654,985,1595,621,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,38.93,23.53
+provinciales_2019,,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,2639,1654,985,1595,633,Agissons pour le Nord,39.69,23.99
+provinciales_2019,,LAFOA,La Foa,autre,neutre,4,4,2905,2205,700,2139,94,Alliance citoyenne pour la transition | Construire autrement,4.39,3.24
+provinciales_2019,,LAFOA,La Foa,centriste,anti_independantiste,4,4,2905,2205,700,2139,864,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,40.39,29.74
+provinciales_2019,,LAFOA,La Foa,independantiste,independantiste,4,4,2905,2205,700,2139,545,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,25.48,18.76
+provinciales_2019,,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,2905,2205,700,2139,636,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,29.73,21.89
+provinciales_2019,,LIFOU,Lifou,centriste,anti_independantiste,26,26,10343,6582,3761,6526,562,Caledonie ensemble,8.61,5.43
+provinciales_2019,,LIFOU,Lifou,independantiste,independantiste,26,26,10343,6582,3761,6526,5833,Liberation kanak socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance - Palika | Unitaire Kanaky generation,89.38,56.4
+provinciales_2019,,LIFOU,Lifou,loyaliste,anti_independantiste,26,26,10343,6582,3761,6526,131,Avec nous,2.01,1.27
+provinciales_2019,,MARE,Maré,centriste,anti_independantiste,13,13,6562,4778,1784,4753,238,Caledonie ensemble,5.01,3.63
+provinciales_2019,,MARE,Maré,independantiste,independantiste,13,13,6562,4778,1784,4753,4456,Liberation kanak socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance - Palika | Unitaire Kanaky generation,93.75,67.91
+provinciales_2019,,MARE,Maré,loyaliste,anti_independantiste,13,13,6562,4778,1784,4753,59,Avec nous,1.24,0.9
+provinciales_2019,,MOINDOU,Moindou,autre,neutre,1,1,755,591,164,579,21,Alliance citoyenne pour la transition | Construire autrement,3.63,2.78
+provinciales_2019,,MOINDOU,Moindou,centriste,anti_independantiste,1,1,755,591,164,579,148,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,25.56,19.6
+provinciales_2019,,MOINDOU,Moindou,independantiste,independantiste,1,1,755,591,164,579,248,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,42.83,32.85
+provinciales_2019,,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,755,591,164,579,162,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,27.98,21.46
+provinciales_2019,,MONTDORE,Mont-Dore,autre,neutre,25,25,16758,11234,5524,10840,571,Alliance citoyenne pour la transition | Construire autrement,5.27,3.41
+provinciales_2019,,MONTDORE,Mont-Dore,centriste,anti_independantiste,25,25,16758,11234,5524,10840,3659,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,33.75,21.83
+provinciales_2019,,MONTDORE,Mont-Dore,independantiste,independantiste,25,25,16758,11234,5524,10840,2162,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,19.94,12.9
+provinciales_2019,,MONTDORE,Mont-Dore,loyaliste,anti_independantiste,25,25,16758,11234,5524,10840,4448,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,41.03,26.54
+provinciales_2019,,NOUMEA,Nouméa,autre,neutre,57,57,48196,31658,16538,30944,1936,Alliance citoyenne pour la transition | Construire autrement,6.26,4.02
+provinciales_2019,,NOUMEA,Nouméa,centriste,anti_independantiste,57,57,48196,31658,16538,30944,7968,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,25.75,16.53
+provinciales_2019,,NOUMEA,Nouméa,independantiste,independantiste,57,57,48196,31658,16538,30944,3907,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,12.63,8.11
+provinciales_2019,,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,48196,31658,16538,30944,17133,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,55.37,35.55
+provinciales_2019,,OUEGOA,Ouégoa,centriste,anti_independantiste,4,4,2130,1295,835,1267,110,Caledonie ensemble,8.68,5.16
+provinciales_2019,,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2130,1295,835,1267,928,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,73.24,43.57
+provinciales_2019,,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2130,1295,835,1267,229,Agissons pour le Nord,18.07,10.75
+provinciales_2019,,OUVEA,Ouvéa,centriste,anti_independantiste,7,7,4300,2739,1561,2704,51,Caledonie ensemble,1.89,1.19
+provinciales_2019,,OUVEA,Ouvéa,independantiste,independantiste,7,7,4300,2739,1561,2704,2381,Liberation kanak socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance - Palika | Unitaire Kanaky generation,88.05,55.37
+provinciales_2019,,OUVEA,Ouvéa,loyaliste,anti_independantiste,7,7,4300,2739,1561,2704,272,Avec nous,10.06,6.33
+provinciales_2019,,PAITA,Païta,autre,neutre,17,17,10694,7215,3479,7015,332,Alliance citoyenne pour la transition | Construire autrement,4.73,3.1
+provinciales_2019,,PAITA,Païta,centriste,anti_independantiste,17,17,10694,7215,3479,7015,2592,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,36.95,24.24
+provinciales_2019,,PAITA,Païta,independantiste,independantiste,17,17,10694,7215,3479,7015,1366,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,19.47,12.77
+provinciales_2019,,PAITA,Païta,loyaliste,anti_independantiste,17,17,10694,7215,3479,7015,2725,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,38.85,25.48
+provinciales_2019,,POINDIMIE,Poindimié,centriste,anti_independantiste,7,7,4090,2714,1376,2675,238,Caledonie ensemble,8.9,5.82
+provinciales_2019,,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4090,2714,1376,2675,2217,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,82.88,54.21
+provinciales_2019,,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4090,2714,1376,2675,220,Agissons pour le Nord,8.22,5.38
+provinciales_2019,,PONERIHOUEN,Ponérihouen,centriste,anti_independantiste,7,7,2605,1742,863,1718,65,Caledonie ensemble,3.78,2.5
+provinciales_2019,,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2605,1742,863,1718,1540,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,89.64,59.12
+provinciales_2019,,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2605,1742,863,1718,113,Agissons pour le Nord,6.58,4.34
+provinciales_2019,,POUEBO,Pouébo,centriste,anti_independantiste,5,5,2301,1276,1025,1261,20,Caledonie ensemble,1.59,0.87
+provinciales_2019,,POUEBO,Pouébo,independantiste,independantiste,5,5,2301,1276,1025,1261,1222,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,96.91,53.11
+provinciales_2019,,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2301,1276,1025,1261,19,Agissons pour le Nord,1.51,0.83
+provinciales_2019,,POUEMBOUT,Pouembout,centriste,anti_independantiste,3,3,1387,976,411,954,123,Caledonie ensemble,12.89,8.87
+provinciales_2019,,POUEMBOUT,Pouembout,independantiste,independantiste,3,3,1387,976,411,954,543,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,56.92,39.15
+provinciales_2019,,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,3,3,1387,976,411,954,288,Agissons pour le Nord,30.19,20.76
+provinciales_2019,,POUM,Poum,centriste,anti_independantiste,3,3,1381,918,463,911,46,Caledonie ensemble,5.05,3.33
+provinciales_2019,,POUM,Poum,independantiste,independantiste,3,3,1381,918,463,911,808,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,88.69,58.51
+provinciales_2019,,POUM,Poum,loyaliste,anti_independantiste,3,3,1381,918,463,911,57,Agissons pour le Nord,6.26,4.13
+provinciales_2019,,POYA,Poya Nord,centriste,anti_independantiste,5,5,2078,1392,686,1358,204,Caledonie ensemble,15.02,9.82
+provinciales_2019,,POYA,Poya Nord,independantiste,independantiste,5,5,2078,1392,686,1358,969,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,71.35,46.63
+provinciales_2019,,POYA,Poya Nord,loyaliste,anti_independantiste,5,5,2078,1392,686,1358,185,Agissons pour le Nord,13.62,8.9
+provinciales_2019,,POYA,Poya Sud,autre,neutre,1,1,164,133,31,131,3,Alliance citoyenne pour la transition | Construire autrement,2.29,1.83
+provinciales_2019,,POYA,Poya Sud,centriste,anti_independantiste,1,1,164,133,31,131,43,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,32.82,26.22
+provinciales_2019,,POYA,Poya Sud,independantiste,independantiste,1,1,164,133,31,131,3,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,2.29,1.83
+provinciales_2019,,POYA,Poya Sud,loyaliste,anti_independantiste,1,1,164,133,31,131,82,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,62.6,50
+provinciales_2019,,SARRAMEA,Sarraméa,autre,neutre,1,1,502,365,137,358,13,Alliance citoyenne pour la transition | Construire autrement,3.63,2.59
+provinciales_2019,,SARRAMEA,Sarraméa,centriste,anti_independantiste,1,1,502,365,137,358,57,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,15.92,11.35
+provinciales_2019,,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,502,365,137,358,257,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,71.79,51.2
+provinciales_2019,,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,502,365,137,358,31,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,8.66,6.18
+provinciales_2019,,THIO,Thio,autre,neutre,4,4,2091,1226,865,1206,48,Alliance citoyenne pour la transition | Construire autrement,3.98,2.3
+provinciales_2019,,THIO,Thio,centriste,anti_independantiste,4,4,2091,1226,865,1206,154,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,12.77,7.36
+provinciales_2019,,THIO,Thio,independantiste,independantiste,4,4,2091,1226,865,1206,942,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,78.11,45.05
+provinciales_2019,,THIO,Thio,loyaliste,anti_independantiste,4,4,2091,1226,865,1206,62,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,5.14,2.97
+provinciales_2019,,TOUHO,Touho,centriste,anti_independantiste,4,4,1894,1238,656,1216,60,Caledonie ensemble,4.93,3.17
+provinciales_2019,,TOUHO,Touho,independantiste,independantiste,4,4,1894,1238,656,1216,1049,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,86.27,55.39
+provinciales_2019,,TOUHO,Touho,loyaliste,anti_independantiste,4,4,1894,1238,656,1216,107,Agissons pour le Nord,8.8,5.65
+provinciales_2019,,VOH,Voh,centriste,anti_independantiste,5,5,2270,1566,704,1535,141,Caledonie ensemble,9.19,6.21
+provinciales_2019,,VOH,Voh,independantiste,independantiste,5,5,2270,1566,704,1535,1191,Mouvement neo-independantiste et souverainiste | Parti travailliste | Union caledonienne - FLNKS | Union nationale pour l'independance,77.59,52.47
+provinciales_2019,,VOH,Voh,loyaliste,anti_independantiste,5,5,2270,1566,704,1535,203,Agissons pour le Nord,13.22,8.94
+provinciales_2019,,YATE,Yaté,autre,neutre,4,4,1704,1203,501,1193,15,Alliance citoyenne pour la transition | Construire autrement,1.26,0.88
+provinciales_2019,,YATE,Yaté,centriste,anti_independantiste,4,4,1704,1203,501,1193,105,Caledonie ensemble | Destin commun caledonien | L'Eveil oceanien,8.8,6.16
+provinciales_2019,,YATE,Yaté,independantiste,independantiste,4,4,1704,1203,501,1193,1041,Front de liberation nationale kanak et socialiste | Mouvement neo-independantiste et souverainiste | Parti travailliste,87.26,61.09
+provinciales_2019,,YATE,Yaté,loyaliste,anti_independantiste,4,4,1704,1203,501,1193,32,Caledonie nouvelle et reunie | L'Avenir en confiance | Rassemblement national,2.68,1.88
+referendum_2018,,BELEP,BELEP,independantiste,independantiste,2,1,920,707,213,703,664,Oui,94.45,72.17
+referendum_2018,,BELEP,BELEP,loyaliste,anti_independantiste,2,1,920,707,213,703,39,Non,5.55,4.24
+referendum_2018,,BOULOUPARI,BOULOUPARIS,independantiste,independantiste,2,2,2645,2400,245,2376,719,Oui,30.26,27.18
+referendum_2018,,BOULOUPARI,BOULOUPARIS,loyaliste,anti_independantiste,2,2,2645,2400,245,2376,1657,Non,69.74,62.65
+referendum_2018,,BOURAIL,BOURAIL,independantiste,independantiste,5,5,3934,3482,452,3432,1061,Oui,30.91,26.97
+referendum_2018,,BOURAIL,BOURAIL,loyaliste,anti_independantiste,5,5,3934,3482,452,3432,2371,Non,69.09,60.27
+referendum_2018,,CANALA,CANALA,independantiste,independantiste,6,6,3406,2974,432,2930,2762,Oui,94.27,81.09
+referendum_2018,,CANALA,CANALA,loyaliste,anti_independantiste,6,6,3406,2974,432,2930,168,Non,5.73,4.93
+referendum_2018,,DUMBEA,DUMBEA,independantiste,independantiste,18,18,16546,13699,2847,13466,2930,Oui,21.76,17.71
+referendum_2018,,DUMBEA,DUMBEA,loyaliste,anti_independantiste,18,18,16546,13699,2847,13466,10536,Non,78.24,63.68
+referendum_2018,,FARINO,FARINO,independantiste,independantiste,1,1,548,520,28,512,47,Oui,9.18,8.58
+referendum_2018,,FARINO,FARINO,loyaliste,anti_independantiste,1,1,548,520,28,512,465,Non,90.82,84.85
+referendum_2018,,HIENGHENE,HIENGHENE,independantiste,independantiste,10,10,2390,2069,321,2040,1933,Oui,94.75,80.88
+referendum_2018,,HIENGHENE,HIENGHENE,loyaliste,anti_independantiste,10,10,2390,2069,321,2040,107,Non,5.25,4.48
+referendum_2018,,HOUAILOU,HOUAILOU,independantiste,independantiste,8,8,3578,2948,630,2901,2434,Oui,83.9,68.03
+referendum_2018,,HOUAILOU,HOUAILOU,loyaliste,anti_independantiste,8,8,3578,2948,630,2901,467,Non,16.1,13.05
+referendum_2018,,ILEDESPINS,ILE DES PINS,independantiste,independantiste,3,2,1711,1411,300,1386,933,Oui,67.32,54.53
+referendum_2018,,ILEDESPINS,ILE DES PINS,loyaliste,anti_independantiste,3,2,1711,1411,300,1386,453,Non,32.68,26.48
+referendum_2018,,KAALAGOMEN,KAALA-GOMEN,independantiste,independantiste,6,6,1634,1430,204,1416,1068,Oui,75.42,65.36
+referendum_2018,,KAALAGOMEN,KAALA-GOMEN,loyaliste,anti_independantiste,6,6,1634,1430,204,1416,348,Non,24.58,21.3
+referendum_2018,,KONE,KONE,independantiste,independantiste,12,12,4149,3638,511,3587,2307,Oui,64.32,55.6
+referendum_2018,,KONE,KONE,loyaliste,anti_independantiste,12,12,4149,3638,511,3587,1280,Non,35.68,30.85
+referendum_2018,,KOUAOUA,KOUAOUA,independantiste,independantiste,4,4,1132,954,178,941,692,Oui,73.54,61.13
+referendum_2018,,KOUAOUA,KOUAOUA,loyaliste,anti_independantiste,4,4,1132,954,178,941,249,Non,26.46,22
+referendum_2018,,KOUMAC,KOUMAC,independantiste,independantiste,2,2,2660,2388,272,2339,853,Oui,36.47,32.07
+referendum_2018,,KOUMAC,KOUMAC,loyaliste,anti_independantiste,2,2,2660,2388,272,2339,1486,Non,63.53,55.86
+referendum_2018,,LAFOA,LA FOA,independantiste,independantiste,4,4,2879,2631,248,2590,776,Oui,29.96,26.95
+referendum_2018,,LAFOA,LA FOA,loyaliste,anti_independantiste,4,4,2879,2631,248,2590,1814,Non,70.04,63.01
+referendum_2018,,LIFOU,LIFOU,independantiste,independantiste,28,28,10477,6526,3951,6440,5147,Oui,79.92,49.13
+referendum_2018,,LIFOU,LIFOU,loyaliste,anti_independantiste,28,28,10477,6526,3951,6440,1293,Non,20.08,12.34
+referendum_2018,,MARE,MARE,independantiste,independantiste,14,14,7385,3971,3414,3930,3324,Oui,84.58,45.01
+referendum_2018,,MARE,MARE,loyaliste,anti_independantiste,14,14,7385,3971,3414,3930,606,Non,15.42,8.21
+referendum_2018,,MOINDOU,MOINDOU,independantiste,independantiste,1,1,747,682,65,672,299,Oui,44.49,40.03
+referendum_2018,,MOINDOU,MOINDOU,loyaliste,anti_independantiste,1,1,747,682,65,672,373,Non,55.51,49.93
+referendum_2018,,MONTDORE,MONT-DORE,independantiste,independantiste,25,25,17369,14522,2847,14185,3626,Oui,25.56,20.88
+referendum_2018,,MONTDORE,MONT-DORE,loyaliste,anti_independantiste,25,25,17369,14522,2847,14185,10559,Non,74.44,60.79
+referendum_2018,,NOUMEA,NOUMEA,independantiste,independantiste,57,57,50686,40697,9989,40108,7818,Oui,19.49,15.42
+referendum_2018,,NOUMEA,NOUMEA,loyaliste,anti_independantiste,57,57,50686,40697,9989,40108,32290,Non,80.51,63.71
+referendum_2018,,OUEGOA,OUEGOA,independantiste,independantiste,4,4,2157,1832,325,1820,1271,Oui,69.84,58.92
+referendum_2018,,OUEGOA,OUEGOA,loyaliste,anti_independantiste,4,4,2157,1832,325,1820,549,Non,30.16,25.45
+referendum_2018,,OUVEA,OUVEA,independantiste,independantiste,8,7,4374,2598,1776,2566,2160,Oui,84.18,49.38
+referendum_2018,,OUVEA,OUVEA,loyaliste,anti_independantiste,8,7,4374,2598,1776,2566,406,Non,15.82,9.28
+referendum_2018,,PAITA,PAITA,independantiste,independantiste,17,17,11147,9544,1603,9381,2430,Oui,25.9,21.8
+referendum_2018,,PAITA,PAITA,loyaliste,anti_independantiste,17,17,11147,9544,1603,9381,6951,Non,74.1,62.36
+referendum_2018,,POINDIMIE,POINDIMIE,independantiste,independantiste,7,7,4057,3567,490,3510,2782,Oui,79.26,68.57
+referendum_2018,,POINDIMIE,POINDIMIE,loyaliste,anti_independantiste,7,7,4057,3567,490,3510,728,Non,20.74,17.94
+referendum_2018,,PONERIHOUEN,PONERIHOUEN,independantiste,independantiste,7,7,2596,2238,358,2204,1887,Oui,85.62,72.69
+referendum_2018,,PONERIHOUEN,PONERIHOUEN,loyaliste,anti_independantiste,7,7,2596,2238,358,2204,317,Non,14.38,12.21
+referendum_2018,,POUEBO,POUEBO,independantiste,independantiste,5,5,2335,1888,447,1877,1769,Oui,94.25,75.76
+referendum_2018,,POUEBO,POUEBO,loyaliste,anti_independantiste,5,5,2335,1888,447,1877,108,Non,5.75,4.63
+referendum_2018,,POUEMBOUT,POUEMBOUT,independantiste,independantiste,3,3,1383,1218,165,1195,556,Oui,46.53,40.2
+referendum_2018,,POUEMBOUT,POUEMBOUT,loyaliste,anti_independantiste,3,3,1383,1218,165,1195,639,Non,53.47,46.2
+referendum_2018,,POUM,POUM,independantiste,independantiste,3,3,1366,1152,214,1133,948,Oui,83.67,69.4
+referendum_2018,,POUM,POUM,loyaliste,anti_independantiste,3,3,1366,1152,214,1133,185,Non,16.33,13.54
+referendum_2018,,POYA,POYA,independantiste,independantiste,6,6,2242,1950,292,1929,1147,Oui,59.46,51.16
+referendum_2018,,POYA,POYA,loyaliste,anti_independantiste,6,6,2242,1950,292,1929,782,Non,40.54,34.88
+referendum_2018,,SARRAMEA,SARRAMEA,independantiste,independantiste,1,1,506,472,34,465,339,Oui,72.9,67
+referendum_2018,,SARRAMEA,SARRAMEA,loyaliste,anti_independantiste,1,1,506,472,34,465,126,Non,27.1,24.9
+referendum_2018,,THIO,THIO,independantiste,independantiste,4,4,2114,1805,309,1785,1483,Oui,83.08,70.15
+referendum_2018,,THIO,THIO,loyaliste,anti_independantiste,4,4,2114,1805,309,1785,302,Non,16.92,14.29
+referendum_2018,,TOUHO,TOUHO,independantiste,independantiste,4,4,1889,1612,277,1598,1320,Oui,82.6,69.88
+referendum_2018,,TOUHO,TOUHO,loyaliste,anti_independantiste,4,4,1889,1612,277,1598,278,Non,17.4,14.72
+referendum_2018,,VOH,VOH,independantiste,independantiste,3,3,2312,2027,285,1978,1357,Oui,68.6,58.69
+referendum_2018,,VOH,VOH,loyaliste,anti_independantiste,3,3,2312,2027,285,1978,621,Non,31.4,26.86
+referendum_2018,,YATE,YATE,independantiste,independantiste,4,4,1721,1547,174,1538,1357,Oui,88.23,78.85
+referendum_2018,,YATE,YATE,loyaliste,anti_independantiste,4,4,1721,1547,174,1538,181,Non,11.77,10.52
+referendum_2020,,BELEP,Belep,independantiste,independantiste,2,1,937,763,174,761,734,Oui,96.45,78.34
+referendum_2020,,BELEP,Belep,loyaliste,anti_independantiste,2,1,937,763,174,761,27,Non,3.55,2.88
+referendum_2020,,BOULOUPARI,Boulouparis,independantiste,independantiste,4,4,2819,2610,209,2587,797,Oui,30.81,28.27
+referendum_2020,,BOULOUPARI,Boulouparis,loyaliste,anti_independantiste,4,4,2819,2610,209,2587,1790,Non,69.19,63.5
+referendum_2020,,BOURAIL,Bourail,independantiste,independantiste,5,5,4083,3713,370,3661,1198,Oui,32.72,29.34
+referendum_2020,,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4083,3713,370,3661,2463,Non,67.28,60.32
+referendum_2020,,CANALA,Canala,independantiste,independantiste,7,7,3498,3194,304,3169,3024,Oui,95.42,86.45
+referendum_2020,,CANALA,Canala,loyaliste,anti_independantiste,7,7,3498,3194,304,3169,145,Non,4.58,4.15
+referendum_2020,,DUMBEA,Dumbéa,independantiste,independantiste,24,24,17759,15464,2295,15262,4012,Oui,26.29,22.59
+referendum_2020,,DUMBEA,Dumbéa,loyaliste,anti_independantiste,24,24,17759,15464,2295,15262,11250,Non,73.71,63.35
+referendum_2020,,FARINO,Farino,independantiste,independantiste,1,1,577,547,30,541,62,Oui,11.46,10.75
+referendum_2020,,FARINO,Farino,loyaliste,anti_independantiste,1,1,577,547,30,541,479,Non,88.54,83.02
+referendum_2020,,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2469,2258,211,2244,2160,Oui,96.26,87.48
+referendum_2020,,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2469,2258,211,2244,84,Non,3.74,3.4
+referendum_2020,,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3688,3215,473,3183,2783,Oui,87.43,75.46
+referendum_2020,,HOUAILOU,Houaïlou,loyaliste,anti_independantiste,8,8,3688,3215,473,3183,400,Non,12.57,10.85
+referendum_2020,,ILEDESPINS,Ile des Pins,independantiste,independantiste,3,2,1764,1504,260,1489,1040,Oui,69.85,58.96
+referendum_2020,,ILEDESPINS,Ile des Pins,loyaliste,anti_independantiste,3,2,1764,1504,260,1489,449,Non,30.15,25.45
+referendum_2020,,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1697,1519,178,1506,1143,Oui,75.9,67.35
+referendum_2020,,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1697,1519,178,1506,363,Non,24.1,21.39
+referendum_2020,,KONE,Koné,independantiste,independantiste,12,12,4412,3963,449,3903,2601,Oui,66.64,58.95
+referendum_2020,,KONE,Koné,loyaliste,anti_independantiste,12,12,4412,3963,449,3903,1302,Non,33.36,29.51
+referendum_2020,,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1169,1051,118,1042,828,Oui,79.46,70.83
+referendum_2020,,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1169,1051,118,1042,214,Non,20.54,18.31
+referendum_2020,,KOUMAC,Koumac,independantiste,independantiste,2,2,2728,2457,271,2430,935,Oui,38.48,34.27
+referendum_2020,,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,2728,2457,271,2430,1495,Non,61.52,54.8
+referendum_2020,,LAFOA,La Foa,independantiste,independantiste,4,4,2991,2765,226,2728,888,Oui,32.55,29.69
+referendum_2020,,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,2991,2765,226,2728,1840,Non,67.45,61.52
+referendum_2020,,LIFOU,Lifou,independantiste,independantiste,30,28,10795,8255,2540,8179,7074,Oui,86.49,65.53
+referendum_2020,,LIFOU,Lifou,loyaliste,anti_independantiste,30,28,10795,8255,2540,8179,1105,Non,13.51,10.24
+referendum_2020,,MARE,Maré,independantiste,independantiste,16,14,6858,4931,1927,4891,3878,Oui,79.29,56.55
+referendum_2020,,MARE,Maré,loyaliste,anti_independantiste,16,14,6858,4931,1927,4891,1013,Non,20.71,14.77
+referendum_2020,,MOINDOU,Moindou,independantiste,independantiste,1,1,789,734,55,718,331,Oui,46.1,41.95
+referendum_2020,,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,789,734,55,718,387,Non,53.9,49.05
+referendum_2020,,MONTDORE,Mont-Dore,independantiste,independantiste,25,25,17898,15483,2415,15170,4272,Oui,28.16,23.87
+referendum_2020,,MONTDORE,Mont-Dore,loyaliste,anti_independantiste,25,25,17898,15483,2415,15170,10898,Non,71.84,60.89
+referendum_2020,,NOUMEA,Nouméa,independantiste,independantiste,57,57,52050,44094,7956,43559,10154,Oui,23.31,19.51
+referendum_2020,,NOUMEA,Nouméa,loyaliste,anti_independantiste,57,57,52050,44094,7956,43559,33405,Non,76.69,64.18
+referendum_2020,,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2174,1892,282,1866,1340,Oui,71.81,61.64
+referendum_2020,,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2174,1892,282,1866,526,Non,28.19,24.2
+referendum_2020,,OUVEA,Ouvéa,independantiste,independantiste,9,7,4418,3305,1113,3277,2824,Oui,86.18,63.92
+referendum_2020,,OUVEA,Ouvéa,loyaliste,anti_independantiste,9,7,4418,3305,1113,3277,453,Non,13.82,10.25
+referendum_2020,,PAITA,Païta,independantiste,independantiste,19,19,12013,10520,1493,10387,2988,Oui,28.77,24.87
+referendum_2020,,PAITA,Païta,loyaliste,anti_independantiste,19,19,12013,10520,1493,10387,7399,Non,71.23,61.59
+referendum_2020,,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4146,3773,373,3735,3082,Oui,82.52,74.34
+referendum_2020,,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4146,3773,373,3735,653,Non,17.48,15.75
+referendum_2020,,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2671,2371,300,2347,2093,Oui,89.18,78.36
+referendum_2020,,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2671,2371,300,2347,254,Non,10.82,9.51
+referendum_2020,,POUEBO,Pouébo,independantiste,independantiste,5,5,2392,2024,368,2010,1912,Oui,95.12,79.93
+referendum_2020,,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2392,2024,368,2010,98,Non,4.88,4.1
+referendum_2020,,POUEMBOUT,Pouembout,independantiste,independantiste,3,3,1482,1325,157,1310,631,Oui,48.17,42.58
+referendum_2020,,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,3,3,1482,1325,157,1310,679,Non,51.83,45.82
+referendum_2020,,POUM,Poum,independantiste,independantiste,3,3,1422,1259,163,1252,1066,Oui,85.14,74.96
+referendum_2020,,POUM,Poum,loyaliste,anti_independantiste,3,3,1422,1259,163,1252,186,Non,14.86,13.08
+referendum_2020,,POYA,Poya Nord,independantiste,independantiste,5,5,2176,1948,228,1933,1301,Oui,67.3,59.79
+referendum_2020,,POYA,Poya Nord,loyaliste,anti_independantiste,5,5,2176,1948,228,1933,632,Non,32.7,29.04
+referendum_2020,,POYA,Poya Sud,independantiste,independantiste,1,1,189,173,16,173,4,Oui,2.31,2.12
+referendum_2020,,POYA,Poya Sud,loyaliste,anti_independantiste,1,1,189,173,16,173,169,Non,97.69,89.42
+referendum_2020,,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,510,477,33,472,373,Oui,79.03,73.14
+referendum_2020,,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,510,477,33,472,99,Non,20.97,19.41
+referendum_2020,,THIO,Thio,independantiste,independantiste,4,4,2177,1919,258,1901,1632,Oui,85.85,74.97
+referendum_2020,,THIO,Thio,loyaliste,anti_independantiste,4,4,2177,1919,258,1901,269,Non,14.15,12.36
+referendum_2020,,TOUHO,Touho,independantiste,independantiste,4,4,1933,1681,252,1666,1423,Oui,85.41,73.62
+referendum_2020,,TOUHO,Touho,loyaliste,anti_independantiste,4,4,1933,1681,252,1666,243,Non,14.59,12.57
+referendum_2020,,VOH,Voh,independantiste,independantiste,7,7,2355,2110,245,2069,1481,Oui,71.58,62.89
+referendum_2020,,VOH,Voh,loyaliste,anti_independantiste,7,7,2355,2110,245,2069,588,Non,28.42,24.97
+referendum_2020,,YATE,Yaté,independantiste,independantiste,4,4,1760,1621,139,1615,1469,Oui,90.96,83.47
+referendum_2020,,YATE,Yaté,loyaliste,anti_independantiste,4,4,1760,1621,139,1615,146,Non,9.04,8.3
+referendum_2021,,BELEP,Belep,independantiste,independantiste,2,1,930,6,924,6,2,Oui,33.33,0.22
+referendum_2021,,BELEP,Belep,loyaliste,anti_independantiste,2,1,930,6,924,6,4,Non,66.67,0.43
+referendum_2021,,BOULOUPARI,Boulouparis,independantiste,independantiste,4,4,2893,1799,1094,1750,39,Oui,2.23,1.35
+referendum_2021,,BOULOUPARI,Boulouparis,loyaliste,anti_independantiste,4,4,2893,1799,1094,1750,1711,Non,97.77,59.14
+referendum_2021,,BOURAIL,Bourail,independantiste,independantiste,5,5,4152,2548,1604,2452,70,Oui,2.85,1.69
+referendum_2021,,BOURAIL,Bourail,loyaliste,anti_independantiste,5,5,4152,2548,1604,2452,2382,Non,97.15,57.37
+referendum_2021,,CANALA,Canala,independantiste,independantiste,7,7,3551,49,3502,44,16,Oui,36.36,0.45
+referendum_2021,,CANALA,Canala,loyaliste,anti_independantiste,7,7,3551,49,3502,44,28,Non,63.64,0.79
+referendum_2021,,DUMBEA,Dumbéa,independantiste,independantiste,24,24,18649,11616,7033,11275,350,Oui,3.1,1.88
+referendum_2021,,DUMBEA,Dumbéa,loyaliste,anti_independantiste,24,24,18649,11616,7033,11275,10925,Non,96.9,58.58
+referendum_2021,,FARINO,Farino,independantiste,independantiste,1,1,596,511,85,496,23,Oui,4.64,3.86
+referendum_2021,,FARINO,Farino,loyaliste,anti_independantiste,1,1,596,511,85,496,473,Non,95.36,79.36
+referendum_2021,,HIENGHENE,Hienghène,independantiste,independantiste,10,10,2479,29,2450,23,9,Oui,39.13,0.36
+referendum_2021,,HIENGHENE,Hienghène,loyaliste,anti_independantiste,10,10,2479,29,2450,23,14,Non,60.87,0.56
+referendum_2021,,HOUAILOU,Houaïlou,independantiste,independantiste,8,8,3710,259,3451,238,43,Oui,18.07,1.16
+referendum_2021,,HOUAILOU,Houaïlou,loyaliste,anti_independantiste,8,8,3710,259,3451,238,195,Non,81.93,5.26
+referendum_2021,,ILEDESPINS,Ile des Pins,independantiste,independantiste,3,2,1802,418,1384,395,55,Oui,13.92,3.05
+referendum_2021,,ILEDESPINS,Ile des Pins,loyaliste,anti_independantiste,3,2,1802,418,1384,395,340,Non,86.08,18.87
+referendum_2021,,KAALAGOMEN,Kaala-Gomen,independantiste,independantiste,6,6,1734,302,1432,288,14,Oui,4.86,0.81
+referendum_2021,,KAALAGOMEN,Kaala-Gomen,loyaliste,anti_independantiste,6,6,1734,302,1432,288,274,Non,95.14,15.8
+referendum_2021,,KONE,Koné,independantiste,independantiste,12,12,4500,1261,3239,1207,92,Oui,7.62,2.04
+referendum_2021,,KONE,Koné,loyaliste,anti_independantiste,12,12,4500,1261,3239,1207,1115,Non,92.38,24.78
+referendum_2021,,KOUAOUA,Kouaoua,independantiste,independantiste,4,4,1180,182,998,172,26,Oui,15.12,2.2
+referendum_2021,,KOUAOUA,Kouaoua,loyaliste,anti_independantiste,4,4,1180,182,998,172,146,Non,84.88,12.37
+referendum_2021,,KOUMAC,Koumac,independantiste,independantiste,2,2,2776,1475,1301,1444,37,Oui,2.56,1.33
+referendum_2021,,KOUMAC,Koumac,loyaliste,anti_independantiste,2,2,2776,1475,1301,1444,1407,Non,97.44,50.68
+referendum_2021,,LAFOA,La Foa,independantiste,independantiste,4,4,3034,1940,1094,1860,86,Oui,4.62,2.83
+referendum_2021,,LAFOA,La Foa,loyaliste,anti_independantiste,4,4,3034,1940,1094,1860,1774,Non,95.38,58.47
+referendum_2021,,LIFOU,Lifou,independantiste,independantiste,30,28,10797,525,10272,502,67,Oui,13.35,0.62
+referendum_2021,,LIFOU,Lifou,loyaliste,anti_independantiste,30,28,10797,525,10272,502,435,Non,86.65,4.03
+referendum_2021,,MARE,Maré,independantiste,independantiste,16,14,6937,256,6681,226,42,Oui,18.58,0.61
+referendum_2021,,MARE,Maré,loyaliste,anti_independantiste,16,14,6937,256,6681,226,184,Non,81.42,2.65
+referendum_2021,,MOINDOU,Moindou,independantiste,independantiste,1,1,794,418,376,403,25,Oui,6.2,3.15
+referendum_2021,,MOINDOU,Moindou,loyaliste,anti_independantiste,1,1,794,418,376,403,378,Non,93.8,47.61
+referendum_2021,,MONTDORE,Mont-Dore,independantiste,independantiste,25,25,18264,11343,6921,10919,424,Oui,3.88,2.32
+referendum_2021,,MONTDORE,Mont-Dore,loyaliste,anti_independantiste,25,25,18264,11343,6921,10919,10495,Non,96.12,57.46
+referendum_2021,,NOUMEA,Nouméa,independantiste,independantiste,60,60,52819,33888,18931,33129,800,Oui,2.41,1.51
+referendum_2021,,NOUMEA,Nouméa,loyaliste,anti_independantiste,60,60,52819,33888,18931,33129,32329,Non,97.59,61.21
+referendum_2021,,OUEGOA,Ouégoa,independantiste,independantiste,4,4,2201,510,1691,496,10,Oui,2.02,0.45
+referendum_2021,,OUEGOA,Ouégoa,loyaliste,anti_independantiste,4,4,2201,510,1691,496,486,Non,97.98,22.08
+referendum_2021,,OUVEA,Ouvéa,independantiste,independantiste,9,7,4385,223,4162,210,26,Oui,12.38,0.59
+referendum_2021,,OUVEA,Ouvéa,loyaliste,anti_independantiste,9,7,4385,223,4162,210,184,Non,87.62,4.2
+referendum_2021,,PAITA,Païta,independantiste,independantiste,19,19,12703,7886,4817,7632,263,Oui,3.45,2.07
+referendum_2021,,PAITA,Païta,loyaliste,anti_independantiste,19,19,12703,7886,4817,7632,7369,Non,96.55,58.01
+referendum_2021,,POINDIMIE,Poindimié,independantiste,independantiste,7,7,4192,490,3702,466,48,Oui,10.3,1.15
+referendum_2021,,POINDIMIE,Poindimié,loyaliste,anti_independantiste,7,7,4192,490,3702,466,418,Non,89.7,9.97
+referendum_2021,,PONERIHOUEN,Ponérihouen,independantiste,independantiste,7,7,2675,161,2514,153,15,Oui,9.8,0.56
+referendum_2021,,PONERIHOUEN,Ponérihouen,loyaliste,anti_independantiste,7,7,2675,161,2514,153,138,Non,90.2,5.16
+referendum_2021,,POUEBO,Pouébo,independantiste,independantiste,5,5,2386,34,2352,33,7,Oui,21.21,0.29
+referendum_2021,,POUEBO,Pouébo,loyaliste,anti_independantiste,5,5,2386,34,2352,33,26,Non,78.79,1.09
+referendum_2021,,POUEMBOUT,Pouembout,independantiste,independantiste,3,3,1545,732,813,709,38,Oui,5.36,2.46
+referendum_2021,,POUEMBOUT,Pouembout,loyaliste,anti_independantiste,3,3,1545,732,813,709,671,Non,94.64,43.43
+referendum_2021,,POUM,Poum,independantiste,independantiste,3,3,1438,109,1329,106,4,Oui,3.77,0.28
+referendum_2021,,POUM,Poum,loyaliste,anti_independantiste,3,3,1438,109,1329,106,102,Non,96.23,7.09
+referendum_2021,,POYA,Poya Nord,independantiste,independantiste,5,5,2216,604,1612,577,35,Oui,6.07,1.58
+referendum_2021,,POYA,Poya Nord,loyaliste,anti_independantiste,5,5,2216,604,1612,577,542,Non,93.93,24.46
+referendum_2021,,POYA,Poya Sud,independantiste,independantiste,1,1,197,171,26,171,0,Oui,0,0
+referendum_2021,,POYA,Poya Sud,loyaliste,anti_independantiste,1,1,197,171,26,171,171,Non,100,86.8
+referendum_2021,,SARRAMEA,Sarraméa,independantiste,independantiste,1,1,518,85,433,78,8,Oui,10.26,1.54
+referendum_2021,,SARRAMEA,Sarraméa,loyaliste,anti_independantiste,1,1,518,85,433,78,70,Non,89.74,13.51
+referendum_2021,,THIO,Thio,independantiste,independantiste,4,4,2218,200,2018,194,17,Oui,8.76,0.77
+referendum_2021,,THIO,Thio,loyaliste,anti_independantiste,4,4,2218,200,2018,194,177,Non,91.24,7.98
+referendum_2021,,TOUHO,Touho,independantiste,independantiste,4,4,1953,191,1762,185,9,Oui,4.86,0.46
+referendum_2021,,TOUHO,Touho,loyaliste,anti_independantiste,4,4,1953,191,1762,185,176,Non,95.14,9.01
+referendum_2021,,VOH,Voh,independantiste,independantiste,7,7,2362,559,1803,532,27,Oui,5.08,1.14
+referendum_2021,,VOH,Voh,loyaliste,anti_independantiste,7,7,2362,559,1803,532,505,Non,94.92,21.38
+referendum_2021,,YATE,Yaté,independantiste,independantiste,4,4,1778,101,1677,96,20,Oui,20.83,1.12
+referendum_2021,,YATE,Yaté,loyaliste,anti_independantiste,4,4,1778,101,1677,96,76,Non,79.17,4.27

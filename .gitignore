@@ -7,6 +7,7 @@ _site
 .DS_Store
 *.html
 !docs/**/*.html
+!includes/**/*.html
 *.log
 *.aux
 # Données locales lourdes : à garder hors Git si nécessaire

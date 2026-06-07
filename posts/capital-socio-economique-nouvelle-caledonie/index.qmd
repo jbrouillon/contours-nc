@@ -6,7 +6,7 @@ date: "2026-05-29"
 categories: ["Cartographie", "Inégalités", "Nouvelle-Calédonie"]
 tags: ["ACP", "R", "dataviz", "recensement", "capital socio-économique"]
 description: "Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie."
-image: "../../data/cartes/capital socio-economique/capital_acp_lisse_nc.png"
+image: "../../images/previews/capital-socio-economique-nc.jpg"
 image-alt: "Carte lissée du capital socio-économique en Nouvelle-Calédonie"
 title-block-banner: true
 toc: true
@@ -44,8 +44,8 @@ communes_path <- data_path("02_geospatial", "vecteurs", "nc_communes_simp.geojso
 pop_path <- data_path("02_geospatial", "rasters", "NCL_Pop_Grid_2020.tif")
 
 map_dir <- data_path("cartes", "capital socio-economique")
-map_nc_path <- file.path(map_dir, "capital_acp_lisse_nc.png")
-map_noumea_locale_path <- file.path(map_dir, "capital_acp_lisse_noumea_echelle_locale.png")
+map_nc_path <- file.path(map_dir, "capital_acp_lisse_nc.webp")
+map_noumea_locale_path <- file.path(map_dir, "capital_acp_lisse_noumea_echelle_locale.webp")
 
 required_files <- c(iris = iris_path, iris_extra = iris_extra_path, communes = communes_path)
 missing_files <- required_files[!file.exists(required_files)]
@@ -547,7 +547,7 @@ Les variables retenues dans l’indice sont :
 
 <summary>Pourquoi certaines variables ne sont pas dans l’indice ?</summary>
 
-Lorsque 2 variables sont trop corrélées entre elles, le choix est fait de n'en garder qu'une seule car inclure les 2 reviendrait à donner un poids trop important à une même dimension.
+Lorsque deux variables sont trop corrélées entre elles, le choix est fait de n'en garder qu'une seule car inclure les deux reviendrait à donner un poids trop important à une même dimension.
 Par exemple, la part de cadres et professions intermédiaires est très corrélée à la part de diplômés bac +3 ou plus : `r fmt_num(cor_bac3_csp, 2)`. Pour éviter de donner trop de poids à une même dimension, une seule variable de formation est donc conservée.
 
 Plus généralement, lorsqu’une variable apporte surtout une information déjà présente dans une autre variable retenue, elle est laissée de côté pour la construction de l’indice.
@@ -572,7 +572,7 @@ Ces cellules sont ensuite transformées en surface continue : les zones sans cel
 
 Les classes de couleur visibles sur les cartes sont construites dans QGIS à partir de légendes discrètes en quintiles. Elles ont donc une fonction cartographique : rendre les contrastes lisibles sur chaque carte. Elles ne doivent pas être confondues avec les quintiles analytiques présentés plus loin pour résumer les tableaux et graphiques.
 
-```{r carte-capital-nc, fig.cap="Indice de capital socio-économique lissé - Nouvelle-Calédonie.", out.width="100%"}
+```{r carte-capital-nc, fig.cap="Indice de capital socio-économique lissé en Nouvelle-Calédonie.", out.width="100%"}
 render_optional_map(
   map_nc_path,
   "Carte de synthèse en cours d’ajout."
@@ -581,7 +581,7 @@ render_optional_map(
 
 À l’échelle de la Nouvelle-Calédonie, la carte donne une lecture des grands contrastes territoriaux. Les zones aux indices élevés signalent des espaces où se concentrent plus souvent les profils d’emploi, de diplôme et d’équipement les plus favorables. Les zones aux indices faibles ne doivent pas être interprétées comme des “poches de pauvreté” au sens strict : elles indiquent plutôt un cumul relatif de fragilités au regard des variables retenues.
 
-```{r carte-capital-noumea-locale, fig.cap="Indice de capital socio-économique lissé - Nouméa, échelle locale.", out.width="100%"}
+```{r carte-capital-noumea-locale, fig.cap="Indice de capital socio-économique lissé à Nouméa, échelle locale.", out.width="100%"}
 render_optional_map(
   map_noumea_locale_path,
   "Carte de synthèse en cours d’ajout."
