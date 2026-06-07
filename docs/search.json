@@ -51,35 +51,35 @@
   {
     "objectID": "newsletter/index.html",
     "href": "newsletter/index.html",
-    "title": "Newsletter",
+    "title": "newsletter",
     "section": "",
     "text": "Recevez les nouvelles publications de Contours.nc.\nEnviron un email par mois.\nLa lettre sert surtout à suivre :\n\n\nnouvelles publications\ncartes et analyses\nprojets à venir\n\n\n\n  Adresse email\n  \n    \n    \n  \n  \n    Powered by Buttondown."
   },
   {
     "objectID": "contact/index.html",
     "href": "contact/index.html",
-    "title": "Contacter Contours.nc",
+    "title": "contacter Contours.nc",
     "section": "",
     "text": "Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous."
   },
   {
     "objectID": "contact/index.html#contact-général",
     "href": "contact/index.html#contact-général",
-    "title": "Contacter Contours.nc",
+    "title": "contacter Contours.nc",
     "section": "Contact général",
     "text": "Contact général\ncontact@contours.nc\nQuestions, réactions aux articles, propositions de sujets, demandes diverses."
   },
   {
     "objectID": "contact/index.html#réseaux-sociaux",
     "href": "contact/index.html#réseaux-sociaux",
-    "title": "Contacter Contours.nc",
+    "title": "contacter Contours.nc",
     "section": "Réseaux sociaux",
     "text": "Réseaux sociaux\nSuivre les publications et actualités de Contours.nc :\n\nFacebook\nLinkedIn"
   },
   {
     "objectID": "contact/index.html#collaboration-scientifique",
     "href": "contact/index.html#collaboration-scientifique",
-    "title": "Contacter Contours.nc",
+    "title": "contacter Contours.nc",
     "section": "Collaboration scientifique",
     "text": "Collaboration scientifique\njonas.brouillon@iac.nc\nPour les collaborations de recherche, projets scientifiques ou demandes liées aux activités scientifiques."
   },
@@ -179,7 +179,7 @@
     "href": "index.html",
     "title": "Contours",
     "section": "",
-    "text": "contours est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.\nCe blog est créé et alimenté par Jonas Brouillon, ingénieur d’études en sciences sociales."
+    "text": "contours est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.\nCe blog est créé et alimenté par Jonas Brouillon, démographe calédonien et ingénieur d’études en sciences sociales."
   },
   {
     "objectID": "index.html#derniers-articles",
