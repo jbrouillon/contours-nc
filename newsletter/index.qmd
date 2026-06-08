@@ -3,16 +3,16 @@ title: "newsletter"
 toc: false
 ---
 
-Recevez les nouvelles publications de Contours.nc.
+Recevez les nouvelles publications de contours.nc.
 
 Environ un email par mois.
 
 La lettre sert surtout à suivre :
 
-::: {.newsletter-points}
-- nouvelles publications
-- cartes et analyses
-- projets à venir
+::: newsletter-points
+-   nouvelles publications
+-   cartes et analyses
+-   projets à venir
 :::
 
 ```{=html}

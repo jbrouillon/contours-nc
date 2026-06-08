@@ -1,5 +1,5 @@
 ---
-title: "contacter Contours.nc"
+title: "contacter contours.nc"
 toc: false
 ---
 
@@ -13,7 +13,7 @@ Pour toute question, remarque ou proposition, utilisez les coordonnées ci-desso
 ```
 
 ::: contact-section
-## Contact général
+## contact général
 
 [contact\@contours.nc](mailto:contact@contours.nc){.contact-email}
 
@@ -21,7 +21,7 @@ Questions, réactions aux articles, propositions de sujets, demandes diverses.
 :::
 
 ::: contact-section
-## Réseaux sociaux
+## réseaux sociaux
 
 Suivre les publications et actualités de Contours.nc :
 
@@ -30,7 +30,7 @@ Suivre les publications et actualités de Contours.nc :
 :::
 
 ::: {.contact-section .contact-section--specialized}
-## Collaboration scientifique
+## collaboration scientifique
 
 [jonas.brouillon\@iac.nc](mailto:jonas.brouillon@iac.nc){.contact-email}
 

@@ -4,11 +4,118 @@
   if (!/\/posts\/[^/]+\/?$/.test(path)) return;
 
   const main = document.querySelector("main.content");
-  if (!main || main.querySelector(".article-newsletter-cta")) return;
+  if (!main) return;
 
-  const cta = document.createElement("aside");
-  cta.className = "article-newsletter-cta";
-  cta.innerHTML = '<span aria-hidden="true">—</span> <a href="/newsletter">Recevoir les prochaines publications →</a>';
-  main.appendChild(cta);
+  const title = document.querySelector("h1.title, h1")?.textContent?.trim() || document.title;
+  const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+  const url = new URL(canonical, window.location.href).href;
+  const encodedTitle = encodeURIComponent(title);
+  const encodedUrl = encodeURIComponent(url);
+
+  const makeShareLink = ({ name, icon, href }) => {
+    const link = document.createElement("a");
+    link.className = "article-share__button";
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.setAttribute("aria-label", `Partager sur ${name}`);
+    link.title = `Partager sur ${name}`;
+    link.innerHTML = `<i class="bi ${icon}" aria-hidden="true"></i><span class="article-share__button-label">${name}</span>`;
+    return link;
+  };
+
+  const copyToClipboard = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-1000px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+  };
+
+  const makeNewsletterCta = () => {
+    const cta = document.createElement("div");
+    cta.className = "article-newsletter-cta";
+    cta.innerHTML = '<a href="/newsletter"><i class="bi bi-envelope-paper" aria-hidden="true"></i><span>Recevoir la newsletter</span></a>';
+    return cta;
+  };
+
+  if (!main.querySelector(".article-share")) {
+    const share = document.createElement("div");
+    share.className = "article-share";
+    share.setAttribute("role", "navigation");
+    share.setAttribute("aria-label", "Partager cet article");
+
+    const label = document.createElement("span");
+    label.className = "article-share__title";
+    label.textContent = "Partager";
+
+    const buttons = document.createElement("div");
+    buttons.className = "article-share__buttons";
+
+    [
+      {
+        name: "Facebook",
+        icon: "bi-facebook",
+        href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
+      },
+      {
+        name: "LinkedIn",
+        icon: "bi-linkedin",
+        href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+      },
+      {
+        name: "X",
+        icon: "bi-twitter-x",
+        href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+      },
+      {
+        name: "WhatsApp",
+        icon: "bi-whatsapp",
+        href: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`
+      },
+      {
+        name: "Email",
+        icon: "bi-envelope-fill",
+        href: `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`
+      }
+    ].forEach((item) => buttons.appendChild(makeShareLink(item)));
+
+    const copyButton = document.createElement("button");
+    copyButton.className = "article-share__button";
+    copyButton.type = "button";
+    copyButton.setAttribute("aria-label", "Copier le lien de l'article");
+    copyButton.title = "Copier le lien";
+    copyButton.innerHTML = '<i class="bi bi-link-45deg" aria-hidden="true"></i><span class="article-share__button-label">Copier</span>';
+
+    const status = document.createElement("p");
+    status.className = "article-share__status";
+    status.setAttribute("aria-live", "polite");
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await copyToClipboard(url);
+        status.textContent = "Lien copi\u00e9";
+      } catch (error) {
+        status.textContent = "Copie impossible";
+      }
+
+      window.setTimeout(() => {
+        status.textContent = "";
+      }, 2400);
+    });
+
+    buttons.appendChild(copyButton);
+    share.append(label, buttons, status, makeNewsletterCta());
+    main.appendChild(share);
+  }
 })();
 </script>
