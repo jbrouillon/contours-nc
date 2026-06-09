@@ -579,7 +579,7 @@ bind_rows(
   tab_source_note("Lecture : premier tour des municipales 2020 et 2026.")
 ```
 
-Un autre point de prudence concerne le choix de 2020 comme point de comparaison. Pour éviter de mélanger des scrutins de nature très différente, il vaut mieux rester ici sur les municipales : les référendums et les législatives ont des contextes politiques trop particuliers pour servir de jauge simple. On ne retient aussi que le premier tour, puisque le second tour des municipales 2020 avait été décalé du fait de la crise sanitaire.
+Un autre point de prudence concerne le choix de 2020 comme point de comparaison. Pour éviter de mélanger des scrutins de nature très différente, il vaut mieux rester ici sur les municipales : les référendums et les législatives ont des contextes politiques trop particuliers pour servir de jauge simple.
 
 Sous cet angle, 2020 ressort nettement comme un point bas à Nouméa : `r fmt_pct(noumea_municipales_2020$participation)`, contre `r fmt_pct(noumea_municipales_2008$participation)` en 2008 et `r fmt_pct(noumea_municipales_2014$participation)` en 2014. Le niveau de 2026 (`r fmt_pct(noumea_municipales_2026$participation)`) est donc bien en hausse par rapport à 2020, mais il reste inférieur aux deux municipales précédentes. Les municipales de 2026 sont donc un rebond à partir d'un niveau exceptionnellement bas.
 
