@@ -46,11 +46,11 @@ fmt_signed_num <- function(x, digits = 0) {
   paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits))
 }
 
-fmt_pct <- function(x, digits = 1) {
+fmt_pct <- function(x, digits = 2) {
   paste0(fmt_num(x, digits), " %")
 }
 
-fmt_pp <- function(x, digits = 1) {
+fmt_pp <- function(x, digits = 2) {
   paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits), " pt")
 }
 
