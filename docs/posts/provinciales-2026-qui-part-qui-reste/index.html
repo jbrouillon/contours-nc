@@ -1038,6 +1038,21 @@ ul.task-list li input[type="checkbox"] {
   #title-block-header .subtitle,
   #title-block-header .description,
   #title-block-header .quarto-title-meta,
+  .prov-stat-grid,
+  .prov-axis-grid,
+  .prov-flow-grid,
+  .prov-rank-grid,
+  .prov-leader-grid,
+  .prov-details,
+  .prov-card-details,
+  .prov-card-item,
+  .prov-new-list-note,
+  .prov-source-breakdown {
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
   .content p,
   .content ul,
   .content ol,
@@ -1045,16 +1060,9 @@ ul.task-list li input[type="checkbox"] {
   .content h3,
   .content h4,
   .content .cell,
-  .content .callout,
-  .prov-stat-grid,
-  .prov-axis-grid,
-  .prov-flow-grid,
-  .prov-rank-grid,
-  .prov-leader-grid,
-  .prov-details {
-    inline-size: calc(100vw - 2rem) !important;
-    max-width: calc(100vw - 2rem) !important;
-    width: calc(100vw - 2rem) !important;
+  .content .callout {
+    max-width: 100% !important;
+    min-width: 0 !important;
   }
 
   #title-block-header .title {
@@ -1069,6 +1077,42 @@ ul.task-list li input[type="checkbox"] {
   .content li,
   .prov-card-summary strong,
   .prov-detail-label span {
+    overflow-wrap: anywhere;
+  }
+
+  .prov-stat-card,
+  .prov-axis-card,
+  .prov-flow-card,
+  .prov-rank-card,
+  .prov-leader-card,
+  .prov-card-body,
+  .prov-source-breakdown,
+  .prov-stack-group,
+  .prov-stack-bars,
+  .prov-detail-bars,
+  .prov-detail-row,
+  .prov-detail-head,
+  .prov-detail-label,
+  .prov-detail-label span,
+  .prov-detail-head strong,
+  .prov-detail-note,
+  .prov-list-item,
+  .prov-list-main,
+  .prov-card-summary,
+  .prov-card-summary strong,
+  .prov-stack-title,
+  .prov-source-breakdown h4,
+  .prov-axis-badge {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .prov-axis-badge,
+  .prov-card-summary,
+  .prov-card-summary strong,
+  .prov-stack-title,
+  .prov-detail-note,
+  .prov-source-breakdown h4 {
     overflow-wrap: anywhere;
   }
 
@@ -1107,6 +1151,11 @@ ul.task-list li input[type="checkbox"] {
 
   .prov-detail-head strong {
     text-align: left;
+  }
+
+  .prov-detail-meter {
+    max-width: 100%;
+    width: 100%;
   }
 
   .prov-stack-group {
