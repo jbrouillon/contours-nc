@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/articles/index.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/provinciales-2026-qui-part-qui-reste/index.html",
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"
@@ -15,8 +16,9 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/articles/index.html",
     "items": [
+      "/posts/provinciales-2026-qui-part-qui-reste/index.html",
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"

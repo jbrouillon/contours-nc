@@ -1,0 +1,1259 @@
+---
+title: "Listes aux Provinciales 2026 : qui part, qui reste ?"
+subtitle: "Ce que la comparaison des listes 2019 et 2026 dit du renouvellement des candidatures"
+author: "Jonas Brouillon"
+date: "2026-06-14"
+lang: fr
+categories: ["Élections", "Nouvelle-Calédonie", "Données"]
+tags: ["provinciales", "candidatures", "listes", "renouvellement", "2026"]
+description: "Sur 878 candidatures déposées, combien étaient déjà présentes en 2019 ? Combien d’élus reviennent ? Combien de nouveaux profils apparaissent ?"
+image: "../../images/previews/provinciales-2026-flux-sud.jpg"
+image-alt: "Graphique de flux des recompositions de candidatures dans la Province Sud entre les provinciales 2019 et 2026"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.prov-lede {
+  max-width: 78ch;
+  font-size: 1.05rem;
+}
+
+.prov-stat-grid,
+.prov-axis-grid,
+.prov-rank-grid,
+.prov-flow-grid,
+.prov-leader-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.15rem 0 1.65rem;
+}
+
+.prov-stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.prov-stat-grid-three {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prov-flow-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.prov-axis-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.prov-rank-grid {
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.prov-leader-grid {
+  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .prov-axis-grid,
+  .prov-stat-grid-three,
+  .prov-rank-grid,
+  .prov-leader-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .prov-axis-grid,
+  .prov-stat-grid-three,
+  .prov-rank-grid,
+  .prov-leader-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.prov-stat-card,
+.prov-axis-card,
+.prov-rank-card,
+.prov-flow-card,
+.prov-leader-card,
+.prov-details {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.07);
+}
+
+.prov-stat-card {
+  border-top: 4px solid var(--green);
+  padding: 0.78rem 0.9rem;
+}
+
+.prov-stat-value {
+  color: var(--ink);
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.prov-stat-label {
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.prov-stat-note {
+  margin: 0.32rem 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.28;
+}
+
+.prov-new-list-note {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid #4f7c8a;
+  border-radius: 8px;
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+}
+
+.prov-new-list-note h5 {
+  font-size: 0.98rem;
+  margin: 0 0 0.45rem;
+}
+
+.prov-new-list-note p {
+  color: var(--ink);
+  margin: 0 0 0.55rem;
+}
+
+.prov-new-list-note p:last-child {
+  margin-bottom: 0;
+}
+
+.prov-axis-card,
+.prov-flow-card {
+  padding: 0.88rem;
+}
+
+.prov-axis-card h3,
+.prov-flow-card h3 {
+  margin-top: 0;
+  font-size: 1.02rem;
+}
+
+.prov-axis-years,
+.prov-list-grid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.prov-axis-year h4,
+.prov-list-year h4 {
+  margin: 0 0 0.15rem;
+  font-size: 0.92rem;
+}
+
+.prov-axis-year p {
+  margin: 0 0 0.42rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.prov-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.prov-axis-chip,
+.prov-axis-badge {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 700;
+  gap: 0.28rem;
+  line-height: 1.2;
+  padding: 0.21rem 0.44rem;
+}
+
+.prov-axis-chip {
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.prov-axis-chip i {
+  background: var(--chip-color);
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.58rem;
+  width: 0.58rem;
+}
+
+.prov-axis-badge {
+  border: 1px solid;
+  color: #1f2933;
+  white-space: normal;
+}
+
+.prov-details {
+  margin: 1.1rem 0 2rem;
+  overflow: hidden;
+}
+
+.prov-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.9rem 1rem;
+}
+
+.prov-details-body {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.prov-details-body p {
+  margin: 0 0 0.65rem;
+}
+
+.prov-details-body p:last-child {
+  margin-bottom: 0;
+}
+
+.prov-list-grid {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.prov-list {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.prov-list-item {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto auto;
+  padding: 0.62rem 0.68rem;
+}
+
+.prov-list-num {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.prov-list-main {
+  min-width: 0;
+}
+
+.prov-list-main strong,
+.prov-list-main small {
+  display: block;
+}
+
+.prov-list-main small {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-top: 0.08rem;
+}
+
+.prov-warning {
+  background: #fff4df;
+  border: 1px solid #edd3a1;
+  border-radius: 999px;
+  color: #77530a;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.22rem 0.5rem;
+}
+
+.prov-rank-card {
+  padding: 0.95rem;
+}
+
+.prov-leader-card {
+  border-top: 5px solid #12395b;
+  padding: 1rem;
+}
+
+.prov-leader-card header {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+}
+
+.prov-leader-rank {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.prov-leader-card h3 {
+  font-size: 1.18rem;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.prov-leader-analysis {
+  color: #28323d;
+  font-size: 0.94rem;
+  line-height: 1.45;
+  margin: 0 0 0.85rem;
+}
+
+.prov-leader-metrics {
+  display: grid;
+  gap: 0.62rem;
+  margin: 0;
+}
+
+.prov-leader-metrics dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.prov-leader-metrics dd {
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 0.12rem;
+  margin: 0;
+  padding-top: 0.38rem;
+}
+
+.prov-leader-metrics strong {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+.prov-leader-metrics small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.prov-card-legend {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.9rem;
+  margin: 1rem 0 0.2rem;
+  padding: 0.72rem 0.85rem;
+}
+
+.prov-card-legend span {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.84rem;
+  gap: 0.35rem;
+}
+
+.prov-card-legend i {
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.62rem;
+  width: 0.62rem;
+}
+
+.prov-card-details:not(.prov-card-item) {
+  margin: 1rem 0 1.8rem;
+}
+
+.prov-card-details > summary {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 800;
+  line-height: 1.25;
+  padding: 0.82rem 1rem;
+}
+
+.prov-card-details > summary:hover {
+  border-color: rgba(18, 57, 91, 0.34);
+}
+
+.prov-card-details[open] > summary {
+  margin-bottom: 0.9rem;
+}
+
+.prov-card-item {
+  margin: 0;
+}
+
+.prov-card-item > summary {
+  list-style: none;
+}
+
+.prov-card-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.prov-card-item > summary::before {
+  color: var(--muted);
+  content: "▾";
+  display: inline-block;
+  margin-right: 0.45rem;
+  vertical-align: top;
+}
+
+.prov-card-item:not([open]) > summary::before {
+  content: "▸";
+}
+
+.prov-card-summary {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.7rem;
+  justify-content: space-between;
+  width: calc(100% - 1.4rem);
+}
+
+.prov-card-summary strong {
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.prov-leader-summary {
+  justify-content: flex-start;
+}
+
+.prov-card-body {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.prov-rank-card header {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.65rem;
+  justify-content: space-between;
+}
+
+.prov-rank-card header strong {
+  line-height: 1.25;
+}
+
+.prov-stack-bar {
+  background: #ece8de;
+  border-radius: 999px;
+  display: flex;
+  height: 0.72rem;
+  margin: 0.85rem 0 0.7rem;
+  overflow: hidden;
+}
+
+.prov-stack-bar span {
+  display: block;
+  min-width: 0;
+}
+
+.prov-stack-group {
+  align-items: start;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: minmax(8rem, 0.95fr) minmax(9rem, 1.05fr);
+  margin: 0.9rem 0 0.75rem;
+}
+
+.prov-stack-bars {
+  display: grid;
+  gap: 0.58rem;
+}
+
+.prov-stack-row {
+  display: grid;
+  gap: 0.24rem;
+}
+
+.prov-stack-title {
+  color: var(--muted);
+  font-size: 0.77rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.prov-stack-group .prov-stack-bar {
+  margin: 0;
+}
+
+.prov-stack-local-legend {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem 0.52rem;
+  padding-top: 1.3rem;
+}
+
+.prov-stack-local-legend span {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.74rem;
+  gap: 0.24rem;
+  line-height: 1.15;
+}
+
+.prov-stack-local-legend i {
+  border-radius: 999px;
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 0.48rem;
+  width: 0.48rem;
+}
+
+.prov-stack-elected {
+  background: #12395b;
+}
+
+.prov-stack-stable {
+  background: #5f6c7b;
+}
+
+.prov-stack-other {
+  background: #8a7d72;
+}
+
+.prov-stack-municipal {
+  background: #c77d2a;
+}
+
+.prov-stack-new {
+  background: #c84f3a;
+}
+
+.prov-rank-counts {
+  color: var(--muted);
+  display: grid;
+  gap: 0.28rem;
+  font-size: 0.84rem;
+  line-height: 1.28;
+}
+
+.prov-source-breakdown {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  padding: 0.68rem 0.74rem;
+}
+
+.prov-source-breakdown h4 {
+  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin: 0 0 0.52rem;
+  text-transform: uppercase;
+}
+
+.prov-detail-bars {
+  display: grid;
+  gap: 0.52rem;
+  margin: 0;
+}
+
+.prov-detail-row {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.prov-detail-head {
+  align-items: start;
+  display: grid;
+  gap: 0.35rem;
+  grid-template-columns: 1fr;
+}
+
+.prov-detail-label {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.prov-detail-label {
+  font-size: 0.82rem;
+  line-height: 1.15;
+}
+
+.prov-detail-label span {
+  overflow-wrap: anywhere;
+}
+
+.prov-detail-head strong {
+  font-size: 0.78rem;
+  text-align: left;
+  white-space: normal;
+}
+.prov-detail-label span {
+  align-items: flex-start;
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.prov-detail-label i {
+  border-radius: 999px;
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 0.56rem;
+  width: 0.56rem;
+}
+
+.prov-detail-label small {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.prov-detail-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.3;
+  margin: -0.18rem 0 0.55rem;
+}
+
+.prov-detail-head strong {
+  color: var(--ink);
+  font-size: 0.86rem;
+  text-align: right;
+  white-space: normal;
+}
+
+.prov-detail-meter {
+  border-radius: 999px;
+  height: 0.26rem;
+  max-width: 12rem;
+  overflow: visible;
+  width: min(100%, 12rem);
+}
+
+.prov-detail-meter span {
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  min-width: 0.72rem;
+}
+
+.prov-detail-fill {
+  overflow: hidden;
+  position: relative;
+}
+
+.prov-detail-meter .prov-detail-highlight {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.88) 0,
+    rgba(255, 255, 255, 0.88) 2px,
+    rgba(255, 255, 255, 0) 2px,
+    rgba(255, 255, 255, 0) 5px
+  );
+  border-radius: 0;
+  bottom: 0;
+  left: 0;
+  min-width: 0;
+  position: absolute;
+  top: 0;
+}
+
+.prov-flow-list,
+.prov-focus-list {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.prov-flow-list li,
+.prov-focus-list li {
+  align-items: baseline;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  padding-top: 0.55rem;
+}
+
+.prov-flow-list span,
+.prov-focus-list span {
+  color: var(--muted);
+}
+
+.prov-flow-list strong,
+.prov-focus-list strong {
+  white-space: nowrap;
+}
+
+.prov-focus-destination {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 0.75rem 0 0.9rem;
+  padding: 0.72rem 0.78rem;
+}
+
+.prov-focus-destination h4 {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin: 0 0 0.58rem;
+  text-transform: uppercase;
+}
+
+.prov-destination-list {
+  display: grid;
+  gap: 0.48rem;
+}
+
+.prov-destination-list + .prov-destination-list {
+  border-top: 1px solid var(--border);
+  margin-top: 0.68rem;
+  padding-top: 0.68rem;
+}
+
+.prov-destination-list h5 {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.prov-focus-destination .prov-detail-label {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.prov-focus-destination .prov-detail-meter {
+  height: 0.26rem;
+}
+
+.prov-focus-caption {
+  color: var(--muted);
+  margin: 0.55rem 0;
+}
+
+.prov-leader-destination {
+  margin: 0 0 0.9rem;
+}
+
+.prov-focus-list span {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.prov-focus-list small {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.prov-plot {
+  margin: 1.1rem 0 2rem;
+}
+
+.prov-plot img {
+  height: auto;
+  max-width: 100%;
+}
+
+.content h2[id],
+.content h3[id],
+.content section[id],
+.anchored {
+  scroll-margin-top: 6.2rem;
+}
+
+@media (max-width: 900px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  #quarto-content,
+  main.content,
+  .content,
+  .page-columns,
+  .page-full,
+  .column-page,
+  .column-screen {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .page-columns {
+    display: block !important;
+  }
+
+  .page-columns > *,
+  .page-full,
+  .column-page,
+  .column-screen {
+    grid-column: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  #title-block-header,
+  #title-block-header .quarto-title,
+  #title-block-header .title,
+  #title-block-header .subtitle,
+  #title-block-header .description,
+  #title-block-header .quarto-title-meta,
+  .content p,
+  .content ul,
+  .content ol,
+  .content h2,
+  .content h3,
+  .content h4,
+  .content .cell,
+  .content .callout,
+  .prov-stat-grid,
+  .prov-axis-grid,
+  .prov-flow-grid,
+  .prov-rank-grid,
+  .prov-leader-grid,
+  .prov-details {
+    inline-size: calc(100vw - 2rem) !important;
+    max-width: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+  }
+
+  #title-block-header .title {
+    font-size: clamp(2rem, 11vw, 2.8rem);
+    line-height: 1.12;
+  }
+
+  .quarto-title,
+  .quarto-title .title,
+  .description,
+  .content p,
+  .content li,
+  .prov-card-summary strong,
+  .prov-detail-label span {
+    overflow-wrap: anywhere;
+  }
+
+  .prov-list-item {
+    align-items: flex-start;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+  }
+
+  .prov-list-item .prov-axis-badge,
+  .prov-warning {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .prov-rank-card header {
+    display: grid;
+  }
+
+  .prov-card-summary {
+    align-items: flex-start;
+    display: grid;
+    justify-content: start;
+  }
+
+  .prov-flow-list li,
+  .prov-focus-list li {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .prov-detail-head {
+    align-items: flex-start;
+    gap: 0.18rem;
+    grid-template-columns: 1fr;
+  }
+
+  .prov-detail-head strong {
+    text-align: left;
+  }
+
+  .prov-stack-group {
+    grid-template-columns: 1fr;
+  }
+
+  .prov-stack-local-legend {
+    padding-top: 0;
+  }
+
+  .prov-plot {
+    max-width: calc(100vw - 2rem) !important;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    width: 100% !important;
+  }
+
+  .prov-plot img {
+    max-width: none;
+    width: 560px;
+  }
+}
+</style>
+```
+
+## Ce que l’on regarde
+
+La question de départ est simple : dans les listes provinciales de 2026, qui était déjà candidat en 2019, qui disparaît des listes, et quels profils apparaissent ? Cette lecture ne raconte pas toute l’histoire politique. Elle ne dit pas comment les accords se sont négociés, ni quel candidat pèsera vraiment dans la campagne. Mais elle montre concrètement de quoi les listes sont faites.
+
+On regarde donc les listes elles-mêmes : les noms déposés officiellement en 2019 et en 2026. Les groupes au Congrès ou dans les assemblées de province ne sont pas mélangés à ce comptage, car ils racontent autre chose : la vie des élus pendant la mandature, pas la composition des nouvelles listes.
+
+Concrètement, les noms de 2019 et de 2026 sont comparés après nettoyage de l’orthographe. Les cas trop incertains sont laissés de côté. Les candidats déjà présents en 2019 sont ensuite séparés entre élus et candidats non élus. Les listes municipales 2026 sont aussi utilisées pour repérer les candidats provinciaux déjà engagés dans une commune.
+
+Ces chiffres doivent rester prudents. Un nom non retrouvé n’est pas forcément un retrait de la vie politique : il peut y avoir une variante d’écriture, une candidature dans un autre cadre, ou un retour plus tard. À l’inverse, un nom retrouvé ne signifie pas que la personne occupe la même place qu’en 2019. D’où la distinction entre trois niveaux : le volume total des listes, les premières places, et les élus sortants.
+
+```{r chiffres-cles}
+n_2019 <- sum(candidats$annee == 2019)
+n_2026 <- sum(candidats$annee == 2026)
+n_matches <- nrow(matches)
+n_exact_matches <- sum(matches$methode_correspondance == "exact")
+n_manual_matches <- sum(matches$methode_correspondance == "validation_manuelle")
+n_municipales_2026 <- sum(candidats$annee == 2026 & candidats$candidat_municipales_2026, na.rm = TRUE)
+n_municipales_2026_non_retrouves <- sum(
+  candidats$annee == 2026 &
+    candidats$candidat_municipales_2026 &
+    !(candidats$nom_cle_comparaison %in% matches$nom_cle_comparaison_2026),
+  na.rm = TRUE
+)
+candidats_2026 <- candidats %>%
+  filter(annee == 2026) %>%
+  mutate(
+    retrouve_provinciales_2019 = nom_cle_comparaison %in% matches$nom_cle_comparaison_2026,
+    retrouve_dans_sources_candidatures = retrouve_provinciales_2019 | candidat_municipales_2026
+  )
+n_deja_reperes_candidature <- sum(candidats_2026$retrouve_dans_sources_candidatures, na.rm = TRUE)
+n_jamais_reperes_provinciales_municipales <- sum(!candidats_2026$retrouve_dans_sources_candidatures, na.rm = TRUE)
+municipales_2026_non_2019_sources <- candidats %>%
+  filter(
+    annee == 2026,
+    candidat_municipales_2026,
+    !(nom_cle_comparaison %in% matches$nom_cle_comparaison_2026),
+    !is.na(municipales_2026_labels),
+    nzchar(municipales_2026_labels)
+  ) %>%
+  tidyr::separate_rows(municipales_2026_labels, sep = "\\s*;\\s*") %>%
+  mutate(municipal_axis = vapply(municipales_2026_labels, municipal_source_axis, character(1))) %>%
+  distinct(nom_cle_comparaison, liste_id, municipales_2026_labels, municipal_axis)
+n_municipal_non_2019_source_labels <- n_distinct(municipales_2026_non_2019_sources$municipales_2026_labels)
+n_municipal_non_2019_unclear_candidates <- municipales_2026_non_2019_sources %>%
+  filter(municipal_axis == "A preciser") %>%
+  distinct(nom_cle_comparaison, liste_id) %>%
+  nrow()
+n_municipal_non_2019_unclear_labels <- municipales_2026_non_2019_sources %>%
+  filter(municipal_axis == "A preciser") %>%
+  summarise(n = n_distinct(municipales_2026_labels)) %>%
+  pull(n)
+
+turnover_stats <- tibble(
+  statut = c(
+    "Reste candidat en 2026 (correspondance retenue)",
+    "Présent en 2019, non retrouvé en 2026",
+    "Candidat 2026 non retrouvé en 2019"
+  ),
+  n = c(
+    n_matches,
+    n_2019 - n_matches,
+    n_2026 - n_matches
+  ),
+  base = c(n_2019, n_2019, n_2026)
+) %>%
+  mutate(pct = n / base) %>%
+  select(statut, n, pct)
+
+htmltools::div(
+  class = "callout callout-style-default callout-note",
+  htmltools::h3("Ordres de grandeur"),
+  htmltools::tags$ul(
+    htmltools::tags$li(glue("{fmt_int(sum(candidats$annee == 2019))} candidats et {fmt_int(n_distinct(candidats$liste_id[candidats$annee == 2019]))} listes en 2019 ; {fmt_int(sum(candidats$annee == 2026))} candidats et {fmt_int(n_distinct(candidats$liste_id[candidats$annee == 2026]))} listes en 2026.")),
+    htmltools::tags$li(glue("En 2026, {fmt_int(n_matches)} candidats étaient déjà présents sur une liste provinciale 2019 ; {fmt_int(n_2026 - n_matches)} ne sont pas retrouvés dans les provinciales 2019.")),
+    htmltools::tags$li(glue("En ajoutant les municipales 2026, {fmt_int(n_deja_reperes_candidature)} candidats provinciaux 2026 sont déjà repérés dans au moins une autre candidature officielle utilisée ici ; {fmt_int(n_jamais_reperes_provinciales_municipales)} ne sont retrouvés ni en provinciales 2019 ni en municipales 2026.")),
+    htmltools::tags$li(glue("Les municipales ajoutent un signal local : {fmt_int(n_municipales_2026)} candidats provinciaux 2026 y sont repérés, dont {fmt_int(n_municipales_2026_non_retrouves)} non retrouvés en provinciales 2019 ; {fmt_int(n_municipal_non_2019_unclear_candidates)} viennent de {fmt_int(n_municipal_non_2019_unclear_labels)} listes sans rattachement clair."))
+  )
+)
+```
+
+```{r fiches-turnover}
+render_turnover_cards()
+```
+
+## Les listes et leur qualification politique
+
+Les couleurs et les familles politiques servent surtout à lire les graphiques. Elles ne prétendent pas résumer toute l’identité d’une liste. L’objectif est de distinguer plusieurs situations : rester sur la même liste, passer vers une liste de la même famille politique, rester dans le même grand camp, ou changer plus nettement de camp. Une continuité politique n’est donc pas automatiquement une continuité de liste.
+
+```{r recap-axes-politiques}
+render_axis_summary()
+```
+
+Deux points ressortent déjà. D’abord, le nombre de candidatures reste proche : `r fmt_int(n_2019)` noms en 2019 et `r fmt_int(n_2026)` en 2026. Ensuite, beaucoup de listes changent, mais tout ne repart pas de zéro. `r fmt_int(n_matches)` noms sont retrouvés entre les deux scrutins, dont `r fmt_int(sum(matches_enriched$elu_2019, na.rm = TRUE))` élus 2019 qui se représentent sur `r fmt_int(sum(candidats$annee == 2019 & candidats$elu_2019, na.rm = TRUE))` élus repérés dans les listes 2019. À côté, `r fmt_int(n_municipales_2026_non_retrouves)` candidats non retrouvés en provinciales 2019 sont tout de même présents sur des listes municipales 2026. Une partie du renouvellement visible cache donc des profils déjà installés localement.
+
+Deux phénomènes coexistent donc. Les listes changent beaucoup, parce qu’une grande partie des noms de 2026 ne se retrouve pas en 2019. Mais les places les plus visibles restent souvent occupées par des élus sortants, des candidats 2019 non élus ou des personnalités déjà présentes dans les communes. La suite garde ces deux niveaux ensemble, province par province.
+
+Ce cadrage est d’autant plus nécessaire que le scrutin de 2026 ne se déroule pas dans le même climat que celui de 2019. Les provinciales ont été reportées à plusieurs reprises, puis fixées au 28 juin 2026 dans un contexte institutionnel encore instable. Le corps électoral spécial a aussi été ajusté pour intégrer des natifs de Nouvelle-Calédonie. Les flux ci-dessous doivent donc être lus pour ce qu’ils sont : une photographie des listes candidates, pas une prévision du vote.
+
+La suite se lit toujours dans le même ordre : d’abord le contexte de la province, puis le flux des noms retrouvés entre 2019 et 2026, puis un zoom sur les places les plus visibles et sur les principaux viviers de 2019. Les flux racontent les déplacements identifiables ; les fiches de composition qui suivent racontent de quoi les listes sont faites.
+
+## Province des Îles
+
+Dans les Îles, le volume se resserre : `r fmt_int(iles_listes_2019)` listes en 2019, `r fmt_int(iles_listes_2026)` en 2026, et `r fmt_int(iles_candidats_2026)` candidatures en 2026 contre `r fmt_int(iles_candidats_2019)` en 2019. Les correspondances retenues restent limitées : `r fmt_int(iles_retrouves_meme_province)` noms sont retrouvés entre les listes provinciales de 2019 et celles de 2026.
+
+La continuité institutionnelle est plus étroite que la continuité de liste. Sur `r fmt_int(iles_elus_2019)` élus repérés dans les listes 2019, `r fmt_int(iles_elus_2019_representes)` sont retrouvés dans les listes 2026. À côté, `r fmt_int(iles_anciens_non_elus_representes)` candidats 2019 non élus reviennent dans la même province. Le renouvellement se joue donc surtout dans l’épaisseur des listes : `r fmt_int(iles_nouveaux_2026)` noms de 2026 ne sont pas retrouvés en 2019, soit `r fmt_pct(iles_part_nouveaux_2026)` des candidats de 2026.
+
+En bref, les Îles donnent l’image d’une recomposition resserrée : peu de grands blocs se déplacent, mais plusieurs listes changent de composition en profondeur. Une liste peut paraître nouvelle dans les noms retrouvés depuis 2019 tout en s’appuyant sur des réseaux communaux ou militants déjà présents.
+
+### Flux de recomposition
+
+Le graphique ci-dessous ne montre pas tous les candidats : il suit seulement les noms retrouvés à la fois en 2019 et en 2026. Il permet de voir si les personnes restent dans la même liste, rejoignent une liste proche, ou passent vers une autre famille politique. Les candidats municipaux 2026 qui n’étaient pas repérés en provinciales 2019 sont comptés plus bas dans la composition des listes, mais ils ne sont pas dessinés dans ce flux pour garder le mouvement lisible.
+
+Le contexte local explique une partie de cette impression. Jacques Lalié, qui conduisait l’UC-FLNKS en 2019, repart en 2026 avec Union pour construire dans le consensus. L’UC-FLNKS Îles présente, elle, une autre tête de liste, Mickaël Forrest. Baselaia se situe aussi dans un espace de dissidence UC, tandis que Nation autochtone reprend une partie du terrain de Dynamique autochtone. Le graphique ne montre donc pas seulement des passages d’un camp à un autre : il montre surtout des concurrences entre offres proches, parfois issues de la même histoire politique.
+
+Dans les Îles, les mouvements restent assez concentrés. Le passage le plus net va de Dynamique autochtone vers Nation autochtone : il ne s’agit pas d’un simple changement d’étiquette individuelle, mais d’un morceau identifiable du vivier de 2019 qui se retrouve dans une offre 2026 proche. L’UC-FLNKS garde aussi une continuité visible avec l’UC-FLNKS Îles, tout en envoyant quelques noms vers Union pour construire dans le consensus.
+
+::: {.column-page .prov-plot}
+```{r flux-iles, fig.height=7.2, fig.width=14}
+plot_province_matched_flow("Province des Iles")
+```
+:::
+
+### Les premières places observées
+
+Le graphique complet donne le mouvement général. Ici, on regarde les rangs les plus exposés : `r first_rank_scope_note("Province des Iles")`. Ces premières places concentrent `r fmt_int(first_ranks_iles$first_ranks_elus_2019)` élus 2019 qui se représentent, `r fmt_int(first_ranks_iles$first_ranks_candidats_2019_non_elus)` candidats 2019 non élus, `r fmt_int(first_ranks_iles$first_ranks_municipaux)` candidats municipaux 2026 absents des provinciales 2019, et `r fmt_int(first_ranks_iles$first_ranks_non_retrouves)` autres noms non retrouvés en provinciales 2019. C’est là que l’on voit le mieux ce qui est préservé, ce qui est déplacé, et ce qui entre dans la partie visible de la compétition.
+
+::: {.column-page .prov-plot}
+```{r flux-iles-premiers-rangs, fig.height=6.4, fig.width=13.5}
+plot_province_matched_flow("Province des Iles", max_rank_2026 = first_rank_limit("Province des Iles"))
+```
+:::
+
+#### Fiches de composition des listes 2026
+
+Les fiches ci-dessous complètent le graphique. Elles décrivent, pour chaque liste 2026, combien de candidats étaient déjà élus en 2019, déjà candidats sans être élus, repérés aux municipales 2026, ou non retrouvés dans ces sources. Une liste comme Baselaia apparaît très neuve au regard des provinciales 2019, alors que l’UC-FLNKS Îles combine plusieurs registres : élus sortants, candidats 2019 non élus, présences municipales et noms non retrouvés. La nouveauté n’a donc pas toujours le même sens.
+
+```{r listes-nouvelles-iles}
+render_new_lists_note("Province des Iles")
+```
+
+Pour lire ces fiches, il faut garder une règle simple : les deux barres ne sont pas des scores électoraux. Elles décrivent seulement l’origine des candidats, d’abord sur la liste complète, puis dans les premières places observées. Les détails en dessous indiquent ensuite de quelles listes 2019 ou municipales 2026 viennent les candidats repérés.
+
+```{r note-couleurs-municipales}
+htmltools::tags$details(
+  class = "prov-details",
+  htmltools::tags$summary("Comment lire les couleurs des listes municipales dans les fiches"),
+  htmltools::tags$div(
+    class = "prov-details-body",
+    htmltools::tags$p("Pour les municipales, la couleur des origines reste volontairement prudente. Quand une liste communale porte clairement une étiquette UC-FLNKS, UNI, autre indépendantiste, droite loyaliste ou droite nationale, elle reprend la couleur correspondante."),
+    htmltools::tags$p(glue("Quand le libellé ne suffit pas, elle reste classée comme “sans rattachement clair”. Cela concerne ici {fmt_int(n_municipal_non_2019_unclear_candidates)} candidats provinciaux 2026 non retrouvés en 2019, passés par {fmt_int(n_municipal_non_2019_unclear_labels)} listes municipales sans étiquette assez nette.")),
+    htmltools::tags$p("Cette catégorie ne veut donc pas dire “sans parcours local” : elle veut dire que le rattachement partisan n’est pas documenté assez solidement pour être imposé au lecteur."),
+    htmltools::tags$p("Les candidats dont le nom fait également partie des premières places de la liste sont indiqués par des hachures.")
+  )
+)
+```
+
+```{r fiches-iles-premiers-rangs}
+render_first_ranks_cards("Province des Iles")
+```
+
+### Les trois listes arrivées en tête en 2019
+
+Ce regard part du rapport de force de 2019, pas de l’ordre des listes 2026. Il permet de voir ce que deviennent les réservoirs de candidatures des listes qui dominaient alors le scrutin : une reconduction d’élus, une dispersion vers plusieurs offres 2026, ou au contraire une rupture nominative plus nette.
+
+Ici, l’intérêt est de distinguer trois situations. L’UC-FLNKS conserve un socle d’élus et de candidats qui se retrouve principalement dans l’UC-FLNKS Îles, mais pas uniquement. Palika Îles montre une continuité plus limitée en nombre, avec une partie des élus 2019 non retrouvés en 2026. Le Parti travailliste, lui, illustre davantage une rupture nominative : il pèse dans le paysage de 2019, mais ses candidats ne réapparaissent que faiblement dans les listes repérées en 2026.
+
+```{r listes-tete-iles-2019}
+render_leading_2019_cards("Province des Iles")
+```
+
+```{r reference-iles}
+render_list_reference("Province des Iles")
+```
+
+## Province Nord
+
+Le Nord a lui aussi moins de listes en 2026 qu’en 2019 : `r fmt_int(nord_listes_2019)` listes en 2019, `r fmt_int(nord_listes_2026)` en 2026. Mais c’est la province où la continuité apparaît le plus nettement dans les rapprochements : `r fmt_int(nord_retrouves_meme_province)` noms sont retrouvés dans la même province, soit davantage qu’aux Îles, pour un volume de candidatures comparable en 2019.
+
+La différence se voit surtout du côté des élus. Sur `r fmt_int(nord_elus_2019)` élus repérés en 2019, `r fmt_int(nord_elus_2019_representes)` se représentent en 2026. Cette reconduction des figures n’empêche pas un renouvellement large du reste des listes : `r fmt_int(nord_nouveaux_2026)` candidats du Nord ne sont pas retrouvés dans les listes provinciales 2019, soit `r fmt_pct(nord_part_nouveaux_2026)` des candidatures 2026.
+
+### Flux de recomposition
+
+Dans le Nord, la continuité des noms, élus comme non élus, reste importante pour l’UNI, dont la tête de liste reste Paul Néaoutyine, et l’UC-FLNKS, qui change tout de même de tête de liste avec Pascal Sawa. Côté non-indépendantiste, Agissons ensemble pour le Nord est porté par Vanessa Wacapo, issue du vivier Agissons pour le Nord de 2019, tandis qu’Alcide Ponga, tête de liste en 2019 et devenu président du gouvernement, figure plus loin sur la liste. Le flux loyaliste est donc moins spectaculaire que dans le Sud, mais il traduit bien une relève interne.
+
+La continuité est ici plus facile à lire que dans les Îles : les deux grands réservoirs indépendantistes de 2019, UNI et UC-FLNKS, alimentent très fortement les listes homonymes de 2026. Cela donne deux colonnes assez stables dans le flux. Mais il ne faut pas en déduire une province figée : les changements de rang et de composition traduisent aussi des évolutions politiques et stratégiques. Agissons pour le Nord se prolonge surtout dans Agissons ensemble pour le Nord, tandis que des noms du Parti travailliste se retrouvent notamment dans Alternative Nord pour un pays souverain.
+
+::: {.column-page .prov-plot}
+```{r flux-nord, fig.height=7.4, fig.width=14}
+plot_province_matched_flow("Province Nord")
+```
+:::
+
+### Les premières places observées
+
+Dans le Nord, les premières places sont particulièrement parlantes : les listes sont moins nombreuses, mais la concurrence entre familles indépendantistes, souverainistes et loyalistes donne beaucoup de poids aux rangs de tête. Ici, cela correspond aux `r first_rank_scope_note("Province Nord")`. Sur les `r fmt_int(first_ranks_nord$first_ranks_total)` places observées, `r fmt_int(first_ranks_nord$first_ranks_elus_2019)` reviennent à des élus 2019, `r fmt_int(first_ranks_nord$first_ranks_candidats_2019_non_elus)` à des candidats 2019 non élus, `r fmt_int(first_ranks_nord$first_ranks_municipaux)` à des candidats municipaux 2026 absents des provinciales 2019, et `r fmt_int(first_ranks_nord$first_ranks_non_retrouves)` à d’autres noms non retrouvés en provinciales 2019. L’enjeu n’est donc pas seulement de compter les retours : il est de voir quelles familles placent ces retours dans les positions les plus exposées.
+
+::: {.column-page .prov-plot}
+```{r flux-nord-premiers-rangs, fig.height=6.4, fig.width=13.5}
+plot_province_matched_flow("Province Nord", max_rank_2026 = first_rank_limit("Province Nord"))
+```
+:::
+
+#### Fiches de composition des listes 2026
+
+Les fiches ci-dessous rendent cette différence plus concrète. L’UNI et l’UC-FLNKS ont des premières places qui ressemblent moins à une page blanche qu’à une reconduction sélective de figures déjà connues. À côté, des listes plus recomposées, comme Alternative Nord pour un pays souverain, mélangent davantage candidats 2019 non élus, profils municipaux et noms non repérés dans les provinciales précédentes. C’est cette lecture par liste qui permet de nuancer l’idée de “nouveaux candidats”.
+
+```{r listes-nouvelles-nord}
+render_new_lists_note("Province Nord")
+```
+
+```{r fiches-nord-premiers-rangs}
+render_first_ranks_cards("Province Nord")
+```
+
+### Les trois listes arrivées en tête en 2019
+
+Dans le Nord, ce regard est décisif parce que le scrutin 2019 avait opposé deux blocs indépendantistes puissants, avec une présence loyaliste plus réduite mais institutionnellement visible. Les fiches suivantes montrent si les candidatures de ces listes de tête continuent à structurer l’offre de 2026, ou si elles se redistribuent entre nouvelles coalitions.
+
+Ces trois fiches résument bien le paysage nordiste. L’UNI et l’UC-FLNKS conservent chacune un nombre important de noms vers leur liste 2026, ce qui donne une continuité très lisible. Agissons pour le Nord, de son côté, conserve aussi un vivier vers Agissons ensemble pour le Nord : le loyalisme nordiste n’est donc pas seulement présent par une étiquette, il repose aussi sur une partie du personnel candidat de 2019.
+
+```{r listes-tete-nord-2019}
+render_leading_2019_cards("Province Nord")
+```
+
+```{r reference-nord}
+render_list_reference("Province Nord")
+```
+
+## Province Sud
+
+Le Sud concentre la plus grande partie de la masse candidate : `r fmt_int(sud_candidats_2026)` candidatures en 2026, contre `r fmt_int(sud_candidats_2019)` en 2019. L’offre y revient au même niveau qu’en 2019 : `r fmt_int(sud_listes_2019)` listes en 2019 et `r fmt_int(sud_listes_2026)` en 2026.
+
+En valeur absolue, le Sud compte le plus grand nombre de noms retrouvés : `r fmt_int(sud_retrouves_meme_province)` candidats de 2019 réapparaissent dans les listes provinciales 2026 de la province. Parmi les sortants, `r fmt_int(sud_elus_2019_representes)` élus de 2019 se représentent sur `r fmt_int(sud_elus_2019)` élus repérés dans les listes 2019. Le renouvellement est donc réel dans le volume de candidatures, mais il est moins brutal si l’on regarde les sortants : `r fmt_int(sud_nouveaux_2026)` noms des listes 2026 ne sont pas retrouvés en 2019, soit `r fmt_pct(sud_part_nouveaux_2026)` des candidatures 2026.
+
+En bref, le Sud est le terrain de la recomposition la plus éclatée. Les grands repères de 2019 n’ont pas disparu, mais ils se redistribuent davantage entre plusieurs offres : l’ancien espace loyaliste se partage, Calédonie ensemble se disperse, et l’offre indépendantiste ne se recompose pas sous une seule bannière.
+
+### Flux de recomposition
+
+Dans le Sud, beaucoup de noms sont nouveaux par rapport à 2019. Mais le flux montre aussi quelles listes gardent des élus sortants et lesquelles récupèrent plutôt des candidats 2019 non élus. Le trait entre Calédonie ensemble et Les Loyalistes et Le Rassemblement renvoie aux trajectoires de Nicolas Metzdorf et Nina Julié, élus sur la liste Calédonie ensemble en 2019 puis partis dès cette année-là vers l’espace Loyaliste.
+
+Ici, les têtes de liste aident beaucoup à lire les traits. Les Loyalistes et Le Rassemblement sont conduits par Sonia Backès, déjà tête de liste de L’Avenir en confiance en 2019, et rassemblent plusieurs figures de la droite non-indépendantiste. Unis pour le Pays est porté par Louis Mapou et par l’UNI, qui avait participé en 2019 à la liste unitaire FLNKS Sud mais part cette fois séparément. Un espoir pour demain, mené par Pascal Lafleur, prolonge de son côté une partie de l’espace ouvert par Construire autrement.
+
+Le Sud est la province où les recompositions sont les plus lisibles visuellement. L’Avenir en confiance nourrit surtout Les Loyalistes et Le Rassemblement : c’est la continuité la plus directe. Le Rassemblement national se retrouve principalement dans Pour une Calédonie française. Le vivier de Calédonie ensemble est plus dispersé : une partie va vers Une Province pour tous, une autre vers Les Loyalistes et Le Rassemblement, notamment via Metzdorf et Julié, ou vers d’autres offres. Ce flux correspond donc au recul puis aux ruptures de l’ancien centre non-indépendantiste. Côté indépendantiste, le FLNKS de 2019 se partage principalement entre Kanaky pour tous et Unis pour le Pays, rendant visible la séparation entre le FLNKS nouveau format et l’UNI.
+
+::: {.column-page .prov-plot}
+```{r flux-sud, fig.height=9.2, fig.width=14.5}
+plot_province_matched_flow("Province Sud")
+```
+:::
+
+### Les premières places observées
+
+Dans le Sud, les premières places nuancent légèrement l’impression de dispersion. L’observation porte sur les `r first_rank_scope_note("Province Sud")`. Ces positions gardent davantage de continuité que le reste des listes : `r fmt_int(first_ranks_sud$first_ranks_elus_2019)` élus 2019 et `r fmt_int(first_ranks_sud$first_ranks_candidats_2019_non_elus)` candidats 2019 non élus y sont retrouvés. Mais même à ce niveau, `r fmt_int(first_ranks_sud$first_ranks_municipaux)` noms sont des candidats municipaux 2026 absents des provinciales 2019 et `r fmt_int(first_ranks_sud$first_ranks_non_retrouves)` restent d’autres noms non retrouvés en provinciales 2019.
+
+Les premières places confirment ce que le flux suggère, mais avec plus de précision. Certaines listes de 2026 héritent d’un bloc identifiable : Un espoir pour demain reprend une part importante de Construire autrement, Les Loyalistes et Le Rassemblement prolongent une partie de L’Avenir en confiance, et Kanaky pour tous reçoit plusieurs noms du FLNKS. D’autres listes, en revanche, sont beaucoup moins lisibles depuis 2019 : elles peuvent être politiquement installées, mais leurs premiers rangs ne viennent pas forcément des listes provinciales précédentes.
+
+::: {.column-page .prov-plot}
+```{r flux-sud-premiers-rangs, fig.height=7.2, fig.width=14}
+plot_province_matched_flow("Province Sud", max_rank_2026 = first_rank_limit("Province Sud"))
+```
+:::
+
+#### Fiches de composition des listes 2026
+
+Les fiches ci-dessous reprennent chaque liste une par une. Elles permettent de distinguer les listes qui reposent surtout sur des sortants, celles qui récupèrent des candidats 2019 non élus, et celles qui sont presque entièrement reconstruites au regard des sources utilisées ici.
+
+```{r listes-nouvelles-sud}
+render_new_lists_note("Province Sud")
+```
+
+```{r fiches-sud-premiers-rangs}
+render_first_ranks_cards("Province Sud")
+```
+
+### Les trois listes arrivées en tête en 2019
+
+Dans le Sud, les trois premières listes de 2019 permettent de suivre les grands viviers de candidatures : loyalistes, indépendantistes et centristes. La question n’est pas seulement de savoir si les listes existent encore sous le même nom. Elle est aussi de voir si leurs candidats se retrouvent encore dans les places visibles de 2026.
+
+La comparaison rend très concrète la différence entre continuité politique et continuité de liste. L’Avenir en confiance garde une descendance évidente dans Les Loyalistes et Le Rassemblement. Le FLNKS, lui, ne disparaît pas : ses candidats se redistribuent entre plusieurs offres indépendantistes. Calédonie ensemble illustre une autre trajectoire, plus dispersée, où l’ancien centre non-indépendantiste irrigue plusieurs listes sans se reconstituer sous une bannière unique.
+
+```{r listes-tete-sud-2019}
+render_leading_2019_cards("Province Sud")
+```
+
+```{r reference-sud}
+render_list_reference("Province Sud")
+```
+
+## Ce qu’il faut retenir
+
+Premier enseignement : les listes 2026 ne sont ni une simple reconduction de 2019, ni une page blanche. Sur `r fmt_int(n_2026)` candidatures, `r fmt_int(n_matches)` noms étaient déjà candidats aux provinciales 2019, dont `r fmt_int(sum(matches_enriched$elu_2019, na.rm = TRUE))` élus qui se représentent. En ajoutant les municipales 2026, `r fmt_int(n_deja_reperes_candidature)` candidats de 2026 sont déjà repérés dans au moins une candidature officielle utilisée ici. Le renouvellement est donc réel, mais une partie de ce qui paraît nouveau relève aussi d’un ancrage communal ou d’un retour de candidats non élus.
+
+Deuxième enseignement : chaque province a sa logique. Aux Îles, la recomposition se joue beaucoup à l’intérieur de familles proches : Lalié, Baselaia ou Nation autochtone s’inscrivent dans le même grand espace indépendantiste et autochtone. Dans le Nord, les noms de 2019 restent très visibles et marquent une continuité, avec une relève loyaliste autour d’Agissons. Dans le Sud, la recomposition est plus éclatée : L’Avenir en confiance alimente Les Loyalistes et Le Rassemblement, Calédonie ensemble se disperse vers plusieurs destinations, et le FLNKS de 2019 se partage entre Kanaky pour tous et Unis pour le Pays.
+
+Troisième enseignement : les premières places changent la lecture. Elles montrent moins une vague uniforme de “nouveaux” qu’un tri politique : certains sortants reviennent au premier plan, certains candidats 2019 non élus remontent en visibilité, et des profils municipaux entrent dans la partie provinciale. C’est particulièrement important dans le Sud, où les flux peuvent paraître plus dispersés.
+
+Quatrième enseignement : les listes vraiment nouvelles existent, mais il faut les lire à deux niveaux. À l’échelle des personnes, `r fmt_int(n_jamais_reperes_provinciales_municipales)` candidats de 2026 ne sont retrouvés ni dans les provinciales 2019 ni dans les municipales 2026. À l’échelle des listes, c’est plus nuancé : Baselaia, aux Îles, est le cas le plus net d’une liste sans nom retrouvé dans ces deux repères ; Faire Pays, dans le Nord, n’a pas de candidat retrouvé aux provinciales 2019, mais s’appuie tout de même sur quelques profils municipaux ; dans le Sud, aucune liste n’est totalement dans ce cas, même si Nous, réunis, Faire Pays et France Calédonie, une patrie ont très peu de noms issus des provinciales 2019.
+
+Ces recompositions de listes se traduiront t-elles par un renouvellement politique réel ou surtout une redistribution de profils déjà installés ?
+
+Le vote du 28 juin donnera une première réponse.
+
+## Limites
+
+Cette lecture compare des listes de candidats. Elle ne remplace pas une enquête sur les négociations, les alliances ou les trajectoires individuelles. Elle permet de voir des continuités et des ruptures dans les noms déposés officiellement, mais elle ne suffit pas à expliquer pourquoi ces mouvements ont lieu.
+
+Le choix est volontairement prudent : les cas ambigus restent hors du décompte principal. Cela peut sous-estimer un peu la continuité, mais cela évite de compter à tort des homonymes ou des rapprochements trop fragiles. Les pourcentages doivent donc être lus comme des ordres de grandeur solides, pas comme une biographie complète de chaque candidat.
+
+## Sources
+
+-   Candidatures Provinciales 2019 : pages `elections-nc.fr` par province et arrêtés modificatifs du Haut-Commissariat.
+-   Candidatures Provinciales 2026 : [arrêté officiel Haut-Commissariat](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13426/111671/file/47.BEL.2026_Arr%C3%AAt%C3%A9_liste_cand_prov26.vdef.pdf)
+-   Candidatures municipales 2026 : [arrêtés officiels du Haut-Commissariat](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-municipales-2026/Informations-generales)
+-   Nuances et contexte des municipales 2026 : [Wikipedia, élections municipales de 2026 en Nouvelle-Calédonie](https://fr.wikipedia.org/wiki/%C3%89lections_municipales_de_2026_en_Nouvelle-Cal%C3%A9donie).
+-   Qualification des forces 2019 : [Wikipedia, élections provinciales néo-calédoniennes de 2019](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019#Forces_en_pr%C3%A9sence).
+-   Qualification des forces 2026 : [Wikipedia, forces en présence](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026#Forces_en_pr%C3%A9sence).
+-   Contexte du scrutin 2026 : [Wikipedia, élections provinciales néo-calédoniennes de 2026](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026).
+-   Panorama des listes 2026 : [LNC, "\[INFOGRAPHIE\] Vingt-quatre listes sont en lice aux élections provinciales"](https://www.lnc.nc/article/infographie-vingt-quatre-listes-sont-en-lice-aux-elections-provinciales). Les décomptes de l’article restent toutefois calés sur les arrêtés définitifs utilisés dans les données.
+-   Contexte FLNKS-UNI : [DNC, "FLNKS-UNI : un divorce et deux stratégies"](https://www.dnc.nc/flnks-uni-un-divorce-et-deux-strategies/).
+-   Contexte liste loyaliste Sud : [LNC, "Provinciales : Sonia Backès tire la liste des Loyalistes et du Rassemblement"](https://www.lnc.nc/article/provinciales-sonia-backes-tire-la-liste-des-loyalistes-et-du-rassemblement) et [LNC, "Les Loyalistes-Le Rassemblement, la seule vraie liste non-indépendantiste"](https://www.lnc.nc/article/provinciales-les-loyalistes-le-rassemblement-la-seule-vraie-liste-non-independantiste).
+-   Contexte UNI Sud : [LNC, "Avec Louis Mapou, l'UNI veut donner des perspectives d'avenir"](https://www.lnc.nc/article/provinciales-avec-louis-mapou-l-uni-veut-donner-des-perspectives-d-avenir).
+-   Contexte loyaliste Nord : [LNC, "Dans le Nord, Vanessa Wacapo à la tête de la liste Loyalistes-Rassemblement"](https://www.lnc.nc/article/provinciales-dans-le-nord-vanessa-wacapo-a-la-tete-de-la-liste-loyalistes-rassemblement).
+-   Contexte Calédonie ensemble : [NC La 1ère, "Calédonie ensemble : ascension, déclin et nouvelle rupture à l'aube des provinciales"](https://la1ere.franceinfo.fr/nouvellecaledonie/caledonie-ensemble-ascension-declin-et-nouvelle-rupture-a-l-aube-des-provinciales-1695326.html).

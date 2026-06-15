@@ -1,0 +1,12 @@
+indicateur,valeur
+candidats_2019,934
+candidats_2026,928
+correspondances_haute_confiance,181
+dont_exactes,93
+dont_tokens_haute_confiance,39
+dont_tokens_nom_famille_prenom,13
+dont_fuzzy_haute_confiance,3
+dont_validations_manuelles,33
+rapprochements_restants_a_verifier,0
+presents_2019_absents_2026,753
+nouveaux_2026,747

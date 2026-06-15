@@ -19,6 +19,8 @@ data/**/*.dbf
 data/**/*.shx
 data/**/*.prj
 data/outputs_capital_socio_economique/
+data/outputs_provinciales_candidats/ocr_images/
+data/outputs_provinciales_candidats/ocr_text/
 posts/**/*.knit.md
 posts/**/index_files/
 
