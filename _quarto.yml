@@ -54,6 +54,7 @@ format:
           <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     include-after-body:
+      - includes/mobile-toc.html
       - includes/social-floating.html
       - includes/article-newsletter.html
       - text: |

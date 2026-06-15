@@ -6572,6 +6572,36 @@ Unis pour le Pays
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  const sourceToc = document.querySelector("#TOC");
+  const main = document.querySelector("main#quarto-document-content");
+  if (!sourceToc || !main || main.querySelector(".mobile-page-toc")) return;
+
+  const sourceList = sourceToc.querySelector(":scope > ul");
+  if (!sourceList) return;
+
+  const details = document.createElement("details");
+  details.className = "mobile-page-toc";
+
+  const summary = document.createElement("summary");
+  summary.textContent = "Sur cette page";
+
+  const nav = document.createElement("nav");
+  nav.setAttribute("aria-label", "Sommaire de la page");
+
+  const list = sourceList.cloneNode(true);
+  list.querySelectorAll("[id]").forEach((node) => node.removeAttribute("id"));
+  list.querySelectorAll("ul.collapse").forEach((node) => {
+    node.classList.remove("collapse");
+    node.style.display = "block";
+  });
+
+  nav.appendChild(list);
+  details.append(summary, nav);
+  main.insertBefore(details, main.firstElementChild);
+})();
+</script>
 <nav class="floating-social" aria-label="Contacts et réseaux">
 
   <a class="floating-social__link" href="../../contact/" aria-label="Contacter Contours.nc">
