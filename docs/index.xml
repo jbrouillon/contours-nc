@@ -10,9 +10,9 @@
 <atom:link href="https://contours.nc/index.xml" rel="self" type="application/rss+xml"/>
 <description>Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sat, 13 Jun 2026 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 14 Jun 2026 13:00:00 GMT</lastBuildDate>
 <item>
-  <title>Listes aux Provinciales 2026 : qui part, qui reste ?</title>
+  <title>Listes aux Provinciales 2026 : qui part ? qui reste ?</title>
   <dc:creator>Jonas Brouillon</dc:creator>
   <link>https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/</link>
   <description><![CDATA[ 
@@ -6324,8 +6324,9 @@ Unis pour le Pays
   <category>Élections</category>
   <category>Nouvelle-Calédonie</category>
   <category>Données</category>
+  <category>Provinciales 2026</category>
   <guid>https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/</guid>
-  <pubDate>Sat, 13 Jun 2026 13:00:00 GMT</pubDate>
+  <pubDate>Sun, 14 Jun 2026 13:00:00 GMT</pubDate>
   <media:content url="https://contours.nc/images/previews/provinciales-2026-flux-sud.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
