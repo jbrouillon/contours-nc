@@ -29,6 +29,15 @@ PREVIEWS = [
         / "previews"
         / "ecart-participation-noumea-2020-2026.jpg",
     },
+    {
+        "source": Path("docs")
+        / "posts"
+        / "provinciales-2026-qui-part-qui-reste"
+        / "index_files"
+        / "figure-html"
+        / "flux-sud-1.png",
+        "output": Path("images") / "previews" / "provinciales-2026-flux-sud.jpg",
+    },
 ]
 
 

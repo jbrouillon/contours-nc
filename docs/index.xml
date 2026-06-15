@@ -1169,9 +1169,13 @@
 <h4 class="anchored">2019</h4>
 <p>11 listes</p>
 <div class="prov-chip-list">
+<span class="prov-axis-chip" style="--chip-color: #007a3d;">
+<i></i>
+1 - UC-FLNKS
+</span>
 <span class="prov-axis-chip" style="--chip-color: #b6483b;">
 <i></i>
-2 - Autres indépendantistes
+1 - Autres indépendantistes
 </span>
 <span class="prov-axis-chip" style="--chip-color: #4f8f6a;">
 <i></i>
@@ -4012,7 +4016,7 @@ Non repérés 2019
 <div class="prov-detail-row">
 <div class="prov-detail-head">
 <span class="prov-detail-label">
-<i style="background: #b6483b;"></i>
+<i style="background: #007a3d;"></i>
 <span>
 FLNKS
 <small>Provinciales 2019</small>
@@ -4021,7 +4025,7 @@ FLNKS
 <strong>9 noms, dont 5 dans les 20 premières places</strong>
 </div>
 <div class="prov-detail-meter">
-<span class="prov-detail-fill" style="width: 100%; background: #b6483b;">
+<span class="prov-detail-fill" style="width: 100%; background: #007a3d;">
 <span class="prov-detail-highlight" style="width: 55.5555555555556%;"></span>
 </span>
 </div>
@@ -4389,7 +4393,7 @@ Non repérés 2019
 <div class="prov-detail-row">
 <div class="prov-detail-head">
 <span class="prov-detail-label">
-<i style="background: #b6483b;"></i>
+<i style="background: #007a3d;"></i>
 <span>
 FLNKS
 <small>Provinciales 2019</small>
@@ -4398,7 +4402,7 @@ FLNKS
 <strong>8 noms, dont 6 dans les 20 premières places</strong>
 </div>
 <div class="prov-detail-meter">
-<span class="prov-detail-fill" style="width: 100%; background: #b6483b;">
+<span class="prov-detail-fill" style="width: 100%; background: #007a3d;">
 <span class="prov-detail-highlight" style="width: 75%;"></span>
 </span>
 </div>
@@ -6037,11 +6041,11 @@ Les Loyalistes et Le Rassemblement
 <span class="prov-card-summary prov-leader-summary">
 <span class="prov-leader-rank">#3 en 2019</span>
 <strong>FLNKS</strong>
-<span class="prov-axis-badge" style="border-color: #b6483b; background: rgba(182,72,59,0.12);">Autres indépendantistes</span>
+<span class="prov-axis-badge" style="border-color: #007a3d; background: rgba(0,122,61,0.12);">UC-FLNKS</span>
 </span>
 </summary>
 <div class="prov-card-body">
-<p class="prov-leader-analysis">La continuité existe, mais elle ne structure pas toute la liste, avec 5 élus retrouvés sur 7 élus. Les noms retrouvés signalent plutôt une dispersion vers d’autres espaces politiques.</p>
+<p class="prov-leader-analysis">La continuité existe, mais elle ne structure pas toute la liste, avec 5 élus retrouvés sur 7 élus. Les trajectoires se partagent entre maintien dans le même espace politique et déplacements plus transversaux.</p>
 <dl class="prov-leader-metrics">
 <dt>Résultat 2019</dt>
 <dd>
@@ -6146,18 +6150,18 @@ Unis pour le Pays
 <h4 class="anchored">2019</h4>
 <ul class="prov-list">
 <li class="prov-list-item">
-<span class="prov-list-num">04</span>
-<span class="prov-list-main">
-<strong>Parti travailliste et forces progressistes</strong>
-<small>Parti travailliste</small>
-</span>
-<span class="prov-axis-badge" style="border-color: #b6483b; background: rgba(182,72,59,0.12);">Autres indépendantistes</span>
-</li>
-<li class="prov-list-item">
 <span class="prov-list-num">07</span>
 <span class="prov-list-main">
 <strong>FLNKS</strong>
 <small>indépendantiste / pro-pays</small>
+</span>
+<span class="prov-axis-badge" style="border-color: #007a3d; background: rgba(0,122,61,0.12);">UC-FLNKS</span>
+</li>
+<li class="prov-list-item">
+<span class="prov-list-num">04</span>
+<span class="prov-list-main">
+<strong>Parti travailliste et forces progressistes</strong>
+<small>Parti travailliste</small>
 </span>
 <span class="prov-axis-badge" style="border-color: #b6483b; background: rgba(182,72,59,0.12);">Autres indépendantistes</span>
 </li>

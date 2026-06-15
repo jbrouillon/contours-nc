@@ -144,12 +144,12 @@ refine_independentist_axis <- function(dat) {
     c("composante_politique_candidat", "composante_politique", "famille_politique", "liste_nom_court"),
     names(dat)
   )
-  component <- rep(NA_character_, nrow(dat))
+  component <- rep("", nrow(dat))
   for (col in component_cols) {
-    component <- coalesce(component, as.character(dat[[col]]))
+    component <- str_squish(paste(component, coalesce(as.character(dat[[col]]), "")))
   }
 
-  dat$.component_axis <- str_squish(coalesce(component, ""))
+  dat$.component_axis <- str_squish(component)
 
   dat %>%
     mutate(
@@ -770,6 +770,11 @@ prepare_province_matched_flow <- function(province_name, max_rank_2026 = Inf) {
         clean_label(axe_politique_2019),
         "Transition"
       ),
+      target_axe = if_else(
+        in_target_province,
+        clean_label(axe_politique_2026),
+        "Transition"
+      ),
       source_block = if_else(
         in_source_province,
         as.character(liste_id_2019),
@@ -818,7 +823,7 @@ prepare_province_matched_flow <- function(province_name, max_rank_2026 = Inf) {
         block_id = target_block,
         block_label = target_label,
         synthetic = target_synthetic,
-        block_axe = "Transition"
+        block_axe = target_axe
       )
   )
 
