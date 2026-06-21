@@ -10,7 +10,2711 @@
 <atom:link href="https://contours.nc/index.xml" rel="self" type="application/rss+xml"/>
 <description>Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie</description>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sun, 14 Jun 2026 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 20 Jun 2026 13:00:00 GMT</lastBuildDate>
+<item>
+  <title>Retour sur les provinciales 2019 : la géographie des forces politiques</title>
+  <dc:creator>Jonas Brouillon</dc:creator>
+  <link>https://contours.nc/posts/provinciales-2019-geographies-electorales/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<style>
+.p2019-lede {
+  max-width: 84ch;
+  font-size: 1.08rem;
+}
+
+.p2019-map-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0.5rem 0 1.2rem;
+}
+
+.p2019-plot {
+  margin: 1.2rem 0 1.8rem;
+}
+
+.p2019-plot img,
+.p2019-map-grid img {
+  border: 1px solid rgba(65, 58, 48, 0.14);
+  border-radius: 7px;
+}
+
+.p2019-map-grid {
+  margin: 1rem 0 1.8rem;
+}
+
+.p2019-related {
+  background: var(--surface-soft);
+  border-left: 4px solid var(--green);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin: 1.2rem 0;
+}
+</style>
+<section id="à-une-semaine-du-vote-pourquoi-revenir-à-2019" class="level2">
+<h2 class="anchored" data-anchor-id="à-une-semaine-du-vote-pourquoi-revenir-à-2019">À une semaine du vote, pourquoi revenir à 2019 ?</h2>
+<div class="p2019-lede">
+<p>Les provinciales du 28 juin 2026 ne rejoueront pas mécaniquement celles du 12 mai 2019. Les coalitions ont changé, plusieurs listes se sont recomposées et la séquence institutionnelle ouverte depuis 2018 a profondément déplacé le débat. Mais 2019 reste le dernier point de comparaison à l’échelle provinciale : il montre <strong>où chaque force disposait d’un socle</strong>, où elle rencontrait ses limites et quelles communes formaient les véritables lignes de front.</p>
+<p>Ce retour ne cherche donc pas à annoncer le résultat de 2026. Il reconstitue la carte politique dont part le nouveau scrutin.</p>
+</div>
+<p>Le contexte de 2019 était déjà exceptionnel. Le vote intervenait six mois après le premier référendum d’autodétermination. Les trois assemblées provinciales élues devaient à la fois gouverner leur territoire et envoyer une partie de leurs membres au Congrès, lui-même chargé d’élire le gouvernement collégial et d’accompagner la suite de l’accord de Nouméa.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Ce que les provinciales décident">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Ce que les provinciales décident
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Les électeurs choisissent les membres des assemblées du Sud, du Nord et des Îles ; une partie d’entre eux siège aussi au Congrès.</li>
+<li>La répartition des sièges ne retient que les listes dépassant 5 % des électeurs inscrits, un seuil plus exigeant que 5 % des seuls suffrages exprimés.</li>
+<li>En 2019, l’Avenir en confiance s’impose dans le Sud, tandis que les listes indépendantistes conservent la majorité dans le Nord et aux Îles. Au Congrès, l’Éveil océanien obtient trois sièges qui le placent au centre de plusieurs équilibres.</li>
+</ul>
+</div>
+</div>
+<p>Ces règles expliquent pourquoi le score brut ne suffit pas. Une liste peut être bien placée dans une province sans accéder à la répartition des sièges ; une autre peut obtenir un total provincial élevé grâce à quelques bastions très puissants. C’est précisément ce que les cartes communales permettent de voir.</p>
+</section>
+<section id="le-rapport-de-force-général-en-2019" class="level2">
+<h2 class="anchored" data-anchor-id="le-rapport-de-force-général-en-2019">Le rapport de force général en 2019</h2>
+<p>Le premier graphique rappelle les quatre principales listes dans chaque province. Il ne décrit pas encore leurs territoires, mais il pose les trois scènes politiques qui seront ensuite détaillées.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="index_files/figure-html/resultats-provinces-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Les quatre premières listes de chaque province aux provinciales 2019."><img src="https://contours.nc/posts/provinciales-2019-geographies-electorales/index_files/figure-html/resultats-provinces-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Les quatre premières listes de chaque province aux provinciales 2019."></a></p>
+</figure>
+</div>
+<figcaption>Les quatre premières listes de chaque province aux provinciales 2019.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Dans le Sud, l’Avenir en confiance avait distancé très largement Calédonie ensemble et la liste FLNKS. Dans le Nord, l’UNI et l’UC-FLNKS ne sont séparées que de quelques points. Aux Îles, l’UC-FLNKS était arrivé nettement en tête, mais trois autres forces indépendantistes ou souverainistes obtiennent des scores importants.</p>
+<p>Cette hiérarchie provinciale cache pourtant des configurations communales très différentes.</p>
+</section>
+<section id="province-sud-une-domination-loyaliste-mais-pas-un-territoire-uniforme" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-sud-une-domination-loyaliste-mais-pas-un-territoire-uniforme">Province Sud : une domination loyaliste, mais pas un territoire uniforme</h2>
+<p>L’Avenir en confiance avait recueilli 40,6 % et obtenu 20 des 40 sièges de l’assemblée provinciale, dont 16 au Congrès. Calédonie ensemble 9, le FLNKS 7 et l’Éveil océanien 4. La domination de la liste conduite par Sonia Backès était donc nette, mais la carte montre plusieurs Sud politiques.</p>
+<section id="sept-communes-pour-lavenir-en-confiance-cinq-pour-le-flnks" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="sept-communes-pour-lavenir-en-confiance-cinq-pour-le-flnks">Sept communes pour l’Avenir en confiance, cinq pour le FLNKS</h3>
+<p>L’Avenir en confiance était arrivé en tête à Nouméa (<code>50,4 %</code>), à Boulouparis (<code>46,5 %</code>), à Dumbéa (<code>37,6 %</code>), au Mont-Dore (<code>35,9 %</code>), à Bourail (<code>35,4 %</code>), à Païta (<code>33,0 %</code>) et dans la partie sud de Poya (<code>53,4 %</code>). Son assise est particulièrement forte dans la capitale et sur une grande partie de la côte Ouest.</p>
+<p>Le FLNKS dominait au contraire très largement Yaté (<code>83,3 %</code>), Thio (<code>69,2 %</code>), Sarraméa (<code>64,0 %</code>) et l’Île des Pins (<code>57,1 %</code>). Il arrive aussi en tête à Moindou (<code>34,7 %</code>). La coupure n’oppose donc pas simplement Nouméa au reste de la province : elle sépare surtout les espaces urbains et ouest les plus favorables aux listes loyalistes de plusieurs bastions indépendantistes de la côte Est et du Sud insulaire.</p>
+<p>Calédonie ensemble avait conservé une implantation propre dans le centre rural : la liste gagne Farino (<code>43,0 %</code>) et La Foa (<code>33,9 %</code>), et réalisait encore <code>32,8 %</code> à Poya Sud, <code>24,2 %</code> à Moindou et <code>21,3 %</code> à Bourail. Elle est beaucoup plus faible à Yaté, Thio et Sarraméa.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/province_sud_parti_en_tete_lisse_opacite_marge_moderee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Province Sud : liste arrivée en tête et intensité de son avance autour des lieux de vote."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/province_sud_parti_en_tete_lisse_opacite_marge_moderee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Province Sud : liste arrivée en tête et intensité de son avance autour des lieux de vote."></a></p>
+</figure>
+</div>
+<figcaption>Province Sud : liste arrivée en tête et intensité de son avance autour des lieux de vote.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>La couleur indique la liste arrivée en tête ; son opacité reflète l’écart avec la deuxième. Les zones pâles correspondent donc aux espaces les plus disputés.</p>
+<div class="p2019-plot page-columns page-full">
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><a href="index_files/figure-html/profils-communes-sud-1.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-3" title="Composition du vote dans les communes de la Province Sud."><img src="https://contours.nc/posts/provinciales-2019-geographies-electorales/index_files/figure-html/profils-communes-sud-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page" style="width:100.0%" alt="Composition du vote dans les communes de la Province Sud."></a></p>
+</figure>
+</div>
+<figcaption>Composition du vote dans les communes de la Province Sud.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quatre-implantations-bien-distinctes-dans-le-sud" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="quatre-implantations-bien-distinctes-dans-le-sud">Quatre implantations bien distinctes dans le Sud</h3>
+<p>Avec <code>8,6 %</code> dans la province, l’Éveil océanien n’était arrivé en tête dans aucune commune. Son vote n’est pourtant pas diffus. Il atteint <code>18,9 %</code> à Païta, <code>14,2 %</code> à Dumbéa et <code>11,8 %</code> au Mont-Dore, contre <code>5,5 %</code> à Nouméa. La liste fait donc apparaître une implantation océanienne propre dans les communes de l’agglomération, distincte à la fois de la carte loyaliste classique et des bastions FLNKS.</p>
+<p>Les cartes suivantes utilisent une échelle adaptée à chaque liste. Elles servent à comparer les zones fortes et faibles d’une même force, pas l’intensité des couleurs d’une carte à l’autre.</p>
+<div class="column-page p2019-map-grid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_avenir_confiance_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Avenir en confiance — Nouméa et la côte Ouest au cœur du vote."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_avenir_confiance_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Avenir en confiance — Nouméa et la côte Ouest au cœur du vote."></a></p>
+</figure>
+</div>
+<figcaption>Avenir en confiance — Nouméa et la côte Ouest au cœur du vote.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_flnks_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="FLNKS — ses plus hauts niveaux dans l’Est et à l’Île des Pins."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_flnks_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="FLNKS — ses plus hauts niveaux dans l’Est et à l’Île des Pins."></a></p>
+</figure>
+</div>
+<figcaption>FLNKS — ses plus hauts niveaux dans l’Est et à l’Île des Pins.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_ce_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Calédonie ensemble — un point fort dans le centre rural."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_ce_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calédonie ensemble — un point fort dans le centre rural."></a></p>
+</figure>
+</div>
+<figcaption>Calédonie ensemble — un point fort dans le centre rural.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_leo_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Éveil océanien — une implantation concentrée dans le Grand Nouméa."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_sud_leo_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Éveil océanien — une implantation concentrée dans le Grand Nouméa."></a></p>
+</figure>
+</div>
+<figcaption>Éveil océanien — une implantation concentrée dans le Grand Nouméa.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="nouméa-la-majorité-de-lavenir-en-confiance-nefface-pas-les-quartiers" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="nouméa-la-majorité-de-lavenir-en-confiance-nefface-pas-les-quartiers">Nouméa : la majorité de l’Avenir en confiance n’efface pas les quartiers</h3>
+<p>À Nouméa, l’Avenir en confiance avait dépassé la majorité absolue des exprimés, mais son score varie fortement à l’intérieur de la ville. En regroupant les lieux de vote selon le secteur où ils se trouvent, la liste atteint 67,6 % à Ouémo, 66,9 % à l’Anse-Vata Est, 66,3 % à N’Géa et environ 65 % à l’Orphelinat et à Trianon. Elle tombe en revanche à 20,5 % à Portes-de-Fer Nord, 20,9 % à Rivière-Salée Sud et 27,4 % à Logicoop.</p>
+<p><strong>Calédonie ensemble</strong> présente la géographie la moins polarisée. Ses résultats restent généralement compris entre 16 % et 22 %. Ses meilleurs niveaux apparaissent à Rivière-Salée Sud (22,3 %), à la Vallée du Tir (21,0 %), à Logicoop (20,9 %) et à Tina (20,6 %). La liste est donc présente dans toute la ville, mais sans bastion comparable à ceux de l’Avenir en confiance.</p>
+<p><strong>Le FLNKS</strong> dessine presque la carte inverse de la liste dominante. Il atteint 29,8 % à Portes-de-Fer Nord, 20,3 % à Rivière-Salée Nord-Est, 18,5 % à Rivière-Salée Sud et 16,0 % à Logicoop. Il reste sous 4 % à Magenta Tours, à l’Orphelinat, à Trianon, à l’Anse-Vata Est, à Ouémo et dans la Vallée des Colons Sud-Ouest.</p>
+<p><strong>L’Éveil océanien</strong> est encore plus concentré. Ses meilleurs résultats se trouvent à Logicoop (16,5 %), à Rivière-Salée Sud (16,3 %) et à Normandie Nord (13,6 %). Dans plusieurs quartiers méridionaux — Orphelinat, Ouémo, Anse-Vata Est, Trianon — la liste reste sous 1 %. Même dans une commune très nettement remportée, les quatre principales forces s’appuient donc sur des espaces urbains très différents.</p>
+<p>Pour ce zoom aussi, chaque carte utilise sa propre échelle. Ce choix rend visibles les contrastes internes de chaque liste, y compris lorsque son score moyen à Nouméa est faible.</p>
+<div class="column-page p2019-map-grid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_avenir_confiance_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Avenir en confiance à Nouméa — une majorité plus forte au centre et au sud."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_avenir_confiance_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Avenir en confiance à Nouméa — une majorité plus forte au centre et au sud."></a></p>
+</figure>
+</div>
+<figcaption>Avenir en confiance à Nouméa — une majorité plus forte au centre et au sud.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_ce_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Calédonie ensemble à Nouméa — un vote relativement homogène."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_ce_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calédonie ensemble à Nouméa — un vote relativement homogène."></a></p>
+</figure>
+</div>
+<figcaption>Calédonie ensemble à Nouméa — un vote relativement homogène.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_flnks_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="FLNKS à Nouméa — des points d’appui à Portes-de-Fer, Rivière-Salée et Logicoop."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_flnks_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="FLNKS à Nouméa — des points d’appui à Portes-de-Fer, Rivière-Salée et Logicoop."></a></p>
+</figure>
+</div>
+<figcaption>FLNKS à Nouméa — des points d’appui à Portes-de-Fer, Rivière-Salée et Logicoop.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_leo_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Éveil océanien à Nouméa — une implantation plus visible au nord et à l’ouest."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/partis_echelle_adaptee/noumea_leo_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Éveil océanien à Nouméa — une implantation plus visible au nord et à l’ouest."></a></p>
+</figure>
+</div>
+<figcaption>Éveil océanien à Nouméa — une implantation plus visible au nord et à l’ouest.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="labstention-renforce-la-fracture-interne-de-nouméa" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="labstention-renforce-la-fracture-interne-de-nouméa">L’abstention renforce la fracture interne de Nouméa</h3>
+<p>L’abstention avait atteint 34,3 % à Nouméa, mais cette moyenne communale recouvre un écart de près de 25 points. Parmi les secteurs regroupant des lieux de vote ordinaires, elle culmine à Portes-de-Fer Nord (49,7 %). Elle dépasse également 42 % à la Vallée du Tir, dans le centre-ville et à Logicoop, puis approche 40 % à Normandie Nord.</p>
+<p>À l’autre extrémité, l’abstention n’est que de 25,1 % à Ouémo, 25,3 % à Magenta Tours et 26,1 % à N’Géa. Elle reste sous 30 % à Portes-de-Fer Sud, dans la Vallée des Colons Sud-Ouest, à Motor-Pool et à l’Anse-Vata Est.</p>
+<p>Cette géographie recoupe partiellement celle des listes. Les secteurs où l’Avenir en confiance est le plus fort comptent souvent parmi les plus mobilisés ; Portes-de-Fer Nord, Logicoop ou Rivière-Salée associent davantage d’abstention à de meilleurs résultats du FLNKS ou de l’Éveil océanien. Le recoupement n’est toutefois pas parfait — le centre-ville présente par exemple une abstention élevée sans basculer vers ces listes — et il ne permet pas de savoir quels électeurs se sont abstenus.</p>
+<div class="column-page p2019-map-grid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/participation_abstention/noumea_abstention_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Abstention à Nouméa — des niveaux élevés à Portes-de-Fer Nord, Logicoop, Vallée du Tir et dans le centre-ville."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/participation_abstention/noumea_abstention_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Abstention à Nouméa — des niveaux élevés à Portes-de-Fer Nord, Logicoop, Vallée du Tir et dans le centre-ville."></a></p>
+</figure>
+</div>
+<figcaption>Abstention à Nouméa — des niveaux élevés à Portes-de-Fer Nord, Logicoop, Vallée du Tir et dans le centre-ville.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/noumea/participation_abstention/noumea_participation_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Participation à Nouméa — une mobilisation plus forte à Ouémo, N’Géa et dans plusieurs secteurs méridionaux."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/noumea/participation_abstention/noumea_participation_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Participation à Nouméa — une mobilisation plus forte à Ouémo, N’Géa et dans plusieurs secteurs méridionaux."></a></p>
+</figure>
+</div>
+<figcaption>Participation à Nouméa — une mobilisation plus forte à Ouémo, N’Géa et dans plusieurs secteurs méridionaux.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="province-nord-luni-gagne-la-province-luc-gagne-la-plupart-des-communes" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-nord-luni-gagne-la-province-luc-gagne-la-plupart-des-communes">Province Nord : l’UNI gagne la province, l’UC gagne la plupart des communes</h2>
+<p>Le résultat provincial est serré : <code>38,5 %</code> pour l’UNI contre <code>36,0 %</code> pour l’UC-FLNKS. L’UNI obtient 10 des 22 sièges provinciaux, l’UC-FLNKS 9 et Agissons pour le Nord 3. Calédonie ensemble atteint pourtant <code>7,8 %</code> des exprimés, mais reste sous le seuil requis en part des inscrits et n’accède pas à la répartition.</p>
+<section id="deux-forces-indépendantistes-deux-géographies" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="deux-forces-indépendantistes-deux-géographies">Deux forces indépendantistes, deux géographies</h3>
+<p>Le paradoxe apparent du Nord est simple : l’UC-FLNKS était arrivé en tête dans douze des dix-sept communes, mais l’UNI gagne la province grâce à des bastions plus concentrés et souvent très puissants.</p>
+<p>L’UC dépasse la moitié des voix à Canala (<code>59,3 %</code>) et Hienghène (<code>56,4 %</code>). Elle est également très forte à Bélep (<code>48,0 %</code>), Kaala-Gomen (<code>45,4 %</code>), Pouébo (<code>44,2 %</code>), Poya Nord (<code>42,2 %</code>), Poum (<code>41,2 %</code>) et Houaïlou (<code>40,4 %</code>). Elle arrive aussi en tête à Koné, Kouaoua, Ouégoa et Pouembout, parfois dans des configurations beaucoup plus serrées.</p>
+<p>L’UNI rassemble de son côté <code>59,5 %</code> à Touho, <code>59,3 %</code> à Poindimié, <code>53,4 %</code> à Ponérihouen et <code>51,4 %</code> à Voh. Ces quatre communes suffisent à dessiner un axe territorial très cohérent sur la côte Est centrale et autour de VKP. Les deux grandes listes indépendantistes ne sont donc pas interchangeables : elles additionnent des bassins électoraux différents.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Province Nord : liste arrivée en tête et intensité de son avance autour des lieux de vote."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Province Nord : liste arrivée en tête et intensité de son avance autour des lieux de vote."></a></p>
+</figure>
+</div>
+<figcaption>Province Nord : liste arrivée en tête et intensité de son avance autour des lieux de vote.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="p2019-plot page-columns page-full">
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><a href="index_files/figure-html/profils-communes-nord-1.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-15" title="Composition du vote dans les communes de la Province Nord."><img src="https://contours.nc/posts/provinciales-2019-geographies-electorales/index_files/figure-html/profils-communes-nord-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page" style="width:100.0%" alt="Composition du vote dans les communes de la Province Nord."></a></p>
+</figure>
+</div>
+<figcaption>Composition du vote dans les communes de la Province Nord.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="le-vote-non-indépendantiste-est-concentré-sur-quelques-pôles" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="le-vote-non-indépendantiste-est-concentré-sur-quelques-pôles">Le vote non-indépendantiste est concentré sur quelques pôles</h3>
+<p>Agissons pour le Nord n’était arrivé en tête qu’à Koumac, avec <code>39,7 %</code>. La liste obtient aussi <code>30,2 %</code> à Pouembout, <code>27,3 %</code> à Kouaoua, <code>18,1 %</code> à Ouégoa et <code>16,7 %</code> à Koné. Calédonie ensemble complète cette présence, surtout à Koumac (<code>21,4 %</code>), Poya Nord (<code>15,0 %</code>), Pouembout (<code>12,9 %</code>) et Koné (<code>12,2 %</code>).</p>
+<p>La carte non-indépendantiste du Nord est donc moins étendue qu’une simple lecture par blocs pourrait le laisser penser. Elle repose surtout sur Koumac, Pouembout, Koné et quelques espaces de la côte Ouest, avec une percée particulière d’Agissons pour le Nord à Kouaoua, sans doute par l’apport de sa tête de liste (Alcide Ponga était alors maire de Kouaoua).</p>
+<div class="column-page p2019-map-grid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_uc_flnks_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="UC-FLNKS : une implantation étendue, de Canala à Hienghène et jusqu’au nord."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_uc_flnks_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="UC-FLNKS : une implantation étendue, de Canala à Hienghène et jusqu’au nord."></a></p>
+</figure>
+</div>
+<figcaption>UC-FLNKS : une implantation étendue, de Canala à Hienghène et jusqu’au nord.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_uni_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-17" title="UNI : des bastions très puissants à Touho, Poindimié, Ponérihouen et Voh."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_uni_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="UNI : des bastions très puissants à Touho, Poindimié, Ponérihouen et Voh."></a></p>
+</figure>
+</div>
+<figcaption>UNI : des bastions très puissants à Touho, Poindimié, Ponérihouen et Voh.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_agissons_nord_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="Agissons pour le Nord : Koumac comme point fort et plusieurs relais sur la côte Ouest."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_agissons_nord_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Agissons pour le Nord : Koumac comme point fort et plusieurs relais sur la côte Ouest."></a></p>
+</figure>
+</div>
+<figcaption>Agissons pour le Nord : Koumac comme point fort et plusieurs relais sur la côte Ouest.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_ce_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Calédonie ensemble : une présence plus diffuse, surtout à l’ouest."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_nord_ce_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Calédonie ensemble : une présence plus diffuse, surtout à l’ouest."></a></p>
+</figure>
+</div>
+<figcaption>Calédonie ensemble : une présence plus diffuse, surtout à l’ouest.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="province-des-îles-trois-îles-trois-équilibres" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-des-îles-trois-îles-trois-équilibres">Province des Îles : trois îles, trois équilibres</h2>
+<p>Avec <code>37,1 %</code>, l’UC-FLNKS était arrivé en tête de la province et a obtenu 6 des 14 sièges. L’UNI-Palika 4, le Parti travailliste 2 et la liste Dynamique autochtone portée par le LKS 2. Les quatre listes admises à la répartition sont toutes issues du champ indépendantiste ou souverainiste, mais leur géographie est loin d’être uniforme.</p>
+<section id="lifou-pour-luc-maré-pour-le-lks-ouvéa-presque-partagée" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="lifou-pour-luc-maré-pour-le-lks-ouvéa-presque-partagée">Lifou pour l’UC, Maré pour le LKS, Ouvéa presque partagée</h3>
+<p>À Lifou, l’UC-FLNKS dominait largement avec <code>52,3 %</code>. L’UNI-Palika y recueille <code>18,2 %</code>, le Parti travailliste <code>13,9 %</code> et le LKS seulement <code>2,5 %</code>.</p>
+<p>Maré présente le paysage inverse. Le LKS arrivait en tête avec <code>28,4 %</code>, devant l’UNI-Palika (<code>19,7 %</code>) et l’UC-FLNKS (<code>18,7 %</code>). Le total provincial du LKS — <code>11,0 %</code> — masque donc un ancrage presque entièrement concentré sur une seule île.</p>
+<p>Ouvéa est la commune la plus disputée entre les deux grandes listes : <code>32,7 %</code> pour l’UC-FLNKS et <code>31,4 %</code> pour l’UNI-Palika. Le Parti travailliste y réalise son meilleur score communal (<code>16,2 %</code>).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/province_des_iles_parti_en_tete_lisse_opacite_marge_moderee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Province des Îles : liste arrivée en tête et intensité de son avance autour des lieux de vote."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/province_des_iles_parti_en_tete_lisse_opacite_marge_moderee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Province des Îles : liste arrivée en tête et intensité de son avance autour des lieux de vote."></a></p>
+</figure>
+</div>
+<figcaption>Province des Îles : liste arrivée en tête et intensité de son avance autour des lieux de vote.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="p2019-plot page-columns page-full">
+<div class="cell page-columns page-full" data-layout-align="center">
+<div class="cell-output-display page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p class="page-columns page-full"><a href="index_files/figure-html/profils-communes-iles-1.png" class="lightbox page-columns page-full" data-gallery="quarto-lightbox-gallery-21" title="Composition du vote à Lifou, Maré et Ouvéa."><img src="https://contours.nc/posts/provinciales-2019-geographies-electorales/index_files/figure-html/profils-communes-iles-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img column-page" style="width:100.0%" alt="Composition du vote à Lifou, Maré et Ouvéa."></a></p>
+</figure>
+</div>
+<figcaption>Composition du vote à Lifou, Maré et Ouvéa.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Le scrutin avait donc juxtaposé une nette domination UC à Lifou, une concurrence très ouverte à Ouvéa et un système propre à Maré, où le LKS conservait un socle sans équivalent ailleurs.</p>
+<div class="column-page p2019-map-grid">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_uc_flnks_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="UC-FLNKS : une domination particulièrement nette à Lifou."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_uc_flnks_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="UC-FLNKS : une domination particulièrement nette à Lifou."></a></p>
+</figure>
+</div>
+<figcaption>UC-FLNKS : une domination particulièrement nette à Lifou.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_uni_plk_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-23" title="UNI-Palika : un vote plus fort à Ouvéa et présent sur les trois îles."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_uni_plk_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="UNI-Palika : un vote plus fort à Ouvéa et présent sur les trois îles."></a></p>
+</figure>
+</div>
+<figcaption>UNI-Palika : un vote plus fort à Ouvéa et présent sur les trois îles.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_pt_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Parti travailliste : des résultats relativement proches dans les trois communes."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_pt_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Parti travailliste : des résultats relativement proches dans les trois communes."></a></p>
+</figure>
+</div>
+<figcaption>Parti travailliste : des résultats relativement proches dans les trois communes.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_lks_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="LKS : un ancrage massivement concentré à Maré."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/partis_echelle_adaptee/province_des_iles_lks_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="LKS : un ancrage massivement concentré à Maré."></a></p>
+</figure>
+</div>
+<figcaption>LKS : un ancrage massivement concentré à Maré.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="géographie-de-la-participation" class="level2">
+<h2 class="anchored" data-anchor-id="géographie-de-la-participation">Géographie de la participation</h2>
+<p>La participation avait atteint 66,5 % sur l’ensemble de la Nouvelle-Calédonie. Elle s’établit à 67,2 % dans le Sud, 64,5 % dans le Nord et 66,5 % aux Îles.</p>
+<p>Ces moyennes provinciales masquent de forts écarts. Dans le Sud, la participation avait dépassé <code>80 %</code> à Farino et à Poya Sud, mais tombait à <code>58,6 %</code> à Thio. Dans le Nord, elle était élevée à Koné (<code>70,7 %</code>) et Pouembout (<code>70,4 %</code>), mais beaucoup plus faible à Bélep (<code>53,7 %</code>), Pouébo (<code>55,5 %</code>) et Houaïlou (<code>58,8 %</code>). Aux Îles, Maré se distingue avec <code>72,8 %</code>, contre environ <code>64 %</code> à Lifou et Ouvéa.</p>
+<p>La mobilisation ne recouvre donc pas exactement la carte des listes. Elle peut renforcer certains bastions et réduire le poids d’autres territoires dans le total provincial. Pour 2026, c’est l’un des premiers éléments à comparer au soir du scrutin.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">Sud</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Nord</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" aria-controls="tabset-1-3" aria-selected="false" href="">Îles</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/participation_abstention/province_sud_participation_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Participation aux provinciales 2019 dans la Province Sud."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/participation_abstention/province_sud_participation_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Participation aux provinciales 2019 dans la Province Sud."></a></p>
+</figure>
+</div>
+<figcaption>Participation aux provinciales 2019 dans la Province Sud.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/participation_abstention/province_nord_participation_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Participation aux provinciales 2019 dans la Province Nord."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/participation_abstention/province_nord_participation_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Participation aux provinciales 2019 dans la Province Nord."></a></p>
+</figure>
+</div>
+<figcaption>Participation aux provinciales 2019 dans la Province Nord.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" aria-labelledby="tabset-1-3-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../../data/cartes/provinciales_2019_focus/province/participation_abstention/province_des_iles_participation_echelle_adaptee.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-28" title="Participation aux provinciales 2019 dans la Province des Îles."><img src="https://contours.nc/data/cartes/provinciales_2019_focus/province/participation_abstention/province_des_iles_participation_echelle_adaptee.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="Participation aux provinciales 2019 dans la Province des Îles."></a></p>
+</figure>
+</div>
+<figcaption>Participation aux provinciales 2019 dans la Province des Îles.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ce-que-la-carte-de-2019-invite-à-regarder-en-2026" class="level2">
+<h2 class="anchored" data-anchor-id="ce-que-la-carte-de-2019-invite-à-regarder-en-2026">Ce que la carte de 2019 invite à regarder en 2026</h2>
+<p>Le premier enjeu sera la solidité des bastions. Dans le Sud, l’Avenir en confiance avait atteint des niveaux très importants en 2019 à Nouméa, Dumbéa, au Mont-Dore et sur la côte Ouest, la question sera donc celle du maintien ou non de ce niveau. Les implantations du FLNKS à Yaté, Thio ou Sarraméa feront face cette fois-ci à des listes UC-FLNKS et UNI plutôt qu’à une liste unique, comment vont se répartir les voix ? L’implantation de l’Éveil océanien dans le Grand Nouméa va t-elle se renforcer, diminuer ou s’étendre au-delà de l’agglomération ? Calédonie Ensemble avait gardé des bastions de brousse autour du pôle de La Foa, ainsi qu’une présence diffuse sur le reste de la Province Sud, qu’en sera t-il en 2026, alors que certaines ex-figures sont présents sur d’autres listes ?</p>
+<p>En 2026, <a href="../provinciales-2026-qui-part-qui-reste/">des nouvelles listes</a> sont également présentes, occupant divers espaces politiques, parfois voisins de certaines forces dejà existantes, dans quelle mesure vont-elles perfomer ? Et dans quels espaces géographiques ? Quelle continuité et quelles ruptures y’aura t-il pour les sortants de 2019 ?</p>
+<p>Dans le Nord, il faudra regarder l’évolution de l’équilibre entre les territoires UC et UNI. Une variation dans quelques communes très polarisées — Canala et Hienghène d’un côté, Touho et Poindimié de l’autre — peut modifier le classement général. La capacité de la liste non-indépendantiste à dépasser les pôles de Koumac, Pouembout et Koné sera également à scruter, dans un contexte où Calédonie Ensemble ne présente pas de liste dans le Nord en 2026.</p>
+<p>Aux Îles, enfin, la question est presque île par île : 2019 avait vu le maintien de la domination UC à Lifou, un nouvel équilibre à Ouvéa et la solidité du LKS à Maré, la présentation d’une liste concurrente de Jacques Lalié (UCC) à celle de l’UC donne plusieurs choix aux électeurs qui voudraient privilégier une continuité de l’éxécutif précédent. Tandis que des offres d’opppositions dejà implantées sont également présentes de nouveau en 2026.</p>
+<div class="p2019-related">
+<p>Pour prolonger ce bilan territorial, voir aussi <a href="../provinciales-2026-qui-part-qui-reste/">la recomposition des listes entre 2019 et 2026</a> et <a href="../provinciales-2026-professions-foi/">l’analyse des professions de foi de 2026</a>.</p>
+</div>
+<details class="note-deroulable">
+<summary>
+Comment les résultats communaux et les cartes sont construits
+</summary>
+<p>Les scores communaux additionnent les voix de tous les lieux de vote d’une même commune, puis les rapportent à l’ensemble des suffrages exprimés. Poya étant partagée entre deux provinces, ses résultats sont distingués entre Poya Nord et Poya Sud.</p>
+<p>Les cartes lissées associent les résultats aux lieux de vote géolocalisés. Elles rendent les continuités territoriales plus faciles à lire, mais ne représentent pas les limites exactes des secteurs électoraux. Entre deux lieux de vote, la couleur est une interpolation cartographique et non un résultat observé à chaque point du territoire.</p>
+</details>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2019/Provinciales-2019/RESULTATS">Résultats définitifs des provinciales 2019 — Haut-commissariat de la République</a>.</li>
+<li><a href="https://www.elections-nc.fr/elections-2018-2020/elections-provinciales-2019/les-resultats-des-provinciales-2019">Provinciales 2019 : résultats définitifs</a>.</li>
+<li><a href="https://la1ere.franceinfo.fr/nouvellecaledonie/resultats-provinciales-2019-temps-reel-708831.html">Présentation du scrutin et suivi des résultats — Nouvelle-Calédonie La 1ère</a>.</li>
+<li><a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019">Contexte, système électoral et composition du Congrès élu en 2019</a>.</li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Retour sur les provinciales 2019 : la géographie des forces
+    politiques},
+  date = {2026-06-21},
+  url = {https://contours.nc/posts/provinciales-2019-geographies-electorales/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Retour sur les provinciales 2019 : la
+géographie des forces politiques.”</span> June 21, 2026. <a href="https://contours.nc/posts/provinciales-2019-geographies-electorales/">https://contours.nc/posts/provinciales-2019-geographies-electorales/</a>.
+</div></div></section></div> ]]></description>
+  <category>Élections</category>
+  <category>Cartographie</category>
+  <category>Provinciales 2019</category>
+  <guid>https://contours.nc/posts/provinciales-2019-geographies-electorales/</guid>
+  <pubDate>Sat, 20 Jun 2026 13:00:00 GMT</pubDate>
+  <media:content url="https://contours.nc/data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp" medium="image" type="image/webp"/>
+</item>
+<item>
+  <title>Provinciales 2026 : qui propose quoi ?</title>
+  <dc:creator>Jonas Brouillon</dc:creator>
+  <link>https://contours.nc/posts/provinciales-2026-professions-foi/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<style>
+.pf-lede {
+  max-width: 82ch;
+  font-size: 1.08rem;
+}
+
+.pf-stat-grid,
+.pf-overview-grid,
+.theme-portrait-list,
+.program-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.pf-stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin: 1.2rem 0 1.8rem;
+}
+
+.pf-overview-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.2rem 0 1.8rem;
+}
+
+.program-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1.25rem 0 2.2rem;
+}
+
+.pf-stat-card,
+.pf-overview-card,
+.pf-note,
+.pf-details,
+.theme-portrait,
+.program-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.06);
+}
+
+.pf-stat-card {
+  border-top: 4px solid var(--green);
+  padding: 0.82rem 0.95rem;
+}
+
+.pf-stat-value {
+  color: var(--ink);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.pf-stat-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+}
+
+.pf-stat-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+.pf-overview-card {
+  border-top: 4px solid #4f7c8a;
+  padding: 0.95rem 1rem;
+}
+
+.pf-overview-card h3 {
+  font-size: 1.02rem;
+  margin: 0 0 0.45rem;
+}
+
+.pf-overview-card p {
+  font-size: 0.91rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.pf-note {
+  border-left: 4px solid #4f7c8a;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.9rem 1rem;
+}
+
+.pf-note p:last-child {
+  margin-bottom: 0;
+}
+
+.pf-details {
+  margin: 1.2rem 0 1.8rem;
+  overflow: hidden;
+}
+
+.pf-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.9rem 1rem;
+}
+
+.pf-details-body {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.pf-details-body > :last-child {
+  margin-bottom: 0;
+}
+
+.theme-portrait-list {
+  gap: 0.62rem;
+  margin: 1rem 0 1.8rem;
+}
+
+.theme-portrait {
+  align-items: center;
+  border-left: 4px solid var(--list-color, #8d99a6);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(155px, 0.8fr) minmax(0, 1.6fr);
+  padding: 0.78rem 0.88rem;
+}
+
+.theme-portrait__identity {
+  min-width: 0;
+}
+
+.theme-portrait__number {
+  color: var(--muted);
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  margin-bottom: 0.16rem;
+  text-transform: uppercase;
+}
+
+.theme-portrait__title {
+  align-items: center;
+  display: flex;
+  gap: 0.48rem;
+  font-size: 1rem;
+  margin: 0 0 0.14rem;
+}
+
+.theme-portrait__list-dot {
+  background: var(--list-color, #8d99a6);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(0, 0, 0, 0.1);
+  flex: 0 0 0.68rem;
+  height: 0.68rem;
+  width: 0.68rem;
+}
+
+.theme-portrait__identity p {
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin: 0;
+}
+
+.theme-portrait__themes {
+  display: grid;
+  gap: 0.38rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.theme-portrait__theme {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #383a36;
+  display: flex;
+  font-size: 0.78rem;
+  font-weight: 680;
+  gap: 0.42rem;
+  line-height: 1.25;
+  min-height: 2.15rem;
+  padding: 0.34rem 0.48rem;
+}
+
+.theme-portrait__dot {
+  background: #4f7c8a;
+  border-radius: 50%;
+  flex: 0 0 0.48rem;
+  height: 0.48rem;
+  width: 0.48rem;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.05rem;
+}
+.program-card {
+  border-top: 4px solid var(--list-color, #8d99a6);
+}
+
+.program-card__title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.program-card__dot {
+  width: .78rem;
+  height: .78rem;
+  border-radius: 999px;
+  background: var(--list-color, #8d99a6);
+  flex: 0 0 auto;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 3px rgba(0,0,0,.10);
+}
+
+.program-card__topline {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: space-between;
+}
+
+.program-card__number {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.program-card__precision {
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.48rem;
+}
+
+.program-card__precision.high {
+  background: #e8f3eb;
+  border-color: #82ad8d;
+  color: #24583a;
+}
+
+.program-card__precision.medium {
+  background: #e9f1f6;
+  border-color: #8baabb;
+  color: #345d70;
+}
+
+.program-card__precision.low {
+  background: #f3efe6;
+  border-color: #b9aa8b;
+  color: #6e5b38;
+}
+
+.program-card h3 {
+  font-size: 1.2rem;
+  margin: 0.62rem 0 0.12rem;
+}
+
+.program-card__camp {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 0 0 0.68rem;
+}
+
+.program-card__angle {
+  border-left: 3px solid var(--green);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  padding-left: 0.7rem;
+}
+
+.program-card__themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.program-card__theme {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: #42403b;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.2rem 0.45rem;
+}
+
+.program-card h4 {
+  font-size: 0.88rem;
+  margin: 0 0 0.35rem;
+}
+
+.program-card__measures {
+  font-size: 0.88rem;
+  line-height: 1.42;
+  margin: 0 0 0.85rem;
+  padding-left: 1.1rem;
+}
+
+.program-card__measures li + li {
+  margin-top: 0.36rem;
+}
+
+.program-card__source {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.solution-table td:first-child {
+  font-weight: 700;
+  min-width: 10rem;
+}
+
+.solution-table {
+  margin: 0.8rem 0 1.8rem;
+  overflow-x: auto;
+}
+
+.solution-table table {
+  margin-bottom: 0;
+  min-width: 42rem;
+}
+
+@media (max-width: 980px) {
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  #quarto-content,
+  main.content,
+  .content,
+  .page-columns,
+  .page-full,
+  .column-page,
+  .column-page-left,
+  .column-page-right,
+  .column-screen {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .page-columns {
+    display: block !important;
+  }
+
+  #quarto-content,
+  #title-block-header,
+  #title-block-header .quarto-title-banner {
+    inline-size: 100vw !important;
+    max-inline-size: 100vw !important;
+    width: 100vw !important;
+  }
+
+  .page-columns > *,
+  .page-full,
+  .column-page,
+  .column-page-left,
+  .column-page-right,
+  .column-screen {
+    grid-column: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title-meta,
+  main.content.column-page-left,
+  main.content.column-page-right {
+    box-sizing: border-box;
+    inline-size: calc(100vw - 2rem) !important;
+    max-inline-size: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #title-block-header,
+  #title-block-header .quarto-title,
+  #title-block-header .title,
+  #title-block-header .subtitle,
+  #title-block-header .description,
+  #title-block-header .quarto-title-meta,
+  .pf-lede,
+  .pf-stat-grid,
+  .pf-overview-grid,
+  .theme-portrait-list,
+  .program-grid,
+  .solution-table,
+  .pf-note,
+  .pf-details,
+  .program-card {
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title-meta {
+    inline-size: calc(100vw - 2rem) !important;
+    max-inline-size: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+
+  .solution-table {
+    contain: none;
+    display: block;
+    overflow: visible;
+  }
+
+  .solution-table table,
+  .solution-table tbody,
+  .solution-table tr,
+  .solution-table td {
+    display: block;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .solution-table table {
+    min-width: 0;
+  }
+
+  .solution-table colgroup,
+  .solution-table thead {
+    display: none;
+  }
+
+  .solution-table tr {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+  }
+
+  .solution-table td {
+    border: 0 !important;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .solution-table td:first-child {
+    background: color-mix(in srgb, var(--yellow) 14%, white);
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  #title-block-header {
+    overflow: hidden;
+  }
+
+  #title-block-header .quarto-categories {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  #title-block-header .quarto-title-meta {
+    display: grid !important;
+    gap: 0.8rem;
+    grid-template-columns: 1fr !important;
+  }
+
+  .content p,
+  .content ul,
+  .content ol,
+  .content h2,
+  .content h3,
+  .content h4,
+  .content .cell,
+  .content figure,
+  .content img {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #title-block-header .title {
+    font-size: clamp(1.7rem, 8.5vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  .quarto-title,
+  .quarto-title .title,
+  .description,
+  .content p,
+  .content li,
+  .program-card,
+  .program-card * {
+    overflow-wrap: anywhere;
+  }
+
+  .pf-overview-grid,
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-portrait {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<div class="pf-lede">
+<p>Que défend chaque liste, et surtout <strong>comment compte-t-elle agir</strong> ? Les 22 professions de foi numériques permettent de dresser une fiche d’identité de chaque candidature : sujets privilégiés, angle politique, instruments proposés et degré de précision du texte.</p>
+</div>
+<div class="pf-stat-grid">
+<div class="pf-stat-card">
+<div class="pf-stat-value">
+22
+</div>
+<div class="pf-stat-label">
+circulaires analysées
+</div>
+<div class="pf-stat-note">
+sur 24 listes candidates
+</div>
+</div>
+<div class="pf-stat-card">
+<div class="pf-stat-value">
+18 554
+</div>
+<div class="pf-stat-label">
+mots extraits
+</div>
+<div class="pf-stat-note">
+avant nettoyage du corpus
+</div>
+</div>
+<div class="pf-stat-card">
+<div class="pf-stat-value">
+8
+</div>
+<div class="pf-stat-label">
+textes très détaillés
+</div>
+<div class="pf-stat-note">
+dispositifs nommés, montants ou objectifs précis
+</div>
+</div>
+</div>
+<div class="pf-note">
+<p><strong>À lire comme une cartographie des tracts, pas comme une notation des programmes.</strong> Les mesures ci-dessous sont reformulées au plus près des circulaires. Elles ne sont ni vérifiées, ni chiffrées à nouveau, ni évaluées quant à leur faisabilité. Le badge indique seulement le degré de détail du document : objectifs généraux, mesures identifiables ou engagements particulièrement détaillés.</p>
+</div>
+<section id="la-campagne-en-un-coup-dœil" class="level2">
+<h2 class="anchored" data-anchor-id="la-campagne-en-un-coup-dœil">La campagne en un coup d’œil</h2>
+<div class="pf-overview-grid">
+  <div class="pf-overview-card">
+    <h3 class="anchored">Province Sud</h3>
+    <p>Le choix le plus éclaté : <strong>baisse des prélèvements et fermeté</strong>, <strong>boucliers sociaux et insertion</strong>, ou <strong>reconstruction transversale</strong>. La vie chère est presque partout, mais les instruments proposés divergent fortement.</p>
+  </div>
+  <div class="pf-overview-card">
+    <h3 class="anchored">Province Nord</h3>
+    <p>Les textes convergent sur <strong>l’emploi, la jeunesse et les services de proximité</strong>. Les différences portent surtout sur l’Usine du Nord, la méthode de gestion et la place de la souveraineté dans le programme provincial.</p>
+  </div>
+  <div class="pf-overview-card">
+    <h3 class="anchored">Îles Loyauté</h3>
+    <p><strong>Finances provinciales et transports</strong> structurent la campagne. Les listes se distinguent par le niveau de chiffrage, la place donnée aux valeurs coutumières et la manière de transformer l’autonomie locale en souveraineté.</p>
+  </div>
+</div>
+</section>
+<section id="comment-lire-les-fiches" class="level2">
+<h2 class="anchored" data-anchor-id="comment-lire-les-fiches">Comment lire les fiches ?</h2>
+<p>Trois niveaux de lecture sont volontairement séparés.</p>
+<ul>
+<li>Les <strong>portraits thématiques</strong> donnent les quatre points d’entrée qui structurent chaque circulaire. Ils viennent de la lecture complète du texte : ils sont plus directs qu’un comptage, mais assument une part de synthèse éditoriale.</li>
+<li>Les <strong>nuages de mots-signatures</strong> retiennent jusqu’à seize termes particulièrement distinctifs dans la province. Les mots répétés dans le tract sont conservés ; un mot cité une seule fois n’entre dans le nuage que s’il est déjà bien attesté ailleurs dans le corpus. Un gros mot caractérise donc le vocabulaire propre du tract, sans nécessairement être son mot le plus fréquent en valeur absolue.</li>
+<li>Les <strong>fiches programmatiques</strong> viennent d’une relecture du document complet. L’encadré résume sa ligne propre ; les pastilles donnent ses thèmes ; les trois puces restituent les mesures ou engagements les plus caractéristiques.</li>
+</ul>
+<p>Les listes sont toujours présentées dans l’ordre du tirage au sort. Aucune projection statistique ne les range sur un axe politique implicite.</p>
+</section>
+<section id="province-sud-trois-familles-de-réponses" class="level2">
+<h2 class="anchored" data-anchor-id="province-sud-trois-familles-de-réponses">Province Sud : trois familles de réponses</h2>
+<p>Dans le Sud, la crise économique et la vie chère sont des diagnostics partagés. Trois familles de réponses se dessinent toutefois : <strong>agir sur les taxes, les droits de douane et le coût du travail</strong> ; <strong>renforcer les aides, les prix protégés et l’insertion</strong> ; ou <strong>reconstruire la confiance avant de stabiliser l’avenir institutionnel</strong>. La sécurité constitue un deuxième clivage, entre fermeté pénale et traitement plus social de la jeunesse.</p>
+<section id="les-priorités-affichées-dans-le-sud" class="level3">
+<h3 class="anchored" data-anchor-id="les-priorités-affichées-dans-le-sud">Les priorités affichées dans le Sud</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="theme-portrait-list">
+<article class="theme-portrait" style="--list-color:#724E9D;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 1</span>
+<h3 class="theme-portrait__title anchored">
+
+Un autre monde est possible
+</h3>
+<p>Transversal / pro-pays</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Cohésion et dialogue
+</span>
+<span class="theme-portrait__theme">
+
+Urgence sociale
+</span>
+<span class="theme-portrait__theme">
+
+Réforme fiscale
+</span>
+<span class="theme-portrait__theme">
+
+Démocratie participative
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#747D88;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 2</span>
+<h3 class="theme-portrait__title anchored">
+
+Kanaky pour tous
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Vie chère
+</span>
+<span class="theme-portrait__theme">
+
+Protection sociale
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse et insertion
+</span>
+<span class="theme-portrait__theme">
+
+Souveraineté
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#643D21;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 3</span>
+<h3 class="theme-portrait__title anchored">
+
+France Calédonie, une patrie
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Relance et BTP
+</span>
+<span class="theme-portrait__theme">
+
+Sécurité
+</span>
+<span class="theme-portrait__theme">
+
+Énergie nucléaire
+</span>
+<span class="theme-portrait__theme">
+
+Ancrage français
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#277597;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 5</span>
+<h3 class="theme-portrait__title anchored">
+
+Une Province pour tous
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Solidarité territoriale
+</span>
+<span class="theme-portrait__theme">
+
+Réduction des inégalités
+</span>
+<span class="theme-portrait__theme">
+
+Vivre-ensemble
+</span>
+<span class="theme-portrait__theme">
+
+Émancipation négociée
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#4F8F6A;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 7</span>
+<h3 class="theme-portrait__title anchored">
+
+Faire Pays
+</h3>
+<p>Transversal / pro-pays</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Pouvoir d’achat
+</span>
+<span class="theme-portrait__theme">
+
+Services essentiels
+</span>
+<span class="theme-portrait__theme">
+
+Institutions
+</span>
+<span class="theme-portrait__theme">
+
+Souveraineté par étapes
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#9A755C;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 8</span>
+<h3 class="theme-portrait__title anchored">
+
+Pour une Calédonie française
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Sécurité et autorité
+</span>
+<span class="theme-portrait__theme">
+
+Vie chère
+</span>
+<span class="theme-portrait__theme">
+
+Citoyenneté
+</span>
+<span class="theme-portrait__theme">
+
+Monde rural
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#3592BA;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 9</span>
+<h3 class="theme-portrait__title anchored">
+
+Nous, réunis
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Vie chère
+</span>
+<span class="theme-portrait__theme">
+
+Entreprises
+</span>
+<span class="theme-portrait__theme">
+
+Production locale
+</span>
+<span class="theme-portrait__theme">
+
+Gouvernance
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#305F9F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 10</span>
+<h3 class="theme-portrait__title anchored">
+
+Les Loyalistes et Le Rassemblement
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Sécurité
+</span>
+<span class="theme-portrait__theme">
+
+Fiscalité
+</span>
+<span class="theme-portrait__theme">
+
+Entreprises
+</span>
+<span class="theme-portrait__theme">
+
+Propriété
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#F0C52F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 11</span>
+<h3 class="theme-portrait__title anchored">
+
+Unis pour le Pays
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Solidarité
+</span>
+<span class="theme-portrait__theme">
+
+Logement et santé
+</span>
+<span class="theme-portrait__theme">
+
+Économie locale
+</span>
+<span class="theme-portrait__theme">
+
+Souveraineté partenariale
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#61AAC9;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 12</span>
+<h3 class="theme-portrait__title anchored">
+
+Un espoir pour demain
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Stabilité institutionnelle
+</span>
+<span class="theme-portrait__theme">
+
+Économie
+</span>
+<span class="theme-portrait__theme">
+
+Pouvoir d’achat
+</span>
+<span class="theme-portrait__theme">
+
+Exemplarité publique
+</span>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section id="les-mots-signatures-du-sud" class="level3">
+<h3 class="anchored" data-anchor-id="les-mots-signatures-du-sud">Les mots-signatures du Sud</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://contours.nc/posts/provinciales-2026-professions-foi/index_files/figure-html/nuages-sud-1.png" class="img-fluid figure-img" width="2400"></p>
+<figcaption>Les mots sont regroupés par racine : singulier et pluriel ne comptent donc qu’une fois. La taille repose sur leur spécificité dans la province (TF-IDF), après retrait des noms de candidats, des lieux, du vocabulaire électoral générique et des artefacts OCR.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="program-grid">
+<article class="program-card" style="--list-color:#724E9D;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 1</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Un autre monde est possible
+</h3>
+<p class="program-card__camp">Transversal / pro-pays</p>
+<p class="program-card__angle">Sortir de la logique des blocs par la paix sociale, la participation citoyenne et une refonte économique et sociale.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Cohésion et dialogue</span>
+<span class="program-card__theme">Urgence sociale</span>
+<span class="program-card__theme">Réforme fiscale</span>
+<span class="program-card__theme">Démocratie participative</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Aménagements temporaires de fiscalité et de cotisations pour le pouvoir d’achat et la relance des entreprises.</li>
+<li>Rétablissement d’aides sociales ciblées, évaluées et concentrées sur les ménages précaires.</li>
+<li>Assemblées citoyennes et réforme du système fiscal et social avec les partenaires sociaux.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13446/111803/file/01_%5BProfession+de+foi+A4+groupe+recto%5D+un+autre+monde.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#747D88;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 2</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Kanaky pour tous
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Faire du bouclier social, de l’emploi local et de la jeunesse les bases d’une accession préparée à la pleine souveraineté.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Vie chère</span>
+<span class="program-card__theme">Protection sociale</span>
+<span class="program-card__theme">Jeunesse et insertion</span>
+<span class="program-card__theme">Souveraineté</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Rétablir les aides supprimées, créer un bouclier prix famille-retraité et un plan « manger local et moins cher ».</li>
+<li>Tarification provinciale aidée, voire gratuite, pour les transports et renforcement des aides au logement et à l’accession.</li>
+<li>Clauses sociales dans les marchés publics, parcours d’insertion, travail alternatif payé à la journée et aide au permis.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13447/111808/file/2-+KNKPRTS_2.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#643D21;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 3</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+France Calédonie, une patrie
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Une relance fortement adossée à l’État, associée à la fermeté sécuritaire, au nucléaire civil et à l’ancrage français.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Relance et BTP</span>
+<span class="program-card__theme">Sécurité</span>
+<span class="program-card__theme">Énergie nucléaire</span>
+<span class="program-card__theme">Ancrage français</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Prêts garantis par l’État, fonds de reconstruction de 8 milliards de F CFP et priorité locale dans les marchés publics.</li>
+<li>Petits réacteurs nucléaires modulaires, avec une baisse annoncée de 30 % de l’électricité des ménages et 40 % pour l’industrie lourde.</li>
+<li>Nouveau centre pénitentiaire, brigades territoriales de la jeunesse et service civique obligatoire pour les jeunes déscolarisés.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13448/111813/file/03_France+Cal%C3%A9donie,+une+patrie.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#277597;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 5</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Une Province pour tous
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Réunir province inclusive, solidarité entre les trois provinces et poursuite négociée de l’émancipation.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Solidarité territoriale</span>
+<span class="program-card__theme">Réduction des inégalités</span>
+<span class="program-card__theme">Vivre-ensemble</span>
+<span class="program-card__theme">Émancipation négociée</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Engager les négociations institutionnelles dès le lendemain du scrutin.</li>
+<li>Revisiter progressivement le lien avec la France et l’Europe dans la continuité des accords de Matignon et de Nouméa.</li>
+<li>Restaurer le développement économique tout en réduisant les inégalités et en soutenant les créateurs de richesse.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13449/111818/file/05_Une+province+pour+tous_circulaire.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#4F8F6A;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 7</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Faire Pays
+</h3>
+<p class="program-card__camp">Transversal / pro-pays</p>
+<p class="program-card__angle">Articuler dignité quotidienne, institutions moins coûteuses et souveraineté construite progressivement et en partenariat.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Pouvoir d’achat</span>
+<span class="program-card__theme">Services essentiels</span>
+<span class="program-card__theme">Institutions</span>
+<span class="program-card__theme">Souveraineté par étapes</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Rétablir les aides à la scolarité, à la cantine et au transport, avec un Pass Mobilité accessible à tous.</li>
+<li>Rétablir une couverture médicale gratuite et alléger les charges pesant sur le travail.</li>
+<li>Rendre les institutions plus efficaces et moins coûteuses, et préparer une souveraineté partagée étape par étape.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13450/111823/file/07_Circulaire+Faire+Pays+d%C3%A9finitive.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#9A755C;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 8</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Pour une Calédonie française
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Associer autorité, maintien français, solidarité conditionnée et soutien au monde rural et à la propriété.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Sécurité et autorité</span>
+<span class="program-card__theme">Vie chère</span>
+<span class="program-card__theme">Citoyenneté</span>
+<span class="program-card__theme">Monde rural</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Fermeté contre les violences et trafics, justice accélérée et action ciblée sur la délinquance des mineurs.</li>
+<li>Bouclier alimentaire local, lutte contre les monopoles et aides ciblées aux ménages.</li>
+<li>Service civique et Contrat Premier Emploi, plan Habitat Digne et développement de la médecine mobile.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13451/111828/file/08_Pour+une+Cal%C3%A9donie+fran%C3%A7aise.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#3592BA;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 9</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Nous, réunis
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Reconstruire avant de trancher l’institutionnel, avec des mesures immédiates sur les prix, les transports et la production locale.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Vie chère</span>
+<span class="program-card__theme">Entreprises</span>
+<span class="program-card__theme">Production locale</span>
+<span class="program-card__theme">Gouvernance</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Baisser le prix d’un panier de produits essentiels, fixer le ticket Tanéo à 200 F et agir sur le carburant.</li>
+<li>Simplifications fiscales, meilleur accès à la commande publique et réduction des délais de paiement des entreprises.</li>
+<li>Demi-part fiscale supplémentaire pour les anciens, fonds pour la production locale et développement agricole sur terres coutumières.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13452/111833/file/09_Prof+de+foi+VF.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#305F9F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 10</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Les Loyalistes et Le Rassemblement
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Un programme de rupture libérale : sécurité, baisse des prélèvements, réduction des dépenses publiques et accession à la propriété.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Sécurité</span>
+<span class="program-card__theme">Fiscalité</span>
+<span class="program-card__theme">Entreprises</span>
+<span class="program-card__theme">Propriété</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Tolérance zéro, moyens supplémentaires pour les forces de l’ordre et responsabilisation parentale.</li>
+<li>Suppression des droits de succession, baisse des impôts et du coût du travail, prolongation de Sud Relance.</li>
+<li>Suppression des droits de douane australiens et néo-zélandais ; arrêt des nouveaux logements sociaux et conversion d’une partie en accession.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13453/111838/file/10_Les+Loyalistes+et+le+Rassemblement...pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#F0C52F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 11</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Unis pour le Pays
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Une province sociale et de proximité, fondée sur le diagnostic territorial et une souveraineté en partenariat avec la France.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Solidarité</span>
+<span class="program-card__theme">Logement et santé</span>
+<span class="program-card__theme">Économie locale</span>
+<span class="program-card__theme">Souveraineté partenariale</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Diagnostic social et territorial dans quartiers, squats, villages et tribus, et étude d’un revenu de solidarité citoyenne.</li>
+<li>Plan progressif de résorption des squats avec relogement, poursuite de Do Kamo et action sur santé mentale et addictions.</li>
+<li>Soutien aux sites miniers, aux TPE et à l’économie coutumière, réorganisation des transports et réduction de la fracture numérique.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13454/111843/file/11_Profession+de+Foi+2026.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#61AAC9;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 12</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Un espoir pour demain
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Rétablir la confiance par un pacte de stabilité, la simplification économique et l’exemplarité des responsables publics.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Stabilité institutionnelle</span>
+<span class="program-card__theme">Économie</span>
+<span class="program-card__theme">Pouvoir d’achat</span>
+<span class="program-card__theme">Exemplarité publique</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Reprendre les discussions pour conclure un pacte de stabilité donnant de la visibilité aux ménages et aux investisseurs.</li>
+<li>Réduire doublons et dépenses publiques, élaborer une stratégie nickel et baisser durablement le coût de l’énergie.</li>
+<li>Agir sur transports, cantines, logement et produits essentiels, tout en renforçant formation professionnelle et passerelles vers l’emploi.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13455/111848/file/12_Unespoirpourdemain.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="province-nord-des-priorités-proches-des-leviers-différents" class="level2">
+<h2 class="anchored" data-anchor-id="province-nord-des-priorités-proches-des-leviers-différents">Province Nord : des priorités proches, des leviers différents</h2>
+<p>Les cinq textes parlent tous de développement économique, de jeunesse et de services accessibles dans les communes éloignées. La différence tient aux leviers. <strong>Agissons ensemble</strong> insiste sur la continuité de gestion ; <strong>UC-FLNKS</strong> sur la reprise de l’Usine du Nord et la reddition de comptes ; <strong>UNI</strong> détaille une doctrine nickel à maîtrise publique et un programme de rééquilibrage ; <strong>Alternative Nord</strong> propose un vaste renouvellement des politiques publiques sans beaucoup préciser les instruments ; <strong>Faire Pays</strong> transpose son triptyque dignité–institutions–souveraineté progressive.</p>
+<section id="les-priorités-affichées-dans-le-nord" class="level3">
+<h3 class="anchored" data-anchor-id="les-priorités-affichées-dans-le-nord">Les priorités affichées dans le Nord</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="theme-portrait-list">
+<article class="theme-portrait" style="--list-color:#305F9F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 1</span>
+<h3 class="theme-portrait__title anchored">
+
+Agissons ensemble pour le Nord
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Finances provinciales
+</span>
+<span class="theme-portrait__theme">
+
+Économie et mines
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse
+</span>
+<span class="theme-portrait__theme">
+
+Santé de proximité
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#747D88;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 2</span>
+<h3 class="theme-portrait__title anchored">
+
+Alternative Nord pour un pays souverain
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Politiques publiques
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse
+</span>
+<span class="theme-portrait__theme">
+
+Culture et interculturalité
+</span>
+<span class="theme-portrait__theme">
+
+Pleine souveraineté
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#A8B1BB;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 3</span>
+<h3 class="theme-portrait__title anchored">
+
+UC-FLNKS
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Usine du Nord
+</span>
+<span class="theme-portrait__theme">
+
+Services de proximité
+</span>
+<span class="theme-portrait__theme">
+
+Désenclavement
+</span>
+<span class="theme-portrait__theme">
+
+Gouvernance
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#4F8F6A;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 4</span>
+<h3 class="theme-portrait__title anchored">
+
+Faire Pays
+</h3>
+<p>Transversal / pro-pays</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Pouvoir d’achat
+</span>
+<span class="theme-portrait__theme">
+
+Services essentiels
+</span>
+<span class="theme-portrait__theme">
+
+Institutions
+</span>
+<span class="theme-portrait__theme">
+
+Souveraineté par étapes
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#F0C52F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 5</span>
+<h3 class="theme-portrait__title anchored">
+
+UNI
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Nickel public
+</span>
+<span class="theme-portrait__theme">
+
+Rééquilibrage
+</span>
+<span class="theme-portrait__theme">
+
+Justice sociale
+</span>
+<span class="theme-portrait__theme">
+
+Environnement
+</span>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section id="les-mots-signatures-du-nord" class="level3">
+<h3 class="anchored" data-anchor-id="les-mots-signatures-du-nord">Les mots-signatures du Nord</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://contours.nc/posts/provinciales-2026-professions-foi/index_files/figure-html/nuages-nord-1.png" class="img-fluid figure-img" width="1920"></p>
+<figcaption>Mots distinctifs de chaque circulaire par rapport aux quatre autres textes du Nord.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="program-grid">
+<article class="program-card" style="--list-color:#305F9F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 1</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Agissons ensemble pour le Nord
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Une union non-indépendantiste centrée sur la rigueur financière, la reprise économique et les services de proximité.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Finances provinciales</span>
+<span class="program-card__theme">Économie et mines</span>
+<span class="program-card__theme">Jeunesse</span>
+<span class="program-card__theme">Santé de proximité</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Préserver les services essentiels, les aides aux communes et les investissements utiles par une gestion financière rigoureuse.</li>
+<li>Soutenir entreprises, agriculture, pêche, tourisme et reprise minière et métallurgique.</li>
+<li>Renforcer formation, apprentissage et insertion, ainsi que les soins dans les communes éloignées.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13439/111757/file/01_circ_elec_province_nord_v2+(1).pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#747D88;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 2</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Alternative Nord pour un pays souverain
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Renouveler l’ensemble des politiques provinciales tout en préparant le transfert des compétences et la pleine souveraineté.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Politiques publiques</span>
+<span class="program-card__theme">Jeunesse</span>
+<span class="program-card__theme">Culture et interculturalité</span>
+<span class="program-card__theme">Pleine souveraineté</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Renforcer santé, solidarité, enseignement, activités socio-éducatives, sport et culture.</li>
+<li>Développer formation et insertion des jeunes, condition féminine, économie et protection environnementale.</li>
+<li>Poursuivre les transferts de compétences et les négociations vers la pleine souveraineté, avec des réformes limitant la dette future.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13440/111762/file/02_Profession+de+foi+Alterative+Nord.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#A8B1BB;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 3</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+UC-FLNKS
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Relancer l’économie du Nord autour de Koniambo, du désenclavement et d’une gouvernance provinciale plus contrôlable.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Usine du Nord</span>
+<span class="program-card__theme">Services de proximité</span>
+<span class="program-card__theme">Désenclavement</span>
+<span class="program-card__theme">Gouvernance</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Copiloter la reprise de l’Usine du Nord, diversifier les filières et accompagner les porteurs de projets.</li>
+<li>Sanctuariser la santé, restaurer les dispositifs jeunesse et agir sur numérique, eau, énergie et désenclavement.</li>
+<li>Publier une feuille de route et des comptes rendus annuels, simplifier les démarches et conduire réforme fiscale et redressement financier.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13441/111767/file/03_CIRCULAIRE+-+LISTE+UC-FLNKS+-+PROVINCE+NORD.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#4F8F6A;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 4</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Faire Pays
+</h3>
+<p class="program-card__camp">Transversal / pro-pays</p>
+<p class="program-card__angle">Articuler dignité quotidienne, institutions moins coûteuses et souveraineté construite progressivement et en partenariat.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Pouvoir d’achat</span>
+<span class="program-card__theme">Services essentiels</span>
+<span class="program-card__theme">Institutions</span>
+<span class="program-card__theme">Souveraineté par étapes</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Rétablir les aides à la scolarité, à la cantine et au transport, avec un Pass Mobilité accessible à tous.</li>
+<li>Rétablir une couverture médicale gratuite et alléger les charges pesant sur le travail.</li>
+<li>Rendre les institutions plus efficaces et moins coûteuses, et préparer une souveraineté partagée étape par étape.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13442/111772/file/04_Circulaire+Faire+Pays+Nord+d%C3%A9finitive.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#F0C52F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 5</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+UNI
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Faire du contrôle public du nickel, du rééquilibrage social et de la transition écologique les bases de la souveraineté.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Nickel public</span>
+<span class="program-card__theme">Rééquilibrage</span>
+<span class="program-card__theme">Justice sociale</span>
+<span class="program-card__theme">Environnement</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Trouver un repreneur pour Vavouto et maintenir une doctrine nickel fondée sur 51 % d’intérêts publics calédoniens.</li>
+<li>Soutenir l’investissement productif, les terres coutumières, l’économie verte et bleue, la recherche et le numérique.</li>
+<li>Poursuivre désenclavement, fiscalité progressive, lutte contre la vie chère, santé accessible et Plan Climat-Énergie.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13443/111777/file/05_UNI_circulaire.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="îles-loyauté-redresser-relier-produire" class="level2">
+<h2 class="anchored" data-anchor-id="îles-loyauté-redresser-relier-produire">Îles Loyauté : redresser, relier, produire</h2>
+<p>Trois verbes traversent presque tout le corpus loyaltien : <strong>redresser</strong> les finances, <strong>relier</strong> les îles et <strong>produire</strong> davantage sur place. Les contrastes portent moins sur le diagnostic que sur la précision et l’architecture des solutions. <strong>S’engager et œuvrer</strong>, <strong>Palika Îles</strong> et <strong>Baselaia</strong> donnent des objectifs, montants ou dispositifs très identifiables ; <strong>Un nouveau souffle</strong>, <strong>UC-FLNKS Îles</strong> et <strong>UCC</strong> formulent davantage une méthode et un cap ; <strong>Nation autochtone</strong> organise son programme autour de la justice sociale et de la gouvernance autochtone.</p>
+<section id="les-priorités-affichées-aux-îles" class="level3">
+<h3 class="anchored" data-anchor-id="les-priorités-affichées-aux-îles">Les priorités affichées aux Îles</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="theme-portrait-list">
+<article class="theme-portrait" style="--list-color:#F0C52F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 1</span>
+<h3 class="theme-portrait__title anchored">
+
+Palika Îles
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Redressement financier
+</span>
+<span class="theme-portrait__theme">
+
+Transport
+</span>
+<span class="theme-portrait__theme">
+
+Santé
+</span>
+<span class="theme-portrait__theme">
+
+Autonomie productive
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#305F9F;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 2</span>
+<h3 class="theme-portrait__title anchored">
+
+Un nouveau souffle
+</h3>
+<p>Non-indépendantiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Finances
+</span>
+<span class="theme-portrait__theme">
+
+Mobilité
+</span>
+<span class="theme-portrait__theme">
+
+Initiative locale
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#747D88;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 3</span>
+<h3 class="theme-portrait__title anchored">
+
+Baselaia
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Équité
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse
+</span>
+<span class="theme-portrait__theme">
+
+Gouvernance
+</span>
+<span class="theme-portrait__theme">
+
+Économie locale
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#828E9A;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 4</span>
+<h3 class="theme-portrait__title anchored">
+
+Nation autochtone
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Justice sociale
+</span>
+<span class="theme-portrait__theme">
+
+Jeunesse
+</span>
+<span class="theme-portrait__theme">
+
+Valeurs autochtones
+</span>
+<span class="theme-portrait__theme">
+
+Participation
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#909CA9;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 5</span>
+<h3 class="theme-portrait__title anchored">
+
+UC-FLNKS Îles
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Souveraineté
+</span>
+<span class="theme-portrait__theme">
+
+Rééquilibrage
+</span>
+<span class="theme-portrait__theme">
+
+Pouvoir local
+</span>
+<span class="theme-portrait__theme">
+
+Transitions
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#9CA7B2;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 6</span>
+<h3 class="theme-portrait__title anchored">
+
+S'engager et oeuvrer
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Finances chiffrées
+</span>
+<span class="theme-portrait__theme">
+
+Continuité territoriale
+</span>
+<span class="theme-portrait__theme">
+
+Santé
+</span>
+<span class="theme-portrait__theme">
+
+Filières locales
+</span>
+</div>
+</article>
+<article class="theme-portrait" style="--list-color:#A8B1BB;">
+<div class="theme-portrait__identity">
+<span class="theme-portrait__number">Liste 7</span>
+<h3 class="theme-portrait__title anchored">
+
+Union pour construire dans le consensus
+</h3>
+<p>Indépendantiste / souverainiste</p>
+</div>
+<div class="theme-portrait__themes">
+<span class="theme-portrait__theme">
+
+Gestion financière
+</span>
+<span class="theme-portrait__theme">
+
+Économie locale
+</span>
+<span class="theme-portrait__theme">
+
+Qualité de vie
+</span>
+<span class="theme-portrait__theme">
+
+Souveraineté
+</span>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section id="les-mots-signatures-des-îles" class="level3">
+<h3 class="anchored" data-anchor-id="les-mots-signatures-des-îles">Les mots-signatures des Îles</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://contours.nc/posts/provinciales-2026-professions-foi/index_files/figure-html/nuages-iles-1.png" class="img-fluid figure-img" width="2240"></p>
+<figcaption>Mots distinctifs de chaque circulaire par rapport aux six autres textes des Îles Loyauté.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="program-grid">
+<article class="program-card" style="--list-color:#F0C52F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 1</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Palika Îles
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Redresser les comptes et transformer transport, santé et production locale en conditions concrètes de la souveraineté.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Redressement financier</span>
+<span class="program-card__theme">Transport</span>
+<span class="program-card__theme">Santé</span>
+<span class="program-card__theme">Autonomie productive</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Apurer plus de 4 milliards de dette, maîtriser les dépenses et soumettre les actions à une évaluation rigoureuse.</li>
+<li>Sécuriser durablement les dessertes aériennes et maritimes et construire un schéma de transport à l’échelle du pays.</li>
+<li>Moderniser les dispensaires, viser l’autonomie énergétique en 2030 et structurer des coopératives de production et transformation locales.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13432/111711/file/01_Circulaire+PALIKA+%C3%8ELES+VF.pdf+(210+x+297+mm)+(2).pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#305F9F;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 2</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Un nouveau souffle
+</h3>
+<p class="program-card__camp">Non-indépendantiste</p>
+<p class="program-card__angle">Une ligne de sérieux budgétaire et d’autonomie locale qui privilégie la méthode plutôt qu’un catalogue de dispositifs.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Finances</span>
+<span class="program-card__theme">Mobilité</span>
+<span class="program-card__theme">Initiative locale</span>
+<span class="program-card__theme">Jeunesse</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Assainir les finances de la Province et remettre la responsabilité au cœur de la gestion.</li>
+<li>Désenclaver les îles et améliorer les mobilités.</li>
+<li>Soutenir emploi, entrepreneuriat, initiatives locales, jeunesse, formation et transmission culturelle.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13433/111716/file/02_PdF+Karyl+TRENYIWA-3.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#747D88;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 3</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Baselaia
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Une liste chrétienne et coutumière axée sur l’équité, la transparence administrative et l’investissement dans la jeunesse.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Équité</span>
+<span class="program-card__theme">Jeunesse</span>
+<span class="program-card__theme">Gouvernance</span>
+<span class="program-card__theme">Économie locale</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Affecter pendant cinq ans les indemnités nettes de la tête de liste — plus de 30 millions de F CFP annoncés — à la formation et aux microprojets des jeunes.</li>
+<li>Plan de désendettement, diagnostic territorial, permanence du président et sanctions contre les absences injustifiées des élus.</li>
+<li>Améliorer dessertes et infrastructures, télémédecine, agriculture, pêche, tourisme et transformation locale.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13434/111721/file/03_Circulaire+BASELAIA.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#828E9A;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 4</span>
+<span class="program-card__precision medium">Mesures identifiées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Nation autochtone
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Construire un bouclier social autochtone associant jeunesse, protection des écosystèmes et participation coutumière.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Justice sociale</span>
+<span class="program-card__theme">Jeunesse</span>
+<span class="program-card__theme">Valeurs autochtones</span>
+<span class="program-card__theme">Participation</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Plan provincial de justice sociale ciblant les tribus en difficulté et renforcement de la santé, de l’école et du logement.</li>
+<li>Plan emploi-émancipation des jeunes et soutien aux coopératives, circuits courts et activités locales.</li>
+<li>Cogestion coutumière des écosystèmes, transmission des langues et participation accrue des chefferies, femmes, jeunes et associations.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13456/111853/file/04+Profession+de+foi.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#909CA9;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 5</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+UC-FLNKS Îles
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Bâtir la souveraineté par l’autonomie alimentaire, énergétique et économique et par le pouvoir d’agir des îles et des tribus.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Souveraineté</span>
+<span class="program-card__theme">Rééquilibrage</span>
+<span class="program-card__theme">Pouvoir local</span>
+<span class="program-card__theme">Transitions</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Assainir la gouvernance, réduire la dépendance aux dotations et restaurer des marges d’investissement productif.</li>
+<li>Redonner aux îles, districts et tribus la capacité de décider, structurer et exécuter les politiques de proximité.</li>
+<li>Organiser des démarches participatives par île et investir dans les transitions numérique, écologique et économique.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13435/111726/file/05_CIRCULAIRE+LISTE+UC-FLNKS+I%CC%82LES+-+PV+DES+I%CC%82LES.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#9CA7B2;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 6</span>
+<span class="program-card__precision high">Mesures détaillées</span>
+</div>
+<h3 class="program-card__title anchored">
+
+S'engager et oeuvrer
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Le programme le plus chiffré : redressement financier, équipements de transport, santé et filières locales au service de la souveraineté.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Finances chiffrées</span>
+<span class="program-card__theme">Continuité territoriale</span>
+<span class="program-card__theme">Santé</span>
+<span class="program-card__theme">Filières locales</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Plan 2027-2031 : masse salariale ramenée à 42-44 %, épargne brute à 8-10 % et 1,2 à 1,5 milliard de F CFP d’investissement annuel.</li>
+<li>Financer le Betico 3 pour une livraison en 2028, adopter un schéma intégré des transports et équiper Tiga d’une barge et d’une rampe.</li>
+<li>Régler les dettes sanitaires, recruter des soignants et recentrer la SODIL sur des filières locales annoncées jusqu’à 2,5 milliards de F CFP par an.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13436/111731/file/06_S+ENGAGER+ET+OEUVRE+POUR+LA+PROSPERITE+DE+NOTRE+PROVINCE+ET+LA+SOUVERAINETE+DE+NOTRE+PAYS.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+<article class="program-card" style="--list-color:#A8B1BB;">
+<div class="program-card__topline">
+<span class="program-card__number">Liste 7</span>
+<span class="program-card__precision low">Orientations générales</span>
+</div>
+<h3 class="program-card__title anchored">
+
+Union pour construire dans le consensus
+</h3>
+<p class="program-card__camp">Indépendantiste / souverainiste</p>
+<p class="program-card__angle">Construire une souveraineté responsable par des finances saines, l’initiative privée et une amélioration ciblée de la qualité de vie.</p>
+<div class="program-card__themes">
+<span class="program-card__theme">Gestion financière</span>
+<span class="program-card__theme">Économie locale</span>
+<span class="program-card__theme">Qualité de vie</span>
+<span class="program-card__theme">Souveraineté</span>
+</div>
+<h4 class="anchored">Mesures ou engagements mis en avant</h4>
+<ul class="program-card__measures">
+<li>Rétablir des finances saines et recentrer les politiques provinciales sur des compétences soutenables.</li>
+<li>Développer une économie locale créatrice d’emplois par des partenariats favorisant l’initiative entrepreneuriale privée.</li>
+<li>Améliorer l’accès à la santé, créer des espaces hybrides culture-sport-loisirs, repenser la mobilité et associer les jeunes aux politiques provinciales.</li>
+</ul>
+<a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13437/111736/file/07_CIRCULAIRE+UCC+FLNKS+ILES+(1).pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
+</article>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="les-grandes-lignes-de-partage" class="level2">
+<h2 class="anchored" data-anchor-id="les-grandes-lignes-de-partage">Les grandes lignes de partage</h2>
+<section id="vie-chère-même-problème-instruments-opposés" class="level3">
+<h3 class="anchored" data-anchor-id="vie-chère-même-problème-instruments-opposés">Vie chère : même problème, instruments opposés</h3>
+<div class="solution-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Logique d’action</th>
+<th>Exemples de solutions mises en avant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Protéger directement le budget des ménages</strong></td>
+<td>Bouclier prix famille-retraité et aides restaurées chez <em>Kanaky pour tous</em> ; bouclier alimentaire chez <em>Pour une Calédonie française</em> ; panier de produits essentiels et ticket Tanéo à 200 F chez <em>Nous, réunis !</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Réduire prélèvements et coûts d’importation</strong></td>
+<td>Baisse des impôts et du coût du travail, suppression des droits de succession et des droits de douane australiens et néo-zélandais chez <em>Les Loyalistes et Le Rassemblement</em> ; allègement des charges sur le travail chez <em>Faire Pays</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Agir sur les monopoles</strong></td>
+<td>Sanctions contre les importateurs et possible ouverture à un second importateur chez <em>France-Calédonie, une patrie</em> ; lutte contre les monopoles chez <em>Pour une Calédonie française</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Produire et transformer localement</strong></td>
+<td>Plan « manger local et moins cher » chez <em>Kanaky pour tous</em> ; fonds pour la production locale chez <em>Nous, réunis !</em> ; agriculture, pêche, coopératives et unités de transformation dans plusieurs listes du Nord et des Îles.</td>
+</tr>
+<tr class="odd">
+<td><strong>Baisser les coûts de transport et d’énergie</strong></td>
+<td>Pass Mobilité chez <em>Faire Pays</em> ; ticket Tanéo à 200 F chez <em>Nous, réunis !</em> ; baisse du coût de l’énergie chez <em>Un espoir pour demain</em> ; objectif de baisse de l’électricité par le nucléaire chez <em>France-Calédonie, une patrie</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Cibler aides et services essentiels</strong></td>
+<td>Aides sociales concentrées sur les ménages précaires chez <em>Un autre monde est possible</em> ; aides à la cantine, au transport et à la scolarité chez <em>Faire Pays</em> ; étude d’un revenu de solidarité citoyenne chez <em>Unis pour le Pays</em>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sécurité-et-jeunesse-sanctionner-prévenir-ou-insérer" class="level3">
+<h3 class="anchored" data-anchor-id="sécurité-et-jeunesse-sanctionner-prévenir-ou-insérer">Sécurité et jeunesse : sanctionner, prévenir ou insérer</h3>
+<div class="solution-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Logique d’action</th>
+<th>Exemples de solutions mises en avant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Renforcer la sanction et les moyens judiciaires</strong></td>
+<td>Tolérance zéro, moyens supplémentaires pour les forces de l’ordre et responsabilisation parentale chez <em>Les Loyalistes et Le Rassemblement</em> ; nouveau centre pénitentiaire chez <em>France-Calédonie, une patrie</em> ; justice accélérée chez <em>Pour une Calédonie française</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Encadrer par le service civique</strong></td>
+<td>Service civique obligatoire pour les jeunes déscolarisés chez <em>France-Calédonie, une patrie</em> ; service civique et Contrat Premier Emploi chez <em>Pour une Calédonie française</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Insérer par l’emploi et la formation</strong></td>
+<td>Clauses sociales, parcours d’insertion, travail alternatif et aide au permis chez <em>Kanaky pour tous</em> ; formation et apprentissage chez <em>Agissons ensemble pour le Nord</em> ; microprojets de jeunes chez <em>Baselaia</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Prévenir par les services de proximité</strong></td>
+<td>Santé mentale et addictions dans le plan de <em>Unis pour le Pays</em> ; restauration des dispositifs jeunesse et des services de proximité chez <em>UC-FLNKS Nord</em> ; plan emploi-émancipation et justice sociale chez <em>Nation autochtone</em>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="souveraineté-un-horizon-mais-aussi-une-politique-sectorielle" class="level3">
+<h3 class="anchored" data-anchor-id="souveraineté-un-horizon-mais-aussi-une-politique-sectorielle">Souveraineté : un horizon, mais aussi une politique sectorielle</h3>
+<div class="solution-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Logique d’action</th>
+<th>Exemples de solutions mises en avant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Maintenir l’ancrage français</strong></td>
+<td>Ancrage dans la République chez <em>France-Calédonie, une patrie</em> et <em>Pour une Calédonie française</em> ; stabilité institutionnelle préalable à la relance chez <em>Un espoir pour demain</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Aller vers la pleine souveraineté</strong></td>
+<td>Accession préparée chez <em>Kanaky pour tous</em> ; poursuite des transferts de compétences et des négociations chez <em>Alternative Nord pour un pays souverain</em> ; souveraineté fondée sur le contrôle public du nickel chez <em>UNI</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Construire un partenariat par étapes</strong></td>
+<td>Souveraineté partagée et progressive chez <em>Faire Pays</em> ; souveraineté en partenariat avec la France chez <em>Unis pour le Pays</em> ; poursuite négociée de l’émancipation chez <em>Une Province pour tous</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Développer des souverainetés sectorielles</strong></td>
+<td>Autonomie alimentaire et énergétique chez <em>Palika Îles</em> et <em>UC-FLNKS Îles</em> ; continuité territoriale, santé et filières locales chez <em>S’engager et œuvrer</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Redonner du pouvoir aux territoires</strong></td>
+<td>Capacité de décision des îles, districts et tribus chez <em>UC-FLNKS Îles</em> ; participation accrue des chefferies, femmes et jeunes chez <em>Nation autochtone</em>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="finances-publiques-la-contrainte-la-plus-visible-aux-îles" class="level3">
+<h3 class="anchored" data-anchor-id="finances-publiques-la-contrainte-la-plus-visible-aux-îles">Finances publiques : la contrainte la plus visible aux Îles</h3>
+<div class="solution-table">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Logique d’action</th>
+<th>Exemples de solutions mises en avant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Apurer la dette et maîtriser les dépenses</strong></td>
+<td>Apurement de plus de 4 milliards de F CFP et évaluation des actions chez <em>Palika Îles</em> ; plan de désendettement chez <em>Baselaia</em> ; finances saines et compétences soutenables chez <em>Union pour construire dans le consensus</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Fixer des objectifs budgétaires chiffrés</strong></td>
+<td>Plan 2027-2031 de <em>S’engager et œuvrer</em> : masse salariale à 42–44 %, épargne brute à 8–10 % et 1,2 à 1,5 milliard de F CFP d’investissement annuel.</td>
+</tr>
+<tr class="odd">
+<td><strong>Rendre la gestion contrôlable</strong></td>
+<td>Évaluation systématique chez <em>Palika Îles</em> ; diagnostic territorial, permanence présidentielle et sanctions d’absentéisme chez <em>Baselaia</em> ; feuille de route et comptes rendus annuels chez <em>UC-FLNKS Nord</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>Réduire le coût des institutions</strong></td>
+<td>Institutions plus efficaces et moins coûteuses chez <em>Faire Pays</em> ; réduction des doublons et des dépenses publiques chez <em>Un espoir pour demain</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Préserver une capacité d’investissement</strong></td>
+<td>Investissement productif et filières locales chez <em>Palika Îles</em>, <em>S’engager et œuvrer</em> et <em>UNI</em> ; maintien des services essentiels et des investissements utiles par une gestion rigoureuse chez <em>Agissons ensemble pour le Nord</em>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="limites" class="level2">
+<h2 class="anchored" data-anchor-id="limites">Limites</h2>
+<p>Les fiches sélectionnent trois engagements caractéristiques par document : elles ne reproduisent donc pas toutes les propositions. Le degré de précision qualifie la rédaction du tract, pas la qualité politique du projet. Une mesure chiffrée peut être irréaliste ; une orientation générale peut être cohérente mais peu développée dans ce format.</p>
+<p>Les portraits thématiques sont une synthèse de lecture, non un codage indépendant réalisé par plusieurs personnes : leur formulation peut donc être discutée. Les nuages ont la limite inverse. Ils sont calculés de manière reproductible, mais restent sensibles aux mots employés et à leur contexte. Un terme comme « souveraineté » peut être institutionnel, alimentaire ou énergétique ; c’est pourquoi la lecture lexicale et les fiches éditoriales sont présentées ensemble.</p>
+<details class="pf-details">
+<summary>
+Voir la qualité des transcriptions et la chaîne de traitement
+</summary>
+<div class="pf-details-body">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://contours.nc/posts/provinciales-2026-professions-foi/index_files/figure-html/longueur-documents-1.png" class="img-fluid figure-img" width="768"></p>
+<figcaption>Nombre de mots reconnus dans chaque document avant filtrage.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Les PDF ont d’abord été téléchargés avec leur URL, leur taille et leur empreinte MD5. Le texte natif a été conservé lorsqu’il était exploitable ; les documents-images ont été soumis à un OCR français–anglais. Les noms de candidates et candidats, les mots-outils et le vocabulaire administratif du scrutin ont été retirés avant l’analyse lexicale.</p>
+<p>Les termes répétés sont conservés ; les termes isolés ne sont admis que si leur racine apparaît au moins quatre fois dans l’ensemble du corpus. Cette règle complète les textes courts sans rouvrir la porte aux fragments OCR uniques.</p>
+<p>Les profils programmatiques ont ensuite été établis par relecture des 22 textes. Une mesure est classée « détaillée » lorsqu’elle comporte des dispositifs nommés, plusieurs modalités d’action, un montant, un calendrier ou une cible quantifiée.</p>
+</div>
+</details>
+</section>
+<section id="sources-et-reproductibilité" class="level2">
+<h2 class="anchored" data-anchor-id="sources-et-reproductibilité">Sources et reproductibilité</h2>
+<ul>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique">Portail officiel de la propagande électronique</a>, Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le 20/06/2026.</li>
+<li>Pages provinciales : <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Sud">Sud</a>, <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Nord">Nord</a> et <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-des-Iles-Loyaute">Îles Loyauté</a>.</li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Provinciales 2026 : qui propose quoi\,?},
+  date = {2026-06-21},
+  url = {https://contours.nc/posts/provinciales-2026-professions-foi/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Provinciales 2026 : qui propose
+quoi ?”</span> June 21, 2026. <a href="https://contours.nc/posts/provinciales-2026-professions-foi/">https://contours.nc/posts/provinciales-2026-professions-foi/</a>.
+</div></div></section></div> ]]></description>
+  <category>Élections</category>
+  <category>Provinciales 2026</category>
+  <category>Analyse textuelle</category>
+  <category>Data mining</category>
+  <guid>https://contours.nc/posts/provinciales-2026-professions-foi/</guid>
+  <pubDate>Sat, 20 Jun 2026 13:00:00 GMT</pubDate>
+  <media:content url="https://contours.nc/images/previews/provinciales-2026-professions-foi.webp" medium="image" type="image/webp"/>
+</item>
 <item>
   <title>Listes aux Provinciales 2026 : qui part ? qui reste ?</title>
   <dc:creator>Jonas Brouillon</dc:creator>
@@ -6373,10 +9077,19 @@ Unis pour le Pays
 
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Listes aux Provinciales 2026 : qui part\,? qui reste\,?},
+  date = {2026-06-15},
+  url = {https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Listes aux Provinciales 2026 : qui part ?
+qui reste ?”</span> June 15, 2026. <a href="https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/">https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/</a>.
+</div></div></section></div> ]]></description>
   <category>Élections</category>
-  <category>Nouvelle-Calédonie</category>
-  <category>Données</category>
+  <category>Data mining</category>
   <category>Provinciales 2026</category>
   <guid>https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/</guid>
   <pubDate>Sun, 14 Jun 2026 13:00:00 GMT</pubDate>
@@ -7704,7 +10417,18 @@ Figure&nbsp;4: Écart de participation entre les municipales 2020 et 2026 à Nou
 
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Regroupement des bureaux de vote à Nouméa : le débat est-il
+    vraiment clos\,?},
+  date = {2026-06-07},
+  url = {https://contours.nc/posts/participation-accessibilite-bureaux-noumea/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Regroupement des bureaux de vote à Nouméa
+: le débat est-il vraiment clos ?”</span> June 7, 2026. <a href="https://contours.nc/posts/participation-accessibilite-bureaux-noumea/">https://contours.nc/posts/participation-accessibilite-bureaux-noumea/</a>.
+</div></div></section></div> ]]></description>
   <category>Cartographie</category>
   <category>Élections</category>
   <category>Nouméa</category>
@@ -10251,7 +12975,18 @@ Variables de construction de l’indice
 </section>
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Cartographier le capital socio-économique en
+    Nouvelle-Calédonie},
+  date = {2026-05-29},
+  url = {https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Cartographier le capital socio-économique
+en Nouvelle-Calédonie.”</span> May 29, 2026. <a href="https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/">https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/</a>.
+</div></div></section></div> ]]></description>
   <category>Cartographie</category>
   <category>Inégalités</category>
   <category>Nouvelle-Calédonie</category>
@@ -12129,7 +14864,19 @@ Important
 </section>
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Quel est l’effet du regroupement des bureaux de vote sur les
+    temps de trajet à Nouméa\,?},
+  date = {2026-05-24},
+  url = {https://contours.nc/posts/regroupement-bureaux-vote-noumea/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Quel est l’effet du regroupement des
+bureaux de vote sur les temps de trajet à Nouméa ?”</span> May 24, 2026.
+<a href="https://contours.nc/posts/regroupement-bureaux-vote-noumea/">https://contours.nc/posts/regroupement-bureaux-vote-noumea/</a>.
+</div></div></section></div> ]]></description>
   <category>Cartographie</category>
   <category>Élections</category>
   <category>Nouméa</category>

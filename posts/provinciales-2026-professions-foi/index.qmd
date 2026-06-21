@@ -1,0 +1,746 @@
+---
+title: "Provinciales 2026 : qui propose quoi ?"
+subtitle: "Priorités, propositions et lignes de partage entre les listes"
+author: "Jonas Brouillon"
+date: "2026-06-21"
+lang: fr
+categories: ["Élections",  "Provinciales 2026", "Analyse textuelle", "Data mining"]
+tags: ["text mining", "professions de foi", "programmes", "propositions", "dataviz"]
+description: "Une analyse textuelle et une lecture détaillée des 22 professions de foi numériques des provinciales 2026 : thèmes dominants, mesures proposées et degré de précision des programmes."
+image: "../../images/previews/provinciales-2026-professions-foi.webp"
+image-alt: "Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.pf-lede {
+  max-width: 82ch;
+  font-size: 1.08rem;
+}
+
+.pf-stat-grid,
+.pf-overview-grid,
+.theme-portrait-list,
+.program-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.pf-stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin: 1.2rem 0 1.8rem;
+}
+
+.pf-overview-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.2rem 0 1.8rem;
+}
+
+.program-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1.25rem 0 2.2rem;
+}
+
+.pf-stat-card,
+.pf-overview-card,
+.pf-note,
+.pf-details,
+.theme-portrait,
+.program-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.06);
+}
+
+.pf-stat-card {
+  border-top: 4px solid var(--green);
+  padding: 0.82rem 0.95rem;
+}
+
+.pf-stat-value {
+  color: var(--ink);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.pf-stat-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+}
+
+.pf-stat-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+.pf-overview-card {
+  border-top: 4px solid #4f7c8a;
+  padding: 0.95rem 1rem;
+}
+
+.pf-overview-card h3 {
+  font-size: 1.02rem;
+  margin: 0 0 0.45rem;
+}
+
+.pf-overview-card p {
+  font-size: 0.91rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.pf-note {
+  border-left: 4px solid #4f7c8a;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.9rem 1rem;
+}
+
+.pf-note p:last-child {
+  margin-bottom: 0;
+}
+
+.pf-details {
+  margin: 1.2rem 0 1.8rem;
+  overflow: hidden;
+}
+
+.pf-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.9rem 1rem;
+}
+
+.pf-details-body {
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.pf-details-body > :last-child {
+  margin-bottom: 0;
+}
+
+.theme-portrait-list {
+  gap: 0.62rem;
+  margin: 1rem 0 1.8rem;
+}
+
+.theme-portrait {
+  align-items: center;
+  border-left: 4px solid var(--list-color, #8d99a6);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(155px, 0.8fr) minmax(0, 1.6fr);
+  padding: 0.78rem 0.88rem;
+}
+
+.theme-portrait__identity {
+  min-width: 0;
+}
+
+.theme-portrait__number {
+  color: var(--muted);
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  margin-bottom: 0.16rem;
+  text-transform: uppercase;
+}
+
+.theme-portrait__title {
+  align-items: center;
+  display: flex;
+  gap: 0.48rem;
+  font-size: 1rem;
+  margin: 0 0 0.14rem;
+}
+
+.theme-portrait__list-dot {
+  background: var(--list-color, #8d99a6);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px rgba(0, 0, 0, 0.1);
+  flex: 0 0 0.68rem;
+  height: 0.68rem;
+  width: 0.68rem;
+}
+
+.theme-portrait__identity p {
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin: 0;
+}
+
+.theme-portrait__themes {
+  display: grid;
+  gap: 0.38rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.theme-portrait__theme {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #383a36;
+  display: flex;
+  font-size: 0.78rem;
+  font-weight: 680;
+  gap: 0.42rem;
+  line-height: 1.25;
+  min-height: 2.15rem;
+  padding: 0.34rem 0.48rem;
+}
+
+.theme-portrait__dot {
+  background: #4f7c8a;
+  border-radius: 50%;
+  flex: 0 0 0.48rem;
+  height: 0.48rem;
+  width: 0.48rem;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.05rem;
+}
+.program-card {
+  border-top: 4px solid var(--list-color, #8d99a6);
+}
+
+.program-card__title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.program-card__dot {
+  width: .78rem;
+  height: .78rem;
+  border-radius: 999px;
+  background: var(--list-color, #8d99a6);
+  flex: 0 0 auto;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 3px rgba(0,0,0,.10);
+}
+
+.program-card__topline {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: space-between;
+}
+
+.program-card__number {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.program-card__precision {
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.48rem;
+}
+
+.program-card__precision.high {
+  background: #e8f3eb;
+  border-color: #82ad8d;
+  color: #24583a;
+}
+
+.program-card__precision.medium {
+  background: #e9f1f6;
+  border-color: #8baabb;
+  color: #345d70;
+}
+
+.program-card__precision.low {
+  background: #f3efe6;
+  border-color: #b9aa8b;
+  color: #6e5b38;
+}
+
+.program-card h3 {
+  font-size: 1.2rem;
+  margin: 0.62rem 0 0.12rem;
+}
+
+.program-card__camp {
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 0 0 0.68rem;
+}
+
+.program-card__angle {
+  border-left: 3px solid var(--green);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  padding-left: 0.7rem;
+}
+
+.program-card__themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.program-card__theme {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: #42403b;
+  font-size: 0.72rem;
+  font-weight: 650;
+  padding: 0.2rem 0.45rem;
+}
+
+.program-card h4 {
+  font-size: 0.88rem;
+  margin: 0 0 0.35rem;
+}
+
+.program-card__measures {
+  font-size: 0.88rem;
+  line-height: 1.42;
+  margin: 0 0 0.85rem;
+  padding-left: 1.1rem;
+}
+
+.program-card__measures li + li {
+  margin-top: 0.36rem;
+}
+
+.program-card__source {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.solution-table td:first-child {
+  font-weight: 700;
+  min-width: 10rem;
+}
+
+.solution-table {
+  margin: 0.8rem 0 1.8rem;
+  overflow-x: auto;
+}
+
+.solution-table table {
+  margin-bottom: 0;
+  min-width: 42rem;
+}
+
+@media (max-width: 980px) {
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  #quarto-content,
+  main.content,
+  .content,
+  .page-columns,
+  .page-full,
+  .column-page,
+  .column-page-left,
+  .column-page-right,
+  .column-screen {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .page-columns {
+    display: block !important;
+  }
+
+  #quarto-content,
+  #title-block-header,
+  #title-block-header .quarto-title-banner {
+    inline-size: 100vw !important;
+    max-inline-size: 100vw !important;
+    width: 100vw !important;
+  }
+
+  .page-columns > *,
+  .page-full,
+  .column-page,
+  .column-page-left,
+  .column-page-right,
+  .column-screen {
+    grid-column: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title-meta,
+  main.content.column-page-left,
+  main.content.column-page-right {
+    box-sizing: border-box;
+    inline-size: calc(100vw - 2rem) !important;
+    max-inline-size: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #title-block-header,
+  #title-block-header .quarto-title,
+  #title-block-header .title,
+  #title-block-header .subtitle,
+  #title-block-header .description,
+  #title-block-header .quarto-title-meta,
+  .pf-lede,
+  .pf-stat-grid,
+  .pf-overview-grid,
+  .theme-portrait-list,
+  .program-grid,
+  .solution-table,
+  .pf-note,
+  .pf-details,
+  .program-card {
+    inline-size: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title-meta {
+    inline-size: calc(100vw - 2rem) !important;
+    max-inline-size: calc(100vw - 2rem) !important;
+    width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+
+  .solution-table {
+    contain: none;
+    display: block;
+    overflow: visible;
+  }
+
+  .solution-table table,
+  .solution-table tbody,
+  .solution-table tr,
+  .solution-table td {
+    display: block;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .solution-table table {
+    min-width: 0;
+  }
+
+  .solution-table colgroup,
+  .solution-table thead {
+    display: none;
+  }
+
+  .solution-table tr {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+  }
+
+  .solution-table td {
+    border: 0 !important;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .solution-table td:first-child {
+    background: color-mix(in srgb, var(--yellow) 14%, white);
+    border-bottom: 1px solid var(--border) !important;
+  }
+
+  #title-block-header {
+    overflow: hidden;
+  }
+
+  #title-block-header .quarto-categories {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  #title-block-header .quarto-title-meta {
+    display: grid !important;
+    gap: 0.8rem;
+    grid-template-columns: 1fr !important;
+  }
+
+  .content p,
+  .content ul,
+  .content ol,
+  .content h2,
+  .content h3,
+  .content h4,
+  .content .cell,
+  .content figure,
+  .content img {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #title-block-header .title {
+    font-size: clamp(1.7rem, 8.5vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  .quarto-title,
+  .quarto-title .title,
+  .description,
+  .content p,
+  .content li,
+  .program-card,
+  .program-card * {
+    overflow-wrap: anywhere;
+  }
+
+  .pf-overview-grid,
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-portrait {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+```
+
+::: pf-lede
+Que défend chaque liste, et surtout **comment compte-t-elle agir** ? Les `r n_documents` professions de foi numériques permettent de dresser une fiche d’identité de chaque candidature : sujets privilégiés, angle politique, instruments proposés et degré de précision du texte.
+:::
+
+```{r cartes-chiffres, results='asis'}
+cards <- tribble(
+  ~value, ~label, ~note,
+  as.character(n_documents), "circulaires analysées", paste("sur", n_listes_total, "listes candidates"),
+  fmt_num(n_mots_total, 0), "mots extraits", "avant nettoyage du corpus",
+  as.character(n_profiles_detailed), "textes très détaillés", "dispositifs nommés, montants ou objectifs précis"
+)
+
+cat('<div class="pf-stat-grid">\n')
+pwalk(cards, function(value, label, note) {
+  cat(sprintf(
+    paste0(
+      '<div class="pf-stat-card">',
+      '<div class="pf-stat-value">%s</div>',
+      '<div class="pf-stat-label">%s</div>',
+      '<div class="pf-stat-note">%s</div>',
+      '</div>\n'
+    ),
+    value, label, note
+  ))
+})
+cat('</div>\n')
+```
+
+::: pf-note
+**À lire comme une cartographie des tracts, pas comme une notation des programmes.** Les mesures ci-dessous sont reformulées au plus près des circulaires. Elles ne sont ni vérifiées, ni chiffrées à nouveau, ni évaluées quant à leur faisabilité. Le badge indique seulement le degré de détail du document : objectifs généraux, mesures identifiables ou engagements particulièrement détaillés.
+:::
+
+## La campagne en un coup d’œil
+
+```{=html}
+<div class="pf-overview-grid">
+  <div class="pf-overview-card">
+    <h3>Province Sud</h3>
+    <p>Le choix le plus éclaté : <strong>baisse des prélèvements et fermeté</strong>, <strong>boucliers sociaux et insertion</strong>, ou <strong>reconstruction transversale</strong>. La vie chère est presque partout, mais les instruments proposés divergent fortement.</p>
+  </div>
+  <div class="pf-overview-card">
+    <h3>Province Nord</h3>
+    <p>Les textes convergent sur <strong>l’emploi, la jeunesse et les services de proximité</strong>. Les différences portent surtout sur l’Usine du Nord, la méthode de gestion et la place de la souveraineté dans le programme provincial.</p>
+  </div>
+  <div class="pf-overview-card">
+    <h3>Îles Loyauté</h3>
+    <p><strong>Finances provinciales et transports</strong> structurent la campagne. Les listes se distinguent par le niveau de chiffrage, la place donnée aux valeurs coutumières et la manière de transformer l’autonomie locale en souveraineté.</p>
+  </div>
+</div>
+```
+
+## Comment lire les fiches ?
+
+Trois niveaux de lecture sont volontairement séparés.
+
+-   Les **portraits thématiques** donnent les quatre points d’entrée qui structurent chaque circulaire. Ils viennent de la lecture complète du texte : ils sont plus directs qu’un comptage, mais assument une part de synthèse éditoriale.
+-   Les **nuages de mots-signatures** retiennent jusqu’à seize termes particulièrement distinctifs dans la province. Les mots répétés dans le tract sont conservés ; un mot cité une seule fois n’entre dans le nuage que s’il est déjà bien attesté ailleurs dans le corpus. Un gros mot caractérise donc le vocabulaire propre du tract, sans nécessairement être son mot le plus fréquent en valeur absolue.
+-   Les **fiches programmatiques** viennent d’une relecture du document complet. L’encadré résume sa ligne propre ; les pastilles donnent ses thèmes ; les trois puces restituent les mesures ou engagements les plus caractéristiques.
+
+Les listes sont toujours présentées dans l’ordre du tirage au sort. Aucune projection statistique ne les range sur un axe politique implicite.
+
+## Province Sud : trois familles de réponses
+
+Dans le Sud, la crise économique et la vie chère sont des diagnostics partagés. Trois familles de réponses se dessinent toutefois : **agir sur les taxes, les droits de douane et le coût du travail** ; **renforcer les aides, les prix protégés et l’insertion** ; ou **reconstruire la confiance avant de stabiliser l’avenir institutionnel**. La sécurité constitue un deuxième clivage, entre fermeté pénale et traitement plus social de la jeunesse.
+
+### Les priorités affichées dans le Sud
+
+```{r portraits-sud}
+theme_portraits("Province Sud")
+```
+
+### Les mots-signatures du Sud
+
+```{r nuages-sud, fig.cap="Les mots sont regroupés par racine : singulier et pluriel ne comptent donc qu’une fois. La taille repose sur leur spécificité dans la province (TF-IDF), après retrait des noms de candidats, des lieux, du vocabulaire électoral générique et des artefacts OCR.", fig.width=15, fig.height=8, dpi=160}
+plot_wordclouds("Province Sud", ncol = 5)
+```
+
+```{r fiches-sud}
+program_cards("Province Sud")
+```
+
+## Province Nord : des priorités proches, des leviers différents
+
+Les cinq textes parlent tous de développement économique, de jeunesse et de services accessibles dans les communes éloignées. La différence tient aux leviers. **Agissons ensemble** insiste sur la continuité de gestion ; **UC-FLNKS** sur la reprise de l’Usine du Nord et la reddition de comptes ; **UNI** détaille une doctrine nickel à maîtrise publique et un programme de rééquilibrage ; **Alternative Nord** propose un vaste renouvellement des politiques publiques sans beaucoup préciser les instruments ; **Faire Pays** transpose son triptyque dignité–institutions–souveraineté progressive.
+
+### Les priorités affichées dans le Nord
+
+```{r portraits-nord}
+theme_portraits("Province Nord")
+```
+
+### Les mots-signatures du Nord
+
+```{r nuages-nord, fig.cap="Mots distinctifs de chaque circulaire par rapport aux quatre autres textes du Nord.", fig.width=12, fig.height=6.3, dpi=160}
+plot_wordclouds("Province Nord", ncol = 3)
+```
+
+```{r fiches-nord}
+program_cards("Province Nord")
+```
+
+## Îles Loyauté : redresser, relier, produire
+
+Trois verbes traversent presque tout le corpus loyaltien : **redresser** les finances, **relier** les îles et **produire** davantage sur place. Les contrastes portent moins sur le diagnostic que sur la précision et l’architecture des solutions. **S’engager et œuvrer**, **Palika Îles** et **Baselaia** donnent des objectifs, montants ou dispositifs très identifiables ; **Un nouveau souffle**, **UC-FLNKS Îles** et **UCC** formulent davantage une méthode et un cap ; **Nation autochtone** organise son programme autour de la justice sociale et de la gouvernance autochtone.
+
+### Les priorités affichées aux Îles
+
+```{r portraits-iles}
+theme_portraits("Province des Îles Loyauté")
+```
+
+### Les mots-signatures des Îles
+
+```{r nuages-iles, fig.cap="Mots distinctifs de chaque circulaire par rapport aux six autres textes des Îles Loyauté.", fig.width=14, fig.height=7.35, dpi=160}
+plot_wordclouds("Province des Îles Loyauté", ncol = 4)
+```
+
+```{r fiches-iles}
+program_cards("Province des Îles Loyauté")
+```
+
+## Les grandes lignes de partage
+
+### Vie chère : même problème, instruments opposés
+
+::: {.solution-table}
+| Logique d’action | Exemples de solutions mises en avant |
+|------------------------------------|------------------------------------|
+| **Protéger directement le budget des ménages** | Bouclier prix famille-retraité et aides restaurées chez *Kanaky pour tous* ; bouclier alimentaire chez *Pour une Calédonie française* ; panier de produits essentiels et ticket Tanéo à 200 F chez *Nous, réunis !*. |
+| **Réduire prélèvements et coûts d’importation** | Baisse des impôts et du coût du travail, suppression des droits de succession et des droits de douane australiens et néo-zélandais chez *Les Loyalistes et Le Rassemblement* ; allègement des charges sur le travail chez *Faire Pays*. |
+| **Agir sur les monopoles** | Sanctions contre les importateurs et possible ouverture à un second importateur chez *France-Calédonie, une patrie* ; lutte contre les monopoles chez *Pour une Calédonie française*. |
+| **Produire et transformer localement** | Plan « manger local et moins cher » chez *Kanaky pour tous* ; fonds pour la production locale chez *Nous, réunis !* ; agriculture, pêche, coopératives et unités de transformation dans plusieurs listes du Nord et des Îles. |
+| **Baisser les coûts de transport et d’énergie** | Pass Mobilité chez *Faire Pays* ; ticket Tanéo à 200 F chez *Nous, réunis !* ; baisse du coût de l’énergie chez *Un espoir pour demain* ; objectif de baisse de l’électricité par le nucléaire chez *France-Calédonie, une patrie*. |
+| **Cibler aides et services essentiels** | Aides sociales concentrées sur les ménages précaires chez *Un autre monde est possible* ; aides à la cantine, au transport et à la scolarité chez *Faire Pays* ; étude d’un revenu de solidarité citoyenne chez *Unis pour le Pays*. |
+:::
+
+### Sécurité et jeunesse : sanctionner, prévenir ou insérer
+
+::: {.solution-table}
+| Logique d’action | Exemples de solutions mises en avant |
+|------------------------------------|------------------------------------|
+| **Renforcer la sanction et les moyens judiciaires** | Tolérance zéro, moyens supplémentaires pour les forces de l’ordre et responsabilisation parentale chez *Les Loyalistes et Le Rassemblement* ; nouveau centre pénitentiaire chez *France-Calédonie, une patrie* ; justice accélérée chez *Pour une Calédonie française*. |
+| **Encadrer par le service civique** | Service civique obligatoire pour les jeunes déscolarisés chez *France-Calédonie, une patrie* ; service civique et Contrat Premier Emploi chez *Pour une Calédonie française*. |
+| **Insérer par l’emploi et la formation** | Clauses sociales, parcours d’insertion, travail alternatif et aide au permis chez *Kanaky pour tous* ; formation et apprentissage chez *Agissons ensemble pour le Nord* ; microprojets de jeunes chez *Baselaia*. |
+| **Prévenir par les services de proximité** | Santé mentale et addictions dans le plan de *Unis pour le Pays* ; restauration des dispositifs jeunesse et des services de proximité chez *UC-FLNKS Nord* ; plan emploi-émancipation et justice sociale chez *Nation autochtone*. |
+:::
+
+### Souveraineté : un horizon, mais aussi une politique sectorielle
+
+::: {.solution-table}
+| Logique d’action | Exemples de solutions mises en avant |
+|------------------------------------|------------------------------------|
+| **Maintenir l’ancrage français** | Ancrage dans la République chez *France-Calédonie, une patrie* et *Pour une Calédonie française* ; stabilité institutionnelle préalable à la relance chez *Un espoir pour demain*. |
+| **Aller vers la pleine souveraineté** | Accession préparée chez *Kanaky pour tous* ; poursuite des transferts de compétences et des négociations chez *Alternative Nord pour un pays souverain* ; souveraineté fondée sur le contrôle public du nickel chez *UNI*. |
+| **Construire un partenariat par étapes** | Souveraineté partagée et progressive chez *Faire Pays* ; souveraineté en partenariat avec la France chez *Unis pour le Pays* ; poursuite négociée de l’émancipation chez *Une Province pour tous*. |
+| **Développer des souverainetés sectorielles** | Autonomie alimentaire et énergétique chez *Palika Îles* et *UC-FLNKS Îles* ; continuité territoriale, santé et filières locales chez *S’engager et œuvrer*. |
+| **Redonner du pouvoir aux territoires** | Capacité de décision des îles, districts et tribus chez *UC-FLNKS Îles* ; participation accrue des chefferies, femmes et jeunes chez *Nation autochtone*. |
+:::
+
+### Finances publiques : la contrainte la plus visible aux Îles
+
+::: {.solution-table}
+| Logique d’action | Exemples de solutions mises en avant |
+|------------------------------------|------------------------------------|
+| **Apurer la dette et maîtriser les dépenses** | Apurement de plus de 4 milliards de F CFP et évaluation des actions chez *Palika Îles* ; plan de désendettement chez *Baselaia* ; finances saines et compétences soutenables chez *Union pour construire dans le consensus*. |
+| **Fixer des objectifs budgétaires chiffrés** | Plan 2027-2031 de *S’engager et œuvrer* : masse salariale à 42–44 %, épargne brute à 8–10 % et 1,2 à 1,5 milliard de F CFP d’investissement annuel. |
+| **Rendre la gestion contrôlable** | Évaluation systématique chez *Palika Îles* ; diagnostic territorial, permanence présidentielle et sanctions d’absentéisme chez *Baselaia* ; feuille de route et comptes rendus annuels chez *UC-FLNKS Nord*. |
+| **Réduire le coût des institutions** | Institutions plus efficaces et moins coûteuses chez *Faire Pays* ; réduction des doublons et des dépenses publiques chez *Un espoir pour demain*. |
+| **Préserver une capacité d’investissement** | Investissement productif et filières locales chez *Palika Îles*, *S’engager et œuvrer* et *UNI* ; maintien des services essentiels et des investissements utiles par une gestion rigoureuse chez *Agissons ensemble pour le Nord*. |
+:::
+
+## Limites
+
+Les fiches sélectionnent trois engagements caractéristiques par document : elles ne reproduisent donc pas toutes les propositions. Le degré de précision qualifie la rédaction du tract, pas la qualité politique du projet. Une mesure chiffrée peut être irréaliste ; une orientation générale peut être cohérente mais peu développée dans ce format.
+
+Les portraits thématiques sont une synthèse de lecture, non un codage indépendant réalisé par plusieurs personnes : leur formulation peut donc être discutée. Les nuages ont la limite inverse. Ils sont calculés de manière reproductible, mais restent sensibles aux mots employés et à leur contexte. Un terme comme « souveraineté » peut être institutionnel, alimentaire ou énergétique ; c’est pourquoi la lecture lexicale et les fiches éditoriales sont présentées ensemble.
+
+<details class="pf-details">
+
+<summary>Voir la qualité des transcriptions et la chaîne de traitement</summary>
+
+::: pf-details-body
+```{r longueur-documents, fig.cap="Nombre de mots reconnus dans chaque document avant filtrage.", fig.height=8.2}
+plot_document_lengths()
+```
+
+Les PDF ont d’abord été téléchargés avec leur URL, leur taille et leur empreinte MD5. Le texte natif a été conservé lorsqu’il était exploitable ; les documents-images ont été soumis à un OCR français–anglais. Les noms de candidates et candidats, les mots-outils et le vocabulaire administratif du scrutin ont été retirés avant l’analyse lexicale.
+
+Les termes répétés sont conservés ; les termes isolés ne sont admis que si leur racine apparaît au moins quatre fois dans l’ensemble du corpus. Cette règle complète les textes courts sans rouvrir la porte aux fragments OCR uniques.
+
+Les profils programmatiques ont ensuite été établis par relecture des `r n_documents` textes. Une mesure est classée « détaillée » lorsqu’elle comporte des dispositifs nommés, plusieurs modalités d’action, un montant, un calendrier ou une cible quantifiée.
+:::
+
+</details>
+
+## Sources et reproductibilité
+
+-   [Portail officiel de la propagande électronique](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique), Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le `r format(date_collecte, "%d/%m/%Y")`.
+-   Pages provinciales : [Sud](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Sud), [Nord](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Nord) et [Îles Loyauté](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-des-Iles-Loyaute).

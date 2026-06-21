@@ -25,5 +25,10 @@ La lettre sert surtout à suivre :
   <p>
     <a href="https://buttondown.com/refer/contoursnc" target="_blank" rel="noopener noreferrer">Powered by Buttondown.</a>
   </p>
+  <p class="newsletter-privacy">
+    Votre adresse est transmise à Buttondown et utilisée uniquement pour vous envoyer la newsletter de Contours.
+    Vous pouvez vous désabonner à tout moment avec le lien présent dans chaque message.
+    <a href="https://buttondown.com/legal/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité de Buttondown</a>.
+  </p>
 </form>
 ```

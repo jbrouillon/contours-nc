@@ -38,6 +38,17 @@ PREVIEWS = [
         / "flux-sud-1.png",
         "output": Path("images") / "previews" / "provinciales-2026-flux-sud.jpg",
     },
+    {
+        "source": Path("docs")
+        / "posts"
+        / "provinciales-2026-professions-foi"
+        / "index_files"
+        / "figure-html"
+        / "nuages-sud-1.png",
+        "output": Path("images")
+        / "previews"
+        / "provinciales-2026-professions-foi.webp",
+    },
 ]
 
 
@@ -53,14 +64,17 @@ def fit_on_canvas(src: Path, dst: Path, width: int = 1200, height: int = 630) ->
         canvas = Image.new("RGB", (width, height), "white")
         offset = ((width - image.width) // 2, (height - image.height) // 2)
         canvas.paste(image, offset)
-        canvas.save(
-            dst,
-            "JPEG",
-            quality=92,
-            optimize=True,
-            progressive=True,
-            subsampling=0,
-        )
+        if dst.suffix.lower() == ".webp":
+            canvas.save(dst, "WEBP", quality=92, method=6)
+        else:
+            canvas.save(
+                dst,
+                "JPEG",
+                quality=92,
+                optimize=True,
+                progressive=True,
+                subsampling=0,
+            )
 
     return True
 

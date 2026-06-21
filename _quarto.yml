@@ -56,6 +56,7 @@ format:
     include-after-body:
       - includes/mobile-toc.html
       - includes/social-floating.html
+      - includes/article-citation.html
       - includes/article-newsletter.html
       - text: |
           <div class="image-lightbox" id="image-lightbox" aria-hidden="true">

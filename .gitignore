@@ -5,6 +5,11 @@
 .quarto
 _site
 .DS_Store
+Thumbs.db
+desktop.ini
+.agents/
+__pycache__/
+*.py[cod]
 *.html
 !docs/**/*.html
 !includes/**/*.html
@@ -21,6 +26,18 @@ data/**/*.prj
 data/outputs_capital_socio_economique/
 data/outputs_provinciales_candidats/ocr_images/
 data/outputs_provinciales_candidats/ocr_text/
+# Sources téléchargeables ou exports intermédiaires recréables
+data/elections/data_raw/provinciales_2026/propagande_electronique/**/*.pdf
+# OCR : un corpus consolidé est conservé ; les caches et audits se régénèrent.
+data/elections/data_processed/provinciales_2026/propagande_electronique/**/*.txt
+data/elections/data_processed/provinciales_2026/propagande_electronique/manifest_extraction_*.csv
+data/elections/data_processed/provinciales_2026/propagande_electronique/corpus_ocr_*.csv
+data/elections/data_processed/provinciales_2026/propagande_electronique/audit_ocr_documents.csv
+data/elections/data_processed/provinciales_2026/propagande_electronique/artefacts_ocr_exclus.csv
+data/cartes/categories/
+# Les articles et `docs/` utilisent les variantes WebP correspondantes.
+data/cartes/provinciales_2019_focus/**/*.png
+images/previews/provinciales-2026-professions-foi.png
 posts/**/*.knit.md
 posts/**/index_files/
 

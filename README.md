@@ -19,7 +19,7 @@ python scripts/prepare_web_images.py
 python scripts/prepare_social_previews.py
 ```
 
-Les PNG originaux restent dans `data/cartes/` et `images/`. Le site affiche les versions WebP sans perte générées à côté, avec un favicon léger dédié. Les previews sociales des articles sont générées en JPEG 1200 x 630 dans `images/previews/`.
+Les PNG originaux restent dans `data/cartes/` et `images/`. Le site affiche des versions WebP optimisées générées à côté (qualité 92, dimension maximale de 3 500 px, ou sans perte lorsque ce format est plus léger), avec un favicon léger dédié. Les previews sociales des articles sont générées en JPEG ou WebP dans `images/previews/`.
 
 ```bash
 quarto render

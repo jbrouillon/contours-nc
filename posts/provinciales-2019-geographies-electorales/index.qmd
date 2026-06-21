@@ -1,0 +1,683 @@
+---
+title: "Retour sur les provinciales 2019 : la géographie des forces politiques"
+subtitle: "Avant d'aborder le scrutin de 2026, les bastions communaux et les zones de faiblesse du précédent vote"
+author: "Jonas Brouillon"
+date: "2026-06-21"
+lang: fr
+categories: ["Élections", "Cartographie", "Provinciales 2019"]
+tags: ["géographie électorale", "provinciales", "communes", "Nouvelle-Calédonie", "cartographie"]
+description: "Alors que le vote approche pour les provinciales 2026, retour sur les bastions communaux, les zones de faiblesse et les rapports de force du scrutin de 2019 dans les trois provinces."
+image: "../../data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp"
+image-alt: "Carte des listes arrivées en tête dans la Province Nord aux provinciales 2019"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+lightbox: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+library(dplyr)
+library(ggplot2)
+library(here)
+library(readr)
+library(scales)
+library(tidyr)
+
+knitr::opts_chunk$set(
+  fig.align = "center",
+  dpi = 160,
+  out.width = "100%"
+)
+
+theme_set(
+  theme_minimal(base_size = 12) +
+    theme(
+      plot.title = element_text(face = "bold", colour = "#282522"),
+      plot.subtitle = element_text(colour = "#625d55"),
+      plot.caption = element_text(colour = "#716b62", hjust = 0),
+      axis.title = element_text(colour = "#3d3934"),
+      axis.text = element_text(colour = "#3d3934"),
+      panel.grid.minor = element_blank(),
+      legend.position = "bottom",
+      plot.margin = margin(8, 16, 14, 8)
+    )
+)
+
+project_dir <- here::here()
+data_path <- function(...) file.path(project_dir, "data", ...)
+
+fmt_num <- function(x, digits = 1) {
+  number(x, accuracy = 10^-digits, decimal.mark = ",", big.mark = " ")
+}
+
+fmt_pct <- function(x, digits = 1) {
+  paste0(fmt_num(x, digits), " %")
+}
+
+province_levels <- c(
+  "Province Sud",
+  "Province Nord",
+  "Province des Iles"
+)
+
+province_labels <- c(
+  "Province Sud" = "Sud",
+  "Province Nord" = "Nord",
+  "Province des Iles" = "Îles"
+)
+
+party_labels <- c(
+  "AVENIR CONFIANCE" = "Avenir en confiance",
+  "CE" = "Calédonie ensemble",
+  "FLNKS" = "UC-FLNKS et Nationalistes",
+  "LEO" = "Éveil océanien",
+  "RN" = "Rassemblement national",
+  "ACT" = "Alliance citoyenne pour la transition",
+  "CA" = "Construire autrement",
+  "CNR" = "Calédonie nouvelle et réunie",
+  "DCC" = "Destin commun calédonien",
+  "MNIS" = "Mouvement néo-indépendantiste et souverainiste",
+  "PT" = "Parti travailliste",
+  "UNI" = "UNI",
+  "UC-FLNKS" = "UC-FLNKS et Nationalistes",
+  "AGISSONS NORD" = "Agissons pour le Nord",
+  "UNI-PLK" = "UNI-Palika",
+  "LKS" = "LKS",
+  "UKG" = "Unitaire Kanaky génération",
+  "AVEC NOUS" = "Avec nous",
+  "AUTRES" = "Autres listes"
+)
+
+party_colors <- c(
+  "AVENIR CONFIANCE" = "#3f74b8",
+  "CE" = "#67a9cf",
+  "FLNKS" = "#2f925d",
+  "LEO" = "#16a5ad",
+  "RN" = "#244e78",
+  "ACT" = "#c58c42",
+  "CA" = "#9a6f43",
+  "CNR" = "#78838d",
+  "DCC" = "#8b6e9f",
+  "MNIS" = "#80568c",
+  "PT" = "#cb3d3d",
+  "UNI" = "#f2be2d",
+  "UC-FLNKS" = "#2f925d",
+  "AGISSONS NORD" = "#829dbd",
+  "UNI-PLK" = "#f2be2d",
+  "LKS" = "#88a96d",
+  "UKG" = "#b97ca7",
+  "AVEC NOUS" = "#7b89a7",
+  "AUTRES" = "#aaa49b"
+)
+
+listes_path <- data_path(
+  "elections", "data_processed",
+  "provinciales_2019_listes_long_geolocalisees.csv"
+)
+bureaux_path <- data_path(
+  "elections", "data_processed",
+  "provinciales_2019_bureaux_geolocalises.csv"
+)
+reference_path <- data_path(
+  "elections", "metadata", "blocs_reference.csv"
+)
+sieges_path <- data_path(
+  "outputs_provinciales_candidats",
+  "provinciales_candidats_2019_2026_qualifies.csv"
+)
+
+required_files <- c(listes_path, bureaux_path, reference_path, sieges_path)
+missing_files <- required_files[!file.exists(required_files)]
+if (length(missing_files) > 0) {
+  stop("Fichiers manquants :\n", paste(missing_files, collapse = "\n"))
+}
+
+reference_listes <- read_csv(reference_path, show_col_types = FALSE) |>
+  filter(election == "provinciales_2019") |>
+  select(option_norm, parti, libelle)
+
+listes <- read_csv(listes_path, show_col_types = FALSE) |>
+  mutate(
+    province = factor(province, levels = province_levels),
+    option_norm = toupper(gsub("_", " ", candidature))
+  ) |>
+  left_join(reference_listes, by = "option_norm") |>
+  mutate(parti_label = coalesce(unname(party_labels[parti]), libelle, parti))
+
+if (any(is.na(listes$parti))) {
+  stop("Certaines listes des provinciales 2019 ne sont pas renseignées dans blocs_reference.csv.")
+}
+
+bureaux <- read_csv(bureaux_path, show_col_types = FALSE) |>
+  mutate(province = factor(province, levels = province_levels))
+
+sieges_listes <- read_csv(sieges_path, show_col_types = FALSE) |>
+  filter(annee == 2019) |>
+  distinct(
+    province, numero_liste,
+    sieges_congres_2019,
+    sieges_province_total_2019,
+    admis_repartition_2019
+  )
+
+province_denominators <- bureaux |>
+  group_by(province) |>
+  summarise(
+    inscrits = sum(inscrits, na.rm = TRUE),
+    votants = sum(votants, na.rm = TRUE),
+    exprimes = sum(exprimes, na.rm = TRUE),
+    participation = 100 * votants / inscrits,
+    .groups = "drop"
+  )
+
+commune_denominators <- bureaux |>
+  group_by(province, commune) |>
+  summarise(
+    inscrits = sum(inscrits, na.rm = TRUE),
+    votants = sum(votants, na.rm = TRUE),
+    exprimes = sum(exprimes, na.rm = TRUE),
+    participation = 100 * votants / inscrits,
+    .groups = "drop"
+  )
+
+province_scores <- listes |>
+  group_by(province, numero_liste, parti, parti_label) |>
+  summarise(voix = sum(voix, na.rm = TRUE), .groups = "drop") |>
+  left_join(province_denominators, by = "province") |>
+  left_join(
+    sieges_listes,
+    by = c("province" = "province", "numero_liste" = "numero_liste")
+  ) |>
+  mutate(pct = 100 * voix / exprimes)
+
+commune_scores <- listes |>
+  group_by(province, commune, parti, parti_label) |>
+  summarise(voix = sum(voix, na.rm = TRUE), .groups = "drop") |>
+  left_join(commune_denominators, by = c("province", "commune")) |>
+  mutate(pct = 100 * voix / exprimes)
+
+top_results <- province_scores |>
+  group_by(province) |>
+  slice_max(pct, n = 4, with_ties = FALSE) |>
+  arrange(province, pct) |>
+  ungroup() |>
+  mutate(
+    province_affichage = factor(
+      unname(province_labels[as.character(province)]),
+      levels = unname(province_labels)
+    ),
+    parti_facette = reorder(
+      paste(province_affichage, parti_label, sep = "___"),
+      pct
+    )
+  )
+
+province_party_sets <- list(
+  "Province Sud" = c("AVENIR CONFIANCE", "CE", "FLNKS", "LEO"),
+  "Province Nord" = c("UC-FLNKS", "UNI", "AGISSONS NORD"),
+  "Province des Iles" = c("UC-FLNKS", "UNI-PLK", "PT", "LKS")
+)
+
+plot_commune_profiles <- function(province_name, order_party) {
+  selected_parties <- province_party_sets[[province_name]]
+
+  commune_order <- commune_scores |>
+    filter(
+      as.character(province) == province_name,
+      parti == order_party
+    ) |>
+    arrange(pct) |>
+    pull(commune)
+
+  plot_data <- commune_scores |>
+    filter(as.character(province) == province_name) |>
+    mutate(
+      parti_affiche = if_else(parti %in% selected_parties, parti, "AUTRES")
+    ) |>
+    group_by(commune, parti_affiche) |>
+    summarise(pct = sum(pct), .groups = "drop") |>
+    mutate(
+      commune = factor(commune, levels = commune_order),
+      parti_affiche = factor(
+        parti_affiche,
+        levels = c(selected_parties, "AUTRES")
+      )
+    ) |>
+    arrange(commune, parti_affiche) |>
+    group_by(commune) |>
+    mutate(
+      milieu = sum(pct) - cumsum(pct) + pct / 2,
+      etiquette = if_else(pct >= 12, paste0(round(pct), " %"), NA_character_),
+      couleur_etiquette = if_else(
+        as.character(parti_affiche) %in% c("UNI", "UNI-PLK", "AUTRES"),
+        "#2b2926", "white"
+      )
+    ) |>
+    ungroup()
+
+  ggplot(
+    plot_data,
+    aes(x = commune, y = pct, fill = parti_affiche)
+  ) +
+    geom_col(width = 0.72) +
+    geom_text(
+      aes(y = milieu, label = etiquette, colour = couleur_etiquette),
+      size = 2.8,
+      fontface = "bold",
+      na.rm = TRUE
+    ) +
+    coord_flip() +
+    scale_y_continuous(
+      breaks = seq(0, 100, 20),
+      labels = label_number(suffix = " %", decimal.mark = ","),
+      expand = expansion(mult = c(0, 0))
+    ) +
+    scale_fill_manual(
+      values = party_colors,
+      breaks = c(selected_parties, "AUTRES"),
+      labels = unname(party_labels[c(selected_parties, "AUTRES")]),
+      drop = FALSE
+    ) +
+    scale_colour_identity() +
+    labs(
+      x = NULL,
+      y = "Part des suffrages exprimés",
+      fill = NULL,
+      caption = "Lecture : les communes sont classées selon le score de la force politique qui structure le plus nettement la province."
+    ) +
+    theme(
+      panel.grid.major.y = element_blank(),
+      legend.position = "bottom",
+      legend.box = "vertical",
+      axis.text.y = element_text(size = 9)
+    )
+}
+
+result_value <- function(province_name, party_code, variable = "pct") {
+  values <- province_scores |>
+    filter(
+      as.character(province) == province_name,
+      parti == party_code
+    ) |>
+    pull(all_of(variable))
+  if (length(values) == 0) return(NA_real_)
+  values[[1]]
+}
+
+participation_value <- function(province_name) {
+  province_denominators |>
+    filter(as.character(province) == province_name) |>
+    pull(participation)
+}
+
+map_root <- data_path("cartes", "provinciales_2019_focus")
+province_map <- function(...) file.path(map_root, "province", ...)
+noumea_map <- function(...) file.path(map_root, "noumea", ...)
+```
+
+```{=html}
+<style>
+.p2019-lede {
+  max-width: 84ch;
+  font-size: 1.08rem;
+}
+
+.p2019-map-note {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0.5rem 0 1.2rem;
+}
+
+.p2019-plot {
+  margin: 1.2rem 0 1.8rem;
+}
+
+.p2019-plot img,
+.p2019-map-grid img {
+  border: 1px solid rgba(65, 58, 48, 0.14);
+  border-radius: 7px;
+}
+
+.p2019-map-grid {
+  margin: 1rem 0 1.8rem;
+}
+
+.p2019-related {
+  background: var(--surface-soft);
+  border-left: 4px solid var(--green);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  margin: 1.2rem 0;
+}
+</style>
+```
+
+## À une semaine du vote, pourquoi revenir à 2019 ?
+
+::: p2019-lede
+Les provinciales du 28 juin 2026 ne rejoueront pas mécaniquement celles du 12 mai 2019. Les coalitions ont changé, plusieurs listes se sont recomposées et la séquence institutionnelle ouverte depuis 2018 a profondément déplacé le débat. Mais 2019 reste le dernier point de comparaison à l’échelle provinciale : il montre **où chaque force disposait d’un socle**, où elle rencontrait ses limites et quelles communes formaient les véritables lignes de front.
+
+Ce retour ne cherche donc pas à annoncer le résultat de 2026. Il reconstitue la carte politique dont part le nouveau scrutin.
+:::
+
+Le contexte de 2019 était déjà exceptionnel. Le vote intervenait six mois après le premier référendum d’autodétermination. Les trois assemblées provinciales élues devaient à la fois gouverner leur territoire et envoyer une partie de leurs membres au Congrès, lui-même chargé d’élire le gouvernement collégial et d’accompagner la suite de l’accord de Nouméa.
+
+::: {.callout-note title="Ce que les provinciales décident"}
+-   Les électeurs choisissent les membres des assemblées du Sud, du Nord et des Îles ; une partie d’entre eux siège aussi au Congrès.
+-   La répartition des sièges ne retient que les listes dépassant 5 % des électeurs inscrits, un seuil plus exigeant que 5 % des seuls suffrages exprimés.
+-   En 2019, l’Avenir en confiance s’impose dans le Sud, tandis que les listes indépendantistes conservent la majorité dans le Nord et aux Îles. Au Congrès, l’Éveil océanien obtient trois sièges qui le placent au centre de plusieurs équilibres.
+:::
+
+Ces règles expliquent pourquoi le score brut ne suffit pas. Une liste peut être bien placée dans une province sans accéder à la répartition des sièges ; une autre peut obtenir un total provincial élevé grâce à quelques bastions très puissants. C’est précisément ce que les cartes communales permettent de voir.
+
+## Le rapport de force général en 2019
+
+Le premier graphique rappelle les quatre principales listes dans chaque province. Il ne décrit pas encore leurs territoires, mais il pose les trois scènes politiques qui seront ensuite détaillées.
+
+```{r resultats-provinces, fig.cap="Les quatre premières listes de chaque province aux provinciales 2019.", fig.height=8.8, fig.width=10}
+ggplot(top_results, aes(x = pct, y = parti_facette, fill = parti)) +
+  geom_col(width = 0.68) +
+  geom_text(
+    aes(
+      label = fmt_pct(pct),
+      hjust = if_else(pct >= 20, 1.08, -0.12),
+      colour = if_else(pct >= 20, "inside", "outside")
+    ),
+    size = 3.2,
+    fontface = "bold"
+  ) +
+  facet_wrap(~ province_affichage, scales = "free_y", ncol = 1) +
+  scale_y_discrete(labels = function(x) sub("^.*___", "", x)) +
+  scale_x_continuous(
+    labels = label_number(suffix = " %", decimal.mark = ","),
+    breaks = c(0, 10, 20, 30, 40),
+    limits = c(0, max(top_results$pct) * 1.16),
+    expand = expansion(mult = c(0, 0))
+  ) +
+  scale_fill_manual(values = party_colors, guide = "none") +
+  scale_colour_manual(
+    values = c("inside" = "white", "outside" = "#282522"),
+    guide = "none"
+  ) +
+  labs(x = "Part des suffrages exprimés", y = NULL) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    strip.text = element_text(face = "bold", size = 12, hjust = 0),
+    axis.text.y = element_text(size = 10),
+    panel.spacing.y = grid::unit(1, "lines")
+  )
+```
+
+Dans le Sud, l’Avenir en confiance avait distancé très largement Calédonie ensemble et la liste FLNKS. Dans le Nord, l’UNI et l’UC-FLNKS ne sont séparées que de quelques points. Aux Îles, l’UC-FLNKS était arrivé nettement en tête, mais trois autres forces indépendantistes ou souverainistes obtiennent des scores importants.
+
+Cette hiérarchie provinciale cache pourtant des configurations communales très différentes.
+
+## Province Sud : une domination loyaliste, mais pas un territoire uniforme
+
+L’Avenir en confiance avait recueilli `r fmt_pct(result_value("Province Sud", "AVENIR CONFIANCE"))` et obtenu 20 des 40 sièges de l’assemblée provinciale, dont 16 au Congrès. Calédonie ensemble 9, le FLNKS 7 et l’Éveil océanien 4. La domination de la liste conduite par Sonia Backès était donc nette, mais la carte montre plusieurs Sud politiques.
+
+### Sept communes pour l’Avenir en confiance, cinq pour le FLNKS
+
+L’Avenir en confiance était arrivé en tête à Nouméa (`50,4 %`), à Boulouparis (`46,5 %`), à Dumbéa (`37,6 %`), au Mont-Dore (`35,9 %`), à Bourail (`35,4 %`), à Païta (`33,0 %`) et dans la partie sud de Poya (`53,4 %`). Son assise est particulièrement forte dans la capitale et sur une grande partie de la côte Ouest.
+
+Le FLNKS dominait au contraire très largement Yaté (`83,3 %`), Thio (`69,2 %`), Sarraméa (`64,0 %`) et l’Île des Pins (`57,1 %`). Il arrive aussi en tête à Moindou (`34,7 %`). La coupure n’oppose donc pas simplement Nouméa au reste de la province : elle sépare surtout les espaces urbains et ouest les plus favorables aux listes loyalistes de plusieurs bastions indépendantistes de la côte Est et du Sud insulaire.
+
+Calédonie ensemble avait conservé une implantation propre dans le centre rural : la liste gagne Farino (`43,0 %`) et La Foa (`33,9 %`), et réalisait encore `32,8 %` à Poya Sud, `24,2 %` à Moindou et `21,3 %` à Bourail. Elle est beaucoup plus faible à Yaté, Thio et Sarraméa.
+
+```{r carte-vainqueur-sud, fig.cap="Province Sud : liste arrivée en tête et intensité de son avance autour des lieux de vote."}
+knitr::include_graphics(
+  province_map("province_sud_parti_en_tete_lisse_opacite_marge_moderee.webp")
+)
+```
+
+La couleur indique la liste arrivée en tête ; son opacité reflète l’écart avec la deuxième. Les zones pâles correspondent donc aux espaces les plus disputés.
+
+::: {.column-page .p2019-plot}
+```{r profils-communes-sud, fig.cap="Composition du vote dans les communes de la Province Sud.", fig.height=7.8, fig.width=13}
+plot_commune_profiles("Province Sud", "FLNKS")
+```
+:::
+
+### Quatre implantations bien distinctes dans le Sud
+
+Avec `8,6 %` dans la province, l’Éveil océanien n’était arrivé en tête dans aucune commune. Son vote n’est pourtant pas diffus. Il atteint `18,9 %` à Païta, `14,2 %` à Dumbéa et `11,8 %` au Mont-Dore, contre `5,5 %` à Nouméa. La liste fait donc apparaître une implantation océanienne propre dans les communes de l’agglomération, distincte à la fois de la carte loyaliste classique et des bastions FLNKS.
+
+Les cartes suivantes utilisent une échelle adaptée à chaque liste. Elles servent à comparer les zones fortes et faibles d’une même force, pas l’intensité des couleurs d’une carte à l’autre.
+
+:::: {.column-page .p2019-map-grid}
+::: {layout-ncol="2"}
+```{r carte-sud-aec, fig.cap="Avenir en confiance — Nouméa et la côte Ouest au cœur du vote."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_sud_avenir_confiance_echelle_adaptee.webp"))
+```
+
+```{r carte-sud-flnks, fig.cap="FLNKS — ses plus hauts niveaux dans l’Est et à l’Île des Pins."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_sud_flnks_echelle_adaptee.webp"))
+```
+
+```{r carte-sud-ce, fig.cap="Calédonie ensemble — un point fort dans le centre rural."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_sud_ce_echelle_adaptee.webp"))
+```
+
+```{r carte-sud-leo, fig.cap="Éveil océanien — une implantation concentrée dans le Grand Nouméa."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_sud_leo_echelle_adaptee.webp"))
+```
+:::
+::::
+
+### Nouméa : la majorité de l’Avenir en confiance n’efface pas les quartiers
+
+À Nouméa, l’Avenir en confiance avait dépassé la majorité absolue des exprimés, mais son score varie fortement à l’intérieur de la ville. En regroupant les lieux de vote selon le secteur où ils se trouvent, la liste atteint 67,6 % à Ouémo, 66,9 % à l’Anse-Vata Est, 66,3 % à N’Géa et environ 65 % à l’Orphelinat et à Trianon. Elle tombe en revanche à 20,5 % à Portes-de-Fer Nord, 20,9 % à Rivière-Salée Sud et 27,4 % à Logicoop.
+
+**Calédonie ensemble** présente la géographie la moins polarisée. Ses résultats restent généralement compris entre 16 % et 22 %. Ses meilleurs niveaux apparaissent à Rivière-Salée Sud (22,3 %), à la Vallée du Tir (21,0 %), à Logicoop (20,9 %) et à Tina (20,6 %). La liste est donc présente dans toute la ville, mais sans bastion comparable à ceux de l’Avenir en confiance.
+
+**Le FLNKS** dessine presque la carte inverse de la liste dominante. Il atteint 29,8 % à Portes-de-Fer Nord, 20,3 % à Rivière-Salée Nord-Est, 18,5 % à Rivière-Salée Sud et 16,0 % à Logicoop. Il reste sous 4 % à Magenta Tours, à l’Orphelinat, à Trianon, à l’Anse-Vata Est, à Ouémo et dans la Vallée des Colons Sud-Ouest.
+
+**L’Éveil océanien** est encore plus concentré. Ses meilleurs résultats se trouvent à Logicoop (16,5 %), à Rivière-Salée Sud (16,3 %) et à Normandie Nord (13,6 %). Dans plusieurs quartiers méridionaux — Orphelinat, Ouémo, Anse-Vata Est, Trianon — la liste reste sous 1 %. Même dans une commune très nettement remportée, les quatre principales forces s’appuient donc sur des espaces urbains très différents.
+
+Pour ce zoom aussi, chaque carte utilise sa propre échelle. Ce choix rend visibles les contrastes internes de chaque liste, y compris lorsque son score moyen à Nouméa est faible.
+
+:::: {.column-page .p2019-map-grid}
+::: {layout-ncol="2"}
+```{r carte-noumea-aec, fig.cap="Avenir en confiance à Nouméa — une majorité plus forte au centre et au sud."}
+knitr::include_graphics(noumea_map("partis_echelle_adaptee", "noumea_avenir_confiance_echelle_adaptee.webp"))
+```
+
+```{r carte-noumea-ce, fig.cap="Calédonie ensemble à Nouméa — un vote relativement homogène."}
+knitr::include_graphics(noumea_map("partis_echelle_adaptee", "noumea_ce_echelle_adaptee.webp"))
+```
+
+```{r carte-noumea-flnks, fig.cap="FLNKS à Nouméa — des points d’appui à Portes-de-Fer, Rivière-Salée et Logicoop."}
+knitr::include_graphics(noumea_map("partis_echelle_adaptee", "noumea_flnks_echelle_adaptee.webp"))
+```
+
+```{r carte-noumea-leo, fig.cap="Éveil océanien à Nouméa — une implantation plus visible au nord et à l’ouest."}
+knitr::include_graphics(noumea_map("partis_echelle_adaptee", "noumea_leo_echelle_adaptee.webp"))
+```
+:::
+::::
+
+### L’abstention renforce la fracture interne de Nouméa
+
+L’abstention avait atteint 34,3 % à Nouméa, mais cette moyenne communale recouvre un écart de près de 25 points. Parmi les secteurs regroupant des lieux de vote ordinaires, elle culmine à Portes-de-Fer Nord (49,7 %). Elle dépasse également 42 % à la Vallée du Tir, dans le centre-ville et à Logicoop, puis approche 40 % à Normandie Nord.
+
+À l’autre extrémité, l’abstention n’est que de 25,1 % à Ouémo, 25,3 % à Magenta Tours et 26,1 % à N’Géa. Elle reste sous 30 % à Portes-de-Fer Sud, dans la Vallée des Colons Sud-Ouest, à Motor-Pool et à l’Anse-Vata Est.
+
+Cette géographie recoupe partiellement celle des listes. Les secteurs où l’Avenir en confiance est le plus fort comptent souvent parmi les plus mobilisés ; Portes-de-Fer Nord, Logicoop ou Rivière-Salée associent davantage d’abstention à de meilleurs résultats du FLNKS ou de l’Éveil océanien. Le recoupement n’est toutefois pas parfait — le centre-ville présente par exemple une abstention élevée sans basculer vers ces listes — et il ne permet pas de savoir quels électeurs se sont abstenus.
+
+:::: {.column-page .p2019-map-grid}
+::: {layout-ncol="2"}
+```{r carte-noumea-abstention, fig.cap="Abstention à Nouméa — des niveaux élevés à Portes-de-Fer Nord, Logicoop, Vallée du Tir et dans le centre-ville."}
+knitr::include_graphics(noumea_map("participation_abstention", "noumea_abstention_echelle_adaptee.webp"))
+```
+
+```{r carte-noumea-participation, fig.cap="Participation à Nouméa — une mobilisation plus forte à Ouémo, N’Géa et dans plusieurs secteurs méridionaux."}
+knitr::include_graphics(noumea_map("participation_abstention", "noumea_participation_echelle_adaptee.webp"))
+```
+:::
+::::
+
+## Province Nord : l’UNI gagne la province, l’UC gagne la plupart des communes
+
+Le résultat provincial est serré : `38,5 %` pour l’UNI contre `36,0 %` pour l’UC-FLNKS. L’UNI obtient 10 des 22 sièges provinciaux, l’UC-FLNKS 9 et Agissons pour le Nord 3. Calédonie ensemble atteint pourtant `7,8 %` des exprimés, mais reste sous le seuil requis en part des inscrits et n’accède pas à la répartition.
+
+### Deux forces indépendantistes, deux géographies
+
+Le paradoxe apparent du Nord est simple : l’UC-FLNKS était arrivé en tête dans douze des dix-sept communes, mais l’UNI gagne la province grâce à des bastions plus concentrés et souvent très puissants.
+
+L’UC dépasse la moitié des voix à Canala (`59,3 %`) et Hienghène (`56,4 %`). Elle est également très forte à Bélep (`48,0 %`), Kaala-Gomen (`45,4 %`), Pouébo (`44,2 %`), Poya Nord (`42,2 %`), Poum (`41,2 %`) et Houaïlou (`40,4 %`). Elle arrive aussi en tête à Koné, Kouaoua, Ouégoa et Pouembout, parfois dans des configurations beaucoup plus serrées.
+
+L’UNI rassemble de son côté `59,5 %` à Touho, `59,3 %` à Poindimié, `53,4 %` à Ponérihouen et `51,4 %` à Voh. Ces quatre communes suffisent à dessiner un axe territorial très cohérent sur la côte Est centrale et autour de VKP. Les deux grandes listes indépendantistes ne sont donc pas interchangeables : elles additionnent des bassins électoraux différents.
+
+```{r carte-vainqueur-nord, fig.cap="Province Nord : liste arrivée en tête et intensité de son avance autour des lieux de vote."}
+knitr::include_graphics(
+  province_map("province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp")
+)
+```
+
+::: {.column-page .p2019-plot}
+```{r profils-communes-nord, fig.cap="Composition du vote dans les communes de la Province Nord.", fig.height=8.8, fig.width=13}
+plot_commune_profiles("Province Nord", "UC-FLNKS")
+```
+:::
+
+### Le vote non-indépendantiste est concentré sur quelques pôles
+
+Agissons pour le Nord n'était arrivé en tête qu'à Koumac, avec `39,7 %`. La liste obtient aussi `30,2 %` à Pouembout, `27,3 %` à Kouaoua, `18,1 %` à Ouégoa et `16,7 %` à Koné. Calédonie ensemble complète cette présence, surtout à Koumac (`21,4 %`), Poya Nord (`15,0 %`), Pouembout (`12,9 %`) et Koné (`12,2 %`).
+
+La carte non-indépendantiste du Nord est donc moins étendue qu’une simple lecture par blocs pourrait le laisser penser. Elle repose surtout sur Koumac, Pouembout, Koné et quelques espaces de la côte Ouest, avec une percée particulière d’Agissons pour le Nord à Kouaoua, sans doute par l'apport de sa tête de liste (Alcide Ponga était alors maire de Kouaoua).
+
+:::: {.column-page .p2019-map-grid}
+::: {layout-ncol="2"}
+```{r carte-nord-uc, fig.cap="UC-FLNKS : une implantation étendue, de Canala à Hienghène et jusqu’au nord."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_nord_uc_flnks_echelle_adaptee.webp"))
+```
+
+```{r carte-nord-uni, fig.cap="UNI : des bastions très puissants à Touho, Poindimié, Ponérihouen et Voh."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_nord_uni_echelle_adaptee.webp"))
+```
+
+```{r carte-nord-agissons, fig.cap="Agissons pour le Nord : Koumac comme point fort et plusieurs relais sur la côte Ouest."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_nord_agissons_nord_echelle_adaptee.webp"))
+```
+
+```{r carte-nord-ce, fig.cap="Calédonie ensemble : une présence plus diffuse, surtout à l’ouest."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_nord_ce_echelle_adaptee.webp"))
+```
+:::
+::::
+
+## Province des Îles : trois îles, trois équilibres
+
+Avec `37,1 %`, l’UC-FLNKS était arrivé en tête de la province et a obtenu 6 des 14 sièges. L’UNI-Palika 4, le Parti travailliste 2 et la liste Dynamique autochtone portée par le LKS 2. Les quatre listes admises à la répartition sont toutes issues du champ indépendantiste ou souverainiste, mais leur géographie est loin d’être uniforme.
+
+### Lifou pour l’UC, Maré pour le LKS, Ouvéa presque partagée
+
+À Lifou, l’UC-FLNKS dominait largement avec `52,3 %`. L’UNI-Palika y recueille `18,2 %`, le Parti travailliste `13,9 %` et le LKS seulement `2,5 %`.
+
+Maré présente le paysage inverse. Le LKS arrivait en tête avec `28,4 %`, devant l’UNI-Palika (`19,7 %`) et l’UC-FLNKS (`18,7 %`). Le total provincial du LKS — `11,0 %` — masque donc un ancrage presque entièrement concentré sur une seule île.
+
+Ouvéa est la commune la plus disputée entre les deux grandes listes : `32,7 %` pour l’UC-FLNKS et `31,4 %` pour l’UNI-Palika. Le Parti travailliste y réalise son meilleur score communal (`16,2 %`).
+
+```{r carte-vainqueur-iles, fig.cap="Province des Îles : liste arrivée en tête et intensité de son avance autour des lieux de vote."}
+knitr::include_graphics(
+  province_map("province_des_iles_parti_en_tete_lisse_opacite_marge_moderee.webp")
+)
+```
+
+::: {.column-page .p2019-plot}
+```{r profils-communes-iles, fig.cap="Composition du vote à Lifou, Maré et Ouvéa.", fig.height=4.2, fig.width=12}
+plot_commune_profiles("Province des Iles", "UC-FLNKS")
+```
+:::
+
+Le scrutin avait donc juxtaposé une nette domination UC à Lifou, une concurrence très ouverte à Ouvéa et un système propre à Maré, où le LKS conservait un socle sans équivalent ailleurs.
+
+:::: {.column-page .p2019-map-grid}
+::: {layout-ncol="2"}
+```{r carte-iles-uc, fig.cap="UC-FLNKS : une domination particulièrement nette à Lifou."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_des_iles_uc_flnks_echelle_adaptee.webp"))
+```
+
+```{r carte-iles-uni, fig.cap="UNI-Palika : un vote plus fort à Ouvéa et présent sur les trois îles."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_des_iles_uni_plk_echelle_adaptee.webp"))
+```
+
+```{r carte-iles-pt, fig.cap="Parti travailliste : des résultats relativement proches dans les trois communes."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_des_iles_pt_echelle_adaptee.webp"))
+```
+
+```{r carte-iles-lks, fig.cap="LKS : un ancrage massivement concentré à Maré."}
+knitr::include_graphics(province_map("partis_echelle_adaptee", "province_des_iles_lks_echelle_adaptee.webp"))
+```
+:::
+::::
+
+## Géographie de la participation
+
+La participation avait atteint `r fmt_pct(100 * sum(province_denominators$votants) / sum(province_denominators$inscrits))` sur l’ensemble de la Nouvelle-Calédonie. Elle s’établit à `r fmt_pct(participation_value("Province Sud"))` dans le Sud, `r fmt_pct(participation_value("Province Nord"))` dans le Nord et `r fmt_pct(participation_value("Province des Iles"))` aux Îles.
+
+Ces moyennes provinciales masquent de forts écarts. Dans le Sud, la participation avait dépassé `80 %` à Farino et à Poya Sud, mais tombait à `58,6 %` à Thio. Dans le Nord, elle était élevée à Koné (`70,7 %`) et Pouembout (`70,4 %`), mais beaucoup plus faible à Bélep (`53,7 %`), Pouébo (`55,5 %`) et Houaïlou (`58,8 %`). Aux Îles, Maré se distingue avec `72,8 %`, contre environ `64 %` à Lifou et Ouvéa.
+
+La mobilisation ne recouvre donc pas exactement la carte des listes. Elle peut renforcer certains bastions et réduire le poids d’autres territoires dans le total provincial. Pour 2026, c’est l’un des premiers éléments à comparer au soir du scrutin.
+
+::: panel-tabset
+### Sud
+
+```{r carte-participation-sud, fig.cap="Participation aux provinciales 2019 dans la Province Sud."}
+knitr::include_graphics(province_map("participation_abstention", "province_sud_participation_echelle_adaptee.webp"))
+```
+
+### Nord
+
+```{r carte-participation-nord, fig.cap="Participation aux provinciales 2019 dans la Province Nord."}
+knitr::include_graphics(province_map("participation_abstention", "province_nord_participation_echelle_adaptee.webp"))
+```
+
+### Îles
+
+```{r carte-participation-iles, fig.cap="Participation aux provinciales 2019 dans la Province des Îles."}
+knitr::include_graphics(province_map("participation_abstention", "province_des_iles_participation_echelle_adaptee.webp"))
+```
+:::
+
+## Ce que la carte de 2019 invite à regarder en 2026
+
+Le premier enjeu sera la solidité des bastions. 
+Dans le Sud, l’Avenir en confiance avait atteint des niveaux très importants en 2019 à Nouméa, Dumbéa, au Mont-Dore et sur la côte Ouest, la question sera donc celle du maintien ou non de ce niveau. 
+Les implantations du FLNKS à Yaté, Thio ou Sarraméa feront face cette fois-ci à des listes UC-FLNKS et UNI plutôt qu'à une liste unique, comment vont se répartir les voix ? 
+L'implantation de l’Éveil océanien dans le Grand Nouméa va t-elle se renforcer, diminuer ou s'étendre au-delà de l'agglomération ? 
+Calédonie Ensemble avait gardé des bastions de brousse autour du pôle de La Foa, ainsi qu'une présence diffuse sur le reste de la Province Sud, qu'en sera t-il en 2026, alors que certaines ex-figures sont présents sur d'autres listes ?
+
+En 2026, [des nouvelles listes](../provinciales-2026-qui-part-qui-reste/) sont également présentes, occupant divers espaces politiques, parfois voisins de certaines forces dejà existantes, dans quelle mesure vont-elles perfomer ? Et dans quels espaces géographiques ? Quelle continuité et quelles ruptures y'aura t-il pour les sortants de 2019 ?
+
+Dans le Nord, il faudra regarder l'évolution de l’équilibre entre les territoires UC et UNI. Une variation dans quelques communes très polarisées — Canala et Hienghène d’un côté, Touho et Poindimié de l'autre — peut modifier le classement général. 
+La capacité de la liste non-indépendantiste à dépasser les pôles de Koumac, Pouembout et Koné sera également à scruter, dans un contexte où Calédonie Ensemble ne présente pas de liste dans le Nord en 2026.
+
+Aux Îles, enfin, la question est presque île par île : 2019 avait vu le maintien de la domination UC à Lifou, un nouvel équilibre à Ouvéa et la solidité du LKS à Maré, la présentation d'une liste concurrente de Jacques Lalié (UCC) à celle de l'UC donne plusieurs choix aux électeurs qui voudraient privilégier une continuité de l'éxécutif précédent. Tandis que des offres d'opppositions dejà implantées sont également présentes de nouveau en 2026.
+
+
+::: p2019-related
+Pour prolonger ce bilan territorial, voir aussi [la recomposition des listes entre 2019 et 2026](../provinciales-2026-qui-part-qui-reste/) et [l’analyse des professions de foi de 2026](../provinciales-2026-professions-foi/).
+:::
+
+<details class="note-deroulable">
+
+<summary>Comment les résultats communaux et les cartes sont construits</summary>
+
+Les scores communaux additionnent les voix de tous les lieux de vote d’une même commune, puis les rapportent à l’ensemble des suffrages exprimés. Poya étant partagée entre deux provinces, ses résultats sont distingués entre Poya Nord et Poya Sud.
+
+Les cartes lissées associent les résultats aux lieux de vote géolocalisés. Elles rendent les continuités territoriales plus faciles à lire, mais ne représentent pas les limites exactes des secteurs électoraux. Entre deux lieux de vote, la couleur est une interpolation cartographique et non un résultat observé à chaque point du territoire.
+
+</details>
+
+## Sources
+
+-   [Résultats définitifs des provinciales 2019 — Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2019/Provinciales-2019/RESULTATS).
+-   [Provinciales 2019 : résultats définitifs](https://www.elections-nc.fr/elections-2018-2020/elections-provinciales-2019/les-resultats-des-provinciales-2019).
+-   [Présentation du scrutin et suivi des résultats — Nouvelle-Calédonie La 1ère](https://la1ere.franceinfo.fr/nouvellecaledonie/resultats-provinciales-2019-temps-reel-708831.html).
+-   [Contexte, système électoral et composition du Congrès élu en 2019](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019).
