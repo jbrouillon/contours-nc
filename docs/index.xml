@@ -1838,7 +1838,7 @@ Santé de proximité
 </span>
 </div>
 </article>
-<article class="theme-portrait" style="--list-color:#747D88;">
+<article class="theme-portrait" style="--list-color:#8D99A6;">
 <div class="theme-portrait__identity">
 <span class="theme-portrait__number">Liste 2</span>
 <h3 class="theme-portrait__title anchored">
@@ -1866,7 +1866,7 @@ Pleine souveraineté
 </span>
 </div>
 </article>
-<article class="theme-portrait" style="--list-color:#A8B1BB;">
+<article class="theme-portrait" style="--list-color:#007A3D;">
 <div class="theme-portrait__identity">
 <span class="theme-portrait__number">Liste 3</span>
 <h3 class="theme-portrait__title anchored">
@@ -1994,7 +1994,7 @@ Agissons ensemble pour le Nord
 </ul>
 <a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13439/111757/file/01_circ_elec_province_nord_v2+(1).pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
 </article>
-<article class="program-card" style="--list-color:#747D88;">
+<article class="program-card" style="--list-color:#8D99A6;">
 <div class="program-card__topline">
 <span class="program-card__number">Liste 2</span>
 <span class="program-card__precision low">Orientations générales</span>
@@ -2019,7 +2019,7 @@ Alternative Nord pour un pays souverain
 </ul>
 <a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13440/111762/file/02_Profession+de+foi+Alterative+Nord.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
 </article>
-<article class="program-card" style="--list-color:#A8B1BB;">
+<article class="program-card" style="--list-color:#007A3D;">
 <div class="program-card__topline">
 <span class="program-card__number">Liste 3</span>
 <span class="program-card__precision medium">Mesures identifiées</span>
@@ -2191,7 +2191,7 @@ Gouvernance
 </span>
 </div>
 </article>
-<article class="theme-portrait" style="--list-color:#828E9A;">
+<article class="theme-portrait" style="--list-color:#87939F;">
 <div class="theme-portrait__identity">
 <span class="theme-portrait__number">Liste 4</span>
 <h3 class="theme-portrait__title anchored">
@@ -2219,7 +2219,7 @@ Participation
 </span>
 </div>
 </article>
-<article class="theme-portrait" style="--list-color:#909CA9;">
+<article class="theme-portrait" style="--list-color:#007A3D;">
 <div class="theme-portrait__identity">
 <span class="theme-portrait__number">Liste 5</span>
 <h3 class="theme-portrait__title anchored">
@@ -2247,7 +2247,7 @@ Transitions
 </span>
 </div>
 </article>
-<article class="theme-portrait" style="--list-color:#9CA7B2;">
+<article class="theme-portrait" style="--list-color:#98A3AF;">
 <div class="theme-portrait__identity">
 <span class="theme-portrait__number">Liste 6</span>
 <h3 class="theme-portrait__title anchored">
@@ -2397,7 +2397,7 @@ Baselaia
 </ul>
 <a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13434/111721/file/03_Circulaire+BASELAIA.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
 </article>
-<article class="program-card" style="--list-color:#828E9A;">
+<article class="program-card" style="--list-color:#87939F;">
 <div class="program-card__topline">
 <span class="program-card__number">Liste 4</span>
 <span class="program-card__precision medium">Mesures identifiées</span>
@@ -2422,7 +2422,7 @@ Nation autochtone
 </ul>
 <a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13456/111853/file/04+Profession+de+foi.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
 </article>
-<article class="program-card" style="--list-color:#909CA9;">
+<article class="program-card" style="--list-color:#007A3D;">
 <div class="program-card__topline">
 <span class="program-card__number">Liste 5</span>
 <span class="program-card__precision low">Orientations générales</span>
@@ -2447,7 +2447,7 @@ UC-FLNKS Îles
 </ul>
 <a class="program-card__source" href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13435/111726/file/05_CIRCULAIRE+LISTE+UC-FLNKS+I%CC%82LES+-+PV+DES+I%CC%82LES.pdf" target="_blank" rel="noopener">Lire la circulaire officielle ↗</a>
 </article>
-<article class="program-card" style="--list-color:#9CA7B2;">
+<article class="program-card" style="--list-color:#98A3AF;">
 <div class="program-card__topline">
 <span class="program-card__number">Liste 6</span>
 <span class="program-card__precision high">Mesures détaillées</span>
@@ -2686,8 +2686,8 @@ Voir la qualité des transcriptions et la chaîne de traitement
 </div>
 </details>
 </section>
-<section id="sources-et-reproductibilité" class="level2">
-<h2 class="anchored" data-anchor-id="sources-et-reproductibilité">Sources et reproductibilité</h2>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <ul>
 <li><a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique">Portail officiel de la propagande électronique</a>, Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le 20/06/2026.</li>
 <li>Pages provinciales : <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Sud">Sud</a>, <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Nord">Nord</a> et <a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-des-Iles-Loyaute">Îles Loyauté</a>.</li>

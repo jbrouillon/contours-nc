@@ -476,11 +476,11 @@
     "text": "Limites\nLes fiches sélectionnent trois engagements caractéristiques par document : elles ne reproduisent donc pas toutes les propositions. Le degré de précision qualifie la rédaction du tract, pas la qualité politique du projet. Une mesure chiffrée peut être irréaliste ; une orientation générale peut être cohérente mais peu développée dans ce format.\nLes portraits thématiques sont une synthèse de lecture, non un codage indépendant réalisé par plusieurs personnes : leur formulation peut donc être discutée. Les nuages ont la limite inverse. Ils sont calculés de manière reproductible, mais restent sensibles aux mots employés et à leur contexte. Un terme comme « souveraineté » peut être institutionnel, alimentaire ou énergétique ; c’est pourquoi la lecture lexicale et les fiches éditoriales sont présentées ensemble.\n\n\nVoir la qualité des transcriptions et la chaîne de traitement\n\n\n\n\n\n\n\nNombre de mots reconnus dans chaque document avant filtrage.\n\n\n\n\nLes PDF ont d’abord été téléchargés avec leur URL, leur taille et leur empreinte MD5. Le texte natif a été conservé lorsqu’il était exploitable ; les documents-images ont été soumis à un OCR français–anglais. Les noms de candidates et candidats, les mots-outils et le vocabulaire administratif du scrutin ont été retirés avant l’analyse lexicale.\nLes termes répétés sont conservés ; les termes isolés ne sont admis que si leur racine apparaît au moins quatre fois dans l’ensemble du corpus. Cette règle complète les textes courts sans rouvrir la porte aux fragments OCR uniques.\nLes profils programmatiques ont ensuite été établis par relecture des 22 textes. Une mesure est classée « détaillée » lorsqu’elle comporte des dispositifs nommés, plusieurs modalités d’action, un montant, un calendrier ou une cible quantifiée."
   },
   {
-    "objectID": "posts/provinciales-2026-professions-foi/index.html#sources-et-reproductibilité",
-    "href": "posts/provinciales-2026-professions-foi/index.html#sources-et-reproductibilité",
+    "objectID": "posts/provinciales-2026-professions-foi/index.html#sources",
+    "href": "posts/provinciales-2026-professions-foi/index.html#sources",
     "title": "Provinciales 2026 : qui propose quoi ?",
-    "section": "Sources et reproductibilité",
-    "text": "Sources et reproductibilité\n\nPortail officiel de la propagande électronique, Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le 20/06/2026.\nPages provinciales : Sud, Nord et Îles Loyauté."
+    "section": "Sources",
+    "text": "Sources\n\nPortail officiel de la propagande électronique, Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le 20/06/2026.\nPages provinciales : Sud, Nord et Îles Loyauté."
   },
   {
     "objectID": "posts/regroupement-bureaux-vote-noumea/index.html",

@@ -670,7 +670,7 @@ program_cards("Province des Îles Loyauté")
 
 ### Vie chère : même problème, instruments opposés
 
-::: {.solution-table}
+::: solution-table
 | Logique d’action | Exemples de solutions mises en avant |
 |------------------------------------|------------------------------------|
 | **Protéger directement le budget des ménages** | Bouclier prix famille-retraité et aides restaurées chez *Kanaky pour tous* ; bouclier alimentaire chez *Pour une Calédonie française* ; panier de produits essentiels et ticket Tanéo à 200 F chez *Nous, réunis !*. |
@@ -683,7 +683,7 @@ program_cards("Province des Îles Loyauté")
 
 ### Sécurité et jeunesse : sanctionner, prévenir ou insérer
 
-::: {.solution-table}
+::: solution-table
 | Logique d’action | Exemples de solutions mises en avant |
 |------------------------------------|------------------------------------|
 | **Renforcer la sanction et les moyens judiciaires** | Tolérance zéro, moyens supplémentaires pour les forces de l’ordre et responsabilisation parentale chez *Les Loyalistes et Le Rassemblement* ; nouveau centre pénitentiaire chez *France-Calédonie, une patrie* ; justice accélérée chez *Pour une Calédonie française*. |
@@ -694,7 +694,7 @@ program_cards("Province des Îles Loyauté")
 
 ### Souveraineté : un horizon, mais aussi une politique sectorielle
 
-::: {.solution-table}
+::: solution-table
 | Logique d’action | Exemples de solutions mises en avant |
 |------------------------------------|------------------------------------|
 | **Maintenir l’ancrage français** | Ancrage dans la République chez *France-Calédonie, une patrie* et *Pour une Calédonie française* ; stabilité institutionnelle préalable à la relance chez *Un espoir pour demain*. |
@@ -706,7 +706,7 @@ program_cards("Province des Îles Loyauté")
 
 ### Finances publiques : la contrainte la plus visible aux Îles
 
-::: {.solution-table}
+::: solution-table
 | Logique d’action | Exemples de solutions mises en avant |
 |------------------------------------|------------------------------------|
 | **Apurer la dette et maîtriser les dépenses** | Apurement de plus de 4 milliards de F CFP et évaluation des actions chez *Palika Îles* ; plan de désendettement chez *Baselaia* ; finances saines et compétences soutenables chez *Union pour construire dans le consensus*. |
@@ -740,7 +740,7 @@ Les profils programmatiques ont ensuite été établis par relecture des `r n_do
 
 </details>
 
-## Sources et reproductibilité
+## Sources
 
 -   [Portail officiel de la propagande électronique](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique), Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le `r format(date_collecte, "%d/%m/%Y")`.
 -   Pages provinciales : [Sud](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Sud), [Nord](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-Nord) et [Îles Loyauté](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique/Province-des-Iles-Loyaute).
