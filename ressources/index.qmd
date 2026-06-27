@@ -2,6 +2,18 @@
 title: "ressources"
 ---
 
+<div id="contours-section-ressources" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-ressources", {
+    sectionTitle: "Les ressources"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
 Cette page regroupera :
 
 -   sources de données utiles en Nouvelle-Calédonie ;

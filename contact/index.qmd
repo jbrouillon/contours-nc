@@ -3,6 +3,18 @@ title: "contacter contours.nc"
 toc: false
 ---
 
+<div id="contours-section-contact" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-contact", {
+    sectionTitle: "Contact"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
 Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous.
 
 ```{=html}

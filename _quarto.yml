@@ -6,6 +6,9 @@ project:
   resources:
     - .nojekyll
     - CNAME
+    - assets/**
+    - images/contours-banner.svg
+    - images/contours-hexagon.svg
   render:
     - "*.qmd"
     - "articles/*.qmd"
@@ -19,11 +22,11 @@ website:
   title: "Contours"
   description: "Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie"
   site-url: "https://contours.nc/"
-  favicon: images/favicon.png
+  favicon: images/contours-hexagon.png
   open-graph: true
   twitter-card: true
   navbar:
-    logo: images/logo.webp
+    logo: images/contours-hexagon.png
     title: "Contours"
     left:
       - text: "Articles"
@@ -58,6 +61,7 @@ format:
       - includes/social-floating.html
       - includes/article-citation.html
       - includes/article-newsletter.html
+      - includes/article-comments.html
       - text: |
           <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
             <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>

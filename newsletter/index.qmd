@@ -3,6 +3,18 @@ title: "newsletter"
 toc: false
 ---
 
+<div id="contours-section-newsletter" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-newsletter", {
+    sectionTitle: "La newsletter"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
 Recevez les nouvelles publications de contours.nc.
 
 Environ un email par mois.

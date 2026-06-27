@@ -2,6 +2,7 @@
 title: ""
 subtitle: ""
 title-block-banner: false
+image: images/contours-banner.png
 page-layout: full
 format: html
 toc: false
@@ -15,13 +16,23 @@ listing:
   filter-ui: true
 ---
 
-![](images/banniere.webp){.hero-banner}
+<div id="contours-sketch"></div>
+<noscript>
+  <img src="images/contours-banner.png" class="hero-banner" alt="">
+</noscript>
 
+<script type="module">
+  import { renderContoursSketch } from "./assets/js/contours-sketch.js";
 
+  renderContoursSketch("#contours-sketch").catch((error) => {
+    console.error("[contours-sketch] La banniere n'a pas pu etre affichee.", error);
+    document.querySelector("#contours-sketch").innerHTML =
+      '<img src="images/contours-banner.png" class="hero-banner" alt="">';
+  });
+</script>
 
+[contours]{.contours-word} est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
 
-<span class="contours-word">contours</span> est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
-
-Ce blog est créé et alimenté par <span class="contours-word">Jonas Brouillon</span>, démographe calédonien et ingénieur d'études en sciences sociales.
+Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démographe calédonien et ingénieur d'études en sciences sociales.
 
 ## Derniers articles

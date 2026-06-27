@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./images/favicon.png" rel="icon" type="image/png">
+<link href="./images/contours-hexagon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -135,13 +135,15 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="Contours" href="index.xml" data-external="1"><meta property="og:title" content="– Contours">
 <meta property="og:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
-<meta property="og:image" content="https://contours.nc/images/previews/provinciales-2026-professions-foi.webp">
+<meta property="og:image" content="https://contours.nc/images/contours-banner.png">
 <meta property="og:site_name" content="Contours">
-<meta property="og:image:alt" content="Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026">
+<meta property="og:image:height" content="1040">
+<meta property="og:image:width" content="2800">
 <meta name="twitter:title" content="– Contours">
 <meta name="twitter:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
-<meta name="twitter:image" content="https://contours.nc/images/previews/provinciales-2026-professions-foi.webp">
-<meta name="twitter:image:alt" content="Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026">
+<meta name="twitter:image" content="https://contours.nc/images/contours-banner.png">
+<meta name="twitter:image-height" content="1040">
+<meta name="twitter:image-width" content="2800">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -153,8 +155,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo.webp" alt="" class="navbar-logo light-content">
-    <img src="./images/logo.webp" alt="" class="navbar-logo dark-content">
+    <img src="./images/contours-hexagon.png" alt="" class="navbar-logo light-content">
+    <img src="./images/contours-hexagon.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Contours</span>
@@ -211,7 +213,21 @@ window.Quarto = {
 
 
 
-<p><img src="images/banniere.webp" class="hero-banner img-fluid"></p>
+<div id="contours-sketch">
+
+</div>
+<noscript>
+<img src="images/contours-banner.png" class="hero-banner" alt="">
+</noscript>
+<script type="module">
+  import { renderContoursSketch } from "./assets/js/contours-sketch.js";
+
+  renderContoursSketch("#contours-sketch").catch((error) => {
+    console.error("[contours-sketch] La banniere n'a pas pu etre affichee.", error);
+    document.querySelector("#contours-sketch").innerHTML =
+      '<img src="images/contours-banner.png" class="hero-banner" alt="">';
+  });
+</script>
 <p><span class="contours-word">contours</span> est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.</p>
 <p>Ce blog est créé et alimenté par <span class="contours-word">Jonas Brouillon</span>, démographe calédonien et ingénieur d’études en sciences sociales.</p>
 <section id="derniers-articles" class="level2">
@@ -911,6 +927,84 @@ Jonas Brouillon
     share.append(label, buttons, status, makeNewsletterCta());
     main.appendChild(share);
   }
+})();
+</script>
+<script>
+(() => {
+  const normalizePath = (value) => {
+    const path = value.replace(/\/index\.html$/, "/");
+    return path.endsWith("/") ? path : `${path}/`;
+  };
+
+  const currentPath = normalizePath(window.location.pathname);
+  if (!/\/posts\/[^/]+\/$/.test(currentPath)) return;
+
+  const main = document.querySelector("main.content");
+  if (!main || main.querySelector("#cusdis_thread")) return;
+
+  const meta = (name) => document.querySelector(`meta[name="${name}"]`)?.content?.trim() || "";
+  const canonical = meta("citation_fulltext_html_url")
+    || document.querySelector('link[rel="canonical"]')?.href
+    || window.location.href;
+  const pageUrl = new URL(canonical, window.location.href);
+  pageUrl.hash = "";
+  pageUrl.search = "";
+
+  const pagePath = normalizePath(pageUrl.pathname);
+  const pageTitle = meta("citation_title")
+    || document.querySelector("h1.title, h1")?.textContent?.trim()
+    || document.title.replace(/\s*[-|]\s*Contours\s*$/i, "").trim();
+
+  const section = document.createElement("section");
+  section.className = "article-comments";
+  section.setAttribute("aria-labelledby", "article-comments-title");
+
+  const title = document.createElement("h2");
+  title.className = "article-comments__title";
+  title.id = "article-comments-title";
+  title.textContent = "Commentaires";
+
+  const thread = document.createElement("div");
+  thread.id = "cusdis_thread";
+  thread.dataset.host = "https://cusdis.com";
+  thread.dataset.appId = "fc8f899f-0955-4999-99f3-9c70d4d66c5b";
+  thread.dataset.pageId = pagePath.replace(/\/$/, "") || "/";
+  thread.dataset.pageUrl = pageUrl.href;
+  thread.dataset.pageTitle = pageTitle;
+
+  section.append(title, thread);
+
+  main.appendChild(section);
+
+  const endTargets = [main.querySelector(".article-share"), section].filter(Boolean);
+  if (window.IntersectionObserver && endTargets.length) {
+    const visibleTargets = new WeakMap();
+    const setTocVisibility = (entries) => {
+      entries.forEach((entry) => {
+        visibleTargets.set(entry.target, entry.isIntersecting);
+      });
+      const articleEndIsVisible = endTargets.some((target) => visibleTargets.get(target));
+      document.body.classList.toggle("article-end-active", articleEndIsVisible);
+    };
+
+    const observer = new IntersectionObserver(setTocVisibility, {
+      rootMargin: "0px 0px -18% 0px",
+      threshold: 0.01
+    });
+
+    endTargets.forEach((target) => observer.observe(target));
+  }
+
+  if (document.querySelector('script[src="https://cusdis.com/js/cusdis.es.js"]')) {
+    window.CUSDIS?.renderTo?.(thread);
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.defer = true;
+  script.src = "https://cusdis.com/js/cusdis.es.js";
+  document.body.appendChild(script);
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

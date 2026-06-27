@@ -10,4 +10,16 @@ listing:
   filter-ui: true
 ---
 
+<div id="contours-section-articles" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-articles", {
+    sectionTitle: "Les articles"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
 Retrouvez ici les articles publiés sur <span class="contours-word">contours</span>

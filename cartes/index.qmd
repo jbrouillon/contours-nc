@@ -10,6 +10,18 @@ listing:
   categories: true
 ---
 
+<div id="contours-section-cartes" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-cartes", {
+    sectionTitle: "Les cartes"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
 Cette section rassemble les cartes autonomes et animations cartographiques issues des analyses publiées sur [contours]{.contours-word}.
 
 Pour le moment, elle est volontairement centrée sur les cartes. Si d'autres formats deviennent réguliers, comme des graphiques, tableaux interactifs ou explorations visuelles, ils pourront faire l'objet d'une section dédiée.
