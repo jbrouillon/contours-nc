@@ -63,6 +63,7 @@ format:
       - includes/article-citation.html
       - includes/article-newsletter.html
       - includes/article-comments.html
+      - includes/newsletter-signup.html
       - text: |
           <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
             <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>

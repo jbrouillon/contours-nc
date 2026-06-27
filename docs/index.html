@@ -230,6 +230,42 @@ window.Quarto = {
 </script>
 <p><span class="contours-word">contours</span> est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.</p>
 <p>Ce blog est créé et alimenté par <span class="contours-word">Jonas Brouillon</span>, démographe calédonien et ingénieur d’études en sciences sociales.</p>
+<section id="la-dernière-newsletter" class="level2">
+<h2 class="anchored" data-anchor-id="la-dernière-newsletter">La dernière newsletter</h2>
+<div class="quarto-listing quarto-listing-container-default latest-newsletter-listing">
+  <div class="list quarto-listing-default">
+    <div class="quarto-post image-right">
+      <div class="thumbnail">
+        <a href="newsletter/un-mois-de-contours-nc/">
+          <img loading="lazy" src="images/contours-banner.png" class="thumbnail-image" alt="">
+        </a>
+      </div>
+      <div class="body">
+        <h3 class="no-anchor listing-title">
+          <a href="newsletter/un-mois-de-contours-nc/">Un mois de contours.nc</a>
+        </h3>
+        <div class="listing-subtitle">
+          <a href="newsletter/un-mois-de-contours-nc/">Six analyses publiées, des relais dans les médias et la suite du projet</a>
+        </div>
+        <div class="listing-categories">
+          <div class="listing-category">Newsletter</div>
+        </div>
+        <div class="delink listing-description">
+          <a href="newsletter/un-mois-de-contours-nc/">
+            <p>Première newsletter de contours.nc : six analyses publiées, des premiers relais dans le débat public et la suite du projet.</p>
+          </a>
+        </div>
+      </div>
+      <div class="metadata">
+        <a href="newsletter/un-mois-de-contours-nc/">
+          <div class="listing-date">27 juin 2026</div>
+          <div class="listing-author">Jonas Brouillon</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 <section id="derniers-articles" class="level2">
 <h2 class="anchored" data-anchor-id="derniers-articles">Derniers articles</h2>
 
@@ -1005,6 +1041,43 @@ Jonas Brouillon
   script.defer = true;
   script.src = "https://cusdis.com/js/cusdis.es.js";
   document.body.appendChild(script);
+})();
+</script>
+<script>
+(() => {
+  const normalizePath = (value) => {
+    const path = value.replace(/\/index\.html$/, "/");
+    return path.endsWith("/") ? path : `${path}/`;
+  };
+
+  const path = normalizePath(window.location.pathname);
+  if (!/\/newsletter\/[^/]+\/$/.test(path)) return;
+
+  const main = document.querySelector("main.content");
+  if (!main || main.querySelector(".newsletter-signup")) return;
+
+  const section = document.createElement("section");
+  section.className = "newsletter-signup";
+  section.setAttribute("aria-labelledby", "newsletter-signup-title");
+  section.innerHTML = `
+    <h2 id="newsletter-signup-title">Recevoir les prochaines newsletters</h2>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/contoursnc" method="post" class="embeddable-buttondown-form newsletter-form">
+      <label for="bd-email-newsletter-end">Adresse email</label>
+      <div class="newsletter-form__row">
+        <input type="email" name="email" id="bd-email-newsletter-end" required>
+        <input type="submit" value="S'abonner">
+      </div>
+      <p>
+        <a href="https://buttondown.com/refer/contoursnc" target="_blank" rel="noopener noreferrer">Powered by Buttondown.</a>
+      </p>
+      <p class="newsletter-privacy">
+        Votre adresse est transmise à Buttondown et utilisée uniquement pour vous envoyer la newsletter de Contours.
+        Vous pouvez vous désabonner à tout moment avec le lien présent dans chaque message.
+        <a href="https://buttondown.com/legal/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité de Buttondown</a>.
+      </p>
+    </form>`;
+
+  main.appendChild(section);
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

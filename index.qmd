@@ -35,4 +35,42 @@ listing:
 
 Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démographe calédonien et ingénieur d'études en sciences sociales.
 
+## La dernière newsletter
+
+```{=html}
+<div class="quarto-listing quarto-listing-container-default latest-newsletter-listing">
+  <div class="list quarto-listing-default">
+    <div class="quarto-post image-right">
+      <div class="thumbnail">
+        <a href="newsletter/un-mois-de-contours-nc/">
+          <img loading="lazy" src="images/contours-banner.png" class="thumbnail-image" alt="">
+        </a>
+      </div>
+      <div class="body">
+        <h3 class="no-anchor listing-title">
+          <a href="newsletter/un-mois-de-contours-nc/">Un mois de contours.nc</a>
+        </h3>
+        <div class="listing-subtitle">
+          <a href="newsletter/un-mois-de-contours-nc/">Six analyses publiées, des relais dans les médias et la suite du projet</a>
+        </div>
+        <div class="listing-categories">
+          <div class="listing-category">Newsletter</div>
+        </div>
+        <div class="delink listing-description">
+          <a href="newsletter/un-mois-de-contours-nc/">
+            <p>Première newsletter de contours.nc : six analyses publiées, des premiers relais dans le débat public et la suite du projet.</p>
+          </a>
+        </div>
+      </div>
+      <div class="metadata">
+        <a href="newsletter/un-mois-de-contours-nc/">
+          <div class="listing-date">27 juin 2026</div>
+          <div class="listing-author">Jonas Brouillon</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
 ## Derniers articles

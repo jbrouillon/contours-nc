@@ -841,6 +841,23 @@ h3 {
   line-height: 1.4;
 }
 
+.newsletter-signup {
+  box-sizing: border-box;
+  clear: both;
+  float: none;
+  flex: 0 0 100%;
+  grid-column: 1 / -1 !important;
+  width: 100%;
+  min-width: 100%;
+  margin-top: 3.25rem;
+  padding-top: 1.55rem;
+  border-top: 1px solid var(--border);
+}
+
+.newsletter-signup h2 {
+  margin-top: 0;
+}
+
 .article-share {
   display: flex;
   flex-wrap: wrap;
