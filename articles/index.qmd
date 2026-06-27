@@ -1,5 +1,6 @@
 ---
 title: "articles"
+image: "../images/contours-banner.png"
 listing:
   contents:
   - "../posts/**/*.qmd"

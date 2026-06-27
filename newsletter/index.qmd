@@ -1,6 +1,15 @@
 ---
 title: "newsletter"
+image: "../images/contours-banner.png"
 toc: false
+listing:
+  contents:
+    - "*/index.qmd"
+  type: default
+  sort: "date desc"
+  categories: true
+  sort-ui: false
+  filter-ui: false
 ---
 
 <div id="contours-section-newsletter" class="contours-section-sketch"></div>
@@ -44,3 +53,5 @@ La lettre sert surtout à suivre :
   </p>
 </form>
 ```
+
+## Dernières newsletters

@@ -15,6 +15,7 @@ project:
     - "cartes/*.qmd"
     - "contact/*.qmd"
     - "newsletter/*.qmd"
+    - "newsletter/*/index.qmd"
     - "posts/*/index.qmd"
     - "ressources/*.qmd"
 

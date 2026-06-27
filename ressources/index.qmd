@@ -1,5 +1,6 @@
 ---
 title: "ressources"
+image: "../images/contours-banner.png"
 ---
 
 <div id="contours-section-ressources" class="contours-section-sketch"></div>

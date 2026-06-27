@@ -1,5 +1,6 @@
 ---
 title: "à propos"
+image: "images/contours-banner.png"
 ---
 
 <div id="contours-section-about" class="contours-section-sketch"></div>

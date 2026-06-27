@@ -238,74 +238,46 @@
     "text": "Sources et données utilisées\n\nIRIS et indicateurs socio-démographiques du RGP 2019 — PopGIS Nouvelle-Calédonie, développé en partenariat entre l’ISEE et la Communauté du Pacifique (CPS).\nhttps://ncl.popgis.spc.int/\nGrille de population 2020 — New_Caledonia_Population_Grid_2020, Pacific Data Hub / Communauté du Pacifique (CPS), utilisée dans le script cartographique pour pondérer spatialement la surface lissée.\nhttps://pacificdata.org/data/dataset/ncl_population_grid_2020\n\n\nDonnées géographiques et traitements\n\nUnité statistique : IRIS RGP 2019.\nSystème de coordonnées pour les traitements spatiaux : RGNC91-93 / Lambert New Caledonia (EPSG:3163).\nTraitements statistiques : R, sf, dplyr, FactoMineR, ggplot2.\nCartographie finale : QGIS, à partir des sorties raster lissées."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Contours",
+    "objectID": "newsletter/index.html",
+    "href": "newsletter/index.html",
+    "title": "newsletter",
     "section": "",
-    "text": "contours est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.\nCe blog est créé et alimenté par Jonas Brouillon, démographe calédonien et ingénieur d’études en sciences sociales."
+    "text": "Recevez les nouvelles publications de contours.nc.\nEnviron un email par mois.\nLa lettre sert surtout à suivre :"
   },
   {
-    "objectID": "index.html#derniers-articles",
-    "href": "index.html#derniers-articles",
-    "title": "Contours",
-    "section": "Derniers articles",
-    "text": "Derniers articles"
+    "objectID": "newsletter/index.html#dernières-newsletters",
+    "href": "newsletter/index.html#dernières-newsletters",
+    "title": "newsletter",
+    "section": "Dernières newsletters",
+    "text": "Dernières newsletters"
   },
   {
-    "objectID": "cartes/temps-trajet-bureaux-animation.html",
-    "href": "cartes/temps-trajet-bureaux-animation.html",
-    "title": "Mobilités électorales à Nouméa (version animée)",
+    "objectID": "contact/index.html",
+    "href": "contact/index.html",
+    "title": "contacter contours.nc",
     "section": "",
-    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote et les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+    "text": "Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous."
   },
   {
-    "objectID": "cartes/temps-trajet-bureaux-animation.html#contexte",
-    "href": "cartes/temps-trajet-bureaux-animation.html#contexte",
-    "title": "Mobilités électorales à Nouméa (version animée)",
-    "section": "",
-    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote et les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+    "objectID": "contact/index.html#contact-général",
+    "href": "contact/index.html#contact-général",
+    "title": "contacter contours.nc",
+    "section": "contact général",
+    "text": "contact général\ncontact@contours.nc\nQuestions, réactions aux articles, propositions de sujets, demandes diverses."
   },
   {
-    "objectID": "cartes/temps-trajet-bureaux-animation.html#animation",
-    "href": "cartes/temps-trajet-bureaux-animation.html#animation",
-    "title": "Mobilités électorales à Nouméa (version animée)",
-    "section": "Animation",
-    "text": "Animation\n\n\nAnimation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales. ⬇ Télécharger le GIF"
+    "objectID": "contact/index.html#réseaux-sociaux",
+    "href": "contact/index.html#réseaux-sociaux",
+    "title": "contacter contours.nc",
+    "section": "réseaux sociaux",
+    "text": "réseaux sociaux\nSuivre les publications et actualités de Contours.nc :\n\nFacebook\nLinkedIn"
   },
   {
-    "objectID": "cartes/index.html",
-    "href": "cartes/index.html",
-    "title": "cartes",
-    "section": "",
-    "text": "Cette section rassemble les cartes autonomes et animations cartographiques issues des analyses publiées sur contours.\nPour le moment, elle est volontairement centrée sur les cartes. Si d’autres formats deviennent réguliers, comme des graphiques, tableaux interactifs ou explorations visuelles, ils pourront faire l’objet d’une section dédiée.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nParticipation aux municipales 2020-2026\n\n\n\ncartes\n\nélections\n\nNouméa\n\n\n\n\n\n\n\n\n\n\n6 juin 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nMobilités électorales à Nouméa (version animée)\n\n\n\ncartes\n\ncartographie\n\n\n\n\n\n\n\n\n\n\n5 févr. 2026\n\n\n\n\n\n\nAucun article correspondant"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "à propos",
-    "section": "",
-    "text": "contours est un espace de publication consacré aux sciences sociales, à la cartographie et à la visualisation de données en Nouvelle-Calédonie.\nL’objectif est de proposer des analyses accessibles, documentées et reproductibles sur les dynamiques territoriales calédoniennes : populations, élections, mobilités, alimentation, infrastructures, environnement, inégalités spatiales et politiques publiques."
-  },
-  {
-    "objectID": "about.html#auteur",
-    "href": "about.html#auteur",
-    "title": "à propos",
-    "section": "auteur",
-    "text": "auteur\nLe blog est présenté par Jonas Brouillon, démographe calédonien, ingénieur d’études en sciences sociales à l’IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.\nJonas Brouillon est diplômé du Master démographie de l’Institut de Démographie de l’Université de Strasbourg ainsi que du parcours Master de l’École des Hautes Études en Démographie.\nCe blog et ces travaux sont une initiative personnelle, ayant pour but de rendre accessibles des analyses scientifiques au grand public sur des sujets d’intérêt pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n’est parfois pas compatible avec la volonté de partager des analyses sur des sujets d’actualité, d’où le choix de ce format de blog. Les analyses publiées ici n’engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résultats doivent être considérés comme des éléments d’information et de réflexion, et non comme des recommandations ou des prescriptions d’action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées."
-  },
-  {
-    "objectID": "about.html#ligne-éditoriale",
-    "href": "about.html#ligne-éditoriale",
-    "title": "à propos",
-    "section": "ligne éditoriale",
-    "text": "ligne éditoriale\nLes articles peuvent prendre plusieurs formes :\n\nanalyses courtes appuyées sur des cartes ou graphiques ;\nnotes méthodologiques en R, Quarto ou QGIS ;\nexplorations de données publiques ;\ncartes et visualisations commentées ;\ndossiers territoriaux sur la Nouvelle-Calédonie et le Pacifique."
-  },
-  {
-    "objectID": "articles/index.html",
-    "href": "articles/index.html",
-    "title": "articles",
-    "section": "",
-    "text": "Retrouvez ici les articles publiés sur contours\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nRetour sur les provinciales 2019 : la géographie des forces politiques\n\n\nAvant d’aborder le scrutin de 2026, les bastions communaux et les zones de faiblesse du précédent vote\n\n\n\nÉlections\n\nCartographie\n\nProvinciales 2019\n\n\n\nAlors que le vote approche pour les provinciales 2026, retour sur les bastions communaux, les zones de faiblesse et les rapports de force du scrutin de 2019 dans les trois provinces.\n\n\n\n\n\n21 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nProvinciales 2026 : qui propose quoi ?\n\n\nPriorités, propositions et lignes de partage entre les listes\n\n\n\nÉlections\n\nProvinciales 2026\n\nAnalyse textuelle\n\nData mining\n\n\n\nUne analyse textuelle et une lecture détaillée des 22 professions de foi numériques des provinciales 2026 : thèmes dominants, mesures proposées et degré de précision des programmes.\n\n\n\n\n\n21 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nListes aux Provinciales 2026 : qui part ? qui reste ?\n\n\nCe que la comparaison des listes 2019 et 2026 dit du renouvellement des candidatures\n\n\n\nÉlections\n\nData mining\n\nProvinciales 2026\n\n\n\nSur 878 candidatures déposées, combien étaient déjà présentes en 2019 ? Combien d’élus reviennent ? Combien de nouveaux profils apparaissent ?\n\n\n\n\n\n15 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nRegroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?\n\n\nCe que dit, et ne dit pas, la participation en hausse aux municipales 2026\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\nDébat public\n\n\n\nUne vérification prudente de l’argument de la participation en hausse aux municipales 2026, dans le débat sur le regroupement des bureaux de vote à Nouméa.\n\n\n\n\n\n7 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nCartographier le capital socio-économique en Nouvelle-Calédonie\n\n\nUne lecture exploratoire des contrastes territoriaux à partir du RGP 2019\n\n\n\nCartographie\n\nInégalités\n\nNouvelle-Calédonie\n\n\n\nConstruction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.\n\n\n\n\n\n29 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
+    "objectID": "contact/index.html#collaboration-scientifique",
+    "href": "contact/index.html#collaboration-scientifique",
+    "title": "contacter contours.nc",
+    "section": "collaboration scientifique",
+    "text": "collaboration scientifique\njonas.brouillon@iac.nc\nPour les collaborations de recherche, projets scientifiques ou demandes liées aux activités scientifiques."
   },
   {
     "objectID": "cartes/participation-municipales-animation.html",
@@ -343,39 +315,116 @@
     "text": "Nouméa, contrastes internes\n\n\nParticipation à Nouméa avec une échelle ajustée aux contrastes internes de la commune. Télécharger le GIF"
   },
   {
-    "objectID": "contact/index.html",
-    "href": "contact/index.html",
-    "title": "contacter contours.nc",
+    "objectID": "articles/index.html",
+    "href": "articles/index.html",
+    "title": "articles",
     "section": "",
-    "text": "Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous."
+    "text": "Retrouvez ici les articles publiés sur contours\n\n\n\n\n\n\n   \n    \n    \n      Trier par\n      Ordre par défaut\n      \n        Titre\n      \n      \n        Date - Le plus ancien\n      \n      \n        Date - Le plus récent\n      \n      \n        Auteur·rice\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nRetour sur les provinciales 2019 : la géographie des forces politiques\n\n\nAvant d’aborder le scrutin de 2026, les bastions communaux et les zones de faiblesse du précédent vote\n\n\n\nÉlections\n\nCartographie\n\nProvinciales 2019\n\n\n\nAlors que le vote approche pour les provinciales 2026, retour sur les bastions communaux, les zones de faiblesse et les rapports de force du scrutin de 2019 dans les trois provinces.\n\n\n\n\n\n21 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nProvinciales 2026 : qui propose quoi ?\n\n\nPriorités, propositions et lignes de partage entre les listes\n\n\n\nÉlections\n\nProvinciales 2026\n\nAnalyse textuelle\n\nData mining\n\n\n\nUne analyse textuelle et une lecture détaillée des 22 professions de foi numériques des provinciales 2026 : thèmes dominants, mesures proposées et degré de précision des programmes.\n\n\n\n\n\n21 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nListes aux Provinciales 2026 : qui part ? qui reste ?\n\n\nCe que la comparaison des listes 2019 et 2026 dit du renouvellement des candidatures\n\n\n\nÉlections\n\nData mining\n\nProvinciales 2026\n\n\n\nSur 878 candidatures déposées, combien étaient déjà présentes en 2019 ? Combien d’élus reviennent ? Combien de nouveaux profils apparaissent ?\n\n\n\n\n\n15 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nRegroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?\n\n\nCe que dit, et ne dit pas, la participation en hausse aux municipales 2026\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\nDébat public\n\n\n\nUne vérification prudente de l’argument de la participation en hausse aux municipales 2026, dans le débat sur le regroupement des bureaux de vote à Nouméa.\n\n\n\n\n\n7 juin 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nCartographier le capital socio-économique en Nouvelle-Calédonie\n\n\nUne lecture exploratoire des contrastes territoriaux à partir du RGP 2019\n\n\n\nCartographie\n\nInégalités\n\nNouvelle-Calédonie\n\n\n\nConstruction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.\n\n\n\n\n\n29 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\n\n\n\n\n\n\n\nQuel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n\n\nMéthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule\n\n\n\nCartographie\n\nÉlections\n\nNouméa\n\n\n\nUne estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.\n\n\n\n\n\n24 mai 2026\n\n\nJonas Brouillon\n\n\n\n\n\nAucun article correspondant"
   },
   {
-    "objectID": "contact/index.html#contact-général",
-    "href": "contact/index.html#contact-général",
-    "title": "contacter contours.nc",
-    "section": "contact général",
-    "text": "contact général\ncontact@contours.nc\nQuestions, réactions aux articles, propositions de sujets, demandes diverses."
-  },
-  {
-    "objectID": "contact/index.html#réseaux-sociaux",
-    "href": "contact/index.html#réseaux-sociaux",
-    "title": "contacter contours.nc",
-    "section": "réseaux sociaux",
-    "text": "réseaux sociaux\nSuivre les publications et actualités de Contours.nc :\n\nFacebook\nLinkedIn"
-  },
-  {
-    "objectID": "contact/index.html#collaboration-scientifique",
-    "href": "contact/index.html#collaboration-scientifique",
-    "title": "contacter contours.nc",
-    "section": "collaboration scientifique",
-    "text": "collaboration scientifique\njonas.brouillon@iac.nc\nPour les collaborations de recherche, projets scientifiques ou demandes liées aux activités scientifiques."
-  },
-  {
-    "objectID": "newsletter/index.html",
-    "href": "newsletter/index.html",
-    "title": "newsletter",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "à propos",
     "section": "",
-    "text": "Recevez les nouvelles publications de contours.nc.\nEnviron un email par mois.\nLa lettre sert surtout à suivre :\n\n\nnouvelles publications\ncartes et analyses\nprojets à venir\n\n\n\n  Adresse email\n  \n    \n    \n  \n  \n    Powered by Buttondown.\n  \n  \n    Votre adresse est transmise à Buttondown et utilisée uniquement pour vous envoyer la newsletter de Contours.\n    Vous pouvez vous désabonner à tout moment avec le lien présent dans chaque message.\n    Politique de confidentialité de Buttondown."
+    "text": "contours est un espace de publication consacré aux sciences sociales, à la cartographie et à la visualisation de données en Nouvelle-Calédonie.\nL’objectif est de proposer des analyses accessibles, documentées et reproductibles sur les dynamiques territoriales calédoniennes : populations, élections, mobilités, alimentation, infrastructures, environnement, inégalités spatiales et politiques publiques."
+  },
+  {
+    "objectID": "about.html#auteur",
+    "href": "about.html#auteur",
+    "title": "à propos",
+    "section": "auteur",
+    "text": "auteur\nLe blog est présenté par Jonas Brouillon, démographe calédonien, ingénieur d’études en sciences sociales à l’IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.\nJonas Brouillon est diplômé du Master démographie de l’Institut de Démographie de l’Université de Strasbourg ainsi que du parcours Master de l’École des Hautes Études en Démographie.\nCe blog et ces travaux sont une initiative personnelle, ayant pour but de rendre accessibles des analyses scientifiques au grand public sur des sujets d’intérêt pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n’est parfois pas compatible avec la volonté de partager des analyses sur des sujets d’actualité, d’où le choix de ce format de blog. Les analyses publiées ici n’engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résultats doivent être considérés comme des éléments d’information et de réflexion, et non comme des recommandations ou des prescriptions d’action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées."
+  },
+  {
+    "objectID": "about.html#ligne-éditoriale",
+    "href": "about.html#ligne-éditoriale",
+    "title": "à propos",
+    "section": "ligne éditoriale",
+    "text": "ligne éditoriale\nLes articles peuvent prendre plusieurs formes :\n\nanalyses courtes appuyées sur des cartes ou graphiques ;\nnotes méthodologiques en R, Quarto ou QGIS ;\nexplorations de données publiques ;\ncartes et visualisations commentées ;\ndossiers territoriaux sur la Nouvelle-Calédonie et le Pacifique."
+  },
+  {
+    "objectID": "cartes/index.html",
+    "href": "cartes/index.html",
+    "title": "cartes",
+    "section": "",
+    "text": "Cette section rassemble les cartes autonomes et animations cartographiques issues des analyses publiées sur contours.\nPour le moment, elle est volontairement centrée sur les cartes. Si d’autres formats deviennent réguliers, comme des graphiques, tableaux interactifs ou explorations visuelles, ils pourront faire l’objet d’une section dédiée.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nParticipation aux municipales 2020-2026\n\n\n\ncartes\n\nélections\n\nNouméa\n\n\n\n\n\n\n\n\n\n\n6 juin 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nMobilités électorales à Nouméa (version animée)\n\n\n\ncartes\n\ncartographie\n\n\n\n\n\n\n\n\n\n\n5 févr. 2026\n\n\n\n\n\n\nAucun article correspondant"
+  },
+  {
+    "objectID": "cartes/temps-trajet-bureaux-animation.html",
+    "href": "cartes/temps-trajet-bureaux-animation.html",
+    "title": "Mobilités électorales à Nouméa (version animée)",
+    "section": "",
+    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote et les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+  },
+  {
+    "objectID": "cartes/temps-trajet-bureaux-animation.html#contexte",
+    "href": "cartes/temps-trajet-bureaux-animation.html#contexte",
+    "title": "Mobilités électorales à Nouméa (version animée)",
+    "section": "",
+    "text": "Cette visualisation explore les effets spatiaux du regroupement des bureaux de vote à Nouméa. Elle met en regard les temps d’accès piétons aux centres de vote et les évolutions induites par les différents scénarios de regroupement.\nLire l’article complet"
+  },
+  {
+    "objectID": "cartes/temps-trajet-bureaux-animation.html#animation",
+    "href": "cartes/temps-trajet-bureaux-animation.html#animation",
+    "title": "Mobilités électorales à Nouméa (version animée)",
+    "section": "Animation",
+    "text": "Animation\n\n\nAnimation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales. ⬇ Télécharger le GIF"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Contours",
+    "section": "",
+    "text": "contours est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.\nCe blog est créé et alimenté par Jonas Brouillon, démographe calédonien et ingénieur d’études en sciences sociales."
+  },
+  {
+    "objectID": "index.html#derniers-articles",
+    "href": "index.html#derniers-articles",
+    "title": "Contours",
+    "section": "Derniers articles",
+    "text": "Derniers articles"
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html",
+    "href": "newsletter/un-mois-de-contours-nc/index.html",
+    "title": "Un mois de contours.nc",
+    "section": "",
+    "text": "Bonjour à toutes et à tous,\nIl y a tout juste un mois, contours.nc voyait le jour avec une idée simple : proposer des analyses fondées sur les données pour mieux comprendre la Nouvelle-Calédonie.\nCartes, statistiques, analyses spatiales, traitements de données… l’objectif est de rendre accessibles des sujets parfois complexes et d’alimenter le débat public avec des méthodes transparentes et reproductibles.\nEn seulement un mois, le projet a déjà beaucoup grandi. Merci à toutes celles et ceux qui lisent les articles, les partagent et font vivre cette aventure. 🙏"
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html#déjà-6-articles-publiés",
+    "href": "newsletter/un-mois-de-contours-nc/index.html#déjà-6-articles-publiés",
+    "title": "Un mois de contours.nc",
+    "section": "📚 Déjà 6 articles publiés",
+    "text": "📚 Déjà 6 articles publiés\nDepuis le lancement, six analyses originales ont été mises en ligne.\n🗳️ Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?\n📊 Cartographier le capital socio-économique en Nouvelle-Calédonie\n🗺️ Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?\n👥 Listes aux Provinciales 2026 : qui part ? Qui reste ?\n📄 Provinciales 2026 : qui propose quoi ?\n🗳️ Retour sur les Provinciales 2019 : la géographie des forces politiques"
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html#des-analyses-qui-commencent-à-alimenter-le-débat-public",
+    "href": "newsletter/un-mois-de-contours-nc/index.html#des-analyses-qui-commencent-à-alimenter-le-débat-public",
+    "title": "Un mois de contours.nc",
+    "section": "📰 Des analyses qui commencent à alimenter le débat public",
+    "text": "📰 Des analyses qui commencent à alimenter le débat public\nL’une des plus belles surprises de ce premier mois est de voir que les travaux publiés sur contours.nc dépassent déjà le cadre du site.\nL’étude consacrée aux bureaux de vote à Nouméa a notamment été relayée par plusieurs médias.\n📰 Les Nouvelles Calédoniennes — Une étude relance le débat sur le nombre de bureaux de vote à Nouméa\n📺 Nouvelle-Calédonie La 1ère — Le sénateur Robert Xowie interpelle le gouvernement sur la répartition des bureaux de vote à Nouméa\n🌏 Islands Business — Walking to the polling booth in Noumea"
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html#une-nouveauté-les-commentaires-arrivent-sur-contours.nc",
+    "href": "newsletter/un-mois-de-contours-nc/index.html#une-nouveauté-les-commentaires-arrivent-sur-contours.nc",
+    "title": "Un mois de contours.nc",
+    "section": "💬 Une nouveauté : les commentaires arrivent sur contours.nc",
+    "text": "💬 Une nouveauté : les commentaires arrivent sur contours.nc\nAutre nouveauté de ce premier mois : il est désormais possible de commenter les articles directement sur contours.nc.\nL’objectif est simple : permettre aux lecteurs de poser des questions, partager leurs analyses, signaler une erreur ou prolonger la discussion autour des données présentées.\nJ’espère que cet espace deviendra progressivement un lieu d’échange respectueux et constructif autour des enjeux de la Nouvelle-Calédonie.\nN’hésitez pas à laisser un commentaire sous les prochains articles, je prendrai le temps de les lire et d’y répondre."
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html#retrouvez-moi-également-sur-caledonia",
+    "href": "newsletter/un-mois-de-contours-nc/index.html#retrouvez-moi-également-sur-caledonia",
+    "title": "Un mois de contours.nc",
+    "section": "📺 Retrouvez-moi également sur Caledonia",
+    "text": "📺 Retrouvez-moi également sur Caledonia\nJ’aurai également le plaisir de participer prochainement à la soirée électorale du dimanche 28 juin sur Caledonia, ainsi qu’à une prochaine émission sur Politis, afin d’échanger autour des résultats des Provinciales 2026 et des principaux enseignements des analyses publiées sur contours.nc."
+  },
+  {
+    "objectID": "newsletter/un-mois-de-contours-nc/index.html#ce-nest-que-le-début",
+    "href": "newsletter/un-mois-de-contours-nc/index.html#ce-nest-que-le-début",
+    "title": "Un mois de contours.nc",
+    "section": "🚀 Ce n’est que le début",
+    "text": "🚀 Ce n’est que le début\nCette première newsletter marque une étape importante, mais surtout le début d’une aventure que j’espère inscrire dans la durée.\nAu-delà des élections, contours.nc continuera à explorer de nombreux sujets liés aux territoires, aux dynamiques démographiques, aux inégalités, à l’agriculture, aux politiques publiques et à la cartographie de la Nouvelle-Calédonie.\nSi cette démarche vous plaît, le meilleur moyen de soutenir le projet est simple :\n📤 partagez les articles autour de vous ;\n💬 répondez à cette newsletter pour proposer des sujets ou faire part de vos remarques ;\n👥 faites découvrir contours.nc à votre entourage.\nChaque lecture, chaque partage et chaque message contribuent à faire vivre ce projet indépendant.\n\n👉 Toutes les analyses sont à retrouver sur https://contours.nc\nMerci encore pour votre confiance.\nÀ très bientôt,\nJonas Brouillon\nFondateur de contours.nc"
   },
   {
     "objectID": "posts/participation-accessibilite-bureaux-noumea/index.html",

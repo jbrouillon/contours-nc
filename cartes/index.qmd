@@ -1,5 +1,6 @@
 ---
 title: "cartes"
+image: "../images/contours-banner.png"
 page-layout: full
 listing:
   contents:

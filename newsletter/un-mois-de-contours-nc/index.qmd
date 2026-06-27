@@ -1,0 +1,98 @@
+---
+title: "Un mois de contours.nc"
+subtitle: "Six analyses publiées, des relais dans les médias et la suite du projet"
+author: "Jonas Brouillon"
+date: "2026-06-27"
+categories: ["Newsletter"]
+description: "Première newsletter de contours.nc : six analyses publiées, des premiers relais dans le débat public et la suite du projet."
+image: "../../images/contours-banner.png"
+toc: false
+title-block-banner: true
+---
+
+Bonjour à toutes et à tous,
+
+Il y a tout juste un mois, **contours.nc** voyait le jour avec une idée simple : proposer des analyses fondées sur les données pour mieux comprendre la Nouvelle-Calédonie.
+
+Cartes, statistiques, analyses spatiales, traitements de données... l'objectif est de rendre accessibles des sujets parfois complexes et d'alimenter le débat public avec des méthodes transparentes et reproductibles.
+
+En seulement un mois, le projet a déjà beaucoup grandi. Merci à toutes celles et ceux qui lisent les articles, les partagent et font vivre cette aventure. 🙏
+
+------------------------------------------------------------------------
+
+## 📚 Déjà 6 articles publiés
+
+Depuis le lancement, **six analyses originales** ont été mises en ligne.
+
+🗳️ [**Quel est l'effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?**](https://contours.nc/posts/regroupement-bureaux-vote-noumea/)
+
+📊 [**Cartographier le capital socio-économique en Nouvelle-Calédonie**](https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/)
+
+🗺️ [**Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?**](https://contours.nc/posts/participation-accessibilite-bureaux-noumea/)
+
+👥 [**Listes aux Provinciales 2026 : qui part ? Qui reste ?**](https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/)
+
+📄 [**Provinciales 2026 : qui propose quoi ?**](https://contours.nc/posts/provinciales-2026-professions-foi/)
+
+🗳️ [**Retour sur les Provinciales 2019 : la géographie des forces politiques**](https://contours.nc/posts/provinciales-2019-geographies-electorales/)
+
+------------------------------------------------------------------------
+
+## 📰 Des analyses qui commencent à alimenter le débat public
+
+L'une des plus belles surprises de ce premier mois est de voir que les travaux publiés sur **contours.nc** dépassent déjà le cadre du site.
+
+L'étude consacrée aux bureaux de vote à Nouméa a notamment été relayée par plusieurs médias.
+
+📰 [**Les Nouvelles Calédoniennes — Une étude relance le débat sur le nombre de bureaux de vote à Nouméa**](https://www.lnc.nc/article/une-etude-relance-le-debat-sur-le-nombre-de-bureaux-de-vote-a-noumea)
+
+📺 [**Nouvelle-Calédonie La 1ère — Le sénateur Robert Xowie interpelle le gouvernement sur la répartition des bureaux de vote à Nouméa**](https://la1ere.franceinfo.fr/nouvellecaledonie/provinciales-2026-le-senateur-robert-xowie-interpelle-le-gouvernement-sur-la-repartition-des-bureaux-de-vote-a-noumea-1707136.html)
+
+🌏 [**Islands Business — Walking to the polling booth in Noumea**](https://islandsbusiness.com/news-break/walking-to-the-polling-booth-in-noumea/)
+
+------------------------------------------------------------------------
+
+## 💬 Une nouveauté : les commentaires arrivent sur contours.nc
+
+Autre nouveauté de ce premier mois : il est désormais possible de **commenter les articles directement sur contours.nc**.
+
+L'objectif est simple : permettre aux lecteurs de poser des questions, partager leurs analyses, signaler une erreur ou prolonger la discussion autour des données présentées.
+
+J'espère que cet espace deviendra progressivement un lieu d'échange respectueux et constructif autour des enjeux de la Nouvelle-Calédonie.
+
+N'hésitez pas à laisser un commentaire sous les prochains articles, je prendrai le temps de les lire et d'y répondre.
+
+------------------------------------------------------------------------
+
+## 📺 Retrouvez-moi également sur Caledonia
+
+J'aurai également le plaisir de participer prochainement à **la soirée électorale du dimanche 28 juin** sur **Caledonia**, ainsi qu'à une prochaine émission sur **Politis**, afin d'échanger autour des résultats des Provinciales 2026 et des principaux enseignements des analyses publiées sur contours.nc.
+
+------------------------------------------------------------------------
+
+## 🚀 Ce n'est que le début
+
+Cette première newsletter marque une étape importante, mais surtout le début d'une aventure que j'espère inscrire dans la durée.
+
+Au-delà des élections, **contours.nc** continuera à explorer de nombreux sujets liés aux territoires, aux dynamiques démographiques, aux inégalités, à l'agriculture, aux politiques publiques et à la cartographie de la Nouvelle-Calédonie.
+
+Si cette démarche vous plaît, le meilleur moyen de soutenir le projet est simple :
+
+📤 partagez les articles autour de vous ;
+
+💬 répondez à cette newsletter pour proposer des sujets ou faire part de vos remarques ;
+
+👥 faites découvrir **contours.nc** à votre entourage.
+
+Chaque lecture, chaque partage et chaque message contribuent à faire vivre ce projet indépendant.
+
+------------------------------------------------------------------------
+
+👉 **Toutes les analyses sont à retrouver sur** [**https://contours.nc**](https://contours.nc/)
+
+Merci encore pour votre confiance.
+
+À très bientôt,
+
+**Jonas Brouillon**\
+*Fondateur de contours.nc*

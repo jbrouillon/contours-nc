@@ -1,6 +1,12 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/newsletter/index.html",
+    "items": [
+      "/newsletter/un-mois-de-contours-nc/index.html"
+    ]
+  },
+  {
+    "listing": "/articles/index.html",
     "items": [
       "/posts/provinciales-2019-geographies-electorales/index.html",
       "/posts/provinciales-2026-professions-foi/index.html",
@@ -18,7 +24,7 @@
     ]
   },
   {
-    "listing": "/articles/index.html",
+    "listing": "/index.html",
     "items": [
       "/posts/provinciales-2019-geographies-electorales/index.html",
       "/posts/provinciales-2026-professions-foi/index.html",
