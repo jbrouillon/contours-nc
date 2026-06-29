@@ -409,8 +409,11 @@ window.ContoursSketch = (() => {
 
   function renderLine(id, p) {
     const data = p.data;
-    const { svg, rc, width, height } = base(id, p.options.height || 560);
-    const margin = { top: 58, right: 100, bottom: 86, left: 70 };
+    const compact = window.innerWidth < 760;
+    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? 140 : 0));
+    const margin = compact
+      ? { top: 88, right: 104, bottom: 154, left: 82 }
+      : { top: 58, right: 100, bottom: 86, left: 112 };
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -430,8 +433,10 @@ window.ContoursSketch = (() => {
       g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
       label(g, p.options.valueFormat === "int" ? fmtInt(tick) : fmtPct(tick), -10, ty, { anchor: "end", size: 12, color: muted });
     });
-    label(g, p.options.yLabel || "", -52, innerH / 2, { anchor: "middle", size: 13, color: muted })
-      .attr("transform", `rotate(-90,-52,${innerH / 2})`);
+    if (!compact) {
+      label(g, p.options.yLabel || "", -74, innerH / 2, { anchor: "middle", size: 13, color: muted })
+        .attr("transform", `rotate(-90,-74,${innerH / 2})`);
+    }
 
     const line = d3.line().x((d) => x(d.annee)).y((d) => y(d.valeur)).curve(d3.curveCatmullRom.alpha(0.35));
     const series = d3.group(data, (d) => d.serie);
@@ -446,8 +451,9 @@ window.ContoursSketch = (() => {
       legendItems.push({ label: serie, color });
     }
     const lineLegend = legendLayout(width, legendItems.length, 4);
-    legend(svg, legendItems, lineLegend.x, height - 34 - (lineLegend.rows - 1) * 28, lineLegend.columns, {
-      cellWidth: lineLegend.cellWidth
+    legend(svg, legendItems, lineLegend.x, compact ? height - 54 - (lineLegend.rows - 1) * 30 : height - 34 - (lineLegend.rows - 1) * 28, lineLegend.columns, {
+      cellWidth: lineLegend.cellWidth,
+      rowHeight: compact ? 30 : 28
     });
     addSignature(svg, width, height);
   }
@@ -612,8 +618,11 @@ window.ContoursSketch = (() => {
   function renderStackedHorizontal(id, p) {
     const data = p.data;
     const categories = toArray(p.options.categories);
-    const { svg, rc, width, height } = base(id, p.options.height || 500);
-    const margin = { top: 62, right: 120, bottom: 86, left: 92 };
+    const compact = window.innerWidth < 760;
+    const { svg, rc, width, height } = base(id, (p.options.height || 500) + (compact ? 96 : 54));
+    const margin = compact
+      ? { top: 70, right: 112, bottom: 170, left: 92 }
+      : { top: 62, right: 120, bottom: 132, left: 92 };
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -649,15 +658,22 @@ window.ContoursSketch = (() => {
       label(g, `${fmtInt(total)} voix`, x(totalPct) + 8, y(name) + y.bandwidth() / 2, { size: 12 });
     });
     label(g, "Part des exprimés", innerW / 2, innerH + 44, { anchor: "middle", color: muted, size: 12 });
-    legend(svg, legendItems, Math.max(80, width / 2 - 300), height - 34, 3);
+    const horizontalLegend = legendLayout(width, legendItems.length, 3, { maxCellWidth: 190 });
+    legend(svg, legendItems, horizontalLegend.x, compact ? height - 54 - (horizontalLegend.rows - 1) * 30 : height - 34, horizontalLegend.columns, {
+      cellWidth: horizontalLegend.cellWidth,
+      rowHeight: compact ? 30 : 28
+    });
     addSignature(svg, width, height);
   }
 
   function renderStackedVertical(id, p) {
     const data = p.data;
     const cats = toArray(p.options.categories);
-    const { svg, rc, width, height } = base(id, p.options.height || 560);
-    const margin = { top: 60, right: 40, bottom: 86, left: 68 };
+    const compact = window.innerWidth < 760;
+    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? 126 : 0));
+    const margin = compact
+      ? { top: 92, right: 40, bottom: 158, left: 72 }
+      : { top: 60, right: 40, bottom: 86, left: 110 };
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -676,8 +692,10 @@ window.ContoursSketch = (() => {
       g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
       label(g, p.options.valueFormat === "pct" ? fmtPct(tick) : fmtInt(tick), -10, ty, { anchor: "end", color: muted, size: 12 });
     });
-    label(g, p.options.yLabel || "Sièges", -46, innerH / 2, { anchor: "middle", color: muted, size: 13 })
-      .attr("transform", `rotate(-90,-46,${innerH / 2})`);
+    if (!compact) {
+      label(g, p.options.yLabel || "Sièges", -82, innerH / 2, { anchor: "middle", color: muted, size: 13 })
+        .attr("transform", `rotate(-90,-82,${innerH / 2})`);
+    }
 
     years.forEach((year) => {
       let bottom = 0;
@@ -701,8 +719,9 @@ window.ContoursSketch = (() => {
       });
     });
     const stackedLegend = legendLayout(width, cats.length, 4, { maxCellWidth: 190 });
-    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
-      cellWidth: stackedLegend.cellWidth
+    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, compact ? height - 56 - (stackedLegend.rows - 1) * 30 : height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
+      cellWidth: stackedLegend.cellWidth,
+      rowHeight: compact ? 30 : 28
     });
     addSignature(svg, width, height);
   }
