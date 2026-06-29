@@ -1,0 +1,72 @@
+annee,province,bloc_historique,voix,sieges_province,sieges_congres,exprimes,pct_exprimes,source
+1989,Province Sud,anti_independantiste,31000,26,26,39181,79.1199816237462,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province Sud,independantiste,5752,4,4,39181,14.680584977412522,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province Sud,autres_listes,2429,2,2,39181,6.1994333988412755,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province Nord,anti_independantiste,4746,4,4,14783,32.10444429412163,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province Nord,independantiste,10037,11,11,14783,67.89555570587838,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province Nord,autres_listes,0,0,0,14783,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province des Iles,anti_independantiste,2999,2,2,8509,35.24503466917382,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province des Iles,independantiste,5510,5,5,8509,64.75496533082618,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1989,Province des Iles,autres_listes,0,0,0,8509,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989
+1995,Province Sud,anti_independantiste,35623,29,29,45113,78.96393500764746,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province Sud,independantiste,6371,3,3,45113,14.122315075477136,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province Sud,autres_listes,3119,0,0,45113,6.9137499168754015,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province Nord,anti_independantiste,5076,4,4,16333,31.078185269087125,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province Nord,independantiste,11014,11,11,16333,67.43402926590339,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province Nord,autres_listes,243,0,0,16333,1.48778546500949,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province des Iles,anti_independantiste,2636,2,2,10345,25.480908651522476,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province des Iles,independantiste,7709,5,5,10345,74.51909134847753,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1995,Province des Iles,autres_listes,0,0,0,10345,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995
+1999,Province Sud,anti_independantiste,39886,34,27,49595,80.42342978122795,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province Sud,independantiste,9003,6,5,49595,18.15303962092953,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province Sud,autres_listes,706,0,0,49595,1.4235305978425246,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province Nord,anti_independantiste,4221,4,3,17283,24.4228432563791,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province Nord,independantiste,13062,18,12,17283,75.5771567436209,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province Nord,autres_listes,0,0,0,17283,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province des Iles,anti_independantiste,2370,2,1,12443,19.04685365265611,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province des Iles,independantiste,10073,12,6,12443,80.95314634734389,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+1999,Province des Iles,autres_listes,0,0,0,12443,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999
+2004,Province Sud,anti_independantiste,44774,40,32,54811,81.68798233931145,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province Sud,independantiste,8833,0,0,54811,16.115378299976282,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province Sud,autres_listes,1204,0,0,54811,2.1966393607122656,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province Nord,anti_independantiste,4649,4,3,20559,22.612967556787783,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province Nord,independantiste,15207,18,12,20559,73.96760542827958,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province Nord,autres_listes,703,0,0,20559,3.419427014932633,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province des Iles,anti_independantiste,2440,2,1,14191,17.193996194771334,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province des Iles,independantiste,11751,12,6,14191,82.80600380522867,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2004,Province des Iles,autres_listes,0,0,0,14191,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004
+2009,Province Sud,anti_independantiste,48815,36,29,60573,80.58871114192792,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province Sud,independantiste,7569,4,3,60573,12.495666386013571,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province Sud,autres_listes,4189,0,0,60573,6.915622472058508,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province Nord,anti_independantiste,5418,2,2,21667,25.0057691420132,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province Nord,independantiste,16249,20,13,21667,74.9942308579868,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province Nord,autres_listes,0,0,0,21667,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province des Iles,anti_independantiste,1236,0,0,14318,8.632490571308843,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province des Iles,independantiste,13082,14,7,14318,91.36750942869116,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2009,Province des Iles,autres_listes,0,0,0,14318,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009
+2014,Province Sud,anti_independantiste,55947,33,26,68236,81.99044492643179,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province Sud,independantiste,12289,7,6,68236,18.009555073568205,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province Sud,autres_listes,0,0,0,68236,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province Nord,anti_independantiste,4752,4,3,23399,20.308560194880123,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province Nord,independantiste,18647,18,12,23399,79.69143980511987,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province Nord,autres_listes,0,0,0,23399,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province des Iles,anti_independantiste,939,0,0,13631,6.888709559093243,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province des Iles,independantiste,12692,14,7,13631,93.11129044090676,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2014,Province des Iles,autres_listes,0,0,0,13631,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014
+2019,Province Sud,anti_independantiste,53216,33,26,70959,74.99541989035922,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province Sud,independantiste,13848,7,6,70959,19.51549486323088,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province Sud,autres_listes,3895,0,0,70959,5.489085246409899,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province Nord,anti_independantiste,5047,3,2,25221,20.011101859561478,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province Nord,independantiste,20174,19,13,25221,79.98889814043852,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province Nord,autres_listes,0,0,0,25221,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province des Iles,anti_independantiste,1313,0,0,13983,9.389973539297719,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province des Iles,independantiste,12670,14,7,13983,90.61002646070229,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2019,Province des Iles,autres_listes,0,0,0,13983,0,https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019
+2026,Province Nord,anti_independantiste,4261,3,2,26091,16.331301981526195,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province Nord,autres_listes,853,0,0,26091,3.269326587712238,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province Nord,independantiste,20976,19,13,26091,80.39553869150282,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province Sud,anti_independantiste,61539,33,26,82361,74.71861682106822,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province Sud,autres_listes,3575,0,0,82361,4.340646665290611,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province Sud,independantiste,17246,7,6,82361,20.939522346741782,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province des Iles,anti_independantiste,270,0,0,11979,2.2539444027047333,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf
+2026,Province des Iles,independantiste,11709,14,7,11979,97.74605559729527,https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf

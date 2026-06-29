@@ -1,0 +1,1405 @@
+---
+title: "Provinciales 2026 : premier bilan des rapports de force"
+subtitle: "Abstention, familles politiques, nuances politiques et voix sans siège dans les trois provinces"
+author: "Jonas Brouillon"
+date: "2026-06-29"
+lang: fr
+categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
+tags: ["provinciales", "Nouvelle-Calédonie", "Congrès", "abstention", "rapports de force"]
+description: "Premier bilan des provinciales 2026 : rapports de force par province, abstention, familles politiques indépendantistes et non-indépendantistes, sièges et voix non représentées."
+image: "../../images/exports/provinciales-2026-congres-familles.png"
+image-alt: "Évolution des sièges du Congrès par grandes familles politiques depuis 1989"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.bilan-lede {
+  max-width: 82ch;
+  font-size: 1.07rem;
+}
+
+.bilan-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1.1rem 0 1.8rem;
+}
+
+.bilan-stat-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.bilan-stat-value {
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.bilan-stat-label {
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.22rem;
+}
+
+.bilan-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.3;
+  margin: 0.35rem 0 0;
+}
+
+.bilan-note {
+  background: var(--surface-soft);
+  border-left: 4px solid var(--green);
+  border-radius: 6px;
+  margin: 1.2rem 0;
+  padding: 0.85rem 1rem;
+}
+
+.bilan-plot {
+  margin: 1.15rem 0 2rem;
+}
+
+.bilan-plot img {
+  border: 1px solid rgba(65, 58, 48, 0.14);
+  border-radius: 7px;
+}
+
+.bilan-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 360px;
+  overflow: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.bilan-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.bilan-sketch-download {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.bilan-sketch-download:hover {
+  background: #f3efe6;
+}
+
+.bilan-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.bilan-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script>
+window.ContoursSketch = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+
+  const fmtPct = (value) =>
+    new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value) + " %";
+  const fmtPctAxis = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(value) + " %";
+  const fmtInt = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(value));
+
+  function payload(id) {
+    return JSON.parse(document.getElementById(`${id}-data`).textContent);
+  }
+
+  function base(id, height) {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    const tools = document.createElement("div");
+    tools.className = "bilan-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "bilan-sketch-download";
+    button.textContent = "PNG";
+    button.setAttribute("aria-label", "Télécharger le graphique en PNG");
+    button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+    const width = Math.max(640, el.clientWidth || 960);
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.sketchChart || "graphique")
+      .style("background", paper);
+    return { el, svg, rc: rough.svg(svg.node()), width, height };
+  }
+
+  function toArray(value) {
+    return Array.isArray(value) ? value : Object.values(value || {});
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 800)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }, "image/png");
+    };
+    image.src = url;
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = ink) {
+    const node = rc.rectangle(x, y, Math.max(0.1, width), Math.max(0.1, height), {
+      fill: color,
+      fillStyle: "hachure",
+      hachureGap: 2.1,
+      hachureAngle: -42,
+      fillWeight: 1.65,
+      roughness: 1.35,
+      stroke,
+      strokeWidth: stroke === "none" ? 0 : 1.25
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+  }
+
+  function roughCircle(g, rc, x, y, diameter, color, stroke = ink) {
+    const node = rc.circle(x, y, diameter, {
+      fill: color,
+      fillStyle: "solid",
+      roughness: 1.6,
+      stroke,
+      strokeWidth: 1
+    });
+    g.node().appendChild(node);
+  }
+
+  function roughPath(g, rc, d, color, width = 2.2) {
+    const node = rc.path(d, {
+      stroke: color,
+      strokeWidth: width,
+      roughness: 1.7,
+      bowing: 1.2,
+      fill: "none"
+    });
+    g.node().appendChild(node);
+  }
+
+  function label(g, text, x, y, opts = {}) {
+    return g.append("text")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("text-anchor", opts.anchor || "start")
+      .attr("dominant-baseline", opts.baseline || "middle")
+      .attr("font-size", opts.size || 12)
+      .attr("font-weight", opts.weight || 400)
+      .attr("fill", opts.color || ink)
+      .text(text);
+  }
+
+  function chartTitle(svg, text, width, y = 30) {
+    return label(svg, text, 18, y, { size: 22, weight: 800 })
+      .call(wrap, Math.min(width - 36, 1040));
+  }
+
+  function wrap(selection, width) {
+    selection.each(function() {
+      const text = d3.select(this);
+      const words = text.text().split(/\s+/).reverse();
+      const x = text.attr("x");
+      const y = text.attr("y");
+      let line = [];
+      let lineNumber = 0;
+      let word;
+      text.text(null);
+      let tspan = text.append("tspan").attr("x", x).attr("y", y);
+      while ((word = words.pop())) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", `${++lineNumber * 1.05}em`)
+            .text(word);
+        }
+      }
+    });
+  }
+
+  function legend(svg, items, x, y, columns = items.length, opts = {}) {
+    const group = svg.append("g").attr("transform", `translate(${x},${y})`);
+    const cell = opts.cellWidth || 210;
+    const rowHeight = opts.rowHeight || 28;
+    const fontSize = opts.fontSize || 12;
+    items.forEach((item, i) => {
+      const gx = (i % columns) * cell;
+      const gy = Math.floor(i / columns) * rowHeight;
+      const g = group.append("g").attr("transform", `translate(${gx},${gy})`);
+      roughRect(g, rough.svg(svg.node()), 0, -8, 18, 14, item.color, 1, item.color);
+      label(g, item.label, 28, 0, { size: fontSize }).call(wrap, cell - 34);
+    });
+  }
+
+  function legendLayout(width, itemCount, maxColumns = 4, opts = {}) {
+    const compact = window.innerWidth < 760 || width < 760;
+    const columns = compact
+      ? Math.min(opts.compactColumns || 2, itemCount)
+      : Math.min(maxColumns, itemCount);
+    const sideGap = opts.sideGap || 92;
+    const cellWidth = Math.min(
+      opts.maxCellWidth || 210,
+      Math.max(opts.minCellWidth || 150, (width - sideGap) / columns)
+    );
+    return {
+      columns,
+      cellWidth,
+      rows: Math.ceil(itemCount / columns),
+      x: Math.max(24, (width - columns * cellWidth) / 2)
+    };
+  }
+
+  function axisBottom(g, x, y, ticks, format) {
+    const ax = g.append("g");
+    ticks.forEach((tick) => {
+      const tx = x(tick);
+      ax.append("line")
+        .attr("x1", tx).attr("x2", tx)
+        .attr("y1", 0).attr("y2", y)
+        .attr("stroke", grid)
+        .attr("stroke-width", 1);
+      label(ax, format(tick), tx, y + 20, { anchor: "middle", size: 12, color: muted });
+    });
+  }
+
+  function renderBarFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const cols = window.innerWidth < 820 ? 1 : 3;
+    const rows = Math.ceil(provinces.length / cols);
+    const facetHeight = cols === 1 ? 390 : 560;
+    const height = rows * facetHeight + 30;
+    const { svg, rc, width } = base(id, height);
+    const facetWidth = width / cols;
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const px = (i % cols) * facetWidth;
+      const py = Math.floor(i / cols) * facetHeight + 58;
+      const dat = data.filter((d) => d.province_label === province).sort((a, b) => b.pct_exprimes - a.pct_exprimes);
+      const margin = { top: 28, right: 74, bottom: 42, left: cols === 1 ? 190 : 145 };
+      const innerW = facetWidth - margin.left - margin.right - 12;
+      const innerH = Math.max(190, dat.length * 34);
+      const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
+      const x = d3.scaleLinear().domain([0, d3.max(dat, (d) => d.pct_exprimes) * 1.28]).range([0, innerW]);
+      const y = d3.scaleBand().domain(dat.map((d) => d.etiquette)).range([0, innerH]).padding(0.25);
+      axisBottom(g, x, innerH, x.ticks(cols === 1 ? 5 : 3), fmtPctAxis);
+      label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
+
+      dat.forEach((d) => {
+        roughRect(g, rc, 0, y(d.etiquette), x(d.pct_exprimes), y.bandwidth(), d.couleur, d.sieges_province > 0 ? 1 : 0.52);
+        const l = d.sieges_province > 0 ? `${fmtPct(d.pct_exprimes)} · ${d.sieges_province} sièges` : fmtPct(d.pct_exprimes);
+        label(g, l, x(d.pct_exprimes) + 6, y(d.etiquette) + y.bandwidth() / 2, {
+          size: 11,
+          color: d.sieges_province > 0 ? ink : "#9a948d"
+        });
+        const yy = y(d.etiquette) + y.bandwidth() / 2;
+        label(g, d.etiquette, -10, yy, { anchor: "end", size: 11 }).call(wrap, margin.left - 18);
+      });
+
+      label(g, "Part des exprimés", innerW / 2, innerH + 42, { anchor: "middle", size: 12, color: muted });
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderLine(id, p) {
+    const data = p.data;
+    const { svg, rc, width, height } = base(id, p.options.height || 560);
+    const margin = { top: 58, right: 100, bottom: 86, left: 70 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const x = d3.scaleLinear()
+      .domain(p.options.xDomain || d3.extent(data, (d) => d.annee))
+      .range([0, innerW]);
+    const y = d3.scaleLinear()
+      .domain(p.options.yDomain || [0, d3.max(data, (d) => d.valeur) * 1.08])
+      .nice()
+      .range([innerH, 0]);
+
+    axisBottom(g, x, innerH, p.options.xTicks || x.ticks(7), (d) => d);
+    y.ticks(5).forEach((tick) => {
+      const ty = y(tick);
+      g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+      label(g, p.options.valueFormat === "int" ? fmtInt(tick) : fmtPct(tick), -10, ty, { anchor: "end", size: 12, color: muted });
+    });
+    label(g, p.options.yLabel || "", -52, innerH / 2, { anchor: "middle", size: 13, color: muted })
+      .attr("transform", `rotate(-90,-52,${innerH / 2})`);
+
+    const line = d3.line().x((d) => x(d.annee)).y((d) => y(d.valeur)).curve(d3.curveCatmullRom.alpha(0.35));
+    const series = d3.group(data, (d) => d.serie);
+    const legendItems = [];
+    for (const [serie, values] of series) {
+      const sorted = values.slice().sort((a, b) => a.annee - b.annee);
+      const color = sorted[0].couleur;
+      roughPath(g, rc, line(sorted), color, 2.4);
+      sorted.forEach((d) => roughCircle(g, rc, x(d.annee), y(d.valeur), 12, color, color));
+      const last = sorted[sorted.length - 1];
+      label(g, p.options.valueFormat === "int" ? fmtInt(last.valeur) : fmtPct(last.valeur), x(last.annee) + 7, y(last.valeur), { size: 11, color });
+      legendItems.push({ label: serie, color });
+    }
+    const lineLegend = legendLayout(width, legendItems.length, 4);
+    legend(svg, legendItems, lineLegend.x, height - 34 - (lineLegend.rows - 1) * 28, lineLegend.columns, {
+      cellWidth: lineLegend.cellWidth
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderSlopeFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const cols = window.innerWidth < 900 ? 1 : 3;
+    const rows = Math.ceil(provinces.length / cols);
+    const facetHeight = cols === 1 ? 520 : 540;
+    const height = rows * facetHeight + 46;
+    const { svg, rc, width } = base(id, height);
+    const facetWidth = width / cols;
+    const years = p.options.years || [2019, 2026];
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const px = (i % cols) * facetWidth;
+      const py = Math.floor(i / cols) * facetHeight + 68;
+      const dat = data.filter((d) => d.province_label === province && d.valeur > 0);
+      const margin = { top: 30, right: cols === 1 ? 200 : 150, bottom: 54, left: 58 };
+      const innerW = facetWidth - margin.left - margin.right - 12;
+      const innerH = facetHeight - margin.top - margin.bottom - 16;
+      const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
+      const x = d3.scalePoint().domain(years.map(String)).range([0, innerW]).padding(0.22);
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(dat, (d) => d.valeur) * 1.18 || 1])
+        .nice()
+        .range([innerH, 0]);
+
+      label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
+      years.forEach((year) => {
+        const tx = x(String(year));
+        g.append("line")
+          .attr("x1", tx).attr("x2", tx)
+          .attr("y1", 0).attr("y2", innerH)
+          .attr("stroke", grid)
+          .attr("stroke-width", 1);
+        label(g, year, tx, innerH + 26, { anchor: "middle", size: 12, color: muted });
+      });
+      y.ticks(4).forEach((tick) => {
+        const ty = y(tick);
+        g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+        label(g, fmtInt(tick), -8, ty, { anchor: "end", size: 11, color: muted });
+      });
+
+      const series = d3.group(dat, (d) => d.serie);
+      const lastValues = [];
+      for (const [serie, values] of series) {
+        const sorted = values.slice().sort((a, b) => a.annee - b.annee);
+        const color = sorted[0].couleur;
+        if (sorted.length > 1) {
+          const d = d3.line()
+            .x((row) => x(String(row.annee)))
+            .y((row) => y(row.valeur))(sorted);
+          roughPath(g, rc, d, color, 2.2);
+        }
+        sorted.forEach((row) => {
+          roughCircle(g, rc, x(String(row.annee)), y(row.valeur), 11, color, color);
+        });
+        const last = sorted[sorted.length - 1];
+        lastValues.push({ serie, color, y: y(last.valeur), value: last.valeur });
+      }
+
+      const adjusted = lastValues.sort((a, b) => a.y - b.y);
+      adjusted.forEach((item, rank) => {
+        const minGap = 22;
+        const previous = rank > 0 ? adjusted[rank - 1] : null;
+        if (previous && item.y - previous.y < minGap) item.y = previous.y + minGap;
+      });
+      const overflow = adjusted.length ? adjusted[adjusted.length - 1].y - (innerH - 8) : 0;
+      if (overflow > 0) adjusted.forEach((item) => { item.y -= overflow; });
+      const underflow = adjusted.length ? 8 - adjusted[0].y : 0;
+      if (underflow > 0) adjusted.forEach((item) => { item.y += underflow; });
+      adjusted.forEach((item) => {
+        label(g, `${item.serie} · ${fmtInt(item.value)}`, innerW + 10, Math.min(innerH - 8, Math.max(8, item.y)), {
+          size: 10,
+          color: item.color
+        }).call(wrap, margin.right - 16);
+      });
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderAxisBarsFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const panelHeight = window.innerWidth < 760 ? 560 : 450;
+    const height = 62 + provinces.length * panelHeight + 18;
+    const { svg, rc, width } = base(id, height);
+    const years = p.options.years || [2019, 2026];
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const py = 74 + i * panelHeight;
+      const dat = data.filter((d) => d.province_label === province && d.valeur > 0);
+      const series = [...new Set(dat.map((d) => d.serie))];
+      const margin = {
+        top: 44,
+        right: window.innerWidth < 760 ? 98 : 145,
+        bottom: 56,
+        left: window.innerWidth < 760 ? 170 : 225
+      };
+      const innerW = width - margin.left - margin.right;
+      const innerH = panelHeight - margin.top - margin.bottom - 28;
+      const g = svg.append("g").attr("transform", `translate(${margin.left},${py + margin.top})`);
+      const maxValue = d3.max(dat, (d) => d.valeur) || 1;
+      const x = d3.scaleLinear().domain([0, maxValue * 1.24]).nice().range([0, innerW]);
+      const y = d3.scaleBand().domain(series).range([0, innerH]).padding(0.22);
+      const barH = Math.max(5, y.bandwidth() / 2 - 2);
+
+      label(svg, province, 24, py + 18, { size: 16, weight: 800 });
+      label(svg, "2019 en clair · 2026 en plein", width - 24, py + 18, {
+        anchor: "end",
+        size: 12,
+        color: muted,
+        weight: 800
+      });
+
+      x.ticks(4).forEach((tick) => {
+        const tx = x(tick);
+        g.append("line")
+          .attr("x1", tx).attr("x2", tx)
+          .attr("y1", 0).attr("y2", innerH)
+          .attr("stroke", grid);
+        label(g, fmtInt(tick), tx, innerH + 22, { anchor: "middle", size: 11, color: muted });
+      });
+
+      series.forEach((serie) => {
+        const rows = dat.filter((d) => d.serie === serie);
+        const color = rows[0].couleur;
+        const rowByYear = new Map(rows.map((d) => [+d.annee, d]));
+        const yy = y(serie);
+        label(g, serie, -12, yy + y.bandwidth() / 2, {
+          anchor: "end",
+          size: window.innerWidth < 760 ? 10 : 11
+        }).call(wrap, margin.left - 32);
+
+        years.forEach((year, yearIndex) => {
+          const row = rowByYear.get(+year);
+          const value = row ? row.valeur : 0;
+          if (value <= 0) return;
+          const by = yy + yearIndex * (barH + 4);
+          roughRect(g, rc, 0, by, x(value), barH, color, yearIndex === 0 ? 0.42 : 1, color);
+          label(g, fmtInt(value), x(value) + 6, by + barH / 2, {
+            size: 10,
+            color: yearIndex === 0 ? "#8a8277" : color,
+            weight: yearIndex === 0 ? 500 : 800
+          });
+        });
+      });
+
+      label(g, "Voix", innerW / 2, innerH + 46, { anchor: "middle", size: 12, color: muted });
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderStackedHorizontal(id, p) {
+    const data = p.data;
+    const categories = toArray(p.options.categories);
+    const { svg, rc, width, height } = base(id, p.options.height || 500);
+    const margin = { top: 62, right: 120, bottom: 86, left: 92 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const y = d3.scaleBand().domain(p.options.yOrder).range([0, innerH]).padding(0.42);
+    const x = d3.scaleLinear().domain([0, p.options.xMax]).range([0, innerW]);
+    axisBottom(g, x, innerH, d3.range(0, p.options.xMax + 0.1, 5), fmtPct);
+
+    p.options.yOrder.forEach((name) => label(g, name, -12, y(name) + y.bandwidth() / 2, { anchor: "end", size: 13 }));
+    const legendItems = categories.map((d) => ({ label: d.label, color: d.color }));
+
+    p.options.yOrder.forEach((name) => {
+      let left = 0;
+      categories.forEach((cat) => {
+        const row = data.find((d) => d.y === name && d.category === cat.id);
+        const value = row ? row.valeur : 0;
+        if (value > 0) {
+          roughRect(g, rc, x(left), y(name), x(value), y.bandwidth(), cat.color);
+          if (value >= 2) {
+            label(g, fmtPct(value), x(left + value / 2), y(name) + y.bandwidth() / 2, {
+              anchor: "middle",
+              color: "white",
+              size: 12,
+              weight: 800
+            });
+          }
+        }
+        left += value;
+      });
+      const total = data.filter((d) => d.y === name).reduce((sum, d) => sum + d.voix, 0);
+      const totalPct = data.filter((d) => d.y === name).reduce((sum, d) => sum + d.valeur, 0);
+      label(g, `${fmtInt(total)} voix`, x(totalPct) + 8, y(name) + y.bandwidth() / 2, { size: 12 });
+    });
+    label(g, "Part des exprimés", innerW / 2, innerH + 44, { anchor: "middle", color: muted, size: 12 });
+    legend(svg, legendItems, Math.max(80, width / 2 - 300), height - 34, 3);
+    addSignature(svg, width, height);
+  }
+
+  function renderStackedVertical(id, p) {
+    const data = p.data;
+    const cats = toArray(p.options.categories);
+    const { svg, rc, width, height } = base(id, p.options.height || 560);
+    const margin = { top: 60, right: 40, bottom: 86, left: 68 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const years = p.options.years;
+    const x = d3.scaleBand().domain(years.map(String)).range([0, innerW]).padding(0.28);
+    const yMax = p.options.yMax || d3.max(years, (year) =>
+      d3.sum(data.filter((d) => +d.annee === +year), (d) => d.valeur)
+    ) * 1.08 || 56;
+    const y = d3.scaleLinear().domain([0, yMax]).nice().range([innerH, 0]);
+
+    axisBottom(g, d3.scalePoint().domain(years.map(String)).range([x.bandwidth() / 2, innerW - x.bandwidth() / 2]), innerH, years.map(String), (d) => d);
+    y.ticks(5).forEach((tick) => {
+      const ty = y(tick);
+      g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+      label(g, p.options.valueFormat === "pct" ? fmtPct(tick) : fmtInt(tick), -10, ty, { anchor: "end", color: muted, size: 12 });
+    });
+    label(g, p.options.yLabel || "Sièges", -46, innerH / 2, { anchor: "middle", color: muted, size: 13 })
+      .attr("transform", `rotate(-90,-46,${innerH / 2})`);
+
+    years.forEach((year) => {
+      let bottom = 0;
+      cats.forEach((cat) => {
+        const row = data.find((d) => +d.annee === +year && d.category === cat.id);
+        const value = row ? row.valeur : 0;
+        if (value > 0) {
+          const yy = y(bottom + value);
+          const hh = y(bottom) - y(bottom + value);
+          roughRect(g, rc, x(String(year)), yy, x.bandwidth(), hh, cat.color);
+          if (value >= 2) {
+            label(g, value, x(String(year)) + x.bandwidth() / 2, yy + hh / 2, {
+              anchor: "middle",
+              color: p.options.valueFormat === "pct" ? ink : "white",
+              size: 12,
+              weight: 800
+            }).text(p.options.valueFormat === "pct" ? fmtPct(value) : fmtInt(value));
+          }
+        }
+        bottom += value;
+      });
+    });
+    const stackedLegend = legendLayout(width, cats.length, 4, { maxCellWidth: 190 });
+    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
+      cellWidth: stackedLegend.cellWidth
+    });
+    addSignature(svg, width, height);
+  }
+
+  function hemicycleRows(total) {
+    if (total <= 14) return [{ count: 6, radius: 76 }, { count: total - 6, radius: 116 }].filter((d) => d.count > 0);
+    if (total <= 22) return [{ count: 8, radius: 82 }, { count: total - 8, radius: 128 }].filter((d) => d.count > 0);
+    if (total <= 40) return [{ count: 10, radius: 86 }, { count: 14, radius: 126 }, { count: total - 24, radius: 166 }].filter((d) => d.count > 0);
+    return [{ count: 14, radius: 128 }, { count: 18, radius: 178 }, { count: total - 32, radius: 228 }].filter((d) => d.count > 0);
+  }
+
+  function hemicyclePositions(total, cx, cy) {
+    const positions = [];
+    hemicycleRows(total).forEach((row) => {
+      const angles = row.count === 1
+        ? [Math.PI * 1.5]
+        : d3.range(row.count).map((i) => Math.PI + 0.08 + i * ((Math.PI - 0.16) / (row.count - 1)));
+      angles.forEach((angle) => positions.push({
+        angle,
+        radius: row.radius,
+        x: cx + Math.cos(angle) * row.radius,
+        y: cy + Math.sin(angle) * row.radius
+      }));
+    });
+    return positions.sort((a, b) => a.angle - b.angle || b.radius - a.radius);
+  }
+
+  function drawSeatLegend(svg, items, x, y, width, columns = 2) {
+    const cellWidth = Math.max(150, width / columns);
+    legend(svg, items, x, y, columns, {
+      cellWidth,
+      rowHeight: 32,
+      fontSize: 11
+    });
+  }
+
+  function drawMiniHemicycle(svg, rc, seats, x, y, width, title) {
+    const total = seats.length;
+    const cx = x + width / 2;
+    const cy = y + 292;
+    const diameter = total <= 14 ? 23 : total <= 22 ? 21 : 19;
+    label(svg, `${title} · ${total} sièges`, cx, y + 24, {
+      anchor: "middle",
+      size: 16,
+      weight: 800
+    });
+
+    hemicyclePositions(total, cx, cy).forEach((pos, i) => {
+      const seat = seats[i];
+      roughCircle(svg, rc, pos.x, pos.y, diameter, seat.couleur, seat.couleur);
+    });
+
+    const groups = d3.rollups(seats, (v) => v.length, (d) => d.groupe);
+    const colorByGroup = new Map(seats.map((d) => [d.groupe, d.couleur]));
+    const order = [...new Set(seats.map((d) => d.groupe))];
+    drawSeatLegend(svg, order.map((name) => ({
+      label: `${name} (${groups.find((d) => d[0] === name)?.[1] || 0})`,
+      color: colorByGroup.get(name)
+    })), x + 20, y + 394, width - 40, width < 520 ? 1 : 2);
+  }
+
+  function renderHemicycleCompare(id, p) {
+    const data = p.data;
+    const stacked = window.innerWidth < 820;
+    const panelHeight = stacked ? 485 : 500;
+    const height = stacked ? 74 + panelHeight * 2 + 30 : 585;
+    const { svg, rc, width } = base(id, height);
+    const years = p.options.years || [...new Set(data.map((d) => +d.annee))];
+    const panelWidth = stacked ? width - 44 : (width - 68) / 2;
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    years.forEach((year, i) => {
+      const seats = data.filter((d) => +d.annee === +year);
+      const x = stacked ? 22 : 28 + i * (panelWidth + 24);
+      const y = stacked ? 64 + i * panelHeight : 66;
+      drawMiniHemicycle(svg, rc, seats, x, y, panelWidth, String(year));
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderHemicycle(id, p) {
+    const data = p.data;
+    const compact = window.innerWidth < 760;
+    const chartHeight = (p.options.height || 640) + (compact ? 86 : 0);
+    const { svg, rc, width } = base(id, chartHeight);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const cx = width / 2;
+    const cy = 500;
+    const rows = [
+      { count: 14, radius: 128 },
+      { count: 18, radius: 178 },
+      { count: 22, radius: 228 }
+    ];
+    const positions = [];
+    rows.forEach((row) => {
+      const angles = d3.range(row.count).map((i) => Math.PI + 0.08 + i * ((Math.PI - 0.16) / (row.count - 1)));
+      angles.forEach((angle) => positions.push({
+        angle,
+        radius: row.radius,
+        x: cx + Math.cos(angle) * row.radius,
+        y: cy + Math.sin(angle) * row.radius
+      }));
+    });
+    positions.sort((a, b) => a.angle - b.angle || b.radius - a.radius);
+
+    data.forEach((seat, i) => {
+      const pos = positions[i];
+      roughCircle(svg, rc, pos.x, pos.y, 22, seat.couleur, seat.couleur);
+    });
+
+    const groups = d3.rollups(data, (v) => v.length, (d) => d.groupe);
+    const colorByGroup = new Map(data.map((d) => [d.groupe, d.couleur]));
+    const order = p.options.groupOrder || [...new Set(data.map((d) => d.groupe))];
+    const legendColumns = compact ? Math.min(2, order.length) : (p.options.legendColumns || (order.length > 6 ? 4 : 3));
+    const legendCell = compact ? (width - 68) / legendColumns : (p.options.legendCellWidth || Math.min(250, Math.max(190, (width - 80) / legendColumns)));
+    const legendRows = Math.ceil(order.length / legendColumns);
+    const legendY = compact ? chartHeight - 34 - legendRows * 34 : chartHeight - 92;
+    legend(svg, order.map((name) => ({
+      label: `${name} (${groups.find((d) => d[0] === name)?.[1] || 0})`,
+      color: colorByGroup.get(name)
+    })), compact ? 34 : Math.max(34, width / 2 - (legendColumns * legendCell) / 2), legendY, legendColumns, {
+      cellWidth: legendCell,
+      rowHeight: 34,
+      fontSize: 11
+    });
+
+    const summary = p.options.summaryLabels || [
+      { label: "Indépendantistes", value: 26, x: -250, color: "#2f925d" },
+      { label: "Éveil océanien", value: 4, x: 0, color: "#55a6b8" },
+      { label: "Non-indépendantistes", value: 24, x: 260, color: "#305f9f" }
+    ];
+    summary.forEach((item) => {
+      const x = compact
+        ? Math.max(86, Math.min(width - 86, cx + item.x * 0.78))
+        : cx + item.x;
+      label(svg, `${item.label} : ${item.value}`, x, 92, {
+        anchor: "middle",
+        size: compact ? 13 : 16,
+        weight: 800,
+        color: item.color
+      });
+    });
+    addSignature(svg, width, chartHeight);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) {
+      window.setTimeout(() => render(id), 50);
+      return;
+    }
+    const p = payload(id);
+    const type = p.type;
+    if (type === "barFacets") renderBarFacets(id, p);
+    if (type === "line") renderLine(id, p);
+    if (type === "slopeFacets") renderSlopeFacets(id, p);
+    if (type === "axisBarsFacets") renderAxisBarsFacets(id, p);
+    if (type === "stackedHorizontal") renderStackedHorizontal(id, p);
+    if (type === "stackedVertical") renderStackedVertical(id, p);
+    if (type === "hemicycleCompare") renderHemicycleCompare(id, p);
+    if (type === "hemicycle") renderHemicycle(id, p);
+  }
+
+  window.addEventListener("resize", () => {
+    document.querySelectorAll("[data-sketch-chart]").forEach((el) => render(el.id));
+  });
+
+  return { render };
+})();
+</script>
+```
+
+## Ce que l'on regarde
+
+::: bilan-lede
+L'objectif ici n'est pas de descendre dans le détail infra-communal, mais de poser un premier bilan politique à l'échelle où les provinciales produisent leurs effets institutionnels : les trois assemblées de province et le Congrès.
+
+On regarde donc quatre choses : la mobilisation, le rapport indépendantistes / non-indépendantistes, les nuances internes à ces familles politiques, et l'écart entre les voix obtenues et les voix effectivement représentées par des sièges.
+:::
+
+::::::::::: bilan-stat-grid
+<article class="bilan-stat-card">
+
+::: bilan-stat-value
+63,7 %
+:::
+
+::: bilan-stat-label
+Participation en Nouvelle-Calédonie
+:::
+
+<p class="bilan-stat-note">
+
+-2,8 points par rapport à 2019 ; le plus bas niveau de la série provinciale depuis 1989.
+
+</p>
+
+</article>
+
+<article class="bilan-stat-card">
+
+::: bilan-stat-value
+24 \| 4 \| 26
+:::
+
+::: bilan-stat-label
+Congrès : non-indépendantistes \| EO pivot \| indépendantistes
+:::
+
+<p class="bilan-stat-note">
+
+La lecture utile est tripolaire : 24 élus non-indépendantistes, 4 Éveil océanien pivot et 26 indépendantistes.
+
+</p>
+
+</article>
+
+<article class="bilan-stat-card">
+
+::: bilan-stat-value
+23 616
+:::
+
+::: bilan-stat-label
+voix sans siège provincial
+:::
+
+<p class="bilan-stat-note">
+
+Soit 19,6 % des exprimés à l'échelle du scrutin, surtout dans le Sud.
+
+</p>
+
+</article>
+
+<article class="bilan-stat-card">
+
+::: bilan-stat-value
+45,1 %
+:::
+
+::: bilan-stat-label
+abstention aux Îles
+:::
+
+<p class="bilan-stat-note">
+
+La rupture de participation la plus nette : +11,6 points d'abstention depuis 2019.
+
+</p>
+
+</article>
+:::::::::::
+
+## Le résultat 2026 par province
+
+Le premier graphique pose le rapport de force immédiat. Les listes avec siège sont en pleine couleur ; les listes sans siège sont atténuées. Cela permet de voir simultanément le score et la traduction institutionnelle.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-resultats-provinces
+plot_resultats <- resultats |>
+  mutate(
+    province_label = province_short(province)
+  ) |>
+  select(province, province_label, etiquette, pct_exprimes, sieges_province, couleur)
+
+sketch_chart(
+  id = "chart-resultats-provinces",
+  type = "barFacets",
+  data = plot_resultats,
+  caption = "Résultats 2026 par province : voix, part des exprimés et sièges provinciaux.",
+  options = list(
+    title = "Trois provinces, trois configurations"
+  )
+)
+```
+:::
+
+Le résultat tient en une formule simple : **concentration dans le Sud, concurrence interne dans le Nord, fragmentation indépendantiste aux Îles**.
+
+Dans le Sud, Les Loyalistes et Le Rassemblement atteignent 50,1 % des exprimés et obtiennent 28 des 40 sièges provinciaux. Le FLNKS entre avec 7 sièges et l'Éveil océanien avec 5. Toutes les autres listes restent hors représentation, y compris celles qui dépassent 4 % ou 5 % des exprimés mais pas le seuil en part des inscrits.
+
+Dans le Nord, la famille indépendantiste reste très majoritaire, mais l'ordre interne change : l'UC-FLNKS arrive devant l'UNI. Dans les Îles, le résultat est presque entièrement indépendantiste, mais la concurrence se joue entre trois pôles représentés : UC-FLNKS, Nation autochtone et Palika.
+
+## Une abstention qui change le contexte
+
+La participation baisse à 63,7 % en Nouvelle-Calédonie. Cette baisse n'est pas uniforme : elle est contenue dans le Sud, plus marquée dans le Nord, et très forte aux Îles.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-participation-historique
+plot_participation <- participation |>
+  filter(territoire %in% c("Nouvelle-Caledonie", province_order)) |>
+  mutate(
+    serie = province_short(territoire),
+    valeur = participation,
+    couleur = unname(territory_colors[territoire])
+  ) |>
+  select(annee, serie, valeur, couleur)
+
+sketch_chart(
+  id = "chart-participation-historique",
+  type = "line",
+  data = plot_participation,
+  caption = "Participation aux provinciales depuis 1989, par territoire.",
+  options = list(
+    title = "Participation : baisse longue, décrochage aux Îles",
+    yLabel = "Participation",
+    yDomain = c(50, 82),
+    xDomain = range(annees_scrutins),
+    xTicks = annees_scrutins,
+    valueFormat = "pct",
+    height = 560
+  )
+)
+```
+:::
+
+L'abstention atteint 34,1 % dans le Sud, 38,4 % dans le Nord et 45,1 % aux Îles. La comparaison historique est importante : en 2004, la participation dépassait 76 % sur l'ensemble de la Nouvelle-Calédonie ; en 2026, elle tombe sous 64 %. Le scrutin 2026 n'est donc pas seulement une recomposition de listes, c'est aussi un scrutin de moindre mobilisation.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-abstention-composition
+abstention_plot <- abstention_composition |>
+  transmute(
+    annee,
+    category = province,
+    valeur = pct_total_abstentions
+  )
+
+sketch_chart(
+  id = "chart-abstention-composition",
+  type = "stackedVertical",
+  data = abstention_plot,
+  caption = "Composition de l'abstention par province en 2019 et 2026. Chaque barre représente 100 % des abstentions du scrutin.",
+  options = list(
+    title = "Abstention : le poids des provinces, l'intensité du retrait",
+    years = c(2019, 2026),
+    categories = Map(
+      function(id, label, color) list(id = id, label = label, color = color),
+      province_order, province_short(province_order), unname(territory_colors[province_order])
+    ),
+    yMax = 100,
+    yLabel = "Part des abstentions",
+    valueFormat = "pct",
+    height = 520
+  )
+)
+```
+:::
+
+En volume, l'abstention reste d'abord sudiste parce que le corps électoral y est beaucoup plus nombreux : le Sud compte `r fmt_int(abstention_value(2026, "Province Sud", abstentions))` abstentions en 2026, soit `r fmt_pct(abstention_value(2026, "Province Sud", pct_total_abstentions))` des abstentions du scrutin. Mais la dynamique politique la plus nette est ailleurs : les Îles passent de `r fmt_pct(abstention_value(2019, "Province des Iles", abstention))` d'abstention en 2019 à `r fmt_pct(abstention_value(2026, "Province des Iles", abstention))` en 2026, et leur poids dans l'abstention totale augmente de `r fmt_pct(abstention_value(2019, "Province des Iles", pct_total_abstentions))` à `r fmt_pct(abstention_value(2026, "Province des Iles", pct_total_abstentions))`.
+
+Aux Îles, la baisse est le fait politique le plus massif avant même d'entrer dans le détail des listes. Une province où l'offre reste presque totalement indépendantiste en voix connaît pourtant un recul très net de participation, ce qui invite à distinguer solidité de la famille politique dominante et intensité de la mobilisation.
+
+## Quelle évolution par grande famille politique ?
+
+Le rapport entre grandes familles politiques ne suffit pas à lire le scrutin. Il reste néanmoins utile pour une chose précise : replacer chaque province dans sa géographie électorale longue. Le graphique suivant ne cherche donc pas à résumer toute l'offre politique ; il isole seulement la part des voix indépendantistes depuis 1989, pour voir si 2026 déplace ou non le centre de gravité provincial.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-familles-provinces
+plot_familles <- blocs |>
+  filter(
+    province %in% province_order,
+    bloc_historique == "independantiste"
+  ) |>
+  mutate(
+    serie = province_short(province),
+    valeur = pct_exprimes,
+    couleur = unname(territory_colors[province])
+  ) |>
+  select(annee, serie, valeur, couleur)
+
+sketch_chart(
+  id = "chart-familles-provinces",
+  type = "line",
+  data = plot_familles,
+  caption = "Part des voix classées indépendantistes dans chaque province depuis 1989. Ce repère historique ne décrit pas les rapports internes à chaque famille politique.",
+  options = list(
+    title = "Vote indépendantiste : trois géographies provinciales stables",
+    yLabel = "Part des exprimés",
+    yDomain = c(0, 105),
+    xDomain = range(annees_scrutins),
+    xTicks = annees_scrutins,
+    valueFormat = "pct",
+    height = 580
+  )
+)
+```
+:::
+
+Dans le Sud, les listes classées indépendantistes totalisent 20,9 % des exprimés, contre 19,5 % en 2019. La progression est réelle mais limitée. Elle ne suffit pas à modifier la domination non-indépendantiste de la province, d'autant que le vote indépendantiste est lui-même divisé entre Kanaky pour tous, Unis pour le Pays et Souveraineté Kanaky Nouvelle-Calédonie.
+
+Dans le Nord, la famille indépendantiste reste autour de 80 % des exprimés. Le changement se joue donc surtout **à l'intérieur** de cette famille politique : l'UC-FLNKS passe devant l'UNI, alors que l'UNI était arrivée en tête en 2019.
+
+Aux Îles, la part indépendantiste approche 98 % des exprimés. Mais cette quasi-unanimité politique ne produit pas une liste dominante unique : l'UC-FLNKS et Nation autochtone sont presque à égalité, devant Palika, tandis que l'UCC rassemble 9,7 % sans obtenir de siège.
+
+## En voix : un scrutin moins mobilisé, pas seulement recomposé
+
+La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu'en 1989, mais avec une participation plus basse qu'au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l'abstention.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-voix-historique-congres
+voix_familles <- congres_familles |>
+  filter(voix > 0) |>
+  mutate(
+    serie = as.character(famille_label),
+    valeur = voix,
+    couleur = unname(famille_colors[as.character(famille)])
+  ) |>
+  select(annee, serie, valeur, couleur)
+
+sketch_chart(
+  id = "chart-voix-historique-congres",
+  type = "line",
+  data = voix_familles,
+  caption = "Voix agrégées par familles politiques au Congrès. L'Éveil océanien est isolé en 2019 et 2026.",
+  options = list(
+    title = "Voix par familles politiques au Congrès depuis 1989",
+    yLabel = "Voix",
+    xDomain = range(annees_scrutins),
+    xTicks = annees_scrutins,
+    valueFormat = "int",
+    height = 580
+  )
+)
+```
+:::
+
+La progression des indépendantistes au Sud se voit en part des exprimés, mais le bilan global dépend aussi de la démobilisation. L'Éveil océanien, lui, passe de 6 077 voix et 3 sièges au Congrès en 2019 à 8 399 voix et 4 sièges en 2026 : son rôle ne tient donc pas seulement à l'arithmétique des familles politiques, mais aussi à une implantation électorale qui se maintient et se renforce dans le Sud.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-voix-nuances-provinces
+voix_nuances_provinces <- axes_provinces |>
+  filter(voix > 0) |>
+  mutate(
+    province_label = province_short(province),
+    serie = as.character(axe_label),
+    valeur = voix,
+    couleur = unname(axe_colors[as.character(axe)])
+  ) |>
+  select(annee, province_label, serie, valeur, pct_exprimes, couleur)
+
+sketch_chart(
+  id = "chart-voix-nuances-provinces",
+  type = "axisBarsFacets",
+  data = voix_nuances_provinces,
+  caption = "Évolution 2019-2026 des voix par province et par nuance politique. Les nuances agrègent les listes comparables plutôt que les seules grandes familles politiques.",
+  options = list(
+    title = "Voix par nuances politiques : 2019 et 2026, province par province",
+    years = c(2019, 2026)
+  )
+)
+```
+:::
+
+Cette lecture par nuances précise le mouvement. Dans le Sud, le loyalisme se reconcentre autour de LL-LR pendant que l'ancien centre non-indépendantiste se fragmente et recule en sièges. L'Éveil océanien progresse en voix et devient plus décisif institutionnellement. Côté indépendantiste, le FLNKS de 2019 ne disparaît pas, mais il se recompose entre Kanaky pour tous, UNI et offres souverainistes plus petites. Dans le Nord et aux Îles, la comparaison montre surtout des rééquilibrages internes entre UC-FLNKS, UNI / Palika et autres listes indépendantistes.
+
+## Les voix sans siège
+
+Le seuil de 5 % des inscrits et la mécanique de répartition produisent un écart fort entre voix exprimées et représentation. En 2026, 23 616 voix ne débouchent sur aucun siège provincial, soit 19,6 % des exprimés.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-voix-sans-siege
+non_rep <- resultats |>
+  filter(sieges_province == 0) |>
+  group_by(province, bloc_historique) |>
+  summarise(
+    voix = sum(voix),
+    exprimes = first(exprimes),
+    .groups = "drop"
+  ) |>
+  mutate(pct_exprimes = 100 * voix / exprimes)
+
+non_rep_plot <- expand_grid(
+  province = province_order,
+  bloc_historique = names(bloc_labels)
+) |>
+  left_join(non_rep, by = c("province", "bloc_historique")) |>
+  mutate(
+    voix = replace_na(voix, 0),
+    pct_exprimes = replace_na(pct_exprimes, 0),
+    y = province_short(province),
+    category = bloc_historique,
+    valeur = pct_exprimes
+  )
+
+sketch_chart(
+  id = "chart-voix-sans-siege",
+  type = "stackedHorizontal",
+  data = non_rep_plot |> select(y, category, valeur, voix),
+  caption = "Voix accordées à des listes sans siège provincial en 2026, par province et par famille politique.",
+  options = list(
+    title = "Le Sud concentre l'essentiel des voix non représentées",
+    xMax = 27,
+    yOrder = province_short(province_order),
+    categories = Map(
+      function(id, label, color) list(id = id, label = label, color = color),
+      names(bloc_labels), unname(bloc_labels), unname(bloc_colors)
+    ),
+    height = 520
+  )
+)
+```
+:::
+
+Le cas le plus net est le Sud : près d'un quart des exprimés vont à des listes sans siège. Cela pèse surtout sur l'ancien espace centriste non-indépendantiste et sur des offres souverainistes ou indépendantistes concurrentes. Nous, réunis atteint 5,5 % des exprimés, Une Province pour tous 4,7 %, Faire Pays 4,3 % et Unis pour le Pays 4,1 %, mais aucune de ces listes ne franchit 5 % des inscrits.
+
+Dans le Nord, la part non représentée est plus faible : 8,0 % des exprimés, essentiellement Alternative Nord et Faire Pays. Aux Îles, elle atteint 14,2 %, avec un cas très particulier : l'UCC franchit 5 % des inscrits, mais n'obtient aucun siège dans la répartition.
+
+## Province Sud : une majorité très concentrée
+
+Le Sud est la province qui donne la clé de lecture la plus nette : une majorité non-indépendantiste large, mais concentrée dans une seule grande liste. Les Loyalistes et Le Rassemblement rassemblent 41 294 voix, soit 50,1 % des exprimés, et obtiennent 28 sièges provinciaux, dont 22 au Congrès.
+
+La liste Kanaky pour tous arrive deuxième avec 15,6 % et 7 sièges. L'Éveil océanien obtient 10,2 % et 5 sièges. C'est une progression institutionnelle importante : l'espace océanien/transversal n'est pas seulement un appoint, il reste représenté au Congrès avec 4 élus.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-assemblee-sud-2019-2026
+sketch_chart(
+  id = "chart-assemblee-sud",
+  type = "hemicycleCompare",
+  data = sieges_assemblees_province |>
+    filter(province == "Province Sud") |>
+    select(annee, groupe, famille, couleur),
+  caption = "Assemblée de la Province Sud en 2019 et 2026 : 40 sièges, colorés par groupe représenté.",
+  options = list(
+    title = "Assemblée de la Province Sud : 2019 / 2026",
+    years = c(2019, 2026)
+  )
+)
+```
+:::
+
+Le reste du scrutin sudiste se joue dans l'absence de représentation. L'ancien centre non-indépendantiste n'est pas absent en voix, mais il est absent en sièges. Les 4 554 voix de Nous, réunis et les 3 887 voix d'Une Province pour tous ne se traduisent par aucun élu. Côté indépendantiste, Unis pour le Pays et Souveraineté Kanaky restent également hors assemblée. La majorité sudiste est donc forte, mais le paysage des voix est plus fragmenté que la seule répartition des sièges ne le laisse voir.
+
+## Province Nord : l'UC repasse devant l'UNI
+
+Dans le Nord, la domination indépendantiste est stable : les listes indépendantistes totalisent 80,4 % des exprimés, presque exactement le niveau de 2019. Mais l'équilibre interne se déplace. L'UC-FLNKS obtient 39,9 %, 10 sièges provinciaux et 7 sièges au Congrès. L'UNI obtient 35,7 %, 9 sièges provinciaux et 6 sièges au Congrès.
+
+Ce n'est pas une bascule de camp ; c'est une bascule de leadership à l'intérieur du camp indépendantiste nordiste. En 2019, l'UNI était en tête. En 2026, l'UC-FLNKS reprend l'avantage.
+
+Agissons ensemble pour le Nord consolide une représentation loyaliste avec 16,3 %, 3 sièges provinciaux et 2 sièges au Congrès. Ce vote ne menace pas la majorité indépendantiste, mais il confirme l'existence d'un pôle non-indépendantiste concentré et institutionnellement visible dans la province.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-assemblee-nord-2019-2026
+sketch_chart(
+  id = "chart-assemblee-nord",
+  type = "hemicycleCompare",
+  data = sieges_assemblees_province |>
+    filter(province == "Province Nord") |>
+    select(annee, groupe, famille, couleur),
+  caption = "Assemblée de la Province Nord en 2019 et 2026 : 22 sièges, colorés par groupe représenté.",
+  options = list(
+    title = "Assemblée de la Province Nord : 2019 / 2026",
+    years = c(2019, 2026)
+  )
+)
+```
+:::
+
+## Province des Îles : tout indépendantiste, mais pas homogène
+
+Aux Îles, la première donnée est l'abstention : 45,1 %, soit 11,6 points de plus qu'en 2019. La seconde est la domination quasi totale des listes indépendantistes : 97,7 % des exprimés.
+
+Mais cette famille politique n'est pas homogène. L'UC-FLNKS Îles arrive en tête avec 32,9 % et 6 sièges. Nation autochtone suit à 32,2 %, également 6 sièges. Palika Îles obtient 20,7 % et 2 sièges. Le rapport de force insulaire est donc tripolaire dans sa représentation, avec une concurrence très forte entre UC-FLNKS et Nation autochtone.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-assemblee-iles-2019-2026
+sketch_chart(
+  id = "chart-assemblee-iles",
+  type = "hemicycleCompare",
+  data = sieges_assemblees_province |>
+    filter(province == "Province des Iles") |>
+    select(annee, groupe, famille, couleur),
+  caption = "Assemblée de la Province des Îles en 2019 et 2026 : 14 sièges, colorés par groupe représenté.",
+  options = list(
+    title = "Assemblée de la Province des Îles : 2019 / 2026",
+    years = c(2019, 2026)
+  )
+)
+```
+:::
+
+L'UCC, avec 9,7 % des exprimés, devient le principal réservoir de voix sans siège aux Îles. C'est un cas important pour lire la représentation : une liste peut dépasser un niveau significatif, franchir le seuil en part des inscrits, et rester pourtant sans élu lorsque la méthode de répartition ne lui donne pas de siège.
+
+## Congrès : l'Éveil océanien en position pivot
+
+La composition du Congrès ne se résume pas à un face-à-face entre deux camps. Additionner l'Éveil océanien au camp non-indépendantiste écrase son rôle politique, qui est plus ouvert. La lecture la plus prudente est donc : **24 non-indépendantistes, 4 Éveil océanien pivot, 26 indépendantistes**.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-congres-historique
+congres_plot <- congres_familles |>
+  mutate(
+    category = as.character(famille),
+    valeur = sieges_congres
+  ) |>
+  select(annee, category, valeur)
+
+sketch_chart(
+  id = "chart-congres-historique",
+  type = "stackedVertical",
+  data = congres_plot,
+  caption = "Répartition des sièges du Congrès par grandes familles. L'Éveil océanien est isolé en 2019 et 2026.",
+  options = list(
+    title = "Sièges du Congrès par grandes familles",
+    years = sort(unique(congres_familles$annee)),
+    categories = Map(
+      function(id, label, color) list(id = id, label = label, color = color),
+      famille_order, unname(famille_labels), unname(famille_colors)
+    ),
+    height = 560
+  )
+)
+```
+:::
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-congres-2019-groupes
+sketch_chart(
+  id = "chart-congres-hemicycle-2019",
+  type = "hemicycle",
+  data = sieges_congres_2019 |> select(groupe, famille, couleur),
+  caption = "Demi-cercle du Congrès 2019 : 54 sièges, colorés par groupe représenté.",
+  options = list(
+    title = "Congrès 2019 : 25 | 3 | 26 sièges",
+    groupOrder = ordre_congres_2019,
+    legendColumns = 4,
+    height = 650,
+    summaryLabels = list(
+      list(label = "Indépendantistes", value = 26, x = -250, color = "#2f925d"),
+      list(label = "Éveil océanien", value = 3, x = 0, color = "#55a6b8"),
+      list(label = "Non-indépendantistes", value = 25, x = 260, color = "#305f9f")
+    )
+  )
+)
+```
+:::
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-congres-2026-groupes
+sketch_chart(
+  id = "chart-congres-hemicycle",
+  type = "hemicycle",
+  data = sieges_congres_2026 |> select(groupe, famille, couleur),
+  caption = "Demi-cercle du Congrès 2026 : 54 sièges, colorés par groupe représenté.",
+  options = list(
+    title = "Congrès 2026 : 24 | 4 | 26 sièges",
+    groupOrder = ordre_congres_2026,
+    legendColumns = 3,
+    height = 640,
+    summaryLabels = list(
+      list(label = "Indépendantistes", value = 26, x = -250, color = "#2f925d"),
+      list(label = "Éveil océanien", value = 4, x = 0, color = "#55a6b8"),
+      list(label = "Non-indépendantistes", value = 24, x = 260, color = "#305f9f")
+    )
+  )
+)
+```
+:::
+
+En 2019, l'Éveil océanien occupait déjà une place de charnière avec 3 sièges, mais dans un Congrès où le camp non-indépendantiste était plus diversifié : Avenir en confiance, qui rassemble aussi les élus Agissons Nord, et Calédonie ensemble pesaient chacun dans l'équilibre. En 2026, Les Loyalistes et Le Rassemblement concentrent presque tout cet espace avec 24 sièges au Congrès. Ils ne disposent donc pas seuls d'une majorité. Les 4 sièges de l'Éveil océanien deviennent centraux : ils peuvent permettre des majorités variables, et leur position ne doit pas être présumée comme un simple prolongement du camp loyaliste.
+
+Côté indépendantiste, le total reste à 26 sièges, mais la distribution se modifie : le groupe UC-FLNKS rassemble 16 sièges, l'UNI / Palika 7 et Nation autochtone 3. La nuance indépendantiste est donc désormais moins simple que le seul face-à-face UC / UNI .
+
+## Ce que le scrutin raconte déjà
+
+Premier enseignement : le Congrès ne se lit pas comme une addition binaire. Les non-indépendantistes disposent de 24 sièges, les indépendantistes de 26, et l'Éveil océanien de 4. Le centre de gravité institutionnel dépend donc de ce groupe pivot, pendant que l'ancien centre non-indépendantiste disparaît du congrès et que l'espace indépendantiste se redistribue.
+
+Deuxième enseignement : l'abstention devient un fait central du bilan. À 63,7 % de participation, le scrutin 2026 s'inscrit dans une baisse longue de la mobilisation provinciale. Aux Îles, l'abstention atteint un niveau qui oblige à lire les rapports de force avec prudence : la famille indépendantiste domine en voix exprimées, mais sur une base électorale beaucoup moins mobilisée.
+
+Troisième enseignement : la représentation institutionnelle est plus resserrée que l'offre politique. Dans le Sud surtout, beaucoup de voix restent sans siège. Cette non-représentation touche des familles différentes : centre non-indépendantiste, indépendantistes hors listes gagnantes, et offre souverainiste. Le scrutin produit donc à la fois une majorité claire et une périphérie électorale importante.
+
+Quatrième enseignement : chaque province garde sa logique propre. Le Sud donne la majorité numérique non-indépendantiste. Le Nord réorganise la concurrence UC / UNI sans changer de famille dominante. Les Îles produisent un paysage presque entièrement indépendantiste, mais très disputé entre UC-FLNKS, Nation autochtone, Palika et UCC.
+
+<details class="note-deroulable">
+
+<summary>Sources, classement des familles politiques et limites</summary>
+
+Les résultats 2026 s'appuient sur la publication du Haut-commissariat diffusée le 28 juin 2026. Le billet sera ajusté si la proclamation définitive modifie les chiffres utilisés ici.
+
+Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l'Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans "autres / pro-pays" lorsqu'il n'est pas agrégé par Wikipédia dans la famille indépendantiste.
+
+Pour 1999, la série principale utilise le scrutin provincial initial. La page Wikipédia signale ensuite l'annulation du scrutin aux Îles et la partielle de 2000 ; cette particularité doit être gardée à l'esprit pour les lectures fines de cette année.
+
+</details>
+
+## Sources
+
+-   [Résultats des provinciales 2026 - Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf).
+-   Pages Wikipédia des élections provinciales néo-calédoniennes de [1989](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989), [1995](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995), [1999](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999), [2004](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004), [2009](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009), [2014](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014), [2019](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019) et [2026](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026).

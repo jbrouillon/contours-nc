@@ -17,7 +17,1147 @@
 <width>144</width>
 </image>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Sat, 20 Jun 2026 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 28 Jun 2026 13:00:00 GMT</lastBuildDate>
+<item>
+  <title>Provinciales 2026 : premier bilan des rapports de force</title>
+  <dc:creator>Jonas Brouillon</dc:creator>
+  <link>https://contours.nc/posts/provinciales-2026-premier-bilan/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<style>
+.bilan-lede {
+  max-width: 82ch;
+  font-size: 1.07rem;
+}
+
+.bilan-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1.1rem 0 1.8rem;
+}
+
+.bilan-stat-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.bilan-stat-value {
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.bilan-stat-label {
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.22rem;
+}
+
+.bilan-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.3;
+  margin: 0.35rem 0 0;
+}
+
+.bilan-note {
+  background: var(--surface-soft);
+  border-left: 4px solid var(--green);
+  border-radius: 6px;
+  margin: 1.2rem 0;
+  padding: 0.85rem 1rem;
+}
+
+.bilan-plot {
+  margin: 1.15rem 0 2rem;
+}
+
+.bilan-plot img {
+  border: 1px solid rgba(65, 58, 48, 0.14);
+  border-radius: 7px;
+}
+
+.bilan-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 360px;
+  overflow: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.bilan-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.bilan-sketch-download {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.bilan-sketch-download:hover {
+  background: #f3efe6;
+}
+
+.bilan-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.bilan-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script>
+window.ContoursSketch = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+
+  const fmtPct = (value) =>
+    new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value) + " %";
+  const fmtPctAxis = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(value) + " %";
+  const fmtInt = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(value));
+
+  function payload(id) {
+    return JSON.parse(document.getElementById(`${id}-data`).textContent);
+  }
+
+  function base(id, height) {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    const tools = document.createElement("div");
+    tools.className = "bilan-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "bilan-sketch-download";
+    button.textContent = "PNG";
+    button.setAttribute("aria-label", "Télécharger le graphique en PNG");
+    button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+    const width = Math.max(640, el.clientWidth || 960);
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.sketchChart || "graphique")
+      .style("background", paper);
+    return { el, svg, rc: rough.svg(svg.node()), width, height };
+  }
+
+  function toArray(value) {
+    return Array.isArray(value) ? value : Object.values(value || {});
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 800)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }, "image/png");
+    };
+    image.src = url;
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = ink) {
+    const node = rc.rectangle(x, y, Math.max(0.1, width), Math.max(0.1, height), {
+      fill: color,
+      fillStyle: "hachure",
+      hachureGap: 2.1,
+      hachureAngle: -42,
+      fillWeight: 1.65,
+      roughness: 1.35,
+      stroke,
+      strokeWidth: stroke === "none" ? 0 : 1.25
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+  }
+
+  function roughCircle(g, rc, x, y, diameter, color, stroke = ink) {
+    const node = rc.circle(x, y, diameter, {
+      fill: color,
+      fillStyle: "solid",
+      roughness: 1.6,
+      stroke,
+      strokeWidth: 1
+    });
+    g.node().appendChild(node);
+  }
+
+  function roughPath(g, rc, d, color, width = 2.2) {
+    const node = rc.path(d, {
+      stroke: color,
+      strokeWidth: width,
+      roughness: 1.7,
+      bowing: 1.2,
+      fill: "none"
+    });
+    g.node().appendChild(node);
+  }
+
+  function label(g, text, x, y, opts = {}) {
+    return g.append("text")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("text-anchor", opts.anchor || "start")
+      .attr("dominant-baseline", opts.baseline || "middle")
+      .attr("font-size", opts.size || 12)
+      .attr("font-weight", opts.weight || 400)
+      .attr("fill", opts.color || ink)
+      .text(text);
+  }
+
+  function chartTitle(svg, text, width, y = 30) {
+    return label(svg, text, 18, y, { size: 22, weight: 800 })
+      .call(wrap, Math.min(width - 36, 1040));
+  }
+
+  function wrap(selection, width) {
+    selection.each(function() {
+      const text = d3.select(this);
+      const words = text.text().split(/\s+/).reverse();
+      const x = text.attr("x");
+      const y = text.attr("y");
+      let line = [];
+      let lineNumber = 0;
+      let word;
+      text.text(null);
+      let tspan = text.append("tspan").attr("x", x).attr("y", y);
+      while ((word = words.pop())) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", `${++lineNumber * 1.05}em`)
+            .text(word);
+        }
+      }
+    });
+  }
+
+  function legend(svg, items, x, y, columns = items.length, opts = {}) {
+    const group = svg.append("g").attr("transform", `translate(${x},${y})`);
+    const cell = opts.cellWidth || 210;
+    const rowHeight = opts.rowHeight || 28;
+    const fontSize = opts.fontSize || 12;
+    items.forEach((item, i) => {
+      const gx = (i % columns) * cell;
+      const gy = Math.floor(i / columns) * rowHeight;
+      const g = group.append("g").attr("transform", `translate(${gx},${gy})`);
+      roughRect(g, rough.svg(svg.node()), 0, -8, 18, 14, item.color, 1, item.color);
+      label(g, item.label, 28, 0, { size: fontSize }).call(wrap, cell - 34);
+    });
+  }
+
+  function legendLayout(width, itemCount, maxColumns = 4, opts = {}) {
+    const compact = window.innerWidth < 760 || width < 760;
+    const columns = compact
+      ? Math.min(opts.compactColumns || 2, itemCount)
+      : Math.min(maxColumns, itemCount);
+    const sideGap = opts.sideGap || 92;
+    const cellWidth = Math.min(
+      opts.maxCellWidth || 210,
+      Math.max(opts.minCellWidth || 150, (width - sideGap) / columns)
+    );
+    return {
+      columns,
+      cellWidth,
+      rows: Math.ceil(itemCount / columns),
+      x: Math.max(24, (width - columns * cellWidth) / 2)
+    };
+  }
+
+  function axisBottom(g, x, y, ticks, format) {
+    const ax = g.append("g");
+    ticks.forEach((tick) => {
+      const tx = x(tick);
+      ax.append("line")
+        .attr("x1", tx).attr("x2", tx)
+        .attr("y1", 0).attr("y2", y)
+        .attr("stroke", grid)
+        .attr("stroke-width", 1);
+      label(ax, format(tick), tx, y + 20, { anchor: "middle", size: 12, color: muted });
+    });
+  }
+
+  function renderBarFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const cols = window.innerWidth < 820 ? 1 : 3;
+    const rows = Math.ceil(provinces.length / cols);
+    const facetHeight = cols === 1 ? 390 : 560;
+    const height = rows * facetHeight + 30;
+    const { svg, rc, width } = base(id, height);
+    const facetWidth = width / cols;
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const px = (i % cols) * facetWidth;
+      const py = Math.floor(i / cols) * facetHeight + 58;
+      const dat = data.filter((d) => d.province_label === province).sort((a, b) => b.pct_exprimes - a.pct_exprimes);
+      const margin = { top: 28, right: 74, bottom: 42, left: cols === 1 ? 190 : 145 };
+      const innerW = facetWidth - margin.left - margin.right - 12;
+      const innerH = Math.max(190, dat.length * 34);
+      const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
+      const x = d3.scaleLinear().domain([0, d3.max(dat, (d) => d.pct_exprimes) * 1.28]).range([0, innerW]);
+      const y = d3.scaleBand().domain(dat.map((d) => d.etiquette)).range([0, innerH]).padding(0.25);
+      axisBottom(g, x, innerH, x.ticks(cols === 1 ? 5 : 3), fmtPctAxis);
+      label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
+
+      dat.forEach((d) => {
+        roughRect(g, rc, 0, y(d.etiquette), x(d.pct_exprimes), y.bandwidth(), d.couleur, d.sieges_province > 0 ? 1 : 0.52);
+        const l = d.sieges_province > 0 ? `${fmtPct(d.pct_exprimes)} · ${d.sieges_province} sièges` : fmtPct(d.pct_exprimes);
+        label(g, l, x(d.pct_exprimes) + 6, y(d.etiquette) + y.bandwidth() / 2, {
+          size: 11,
+          color: d.sieges_province > 0 ? ink : "#9a948d"
+        });
+        const yy = y(d.etiquette) + y.bandwidth() / 2;
+        label(g, d.etiquette, -10, yy, { anchor: "end", size: 11 }).call(wrap, margin.left - 18);
+      });
+
+      label(g, "Part des exprimés", innerW / 2, innerH + 42, { anchor: "middle", size: 12, color: muted });
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderLine(id, p) {
+    const data = p.data;
+    const { svg, rc, width, height } = base(id, p.options.height || 560);
+    const margin = { top: 58, right: 100, bottom: 86, left: 70 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const x = d3.scaleLinear()
+      .domain(p.options.xDomain || d3.extent(data, (d) => d.annee))
+      .range([0, innerW]);
+    const y = d3.scaleLinear()
+      .domain(p.options.yDomain || [0, d3.max(data, (d) => d.valeur) * 1.08])
+      .nice()
+      .range([innerH, 0]);
+
+    axisBottom(g, x, innerH, p.options.xTicks || x.ticks(7), (d) => d);
+    y.ticks(5).forEach((tick) => {
+      const ty = y(tick);
+      g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+      label(g, p.options.valueFormat === "int" ? fmtInt(tick) : fmtPct(tick), -10, ty, { anchor: "end", size: 12, color: muted });
+    });
+    label(g, p.options.yLabel || "", -52, innerH / 2, { anchor: "middle", size: 13, color: muted })
+      .attr("transform", `rotate(-90,-52,${innerH / 2})`);
+
+    const line = d3.line().x((d) => x(d.annee)).y((d) => y(d.valeur)).curve(d3.curveCatmullRom.alpha(0.35));
+    const series = d3.group(data, (d) => d.serie);
+    const legendItems = [];
+    for (const [serie, values] of series) {
+      const sorted = values.slice().sort((a, b) => a.annee - b.annee);
+      const color = sorted[0].couleur;
+      roughPath(g, rc, line(sorted), color, 2.4);
+      sorted.forEach((d) => roughCircle(g, rc, x(d.annee), y(d.valeur), 12, color, color));
+      const last = sorted[sorted.length - 1];
+      label(g, p.options.valueFormat === "int" ? fmtInt(last.valeur) : fmtPct(last.valeur), x(last.annee) + 7, y(last.valeur), { size: 11, color });
+      legendItems.push({ label: serie, color });
+    }
+    const lineLegend = legendLayout(width, legendItems.length, 4);
+    legend(svg, legendItems, lineLegend.x, height - 34 - (lineLegend.rows - 1) * 28, lineLegend.columns, {
+      cellWidth: lineLegend.cellWidth
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderSlopeFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const cols = window.innerWidth < 900 ? 1 : 3;
+    const rows = Math.ceil(provinces.length / cols);
+    const facetHeight = cols === 1 ? 520 : 540;
+    const height = rows * facetHeight + 46;
+    const { svg, rc, width } = base(id, height);
+    const facetWidth = width / cols;
+    const years = p.options.years || [2019, 2026];
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const px = (i % cols) * facetWidth;
+      const py = Math.floor(i / cols) * facetHeight + 68;
+      const dat = data.filter((d) => d.province_label === province && d.valeur > 0);
+      const margin = { top: 30, right: cols === 1 ? 200 : 150, bottom: 54, left: 58 };
+      const innerW = facetWidth - margin.left - margin.right - 12;
+      const innerH = facetHeight - margin.top - margin.bottom - 16;
+      const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
+      const x = d3.scalePoint().domain(years.map(String)).range([0, innerW]).padding(0.22);
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(dat, (d) => d.valeur) * 1.18 || 1])
+        .nice()
+        .range([innerH, 0]);
+
+      label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
+      years.forEach((year) => {
+        const tx = x(String(year));
+        g.append("line")
+          .attr("x1", tx).attr("x2", tx)
+          .attr("y1", 0).attr("y2", innerH)
+          .attr("stroke", grid)
+          .attr("stroke-width", 1);
+        label(g, year, tx, innerH + 26, { anchor: "middle", size: 12, color: muted });
+      });
+      y.ticks(4).forEach((tick) => {
+        const ty = y(tick);
+        g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+        label(g, fmtInt(tick), -8, ty, { anchor: "end", size: 11, color: muted });
+      });
+
+      const series = d3.group(dat, (d) => d.serie);
+      const lastValues = [];
+      for (const [serie, values] of series) {
+        const sorted = values.slice().sort((a, b) => a.annee - b.annee);
+        const color = sorted[0].couleur;
+        if (sorted.length > 1) {
+          const d = d3.line()
+            .x((row) => x(String(row.annee)))
+            .y((row) => y(row.valeur))(sorted);
+          roughPath(g, rc, d, color, 2.2);
+        }
+        sorted.forEach((row) => {
+          roughCircle(g, rc, x(String(row.annee)), y(row.valeur), 11, color, color);
+        });
+        const last = sorted[sorted.length - 1];
+        lastValues.push({ serie, color, y: y(last.valeur), value: last.valeur });
+      }
+
+      const adjusted = lastValues.sort((a, b) => a.y - b.y);
+      adjusted.forEach((item, rank) => {
+        const minGap = 22;
+        const previous = rank > 0 ? adjusted[rank - 1] : null;
+        if (previous && item.y - previous.y < minGap) item.y = previous.y + minGap;
+      });
+      const overflow = adjusted.length ? adjusted[adjusted.length - 1].y - (innerH - 8) : 0;
+      if (overflow > 0) adjusted.forEach((item) => { item.y -= overflow; });
+      const underflow = adjusted.length ? 8 - adjusted[0].y : 0;
+      if (underflow > 0) adjusted.forEach((item) => { item.y += underflow; });
+      adjusted.forEach((item) => {
+        label(g, `${item.serie} · ${fmtInt(item.value)}`, innerW + 10, Math.min(innerH - 8, Math.max(8, item.y)), {
+          size: 10,
+          color: item.color
+        }).call(wrap, margin.right - 16);
+      });
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderAxisBarsFacets(id, p) {
+    const data = p.data;
+    const provinces = [...new Set(data.map((d) => d.province_label))];
+    const panelHeight = window.innerWidth < 760 ? 560 : 450;
+    const height = 62 + provinces.length * panelHeight + 18;
+    const { svg, rc, width } = base(id, height);
+    const years = p.options.years || [2019, 2026];
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    provinces.forEach((province, i) => {
+      const py = 74 + i * panelHeight;
+      const dat = data.filter((d) => d.province_label === province && d.valeur > 0);
+      const series = [...new Set(dat.map((d) => d.serie))];
+      const margin = {
+        top: 44,
+        right: window.innerWidth < 760 ? 98 : 145,
+        bottom: 56,
+        left: window.innerWidth < 760 ? 170 : 225
+      };
+      const innerW = width - margin.left - margin.right;
+      const innerH = panelHeight - margin.top - margin.bottom - 28;
+      const g = svg.append("g").attr("transform", `translate(${margin.left},${py + margin.top})`);
+      const maxValue = d3.max(dat, (d) => d.valeur) || 1;
+      const x = d3.scaleLinear().domain([0, maxValue * 1.24]).nice().range([0, innerW]);
+      const y = d3.scaleBand().domain(series).range([0, innerH]).padding(0.22);
+      const barH = Math.max(5, y.bandwidth() / 2 - 2);
+
+      label(svg, province, 24, py + 18, { size: 16, weight: 800 });
+      label(svg, "2019 en clair · 2026 en plein", width - 24, py + 18, {
+        anchor: "end",
+        size: 12,
+        color: muted,
+        weight: 800
+      });
+
+      x.ticks(4).forEach((tick) => {
+        const tx = x(tick);
+        g.append("line")
+          .attr("x1", tx).attr("x2", tx)
+          .attr("y1", 0).attr("y2", innerH)
+          .attr("stroke", grid);
+        label(g, fmtInt(tick), tx, innerH + 22, { anchor: "middle", size: 11, color: muted });
+      });
+
+      series.forEach((serie) => {
+        const rows = dat.filter((d) => d.serie === serie);
+        const color = rows[0].couleur;
+        const rowByYear = new Map(rows.map((d) => [+d.annee, d]));
+        const yy = y(serie);
+        label(g, serie, -12, yy + y.bandwidth() / 2, {
+          anchor: "end",
+          size: window.innerWidth < 760 ? 10 : 11
+        }).call(wrap, margin.left - 32);
+
+        years.forEach((year, yearIndex) => {
+          const row = rowByYear.get(+year);
+          const value = row ? row.valeur : 0;
+          if (value <= 0) return;
+          const by = yy + yearIndex * (barH + 4);
+          roughRect(g, rc, 0, by, x(value), barH, color, yearIndex === 0 ? 0.42 : 1, color);
+          label(g, fmtInt(value), x(value) + 6, by + barH / 2, {
+            size: 10,
+            color: yearIndex === 0 ? "#8a8277" : color,
+            weight: yearIndex === 0 ? 500 : 800
+          });
+        });
+      });
+
+      label(g, "Voix", innerW / 2, innerH + 46, { anchor: "middle", size: 12, color: muted });
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderStackedHorizontal(id, p) {
+    const data = p.data;
+    const categories = toArray(p.options.categories);
+    const { svg, rc, width, height } = base(id, p.options.height || 500);
+    const margin = { top: 62, right: 120, bottom: 86, left: 92 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const y = d3.scaleBand().domain(p.options.yOrder).range([0, innerH]).padding(0.42);
+    const x = d3.scaleLinear().domain([0, p.options.xMax]).range([0, innerW]);
+    axisBottom(g, x, innerH, d3.range(0, p.options.xMax + 0.1, 5), fmtPct);
+
+    p.options.yOrder.forEach((name) => label(g, name, -12, y(name) + y.bandwidth() / 2, { anchor: "end", size: 13 }));
+    const legendItems = categories.map((d) => ({ label: d.label, color: d.color }));
+
+    p.options.yOrder.forEach((name) => {
+      let left = 0;
+      categories.forEach((cat) => {
+        const row = data.find((d) => d.y === name && d.category === cat.id);
+        const value = row ? row.valeur : 0;
+        if (value > 0) {
+          roughRect(g, rc, x(left), y(name), x(value), y.bandwidth(), cat.color);
+          if (value >= 2) {
+            label(g, fmtPct(value), x(left + value / 2), y(name) + y.bandwidth() / 2, {
+              anchor: "middle",
+              color: "white",
+              size: 12,
+              weight: 800
+            });
+          }
+        }
+        left += value;
+      });
+      const total = data.filter((d) => d.y === name).reduce((sum, d) => sum + d.voix, 0);
+      const totalPct = data.filter((d) => d.y === name).reduce((sum, d) => sum + d.valeur, 0);
+      label(g, `${fmtInt(total)} voix`, x(totalPct) + 8, y(name) + y.bandwidth() / 2, { size: 12 });
+    });
+    label(g, "Part des exprimés", innerW / 2, innerH + 44, { anchor: "middle", color: muted, size: 12 });
+    legend(svg, legendItems, Math.max(80, width / 2 - 300), height - 34, 3);
+    addSignature(svg, width, height);
+  }
+
+  function renderStackedVertical(id, p) {
+    const data = p.data;
+    const cats = toArray(p.options.categories);
+    const { svg, rc, width, height } = base(id, p.options.height || 560);
+    const margin = { top: 60, right: 40, bottom: 86, left: 68 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 28);
+
+    const years = p.options.years;
+    const x = d3.scaleBand().domain(years.map(String)).range([0, innerW]).padding(0.28);
+    const yMax = p.options.yMax || d3.max(years, (year) =>
+      d3.sum(data.filter((d) => +d.annee === +year), (d) => d.valeur)
+    ) * 1.08 || 56;
+    const y = d3.scaleLinear().domain([0, yMax]).nice().range([innerH, 0]);
+
+    axisBottom(g, d3.scalePoint().domain(years.map(String)).range([x.bandwidth() / 2, innerW - x.bandwidth() / 2]), innerH, years.map(String), (d) => d);
+    y.ticks(5).forEach((tick) => {
+      const ty = y(tick);
+      g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+      label(g, p.options.valueFormat === "pct" ? fmtPct(tick) : fmtInt(tick), -10, ty, { anchor: "end", color: muted, size: 12 });
+    });
+    label(g, p.options.yLabel || "Sièges", -46, innerH / 2, { anchor: "middle", color: muted, size: 13 })
+      .attr("transform", `rotate(-90,-46,${innerH / 2})`);
+
+    years.forEach((year) => {
+      let bottom = 0;
+      cats.forEach((cat) => {
+        const row = data.find((d) => +d.annee === +year && d.category === cat.id);
+        const value = row ? row.valeur : 0;
+        if (value > 0) {
+          const yy = y(bottom + value);
+          const hh = y(bottom) - y(bottom + value);
+          roughRect(g, rc, x(String(year)), yy, x.bandwidth(), hh, cat.color);
+          if (value >= 2) {
+            label(g, value, x(String(year)) + x.bandwidth() / 2, yy + hh / 2, {
+              anchor: "middle",
+              color: p.options.valueFormat === "pct" ? ink : "white",
+              size: 12,
+              weight: 800
+            }).text(p.options.valueFormat === "pct" ? fmtPct(value) : fmtInt(value));
+          }
+        }
+        bottom += value;
+      });
+    });
+    const stackedLegend = legendLayout(width, cats.length, 4, { maxCellWidth: 190 });
+    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
+      cellWidth: stackedLegend.cellWidth
+    });
+    addSignature(svg, width, height);
+  }
+
+  function hemicycleRows(total) {
+    if (total <= 14) return [{ count: 6, radius: 76 }, { count: total - 6, radius: 116 }].filter((d) => d.count > 0);
+    if (total <= 22) return [{ count: 8, radius: 82 }, { count: total - 8, radius: 128 }].filter((d) => d.count > 0);
+    if (total <= 40) return [{ count: 10, radius: 86 }, { count: 14, radius: 126 }, { count: total - 24, radius: 166 }].filter((d) => d.count > 0);
+    return [{ count: 14, radius: 128 }, { count: 18, radius: 178 }, { count: total - 32, radius: 228 }].filter((d) => d.count > 0);
+  }
+
+  function hemicyclePositions(total, cx, cy) {
+    const positions = [];
+    hemicycleRows(total).forEach((row) => {
+      const angles = row.count === 1
+        ? [Math.PI * 1.5]
+        : d3.range(row.count).map((i) => Math.PI + 0.08 + i * ((Math.PI - 0.16) / (row.count - 1)));
+      angles.forEach((angle) => positions.push({
+        angle,
+        radius: row.radius,
+        x: cx + Math.cos(angle) * row.radius,
+        y: cy + Math.sin(angle) * row.radius
+      }));
+    });
+    return positions.sort((a, b) => a.angle - b.angle || b.radius - a.radius);
+  }
+
+  function drawSeatLegend(svg, items, x, y, width, columns = 2) {
+    const cellWidth = Math.max(150, width / columns);
+    legend(svg, items, x, y, columns, {
+      cellWidth,
+      rowHeight: 32,
+      fontSize: 11
+    });
+  }
+
+  function drawMiniHemicycle(svg, rc, seats, x, y, width, title) {
+    const total = seats.length;
+    const cx = x + width / 2;
+    const cy = y + 292;
+    const diameter = total <= 14 ? 23 : total <= 22 ? 21 : 19;
+    label(svg, `${title} · ${total} sièges`, cx, y + 24, {
+      anchor: "middle",
+      size: 16,
+      weight: 800
+    });
+
+    hemicyclePositions(total, cx, cy).forEach((pos, i) => {
+      const seat = seats[i];
+      roughCircle(svg, rc, pos.x, pos.y, diameter, seat.couleur, seat.couleur);
+    });
+
+    const groups = d3.rollups(seats, (v) => v.length, (d) => d.groupe);
+    const colorByGroup = new Map(seats.map((d) => [d.groupe, d.couleur]));
+    const order = [...new Set(seats.map((d) => d.groupe))];
+    drawSeatLegend(svg, order.map((name) => ({
+      label: `${name} (${groups.find((d) => d[0] === name)?.[1] || 0})`,
+      color: colorByGroup.get(name)
+    })), x + 20, y + 394, width - 40, width < 520 ? 1 : 2);
+  }
+
+  function renderHemicycleCompare(id, p) {
+    const data = p.data;
+    const stacked = window.innerWidth < 820;
+    const panelHeight = stacked ? 485 : 500;
+    const height = stacked ? 74 + panelHeight * 2 + 30 : 585;
+    const { svg, rc, width } = base(id, height);
+    const years = p.options.years || [...new Set(data.map((d) => +d.annee))];
+    const panelWidth = stacked ? width - 44 : (width - 68) / 2;
+
+    chartTitle(svg, p.options.title, width, 28);
+
+    years.forEach((year, i) => {
+      const seats = data.filter((d) => +d.annee === +year);
+      const x = stacked ? 22 : 28 + i * (panelWidth + 24);
+      const y = stacked ? 64 + i * panelHeight : 66;
+      drawMiniHemicycle(svg, rc, seats, x, y, panelWidth, String(year));
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderHemicycle(id, p) {
+    const data = p.data;
+    const compact = window.innerWidth < 760;
+    const chartHeight = (p.options.height || 640) + (compact ? 86 : 0);
+    const { svg, rc, width } = base(id, chartHeight);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const cx = width / 2;
+    const cy = 500;
+    const rows = [
+      { count: 14, radius: 128 },
+      { count: 18, radius: 178 },
+      { count: 22, radius: 228 }
+    ];
+    const positions = [];
+    rows.forEach((row) => {
+      const angles = d3.range(row.count).map((i) => Math.PI + 0.08 + i * ((Math.PI - 0.16) / (row.count - 1)));
+      angles.forEach((angle) => positions.push({
+        angle,
+        radius: row.radius,
+        x: cx + Math.cos(angle) * row.radius,
+        y: cy + Math.sin(angle) * row.radius
+      }));
+    });
+    positions.sort((a, b) => a.angle - b.angle || b.radius - a.radius);
+
+    data.forEach((seat, i) => {
+      const pos = positions[i];
+      roughCircle(svg, rc, pos.x, pos.y, 22, seat.couleur, seat.couleur);
+    });
+
+    const groups = d3.rollups(data, (v) => v.length, (d) => d.groupe);
+    const colorByGroup = new Map(data.map((d) => [d.groupe, d.couleur]));
+    const order = p.options.groupOrder || [...new Set(data.map((d) => d.groupe))];
+    const legendColumns = compact ? Math.min(2, order.length) : (p.options.legendColumns || (order.length > 6 ? 4 : 3));
+    const legendCell = compact ? (width - 68) / legendColumns : (p.options.legendCellWidth || Math.min(250, Math.max(190, (width - 80) / legendColumns)));
+    const legendRows = Math.ceil(order.length / legendColumns);
+    const legendY = compact ? chartHeight - 34 - legendRows * 34 : chartHeight - 92;
+    legend(svg, order.map((name) => ({
+      label: `${name} (${groups.find((d) => d[0] === name)?.[1] || 0})`,
+      color: colorByGroup.get(name)
+    })), compact ? 34 : Math.max(34, width / 2 - (legendColumns * legendCell) / 2), legendY, legendColumns, {
+      cellWidth: legendCell,
+      rowHeight: 34,
+      fontSize: 11
+    });
+
+    const summary = p.options.summaryLabels || [
+      { label: "Indépendantistes", value: 26, x: -250, color: "#2f925d" },
+      { label: "Éveil océanien", value: 4, x: 0, color: "#55a6b8" },
+      { label: "Non-indépendantistes", value: 24, x: 260, color: "#305f9f" }
+    ];
+    summary.forEach((item) => {
+      const x = compact
+        ? Math.max(86, Math.min(width - 86, cx + item.x * 0.78))
+        : cx + item.x;
+      label(svg, `${item.label} : ${item.value}`, x, 92, {
+        anchor: "middle",
+        size: compact ? 13 : 16,
+        weight: 800,
+        color: item.color
+      });
+    });
+    addSignature(svg, width, chartHeight);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) {
+      window.setTimeout(() => render(id), 50);
+      return;
+    }
+    const p = payload(id);
+    const type = p.type;
+    if (type === "barFacets") renderBarFacets(id, p);
+    if (type === "line") renderLine(id, p);
+    if (type === "slopeFacets") renderSlopeFacets(id, p);
+    if (type === "axisBarsFacets") renderAxisBarsFacets(id, p);
+    if (type === "stackedHorizontal") renderStackedHorizontal(id, p);
+    if (type === "stackedVertical") renderStackedVertical(id, p);
+    if (type === "hemicycleCompare") renderHemicycleCompare(id, p);
+    if (type === "hemicycle") renderHemicycle(id, p);
+  }
+
+  window.addEventListener("resize", () => {
+    document.querySelectorAll("[data-sketch-chart]").forEach((el) => render(el.id));
+  });
+
+  return { render };
+})();
+</script>
+<section id="ce-que-lon-regarde" class="level2">
+<h2 class="anchored" data-anchor-id="ce-que-lon-regarde">Ce que l’on regarde</h2>
+<div class="bilan-lede">
+<p>L’objectif ici n’est pas de descendre dans le détail infra-communal, mais de poser un premier bilan politique à l’échelle où les provinciales produisent leurs effets institutionnels : les trois assemblées de province et le Congrès.</p>
+<p>On regarde donc quatre choses : la mobilisation, le rapport indépendantistes / non-indépendantistes, les nuances internes à ces familles politiques, et l’écart entre les voix obtenues et les voix effectivement représentées par des sièges.</p>
+</div>
+<div class="bilan-stat-grid">
+<article class="bilan-stat-card">
+<div class="bilan-stat-value">
+<p>63,7 %</p>
+</div>
+<div class="bilan-stat-label">
+<p>Participation en Nouvelle-Calédonie</p>
+</div>
+<p class="bilan-stat-note">
+</p><p>-2,8 points par rapport à 2019 ; le plus bas niveau de la série provinciale depuis 1989.</p>
+<p></p>
+</article>
+<article class="bilan-stat-card">
+<div class="bilan-stat-value">
+<p>24 | 4 | 26</p>
+</div>
+<div class="bilan-stat-label">
+<p>Congrès : non-indépendantistes | EO pivot | indépendantistes</p>
+</div>
+<p class="bilan-stat-note">
+</p><p>La lecture utile est tripolaire : 24 élus non-indépendantistes, 4 Éveil océanien pivot et 26 indépendantistes.</p>
+<p></p>
+</article>
+<article class="bilan-stat-card">
+<div class="bilan-stat-value">
+<p>23 616</p>
+</div>
+<div class="bilan-stat-label">
+<p>voix sans siège provincial</p>
+</div>
+<p class="bilan-stat-note">
+</p><p>Soit 19,6 % des exprimés à l’échelle du scrutin, surtout dans le Sud.</p>
+<p></p>
+</article>
+<article class="bilan-stat-card">
+<div class="bilan-stat-value">
+<p>45,1 %</p>
+</div>
+<div class="bilan-stat-label">
+<p>abstention aux Îles</p>
+</div>
+<p class="bilan-stat-note">
+</p><p>La rupture de participation la plus nette : +11,6 points d’abstention depuis 2019.</p>
+<p></p>
+</article>
+</div>
+</section>
+<section id="le-résultat-2026-par-province" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="le-résultat-2026-par-province">Le résultat 2026 par province</h2>
+<p>Le premier graphique pose le rapport de force immédiat. Les listes avec siège sont en pleine couleur ; les listes sans siège sont atténuées. Cela permet de voir simultanément le score et la traduction institutionnelle.</p>
+<div class="column-page bilan-plot">
+<div id="chart-resultats-provinces" class="bilan-sketch" data-sketch-chart="barFacets">
+
+</div>
+<script type="application/json" id="chart-resultats-provinces-data">{"type":"barFacets","data":[{"province":"Province Sud","province_label":"Sud","etiquette":"Éveil océanien","pct_exprimes":10.2,"sieges_province":5,"couleur":"#55a6b8"},{"province":"Province Sud","province_label":"Sud","etiquette":"FLNKS","pct_exprimes":15.59,"sieges_province":7,"couleur":"#2f925d"},{"province":"Province Sud","province_label":"Sud","etiquette":"RN-MCFNC","pct_exprimes":0.88,"sieges_province":0,"couleur":"#7a4a28"},{"province":"Province Sud","province_label":"Sud","etiquette":"DVC-Calédonie ensemble","pct_exprimes":4.72,"sieges_province":0,"couleur":"#67a9cf"},{"province":"Province Sud","province_label":"Sud","etiquette":"SKNC","pct_exprimes":1.22,"sieges_province":0,"couleur":"#b6483b"},{"province":"Province Sud","province_label":"Sud","etiquette":"Faire Pays","pct_exprimes":4.34,"sieges_province":0,"couleur":"#4f8f6a"},{"province":"Province Sud","province_label":"Sud","etiquette":"Pour une Calédonie française","pct_exprimes":1.41,"sieges_province":0,"couleur":"#244e78"},{"province":"Province Sud","province_label":"Sud","etiquette":"Nous, réunis","pct_exprimes":5.53,"sieges_province":0,"couleur":"#8db8d1"},{"province":"Province Sud","province_label":"Sud","etiquette":"LL-LR","pct_exprimes":50.14,"sieges_province":28,"couleur":"#305f9f"},{"province":"Province Sud","province_label":"Sud","etiquette":"UNI","pct_exprimes":4.13,"sieges_province":0,"couleur":"#f0c52f"},{"province":"Province Sud","province_label":"Sud","etiquette":"Un espoir pour demain","pct_exprimes":1.85,"sieges_province":0,"couleur":"#829dbd"},{"province":"Province Nord","province_label":"Nord","etiquette":"LL-LR Nord","pct_exprimes":16.33,"sieges_province":3,"couleur":"#305f9f"},{"province":"Province Nord","province_label":"Nord","etiquette":"Alternative Nord","pct_exprimes":4.75,"sieges_province":0,"couleur":"#b6483b"},{"province":"Province Nord","province_label":"Nord","etiquette":"UC-FLNKS","pct_exprimes":39.93,"sieges_province":10,"couleur":"#2f925d"},{"province":"Province Nord","province_label":"Nord","etiquette":"Faire Pays","pct_exprimes":3.27,"sieges_province":0,"couleur":"#4f8f6a"},{"province":"Province Nord","province_label":"Nord","etiquette":"UNI","pct_exprimes":35.72,"sieges_province":9,"couleur":"#f0c52f"},{"province":"Province des Iles","province_label":"Îles","etiquette":"Palika Îles","pct_exprimes":20.71,"sieges_province":2,"couleur":"#f0c52f"},{"province":"Province des Iles","province_label":"Îles","etiquette":"Un nouveau souffle","pct_exprimes":2.25,"sieges_province":0,"couleur":"#305f9f"},{"province":"Province des Iles","province_label":"Îles","etiquette":"Baselaia","pct_exprimes":1.14,"sieges_province":0,"couleur":"#7aa874"},{"province":"Province des Iles","province_label":"Îles","etiquette":"Nation autochtone / DA","pct_exprimes":32.18,"sieges_province":6,"couleur":"#88a96d"},{"province":"Province des Iles","province_label":"Îles","etiquette":"UC-FLNKS Îles","pct_exprimes":32.94,"sieges_province":6,"couleur":"#2f925d"},{"province":"Province des Iles","province_label":"Îles","etiquette":"UPK","pct_exprimes":1.04,"sieges_province":0,"couleur":"#b6483b"},{"province":"Province des Iles","province_label":"Îles","etiquette":"UCC","pct_exprimes":9.73,"sieges_province":0,"couleur":"#7aa874"}],"options":{"title":"Trois provinces, trois configurations"}}</script>
+<p class="bilan-sketch-caption">
+Résultats 2026 par province : voix, part des exprimés et sièges provinciaux.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-resultats-provinces");</script>
+</div>
+<p>Le résultat tient en une formule simple : <strong>concentration dans le Sud, concurrence interne dans le Nord, fragmentation indépendantiste aux Îles</strong>.</p>
+<p>Dans le Sud, Les Loyalistes et Le Rassemblement atteignent 50,1 % des exprimés et obtiennent 28 des 40 sièges provinciaux. Le FLNKS entre avec 7 sièges et l’Éveil océanien avec 5. Toutes les autres listes restent hors représentation, y compris celles qui dépassent 4 % ou 5 % des exprimés mais pas le seuil en part des inscrits.</p>
+<p>Dans le Nord, la famille indépendantiste reste très majoritaire, mais l’ordre interne change : l’UC-FLNKS arrive devant l’UNI. Dans les Îles, le résultat est presque entièrement indépendantiste, mais la concurrence se joue entre trois pôles représentés : UC-FLNKS, Nation autochtone et Palika.</p>
+</section>
+<section id="une-abstention-qui-change-le-contexte" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="une-abstention-qui-change-le-contexte">Une abstention qui change le contexte</h2>
+<p>La participation baisse à 63,7 % en Nouvelle-Calédonie. Cette baisse n’est pas uniforme : elle est contenue dans le Sud, plus marquée dans le Nord, et très forte aux Îles.</p>
+<div class="column-page bilan-plot">
+<div id="chart-participation-historique" class="bilan-sketch" data-sketch-chart="line">
+
+</div>
+<script type="application/json" id="chart-participation-historique-data">{"type":"line","data":[{"annee":1989,"serie":"Nouvelle-Calédonie","valeur":69.22,"couleur":"#282522"},{"annee":1989,"serie":"Sud","valeur":69.33,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":69.36,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":68.46,"couleur":"#b76f95"},{"annee":1995,"serie":"Nouvelle-Calédonie","valeur":70.22,"couleur":"#282522"},{"annee":1995,"serie":"Sud","valeur":69.13,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":71.41,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":73.43,"couleur":"#b76f95"},{"annee":1999,"serie":"Nouvelle-Calédonie","valeur":74.79,"couleur":"#282522"},{"annee":1999,"serie":"Sud","valeur":76.86,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":67.19,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":78.64,"couleur":"#b76f95"},{"annee":2004,"serie":"Nouvelle-Calédonie","valeur":76.44,"couleur":"#282522"},{"annee":2004,"serie":"Sud","valeur":77.44,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":72.29,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":79.07,"couleur":"#b76f95"},{"annee":2009,"serie":"Nouvelle-Calédonie","valeur":72.48,"couleur":"#282522"},{"annee":2009,"serie":"Sud","valeur":74.25,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":67.43,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":73.32,"couleur":"#b76f95"},{"annee":2014,"serie":"Nouvelle-Calédonie","valeur":69.95,"couleur":"#282522"},{"annee":2014,"serie":"Sud","valeur":71.95,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":66.15,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":67.17,"couleur":"#b76f95"},{"annee":2019,"serie":"Nouvelle-Calédonie","valeur":66.47,"couleur":"#282522"},{"annee":2019,"serie":"Sud","valeur":67.23,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":64.54,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":66.49,"couleur":"#b76f95"},{"annee":2026,"serie":"Sud","valeur":65.95,"couleur":"#c86a4a"},{"annee":2026,"serie":"Nord","valeur":61.6,"couleur":"#7769a6"},{"annee":2026,"serie":"Îles","valeur":54.92,"couleur":"#b76f95"},{"annee":2026,"serie":"Nouvelle-Calédonie","valeur":63.71035178,"couleur":"#282522"}],"options":{"title":"Participation : baisse longue, décrochage aux Îles","yLabel":"Participation","yDomain":[50,82],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":560}}</script>
+<p class="bilan-sketch-caption">
+Participation aux provinciales depuis 1989, par territoire.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-participation-historique");</script>
+</div>
+<p>L’abstention atteint 34,1 % dans le Sud, 38,4 % dans le Nord et 45,1 % aux Îles. La comparaison historique est importante : en 2004, la participation dépassait 76 % sur l’ensemble de la Nouvelle-Calédonie ; en 2026, elle tombe sous 64 %. Le scrutin 2026 n’est donc pas seulement une recomposition de listes, c’est aussi un scrutin de moindre mobilisation.</p>
+<div class="column-page bilan-plot">
+<div id="chart-abstention-composition" class="bilan-sketch" data-sketch-chart="stackedVertical">
+
+</div>
+<script type="application/json" id="chart-abstention-composition-data">{"type":"stackedVertical","data":[{"annee":2019,"category":"Province Sud","valeur":62.57285229},{"annee":2019,"category":"Province Nord","valeur":24.91504235},{"annee":2019,"category":"Province des Iles","valeur":12.51210537},{"annee":2026,"category":"Province Sud","valeur":62.10444963},{"annee":2026,"category":"Province Nord","valeur":23.64214052},{"annee":2026,"category":"Province des Iles","valeur":14.25340986}],"options":{"title":"Abstention : le poids des provinces, l'intensité du retrait","years":[2019,2026],"categories":{"Province Sud":{"id":"Province Sud","label":"Sud","color":"#c86a4a"},"Province Nord":{"id":"Province Nord","label":"Nord","color":"#7769a6"},"Province des Iles":{"id":"Province des Iles","label":"Îles","color":"#b76f95"}},"yMax":100,"yLabel":"Part des abstentions","valueFormat":"pct","height":520}}</script>
+<p class="bilan-sketch-caption">
+Composition de l’abstention par province en 2019 et 2026. Chaque barre représente 100 % des abstentions du scrutin.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-abstention-composition");</script>
+</div>
+<p>En volume, l’abstention reste d’abord sudiste parce que le corps électoral y est beaucoup plus nombreux : le Sud compte 43 393 abstentions en 2026, soit 62,1 % des abstentions du scrutin. Mais la dynamique politique la plus nette est ailleurs : les Îles passent de 33,5 % d’abstention en 2019 à 45,1 % en 2026, et leur poids dans l’abstention totale augmente de 12,5 % à 14,3 %.</p>
+<p>Aux Îles, la baisse est le fait politique le plus massif avant même d’entrer dans le détail des listes. Une province où l’offre reste presque totalement indépendantiste en voix connaît pourtant un recul très net de participation, ce qui invite à distinguer solidité de la famille politique dominante et intensité de la mobilisation.</p>
+</section>
+<section id="quelle-évolution-par-grande-famille-politique" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="quelle-évolution-par-grande-famille-politique">Quelle évolution par grande famille politique ?</h2>
+<p>Le rapport entre grandes familles politiques ne suffit pas à lire le scrutin. Il reste néanmoins utile pour une chose précise : replacer chaque province dans sa géographie électorale longue. Le graphique suivant ne cherche donc pas à résumer toute l’offre politique ; il isole seulement la part des voix indépendantistes depuis 1989, pour voir si 2026 déplace ou non le centre de gravité provincial.</p>
+<div class="column-page bilan-plot">
+<div id="chart-familles-provinces" class="bilan-sketch" data-sketch-chart="line">
+
+</div>
+<script type="application/json" id="chart-familles-provinces-data">{"type":"line","data":[{"annee":1989,"serie":"Sud","valeur":14.68058498,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":67.89555571,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":64.75496533,"couleur":"#b76f95"},{"annee":1995,"serie":"Sud","valeur":14.12231508,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":67.43402927,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":74.51909135,"couleur":"#b76f95"},{"annee":1999,"serie":"Sud","valeur":18.15303962,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":75.57715674,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":80.95314635,"couleur":"#b76f95"},{"annee":2004,"serie":"Sud","valeur":16.1153783,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":73.96760543,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":82.80600381,"couleur":"#b76f95"},{"annee":2009,"serie":"Sud","valeur":12.49566639,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":74.99423086,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":91.36750943,"couleur":"#b76f95"},{"annee":2014,"serie":"Sud","valeur":18.00955507,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":79.69143981,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":93.11129044,"couleur":"#b76f95"},{"annee":2019,"serie":"Sud","valeur":19.51549486,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":79.98889814,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":90.61002646,"couleur":"#b76f95"},{"annee":2026,"serie":"Nord","valeur":80.39553869,"couleur":"#7769a6"},{"annee":2026,"serie":"Sud","valeur":20.93952235,"couleur":"#c86a4a"},{"annee":2026,"serie":"Îles","valeur":97.7460556,"couleur":"#b76f95"}],"options":{"title":"Vote indépendantiste : trois géographies provinciales stables","yLabel":"Part des exprimés","yDomain":[0,105],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":580}}</script>
+<p class="bilan-sketch-caption">
+Part des voix classées indépendantistes dans chaque province depuis 1989. Ce repère historique ne décrit pas les rapports internes à chaque famille politique.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-familles-provinces");</script>
+</div>
+<p>Dans le Sud, les listes classées indépendantistes totalisent 20,9 % des exprimés, contre 19,5 % en 2019. La progression est réelle mais limitée. Elle ne suffit pas à modifier la domination non-indépendantiste de la province, d’autant que le vote indépendantiste est lui-même divisé entre Kanaky pour tous, Unis pour le Pays et Souveraineté Kanaky Nouvelle-Calédonie.</p>
+<p>Dans le Nord, la famille indépendantiste reste autour de 80 % des exprimés. Le changement se joue donc surtout <strong>à l’intérieur</strong> de cette famille politique : l’UC-FLNKS passe devant l’UNI, alors que l’UNI était arrivée en tête en 2019.</p>
+<p>Aux Îles, la part indépendantiste approche 98 % des exprimés. Mais cette quasi-unanimité politique ne produit pas une liste dominante unique : l’UC-FLNKS et Nation autochtone sont presque à égalité, devant Palika, tandis que l’UCC rassemble 9,7 % sans obtenir de siège.</p>
+</section>
+<section id="en-voix-un-scrutin-moins-mobilisé-pas-seulement-recomposé" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="en-voix-un-scrutin-moins-mobilisé-pas-seulement-recomposé">En voix : un scrutin moins mobilisé, pas seulement recomposé</h2>
+<p>La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu’en 1989, mais avec une participation plus basse qu’au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l’abstention.</p>
+<div class="column-page bilan-plot">
+<div id="chart-voix-historique-congres" class="bilan-sketch" data-sketch-chart="line">
+
+</div>
+<script type="application/json" id="chart-voix-historique-congres-data">{"type":"line","data":[{"annee":1989,"serie":"Non-indépendantistes","valeur":38745,"couleur":"#305f9f"},{"annee":1989,"serie":"Indépendantistes","valeur":21299,"couleur":"#2f925d"},{"annee":1989,"serie":"Autres / pro-pays","valeur":2429,"couleur":"#8a7d72"},{"annee":1995,"serie":"Non-indépendantistes","valeur":43335,"couleur":"#305f9f"},{"annee":1995,"serie":"Indépendantistes","valeur":25094,"couleur":"#2f925d"},{"annee":1995,"serie":"Autres / pro-pays","valeur":3362,"couleur":"#8a7d72"},{"annee":1999,"serie":"Non-indépendantistes","valeur":46477,"couleur":"#305f9f"},{"annee":1999,"serie":"Indépendantistes","valeur":32138,"couleur":"#2f925d"},{"annee":1999,"serie":"Autres / pro-pays","valeur":706,"couleur":"#8a7d72"},{"annee":2004,"serie":"Non-indépendantistes","valeur":51863,"couleur":"#305f9f"},{"annee":2004,"serie":"Indépendantistes","valeur":35791,"couleur":"#2f925d"},{"annee":2004,"serie":"Autres / pro-pays","valeur":1907,"couleur":"#8a7d72"},{"annee":2009,"serie":"Non-indépendantistes","valeur":55469,"couleur":"#305f9f"},{"annee":2009,"serie":"Indépendantistes","valeur":36900,"couleur":"#2f925d"},{"annee":2009,"serie":"Autres / pro-pays","valeur":4189,"couleur":"#8a7d72"},{"annee":2014,"serie":"Non-indépendantistes","valeur":61638,"couleur":"#305f9f"},{"annee":2014,"serie":"Indépendantistes","valeur":43628,"couleur":"#2f925d"},{"annee":2019,"serie":"Non-indépendantistes","valeur":53499,"couleur":"#305f9f"},{"annee":2019,"serie":"Éveil océanien","valeur":6077,"couleur":"#55a6b8"},{"annee":2019,"serie":"Indépendantistes","valeur":46692,"couleur":"#2f925d"},{"annee":2019,"serie":"Autres / pro-pays","valeur":3895,"couleur":"#8a7d72"},{"annee":2026,"serie":"Non-indépendantistes","valeur":57671,"couleur":"#305f9f"},{"annee":2026,"serie":"Éveil océanien","valeur":8399,"couleur":"#55a6b8"},{"annee":2026,"serie":"Indépendantistes","valeur":49931,"couleur":"#2f925d"},{"annee":2026,"serie":"Autres / pro-pays","valeur":4428,"couleur":"#8a7d72"}],"options":{"title":"Voix par familles politiques au Congrès depuis 1989","yLabel":"Voix","xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"int","height":580}}</script>
+<p class="bilan-sketch-caption">
+Voix agrégées par familles politiques au Congrès. L’Éveil océanien est isolé en 2019 et 2026.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-voix-historique-congres");</script>
+</div>
+<p>La progression des indépendantistes au Sud se voit en part des exprimés, mais le bilan global dépend aussi de la démobilisation. L’Éveil océanien, lui, passe de 6 077 voix et 3 sièges au Congrès en 2019 à 8 399 voix et 4 sièges en 2026 : son rôle ne tient donc pas seulement à l’arithmétique des familles politiques, mais aussi à une implantation électorale qui se maintient et se renforce dans le Sud.</p>
+<div class="column-page bilan-plot">
+<div id="chart-voix-nuances-provinces" class="bilan-sketch" data-sketch-chart="axisBarsFacets">
+
+</div>
+<script type="application/json" id="chart-voix-nuances-provinces-data">{"type":"axisBarsFacets","data":[{"annee":2019,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":11269,"pct_exprimes":15.88100171,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":12842,"pct_exprimes":15.59233132,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UNI / Palika","valeur":3401,"pct_exprimes":4.12938162,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1335,"pct_exprimes":1.88136811,"couleur":"#88a96d"},{"annee":2026,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1003,"pct_exprimes":1.2178094,"couleur":"#88a96d"},{"annee":2019,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":1244,"pct_exprimes":1.75312504,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":3575,"pct_exprimes":4.34064667,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":6077,"pct_exprimes":8.5641004,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":8399,"pct_exprimes":10.19778779,"couleur":"#55a6b8"},{"annee":2019,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":13122,"pct_exprimes":18.49236883,"couleur":"#67a9cf"},{"annee":2026,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":9961,"pct_exprimes":12.09431648,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Sud","serie":"Loyalistes","valeur":28802,"pct_exprimes":40.58963627,"couleur":"#305f9f"},{"annee":2026,"province_label":"Sud","serie":"Loyalistes","valeur":41294,"pct_exprimes":50.13780794,"couleur":"#305f9f"},{"annee":2019,"province_label":"Sud","serie":"Droite nationale","valeur":2707,"pct_exprimes":3.81487901,"couleur":"#7a4a28"},{"annee":2026,"province_label":"Sud","serie":"Droite nationale","valeur":1885,"pct_exprimes":2.28870461,"couleur":"#7a4a28"},{"annee":2019,"province_label":"Sud","serie":"Autres listes","valeur":6403,"pct_exprimes":9.02352062,"couleur":"#8a7d72"},{"annee":2019,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":9069,"pct_exprimes":35.95813013,"couleur":"#2f925d"},{"annee":2026,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":10418,"pct_exprimes":39.9294776,"couleur":"#2f925d"},{"annee":2019,"province_label":"Nord","serie":"UNI / Palika","valeur":9709,"pct_exprimes":38.49569803,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Nord","serie":"UNI / Palika","valeur":9319,"pct_exprimes":35.71729715,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Nord","serie":"Autres indépendantistes","valeur":842,"pct_exprimes":3.33848777,"couleur":"#88a96d"},{"annee":2026,"province_label":"Nord","serie":"Autres indépendantistes","valeur":1239,"pct_exprimes":4.74876394,"couleur":"#88a96d"},{"annee":2019,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":554,"pct_exprimes":2.19658221,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":853,"pct_exprimes":3.26932659,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Nord","serie":"Centre non-indépendantiste","valeur":1975,"pct_exprimes":7.83077594,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Nord","serie":"Loyalistes","valeur":3072,"pct_exprimes":12.18032592,"couleur":"#305f9f"},{"annee":2026,"province_label":"Nord","serie":"Loyalistes","valeur":4261,"pct_exprimes":16.33130198,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":5186,"pct_exprimes":37.08789244,"couleur":"#2f925d"},{"annee":2026,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":3946,"pct_exprimes":32.94098005,"couleur":"#2f925d"},{"annee":2019,"province_label":"Îles","serie":"UNI / Palika","valeur":2970,"pct_exprimes":21.24007724,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Îles","serie":"UNI / Palika","valeur":3783,"pct_exprimes":31.58026546,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Îles","serie":"Autres indépendantistes","valeur":2805,"pct_exprimes":20.06007295,"couleur":"#88a96d"},{"annee":2026,"province_label":"Îles","serie":"Autres indépendantistes","valeur":3980,"pct_exprimes":33.22481008,"couleur":"#88a96d"},{"annee":2019,"province_label":"Îles","serie":"Pro-pays / souverainistes","valeur":173,"pct_exprimes":1.23721662,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Îles","serie":"Éveil / nuance océanienne","valeur":1536,"pct_exprimes":10.98476722,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Îles","serie":"Loyalistes","valeur":270,"pct_exprimes":2.2539444,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"Autres listes","valeur":1313,"pct_exprimes":9.38997354,"couleur":"#8a7d72"}],"options":{"title":"Voix par nuances politiques : 2019 et 2026, province par province","years":[2019,2026]}}</script>
+<p class="bilan-sketch-caption">
+Évolution 2019-2026 des voix par province et par nuance politique. Les nuances agrègent les listes comparables plutôt que les seules grandes familles politiques.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-voix-nuances-provinces");</script>
+</div>
+<p>Cette lecture par nuances précise le mouvement. Dans le Sud, le loyalisme se reconcentre autour de LL-LR pendant que l’ancien centre non-indépendantiste se fragmente et recule en sièges. L’Éveil océanien progresse en voix et devient plus décisif institutionnellement. Côté indépendantiste, le FLNKS de 2019 ne disparaît pas, mais il se recompose entre Kanaky pour tous, UNI et offres souverainistes plus petites. Dans le Nord et aux Îles, la comparaison montre surtout des rééquilibrages internes entre UC-FLNKS, UNI / Palika et autres listes indépendantistes.</p>
+</section>
+<section id="les-voix-sans-siège" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="les-voix-sans-siège">Les voix sans siège</h2>
+<p>Le seuil de 5 % des inscrits et la mécanique de répartition produisent un écart fort entre voix exprimées et représentation. En 2026, 23 616 voix ne débouchent sur aucun siège provincial, soit 19,6 % des exprimés.</p>
+<div class="column-page bilan-plot">
+<div id="chart-voix-sans-siege" class="bilan-sketch" data-sketch-chart="stackedHorizontal">
+
+</div>
+<script type="application/json" id="chart-voix-sans-siege-data">{"type":"stackedHorizontal","data":[{"y":"Sud","category":"anti_independantiste","valeur":14.38302109,"voix":11846},{"y":"Sud","category":"independantiste","valeur":5.34719102,"voix":4404},{"y":"Sud","category":"autres_listes","valeur":4.34064667,"voix":3575},{"y":"Nord","category":"anti_independantiste","valeur":0,"voix":0},{"y":"Nord","category":"independantiste","valeur":4.74876394,"voix":1239},{"y":"Nord","category":"autres_listes","valeur":3.26932659,"voix":853},{"y":"Îles","category":"anti_independantiste","valeur":2.2539444,"voix":270},{"y":"Îles","category":"independantiste","valeur":11.91251357,"voix":1427},{"y":"Îles","category":"autres_listes","valeur":0,"voix":0}],"options":{"title":"Le Sud concentre l'essentiel des voix non représentées","xMax":27,"yOrder":["Sud","Nord","Îles"],"categories":{"anti_independantiste":{"id":"anti_independantiste","label":"Non-indépendantistes","color":"#305f9f"},"independantiste":{"id":"independantiste","label":"Indépendantistes","color":"#2f925d"},"autres_listes":{"id":"autres_listes","label":"Autres / pro-pays","color":"#8a7d72"}},"height":520}}</script>
+<p class="bilan-sketch-caption">
+Voix accordées à des listes sans siège provincial en 2026, par province et par famille politique.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-voix-sans-siege");</script>
+</div>
+<p>Le cas le plus net est le Sud : près d’un quart des exprimés vont à des listes sans siège. Cela pèse surtout sur l’ancien espace centriste non-indépendantiste et sur des offres souverainistes ou indépendantistes concurrentes. Nous, réunis atteint 5,5 % des exprimés, Une Province pour tous 4,7 %, Faire Pays 4,3 % et Unis pour le Pays 4,1 %, mais aucune de ces listes ne franchit 5 % des inscrits.</p>
+<p>Dans le Nord, la part non représentée est plus faible : 8,0 % des exprimés, essentiellement Alternative Nord et Faire Pays. Aux Îles, elle atteint 14,2 %, avec un cas très particulier : l’UCC franchit 5 % des inscrits, mais n’obtient aucun siège dans la répartition.</p>
+</section>
+<section id="province-sud-une-majorité-très-concentrée" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-sud-une-majorité-très-concentrée">Province Sud : une majorité très concentrée</h2>
+<p>Le Sud est la province qui donne la clé de lecture la plus nette : une majorité non-indépendantiste large, mais concentrée dans une seule grande liste. Les Loyalistes et Le Rassemblement rassemblent 41 294 voix, soit 50,1 % des exprimés, et obtiennent 28 sièges provinciaux, dont 22 au Congrès.</p>
+<p>La liste Kanaky pour tous arrive deuxième avec 15,6 % et 7 sièges. L’Éveil océanien obtient 10,2 % et 5 sièges. C’est une progression institutionnelle importante : l’espace océanien/transversal n’est pas seulement un appoint, il reste représenté au Congrès avec 4 élus.</p>
+<div class="column-page bilan-plot">
+<div id="chart-assemblee-sud" class="bilan-sketch" data-sketch-chart="hemicycleCompare">
+
+</div>
+<script type="application/json" id="chart-assemblee-sud-data">{"type":"hemicycleCompare","data":[{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2019,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2019,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2019,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2019,"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"FLNKS Sud","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2026,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2026,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2026,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2026,"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"}],"options":{"title":"Assemblée de la Province Sud : 2019 / 2026","years":[2019,2026]}}</script>
+<p class="bilan-sketch-caption">
+Assemblée de la Province Sud en 2019 et 2026 : 40 sièges, colorés par groupe représenté.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-assemblee-sud");</script>
+</div>
+<p>Le reste du scrutin sudiste se joue dans l’absence de représentation. L’ancien centre non-indépendantiste n’est pas absent en voix, mais il est absent en sièges. Les 4 554 voix de Nous, réunis et les 3 887 voix d’Une Province pour tous ne se traduisent par aucun élu. Côté indépendantiste, Unis pour le Pays et Souveraineté Kanaky restent également hors assemblée. La majorité sudiste est donc forte, mais le paysage des voix est plus fragmenté que la seule répartition des sièges ne le laisse voir.</p>
+</section>
+<section id="province-nord-luc-repasse-devant-luni" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-nord-luc-repasse-devant-luni">Province Nord : l’UC repasse devant l’UNI</h2>
+<p>Dans le Nord, la domination indépendantiste est stable : les listes indépendantistes totalisent 80,4 % des exprimés, presque exactement le niveau de 2019. Mais l’équilibre interne se déplace. L’UC-FLNKS obtient 39,9 %, 10 sièges provinciaux et 7 sièges au Congrès. L’UNI obtient 35,7 %, 9 sièges provinciaux et 6 sièges au Congrès.</p>
+<p>Ce n’est pas une bascule de camp ; c’est une bascule de leadership à l’intérieur du camp indépendantiste nordiste. En 2019, l’UNI était en tête. En 2026, l’UC-FLNKS reprend l’avantage.</p>
+<p>Agissons ensemble pour le Nord consolide une représentation loyaliste avec 16,3 %, 3 sièges provinciaux et 2 sièges au Congrès. Ce vote ne menace pas la majorité indépendantiste, mais il confirme l’existence d’un pôle non-indépendantiste concentré et institutionnellement visible dans la province.</p>
+<div class="column-page bilan-plot">
+<div id="chart-assemblee-nord" class="bilan-sketch" data-sketch-chart="hemicycleCompare">
+
+</div>
+<script type="application/json" id="chart-assemblee-nord-data">{"type":"hemicycleCompare","data":[{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"Agissons Nord","famille":"non_ind","couleur":"#6f87ad"},{"annee":2019,"groupe":"Agissons Nord","famille":"non_ind","couleur":"#6f87ad"},{"annee":2019,"groupe":"Agissons Nord","famille":"non_ind","couleur":"#6f87ad"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"LL-LR Nord","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR Nord","famille":"non_ind","couleur":"#305f9f"},{"annee":2026,"groupe":"LL-LR Nord","famille":"non_ind","couleur":"#305f9f"}],"options":{"title":"Assemblée de la Province Nord : 2019 / 2026","years":[2019,2026]}}</script>
+<p class="bilan-sketch-caption">
+Assemblée de la Province Nord en 2019 et 2026 : 22 sièges, colorés par groupe représenté.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-assemblee-nord");</script>
+</div>
+</section>
+<section id="province-des-îles-tout-indépendantiste-mais-pas-homogène" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="province-des-îles-tout-indépendantiste-mais-pas-homogène">Province des Îles : tout indépendantiste, mais pas homogène</h2>
+<p>Aux Îles, la première donnée est l’abstention : 45,1 %, soit 11,6 points de plus qu’en 2019. La seconde est la domination quasi totale des listes indépendantistes : 97,7 % des exprimés.</p>
+<p>Mais cette famille politique n’est pas homogène. L’UC-FLNKS Îles arrive en tête avec 32,9 % et 6 sièges. Nation autochtone suit à 32,2 %, également 6 sièges. Palika Îles obtient 20,7 % et 2 sièges. Le rapport de force insulaire est donc tripolaire dans sa représentation, avec une concurrence très forte entre UC-FLNKS et Nation autochtone.</p>
+<div class="column-page bilan-plot">
+<div id="chart-assemblee-iles" class="bilan-sketch" data-sketch-chart="hemicycleCompare">
+
+</div>
+<script type="application/json" id="chart-assemblee-iles-data">{"type":"hemicycleCompare","data":[{"annee":2019,"groupe":"Parti travailliste","famille":"independantiste","couleur":"#b6483b"},{"annee":2019,"groupe":"Parti travailliste","famille":"independantiste","couleur":"#b6483b"},{"annee":2019,"groupe":"Dynamique autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2019,"groupe":"Dynamique autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2019,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"},{"annee":2019,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"annee":2026,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"},{"annee":2026,"groupe":"Palika Îles","famille":"independantiste","couleur":"#f0c52f"}],"options":{"title":"Assemblée de la Province des Îles : 2019 / 2026","years":[2019,2026]}}</script>
+<p class="bilan-sketch-caption">
+Assemblée de la Province des Îles en 2019 et 2026 : 14 sièges, colorés par groupe représenté.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-assemblee-iles");</script>
+</div>
+<p>L’UCC, avec 9,7 % des exprimés, devient le principal réservoir de voix sans siège aux Îles. C’est un cas important pour lire la représentation : une liste peut dépasser un niveau significatif, franchir le seuil en part des inscrits, et rester pourtant sans élu lorsque la méthode de répartition ne lui donne pas de siège.</p>
+</section>
+<section id="congrès-léveil-océanien-en-position-pivot" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="congrès-léveil-océanien-en-position-pivot">Congrès : l’Éveil océanien en position pivot</h2>
+<p>La composition du Congrès ne se résume pas à un face-à-face entre deux camps. Additionner l’Éveil océanien au camp non-indépendantiste écrase son rôle politique, qui est plus ouvert. La lecture la plus prudente est donc : <strong>24 non-indépendantistes, 4 Éveil océanien pivot, 26 indépendantistes</strong>.</p>
+<div class="column-page bilan-plot">
+<div id="chart-congres-historique" class="bilan-sketch" data-sketch-chart="stackedVertical">
+
+</div>
+<script type="application/json" id="chart-congres-historique-data">{"type":"stackedVertical","data":[{"annee":1989,"category":"non_ind","valeur":32},{"annee":1989,"category":"independantiste","valeur":20},{"annee":1989,"category":"autres_listes","valeur":2},{"annee":1995,"category":"non_ind","valeur":35},{"annee":1995,"category":"independantiste","valeur":19},{"annee":1995,"category":"autres_listes","valeur":0},{"annee":1999,"category":"non_ind","valeur":31},{"annee":1999,"category":"independantiste","valeur":23},{"annee":1999,"category":"autres_listes","valeur":0},{"annee":2004,"category":"non_ind","valeur":36},{"annee":2004,"category":"independantiste","valeur":18},{"annee":2004,"category":"autres_listes","valeur":0},{"annee":2009,"category":"non_ind","valeur":31},{"annee":2009,"category":"independantiste","valeur":23},{"annee":2009,"category":"autres_listes","valeur":0},{"annee":2014,"category":"non_ind","valeur":29},{"annee":2014,"category":"independantiste","valeur":25},{"annee":2014,"category":"autres_listes","valeur":0},{"annee":2019,"category":"non_ind","valeur":25},{"annee":2019,"category":"eveil_oceanien","valeur":3},{"annee":2019,"category":"independantiste","valeur":26},{"annee":2019,"category":"autres_listes","valeur":0},{"annee":2026,"category":"non_ind","valeur":24},{"annee":2026,"category":"eveil_oceanien","valeur":4},{"annee":2026,"category":"independantiste","valeur":26},{"annee":2026,"category":"autres_listes","valeur":0}],"options":{"title":"Sièges du Congrès par grandes familles","years":[1989,1995,1999,2004,2009,2014,2019,2026],"categories":{"non_ind":{"id":"non_ind","label":"Non-indépendantistes","color":"#305f9f"},"eveil_oceanien":{"id":"eveil_oceanien","label":"Éveil océanien","color":"#55a6b8"},"independantiste":{"id":"independantiste","label":"Indépendantistes","color":"#2f925d"},"autres_listes":{"id":"autres_listes","label":"Autres / pro-pays","color":"#8a7d72"}},"height":560}}</script>
+<p class="bilan-sketch-caption">
+Répartition des sièges du Congrès par grandes familles. L’Éveil océanien est isolé en 2019 et 2026.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-congres-historique");</script>
+</div>
+<div class="column-page bilan-plot">
+<div id="chart-congres-hemicycle-2019" class="bilan-sketch" data-sketch-chart="hemicycle">
+
+</div>
+<script type="application/json" id="chart-congres-hemicycle-2019-data">{"type":"hemicycle","data":[{"groupe":"PT / Dynamique autochtone","famille":"independantiste","couleur":"#b6483b"},{"groupe":"PT / Dynamique autochtone","famille":"independantiste","couleur":"#b6483b"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Calédonie ensemble","famille":"non_ind","couleur":"#67a9cf"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"},{"groupe":"Avenir en confiance","famille":"non_ind","couleur":"#305f9f"}],"options":{"title":"Congrès 2019 : 25 | 3 | 26 sièges","groupOrder":["PT / Dynamique autochtone","UC-FLNKS","UNI / Palika","Éveil océanien","Calédonie ensemble","Avenir en confiance"],"legendColumns":4,"height":650,"summaryLabels":[{"label":"Indépendantistes","value":26,"x":-250,"color":"#2f925d"},{"label":"Éveil océanien","value":3,"x":0,"color":"#55a6b8"},{"label":"Non-indépendantistes","value":25,"x":260,"color":"#305f9f"}]}}</script>
+<p class="bilan-sketch-caption">
+Demi-cercle du Congrès 2019 : 54 sièges, colorés par groupe représenté.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-congres-hemicycle-2019");</script>
+</div>
+<div class="column-page bilan-plot">
+<div id="chart-congres-hemicycle" class="bilan-sketch" data-sketch-chart="hemicycle">
+
+</div>
+<script type="application/json" id="chart-congres-hemicycle-data">{"type":"hemicycle","data":[{"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"groupe":"Nation autochtone","famille":"independantiste","couleur":"#b6483b"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UC-FLNKS","famille":"independantiste","couleur":"#2f925d"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"UNI / Palika","famille":"independantiste","couleur":"#f0c52f"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"Éveil océanien","famille":"eveil_oceanien","couleur":"#55a6b8"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"},{"groupe":"LL-LR","famille":"non_ind","couleur":"#305f9f"}],"options":{"title":"Congrès 2026 : 24 | 4 | 26 sièges","groupOrder":["Nation autochtone","UC-FLNKS","UNI / Palika","Éveil océanien","LL-LR"],"legendColumns":3,"height":640,"summaryLabels":[{"label":"Indépendantistes","value":26,"x":-250,"color":"#2f925d"},{"label":"Éveil océanien","value":4,"x":0,"color":"#55a6b8"},{"label":"Non-indépendantistes","value":24,"x":260,"color":"#305f9f"}]}}</script>
+<p class="bilan-sketch-caption">
+Demi-cercle du Congrès 2026 : 54 sièges, colorés par groupe représenté.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-congres-hemicycle");</script>
+</div>
+<p>En 2019, l’Éveil océanien occupait déjà une place de charnière avec 3 sièges, mais dans un Congrès où le camp non-indépendantiste était plus diversifié : Avenir en confiance, qui rassemble aussi les élus Agissons Nord, et Calédonie ensemble pesaient chacun dans l’équilibre. En 2026, Les Loyalistes et Le Rassemblement concentrent presque tout cet espace avec 24 sièges au Congrès. Ils ne disposent donc pas seuls d’une majorité. Les 4 sièges de l’Éveil océanien deviennent centraux : ils peuvent permettre des majorités variables, et leur position ne doit pas être présumée comme un simple prolongement du camp loyaliste.</p>
+<p>Côté indépendantiste, le total reste à 26 sièges, mais la distribution se modifie : le groupe UC-FLNKS rassemble 16 sièges, l’UNI / Palika 7 et Nation autochtone 3. La nuance indépendantiste est donc désormais moins simple que le seul face-à-face UC / UNI .</p>
+</section>
+<section id="ce-que-le-scrutin-raconte-déjà" class="level2">
+<h2 class="anchored" data-anchor-id="ce-que-le-scrutin-raconte-déjà">Ce que le scrutin raconte déjà</h2>
+<p>Premier enseignement : le Congrès ne se lit pas comme une addition binaire. Les non-indépendantistes disposent de 24 sièges, les indépendantistes de 26, et l’Éveil océanien de 4. Le centre de gravité institutionnel dépend donc de ce groupe pivot, pendant que l’ancien centre non-indépendantiste disparaît du congrès et que l’espace indépendantiste se redistribue.</p>
+<p>Deuxième enseignement : l’abstention devient un fait central du bilan. À 63,7 % de participation, le scrutin 2026 s’inscrit dans une baisse longue de la mobilisation provinciale. Aux Îles, l’abstention atteint un niveau qui oblige à lire les rapports de force avec prudence : la famille indépendantiste domine en voix exprimées, mais sur une base électorale beaucoup moins mobilisée.</p>
+<p>Troisième enseignement : la représentation institutionnelle est plus resserrée que l’offre politique. Dans le Sud surtout, beaucoup de voix restent sans siège. Cette non-représentation touche des familles différentes : centre non-indépendantiste, indépendantistes hors listes gagnantes, et offre souverainiste. Le scrutin produit donc à la fois une majorité claire et une périphérie électorale importante.</p>
+<p>Quatrième enseignement : chaque province garde sa logique propre. Le Sud donne la majorité numérique non-indépendantiste. Le Nord réorganise la concurrence UC / UNI sans changer de famille dominante. Les Îles produisent un paysage presque entièrement indépendantiste, mais très disputé entre UC-FLNKS, Nation autochtone, Palika et UCC.</p>
+<details class="note-deroulable">
+<summary>
+Sources, classement des familles politiques et limites
+</summary>
+<p>Les résultats 2026 s’appuient sur la publication du Haut-commissariat diffusée le 28 juin 2026. Le billet sera ajusté si la proclamation définitive modifie les chiffres utilisés ici.</p>
+<p>Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l’Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans “autres / pro-pays” lorsqu’il n’est pas agrégé par Wikipédia dans la famille indépendantiste.</p>
+<p>Pour 1999, la série principale utilise le scrutin provincial initial. La page Wikipédia signale ensuite l’annulation du scrutin aux Îles et la partielle de 2000 ; cette particularité doit être gardée à l’esprit pour les lectures fines de cette année.</p>
+</details>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf">Résultats des provinciales 2026 - Haut-commissariat de la République</a>.</li>
+<li>Pages Wikipédia des élections provinciales néo-calédoniennes de <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989">1989</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995">1995</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999">1999</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004">2004</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009">2009</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014">2014</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019">2019</a> et <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026">2026</a>.</li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Provinciales 2026 : premier bilan des rapports de force},
+  date = {2026-06-29},
+  url = {https://contours.nc/posts/provinciales-2026-premier-bilan/},
+  langid = {fr}
+}
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Provinciales 2026 : premier bilan des
+rapports de force.”</span> June 29, 2026. <a href="https://contours.nc/posts/provinciales-2026-premier-bilan/">https://contours.nc/posts/provinciales-2026-premier-bilan/</a>.
+</div></div></section></div> ]]></description>
+  <category>Élections</category>
+  <category>Provinciales 2026</category>
+  <category>Analyse électorale</category>
+  <guid>https://contours.nc/posts/provinciales-2026-premier-bilan/</guid>
+  <pubDate>Sun, 28 Jun 2026 13:00:00 GMT</pubDate>
+  <media:content url="https://contours.nc/images/exports/provinciales-2026-congres-familles.png" medium="image" type="image/png" height="80" width="144"/>
+</item>
 <item>
   <title>Retour sur les provinciales 2019 : la géographie des forces politiques</title>
   <dc:creator>Jonas Brouillon</dc:creator>
