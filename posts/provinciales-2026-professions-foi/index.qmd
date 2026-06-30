@@ -740,6 +740,30 @@ Les profils programmatiques ont ensuite été établis par relecture des `r n_do
 
 </details>
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Lecture transversale</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Une cartographie des listes centristes, pro-pays et souverainistes partenariales à partir des programmes.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Résultats 2026</span>
+    <span class="article-related-title">Premier bilan des rapports de force</span>
+    <span class="article-related-note">La traduction électorale des offres politiques : abstention, sièges, voix sans représentation.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Listes candidates</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">Les continuités de personnes derrière les listes dont les professions de foi sont analysées ici.</span>
+  </a>
+</div>
+</section>
+```
+
 ## Sources
 
 -   [Portail officiel de la propagande électronique](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique), Haut-commissariat de la République en Nouvelle-Calédonie, documents publiés le 18 juin 2026 et collectés le `r format(date_collecte, "%d/%m/%Y")`.

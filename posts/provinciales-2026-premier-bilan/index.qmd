@@ -89,7 +89,8 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
   border-radius: 8px;
   margin: 1.15rem 0 0.25rem;
   min-height: 360px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 0.25rem;
   position: relative;
 }
@@ -129,6 +130,27 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
   font-size: 0.9rem;
   margin: 0.35rem 0 2rem;
 }
+
+@media (max-width: 780px) {
+  .bilan-sketch svg {
+    max-width: none;
+    min-width: 660px;
+  }
+
+  #chart-resultats-provinces {
+    margin-left: calc(50% - 50vw + 12px);
+    margin-right: calc(50% - 50vw + 12px);
+    max-width: calc(100vw - 24px);
+    overflow: hidden;
+    width: calc(100vw - 24px);
+  }
+
+  #chart-resultats-provinces svg {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
@@ -150,7 +172,7 @@ window.ContoursSketch = (() => {
     return JSON.parse(document.getElementById(`${id}-data`).textContent);
   }
 
-  function base(id, height) {
+  function base(id, height, minWidth = 640) {
     const el = document.getElementById(id);
     el.innerHTML = "";
     const tools = document.createElement("div");
@@ -163,10 +185,16 @@ window.ContoursSketch = (() => {
     button.addEventListener("click", () => downloadPng(id));
     tools.appendChild(button);
     el.appendChild(tools);
-    const width = Math.max(640, el.clientWidth || 960);
+    const fitMobile = id === "chart-resultats-provinces" && window.innerWidth < 780;
+    const fallbackWidth = fitMobile ? window.innerWidth - 24 : 960;
+    const width = fitMobile
+      ? Math.max(320, Math.round(el.clientWidth || fallbackWidth))
+      : Math.max(minWidth, Math.round(el.clientWidth || fallbackWidth));
     const svg = d3.select(el)
       .append("svg")
       .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
       .attr("role", "img")
       .attr("aria-label", el.dataset.sketchChart || "graphique")
       .style("background", paper);
@@ -286,8 +314,11 @@ window.ContoursSketch = (() => {
   }
 
   function chartTitle(svg, text, width, y = 30) {
+    const wrapWidth = window.innerWidth < 780
+      ? Math.max(245, Math.min(width - 36, window.innerWidth - 120))
+      : Math.min(width - 36, 1040);
     return label(svg, text, 18, y, { size: 22, weight: 800 })
-      .call(wrap, Math.min(width - 36, 1040));
+      .call(wrap, wrapWidth);
   }
 
   function wrap(selection, width) {
@@ -366,37 +397,44 @@ window.ContoursSketch = (() => {
   function renderBarFacets(id, p) {
     const data = p.data;
     const provinces = [...new Set(data.map((d) => d.province_label))];
-    const cols = window.innerWidth < 820 ? 1 : 3;
+    const compact = window.innerWidth < 820;
+    const fitMobile = id === "chart-resultats-provinces" && window.innerWidth < 780;
+    const cols = compact ? 1 : 3;
     const rows = Math.ceil(provinces.length / cols);
-    const facetHeight = cols === 1 ? 390 : 560;
-    const height = rows * facetHeight + 30;
-    const { svg, rc, width } = base(id, height);
+    const facetHeight = fitMobile ? 475 : (compact ? 390 : 560);
+    const titleGap = compact ? 82 : 58;
+    const height = rows * facetHeight + (compact ? 54 : 30);
+    const { svg, rc, width } = base(id, height, fitMobile ? 320 : (compact ? 860 : 640));
     const facetWidth = width / cols;
 
     chartTitle(svg, p.options.title, width, 28);
 
     provinces.forEach((province, i) => {
       const px = (i % cols) * facetWidth;
-      const py = Math.floor(i / cols) * facetHeight + 58;
+      const py = Math.floor(i / cols) * facetHeight + titleGap;
       const dat = data.filter((d) => d.province_label === province).sort((a, b) => b.pct_exprimes - a.pct_exprimes);
-      const margin = { top: 28, right: 74, bottom: 42, left: cols === 1 ? 190 : 145 };
+      const margin = compact
+        ? (fitMobile
+          ? { top: 30, right: 54, bottom: 54, left: 112 }
+          : { top: 28, right: 96, bottom: 46, left: 162 })
+        : { top: 28, right: 74, bottom: 42, left: 145 };
       const innerW = facetWidth - margin.left - margin.right - 12;
       const innerH = Math.max(190, dat.length * 34);
       const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
       const x = d3.scaleLinear().domain([0, d3.max(dat, (d) => d.pct_exprimes) * 1.28]).range([0, innerW]);
       const y = d3.scaleBand().domain(dat.map((d) => d.etiquette)).range([0, innerH]).padding(0.25);
-      axisBottom(g, x, innerH, x.ticks(cols === 1 ? 5 : 3), fmtPctAxis);
+      axisBottom(g, x, innerH, x.ticks(fitMobile ? 4 : (cols === 1 ? 5 : 3)), fmtPctAxis);
       label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
 
       dat.forEach((d) => {
         roughRect(g, rc, 0, y(d.etiquette), x(d.pct_exprimes), y.bandwidth(), d.couleur, d.sieges_province > 0 ? 1 : 0.52);
         const l = d.sieges_province > 0 ? `${fmtPct(d.pct_exprimes)} · ${d.sieges_province} sièges` : fmtPct(d.pct_exprimes);
         label(g, l, x(d.pct_exprimes) + 6, y(d.etiquette) + y.bandwidth() / 2, {
-          size: 11,
+          size: fitMobile ? 10 : 11,
           color: d.sieges_province > 0 ? ink : "#9a948d"
         });
         const yy = y(d.etiquette) + y.bandwidth() / 2;
-        label(g, d.etiquette, -10, yy, { anchor: "end", size: 11 }).call(wrap, margin.left - 18);
+        label(g, d.etiquette, -10, yy, { anchor: "end", size: fitMobile ? 10 : 11 }).call(wrap, margin.left - 18);
       });
 
       label(g, "Part des exprimés", innerW / 2, innerH + 42, { anchor: "middle", size: 12, color: muted });
@@ -1406,11 +1444,35 @@ Troisième enseignement : la représentation institutionnelle est plus resserré
 
 Quatrième enseignement : chaque province garde sa logique propre. Le Sud donne la majorité numérique non-indépendantiste. Le Nord réorganise la concurrence UC / UNI sans changer de famille dominante. Les Îles produisent un paysage presque entièrement indépendantiste, mais très disputé entre UC-FLNKS, Nation autochtone, Palika et UCC.
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Après le résultat</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Éveil océanien, centres divisés, Faire Pays et souveraineté partagée entre les deux pôles.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-professions-foi/">
+    <span class="article-related-kicker">Programmes</span>
+    <span class="article-related-title">Qui propose quoi ?</span>
+    <span class="article-related-note">Les priorités et lignes de partage visibles dans les professions de foi des listes.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Candidatures</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">Ce que la comparaison des listes 2019 et 2026 dit du renouvellement politique.</span>
+  </a>
+</div>
+</section>
+```
+
 <details class="note-deroulable">
 
 <summary>Sources, classement des familles politiques et limites</summary>
 
-Les résultats 2026 s'appuient sur la publication du Haut-commissariat diffusée le 28 juin 2026. Le billet sera ajusté si la proclamation définitive modifie les chiffres utilisés ici.
+Les résultats 2026 s'appuient sur la publication complète du Haut-commissariat, PDF édité le 29 juin 2026 à 22:48:38. Par rapport à la première publication provisoire, les voix par liste et les sièges ne changent pas ; seuls quelques totaux techniques de votants, blancs/nuls et exprimés sont corrigés à l'unité.
 
 Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l'Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans "autres / pro-pays" lorsqu'il n'est pas agrégé par Wikipédia dans la famille indépendantiste.
 
@@ -1420,5 +1482,5 @@ Pour 1999, la série principale utilise le scrutin provincial initial. La page W
 
 ## Sources
 
--   [Résultats des provinciales 2026 - Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf).
+-   [Résultats complets des provinciales 2026 - Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13500/112224/file/PROVINCIALES_2026_R%C3%A9sultats_COMPLETS.pdf).
 -   Pages Wikipédia des élections provinciales néo-calédoniennes de [1989](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989), [1995](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995), [1999](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999), [2004](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004), [2009](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009), [2014](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014), [2019](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019) et [2026](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026).

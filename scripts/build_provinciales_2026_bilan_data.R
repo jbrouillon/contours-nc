@@ -17,11 +17,11 @@ script_path <- if (length(script_arg) > 0) {
 project_dir <- normalizePath(file.path(dirname(script_path), ".."), winslash = "/", mustWork = TRUE)
 raw_dir <- file.path(project_dir, "data", "elections", "data_raw", "provinciales_2026")
 out_dir <- file.path(project_dir, "data", "elections", "data_processed", "provinciales_2026")
-pdf_path <- file.path(raw_dir, "PROVINCIALES_2026_Resultats_provisoires.pdf")
+pdf_path <- file.path(raw_dir, "PROVINCIALES_2026_Resultats_COMPLETS.pdf")
 
 source_pdf <- paste0(
-  "https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/",
-  "file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf"
+  "https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13500/112224/",
+  "file/PROVINCIALES_2026_R%C3%A9sultats_COMPLETS.pdf"
 )
 
 source_wiki <- c(
@@ -151,7 +151,7 @@ extract_2026_results <- function() {
       pct_inscrits = 100 * voix / inscrits,
       franchit_5pct_inscrits = pct_inscrits >= 5,
       source = source_pdf,
-      source_note = "Résultats provisoires, PDF édité le 28/06/2026 à 23:05:13."
+      source_note = "Résultats complets, PDF édité le 29/06/2026 à 22:48:38."
     )
 
   communes_detail <- communes |>

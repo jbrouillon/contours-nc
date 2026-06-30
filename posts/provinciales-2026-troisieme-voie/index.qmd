@@ -1,0 +1,879 @@
+---
+title: 'Provinciales 2026 : qui est la "troisième voie" ?'
+subtitle: "Éveil océanien, centres divisés, Faire Pays et souveraineté partagée"
+author: "Jonas Brouillon"
+date: "2026-06-30"
+lang: fr
+categories: ["Élections", "Provinciales 2026", "Analyse électorale","Analyse textuelle"]
+tags: ["troisième voie", "centre", "Faire Pays", "Éveil océanien", "programmes", "souveraineté partagée"]
+description: "À partir des résultats, professions de foi et programmes des provinciales 2026, une cartographie de l'espace dit centriste ou pro-pays, situé entre l'UC-FLNKS et Les Loyalistes-Le Rassemblement."
+image: "../../images/previews/provinciales-2026-troisieme-voie-positionnement.webp"
+image-alt: "Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.tv-lede {
+  font-size: 1.08rem;
+  max-width: 82ch;
+}
+
+.tv-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  margin: 1.1rem 0 1.8rem;
+}
+
+.tv-stat-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-left: 5px solid #4f8f6a;
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.tv-stat-value {
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.tv-stat-label {
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.22rem;
+}
+
+.tv-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.3;
+  margin: 0.35rem 0 0;
+}
+
+.tv-note {
+  background: var(--surface-soft);
+  border-left: 4px solid #4f8f6a;
+  border-radius: 6px;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.85rem 1rem;
+}
+
+.tv-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 360px;
+  overflow: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.tv-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.tv-sketch-download {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.tv-sketch-download:hover {
+  background: #f3efe6;
+}
+
+.tv-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.tv-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+
+.tv-program-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1.2rem 0 2rem;
+}
+
+.tv-program-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--list-color, #4f8f6a);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.06);
+  display: flex;
+  flex-direction: column;
+  padding: 0.95rem 1rem;
+}
+
+.tv-program-card--neighbor {
+  opacity: 0.9;
+}
+
+.tv-program-card__top {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: space-between;
+}
+
+.tv-program-card__family,
+.tv-program-card__result {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.tv-program-card h3 {
+  font-size: 1.04rem;
+  line-height: 1.25;
+  margin: 0.45rem 0 0.35rem;
+}
+
+.tv-program-card__angle {
+  color: #383a36;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.tv-program-card__axes {
+  display: grid;
+  gap: 0.28rem 0.55rem;
+  grid-template-columns: max-content minmax(0, 1fr);
+  margin: 0.4rem 0 0.6rem;
+}
+
+.tv-program-card__axes dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.tv-program-card__axes dd {
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+.tv-program-card ul {
+  margin-bottom: 0.8rem;
+  padding-left: 1.05rem;
+}
+
+.tv-program-card li {
+  font-size: 0.88rem;
+  line-height: 1.42;
+  margin-bottom: 0.32rem;
+}
+
+.tv-program-card__source {
+  color: #2e6f6a;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-top: auto;
+  text-decoration: none;
+}
+
+.tv-program-card__source:hover {
+  text-decoration: underline;
+}
+
+.solution-table table {
+  font-size: 0.92rem;
+}
+
+.solution-table {
+  overflow-x: auto;
+}
+
+@media (max-width: 780px) {
+  .tv-program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tv-sketch {
+    margin-left: calc(50% - 50vw + 12px);
+    margin-right: calc(50% - 50vw + 12px);
+    max-width: calc(100vw - 24px);
+    width: calc(100vw - 24px);
+  }
+
+  .solution-table table {
+    min-width: 620px;
+  }
+
+  .tv-program-card,
+  .tv-program-card * {
+    overflow-wrap: anywhere;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script>
+window.ContoursTroisiemeVoie = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+
+  const fmtPct = (value) =>
+    new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value) + " %";
+  const fmtPctAxis = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(value) + " %";
+  const fmtInt = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(value));
+
+  function payload(id) {
+    return JSON.parse(document.getElementById(`${id}-data`).textContent);
+  }
+
+  function base(id, height) {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    const tools = document.createElement("div");
+    tools.className = "tv-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "tv-sketch-download";
+    button.textContent = "PNG";
+    button.setAttribute("aria-label", "Télécharger le graphique en PNG");
+    button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+    const compact = window.innerWidth < 760;
+    const fallbackWidth = compact ? window.innerWidth - 24 : 980;
+    const width = compact
+      ? Math.max(320, Math.round(el.clientWidth || fallbackWidth))
+      : Math.max(660, Math.round(el.clientWidth || fallbackWidth));
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.tvChart || "graphique")
+      .style("background", paper);
+    return { el, svg, rc: rough.svg(svg.node()), width, height };
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }, "image/png");
+    };
+    image.src = url;
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 800)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = ink) {
+    const node = rc.rectangle(x, y, Math.max(0.1, width), Math.max(0.1, height), {
+      fill: color,
+      fillStyle: "hachure",
+      hachureGap: 2.1,
+      hachureAngle: -42,
+      fillWeight: 1.55,
+      roughness: 1.35,
+      stroke,
+      strokeWidth: stroke === "none" ? 0 : 1.2
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+  }
+
+  function roughCircle(g, rc, x, y, diameter, color, opacity = 1, stroke = ink) {
+    const node = rc.circle(x, y, diameter, {
+      fill: color,
+      fillStyle: "solid",
+      roughness: 1.55,
+      stroke,
+      strokeWidth: 1.15
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+  }
+
+  function label(g, text, x, y, opts = {}) {
+    return g.append("text")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("text-anchor", opts.anchor || "start")
+      .attr("dominant-baseline", opts.baseline || "middle")
+      .attr("font-size", opts.size || 12)
+      .attr("font-weight", opts.weight || 400)
+      .attr("fill", opts.color || ink)
+      .text(text);
+  }
+
+  function wrap(selection, width) {
+    selection.each(function() {
+      const text = d3.select(this);
+      const words = text.text().split(/\s+/).reverse();
+      const x = text.attr("x");
+      const y = text.attr("y");
+      let line = [];
+      let lineNumber = 0;
+      let word;
+      text.text(null);
+      let tspan = text.append("tspan").attr("x", x).attr("y", y);
+      while ((word = words.pop())) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", `${++lineNumber * 1.05}em`)
+            .text(word);
+        }
+      }
+    });
+  }
+
+  function chartTitle(svg, text, width, y = 32) {
+    const wrapWidth = window.innerWidth < 780
+      ? Math.max(245, Math.min(width - 36, window.innerWidth - 120))
+      : Math.min(width - 36, 1080);
+    return label(svg, text, 18, y, { size: 22, weight: 800 })
+      .call(wrap, wrapWidth);
+  }
+
+  function renderVoteBars(id, p) {
+    const data = p.data;
+    const compact = window.innerWidth < 760;
+    const height = compact ? 760 : 620;
+    const { svg, rc, width } = base(id, height);
+    const margin = compact
+      ? { top: 112, right: 58, bottom: 160, left: 118 }
+      : { top: 74, right: 116, bottom: 145, left: 220 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const maxValue = Math.max(52, d3.max(data, (d) => d.pct_exprimes) * 1.08);
+    const x = d3.scaleLinear().domain([0, maxValue]).range([0, innerW]);
+    const y = d3.scaleBand().domain(data.map((d) => d.short_label)).range([0, innerH]).padding(0.26);
+
+    x.ticks(5).forEach((tick) => {
+      const tx = x(tick);
+      g.append("line").attr("x1", tx).attr("x2", tx).attr("y1", 0).attr("y2", innerH).attr("stroke", grid);
+      label(g, fmtPctAxis(tick), tx, innerH + 22, { anchor: "middle", size: 11, color: muted });
+    });
+
+    if (p.options.threshold) {
+      const tx = x(p.options.threshold);
+      g.append("line")
+        .attr("x1", tx).attr("x2", tx)
+        .attr("y1", -8).attr("y2", innerH + 6)
+        .attr("stroke", "#9b6b43")
+        .attr("stroke-width", 1.4)
+        .attr("stroke-dasharray", "5 5");
+      label(g, "5 % des inscrits", tx + 6, -17, { size: 11, color: "#9b6b43", weight: 800 });
+    }
+
+    data.forEach((d) => {
+      const yy = y(d.short_label);
+      const opacity = d.category === "Voisinage pro-pays" ? 0.55 : 1;
+      roughRect(g, rc, 0, yy, x(d.pct_exprimes), y.bandwidth(), d.color, opacity, d.color);
+      label(g, d.short_label, -12, yy + y.bandwidth() / 2, {
+        anchor: "end",
+        size: compact ? 10 : 11,
+        weight: d.role === "référence" ? 800 : 650
+      }).call(wrap, margin.left - 26);
+      const detail = d.sieges_province > 0
+        ? `${fmtPct(d.pct_exprimes)} · ${d.sieges_province} sièges`
+        : `${fmtPct(d.pct_exprimes)} · ${fmtPct(d.pct_inscrits)} inscr.`;
+      label(g, detail, x(d.pct_exprimes) + 7, yy + y.bandwidth() / 2, {
+        size: 11,
+        color: d.sieges_province > 0 ? d.color : "#8a8277",
+        weight: d.sieges_province > 0 ? 800 : 600
+      }).call(wrap, margin.right - 4);
+    });
+
+    label(g, "Part des exprimés", innerW / 2, innerH + 48, {
+      anchor: "middle",
+      size: 12,
+      color: muted
+    });
+
+    const legend = [
+      { label: "Pôles représentés", color: "#305f9f" },
+      { label: "Troisième voie retenue", color: "#4f8f6a" },
+      { label: "Voisinage pro-pays", color: "#f0c52f" }
+    ];
+    const lx = compact ? 28 : Math.max(28, width / 2 - 330);
+    legend.forEach((item, i) => {
+      const gx = compact ? lx : lx + i * 220;
+      const gy = compact ? height - 92 + i * 24 : height - 52;
+      roughRect(svg, rc, gx, gy - 8, 18, 14, item.color, i === 2 ? 0.55 : 1, item.color);
+      label(svg, item.label, gx + 28, gy, { size: 11, color: muted, weight: 800 }).call(wrap, compact ? 150 : 175);
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderPositionMap(id, p) {
+    const data = p.data;
+    const compact = window.innerWidth < 760;
+    const height = compact ? 720 : 660;
+    const { svg, rc, width } = base(id, height);
+    const margin = compact
+      ? { top: 104, right: 18, bottom: 124, left: 28 }
+      : { top: 84, right: 92, bottom: 120, left: 108 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const x = d3.scaleLinear().domain([0, 5]).range([0, innerW]);
+    const y = d3.scaleLinear().domain([0, 4]).range([innerH, 0]);
+
+    [0, 1, 2, 3, 4, 5].forEach((tick) => {
+      const tx = x(tick);
+      g.append("line").attr("x1", tx).attr("x2", tx).attr("y1", 0).attr("y2", innerH).attr("stroke", grid);
+    });
+    [0, 1, 2, 3, 4].forEach((tick) => {
+      const ty = y(tick);
+      g.append("line").attr("x1", 0).attr("x2", innerW).attr("y1", ty).attr("y2", ty).attr("stroke", grid);
+    });
+
+    roughRect(g, rc, x(1.05), y(3.35), x(4.05) - x(1.05), y(1.05) - y(3.35), "#f2ead5", 0.3, "#c8b47e");
+
+    label(g, "Stabilité / France", 0, innerH + 44, { size: 12, color: muted, weight: 800 });
+    label(g, "Souveraineté / partenariat", innerW, innerH + 44, { anchor: "end", size: 12, color: muted, weight: 800 });
+    label(g, "Protection / services", 8, 14, { size: 12, color: muted, weight: 800 });
+    label(g, "Offre / coûts / budget", 8, innerH - 14, { size: 12, color: muted, weight: 800 });
+
+    const labelOffsets = {
+      "LL-LR": { dx: 14, dy: 20, anchor: "start", width: 122 },
+      "Kanaky pour tous": { dx: -18, dy: -26, anchor: "end", width: 132 },
+      "Éveil océanien": { dx: 16, dy: -16, anchor: "start", width: 125 },
+      "Une Province pour tous": { dx: 16, dy: 18, anchor: "start", width: 142 },
+      "Nous, réunis": { dx: -16, dy: -24, anchor: "end", width: 118 },
+      "Un espoir pour demain": { dx: 16, dy: 18, anchor: "start", width: 132 },
+      "Faire Pays": { dx: 18, dy: 24, anchor: "start", width: 112 },
+      "Unis pour le Pays": { dx: -18, dy: -28, anchor: "end", width: 132 }
+    };
+
+    data.forEach((d) => {
+      const px = x(d.x_institution);
+      const py = y(d.y_economie);
+      const diameter = d.role === "référence" ? 26 : d.neighbor ? 20 : 24;
+      const opacity = d.neighbor ? 0.65 : 1;
+      roughCircle(g, rc, px, py, diameter, d.color, opacity, d.color);
+      const custom = labelOffsets[d.short_label] || {};
+      const rightSide = d.x_institution < 3.2;
+      const dx = compact ? (custom.dx || (rightSide ? 12 : -12)) * 0.86 : (custom.dx || (rightSide ? 12 : -12));
+      const dy = compact ? (custom.dy || -12) * 0.86 : (custom.dy || -12);
+      const tx = px + dx;
+      const ty = py + dy;
+      const anchor = custom.anchor || (rightSide ? "start" : "end");
+      const text = d.short_label + (d.sieges_province > 0 ? ` · ${d.sieges_province} sièges` : "");
+      g.append("line")
+        .attr("x1", px)
+        .attr("x2", tx + (anchor === "start" ? -4 : 4))
+        .attr("y1", py)
+        .attr("y2", ty)
+        .attr("stroke", d.color)
+        .attr("stroke-width", 0.9)
+        .attr("opacity", d.neighbor ? 0.35 : 0.48);
+      label(g, text, tx, ty, {
+        anchor,
+        size: compact ? 11 : 13,
+        color: d.color,
+        weight: 800
+      }).call(wrap, compact ? Math.min(custom.width || 112, 112) : (custom.width || 160));
+    });
+
+    label(svg, "Zone des positions qui refusent le duel pur", margin.left + x(1.08), margin.top + y(3.52), {
+      size: 12,
+      color: "#9b6b43",
+      weight: 800
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderThemeMatrix(id, p) {
+    const data = p.data;
+    const compact = window.innerWidth < 760;
+    const rows = [...new Set(data.map((d) => d.short_label))];
+    const cols = [...new Set(data.map((d) => d.theme))];
+    const height = compact ? 830 : 675;
+    const { svg, rc, width } = base(id, height);
+    const margin = compact
+      ? { top: 132, right: 18, bottom: 118, left: 118 }
+      : { top: 108, right: 46, bottom: 102, left: 214 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const x = d3.scaleBand().domain(cols).range([0, innerW]).padding(0.14);
+    const y = d3.scaleBand().domain(rows).range([0, innerH]).padding(0.14);
+
+    const headerAngle = compact ? -52 : -38;
+    const headerY = compact ? -16 : -12;
+    cols.forEach((col) => {
+      label(g, col, x(col) + x.bandwidth() / 2, headerY, {
+        anchor: "end",
+        baseline: "middle",
+        size: compact ? 9 : 10,
+        color: muted,
+        weight: 800
+      }).attr("transform", `rotate(${headerAngle},${x(col) + x.bandwidth() / 2},${headerY})`);
+    });
+
+    rows.forEach((row) => {
+      const rowDatum = data.find((d) => d.short_label === row);
+      label(g, row, -12, y(row) + y.bandwidth() / 2, {
+        anchor: "end",
+        size: compact ? 10 : 11,
+        color: rowDatum ? rowDatum.color : ink,
+        weight: 800
+      }).call(wrap, margin.left - 22);
+    });
+
+    data.forEach((d) => {
+      const cx = x(d.theme) + x.bandwidth() / 2;
+      const cy = y(d.short_label) + y.bandwidth() / 2;
+      const size = 7 + d.score * 7;
+      const opacity = d.score === 0 ? 0.18 : 0.36 + d.score * 0.18;
+      roughCircle(g, rc, cx, cy, size, d.color, opacity, d.color);
+      if (d.score > 0) {
+        label(g, String(d.score), cx, cy + 0.5, {
+          anchor: "middle",
+          size: 10,
+          color: d.score >= 3 ? "white" : ink,
+          weight: 800
+        });
+      }
+    });
+
+    label(svg, "0 absent · 1 secondaire · 2 présent · 3 structurant", margin.left, height - 52, {
+      size: 12,
+      color: muted,
+      weight: 800
+    });
+    addSignature(svg, width, height);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) {
+      window.setTimeout(() => render(id), 50);
+      return;
+    }
+    const p = payload(id);
+    if (p.type === "voteBars") renderVoteBars(id, p);
+    if (p.type === "positionMap") renderPositionMap(id, p);
+    if (p.type === "themeMatrix") renderThemeMatrix(id, p);
+  }
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      document.querySelectorAll("[data-tv-chart]").forEach((el) => render(el.id));
+    }, 120);
+  });
+
+  return { render };
+})();
+</script>
+```
+
+## Ce que l'on regarde
+
+::: tv-lede
+Dans le bilan des provinciales 2026, le Congrès ne se lit déjà plus comme un simple 26 indépendantistes contre 24 non-indépendantistes. Il faut isoler l'Éveil océanien, qui conserve `r sum(program_positions$sieges_congres[program_positions$list_id == "eveil"])` sièges au Congrès, et regarder ce qui a échoué juste sous la ligne de flottaison : les listes dites centristes, pro-pays ou souverainistes partenariales, presque toutes parties séparément.
+:::
+
+```{r}
+stat_cards()
+```
+
+La question est donc moins : *le centre existe-t-il ?* que : **de quoi parle-t-on quand on dit troisième voie ?** Si on prend le centre non-indépendantiste au sens strict, c'est `r fmt_int(centre_nonind_sud_voix)` voix dans le Sud, soit `r fmt_pct(centre_nonind_sud_pct)` des exprimés, et aucun siège. Si on élargit à l'Éveil océanien et à Faire Pays, on monte à `r fmt_int(third_sud_voix)` voix dans le Sud, soit `r fmt_pct(third_sud_pct)`, mais avec une représentation presque entièrement portée par une seule liste : l'Éveil.
+
+::: tv-note
+Le périmètre retenu ici est volontairement explicite : **Éveil océanien**, **Une Province pour tous**, **Nous, réunis !**, **Un espoir pour demain** et **Faire Pays**.
+
+Notons que **Unis pour le Pays** est rajouté dans les graphiques comme voisinage souverainiste, parce que sa formule de souveraineté en partenariat éclaire la frontière, mais reste compté dans la famille indépendantiste.
+:::
+
+## Ce que dit le résultat
+
+Le premier tri est brutalement arithmétique. En Province Sud, la troisième voie large pèse beaucoup en voix, mais se fragmente au mauvais endroit. Le seuil n'est pas 5 % des exprimés : il faut atteindre 5 % des inscrits pour participer à la répartition. Avec la participation de 2026, cela équivaut à environ `r fmt_pct(sud_threshold_pct_exprimes)` des exprimés dans le Sud. Nous, réunis ! dépasse 5 % des exprimés, mais reste sous le seuil en inscrits.
+
+::: column-page
+```{r}
+sketch_chart(
+  id = "chart-troisieme-voie-voix-sud",
+  type = "voteBars",
+  data = vote_bars |>
+    select(
+      short_label, role, category, color, voix, pct_exprimes, pct_inscrits,
+      sieges_province, sieges_congres
+    ),
+  caption = "Scores en Province Sud des deux pôles, des listes retenues comme troisième voie et d'Unis pour le Pays comme voisinage pro-pays. La ligne verticale traduit 5 % des inscrits en part des exprimés.",
+  options = list(
+    title = "Dans le Sud, beaucoup de voix entre les pôles, peu de sièges",
+    threshold = sud_threshold_pct_exprimes
+  )
+)
+```
+:::
+
+Cette figure résume le paradoxe : l'espace existe électoralement, mais il n'existe pas comme force institutionnelle unifiée. L'Éveil océanien franchit la barre et devient pivot au sens arithmétique : il est la seule composante de cet espace représentée au Congrès. Cela ne signifie pas pour autant qu'il faille le lire comme un appoint naturel de LL-LR. La campagne de Milakulo Tukumuli s'est au contraire présentée comme une manière d'« empêcher la droite de siéger ». Les autres voix se neutralisent dans la dispersion : Une Province pour tous, Faire Pays, Nous, réunis ! et Un espoir pour demain totalisent `r fmt_int(third_sud_no_seat_voix)` voix, soit `r fmt_pct(third_sud_no_seat_pct)` des exprimés sudistes, sans siège.
+
+## Trois familles, pas un seul centre
+
+Le mot *centriste* marche mal si on le prend au pied de la lettre. Il mélange au moins trois familles politiques.
+
+::: solution-table
+| Famille | Listes | Ce qui les rapproche | Ce qui les distingue |
+|------------------|------------------|------------------|------------------|
+| **Pivot océanien / transversal** | Éveil océanien | Refus de l'alignement automatique et priorité à la paix sociale. | C'est la seule composante de cet espace qui obtient des sièges ; son poids vient autant de son implantation que de son discours. |
+| **Centre autonomiste non-indépendantiste** | Une Province pour tous, Nous, réunis !, Un espoir pour demain | Recherche de stabilité, négociation, reconstruction économique, refus de la confrontation institutionnelle. | Les accents divergent : émancipation négociée chez Une Province pour tous, mesures immédiates sur les prix chez Nous, réunis !, pacte de stabilité chez Un espoir pour demain. |
+| **Pro-pays / souveraineté partagée** | Faire Pays, avec Unis pour le Pays en voisinage | L'idée que l'avenir doit se construire par étapes, dans une relation partenariale avec la France plutôt que par un oui/non sec. | Faire Pays se situe plus près de l'horizon souverainiste que du centre non-indépendantiste classique. |
+:::
+
+Autrement dit, la troisième voie n'est pas seulement un milieu entre deux extrêmes. C'est une **zone de désaccord avec la bipolarisation**. Ses composantes ne placent pas le curseur au même endroit : certaines veulent d'abord stabiliser, d'autres négocier l'émancipation, d'autres assumer une souveraineté partagée.
+
+::: column-page
+```{r}
+sketch_chart(
+  id = "chart-troisieme-voie-position",
+  type = "positionMap",
+  data = position_points |>
+    select(
+      short_label, famille, role, color, x_institution, y_economie,
+      voix, pct_exprimes_scope, sieges_province, core_third_way, neighbor
+    ),
+  caption = "Positionnement éditorial établi à partir des professions de foi : l'axe horizontal va de la stabilité dans le cadre français vers la souveraineté ou le partenariat ; l'axe vertical distingue une économie de baisse des coûts d'une économie plus sociale et productive.",
+  options = list(
+    title = "La troisième voie n'est pas au centre du même axe pour tout le monde"
+  )
+)
+```
+:::
+
+## Les lignes de partage programmatiques
+
+Sur l'avenir institutionnel, la différence la plus importante tient au verbe utilisé.
+
+-   **Stabiliser** : Un espoir pour demain demande un pacte de stabilité pour donner de la visibilité aux ménages et aux investisseurs.
+-   **Négocier** : Une Province pour tous veut relancer les discussions institutionnelles et revisiter progressivement le lien avec la France et l'Europe.
+-   **Reconstruire avant de trancher** : Nous, réunis ! met surtout en avant les prix, les transports et la production locale.
+-   **Partager la souveraineté** : Faire Pays parle d'une souveraineté construite par étapes, avec des institutions moins coûteuses et une relation partenariale.
+-   **Faire cohésion sans s'aligner** : l'Éveil océanien se distingue moins par une architecture statutaire détaillée que par la paix sociale, la participation citoyenne et le refus d'être absorbé par le duel UC-FLNKS / LL-LR.
+
+Sur le plan économique, les frontières ne recoupent pas exactement l'axe institutionnel. Faire Pays est plus souverainiste, mais partage avec plusieurs listes de centre une attention au pouvoir d'achat et aux services essentiels. Nous, réunis ! est plus prudent sur le statut, mais plus concret sur les prix et les transports. Un espoir pour demain est le plus proche d'une logique de stabilité économique et de maîtrise des dépenses.
+
+### Comment lire les matrices ?
+
+Les scores des matrices ne sont **pas** des notes de qualité, de réalisme ou de faisabilité. Ils ne viennent pas non plus d'un modèle automatique. C'est un codage éditorial des professions de foi, fait pour rendre visible la place relative d'un thème dans chaque texte.
+
+::: solution-table
+| Score | Règle de codage | Exemple de lecture |
+|---------------------------:|----------------------|----------------------|
+| **0** | Thème absent ou presque absent du document. | Une liste peut chercher la stabilité sans parler de participation citoyenne : *participation* vaut alors 0. |
+| **1** | Thème mentionné, mais plutôt comme orientation générale. | Une formule de dialogue ou de rassemblement sans mécanisme précis. |
+| **2** | Thème présent avec au moins une mesure concrète, ou plusieurs mentions cohérentes. | Pacte de stabilité, négociation institutionnelle, réforme administrative. |
+| **3** | Thème structurant : plusieurs mesures, un dispositif nommé, un montant, une cible ou un axe central du programme. | Souveraineté partagée chez *Faire Pays*, assemblées citoyennes chez l'Éveil, sécurité chez *LL-LR*. |
+:::
+
+La règle est donc volontairement simple : **intensité dans le programme**, pas jugement de valeur. Elle sert à comparer les accents : une liste peut avoir un score fort parce qu'elle détaille beaucoup un levier discutable ; une autre peut avoir un score faible sur un sujet pourtant politiquement important, mais moins développé dans sa circulaire.
+
+::: column-page
+```{r}
+sketch_chart(
+  id = "chart-troisieme-voie-matrice",
+  type = "themeMatrix",
+  data = theme_matrix |>
+    arrange(short_label, theme) |>
+    transmute(short_label, theme = as.character(theme), score, color),
+  caption = "Codage éditorial simple des professions de foi, de 0 à 3. Il mesure la centralité du thème dans le texte de campagne, pas la qualité ni la faisabilité des propositions.",
+  options = list(
+    title = "Sur le statut et la méthode, les proximités ne suivent pas toujours les camps"
+  )
+)
+```
+:::
+
+### Économie et social : des leviers différents
+
+Le graphique garde les deux pôles comme repères, mais la lecture utile ici porte sur les listes de la troisième voie. Elles ne défendent pas une même recette économique : chacune choisit un levier prioritaire pour répondre à la crise sociale, au coût de la vie et au manque de visibilité.
+
+-   **Éveil océanien** insiste sur la sortie de crise sociale : aménagements fiscaux et sociaux temporaires, aides ciblées et discussion avec les partenaires sociaux.
+-   **Une Province pour tous** met l'accent sur la relance et la réduction des inégalités territoriales, avec l'idée qu'un cadre institutionnel clarifié doit redonner confiance.
+-   **Nous, réunis !** occupe un terrain très concret : panier de produits essentiels, ticket Tanéo à 200 F, commande publique, production locale.
+-   **Un espoir pour demain** est le plus explicite sur le nickel dans cet espace : il parle d'une stratégie nickel en même temps que d'une baisse durable du coût de l'énergie.
+-   **Faire Pays** se distingue par les services essentiels et la dignité quotidienne : aides à la scolarité, cantine, transport, couverture médicale gratuite, institutions moins coûteuses.
+
+::: column-page
+```{r}
+sketch_chart(
+  id = "chart-troisieme-voie-eco-social",
+  type = "themeMatrix",
+  data = eco_social_levers |>
+    arrange(short_label, theme) |>
+    transmute(short_label, theme = as.character(theme), score, color),
+  caption = "Même codage 0-3, limité aux leviers économiques et sociaux. Les points montrent la place du levier dans la profession de foi, pas son coût budgétaire ni son efficacité attendue.",
+  options = list(
+    title = "Les propositions économiques et sociales ne passent pas par les mêmes leviers"
+  )
+)
+```
+:::
+
+::: solution-table
+| Liste | Levier économique et social dominant | Propositions caractéristiques |
+|------------------------|------------------------|------------------------|
+| **Éveil océanien** | Réforme sociale et fiscale de sortie de crise. | Aménagements temporaires de fiscalité et de cotisations ; aides sociales ciblées ; assemblées citoyennes et partenaires sociaux. |
+| **Une Province pour tous** | Relance solidaire et réduction des inégalités. | Négociation institutionnelle rapide ; développement économique ; réduction des inégalités entre provinces et territoires. |
+| **Nous, réunis !** | Pouvoir d'achat immédiat et production locale. | Panier de produits essentiels ; ticket Tanéo à 200 F ; carburant ; commande publique ; fonds pour la production locale. |
+| **Un espoir pour demain** | Visibilité économique, énergie et nickel. | Pacte de stabilité ; réduction des doublons ; stratégie nickel ; baisse de l'énergie ; formation professionnelle. |
+| **Faire Pays** | Dignité quotidienne et services essentiels. | Pass Mobilité ; aides à la cantine, scolarité et transport ; couverture médicale gratuite ; allègement des charges sur le travail. |
+:::
+
+## Liste par liste
+
+```{r}
+program_cards()
+```
+
+## Ce que le scrutin raconte déjà
+
+Les urnes n'ont pas effacé la troisième voie. Elles ont montré qu'elle était **mal coordonnée**. En Province Sud, son noyau large rassemble plus d'un quart des exprimés. Mais seul l'Éveil océanien convertit ce poids en sièges, tandis que les autres listes restent sous le seuil en part des inscrits. Le reste existe comme réserve électorale, comme doctrine de négociation, comme langage de souveraineté partagée, mais pas encore comme groupe institutionnel.
+
+Leur point commun n'est pas un programme unique. C'est plutôt une même critique de la séquence politique : le face-à-face UC-FLNKS / LL-LR leur paraît insuffisant pour reconstruire un accord durable. De ce point de vue, l'Éveil océanien, Calédonie Ensemble et ses dissidences, Faire Pays et les souverainistes partenariaux parlent tous d'une sortie du duel, mais pas dans la même direction.
+
+Cette sortie commune ne conduit toutefois pas au même horizon.
+
+Le centre non-indépendantiste cherche surtout à **éviter le saut statutaire** : il veut de la négociation, de la stabilité et de la réparation économique. Faire Pays cherche plutôt à **déplacer la souveraineté** : ne pas la présenter comme une rupture instantanée, mais comme une progression partagée. L'Éveil océanien, lui, est davantage une **force-pivot de cohésion** : son poids vient de sa capacité à exister hors des deux blocs.
+
+Le mot *troisième voie* est donc utile mais désigne moins un parti qu'une tension : **comment sortir du duel sans choisir entre maintien pur, indépendance pleine et simple addition des deux camps ?**
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Résultats 2026</span>
+    <span class="article-related-title">Premier bilan des rapports de force</span>
+    <span class="article-related-note">Abstention, sièges, voix sans représentation et rôle pivot de l'Éveil océanien au Congrès.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-professions-foi/">
+    <span class="article-related-kicker">Programmes</span>
+    <span class="article-related-title">Qui propose quoi ?</span>
+    <span class="article-related-note">La lecture province par province des professions de foi qui sert de base au codage programmatique.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Listes candidates</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">Les continuités et ruptures entre les candidatures de 2019 et les listes provinciales de 2026.</span>
+  </a>
+</div>
+</section>
+```
+
+<details class="note-deroulable">
+
+<summary>Sources, codage et limites</summary>
+
+Les positions institutionnelles et économiques sont un codage éditorial des professions de foi. Elles servent à comparer des accents de campagne, pas à attribuer une note de faisabilité. Une mesure chiffrée n'est pas automatiquement réaliste ; une orientation générale peut être politiquement structurante tout en restant peu détaillée dans le document.
+
+Les résultats utilisés sont les résultats complets publiés par le Haut-commissariat, PDF édité le 29 juin 2026 à 22:48:38.
+
+</details>
+
+## Sources
+
+-   [Résultats complets des provinciales 2026](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13500/112224/file/PROVINCIALES_2026_R%C3%A9sultats_COMPLETS.pdf), Haut-commissariat de la République en Nouvelle-Calédonie.
+-   [Portail officiel de la propagande électronique](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Propagande-electronique), Haut-commissariat de la République en Nouvelle-Calédonie.

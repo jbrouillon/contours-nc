@@ -212,6 +212,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#province-des-îles-tout-indépendantiste-mais-pas-homogène" id="toc-province-des-îles-tout-indépendantiste-mais-pas-homogène" class="nav-link" data-scroll-target="#province-des-îles-tout-indépendantiste-mais-pas-homogène">Province des Îles : tout indépendantiste, mais pas homogène</a></li>
   <li><a href="#congrès-léveil-océanien-en-position-pivot" id="toc-congrès-léveil-océanien-en-position-pivot" class="nav-link" data-scroll-target="#congrès-léveil-océanien-en-position-pivot">Congrès : l’Éveil océanien en position pivot</a></li>
   <li><a href="#ce-que-le-scrutin-raconte-déjà" id="toc-ce-que-le-scrutin-raconte-déjà" class="nav-link" data-scroll-target="#ce-que-le-scrutin-raconte-déjà">Ce que le scrutin raconte déjà</a></li>
+  <li><a href="#à-lire-aussi" id="toc-à-lire-aussi" class="nav-link" data-scroll-target="#à-lire-aussi">À lire aussi</a></li>
   <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
   </ul>
 </nav>
@@ -287,7 +288,8 @@ ul.task-list li input[type="checkbox"] {
   border-radius: 8px;
   margin: 1.15rem 0 0.25rem;
   min-height: 360px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 0.25rem;
   position: relative;
 }
@@ -327,6 +329,27 @@ ul.task-list li input[type="checkbox"] {
   font-size: 0.9rem;
   margin: 0.35rem 0 2rem;
 }
+
+@media (max-width: 780px) {
+  .bilan-sketch svg {
+    max-width: none;
+    min-width: 660px;
+  }
+
+  #chart-resultats-provinces {
+    margin-left: calc(50% - 50vw + 12px);
+    margin-right: calc(50% - 50vw + 12px);
+    max-width: calc(100vw - 24px);
+    overflow: hidden;
+    width: calc(100vw - 24px);
+  }
+
+  #chart-resultats-provinces svg {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
@@ -348,7 +371,7 @@ window.ContoursSketch = (() => {
     return JSON.parse(document.getElementById(`${id}-data`).textContent);
   }
 
-  function base(id, height) {
+  function base(id, height, minWidth = 640) {
     const el = document.getElementById(id);
     el.innerHTML = "";
     const tools = document.createElement("div");
@@ -361,10 +384,16 @@ window.ContoursSketch = (() => {
     button.addEventListener("click", () => downloadPng(id));
     tools.appendChild(button);
     el.appendChild(tools);
-    const width = Math.max(640, el.clientWidth || 960);
+    const fitMobile = id === "chart-resultats-provinces" && window.innerWidth < 780;
+    const fallbackWidth = fitMobile ? window.innerWidth - 24 : 960;
+    const width = fitMobile
+      ? Math.max(320, Math.round(el.clientWidth || fallbackWidth))
+      : Math.max(minWidth, Math.round(el.clientWidth || fallbackWidth));
     const svg = d3.select(el)
       .append("svg")
       .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
       .attr("role", "img")
       .attr("aria-label", el.dataset.sketchChart || "graphique")
       .style("background", paper);
@@ -484,8 +513,11 @@ window.ContoursSketch = (() => {
   }
 
   function chartTitle(svg, text, width, y = 30) {
+    const wrapWidth = window.innerWidth < 780
+      ? Math.max(245, Math.min(width - 36, window.innerWidth - 120))
+      : Math.min(width - 36, 1040);
     return label(svg, text, 18, y, { size: 22, weight: 800 })
-      .call(wrap, Math.min(width - 36, 1040));
+      .call(wrap, wrapWidth);
   }
 
   function wrap(selection, width) {
@@ -564,37 +596,44 @@ window.ContoursSketch = (() => {
   function renderBarFacets(id, p) {
     const data = p.data;
     const provinces = [...new Set(data.map((d) => d.province_label))];
-    const cols = window.innerWidth < 820 ? 1 : 3;
+    const compact = window.innerWidth < 820;
+    const fitMobile = id === "chart-resultats-provinces" && window.innerWidth < 780;
+    const cols = compact ? 1 : 3;
     const rows = Math.ceil(provinces.length / cols);
-    const facetHeight = cols === 1 ? 390 : 560;
-    const height = rows * facetHeight + 30;
-    const { svg, rc, width } = base(id, height);
+    const facetHeight = fitMobile ? 475 : (compact ? 390 : 560);
+    const titleGap = compact ? 82 : 58;
+    const height = rows * facetHeight + (compact ? 54 : 30);
+    const { svg, rc, width } = base(id, height, fitMobile ? 320 : (compact ? 860 : 640));
     const facetWidth = width / cols;
 
     chartTitle(svg, p.options.title, width, 28);
 
     provinces.forEach((province, i) => {
       const px = (i % cols) * facetWidth;
-      const py = Math.floor(i / cols) * facetHeight + 58;
+      const py = Math.floor(i / cols) * facetHeight + titleGap;
       const dat = data.filter((d) => d.province_label === province).sort((a, b) => b.pct_exprimes - a.pct_exprimes);
-      const margin = { top: 28, right: 74, bottom: 42, left: cols === 1 ? 190 : 145 };
+      const margin = compact
+        ? (fitMobile
+          ? { top: 30, right: 54, bottom: 54, left: 112 }
+          : { top: 28, right: 96, bottom: 46, left: 162 })
+        : { top: 28, right: 74, bottom: 42, left: 145 };
       const innerW = facetWidth - margin.left - margin.right - 12;
       const innerH = Math.max(190, dat.length * 34);
       const g = svg.append("g").attr("transform", `translate(${px + margin.left},${py + margin.top})`);
       const x = d3.scaleLinear().domain([0, d3.max(dat, (d) => d.pct_exprimes) * 1.28]).range([0, innerW]);
       const y = d3.scaleBand().domain(dat.map((d) => d.etiquette)).range([0, innerH]).padding(0.25);
-      axisBottom(g, x, innerH, x.ticks(cols === 1 ? 5 : 3), fmtPctAxis);
+      axisBottom(g, x, innerH, x.ticks(fitMobile ? 4 : (cols === 1 ? 5 : 3)), fmtPctAxis);
       label(svg, province, px + facetWidth / 2, py, { anchor: "middle", size: 15, weight: 800 });
 
       dat.forEach((d) => {
         roughRect(g, rc, 0, y(d.etiquette), x(d.pct_exprimes), y.bandwidth(), d.couleur, d.sieges_province > 0 ? 1 : 0.52);
         const l = d.sieges_province > 0 ? `${fmtPct(d.pct_exprimes)} · ${d.sieges_province} sièges` : fmtPct(d.pct_exprimes);
         label(g, l, x(d.pct_exprimes) + 6, y(d.etiquette) + y.bandwidth() / 2, {
-          size: 11,
+          size: fitMobile ? 10 : 11,
           color: d.sieges_province > 0 ? ink : "#9a948d"
         });
         const yy = y(d.etiquette) + y.bandwidth() / 2;
-        label(g, d.etiquette, -10, yy, { anchor: "end", size: 11 }).call(wrap, margin.left - 18);
+        label(g, d.etiquette, -10, yy, { anchor: "end", size: fitMobile ? 10 : 11 }).call(wrap, margin.left - 18);
       });
 
       label(g, "Part des exprimés", innerW / 2, innerH + 42, { anchor: "middle", size: 12, color: muted });
@@ -1166,7 +1205,7 @@ Résultats 2026 par province : voix, part des exprimés et sièges provinciaux.
 <div id="chart-participation-historique" class="bilan-sketch" data-sketch-chart="line">
 
 </div>
-<script type="application/json" id="chart-participation-historique-data">{"type":"line","data":[{"annee":1989,"serie":"Nouvelle-Calédonie","valeur":69.22,"couleur":"#282522"},{"annee":1989,"serie":"Sud","valeur":69.33,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":69.36,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":68.46,"couleur":"#b76f95"},{"annee":1995,"serie":"Nouvelle-Calédonie","valeur":70.22,"couleur":"#282522"},{"annee":1995,"serie":"Sud","valeur":69.13,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":71.41,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":73.43,"couleur":"#b76f95"},{"annee":1999,"serie":"Nouvelle-Calédonie","valeur":74.79,"couleur":"#282522"},{"annee":1999,"serie":"Sud","valeur":76.86,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":67.19,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":78.64,"couleur":"#b76f95"},{"annee":2004,"serie":"Nouvelle-Calédonie","valeur":76.44,"couleur":"#282522"},{"annee":2004,"serie":"Sud","valeur":77.44,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":72.29,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":79.07,"couleur":"#b76f95"},{"annee":2009,"serie":"Nouvelle-Calédonie","valeur":72.48,"couleur":"#282522"},{"annee":2009,"serie":"Sud","valeur":74.25,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":67.43,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":73.32,"couleur":"#b76f95"},{"annee":2014,"serie":"Nouvelle-Calédonie","valeur":69.95,"couleur":"#282522"},{"annee":2014,"serie":"Sud","valeur":71.95,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":66.15,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":67.17,"couleur":"#b76f95"},{"annee":2019,"serie":"Nouvelle-Calédonie","valeur":66.47,"couleur":"#282522"},{"annee":2019,"serie":"Sud","valeur":67.23,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":64.54,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":66.49,"couleur":"#b76f95"},{"annee":2026,"serie":"Sud","valeur":65.95,"couleur":"#c86a4a"},{"annee":2026,"serie":"Nord","valeur":61.6,"couleur":"#7769a6"},{"annee":2026,"serie":"Îles","valeur":54.92,"couleur":"#b76f95"},{"annee":2026,"serie":"Nouvelle-Calédonie","valeur":63.71035178,"couleur":"#282522"}],"options":{"title":"Participation : baisse longue, décrochage aux Îles","yLabel":"Participation","yDomain":[50,82],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":560}}</script>
+<script type="application/json" id="chart-participation-historique-data">{"type":"line","data":[{"annee":1989,"serie":"Nouvelle-Calédonie","valeur":69.22,"couleur":"#282522"},{"annee":1989,"serie":"Sud","valeur":69.33,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":69.36,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":68.46,"couleur":"#b76f95"},{"annee":1995,"serie":"Nouvelle-Calédonie","valeur":70.22,"couleur":"#282522"},{"annee":1995,"serie":"Sud","valeur":69.13,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":71.41,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":73.43,"couleur":"#b76f95"},{"annee":1999,"serie":"Nouvelle-Calédonie","valeur":74.79,"couleur":"#282522"},{"annee":1999,"serie":"Sud","valeur":76.86,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":67.19,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":78.64,"couleur":"#b76f95"},{"annee":2004,"serie":"Nouvelle-Calédonie","valeur":76.44,"couleur":"#282522"},{"annee":2004,"serie":"Sud","valeur":77.44,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":72.29,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":79.07,"couleur":"#b76f95"},{"annee":2009,"serie":"Nouvelle-Calédonie","valeur":72.48,"couleur":"#282522"},{"annee":2009,"serie":"Sud","valeur":74.25,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":67.43,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":73.32,"couleur":"#b76f95"},{"annee":2014,"serie":"Nouvelle-Calédonie","valeur":69.95,"couleur":"#282522"},{"annee":2014,"serie":"Sud","valeur":71.95,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":66.15,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":67.17,"couleur":"#b76f95"},{"annee":2019,"serie":"Nouvelle-Calédonie","valeur":66.47,"couleur":"#282522"},{"annee":2019,"serie":"Sud","valeur":67.23,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":64.54,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":66.49,"couleur":"#b76f95"},{"annee":2026,"serie":"Sud","valeur":65.94,"couleur":"#c86a4a"},{"annee":2026,"serie":"Nord","valeur":61.6,"couleur":"#7769a6"},{"annee":2026,"serie":"Îles","valeur":54.92,"couleur":"#b76f95"},{"annee":2026,"serie":"Nouvelle-Calédonie","valeur":63.7098324,"couleur":"#282522"}],"options":{"title":"Participation : baisse longue, décrochage aux Îles","yLabel":"Participation","yDomain":[50,82],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":560}}</script>
 <p class="bilan-sketch-caption">
 Participation aux provinciales depuis 1989, par territoire.
 </p>
@@ -1177,13 +1216,13 @@ Participation aux provinciales depuis 1989, par territoire.
 <div id="chart-abstention-composition" class="bilan-sketch" data-sketch-chart="stackedVertical">
 
 </div>
-<script type="application/json" id="chart-abstention-composition-data">{"type":"stackedVertical","data":[{"annee":2019,"category":"Province Sud","valeur":62.57285229},{"annee":2019,"category":"Province Nord","valeur":24.91504235},{"annee":2019,"category":"Province des Iles","valeur":12.51210537},{"annee":2026,"category":"Province Sud","valeur":62.10444963},{"annee":2026,"category":"Province Nord","valeur":23.64214052},{"annee":2026,"category":"Province des Iles","valeur":14.25340986}],"options":{"title":"Abstention : le poids des provinces, l'intensité du retrait","years":[2019,2026],"categories":{"Province Sud":{"id":"Province Sud","label":"Sud","color":"#c86a4a"},"Province Nord":{"id":"Province Nord","label":"Nord","color":"#7769a6"},"Province des Iles":{"id":"Province des Iles","label":"Îles","color":"#b76f95"}},"yMax":100,"yLabel":"Part des abstentions","valueFormat":"pct","height":520}}</script>
+<script type="application/json" id="chart-abstention-composition-data">{"type":"stackedVertical","data":[{"annee":2019,"category":"Province Sud","valeur":62.57285229},{"annee":2019,"category":"Province Nord","valeur":24.91504235},{"annee":2019,"category":"Province des Iles","valeur":12.51210537},{"annee":2026,"category":"Province Sud","valeur":62.10499199},{"annee":2026,"category":"Province Nord","valeur":23.64180215},{"annee":2026,"category":"Province des Iles","valeur":14.25320586}],"options":{"title":"Abstention : le poids des provinces, l'intensité du retrait","years":[2019,2026],"categories":{"Province Sud":{"id":"Province Sud","label":"Sud","color":"#c86a4a"},"Province Nord":{"id":"Province Nord","label":"Nord","color":"#7769a6"},"Province des Iles":{"id":"Province des Iles","label":"Îles","color":"#b76f95"}},"yMax":100,"yLabel":"Part des abstentions","valueFormat":"pct","height":520}}</script>
 <p class="bilan-sketch-caption">
 Composition de l’abstention par province en 2019 et 2026. Chaque barre représente 100 % des abstentions du scrutin.
 </p>
 <script>window.ContoursSketch && window.ContoursSketch.render("chart-abstention-composition");</script>
 </div>
-<p>En volume, l’abstention reste d’abord sudiste parce que le corps électoral y est beaucoup plus nombreux : le Sud compte 43 393 abstentions en 2026, soit 62,1 % des abstentions du scrutin. Mais la dynamique politique la plus nette est ailleurs : les Îles passent de 33,5 % d’abstention en 2019 à 45,1 % en 2026, et leur poids dans l’abstention totale augmente de 12,5 % à 14,3 %.</p>
+<p>En volume, l’abstention reste d’abord sudiste parce que le corps électoral y est beaucoup plus nombreux : le Sud compte 43 394 abstentions en 2026, soit 62,1 % des abstentions du scrutin. Mais la dynamique politique la plus nette est ailleurs : les Îles passent de 33,5 % d’abstention en 2019 à 45,1 % en 2026, et leur poids dans l’abstention totale augmente de 12,5 % à 14,3 %.</p>
 <p>Aux Îles, la baisse est le fait politique le plus massif avant même d’entrer dans le détail des listes. Une province où l’offre reste presque totalement indépendantiste en voix connaît pourtant un recul très net de participation, ce qui invite à distinguer solidité de la famille politique dominante et intensité de la mobilisation.</p>
 </section>
 <section id="quelle-évolution-par-grande-famille-politique" class="level2 page-columns page-full">
@@ -1193,7 +1232,7 @@ Composition de l’abstention par province en 2019 et 2026. Chaque barre représ
 <div id="chart-familles-provinces" class="bilan-sketch" data-sketch-chart="line">
 
 </div>
-<script type="application/json" id="chart-familles-provinces-data">{"type":"line","data":[{"annee":1989,"serie":"Sud","valeur":14.68058498,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":67.89555571,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":64.75496533,"couleur":"#b76f95"},{"annee":1995,"serie":"Sud","valeur":14.12231508,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":67.43402927,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":74.51909135,"couleur":"#b76f95"},{"annee":1999,"serie":"Sud","valeur":18.15303962,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":75.57715674,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":80.95314635,"couleur":"#b76f95"},{"annee":2004,"serie":"Sud","valeur":16.1153783,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":73.96760543,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":82.80600381,"couleur":"#b76f95"},{"annee":2009,"serie":"Sud","valeur":12.49566639,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":74.99423086,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":91.36750943,"couleur":"#b76f95"},{"annee":2014,"serie":"Sud","valeur":18.00955507,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":79.69143981,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":93.11129044,"couleur":"#b76f95"},{"annee":2019,"serie":"Sud","valeur":19.51549486,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":79.98889814,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":90.61002646,"couleur":"#b76f95"},{"annee":2026,"serie":"Nord","valeur":80.39553869,"couleur":"#7769a6"},{"annee":2026,"serie":"Sud","valeur":20.93952235,"couleur":"#c86a4a"},{"annee":2026,"serie":"Îles","valeur":97.7460556,"couleur":"#b76f95"}],"options":{"title":"Vote indépendantiste : trois géographies provinciales stables","yLabel":"Part des exprimés","yDomain":[0,105],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":580}}</script>
+<script type="application/json" id="chart-familles-provinces-data">{"type":"line","data":[{"annee":1989,"serie":"Sud","valeur":14.68058498,"couleur":"#c86a4a"},{"annee":1989,"serie":"Nord","valeur":67.89555571,"couleur":"#7769a6"},{"annee":1989,"serie":"Îles","valeur":64.75496533,"couleur":"#b76f95"},{"annee":1995,"serie":"Sud","valeur":14.12231508,"couleur":"#c86a4a"},{"annee":1995,"serie":"Nord","valeur":67.43402927,"couleur":"#7769a6"},{"annee":1995,"serie":"Îles","valeur":74.51909135,"couleur":"#b76f95"},{"annee":1999,"serie":"Sud","valeur":18.15303962,"couleur":"#c86a4a"},{"annee":1999,"serie":"Nord","valeur":75.57715674,"couleur":"#7769a6"},{"annee":1999,"serie":"Îles","valeur":80.95314635,"couleur":"#b76f95"},{"annee":2004,"serie":"Sud","valeur":16.1153783,"couleur":"#c86a4a"},{"annee":2004,"serie":"Nord","valeur":73.96760543,"couleur":"#7769a6"},{"annee":2004,"serie":"Îles","valeur":82.80600381,"couleur":"#b76f95"},{"annee":2009,"serie":"Sud","valeur":12.49566639,"couleur":"#c86a4a"},{"annee":2009,"serie":"Nord","valeur":74.99423086,"couleur":"#7769a6"},{"annee":2009,"serie":"Îles","valeur":91.36750943,"couleur":"#b76f95"},{"annee":2014,"serie":"Sud","valeur":18.00955507,"couleur":"#c86a4a"},{"annee":2014,"serie":"Nord","valeur":79.69143981,"couleur":"#7769a6"},{"annee":2014,"serie":"Îles","valeur":93.11129044,"couleur":"#b76f95"},{"annee":2019,"serie":"Sud","valeur":19.51549486,"couleur":"#c86a4a"},{"annee":2019,"serie":"Nord","valeur":79.98889814,"couleur":"#7769a6"},{"annee":2019,"serie":"Îles","valeur":90.61002646,"couleur":"#b76f95"},{"annee":2026,"serie":"Nord","valeur":80.39862016,"couleur":"#7769a6"},{"annee":2026,"serie":"Sud","valeur":20.93977659,"couleur":"#c86a4a"},{"annee":2026,"serie":"Îles","valeur":97.7460556,"couleur":"#b76f95"}],"options":{"title":"Vote indépendantiste : trois géographies provinciales stables","yLabel":"Part des exprimés","yDomain":[0,105],"xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"pct","height":580}}</script>
 <p class="bilan-sketch-caption">
 Part des voix classées indépendantistes dans chaque province depuis 1989. Ce repère historique ne décrit pas les rapports internes à chaque famille politique.
 </p>
@@ -1221,7 +1260,7 @@ Voix agrégées par familles politiques au Congrès. L’Éveil océanien est is
 <div id="chart-voix-nuances-provinces" class="bilan-sketch" data-sketch-chart="axisBarsFacets">
 
 </div>
-<script type="application/json" id="chart-voix-nuances-provinces-data">{"type":"axisBarsFacets","data":[{"annee":2019,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":11269,"pct_exprimes":15.88100171,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":12842,"pct_exprimes":15.59233132,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UNI / Palika","valeur":3401,"pct_exprimes":4.12938162,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1335,"pct_exprimes":1.88136811,"couleur":"#88a96d"},{"annee":2026,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1003,"pct_exprimes":1.2178094,"couleur":"#88a96d"},{"annee":2019,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":1244,"pct_exprimes":1.75312504,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":3575,"pct_exprimes":4.34064667,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":6077,"pct_exprimes":8.5641004,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":8399,"pct_exprimes":10.19778779,"couleur":"#55a6b8"},{"annee":2019,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":13122,"pct_exprimes":18.49236883,"couleur":"#67a9cf"},{"annee":2026,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":9961,"pct_exprimes":12.09431648,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Sud","serie":"Loyalistes","valeur":28802,"pct_exprimes":40.58963627,"couleur":"#305f9f"},{"annee":2026,"province_label":"Sud","serie":"Loyalistes","valeur":41294,"pct_exprimes":50.13780794,"couleur":"#305f9f"},{"annee":2019,"province_label":"Sud","serie":"Droite nationale","valeur":2707,"pct_exprimes":3.81487901,"couleur":"#7a4a28"},{"annee":2026,"province_label":"Sud","serie":"Droite nationale","valeur":1885,"pct_exprimes":2.28870461,"couleur":"#7a4a28"},{"annee":2019,"province_label":"Sud","serie":"Autres listes","valeur":6403,"pct_exprimes":9.02352062,"couleur":"#8a7d72"},{"annee":2019,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":9069,"pct_exprimes":35.95813013,"couleur":"#2f925d"},{"annee":2026,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":10418,"pct_exprimes":39.9294776,"couleur":"#2f925d"},{"annee":2019,"province_label":"Nord","serie":"UNI / Palika","valeur":9709,"pct_exprimes":38.49569803,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Nord","serie":"UNI / Palika","valeur":9319,"pct_exprimes":35.71729715,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Nord","serie":"Autres indépendantistes","valeur":842,"pct_exprimes":3.33848777,"couleur":"#88a96d"},{"annee":2026,"province_label":"Nord","serie":"Autres indépendantistes","valeur":1239,"pct_exprimes":4.74876394,"couleur":"#88a96d"},{"annee":2019,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":554,"pct_exprimes":2.19658221,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":853,"pct_exprimes":3.26932659,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Nord","serie":"Centre non-indépendantiste","valeur":1975,"pct_exprimes":7.83077594,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Nord","serie":"Loyalistes","valeur":3072,"pct_exprimes":12.18032592,"couleur":"#305f9f"},{"annee":2026,"province_label":"Nord","serie":"Loyalistes","valeur":4261,"pct_exprimes":16.33130198,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":5186,"pct_exprimes":37.08789244,"couleur":"#2f925d"},{"annee":2026,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":3946,"pct_exprimes":32.94098005,"couleur":"#2f925d"},{"annee":2019,"province_label":"Îles","serie":"UNI / Palika","valeur":2970,"pct_exprimes":21.24007724,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Îles","serie":"UNI / Palika","valeur":3783,"pct_exprimes":31.58026546,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Îles","serie":"Autres indépendantistes","valeur":2805,"pct_exprimes":20.06007295,"couleur":"#88a96d"},{"annee":2026,"province_label":"Îles","serie":"Autres indépendantistes","valeur":3980,"pct_exprimes":33.22481008,"couleur":"#88a96d"},{"annee":2019,"province_label":"Îles","serie":"Pro-pays / souverainistes","valeur":173,"pct_exprimes":1.23721662,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Îles","serie":"Éveil / nuance océanienne","valeur":1536,"pct_exprimes":10.98476722,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Îles","serie":"Loyalistes","valeur":270,"pct_exprimes":2.2539444,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"Autres listes","valeur":1313,"pct_exprimes":9.38997354,"couleur":"#8a7d72"}],"options":{"title":"Voix par nuances politiques : 2019 et 2026, province par province","years":[2019,2026]}}</script>
+<script type="application/json" id="chart-voix-nuances-provinces-data">{"type":"axisBarsFacets","data":[{"annee":2019,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":11269,"pct_exprimes":15.88100171,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":12842,"pct_exprimes":15.59252064,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UNI / Palika","valeur":3401,"pct_exprimes":4.12943176,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1335,"pct_exprimes":1.88136811,"couleur":"#88a96d"},{"annee":2026,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1003,"pct_exprimes":1.21782419,"couleur":"#88a96d"},{"annee":2019,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":1244,"pct_exprimes":1.75312504,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":3575,"pct_exprimes":4.34069937,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":6077,"pct_exprimes":8.5641004,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":8399,"pct_exprimes":10.19791161,"couleur":"#55a6b8"},{"annee":2019,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":13122,"pct_exprimes":18.49236883,"couleur":"#67a9cf"},{"annee":2026,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":9961,"pct_exprimes":12.09446333,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Sud","serie":"Loyalistes","valeur":28802,"pct_exprimes":40.58963627,"couleur":"#305f9f"},{"annee":2026,"province_label":"Sud","serie":"Loyalistes","valeur":41294,"pct_exprimes":50.13841671,"couleur":"#305f9f"},{"annee":2019,"province_label":"Sud","serie":"Droite nationale","valeur":2707,"pct_exprimes":3.81487901,"couleur":"#7a4a28"},{"annee":2026,"province_label":"Sud","serie":"Droite nationale","valeur":1885,"pct_exprimes":2.28873239,"couleur":"#7a4a28"},{"annee":2019,"province_label":"Sud","serie":"Autres listes","valeur":6403,"pct_exprimes":9.02352062,"couleur":"#8a7d72"},{"annee":2019,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":9069,"pct_exprimes":35.95813013,"couleur":"#2f925d"},{"annee":2026,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":10418,"pct_exprimes":39.93100805,"couleur":"#2f925d"},{"annee":2019,"province_label":"Nord","serie":"UNI / Palika","valeur":9709,"pct_exprimes":38.49569803,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Nord","serie":"UNI / Palika","valeur":9319,"pct_exprimes":35.71866616,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Nord","serie":"Autres indépendantistes","valeur":842,"pct_exprimes":3.33848777,"couleur":"#88a96d"},{"annee":2026,"province_label":"Nord","serie":"Autres indépendantistes","valeur":1239,"pct_exprimes":4.74894596,"couleur":"#88a96d"},{"annee":2019,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":554,"pct_exprimes":2.19658221,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":853,"pct_exprimes":3.2694519,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Nord","serie":"Centre non-indépendantiste","valeur":1975,"pct_exprimes":7.83077594,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Nord","serie":"Loyalistes","valeur":3072,"pct_exprimes":12.18032592,"couleur":"#305f9f"},{"annee":2026,"province_label":"Nord","serie":"Loyalistes","valeur":4261,"pct_exprimes":16.33192794,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":5186,"pct_exprimes":37.08789244,"couleur":"#2f925d"},{"annee":2026,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":3946,"pct_exprimes":32.94098005,"couleur":"#2f925d"},{"annee":2019,"province_label":"Îles","serie":"UNI / Palika","valeur":2970,"pct_exprimes":21.24007724,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Îles","serie":"UNI / Palika","valeur":3783,"pct_exprimes":31.58026546,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Îles","serie":"Autres indépendantistes","valeur":2805,"pct_exprimes":20.06007295,"couleur":"#88a96d"},{"annee":2026,"province_label":"Îles","serie":"Autres indépendantistes","valeur":3980,"pct_exprimes":33.22481008,"couleur":"#88a96d"},{"annee":2019,"province_label":"Îles","serie":"Pro-pays / souverainistes","valeur":173,"pct_exprimes":1.23721662,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Îles","serie":"Éveil / nuance océanienne","valeur":1536,"pct_exprimes":10.98476722,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Îles","serie":"Loyalistes","valeur":270,"pct_exprimes":2.2539444,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"Autres listes","valeur":1313,"pct_exprimes":9.38997354,"couleur":"#8a7d72"}],"options":{"title":"Voix par nuances politiques : 2019 et 2026, province par province","years":[2019,2026]}}</script>
 <p class="bilan-sketch-caption">
 Évolution 2019-2026 des voix par province et par nuance politique. Les nuances agrègent les listes comparables plutôt que les seules grandes familles politiques.
 </p>
@@ -1236,7 +1275,7 @@ Voix agrégées par familles politiques au Congrès. L’Éveil océanien est is
 <div id="chart-voix-sans-siege" class="bilan-sketch" data-sketch-chart="stackedHorizontal">
 
 </div>
-<script type="application/json" id="chart-voix-sans-siege-data">{"type":"stackedHorizontal","data":[{"y":"Sud","category":"anti_independantiste","valeur":14.38302109,"voix":11846},{"y":"Sud","category":"independantiste","valeur":5.34719102,"voix":4404},{"y":"Sud","category":"autres_listes","valeur":4.34064667,"voix":3575},{"y":"Nord","category":"anti_independantiste","valeur":0,"voix":0},{"y":"Nord","category":"independantiste","valeur":4.74876394,"voix":1239},{"y":"Nord","category":"autres_listes","valeur":3.26932659,"voix":853},{"y":"Îles","category":"anti_independantiste","valeur":2.2539444,"voix":270},{"y":"Îles","category":"independantiste","valeur":11.91251357,"voix":1427},{"y":"Îles","category":"autres_listes","valeur":0,"voix":0}],"options":{"title":"Le Sud concentre l'essentiel des voix non représentées","xMax":27,"yOrder":["Sud","Nord","Îles"],"categories":{"anti_independantiste":{"id":"anti_independantiste","label":"Non-indépendantistes","color":"#305f9f"},"independantiste":{"id":"independantiste","label":"Indépendantistes","color":"#2f925d"},"autres_listes":{"id":"autres_listes","label":"Autres / pro-pays","color":"#8a7d72"}},"height":520}}</script>
+<script type="application/json" id="chart-voix-sans-siege-data">{"type":"stackedHorizontal","data":[{"y":"Sud","category":"anti_independantiste","valeur":14.38319573,"voix":11846},{"y":"Sud","category":"independantiste","valeur":5.34725595,"voix":4404},{"y":"Sud","category":"autres_listes","valeur":4.34069937,"voix":3575},{"y":"Nord","category":"anti_independantiste","valeur":0,"voix":0},{"y":"Nord","category":"independantiste","valeur":4.74894596,"voix":1239},{"y":"Nord","category":"autres_listes","valeur":3.2694519,"voix":853},{"y":"Îles","category":"anti_independantiste","valeur":2.2539444,"voix":270},{"y":"Îles","category":"independantiste","valeur":11.91251357,"voix":1427},{"y":"Îles","category":"autres_listes","valeur":0,"voix":0}],"options":{"title":"Le Sud concentre l'essentiel des voix non représentées","xMax":27,"yOrder":["Sud","Nord","Îles"],"categories":{"anti_independantiste":{"id":"anti_independantiste","label":"Non-indépendantistes","color":"#305f9f"},"independantiste":{"id":"independantiste","label":"Indépendantistes","color":"#2f925d"},"autres_listes":{"id":"autres_listes","label":"Autres / pro-pays","color":"#8a7d72"}},"height":520}}</script>
 <p class="bilan-sketch-caption">
 Voix accordées à des listes sans siège provincial en 2026, par province et par famille politique.
 </p>
@@ -1335,11 +1374,33 @@ Demi-cercle du Congrès 2026 : 54 sièges, colorés par groupe représenté.
 <p>Deuxième enseignement : l’abstention devient un fait central du bilan. À 63,7 % de participation, le scrutin 2026 s’inscrit dans une baisse longue de la mobilisation provinciale. Aux Îles, l’abstention atteint un niveau qui oblige à lire les rapports de force avec prudence : la famille indépendantiste domine en voix exprimées, mais sur une base électorale beaucoup moins mobilisée.</p>
 <p>Troisième enseignement : la représentation institutionnelle est plus resserrée que l’offre politique. Dans le Sud surtout, beaucoup de voix restent sans siège. Cette non-représentation touche des familles différentes : centre non-indépendantiste, indépendantistes hors listes gagnantes, et offre souverainiste. Le scrutin produit donc à la fois une majorité claire et une périphérie électorale importante.</p>
 <p>Quatrième enseignement : chaque province garde sa logique propre. Le Sud donne la majorité numérique non-indépendantiste. Le Nord réorganise la concurrence UC / UNI sans changer de famille dominante. Les Îles produisent un paysage presque entièrement indépendantiste, mais très disputé entre UC-FLNKS, Nation autochtone, Palika et UCC.</p>
+</section>
+<section id="à-lire-aussi" class="level2">
+<h2 class="anchored" data-anchor-id="à-lire-aussi">À lire aussi</h2>
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Après le résultat</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Éveil océanien, centres divisés, Faire Pays et souveraineté partagée entre les deux pôles.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-professions-foi/">
+    <span class="article-related-kicker">Programmes</span>
+    <span class="article-related-title">Qui propose quoi ?</span>
+    <span class="article-related-note">Les priorités et lignes de partage visibles dans les professions de foi des listes.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Candidatures</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">Ce que la comparaison des listes 2019 et 2026 dit du renouvellement politique.</span>
+  </a>
+</div>
+</section>
 <details class="note-deroulable">
 <summary>
 Sources, classement des familles politiques et limites
 </summary>
-<p>Les résultats 2026 s’appuient sur la publication du Haut-commissariat diffusée le 28 juin 2026. Le billet sera ajusté si la proclamation définitive modifie les chiffres utilisés ici.</p>
+<p>Les résultats 2026 s’appuient sur la publication complète du Haut-commissariat, PDF édité le 29 juin 2026 à 22:48:38. Par rapport à la première publication provisoire, les voix par liste et les sièges ne changent pas ; seuls quelques totaux techniques de votants, blancs/nuls et exprimés sont corrigés à l’unité.</p>
 <p>Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l’Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans “autres / pro-pays” lorsqu’il n’est pas agrégé par Wikipédia dans la famille indépendantiste.</p>
 <p>Pour 1999, la série principale utilise le scrutin provincial initial. La page Wikipédia signale ensuite l’annulation du scrutin aux Îles et la partielle de 2000 ; cette particularité doit être gardée à l’esprit pour les lectures fines de cette année.</p>
 </details>
@@ -1347,7 +1408,7 @@ Sources, classement des familles politiques et limites
 <section id="sources" class="level2">
 <h2 class="anchored" data-anchor-id="sources">Sources</h2>
 <ul>
-<li><a href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13485/112061/file/PROVINCIALES_2026_R%C3%A9sultats_provisoires.pdf">Résultats des provinciales 2026 - Haut-commissariat de la République</a>.</li>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13500/112224/file/PROVINCIALES_2026_R%C3%A9sultats_COMPLETS.pdf">Résultats complets des provinciales 2026 - Haut-commissariat de la République</a>.</li>
 <li>Pages Wikipédia des élections provinciales néo-calédoniennes de <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1989">1989</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1995">1995</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999">1999</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004">2004</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009">2009</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014">2014</a>, <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019">2019</a> et <a href="https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2026">2026</a>.</li>
 </ul>
 

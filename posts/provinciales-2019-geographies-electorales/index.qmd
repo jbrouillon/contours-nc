@@ -347,13 +347,6 @@ noumea_map <- function(...) file.path(map_root, "noumea", ...)
   margin: 1rem 0 1.8rem;
 }
 
-.p2019-related {
-  background: var(--surface-soft);
-  border-left: 4px solid var(--green);
-  border-radius: 6px;
-  padding: 0.8rem 1rem;
-  margin: 1.2rem 0;
-}
 </style>
 ```
 
@@ -661,9 +654,29 @@ La capacité de la liste non-indépendantiste à dépasser les pôles de Koumac,
 Aux Îles, enfin, la question est presque île par île : 2019 avait vu le maintien de la domination UC à Lifou, un nouvel équilibre à Ouvéa et la solidité du LKS à Maré, la présentation d'une liste concurrente de Jacques Lalié (UCC) à celle de l'UC donne plusieurs choix aux électeurs qui voudraient privilégier une continuité de l'éxécutif précédent. Tandis que des offres d'opppositions dejà implantées sont également présentes de nouveau en 2026.
 
 
-::: p2019-related
-Pour prolonger ce bilan territorial, voir aussi [la recomposition des listes entre 2019 et 2026](../provinciales-2026-qui-part-qui-reste/) et [l’analyse des professions de foi de 2026](../provinciales-2026-professions-foi/).
-:::
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Listes 2026</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">La suite logique de cette carte de départ : les continuités et ruptures entre les candidatures de 2019 et 2026.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-professions-foi/">
+    <span class="article-related-kicker">Programmes</span>
+    <span class="article-related-title">Qui propose quoi ?</span>
+    <span class="article-related-note">Les offres programmatiques de 2026, pour comparer les territoires politiques aux thèmes de campagne.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Résultats 2026</span>
+    <span class="article-related-title">Premier bilan des rapports de force</span>
+    <span class="article-related-note">Ce que le vote de 2026 confirme, déplace ou contredit par rapport aux géographies de 2019.</span>
+  </a>
+</div>
+</section>
+```
 
 <details class="note-deroulable">
 

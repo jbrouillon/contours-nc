@@ -1285,6 +1285,30 @@ Ces recompositions de listes se traduiront t-elles par un renouvellement politiq
 
 Le vote du 28 juin donnera une première réponse.
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-professions-foi/">
+    <span class="article-related-kicker">Programmes</span>
+    <span class="article-related-title">Qui propose quoi ?</span>
+    <span class="article-related-note">Ce que les listes racontent dans leurs professions de foi, au-delà de leur composition.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Résultats 2026</span>
+    <span class="article-related-title">Premier bilan des rapports de force</span>
+    <span class="article-related-note">La façon dont les recompositions de candidatures se traduisent dans les urnes et en sièges.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Espaces politiques</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Un zoom sur les listes entre les deux grands pôles, notamment dans le Sud.</span>
+  </a>
+</div>
+</section>
+```
+
 ## Limites
 
 Cette lecture compare des listes de candidats. Elle ne remplace pas une enquête sur les négociations, les alliances ou les trajectoires individuelles. Elle permet de voir des continuités et des ruptures dans les noms déposés officiellement, mais elle ne suffit pas à expliquer pourquoi ces mouvements ont lieu.

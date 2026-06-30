@@ -1161,6 +1161,30 @@ Cette première synthèse montre qu’il existe un gradient socio-économique tr
 
 D’un côté, l'indice donne une mesure synthétique, utile pour comparer les IRIS et produire une carte lisible. De l'autre, les cartes lissées prolongent cette lecture en rendant visibles les gradients à l’échelle de la Nouvelle-Calédonie et de Nouméa.
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../regroupement-bureaux-vote-noumea/">
+    <span class="article-related-kicker">Accessibilité</span>
+    <span class="article-related-title">Regroupement des bureaux de vote à Nouméa</span>
+    <span class="article-related-note">Une application concrète des contrastes sociaux et de mobilité aux conditions d'accès au vote.</span>
+  </a>
+  <a class="article-related-link" href="../participation-accessibilite-bureaux-noumea/">
+    <span class="article-related-kicker">Débat public</span>
+    <span class="article-related-title">Participation et accessibilité</span>
+    <span class="article-related-note">Comment lire la hausse de participation quand les contraintes d'accès restent territorialement différenciées.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2019-geographies-electorales/">
+    <span class="article-related-kicker">Territoires politiques</span>
+    <span class="article-related-title">Géographie des forces politiques en 2019</span>
+    <span class="article-related-note">Une lecture électorale qui prolonge la question des contrastes territoriaux.</span>
+  </a>
+</div>
+</section>
+```
+
 ## Sources et données utilisées
 
 -   IRIS et indicateurs socio-démographiques du RGP 2019 — PopGIS Nouvelle-Calédonie, développé en partenariat entre l’ISEE et la Communauté du Pacifique (CPS).

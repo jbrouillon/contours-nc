@@ -684,6 +684,30 @@ L'effet le plus important concerne toutefois les situations d'éloignement. La p
 
 Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d'accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n'est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../participation-accessibilite-bureaux-noumea/">
+    <span class="article-related-kicker">Suite du débat</span>
+    <span class="article-related-title">Le débat est-il vraiment clos ?</span>
+    <span class="article-related-note">La participation municipale 2026 relue à partir des mêmes enjeux d'accessibilité.</span>
+  </a>
+  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
+    <span class="article-related-kicker">Inégalités territoriales</span>
+    <span class="article-related-title">Capital socio-économique en Nouvelle-Calédonie</span>
+    <span class="article-related-note">Un indice territorial pour replacer la motorisation et l'accès aux ressources dans leur contexte social.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2019-geographies-electorales/">
+    <span class="article-related-kicker">Géographie électorale</span>
+    <span class="article-related-title">Retour sur les provinciales 2019</span>
+    <span class="article-related-note">Une autre lecture des territoires électoraux, à l'échelle des communes et quartiers.</span>
+  </a>
+</div>
+</section>
+```
+
 ## Sources et données utilisées
 
 Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.

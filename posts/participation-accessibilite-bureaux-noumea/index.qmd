@@ -923,6 +923,30 @@ Derrière le débat statistique, il y a aussi une question démocratique plus si
 
 La lecture la plus prudente est donc la suivante : Nouméa progresse, tout en restant très abstentionniste ; certains quartiers progressent moins vite que la moyenne communale ; et plusieurs d'entre eux cumulent aussi une abstention supérieure à la moyenne en 2026. Ces résultats ne démontrent pas, à eux seuls, un effet causal du regroupement. Ils montrent plutôt pourquoi le débat ne peut pas être refermé par le seul constat d'une hausse de participation. C'est dans cet espace, entre alerte exploratoire et preuve définitive, que les données peuvent utilement nourrir le débat public.
 
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../regroupement-bureaux-vote-noumea/">
+    <span class="article-related-kicker">Article initial</span>
+    <span class="article-related-title">Temps de trajet et regroupement des bureaux</span>
+    <span class="article-related-note">La modélisation des temps d'accès piéton qui sert de base à cette discussion sur la participation.</span>
+  </a>
+  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
+    <span class="article-related-kicker">Contexte social</span>
+    <span class="article-related-title">Capital socio-économique en Nouvelle-Calédonie</span>
+    <span class="article-related-note">Une lecture des contrastes territoriaux qui éclaire les inégalités de mobilité et d'accès.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Abstention</span>
+    <span class="article-related-title">Premier bilan des provinciales 2026</span>
+    <span class="article-related-note">Une autre lecture de la participation, cette fois à l'échelle des trois provinces.</span>
+  </a>
+</div>
+</section>
+```
+
 ## Sources et données utilisées
 
 -   Articles de contexte : [Les Nouvelles calédoniennes, "Une étude relance le débat sur le nombre de bureaux de vote à Nouméa"](https://www.lnc.nc/article/une-etude-relance-le-debat-sur-le-nombre-de-bureaux-de-vote-a-noumea) ; [NC La 1ère / Franceinfo, "Provinciales 2026 : le sénateur Robert Xowie interpelle le gouvernement sur la répartition des bureaux de vote à Nouméa"](https://la1ere.franceinfo.fr/nouvellecaledonie/provinciales-2026-le-senateur-robert-xowie-interpelle-le-gouvernement-sur-la-repartition-des-bureaux-de-vote-a-noumea-1707136.html).
