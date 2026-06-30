@@ -2381,10 +2381,21 @@ quoi ?”</span> June 21, 2026. <a href="https://contours.nc/posts/provinciale
   const citationSection = document.querySelector("#quarto-citation");
   if (!citationSection || citationSection.dataset.contoursCitation === "true") return;
 
-  const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
-  const meta = (name) => document.querySelector(`meta[name="${name}"]`)?.content?.trim() || "";
+  const decodeEntities = (value) => {
+    let decoded = value || "";
+    const textarea = document.createElement("textarea");
+    for (let i = 0; i < 3; i += 1) {
+      textarea.innerHTML = decoded;
+      const next = textarea.value;
+      if (next === decoded) break;
+      decoded = next;
+    }
+    return decoded;
+  };
+  const clean = (value) => decodeEntities(value).replace(/\s+/g, " ").trim();
+  const meta = (name) => clean(document.querySelector(`meta[name="${name}"]`)?.content || "");
   const metas = (name) => Array.from(document.querySelectorAll(`meta[name="${name}"]`))
-    .map((item) => item.content?.trim())
+    .map((item) => clean(item.content))
     .filter(Boolean);
 
   const nativeBibtex = citationSection

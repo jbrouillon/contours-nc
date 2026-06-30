@@ -9,7 +9,7 @@
 <meta name="author" content="Jonas Brouillon">
 <meta name="description" content="À partir des résultats, professions de foi et programmes des provinciales 2026, une cartographie de l’espace dit centriste ou pro-pays, situé entre l’UC-FLNKS et Les Loyalistes-Le Rassemblement.">
 
-<title>Provinciales 2026 : qui est la “troisième voie” ? – Contours</title>
+<title>Provinciales 2026 : qui est la « troisième voie » ? – Contours</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,17 +75,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Provinciales 2026 : qui est la “troisième voie” ? – Contours">
+<meta property="og:title" content="Provinciales 2026 : qui est la « troisième voie » ? – Contours">
 <meta property="og:description" content="À partir des résultats, professions de foi et programmes des provinciales 2026, une cartographie de l’espace dit centriste ou pro-pays, situé entre l’UC-FLNKS et Les Loyalistes-Le Rassemblement.">
 <meta property="og:image" content="https://contours.nc/images/previews/provinciales-2026-troisieme-voie-positionnement.webp">
 <meta property="og:site_name" content="Contours">
 <meta property="og:image:alt" content="Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale">
-<meta name="twitter:title" content="Provinciales 2026 : qui est la “troisième voie” ? – Contours">
+<meta name="twitter:title" content="Provinciales 2026 : qui est la « troisième voie » ? – Contours">
 <meta name="twitter:description" content="À partir des résultats, professions de foi et programmes des provinciales 2026, une cartographie de l’espace dit centriste ou pro-pays, situé entre l’UC-FLNKS et Les Loyalistes-Le Rassemblement.">
 <meta name="twitter:image" content="https://contours.nc/images/previews/provinciales-2026-troisieme-voie-positionnement.webp">
 <meta name="twitter:image:alt" content="Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="citation_title" content="Provinciales 2026 : qui est la &amp;amp;quot;troisième voie&quot; ?">
+<meta name="citation_title" content="Provinciales 2026 : qui est la « troisième voie » ?">
 <meta name="citation_author" content="Jonas Brouillon">
 <meta name="citation_publication_date" content="2026-06-30">
 <meta name="citation_cover_date" content="2026-06-30">
@@ -153,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Provinciales 2026 : qui est la “troisième voie” ?</h1>
+      <h1 class="title">Provinciales 2026 : qui est la « troisième voie » ?</h1>
             <p class="subtitle lead">Éveil océanien, centres divisés, Faire Pays et souveraineté partagée</p>
                   <div>
         <div class="description">
@@ -1264,14 +1264,14 @@ Sources, codage et limites
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
   author = {Brouillon, Jonas},
-  title = {Provinciales 2026 : qui est la “troisième voie”\,?},
+  title = {Provinciales 2026 : qui est la «\,troisième voie\,»\,?},
   date = {2026-06-30},
   url = {https://contours.nc/posts/provinciales-2026-troisieme-voie/},
   langid = {fr}
 }
 </code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas" role="listitem">
 Brouillon, Jonas. 2026. <span>“Provinciales 2026 : qui est la
-<span>‘troisième voie’</span> ?”</span> June 30, 2026. <a href="https://contours.nc/posts/provinciales-2026-troisieme-voie/">https://contours.nc/posts/provinciales-2026-troisieme-voie/</a>.
+« troisième voie » ?”</span> June 30, 2026. <a href="https://contours.nc/posts/provinciales-2026-troisieme-voie/">https://contours.nc/posts/provinciales-2026-troisieme-voie/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script>
 (() => {
@@ -1344,10 +1344,21 @@ Brouillon, Jonas. 2026. <span>“Provinciales 2026 : qui est la
   const citationSection = document.querySelector("#quarto-citation");
   if (!citationSection || citationSection.dataset.contoursCitation === "true") return;
 
-  const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
-  const meta = (name) => document.querySelector(`meta[name="${name}"]`)?.content?.trim() || "";
+  const decodeEntities = (value) => {
+    let decoded = value || "";
+    const textarea = document.createElement("textarea");
+    for (let i = 0; i < 3; i += 1) {
+      textarea.innerHTML = decoded;
+      const next = textarea.value;
+      if (next === decoded) break;
+      decoded = next;
+    }
+    return decoded;
+  };
+  const clean = (value) => decodeEntities(value).replace(/\s+/g, " ").trim();
+  const meta = (name) => clean(document.querySelector(`meta[name="${name}"]`)?.content || "");
   const metas = (name) => Array.from(document.querySelectorAll(`meta[name="${name}"]`))
-    .map((item) => item.content?.trim())
+    .map((item) => clean(item.content))
     .filter(Boolean);
 
   const nativeBibtex = citationSection
