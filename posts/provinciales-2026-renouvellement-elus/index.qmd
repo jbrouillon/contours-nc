@@ -147,26 +147,29 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
   white-space: nowrap;
 }
 
-.renouv-details {
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin: 1.1rem 0 2rem;
-  overflow: hidden;
+.renouv-roster-sections {
+  margin: 1.1rem 0 2.2rem;
 }
 
-.renouv-details summary {
-  cursor: pointer;
-  font-weight: 800;
-  padding: 0.9rem 1rem;
+.renouv-roster-province {
+  margin: 1.25rem 0 1.8rem;
+}
+
+.renouv-roster-province + .renouv-roster-province {
+  border-top: 1px solid var(--border);
+  padding-top: 1.35rem;
+}
+
+.renouv-roster-province-title {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
 }
 
 .renouv-roster {
-  border-top: 1px solid var(--border);
   display: grid;
   gap: 0.9rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  padding: 1rem;
 }
 
 .renouv-roster-list {
@@ -724,6 +727,10 @@ render_list_summary_table()
 ```
 
 La couche municipale permet d'observer que parmi les élus provinciaux 2026, `r fmt_int(n_elus_provinciaux_candidats_municipaux_2026)` étaient candidats aux municipales, dont `r fmt_int(n_elus_provinciaux_elus_municipaux_2026)` élus municipaux.
+
+## Le détail nominatif
+
+Les fiches ci-dessous indiquent, pour chaque élu, la catégorie principale retenue et les autres traces repérées dans les sources 2019 et 2026.
 
 ```{r}
 render_elected_roster()

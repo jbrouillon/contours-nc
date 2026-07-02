@@ -1415,26 +1415,29 @@ rapports de force.”</span> July 2, 2026. <a href="https://contours.nc/posts/pr
   white-space: nowrap;
 }
 
-.renouv-details {
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin: 1.1rem 0 2rem;
-  overflow: hidden;
+.renouv-roster-sections {
+  margin: 1.1rem 0 2.2rem;
 }
 
-.renouv-details summary {
-  cursor: pointer;
-  font-weight: 800;
-  padding: 0.9rem 1rem;
+.renouv-roster-province {
+  margin: 1.25rem 0 1.8rem;
+}
+
+.renouv-roster-province + .renouv-roster-province {
+  border-top: 1px solid var(--border);
+  padding-top: 1.35rem;
+}
+
+.renouv-roster-province-title {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
 }
 
 .renouv-roster {
-  border-top: 1px solid var(--border);
   display: grid;
   gap: 0.9rem;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  padding: 1rem;
 }
 
 .renouv-roster-list {
@@ -2114,13 +2117,18 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </div>
 </div>
 <p>La couche municipale permet d’observer que parmi les élus provinciaux 2026, 43 étaient candidats aux municipales, dont 32 élus municipaux.</p>
+</section>
+<section id="le-détail-nominatif" class="level2">
+<h2 class="anchored" data-anchor-id="le-détail-nominatif">Le détail nominatif</h2>
+<p>Les fiches ci-dessous indiquent, pour chaque élu, la catégorie principale retenue et les autres traces repérées dans les sources 2019 et 2026.</p>
 <div class="cell">
 <div class="cell-output-display">
-<details class="renouv-details">
-<summary>Voir le détail nominatif des élus classés par origine</summary>
+<div class="renouv-roster-sections">
+<section class="renouv-roster-province">
+<h3 class="renouv-roster-province-title anchored">Province des Îles</h3>
 <div class="renouv-roster">
 <section class="renouv-roster-list">
-<h3 class="anchored">Province des Îles - Palika Îles</h3>
+<h3 class="anchored">Palika Îles</h3>
 <p class="renouv-roster-meta">2 sièges provinciaux, dont 1 au Congrès</p>
 <ol>
 <li>
@@ -2138,7 +2146,7 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </ol>
 </section>
 <section class="renouv-roster-list">
-<h3 class="anchored">Province des Îles - Nation autochtone / DA</h3>
+<h3 class="anchored">Nation autochtone / DA</h3>
 <p class="renouv-roster-meta">6 sièges provinciaux, dont 3 au Congrès</p>
 <ol>
 <li>
@@ -2178,7 +2186,7 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </ol>
 </section>
 <section class="renouv-roster-list">
-<h3 class="anchored">Province des Îles - UC-FLNKS Îles</h3>
+<h3 class="anchored">UC-FLNKS Îles</h3>
 <p class="renouv-roster-meta">6 sièges provinciaux, dont 3 au Congrès</p>
 <ol>
 <li>
@@ -2218,8 +2226,13 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </li>
 </ol>
 </section>
+</div>
+</section>
+<section class="renouv-roster-province">
+<h3 class="renouv-roster-province-title anchored">Province Nord</h3>
+<div class="renouv-roster">
 <section class="renouv-roster-list">
-<h3 class="anchored">Province Nord - LL-LR Nord</h3>
+<h3 class="anchored">LL-LR Nord</h3>
 <p class="renouv-roster-meta">3 sièges provinciaux, dont 2 au Congrès</p>
 <ol>
 <li>
@@ -2244,7 +2257,7 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </ol>
 </section>
 <section class="renouv-roster-list">
-<h3 class="anchored">Province Nord - UC-FLNKS</h3>
+<h3 class="anchored">UC-FLNKS</h3>
 <p class="renouv-roster-meta">10 sièges provinciaux, dont 7 au Congrès</p>
 <ol>
 <li>
@@ -2313,7 +2326,7 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </ol>
 </section>
 <section class="renouv-roster-list">
-<h3 class="anchored">Province Nord - UNI</h3>
+<h3 class="anchored">UNI</h3>
 <p class="renouv-roster-meta">9 sièges provinciaux, dont 6 au Congrès</p>
 <ol>
 <li>
@@ -2374,8 +2387,13 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </li>
 </ol>
 </section>
+</div>
+</section>
+<section class="renouv-roster-province">
+<h3 class="renouv-roster-province-title anchored">Province Sud</h3>
+<div class="renouv-roster">
 <section class="renouv-roster-list">
-<h3 class="anchored">Province Sud - Éveil océanien</h3>
+<h3 class="anchored">Éveil océanien</h3>
 <p class="renouv-roster-meta">5 sièges provinciaux, dont 4 au Congrès</p>
 <ol>
 <li>
@@ -2413,7 +2431,57 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </ol>
 </section>
 <section class="renouv-roster-list">
-<h3 class="anchored">Province Sud - LL-LR</h3>
+<h3 class="anchored">FLNKS</h3>
+<p class="renouv-roster-meta">7 sièges provinciaux, dont 6 au Congrès</p>
+<ol>
+<li>
+<span class="renouv-roster-rank">1</span>
+<span class="renouv-roster-name">WAMYTAN Johanito</span>
+<span class="renouv-origin-badge" style="--badge-color: #2f8fb8;">Élu municipal</span>
+<span class="renouv-roster-commune" title="Élu municipal 2026 - Dumbéa - DUMBÉA, AU SERVICE DU PEUPLE">Mun. 2026 : Dumbéa</span>
+</li>
+<li>
+<span class="renouv-roster-rank">2</span>
+<span class="renouv-roster-name">TROLUE Oriane Cingône</span>
+<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
+<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
+</li>
+<li>
+<span class="renouv-roster-rank">3</span>
+<span class="renouv-roster-name">FOCHI Dominique</span>
+<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
+<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
+<span class="renouv-roster-commune" title="Candidat municipal non élu - LE MONT-DORE, NOTRE VILLE POUR UNE NATION SOUVERAINE (Le Mont-Dore)">Mun. 2026 : candidat - Le Mont-Dore</span>
+</li>
+<li>
+<span class="renouv-roster-rank">4</span>
+<span class="renouv-roster-name">GOYETCHE Marie-Pierre</span>
+<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
+<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - Parti travailliste et forces progressistes</span>
+</li>
+<li>
+<span class="renouv-roster-rank">5</span>
+<span class="renouv-roster-name">TOURA Jean, Patrick</span>
+<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
+<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
+<span class="renouv-roster-commune" title="Candidat municipal non élu - Notre jeunesse au coeur du changement (Thio)">Mun. 2026 : candidat - Thio</span>
+</li>
+<li>
+<span class="renouv-roster-rank">6</span>
+<span class="renouv-roster-name">LIKILIKI ép. HUMUNI Laurie</span>
+<span class="renouv-origin-badge" style="--badge-color: #c77d2a;">Candidat municipal</span>
+<span class="renouv-roster-commune" title="Candidat municipal non élu - LISTE CITOYENNE FLNKS PAÏTA (Païta)">Mun. 2026 : candidat - Païta</span>
+</li>
+<li>
+<span class="renouv-roster-rank">7</span>
+<span class="renouv-roster-name">ATINOUA Joe</span>
+<span class="renouv-origin-badge" style="--badge-color: #2f8fb8;">Élu municipal</span>
+<span class="renouv-roster-commune" title="Élu municipal 2026 - Yaté - YATÉ VERS UNE NATION SOUVERAINE">Mun. 2026 : Yaté</span>
+</li>
+</ol>
+</section>
+<section class="renouv-roster-list">
+<h3 class="anchored">LL-LR</h3>
 <p class="renouv-roster-meta">28 sièges provinciaux, dont 22 au Congrès</p>
 <ol>
 <li>
@@ -2591,58 +2659,9 @@ Province Sud : origine des élus provinciaux 2026 par liste représentée. Les b
 </li>
 </ol>
 </section>
-<section class="renouv-roster-list">
-<h3 class="anchored">Province Sud - FLNKS</h3>
-<p class="renouv-roster-meta">7 sièges provinciaux, dont 6 au Congrès</p>
-<ol>
-<li>
-<span class="renouv-roster-rank">1</span>
-<span class="renouv-roster-name">WAMYTAN Johanito</span>
-<span class="renouv-origin-badge" style="--badge-color: #2f8fb8;">Élu municipal</span>
-<span class="renouv-roster-commune" title="Élu municipal 2026 - Dumbéa - DUMBÉA, AU SERVICE DU PEUPLE">Mun. 2026 : Dumbéa</span>
-</li>
-<li>
-<span class="renouv-roster-rank">2</span>
-<span class="renouv-roster-name">TROLUE Oriane Cingône</span>
-<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
-<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
-</li>
-<li>
-<span class="renouv-roster-rank">3</span>
-<span class="renouv-roster-name">FOCHI Dominique</span>
-<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
-<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
-<span class="renouv-roster-commune" title="Candidat municipal non élu - LE MONT-DORE, NOTRE VILLE POUR UNE NATION SOUVERAINE (Le Mont-Dore)">Mun. 2026 : candidat - Le Mont-Dore</span>
-</li>
-<li>
-<span class="renouv-roster-rank">4</span>
-<span class="renouv-roster-name">GOYETCHE Marie-Pierre</span>
-<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
-<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - Parti travailliste et forces progressistes</span>
-</li>
-<li>
-<span class="renouv-roster-rank">5</span>
-<span class="renouv-roster-name">TOURA Jean, Patrick</span>
-<span class="renouv-origin-badge" style="--badge-color: #6d8f71;">Candidat 2019</span>
-<span class="renouv-roster-commune" title="Présence dans les listes provinciales 2019">Prov. 2019 : candidat - FLNKS</span>
-<span class="renouv-roster-commune" title="Candidat municipal non élu - Notre jeunesse au coeur du changement (Thio)">Mun. 2026 : candidat - Thio</span>
-</li>
-<li>
-<span class="renouv-roster-rank">6</span>
-<span class="renouv-roster-name">LIKILIKI ép. HUMUNI Laurie</span>
-<span class="renouv-origin-badge" style="--badge-color: #c77d2a;">Candidat municipal</span>
-<span class="renouv-roster-commune" title="Candidat municipal non élu - LISTE CITOYENNE FLNKS PAÏTA (Païta)">Mun. 2026 : candidat - Païta</span>
-</li>
-<li>
-<span class="renouv-roster-rank">7</span>
-<span class="renouv-roster-name">ATINOUA Joe</span>
-<span class="renouv-origin-badge" style="--badge-color: #2f8fb8;">Élu municipal</span>
-<span class="renouv-roster-commune" title="Élu municipal 2026 - Yaté - YATÉ VERS UNE NATION SOUVERAINE">Mun. 2026 : Yaté</span>
-</li>
-</ol>
+</div>
 </section>
 </div>
-</details>
 </div>
 </div>
 </section>

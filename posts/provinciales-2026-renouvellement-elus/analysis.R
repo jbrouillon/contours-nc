@@ -855,38 +855,56 @@ render_elected_roster <- function() {
       origin_label_display = origin_label
     )
 
-  groups <- split(roster, roster$group_key)
-
-  tags$details(
-    class = "renouv-details",
-    tags$summary("Voir le détail nominatif des élus classés par origine"),
-    tags$div(
-      class = "renouv-roster",
-      lapply(groups, function(dat) {
-        first_row <- dat[1, ]
-        tags$section(
-          class = "renouv-roster-list",
-          tags$h3(glue("{first_row$province_label} - {first_row$liste_label}")),
-          tags$p(
-            class = "renouv-roster-meta",
-            glue("{fmt_int(first_row$sieges_province)} sièges provinciaux, dont {fmt_int(first_row$sieges_congres)} au Congrès")
-          ),
-          tags$ol(
-            lapply(seq_len(nrow(dat)), function(i) {
-              row <- dat[i, ]
-              tags$li(
-                tags$span(class = "renouv-roster-rank", fmt_int(row$rang)),
-                tags$span(class = "renouv-roster-name", row$name_label),
-                origin_badge(row$origin_code, row$origin_short),
-                provincial_2019_chip(row),
-                municipal_2026_chip(row),
-                profile_signal_chip(row)
-              )
-            })
+  render_list_card <- function(dat) {
+    first_row <- dat[1, ]
+    tags$section(
+      class = "renouv-roster-list",
+      tags$h3(glue("{first_row$liste_label}")),
+      tags$p(
+        class = "renouv-roster-meta",
+        glue("{fmt_int(first_row$sieges_province)} sièges provinciaux, dont {fmt_int(first_row$sieges_congres)} au Congrès")
+      ),
+      tags$ol(
+        lapply(seq_len(nrow(dat)), function(i) {
+          row <- dat[i, ]
+          tags$li(
+            tags$span(class = "renouv-roster-rank", fmt_int(row$rang)),
+            tags$span(class = "renouv-roster-name", row$name_label),
+            origin_badge(row$origin_code, row$origin_short),
+            provincial_2019_chip(row),
+            municipal_2026_chip(row),
+            profile_signal_chip(row)
           )
-        )
-      })
+        })
+      )
     )
+  }
+
+  province_sections <- lapply(province_order, function(province_name) {
+    province_dat <- roster |>
+      filter(province == province_name)
+
+    if (nrow(province_dat) == 0) return(NULL)
+
+    group_keys <- unique(province_dat$group_key)
+    list_groups <- lapply(group_keys, function(key) {
+      province_dat |>
+        filter(group_key == key)
+    })
+
+    tags$section(
+      class = "renouv-roster-province",
+      tags$h3(class = "renouv-roster-province-title", province_dat$province_label[[1]]),
+      tags$div(
+        class = "renouv-roster",
+        lapply(list_groups, render_list_card)
+      )
+    )
+  })
+
+  tags$div(
+    class = "renouv-roster-sections",
+    province_sections
   )
 }
 
