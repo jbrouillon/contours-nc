@@ -28,6 +28,9 @@ data/outputs_provinciales_candidats/ocr_images/
 data/outputs_provinciales_candidats/ocr_text/
 # Sources téléchargeables ou exports intermédiaires recréables
 data/elections/data_raw/provinciales_2026/propagande_electronique/**/*.pdf
+data/elections/data_raw/*.pdf
+data/elections/data_raw/municipales_2026/*Resultats*.pdf
+data/elections/data_raw/municipales_2026/*resultats*.pdf
 # OCR : un corpus consolidé est conservé ; les caches et audits se régénèrent.
 data/elections/data_processed/provinciales_2026/propagande_electronique/**/*.txt
 data/elections/data_processed/provinciales_2026/propagande_electronique/manifest_extraction_*.csv

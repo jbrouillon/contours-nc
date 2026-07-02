@@ -91,15 +91,15 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="citation_title" content="Provinciales 2026 : premier bilan des rapports de force">
 <meta name="citation_author" content="Jonas Brouillon">
-<meta name="citation_publication_date" content="2026-06-29">
-<meta name="citation_cover_date" content="2026-06-29">
+<meta name="citation_publication_date" content="2026-07-02">
+<meta name="citation_cover_date" content="2026-07-02">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-06-29">
+<meta name="citation_online_date" content="2026-07-02">
 <meta name="citation_fulltext_html_url" content="https://contours.nc/posts/provinciales-2026-premier-bilan/">
 <meta name="citation_language" content="fr">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed article-updated quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -183,12 +183,18 @@ ul.task-list li input[type="checkbox"] {
     </div>
       
       <div>
-      <div class="quarto-title-meta-heading">Date de publication</div>
+      <div class="quarto-title-meta-heading">Mis à jour</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">29 juin 2026</p>
+        <p class="date">2 juillet 2026</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modifié</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">2 juillet 2026</p>
+      </div>
+    </div>
       
     </div>
     
@@ -270,6 +276,18 @@ ul.task-list li input[type="checkbox"] {
   border-left: 4px solid var(--green);
   border-radius: 6px;
   margin: 1.2rem 0;
+  padding: 0.85rem 1rem;
+}
+
+.bilan-update {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-left: 5px solid #9b5f8f;
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  margin: 1rem 0 1.5rem;
   padding: 0.85rem 1rem;
 }
 
@@ -904,10 +922,14 @@ window.ContoursSketch = (() => {
     const data = p.data;
     const cats = toArray(p.options.categories);
     const compact = window.innerWidth < 760;
-    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? 126 : 0));
+    const compactExtraHeight = p.options.compactExtraHeight || (cats.length > 5 ? 196 : 126);
+    const compactTopMargin = p.options.compactTopMargin || (cats.length > 5 ? 112 : 92);
+    const compactBottomMargin = p.options.compactBottomMargin || (cats.length > 5 ? 224 : 158);
+    const desktopBottomMargin = p.options.desktopBottomMargin || (cats.length > 6 ? 126 : 86);
+    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? compactExtraHeight : 0));
     const margin = compact
-      ? { top: 92, right: 40, bottom: 158, left: 72 }
-      : { top: 60, right: 40, bottom: 86, left: 110 };
+      ? { top: compactTopMargin, right: 40, bottom: compactBottomMargin, left: 72 }
+      : { top: 60, right: 40, bottom: desktopBottomMargin, left: 110 };
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -940,7 +962,7 @@ window.ContoursSketch = (() => {
           const yy = y(bottom + value);
           const hh = y(bottom) - y(bottom + value);
           roughRect(g, rc, x(String(year)), yy, x.bandwidth(), hh, cat.color);
-          if (value >= 2) {
+          if (value >= 2 && hh >= (p.options.minSegmentLabelHeight || 0)) {
             label(g, value, x(String(year)) + x.bandwidth() / 2, yy + hh / 2, {
               anchor: "middle",
               color: p.options.valueFormat === "pct" ? ink : "white",
@@ -952,8 +974,11 @@ window.ContoursSketch = (() => {
         bottom += value;
       });
     });
-    const stackedLegend = legendLayout(width, cats.length, 4, { maxCellWidth: 190 });
-    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, compact ? height - 56 - (stackedLegend.rows - 1) * 30 : height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
+    const stackedLegend = legendLayout(width, cats.length, 4, {
+      maxCellWidth: 190,
+      compactColumns: p.options.compactLegendColumns || 2
+    });
+    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, compact ? height - 56 - (stackedLegend.rows - 1) * 30 : height - 22 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
       cellWidth: stackedLegend.cellWidth,
       rowHeight: compact ? 30 : 28
     });
@@ -1134,6 +1159,9 @@ window.ContoursSketch = (() => {
 <p>L’objectif ici n’est pas de descendre dans le détail infra-communal, mais de poser un premier bilan politique à l’échelle où les provinciales produisent leurs effets institutionnels : les trois assemblées de province et le Congrès.</p>
 <p>On regarde donc quatre choses : la mobilisation, le rapport indépendantistes / non-indépendantistes, les nuances internes à ces familles politiques, et l’écart entre les voix obtenues et les voix effectivement représentées par des sièges.</p>
 </div>
+<div class="bilan-update">
+<p><strong>Mise à jour du 2 juillet 2026, après une première publication le 29 juin.</strong> Deux graphiques ont été ajoutés pour détailler les voix et les sièges du Congrès par nuances politiques depuis 1989. L’objectif est de rendre plus lisibles les regroupements utilisés dans les familles politiques : le centre reste classé parmi les non-indépendantistes, mais il est distingué des loyalistes ; les principales nuances indépendantistes sont également séparées.</p>
+</div>
 <div class="bilan-stat-grid">
 <article class="bilan-stat-card">
 <div class="bilan-stat-value">
@@ -1244,23 +1272,35 @@ Part des voix classées indépendantistes dans chaque province depuis 1989. Ce r
 </section>
 <section id="en-voix-un-scrutin-moins-mobilisé-pas-seulement-recomposé" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="en-voix-un-scrutin-moins-mobilisé-pas-seulement-recomposé">En voix : un scrutin moins mobilisé, pas seulement recomposé</h2>
-<p>La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu’en 1989, mais avec une participation plus basse qu’au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l’abstention.</p>
+<p>La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu’en 1989, mais avec une participation plus basse qu’au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l’abstention. On propose ici deux lectures : une série longue comparable depuis 1989, puis une version par nuances politiques qui distingue les familles internes aux non-indépendantistes comme aux indépendantistes.</p>
 <div class="column-page bilan-plot">
 <div id="chart-voix-historique-congres" class="bilan-sketch" data-sketch-chart="line">
 
 </div>
 <script type="application/json" id="chart-voix-historique-congres-data">{"type":"line","data":[{"annee":1989,"serie":"Non-indépendantistes","valeur":38745,"couleur":"#305f9f"},{"annee":1989,"serie":"Indépendantistes","valeur":21299,"couleur":"#2f925d"},{"annee":1989,"serie":"Autres / pro-pays","valeur":2429,"couleur":"#8a7d72"},{"annee":1995,"serie":"Non-indépendantistes","valeur":43335,"couleur":"#305f9f"},{"annee":1995,"serie":"Indépendantistes","valeur":25094,"couleur":"#2f925d"},{"annee":1995,"serie":"Autres / pro-pays","valeur":3362,"couleur":"#8a7d72"},{"annee":1999,"serie":"Non-indépendantistes","valeur":46477,"couleur":"#305f9f"},{"annee":1999,"serie":"Indépendantistes","valeur":32138,"couleur":"#2f925d"},{"annee":1999,"serie":"Autres / pro-pays","valeur":706,"couleur":"#8a7d72"},{"annee":2004,"serie":"Non-indépendantistes","valeur":51863,"couleur":"#305f9f"},{"annee":2004,"serie":"Indépendantistes","valeur":35791,"couleur":"#2f925d"},{"annee":2004,"serie":"Autres / pro-pays","valeur":1907,"couleur":"#8a7d72"},{"annee":2009,"serie":"Non-indépendantistes","valeur":55469,"couleur":"#305f9f"},{"annee":2009,"serie":"Indépendantistes","valeur":36900,"couleur":"#2f925d"},{"annee":2009,"serie":"Autres / pro-pays","valeur":4189,"couleur":"#8a7d72"},{"annee":2014,"serie":"Non-indépendantistes","valeur":61638,"couleur":"#305f9f"},{"annee":2014,"serie":"Indépendantistes","valeur":43628,"couleur":"#2f925d"},{"annee":2019,"serie":"Non-indépendantistes","valeur":53499,"couleur":"#305f9f"},{"annee":2019,"serie":"Éveil océanien","valeur":6077,"couleur":"#55a6b8"},{"annee":2019,"serie":"Indépendantistes","valeur":46692,"couleur":"#2f925d"},{"annee":2019,"serie":"Autres / pro-pays","valeur":3895,"couleur":"#8a7d72"},{"annee":2026,"serie":"Non-indépendantistes","valeur":57671,"couleur":"#305f9f"},{"annee":2026,"serie":"Éveil océanien","valeur":8399,"couleur":"#55a6b8"},{"annee":2026,"serie":"Indépendantistes","valeur":49931,"couleur":"#2f925d"},{"annee":2026,"serie":"Autres / pro-pays","valeur":4428,"couleur":"#8a7d72"}],"options":{"title":"Voix par familles politiques au Congrès depuis 1989","yLabel":"Voix","xDomain":[1989,2026],"xTicks":[1989,1995,1999,2004,2009,2014,2019,2026],"valueFormat":"int","height":580}}</script>
 <p class="bilan-sketch-caption">
-Voix agrégées par familles politiques au Congrès. L’Éveil océanien est isolé en 2019 et 2026.
+Voix agrégées par familles politiques au Congrès. L’Éveil océanien est isolé en 2019 et 2026 ; les listes pro-pays non rattachées aux deux grandes familles sont regroupées à part.
 </p>
 <script>window.ContoursSketch && window.ContoursSketch.render("chart-voix-historique-congres");</script>
 </div>
+<p>Dans ce graphique, <strong>non-indépendantiste ne veut pas dire loyaliste</strong>. Le classement prolonge celui de la série historique extraite des tableaux Wikipédia, afin de garder une comparaison stable depuis 1989. La famille regroupe les listes qui ne portent pas l’indépendance dans ce scrutin : LL-LR, Agissons / LL-LR Nord, les listes du centre non-indépendantiste comme Une Province pour tous, Nous, réunis et Un espoir pour demain, la droite nationale et Un nouveau souffle aux Îles. À l’inverse, l’Éveil océanien est isolé, car sa position pivot rend trompeuse son addition automatique à cette famille ; Faire Pays est rangé avec les autres listes pro-pays.</p>
+<div class="column-page bilan-plot">
+<div id="chart-voix-nuances-congres" class="bilan-sketch" data-sketch-chart="stackedVertical">
+
+</div>
+<script type="application/json" id="chart-voix-nuances-congres-data">{"type":"stackedVertical","data":[{"annee":1989,"category":"droite_nationale","valeur":9037},{"annee":1989,"category":"loyaliste_droite","valeur":27777},{"annee":1989,"category":"centre_non_ind","valeur":1931},{"annee":1989,"category":"oceanien","valeur":2429},{"annee":1989,"category":"uc_flnks","valeur":17898},{"annee":1989,"category":"autres_ind","valeur":3401},{"annee":1995,"category":"droite_nationale","valeur":6455},{"annee":1995,"category":"loyaliste_droite","valeur":25977},{"annee":1995,"category":"centre_non_ind","valeur":10903},{"annee":1995,"category":"oceanien","valeur":1113},{"annee":1995,"category":"uc_flnks","valeur":14005},{"annee":1995,"category":"uni_palika","valeur":7017},{"annee":1995,"category":"autres_ind","valeur":4072},{"annee":1995,"category":"autres_listes","valeur":2249},{"annee":1999,"category":"droite_nationale","valeur":7286},{"annee":1999,"category":"loyaliste_droite","valeur":30774},{"annee":1999,"category":"centre_non_ind","valeur":8417},{"annee":1999,"category":"uc_flnks","valeur":14778},{"annee":1999,"category":"uni_palika","valeur":6166},{"annee":1999,"category":"autres_ind","valeur":11194},{"annee":1999,"category":"autres_listes","valeur":706},{"annee":2004,"category":"droite_nationale","valeur":6684},{"annee":2004,"category":"loyaliste_droite","valeur":21880},{"annee":2004,"category":"centre_non_ind","valeur":20328},{"annee":2004,"category":"autres_non_ind","valeur":2971},{"annee":2004,"category":"pro_pays","valeur":1907},{"annee":2004,"category":"uc_flnks","valeur":10623},{"annee":2004,"category":"uni_palika","valeur":14651},{"annee":2004,"category":"autres_ind","valeur":10517},{"annee":2009,"category":"droite_nationale","valeur":2591},{"annee":2009,"category":"loyaliste_droite","valeur":24192},{"annee":2009,"category":"centre_non_ind","valeur":27561},{"annee":2009,"category":"autres_non_ind","valeur":1125},{"annee":2009,"category":"pro_pays","valeur":4189},{"annee":2009,"category":"uc_flnks","valeur":16589},{"annee":2009,"category":"uni_palika","valeur":10162},{"annee":2009,"category":"autres_ind","valeur":10149},{"annee":2014,"category":"droite_nationale","valeur":2706},{"annee":2014,"category":"loyaliste_droite","valeur":29318},{"annee":2014,"category":"centre_non_ind","valeur":27424},{"annee":2014,"category":"pro_pays","valeur":2190},{"annee":2014,"category":"uc_flnks","valeur":25891},{"annee":2014,"category":"uni_palika","valeur":10929},{"annee":2014,"category":"autres_ind","valeur":6808},{"annee":2019,"category":"droite_nationale","valeur":2707},{"annee":2019,"category":"loyaliste_droite","valeur":31874},{"annee":2019,"category":"centre_non_ind","valeur":15097},{"annee":2019,"category":"oceanien","valeur":6077},{"annee":2019,"category":"pro_pays","valeur":1971},{"annee":2019,"category":"uc_flnks","valeur":25524},{"annee":2019,"category":"uni_palika","valeur":12679},{"annee":2019,"category":"autres_ind","valeur":6518},{"annee":2019,"category":"autres_listes","valeur":7716},{"annee":2026,"category":"droite_nationale","valeur":1885},{"annee":2026,"category":"loyaliste_droite","valeur":45825},{"annee":2026,"category":"centre_non_ind","valeur":9961},{"annee":2026,"category":"oceanien","valeur":8399},{"annee":2026,"category":"pro_pays","valeur":4428},{"annee":2026,"category":"uc_flnks","valeur":27206},{"annee":2026,"category":"uni_palika","valeur":16503},{"annee":2026,"category":"autres_ind","valeur":6222}],"options":{"title":"Voix au Congrès par nuances politiques depuis 1989","years":[1989,1995,1999,2004,2009,2014,2019,2026],"categories":{"droite_nationale":{"id":"droite_nationale","label":"Droite nationale","color":"#7a4a28"},"loyaliste_droite":{"id":"loyaliste_droite","label":"Loyalistes","color":"#305f9f"},"centre_non_ind":{"id":"centre_non_ind","label":"Centre non-ind.","color":"#67a9cf"},"autres_non_ind":{"id":"autres_non_ind","label":"Autres non-indépendantistes","color":"#7f9bb7"},"oceanien":{"id":"oceanien","label":"Éveil / océanien","color":"#55a6b8"},"pro_pays":{"id":"pro_pays","label":"Pro-pays / souverainistes","color":"#9b5f8f"},"uc_flnks":{"id":"uc_flnks","label":"UC-FLNKS / FLNKS","color":"#2f925d"},"uni_palika":{"id":"uni_palika","label":"UNI / Palika","color":"#f0c52f"},"autres_ind":{"id":"autres_ind","label":"Autres indépendantistes","color":"#b6483b"},"autres_listes":{"id":"autres_listes","label":"Autres listes","color":"#8a7d72"}},"yLabel":"Voix","valueFormat":"int","minSegmentLabelHeight":34,"compactExtraHeight":260,"compactTopMargin":112,"compactBottomMargin":286,"height":700}}</script>
+<p class="bilan-sketch-caption">
+Lecture détaillée 1989-2026 des voix au Congrès par nuances politiques. Les listes du centre restent rattachées aux non-indépendantistes dans la série longue ; les principales nuances indépendantistes sont distinguées.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-voix-nuances-congres");</script>
+</div>
+<p>Ce graphique ne change pas le principe de classement : UNCT / Alliance, DECA, Avenir ensemble, Calédonie ensemble, Nous, réunis, Une Province pour tous et les listes proches du centre restent classées parmi les non-indépendantistes, car elles ne portent pas l’indépendance. Il détaille aussi la famille indépendantiste entre UC-FLNKS / FLNKS, UNI / Palika et autres listes indépendantistes. Quand les libellés anciens sont moins nets, ils restent isolés dans les catégories “autres” plutôt que d’être artificiellement rattachés à une nuance.</p>
 <p>La progression des indépendantistes au Sud se voit en part des exprimés, mais le bilan global dépend aussi de la démobilisation. L’Éveil océanien, lui, passe de 6 077 voix et 3 sièges au Congrès en 2019 à 8 399 voix et 4 sièges en 2026 : son rôle ne tient donc pas seulement à l’arithmétique des familles politiques, mais aussi à une implantation électorale qui se maintient et se renforce dans le Sud.</p>
 <div class="column-page bilan-plot">
 <div id="chart-voix-nuances-provinces" class="bilan-sketch" data-sketch-chart="axisBarsFacets">
 
 </div>
-<script type="application/json" id="chart-voix-nuances-provinces-data">{"type":"axisBarsFacets","data":[{"annee":2019,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":11269,"pct_exprimes":15.88100171,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":12842,"pct_exprimes":15.59252064,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UNI / Palika","valeur":3401,"pct_exprimes":4.12943176,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1335,"pct_exprimes":1.88136811,"couleur":"#88a96d"},{"annee":2026,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1003,"pct_exprimes":1.21782419,"couleur":"#88a96d"},{"annee":2019,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":1244,"pct_exprimes":1.75312504,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":3575,"pct_exprimes":4.34069937,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":6077,"pct_exprimes":8.5641004,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":8399,"pct_exprimes":10.19791161,"couleur":"#55a6b8"},{"annee":2019,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":13122,"pct_exprimes":18.49236883,"couleur":"#67a9cf"},{"annee":2026,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":9961,"pct_exprimes":12.09446333,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Sud","serie":"Loyalistes","valeur":28802,"pct_exprimes":40.58963627,"couleur":"#305f9f"},{"annee":2026,"province_label":"Sud","serie":"Loyalistes","valeur":41294,"pct_exprimes":50.13841671,"couleur":"#305f9f"},{"annee":2019,"province_label":"Sud","serie":"Droite nationale","valeur":2707,"pct_exprimes":3.81487901,"couleur":"#7a4a28"},{"annee":2026,"province_label":"Sud","serie":"Droite nationale","valeur":1885,"pct_exprimes":2.28873239,"couleur":"#7a4a28"},{"annee":2019,"province_label":"Sud","serie":"Autres listes","valeur":6403,"pct_exprimes":9.02352062,"couleur":"#8a7d72"},{"annee":2019,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":9069,"pct_exprimes":35.95813013,"couleur":"#2f925d"},{"annee":2026,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":10418,"pct_exprimes":39.93100805,"couleur":"#2f925d"},{"annee":2019,"province_label":"Nord","serie":"UNI / Palika","valeur":9709,"pct_exprimes":38.49569803,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Nord","serie":"UNI / Palika","valeur":9319,"pct_exprimes":35.71866616,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Nord","serie":"Autres indépendantistes","valeur":842,"pct_exprimes":3.33848777,"couleur":"#88a96d"},{"annee":2026,"province_label":"Nord","serie":"Autres indépendantistes","valeur":1239,"pct_exprimes":4.74894596,"couleur":"#88a96d"},{"annee":2019,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":554,"pct_exprimes":2.19658221,"couleur":"#4f8f6a"},{"annee":2026,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":853,"pct_exprimes":3.2694519,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Nord","serie":"Centre non-indépendantiste","valeur":1975,"pct_exprimes":7.83077594,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Nord","serie":"Loyalistes","valeur":3072,"pct_exprimes":12.18032592,"couleur":"#305f9f"},{"annee":2026,"province_label":"Nord","serie":"Loyalistes","valeur":4261,"pct_exprimes":16.33192794,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":5186,"pct_exprimes":37.08789244,"couleur":"#2f925d"},{"annee":2026,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":3946,"pct_exprimes":32.94098005,"couleur":"#2f925d"},{"annee":2019,"province_label":"Îles","serie":"UNI / Palika","valeur":2970,"pct_exprimes":21.24007724,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Îles","serie":"UNI / Palika","valeur":3783,"pct_exprimes":31.58026546,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Îles","serie":"Autres indépendantistes","valeur":2805,"pct_exprimes":20.06007295,"couleur":"#88a96d"},{"annee":2026,"province_label":"Îles","serie":"Autres indépendantistes","valeur":3980,"pct_exprimes":33.22481008,"couleur":"#88a96d"},{"annee":2019,"province_label":"Îles","serie":"Pro-pays / souverainistes","valeur":173,"pct_exprimes":1.23721662,"couleur":"#4f8f6a"},{"annee":2019,"province_label":"Îles","serie":"Éveil / nuance océanienne","valeur":1536,"pct_exprimes":10.98476722,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Îles","serie":"Loyalistes","valeur":270,"pct_exprimes":2.2539444,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"Autres listes","valeur":1313,"pct_exprimes":9.38997354,"couleur":"#8a7d72"}],"options":{"title":"Voix par nuances politiques : 2019 et 2026, province par province","years":[2019,2026]}}</script>
+<script type="application/json" id="chart-voix-nuances-provinces-data">{"type":"axisBarsFacets","data":[{"annee":2019,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":11269,"pct_exprimes":15.88100171,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UC-FLNKS / FLNKS","valeur":12842,"pct_exprimes":15.59252064,"couleur":"#2f925d"},{"annee":2026,"province_label":"Sud","serie":"UNI / Palika","valeur":3401,"pct_exprimes":4.12943176,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1335,"pct_exprimes":1.88136811,"couleur":"#88a96d"},{"annee":2026,"province_label":"Sud","serie":"Autres indépendantistes","valeur":1003,"pct_exprimes":1.21782419,"couleur":"#88a96d"},{"annee":2019,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":1244,"pct_exprimes":1.75312504,"couleur":"#9b5f8f"},{"annee":2026,"province_label":"Sud","serie":"Pro-pays / souverainistes","valeur":3575,"pct_exprimes":4.34069937,"couleur":"#9b5f8f"},{"annee":2019,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":6077,"pct_exprimes":8.5641004,"couleur":"#55a6b8"},{"annee":2026,"province_label":"Sud","serie":"Éveil / nuance océanienne","valeur":8399,"pct_exprimes":10.19791161,"couleur":"#55a6b8"},{"annee":2019,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":13122,"pct_exprimes":18.49236883,"couleur":"#67a9cf"},{"annee":2026,"province_label":"Sud","serie":"Centre non-indépendantiste","valeur":9961,"pct_exprimes":12.09446333,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Sud","serie":"Loyalistes","valeur":28802,"pct_exprimes":40.58963627,"couleur":"#305f9f"},{"annee":2026,"province_label":"Sud","serie":"Loyalistes","valeur":41294,"pct_exprimes":50.13841671,"couleur":"#305f9f"},{"annee":2019,"province_label":"Sud","serie":"Droite nationale","valeur":2707,"pct_exprimes":3.81487901,"couleur":"#7a4a28"},{"annee":2026,"province_label":"Sud","serie":"Droite nationale","valeur":1885,"pct_exprimes":2.28873239,"couleur":"#7a4a28"},{"annee":2019,"province_label":"Sud","serie":"Autres listes","valeur":6403,"pct_exprimes":9.02352062,"couleur":"#8a7d72"},{"annee":2019,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":9069,"pct_exprimes":35.95813013,"couleur":"#2f925d"},{"annee":2026,"province_label":"Nord","serie":"UC-FLNKS / FLNKS","valeur":10418,"pct_exprimes":39.93100805,"couleur":"#2f925d"},{"annee":2019,"province_label":"Nord","serie":"UNI / Palika","valeur":9709,"pct_exprimes":38.49569803,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Nord","serie":"UNI / Palika","valeur":9319,"pct_exprimes":35.71866616,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Nord","serie":"Autres indépendantistes","valeur":842,"pct_exprimes":3.33848777,"couleur":"#88a96d"},{"annee":2026,"province_label":"Nord","serie":"Autres indépendantistes","valeur":1239,"pct_exprimes":4.74894596,"couleur":"#88a96d"},{"annee":2019,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":554,"pct_exprimes":2.19658221,"couleur":"#9b5f8f"},{"annee":2026,"province_label":"Nord","serie":"Pro-pays / souverainistes","valeur":853,"pct_exprimes":3.2694519,"couleur":"#9b5f8f"},{"annee":2019,"province_label":"Nord","serie":"Centre non-indépendantiste","valeur":1975,"pct_exprimes":7.83077594,"couleur":"#67a9cf"},{"annee":2019,"province_label":"Nord","serie":"Loyalistes","valeur":3072,"pct_exprimes":12.18032592,"couleur":"#305f9f"},{"annee":2026,"province_label":"Nord","serie":"Loyalistes","valeur":4261,"pct_exprimes":16.33192794,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":5186,"pct_exprimes":37.08789244,"couleur":"#2f925d"},{"annee":2026,"province_label":"Îles","serie":"UC-FLNKS / FLNKS","valeur":3946,"pct_exprimes":32.94098005,"couleur":"#2f925d"},{"annee":2019,"province_label":"Îles","serie":"UNI / Palika","valeur":2970,"pct_exprimes":21.24007724,"couleur":"#f0c52f"},{"annee":2026,"province_label":"Îles","serie":"UNI / Palika","valeur":3783,"pct_exprimes":31.58026546,"couleur":"#f0c52f"},{"annee":2019,"province_label":"Îles","serie":"Autres indépendantistes","valeur":4341,"pct_exprimes":31.04484016,"couleur":"#88a96d"},{"annee":2026,"province_label":"Îles","serie":"Autres indépendantistes","valeur":3980,"pct_exprimes":33.22481008,"couleur":"#88a96d"},{"annee":2019,"province_label":"Îles","serie":"Pro-pays / souverainistes","valeur":173,"pct_exprimes":1.23721662,"couleur":"#9b5f8f"},{"annee":2026,"province_label":"Îles","serie":"Loyalistes","valeur":270,"pct_exprimes":2.2539444,"couleur":"#305f9f"},{"annee":2019,"province_label":"Îles","serie":"Autres listes","valeur":1313,"pct_exprimes":9.38997354,"couleur":"#8a7d72"}],"options":{"title":"Voix par nuances politiques : 2019 et 2026, province par province","years":[2019,2026]}}</script>
 <p class="bilan-sketch-caption">
 Évolution 2019-2026 des voix par province et par nuance politique. Les nuances agrègent les listes comparables plutôt que les seules grandes familles politiques.
 </p>
@@ -1346,6 +1386,17 @@ Répartition des sièges du Congrès par grandes familles. L’Éveil océanien 
 <script>window.ContoursSketch && window.ContoursSketch.render("chart-congres-historique");</script>
 </div>
 <div class="column-page bilan-plot">
+<div id="chart-congres-nuances-historique" class="bilan-sketch" data-sketch-chart="stackedVertical">
+
+</div>
+<script type="application/json" id="chart-congres-nuances-historique-data">{"type":"stackedVertical","data":[{"annee":1989,"category":"droite_nationale","valeur":5},{"annee":1989,"category":"loyaliste_droite","valeur":27},{"annee":1989,"category":"oceanien","valeur":2},{"annee":1989,"category":"uc_flnks","valeur":19},{"annee":1989,"category":"autres_ind","valeur":1},{"annee":1995,"category":"droite_nationale","valeur":4},{"annee":1995,"category":"loyaliste_droite","valeur":22},{"annee":1995,"category":"centre_non_ind","valeur":9},{"annee":1995,"category":"uc_flnks","valeur":12},{"annee":1995,"category":"uni_palika","valeur":5},{"annee":1995,"category":"autres_ind","valeur":2},{"annee":1999,"category":"droite_nationale","valeur":4},{"annee":1999,"category":"loyaliste_droite","valeur":24},{"annee":1999,"category":"centre_non_ind","valeur":3},{"annee":1999,"category":"uc_flnks","valeur":12},{"annee":1999,"category":"uni_palika","valeur":6},{"annee":1999,"category":"autres_ind","valeur":5},{"annee":2004,"category":"droite_nationale","valeur":4},{"annee":2004,"category":"loyaliste_droite","valeur":16},{"annee":2004,"category":"centre_non_ind","valeur":16},{"annee":2004,"category":"uc_flnks","valeur":7},{"annee":2004,"category":"uni_palika","valeur":8},{"annee":2004,"category":"autres_ind","valeur":3},{"annee":2009,"category":"loyaliste_droite","valeur":15},{"annee":2009,"category":"centre_non_ind","valeur":16},{"annee":2009,"category":"uc_flnks","valeur":11},{"annee":2009,"category":"uni_palika","valeur":8},{"annee":2009,"category":"autres_ind","valeur":4},{"annee":2014,"category":"loyaliste_droite","valeur":14},{"annee":2014,"category":"centre_non_ind","valeur":15},{"annee":2014,"category":"uc_flnks","valeur":15},{"annee":2014,"category":"uni_palika","valeur":7},{"annee":2014,"category":"autres_ind","valeur":3},{"annee":2019,"category":"loyaliste_droite","valeur":18},{"annee":2019,"category":"centre_non_ind","valeur":7},{"annee":2019,"category":"oceanien","valeur":3},{"annee":2019,"category":"uc_flnks","valeur":15},{"annee":2019,"category":"uni_palika","valeur":9},{"annee":2019,"category":"autres_ind","valeur":2},{"annee":2026,"category":"loyaliste_droite","valeur":24},{"annee":2026,"category":"oceanien","valeur":4},{"annee":2026,"category":"uc_flnks","valeur":16},{"annee":2026,"category":"uni_palika","valeur":7},{"annee":2026,"category":"autres_ind","valeur":3}],"options":{"title":"Sièges du Congrès par nuances politiques","years":[1989,1995,1999,2004,2009,2014,2019,2026],"categories":{"droite_nationale":{"id":"droite_nationale","label":"Droite nationale","color":"#7a4a28"},"loyaliste_droite":{"id":"loyaliste_droite","label":"Loyalistes","color":"#305f9f"},"centre_non_ind":{"id":"centre_non_ind","label":"Centre non-ind.","color":"#67a9cf"},"autres_non_ind":{"id":"autres_non_ind","label":"Autres non-indépendantistes","color":"#7f9bb7"},"oceanien":{"id":"oceanien","label":"Éveil / océanien","color":"#55a6b8"},"pro_pays":{"id":"pro_pays","label":"Pro-pays / souverainistes","color":"#9b5f8f"},"uc_flnks":{"id":"uc_flnks","label":"UC-FLNKS / FLNKS","color":"#2f925d"},"uni_palika":{"id":"uni_palika","label":"UNI / Palika","color":"#f0c52f"},"autres_ind":{"id":"autres_ind","label":"Autres indépendantistes","color":"#b6483b"},"autres_listes":{"id":"autres_listes","label":"Autres listes","color":"#8a7d72"}},"yLabel":"Sièges","yMax":54,"minSegmentLabelHeight":24,"compactExtraHeight":250,"compactTopMargin":112,"compactBottomMargin":276,"height":650}}</script>
+<p class="bilan-sketch-caption">
+Répartition des sièges du Congrès par nuances politiques depuis 1989. Le centre non-indépendantiste est distingué des loyalistes, et les principales nuances indépendantistes sont séparées.
+</p>
+<script>window.ContoursSketch && window.ContoursSketch.render("chart-congres-nuances-historique");</script>
+</div>
+<p>La lecture par nuance permet de distinguer le centre non-indépendantiste, très présent en sièges en 2004, 2009 et 2014, qui disparaît du Congrès en 2026 ; côté indépendantiste, l’équilibre entre UC-FLNKS / FLNKS, UNI / Palika et autres sensibilités varie fortement selon les scrutins.</p>
+<div class="column-page bilan-plot">
 <div id="chart-congres-hemicycle-2019" class="bilan-sketch" data-sketch-chart="hemicycle">
 
 </div>
@@ -1401,7 +1452,8 @@ Demi-cercle du Congrès 2026 : 54 sièges, colorés par groupe représenté.
 Sources, classement des familles politiques et limites
 </summary>
 <p>Les résultats 2026 s’appuient sur la publication complète du Haut-commissariat, PDF édité le 29 juin 2026 à 22:48:38. Par rapport à la première publication provisoire, les voix par liste et les sièges ne changent pas ; seuls quelques totaux techniques de votants, blancs/nuls et exprimés sont corrigés à l’unité.</p>
-<p>Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l’Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans “autres / pro-pays” lorsqu’il n’est pas agrégé par Wikipédia dans la famille indépendantiste.</p>
+<p>Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Le choix de classement vient d’abord de cette extraction structurée des tableaux Wikipédia : elle permet de conserver une série longue comparable, sans reclasser a posteriori chaque scrutin selon les débats du moment. Dans la version par nuances 1989-2026, les lignes de résultats par parti ou par liste permettent de distinguer le centre non-indépendantiste, la droite nationale, les loyalistes, les listes pro-pays et les principales nuances indépendantistes. Le centre reste toutefois rattaché sur le principe à la famille non-indépendantiste. Les graphiques par familles du Congrès isolent l’Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans “autres / pro-pays” lorsqu’il n’est pas agrégé par Wikipédia dans la famille indépendantiste.</p>
+<p>Pour 2026, la famille non-indépendantiste inclut LL-LR, LL-LR Nord, Nous, réunis, Une Province pour tous / DVC-Calédonie ensemble, Un espoir pour demain, RN-MCFNC, Pour une Calédonie française et Un nouveau souffle. La famille indépendantiste inclut le FLNKS / Kanaky pour tous, l’UC-FLNKS, l’UNI / Palika, Nation autochtone, UCC, UPK / Alternative Nord, Baselaia et SKNC.</p>
 <p>Pour 1999, la série principale utilise le scrutin provincial initial. La page Wikipédia signale ensuite l’annulation du scrutin aux Îles et la partielle de 2000 ; cette particularité doit être gardée à l’esprit pour les lectures fines de cette année.</p>
 </details>
 </section>
@@ -1418,13 +1470,13 @@ Sources, classement des familles politiques et limites
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
   author = {Brouillon, Jonas},
   title = {Provinciales 2026 : premier bilan des rapports de force},
-  date = {2026-06-29},
+  date = {2026-07-02},
   url = {https://contours.nc/posts/provinciales-2026-premier-bilan/},
   langid = {fr}
 }
 </code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas" role="listitem">
 Brouillon, Jonas. 2026. <span>“Provinciales 2026 : premier bilan des
-rapports de force.”</span> June 29, 2026. <a href="https://contours.nc/posts/provinciales-2026-premier-bilan/">https://contours.nc/posts/provinciales-2026-premier-bilan/</a>.
+rapports de force.”</span> July 2, 2026. <a href="https://contours.nc/posts/provinciales-2026-premier-bilan/">https://contours.nc/posts/provinciales-2026-premier-bilan/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script>
 (() => {
@@ -2005,6 +2057,57 @@ rapports de force.”</span> June 29, 2026. <a href="https://contours.nc/posts/p
     </form>`;
 
   main.appendChild(section);
+})();
+</script>
+<script>
+(() => {
+  const updatedPosts = document.querySelectorAll(
+    ".quarto-listing .quarto-post[data-listing-date-modified-sort]"
+  );
+
+  if (!updatedPosts.length) return;
+
+  const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    timeZone: "Pacific/Noumea",
+    year: "numeric"
+  });
+
+  const formatDate = (value) => {
+    const timestamp = Number(value);
+    if (!Number.isFinite(timestamp)) return "";
+    const date = new Date(timestamp);
+    if (Number.isNaN(date.getTime())) return "";
+    return dateFormatter.format(date);
+  };
+
+  updatedPosts.forEach((post) => {
+    if (post.querySelector(".listing-update-banner")) return;
+
+    const modifiedDate = formatDate(
+      post.getAttribute("data-listing-date-modified-sort")
+    );
+    if (!modifiedDate) return;
+
+    const title = post.querySelector(".listing-title");
+    if (!title) return;
+
+    const banner = document.createElement("div");
+    banner.className = "listing-update-banner";
+
+    const label = document.createElement("span");
+    label.className = "listing-update-banner__label";
+    label.innerHTML = "Mis &agrave; jour";
+
+    const date = document.createElement("span");
+    date.className = "listing-update-banner__date";
+    date.textContent = modifiedDate;
+
+    banner.append(label, date);
+    title.insertAdjacentElement("beforebegin", banner);
+    post.classList.add("quarto-post--updated");
+  });
 })();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

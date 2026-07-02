@@ -103,7 +103,7 @@ axe_colors <- c(
   "uc_flnks" = "#2f925d",
   "uni_palika" = "#f0c52f",
   "autres_ind" = "#88a96d",
-  "pro_pays" = "#4f8f6a",
+  "pro_pays" = "#9b5f8f",
   "oceanien" = "#55a6b8",
   "centre_non_ind" = "#67a9cf",
   "loyaliste_droite" = "#305f9f",
@@ -128,6 +128,34 @@ famille_colors <- c(
 )
 
 famille_order <- names(famille_labels)
+
+famille_detail_labels <- c(
+  "droite_nationale" = "Droite nationale",
+  "loyaliste_droite" = "Loyalistes",
+  "centre_non_ind" = "Centre non-ind.",
+  "autres_non_ind" = "Autres non-indépendantistes",
+  "oceanien" = "Éveil / océanien",
+  "pro_pays" = "Pro-pays / souverainistes",
+  "uc_flnks" = "UC-FLNKS / FLNKS",
+  "uni_palika" = "UNI / Palika",
+  "autres_ind" = "Autres indépendantistes",
+  "autres_listes" = "Autres listes"
+)
+
+famille_detail_colors <- c(
+  "droite_nationale" = "#7a4a28",
+  "loyaliste_droite" = "#305f9f",
+  "centre_non_ind" = "#67a9cf",
+  "autres_non_ind" = "#7f9bb7",
+  "oceanien" = "#55a6b8",
+  "pro_pays" = "#9b5f8f",
+  "uc_flnks" = "#2f925d",
+  "uni_palika" = "#f0c52f",
+  "autres_ind" = "#b6483b",
+  "autres_listes" = "#8a7d72"
+)
+
+famille_detail_order <- names(famille_detail_labels)
 
 annees_scrutins <- c(1989, 1995, 1999, 2004, 2009, 2014, 2019, 2026)
 
@@ -216,6 +244,9 @@ axe_politique_id <- function(axe_politique, famille_politique, liste_nom_court =
   liste <- str_to_lower(coalesce(liste_nom_court, ""))
 
   case_when(
+    str_detect(axe, "dynamique autochtone|nation autochtone|parti travailliste") |
+      str_detect(famille, "dynamique autochtone|nation autochtone|parti travailliste") |
+      str_detect(liste, "dynamique autochtone|nation autochtone|parti travailliste") ~ "autres_ind",
     str_detect(axe, "oceanien|océanien") | str_detect(famille, "eveil|éveil|oceanien|océanien") ~ "oceanien",
     str_detect(axe, "uni|palika") | str_detect(famille, "uni|palika") ~ "uni_palika",
     str_detect(axe, "uc-flnks") |
@@ -299,6 +330,129 @@ congres_familles <- congres |>
     famille_label = famille_label_factor(as.character(famille))
   ) |>
   arrange(annee, famille)
+
+congres_nuances_voix_long <- tribble(
+  ~annee, ~category, ~valeur,
+  1989, "droite_nationale", 9037,
+  1989, "loyaliste_droite", 27777,
+  1989, "centre_non_ind", 1931,
+  1989, "oceanien", 2429,
+  1989, "uc_flnks", 17898,
+  1989, "autres_ind", 3401,
+  1995, "droite_nationale", 6455,
+  1995, "loyaliste_droite", 25977,
+  1995, "centre_non_ind", 10903,
+  1995, "oceanien", 1113,
+  1995, "uc_flnks", 14005,
+  1995, "uni_palika", 7017,
+  1995, "autres_ind", 4072,
+  1995, "autres_listes", 2249,
+  1999, "droite_nationale", 7286,
+  1999, "loyaliste_droite", 30774,
+  1999, "centre_non_ind", 8417,
+  1999, "uc_flnks", 14778,
+  1999, "uni_palika", 6166,
+  1999, "autres_ind", 11194,
+  1999, "autres_listes", 706,
+  2004, "droite_nationale", 6684,
+  2004, "loyaliste_droite", 21880,
+  2004, "centre_non_ind", 20328,
+  2004, "autres_non_ind", 2971,
+  2004, "pro_pays", 1907,
+  2004, "uc_flnks", 10623,
+  2004, "uni_palika", 14651,
+  2004, "autres_ind", 10517,
+  2009, "droite_nationale", 2591,
+  2009, "loyaliste_droite", 24192,
+  2009, "centre_non_ind", 27561,
+  2009, "autres_non_ind", 1125,
+  2009, "pro_pays", 4189,
+  2009, "uc_flnks", 16589,
+  2009, "uni_palika", 10162,
+  2009, "autres_ind", 10149,
+  2014, "droite_nationale", 2706,
+  2014, "loyaliste_droite", 29318,
+  2014, "centre_non_ind", 27424,
+  2014, "pro_pays", 2190,
+  2014, "uc_flnks", 25891,
+  2014, "uni_palika", 10929,
+  2014, "autres_ind", 6808,
+  2019, "droite_nationale", 2707,
+  2019, "loyaliste_droite", 31874,
+  2019, "centre_non_ind", 15097,
+  2019, "oceanien", 6077,
+  2019, "pro_pays", 1971,
+  2019, "uc_flnks", 25524,
+  2019, "uni_palika", 12679,
+  2019, "autres_ind", 6518,
+  2019, "autres_listes", 7716,
+  2026, "droite_nationale", 1885,
+  2026, "loyaliste_droite", 45825,
+  2026, "centre_non_ind", 9961,
+  2026, "oceanien", 8399,
+  2026, "pro_pays", 4428,
+  2026, "uc_flnks", 27206,
+  2026, "uni_palika", 16503,
+  2026, "autres_ind", 6222
+) |>
+  mutate(
+    category = factor(category, levels = famille_detail_order)
+  ) |>
+  arrange(annee, category) |>
+  mutate(category = as.character(category))
+
+congres_nuances_sieges_long <- tribble(
+  ~annee, ~category, ~valeur,
+  1989, "droite_nationale", 5,
+  1989, "loyaliste_droite", 27,
+  1989, "oceanien", 2,
+  1989, "uc_flnks", 19,
+  1989, "autres_ind", 1,
+  1995, "droite_nationale", 4,
+  1995, "loyaliste_droite", 22,
+  1995, "centre_non_ind", 9,
+  1995, "uc_flnks", 12,
+  1995, "uni_palika", 5,
+  1995, "autres_ind", 2,
+  1999, "droite_nationale", 4,
+  1999, "loyaliste_droite", 24,
+  1999, "centre_non_ind", 3,
+  1999, "uc_flnks", 12,
+  1999, "uni_palika", 6,
+  1999, "autres_ind", 5,
+  2004, "droite_nationale", 4,
+  2004, "loyaliste_droite", 16,
+  2004, "centre_non_ind", 16,
+  2004, "uc_flnks", 7,
+  2004, "uni_palika", 8,
+  2004, "autres_ind", 3,
+  2009, "loyaliste_droite", 15,
+  2009, "centre_non_ind", 16,
+  2009, "uc_flnks", 11,
+  2009, "uni_palika", 8,
+  2009, "autres_ind", 4,
+  2014, "loyaliste_droite", 14,
+  2014, "centre_non_ind", 15,
+  2014, "uc_flnks", 15,
+  2014, "uni_palika", 7,
+  2014, "autres_ind", 3,
+  2019, "loyaliste_droite", 18,
+  2019, "centre_non_ind", 7,
+  2019, "oceanien", 3,
+  2019, "uc_flnks", 15,
+  2019, "uni_palika", 9,
+  2019, "autres_ind", 2,
+  2026, "loyaliste_droite", 24,
+  2026, "oceanien", 4,
+  2026, "uc_flnks", 16,
+  2026, "uni_palika", 7,
+  2026, "autres_ind", 3
+) |>
+  mutate(
+    category = factor(category, levels = famille_detail_order)
+  ) |>
+  arrange(annee, category) |>
+  mutate(category = as.character(category))
 
 axes_2019 <- referentiel_listes |>
   filter(annee == 2019) |>

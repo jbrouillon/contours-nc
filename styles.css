@@ -297,6 +297,43 @@ a:hover {
   border-color: #d8c8a8;
 }
 
+.quarto-post--updated {
+  position: relative;
+}
+
+.listing-update-banner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 0.55rem;
+  padding: 0.28rem 0.5rem;
+  border: 1px solid rgba(155, 95, 143, 0.24);
+  border-left: 4px solid #9b5f8f;
+  border-radius: 7px;
+  background: #fffdf8;
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.listing-update-banner__label {
+  color: #6f3c66;
+  text-transform: uppercase;
+}
+
+.listing-update-banner__date {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+body.article-updated .quarto-title-meta > div:has(.date-modified) {
+  display: none;
+}
+
 /* Suggestions de lecture */
 
 .article-related {

@@ -780,6 +780,57 @@ ul.task-list li input[type="checkbox"] {
   main.appendChild(section);
 })();
 </script>
+<script>
+(() => {
+  const updatedPosts = document.querySelectorAll(
+    ".quarto-listing .quarto-post[data-listing-date-modified-sort]"
+  );
+
+  if (!updatedPosts.length) return;
+
+  const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    timeZone: "Pacific/Noumea",
+    year: "numeric"
+  });
+
+  const formatDate = (value) => {
+    const timestamp = Number(value);
+    if (!Number.isFinite(timestamp)) return "";
+    const date = new Date(timestamp);
+    if (Number.isNaN(date.getTime())) return "";
+    return dateFormatter.format(date);
+  };
+
+  updatedPosts.forEach((post) => {
+    if (post.querySelector(".listing-update-banner")) return;
+
+    const modifiedDate = formatDate(
+      post.getAttribute("data-listing-date-modified-sort")
+    );
+    if (!modifiedDate) return;
+
+    const title = post.querySelector(".listing-title");
+    if (!title) return;
+
+    const banner = document.createElement("div");
+    banner.className = "listing-update-banner";
+
+    const label = document.createElement("span");
+    label.className = "listing-update-banner__label";
+    label.innerHTML = "Mis &agrave; jour";
+
+    const date = document.createElement("span");
+    date.className = "listing-update-banner__date";
+    date.textContent = modifiedDate;
+
+    banner.append(label, date);
+    title.insertAdjacentElement("beforebegin", banner);
+    post.classList.add("quarto-post--updated");
+  });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

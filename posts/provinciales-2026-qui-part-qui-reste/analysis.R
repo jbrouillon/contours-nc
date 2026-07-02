@@ -77,8 +77,65 @@ manual_match_exclusions <- tribble(
   "CHRISTINE MARIE MINDIA", "CHRISTINE MARIE NEWEDOU", "Prénoms communs seulement, pas de nom de famille stable commun."
 )
 
+manual_candidate_corrections <- tribble(
+  ~annee, ~nom_cle_comparaison_original, ~nom_prenoms_corrige, ~nom_cle_comparaison_corrige,
+  2026, "WAHETRA WALI", "WAHETRA Wali", "WAHETRA WALI",
+  2026, "FAIVRE NADEIGE WACKENTHALER", "WACKENTHALER ép. FAIVRE Nadeige", "FAIVRE NADEIGE WACKENTHALER",
+  2026, "BOEVWE JOSEPH", "BOEWE Joseph", "BOEWE JOSEPH"
+)
+
+apply_manual_candidate_corrections <- function(dat) {
+  dat <- dat %>%
+    left_join(
+      manual_candidate_corrections,
+      by = c("annee", "nom_cle_comparaison" = "nom_cle_comparaison_original")
+    ) %>%
+    mutate(
+      nom_prenoms = coalesce(nom_prenoms_corrige, nom_prenoms),
+      nom_cle_comparaison = coalesce(nom_cle_comparaison_corrige, nom_cle_comparaison),
+      nom_normalise = if_else(!is.na(nom_prenoms_corrige), nom_prenoms_corrige, nom_normalise),
+      correction_ocr_2026 = if_else(
+        !is.na(nom_prenoms_corrige),
+        TRUE,
+        coalesce(as.logical(correction_ocr_2026), FALSE)
+      )
+    )
+
+  if ("nom_prenoms_original" %in% names(dat)) {
+    dat <- dat %>%
+      mutate(nom_prenoms_original = coalesce(nom_prenoms_corrige, nom_prenoms_original))
+  }
+
+  dat %>%
+    select(-nom_prenoms_corrige, -nom_cle_comparaison_corrige)
+}
+
+apply_manual_match_corrections <- function(dat) {
+  dat %>%
+    mutate(
+      nom_cle_comparaison_2026 = recode(
+        nom_cle_comparaison_2026,
+        "BOEVWE JOSEPH" = "BOEWE JOSEPH",
+        .default = nom_cle_comparaison_2026
+      ),
+      nom_affiche_2026 = case_when(
+        nom_cle_comparaison_2026 == "WAHETRA WALI" ~ "WAHETRA Wali",
+        nom_cle_comparaison_2026 == "FAIVRE NADEIGE WACKENTHALER" ~ "WACKENTHALER ép. FAIVRE Nadeige",
+        nom_cle_comparaison_2026 == "BOEWE JOSEPH" ~ "BOEWE Joseph",
+        TRUE ~ nom_affiche_2026
+      ),
+      nom_prenoms_2026 = case_when(
+        nom_cle_comparaison_2026 == "WAHETRA WALI" ~ "WAHETRA Wali",
+        nom_cle_comparaison_2026 == "FAIVRE NADEIGE WACKENTHALER" ~ "WACKENTHALER ép. FAIVRE Nadeige",
+        nom_cle_comparaison_2026 == "BOEWE JOSEPH" ~ "BOEWE Joseph",
+        TRUE ~ nom_prenoms_2026
+      )
+    )
+}
+
 candidats <- candidats %>%
-  filter(!liste_id %in% excluded_list_ids)
+  filter(!liste_id %in% excluded_list_ids) %>%
+  apply_manual_candidate_corrections()
 
 ref_listes <- ref_listes %>%
   filter(!liste_id %in% excluded_list_ids)
@@ -93,7 +150,8 @@ matches <- matches %>%
       select(nom_cle_comparaison_2019, nom_cle_comparaison_2026),
     by = c("nom_cle_comparaison_2019", "nom_cle_comparaison_2026")
   ) %>%
-  filter(province_2019 == province_2026)
+  filter(province_2019 == province_2026) %>%
+  apply_manual_match_corrections()
 
 manual_list_qualifications <- tribble(
   ~liste_id, ~camp_institutionnel_manual, ~famille_politique_manual, ~composante_politique_manual, ~axe_politique_manual, ~axe_politique_ordre_manual, ~source_qualification_politique_manual, ~notes_qualification_manual,
@@ -185,6 +243,76 @@ ref_listes <- apply_manual_list_qualifications(ref_listes)
 
 candidats <- refine_independentist_axis(candidats)
 ref_listes <- refine_independentist_axis(ref_listes)
+
+manual_match_inclusions <- tribble(
+  ~nom_cle_comparaison_2019, ~nom_cle_comparaison_2026, ~methode_correspondance, ~confiance_correspondance,
+  "LOUISE TETWANUI WAHETRA WALISAUNE", "WAHETRA WALI", "appariement manuel", "validé manuellement"
+)
+
+set_match_value <- function(row, col, value) {
+  if (col %in% names(row)) {
+    row[[col]] <- value
+  }
+  row
+}
+
+build_manual_match_inclusions <- function(matches, candidats, inclusions) {
+  if (nrow(inclusions) == 0) return(matches[0, ])
+
+  rows <- lapply(seq_len(nrow(inclusions)), function(i) {
+    inclusion <- inclusions[i, ]
+    candidat_2019 <- candidats %>%
+      filter(annee == 2019, nom_cle_comparaison == inclusion$nom_cle_comparaison_2019) %>%
+      slice(1)
+    candidat_2026 <- candidats %>%
+      filter(annee == 2026, nom_cle_comparaison == inclusion$nom_cle_comparaison_2026) %>%
+      slice(1)
+
+    if (nrow(candidat_2019) == 0 || nrow(candidat_2026) == 0) {
+      return(matches[0, ])
+    }
+
+    row <- matches[NA_integer_, , drop = FALSE][1, ]
+    row <- set_match_value(row, "nom_cle_comparaison_2019", candidat_2019$nom_cle_comparaison)
+    row <- set_match_value(row, "nom_cle_comparaison_2026", candidat_2026$nom_cle_comparaison)
+    row <- set_match_value(row, "nom_affiche_2019", candidat_2019$nom_prenoms)
+    row <- set_match_value(row, "nom_affiche_2026", candidat_2026$nom_prenoms)
+    row <- set_match_value(row, "provinces_2019", candidat_2019$province)
+    row <- set_match_value(row, "provinces_2026", candidat_2026$province)
+    row <- set_match_value(row, "listes_2019", candidat_2019$liste_nom_court)
+    row <- set_match_value(row, "listes_2026", candidat_2026$liste_nom_court)
+    row <- set_match_value(row, "methode_correspondance", inclusion$methode_correspondance)
+    row <- set_match_value(row, "confiance_correspondance", inclusion$confiance_correspondance)
+    row <- set_match_value(row, "nb_tokens_communs", NA_real_)
+    row <- set_match_value(row, "dice_tokens", NA_real_)
+    row <- set_match_value(row, "jw_distance", NA_real_)
+    row <- set_match_value(row, "annee.x", 2019)
+    row <- set_match_value(row, "annee.y", 2026)
+    row <- set_match_value(row, "meme_province", identical(candidat_2019$province, candidat_2026$province))
+    row <- set_match_value(row, "meme_liste_court", identical(candidat_2019$liste_nom_court, candidat_2026$liste_nom_court))
+
+    side_cols <- c(
+      "nom_prenoms", "province", "numero_liste", "liste_id", "liste_nom_court",
+      "camp_institutionnel", "famille_politique", "composante_politique_candidat",
+      "axe_politique", "axe_politique_ordre", "rang"
+    )
+
+    for (col in side_cols) {
+      row <- set_match_value(row, paste0(col, "_2019"), candidat_2019[[col]])
+      row <- set_match_value(row, paste0(col, "_2026"), candidat_2026[[col]])
+    }
+
+    row
+  })
+
+  bind_rows(rows)
+}
+
+matches <- bind_rows(
+  matches,
+  build_manual_match_inclusions(matches, candidats, manual_match_inclusions)
+) %>%
+  distinct(nom_cle_comparaison_2019, nom_cle_comparaison_2026, .keep_all = TRUE)
 
 refresh_match_side <- function(dat, year, suffix) {
   side_ref <- ref_listes %>%

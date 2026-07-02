@@ -1,0 +1,778 @@
+---
+title: "Provinciales 2026 : renouvellement et relèves locales"
+subtitle: "Sortants reconduits, élus municipaux, simples candidats et profils non repérés après la répartition complète des sièges"
+author: "Jonas Brouillon"
+date: "2026-07-02"
+lang: fr
+categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
+tags: ["provinciales", "renouvellement", "élus", "municipales", "Nouvelle-Calédonie"]
+description: "À partir des résultats complets des provinciales 2026 et des municipales 2026, une mesure du renouvellement réel parmi les élus provinciaux : sortants reconduits, nouveaux élus et élus municipaux"
+image: "../../images/previews/provinciales-2026-renouvellement-elus.png"
+image-alt: "Graphique de l'origine des élus provinciaux 2026 par liste"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.renouv-lede {
+  font-size: 1.08rem;
+  max-width: 82ch;
+}
+
+.renouv-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1.1rem 0 1.8rem;
+}
+
+.renouv-stat-card {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-left: 5px solid #4f7c8a;
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.renouv-stat-value {
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.renouv-stat-label {
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 0.22rem;
+}
+
+.renouv-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.3;
+  margin: 0.35rem 0 0;
+}
+
+.renouv-note {
+  background: var(--surface-soft);
+  border-left: 4px solid #4f7c8a;
+  border-radius: 6px;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.85rem 1rem;
+}
+
+.renouv-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 330px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.renouv-sketch--fixed {
+  max-width: 100%;
+  width: fit-content;
+}
+
+.renouv-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.renouv-sketch-download {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.renouv-sketch-download:hover {
+  background: #f3efe6;
+}
+
+.renouv-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.renouv-sketch svg.renouv-sketch-svg-fixed {
+  max-width: none;
+  min-width: 0;
+  width: auto;
+}
+
+.renouv-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+
+.renouv-table {
+  overflow-x: auto;
+}
+
+.renouv-table table {
+  font-size: 0.9rem;
+  min-width: 760px;
+}
+
+.renouv-table th,
+.renouv-table td {
+  white-space: nowrap;
+}
+
+.renouv-details {
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 1.1rem 0 2rem;
+  overflow: hidden;
+}
+
+.renouv-details summary {
+  cursor: pointer;
+  font-weight: 800;
+  padding: 0.9rem 1rem;
+}
+
+.renouv-roster {
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 1rem;
+}
+
+.renouv-roster-list {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.renouv-roster-list h3 {
+  font-size: 0.98rem;
+  line-height: 1.25;
+  margin: 0 0 0.25rem;
+}
+
+.renouv-roster-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0 0 0.65rem;
+}
+
+.renouv-roster-list ol {
+  display: grid;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.renouv-roster-list li {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.renouv-roster-rank {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  min-width: 1.4rem;
+}
+
+.renouv-roster-name {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.renouv-origin-badge {
+  align-items: center;
+  background: color-mix(in srgb, var(--badge-color), white 82%);
+  border: 1px solid color-mix(in srgb, var(--badge-color), black 10%);
+  border-radius: 999px;
+  color: #25221f;
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 0.18rem 0.38rem;
+}
+
+.renouv-roster-commune {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+a.renouv-roster-commune {
+  border-bottom: 1px dotted currentColor;
+  text-decoration: none;
+}
+
+@media (max-width: 780px) {
+  .renouv-sketch {
+    margin-left: calc(50% - 50vw + 12px);
+    margin-right: calc(50% - 50vw + 12px);
+    max-width: calc(100vw - 24px);
+    width: calc(100vw - 24px);
+  }
+
+  .renouv-sketch svg {
+    max-width: none;
+    min-width: 760px;
+  }
+
+  #chart-renouv-province-iles svg,
+  #chart-renouv-province-nord svg,
+  #chart-renouv-province-sud svg {
+    min-width: 620px;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script>
+window.ContoursRenouvellement = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+
+  const fmtInt = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(value));
+
+  function payload(id) {
+    return JSON.parse(document.getElementById(`${id}-data`).textContent);
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function base(id, height, minWidth = 720, fitContainer = true) {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    el.classList.toggle("renouv-sketch--fixed", !fitContainer);
+    const tools = document.createElement("div");
+    tools.className = "renouv-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "renouv-sketch-download";
+    button.textContent = "PNG";
+    button.setAttribute("aria-label", "Télécharger le graphique en PNG");
+    button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+
+    const compact = window.innerWidth < 760;
+    const fallbackWidth = compact ? window.innerWidth - 24 : 980;
+    const containerWidth = Math.round(el.clientWidth || fallbackWidth);
+    const width = fitContainer
+      ? Math.max(minWidth, containerWidth)
+      : minWidth;
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.renouvChart || "graphique")
+      .style("background", paper);
+    if (!fitContainer) {
+      svg.classed("renouv-sketch-svg-fixed", true);
+    }
+    return { el, svg, rc: rough.svg(svg.node()), width, height };
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+    };
+    image.src = url;
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = color, fillStyle = "hachure") {
+    if (width <= 0 || height <= 0) return;
+    g.append("rect")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("fill", color)
+      .attr("opacity", 0.24 * opacity);
+    g.node().appendChild(rc.rectangle(x, y, width, height, {
+      fill: color,
+      fillStyle,
+      fillWeight: 1.9,
+      hachureGap: 2.2,
+      roughness: 1.15,
+      stroke,
+      strokeWidth: 1.25
+    }));
+    g.select(function() { return this.lastChild; }).attr("opacity", opacity);
+  }
+
+  function labelColor(color) {
+    return ink;
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 800)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function wrapText(text, maxChars = 28) {
+    const words = String(text || "").split(/\s+/);
+    const lines = [];
+    let line = "";
+    words.forEach((word) => {
+      const test = line ? `${line} ${word}` : word;
+      if (test.length > maxChars && line) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = test;
+      }
+    });
+    if (line) lines.push(line);
+    return lines.slice(0, 2);
+  }
+
+  function renderLegend(svg, items, x, y, maxWidth) {
+    let cursor = x;
+    let rowY = y;
+    items.forEach((item) => {
+      const itemWidth = Math.max(122, item.status.length * 6.7 + 42);
+      if (maxWidth && cursor > x && cursor + itemWidth > x + maxWidth) {
+        cursor = x;
+        rowY += 24;
+      }
+      const g = svg.append("g").attr("transform", `translate(${cursor}, ${rowY})`);
+      roughRect(g, rough.svg(svg.node()), 0, -9, 18, 14, item.color, 1, item.color);
+      g.append("text")
+        .attr("x", 25)
+        .attr("y", 0)
+        .attr("dominant-baseline", "middle")
+        .attr("font-size", 12)
+        .attr("font-weight", 800)
+        .attr("fill", ink)
+        .text(item.status);
+      cursor += itemWidth;
+    });
+  }
+
+  function renderStackedBars(id, p) {
+    const data = Array.isArray(p.data) ? p.data : Object.values(p.data || {});
+    const options = p.options || {};
+    const categories = [...new Set(data.map((d) => d.category))];
+    const grouped = data.some((d) => d.subgroup);
+    const subgroups = grouped
+      ? [...new Map(data.map((d) => [d.subgroup, {
+          subgroup: d.subgroup,
+          order: d.subgroupOrder || 99,
+          fillStyle: d.fillStyle || "hachure"
+        }])).values()].sort((a, b) => a.order - b.order)
+      : [];
+    const statusItems = [];
+    data.forEach((d) => {
+      if (!statusItems.some((x) => x.status === d.status)) {
+        statusItems.push({ status: d.status, color: d.color, order: d.order || 99 });
+      }
+    });
+    statusItems.sort((a, b) => a.order - b.order);
+
+    const rowHeight = options.rowHeight || 42;
+    const groupGap = grouped ? (options.groupGap || 10) : 0;
+    const top = 62;
+    const bottom = 76;
+    const left = options.left || 245;
+    const right = 52;
+    const rowSlots = grouped ? categories.length * subgroups.length : categories.length;
+    const axisRowsHeight = rowSlots * rowHeight + Math.max(0, categories.length - 1) * groupGap;
+    const height = options.height || Math.max(340, top + bottom + axisRowsHeight);
+    const rowKey = (cat, subgroup) => grouped ? `${cat}||${subgroup}` : cat;
+    const totals = new Map();
+    if (grouped) {
+      categories.forEach((cat) => {
+        subgroups.forEach((subgroup) => {
+          totals.set(
+            rowKey(cat, subgroup.subgroup),
+            d3.sum(data.filter((d) => d.category === cat && d.subgroup === subgroup.subgroup), (d) => d.n)
+          );
+        });
+      });
+    } else {
+      categories.forEach((cat) => {
+        totals.set(cat, d3.sum(data.filter((d) => d.category === cat), (d) => d.n));
+      });
+    }
+    const maxTotal = options.maxTotal || d3.max([...totals.values()]) || 1;
+    const seatWidth = options.seatWidth ? Number(options.seatWidth) : null;
+    const scaledInnerW = seatWidth ? Math.max(1, Math.round(maxTotal * seatWidth)) : null;
+    const minWidth = Math.max(
+      options.minWidth || 760,
+      scaledInnerW ? left + right + scaledInnerW : 0
+    );
+    const fitContainer = options.fitContainer !== false;
+    const { svg, rc, width } = base(id, height, minWidth, fitContainer);
+    const innerW = scaledInnerW || width - left - right;
+    const x = d3.scaleLinear().domain([0, maxTotal]).range([0, innerW]);
+
+    svg.append("text")
+      .attr("x", 18)
+      .attr("y", 28)
+      .attr("font-size", 19)
+      .attr("font-weight", 900)
+      .attr("fill", ink)
+      .text(options.title || "");
+
+    const axis = svg.append("g").attr("transform", `translate(${left}, ${top - 14})`);
+    [0, maxTotal / 2, maxTotal].forEach((tick) => {
+      axis.append("line")
+        .attr("x1", x(tick))
+        .attr("x2", x(tick))
+        .attr("y1", 0)
+        .attr("y2", axisRowsHeight + 6)
+        .attr("stroke", grid)
+        .attr("stroke-dasharray", "3 5");
+      axis.append("text")
+        .attr("x", x(tick))
+        .attr("y", -8)
+        .attr("text-anchor", tick === 0 ? "start" : "middle")
+        .attr("font-size", 11)
+        .attr("font-weight", 800)
+        .attr("fill", muted)
+        .text(fmtInt(tick));
+    });
+
+    categories.forEach((cat, i) => {
+      const groupTop = top + i * (subgroups.length || 1) * rowHeight + i * groupGap;
+      const labelY = grouped ? groupTop + ((subgroups.length - 1) * rowHeight + 26) / 2 : groupTop + 12;
+      const lines = wrapText(cat, options.labelChars || 30);
+      lines.forEach((line, j) => {
+        svg.append("text")
+          .attr("x", left - (grouped ? 124 : 14))
+          .attr("y", labelY + j * 14 - (lines.length - 1) * 7)
+          .attr("text-anchor", "end")
+          .attr("font-size", 12)
+          .attr("font-weight", 850)
+          .attr("fill", ink)
+          .text(line);
+      });
+
+      const rows = grouped ? subgroups : [{ subgroup: null, fillStyle: "hachure" }];
+      rows.forEach((subgroup, subgroupIndex) => {
+        const y = groupTop + subgroupIndex * rowHeight;
+        const key = rowKey(cat, subgroup.subgroup);
+
+        if (grouped) {
+          svg.append("text")
+            .attr("x", left - 14)
+            .attr("y", y + 13)
+            .attr("text-anchor", "end")
+            .attr("dominant-baseline", "middle")
+            .attr("font-size", 10.5)
+            .attr("font-weight", 800)
+            .attr("fill", muted)
+            .text(subgroup.subgroup);
+        }
+
+        const g = svg.append("g").attr("transform", `translate(${left}, ${y})`);
+        let cursor = 0;
+        statusItems.forEach((status) => {
+          const row = data.find((d) =>
+            d.category === cat &&
+            d.status === status.status &&
+            (!grouped || d.subgroup === subgroup.subgroup)
+          );
+          const n = row ? Number(row.n) : 0;
+          const w = x(n);
+          roughRect(g, rc, cursor, 0, w, 26, status.color, n > 0 ? 1 : 0.2, status.color, subgroup.fillStyle);
+          if (w >= 24 && n > 0) {
+            g.append("text")
+              .attr("x", cursor + w / 2)
+              .attr("y", 13)
+              .attr("text-anchor", "middle")
+              .attr("dominant-baseline", "middle")
+              .attr("font-size", 11)
+              .attr("font-weight", 900)
+              .attr("fill", labelColor(status.color))
+              .text(fmtInt(n));
+          }
+          cursor += w;
+        });
+
+        svg.append("text")
+          .attr("x", left + x(totals.get(key)) + 8)
+          .attr("y", y + 13)
+          .attr("dominant-baseline", "middle")
+          .attr("font-size", 11)
+          .attr("font-weight", 900)
+          .attr("fill", muted)
+          .text(fmtInt(totals.get(key)));
+      });
+    });
+
+    renderLegend(svg, statusItems, 18, height - 78, width - 36);
+    addSignature(svg, width, height);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) {
+      window.setTimeout(() => render(id), 50);
+      return;
+    }
+    const p = payload(id);
+    if (p.type === "stackedBars") renderStackedBars(id, p);
+  }
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      document.querySelectorAll("[data-renouv-chart]").forEach((el) => render(el.id));
+    }, 120);
+  });
+
+  return { render };
+})();
+</script>
+```
+
+## Ce que l'on regarde
+
+::: renouv-lede
+Le post *Qui part, qui reste ?* regardait les listes candidates. Maintenant que les résultats complets sont disponibles, on peut poser une question plus concrète : **qui entre vraiment dans les assemblées ?**
+
+Je distingue trois choses. D'abord, le renouvellement provincial au sens strict : les élus 2026 étaient-ils déjà élus provinciaux en 2019 ? Ensuite, l'ancrage local : étaient-ils aussi élus ou candidats aux municipales de mars 2026 ? Enfin, le résidu le plus intéressant : combien d'élus ne sont repérés dans aucune de ces candidatures ?
+:::
+
+```{r}
+stat_cards()
+```
+
+::: renouv-note
+La catégorie “nouveau” ne veut donc pas dire “inconnu politiquement”. Elle veut dire : **pas élu provincial en 2019** dans les sources utilisées ici. Un élu peut être nouveau à la province tout en étant déjà conseiller municipal, simple candidat municipal, ancien candidat provincial, ou figure politique locale. À l'inverse, les “non repérés” sont seulement absents des deux repères exploités ici : provinciales 2019 et municipales 2026.
+:::
+
+## Le renouvellement provincial existe vraiment
+
+Sur les `r fmt_int(n_elus_2026)` sièges provinciaux attribués, `r fmt_int(n_sortants_reelus_2026)` reviennent à des élus déjà installés en 2019. Les `r fmt_int(n_nouveaux_elus_2026)` autres sont donc nouveaux au sens institutionnel provincial, soit `r fmt_pct(pct_nouveaux_elus_2026)` des élus.
+
+Le renouvellement ne vient pas seulement de retraits. Parmi les `r fmt_int(n_sortants_representes_2026)` sortants qui se représentaient, `r fmt_int(n_sortants_representes_non_elus)` ne retrouvent pas de siège. Autrement dit, le vote et la position dans les listes ont aussi produit une sélection.
+
+::: column-page
+```{r}
+#| results: asis
+for (province_name in province_order) {
+  province_rows <- province_origin_plot |>
+    filter(province == province_name)
+
+  if (nrow(province_rows) == 0) next
+
+  province_title <- province_rows$province_label[1]
+  province_total <- province_totals |>
+    filter(province == province_name) |>
+    pull(total) |>
+    first()
+
+  sketch_chart(
+    id = glue("chart-renouv-province-{province_chart_slug(province_name)}"),
+    type = "stackedBars",
+    data = province_rows |>
+      transmute(
+        category = as.character(province_label),
+        status = origin_short,
+        n,
+        color = origin_color,
+        order = origin_order
+      ),
+    caption = glue("{province_title} : origine des élus provinciaux 2026. Les élus municipaux et candidats municipaux affichés ici sont ceux qui n'étaient pas déjà repérés comme candidats provinciaux 2019. L'axe horizontal va jusqu'aux {fmt_int(province_total)} sièges de l'assemblée provinciale."),
+    options = list(
+      title = glue("{province_title} : renouvellement des élus"),
+      height = 250,
+      minWidth = 780,
+      left = 170,
+      maxTotal = province_total
+    )
+  )
+}
+```
+:::
+
+Le contraste est surtout dans la composition du renouvellement. Dans le Sud, `r fmt_int(province_row("Province Sud")$nouveaux)` élus sur `r fmt_int(province_row("Province Sud")$total)` ne sont pas des sortants provinciaux. Dans le Nord, c'est `r fmt_int(province_row("Province Nord")$nouveaux)` sur `r fmt_int(province_row("Province Nord")$total)`. Aux Îles, `r fmt_int(province_row("Province des Iles")$nouveaux)` sur `r fmt_int(province_row("Province des Iles")$total)`.
+
+## Liste par liste : le renouvellement n'a pas le même sens
+
+À l'échelle des listes, trois configurations se détachent. Certaines listes représentées n'ont aucun sortant provincial 2019 parmi leurs élus : `r full_renewal_lists_text`. À l'inverse, une seule liste a une majorité d'élus déjà sortants : `r sortants_majority_lists_text`. Et `r fmt_int(n_jamais_candidats_reperes_2026)` élus provinciaux restent non repérés dans les deux sources de comparaison : provinciales 2019 et municipales 2026.
+
+::: column-page
+```{r}
+#| results: asis
+for (province_name in province_order) {
+  province_rows <- list_origin_plot |>
+    filter(province == province_name)
+
+  if (nrow(province_rows) == 0) next
+
+  province_title <- province_rows$province_label[1]
+  province_total <- province_totals |>
+    filter(province == province_name) |>
+    pull(total) |>
+    first()
+
+  sketch_chart(
+    id = glue("chart-renouv-listes-{province_chart_slug(province_name)}"),
+    type = "stackedBars",
+    data = province_rows |>
+      transmute(
+        category = liste_label,
+        status = origin_short,
+        n,
+        color = origin_color,
+        order = origin_order
+      ),
+    caption = glue("{province_title} : origine des élus provinciaux 2026 par liste représentée. Les barres totalisent les sièges provinciaux de chaque liste ; la catégorie municipale distingue élus et simples candidats."),
+    options = list(
+      title = glue("{province_title} : le renouvellement liste par liste"),
+      height = list_chart_height(province_rows),
+      minWidth = 900,
+      left = 260,
+      labelChars = 30,
+      maxTotal = province_total
+    )
+  )
+}
+```
+:::
+
+La lecture liste par liste évite deux raccourcis. D'un côté, une liste très renouvelée peut être composée de candidats déjà présents ailleurs. De l'autre, une liste très installée peut tout de même faire entrer de nouveaux élus, simplement parce qu'elle gagne beaucoup de sièges.
+
+```{r}
+render_list_summary_table()
+```
+
+La couche municipale permet d'observer que parmi les élus provinciaux 2026, `r fmt_int(n_elus_provinciaux_candidats_municipaux_2026)` étaient candidats aux municipales, dont `r fmt_int(n_elus_provinciaux_elus_municipaux_2026)` élus municipaux.
+
+```{r}
+render_elected_roster()
+```
+
+## Ce qu'il faut retenir
+
+Premier point : le renouvellement institutionnel est réel. `r fmt_int(n_nouveaux_elus_2026)` élus provinciaux sur `r fmt_int(n_elus_2026)` ne sont pas des sortants de 2019.
+
+Deuxième point : ce renouvellement n'est pas une table rase. `r fmt_int(origin_count("ancien_candidat_2019"))` élus étaient déjà candidats aux provinciales 2019 sans être élus, `r fmt_int(n_elus_provinciaux_elus_municipaux_2026)` sont aussi élus municipaux en 2026, et `r fmt_int(n_elus_provinciaux_candidats_municipaux_non_elus_2026)` autres étaient simples candidats municipaux.
+
+Troisième point : il reste bien un noyau de profils non repérés comme candidats précédents dans ces sources : `r fmt_int(n_jamais_candidats_reperes_2026)` élus provinciaux, dont `r fmt_int(n_jamais_candidats_reperes_congres_2026)` élus au Congrès.
+
+Quatrième point : la question “nouveau ou ancien ?” dépend de l'échelle. À l'échelle provinciale, la majorité des sièges changent de titulaires. À l'échelle locale, une partie importante des entrants a déjà une surface électorale communale.
+
+La formule la plus juste est donc celle-ci : **les assemblées se renouvellent, mais beaucoup de nouveaux provinciaux ne sortent pas de nulle part.**
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-qui-part-qui-reste/">
+    <span class="article-related-kicker">Candidatures</span>
+    <span class="article-related-title">Qui part, qui reste ?</span>
+    <span class="article-related-note">La comparaison complète des listes 2019 et 2026, avant la répartition des sièges.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Résultats 2026</span>
+    <span class="article-related-title">Premier bilan des rapports de force</span>
+    <span class="article-related-note">Abstention, sièges, voix sans représentation et rôle pivot de l'Éveil océanien.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Espaces politiques</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Un zoom sur l'Éveil océanien, les centres divisés et les souverainistes partenariaux.</span>
+  </a>
+</div>
+</section>
+```
+
+<details class="note-deroulable">
+
+<summary>Sources, méthode et limites</summary>
+
+Les sièges provinciaux viennent du PDF officiel des résultats complets des provinciales 2026, publié par le Haut-commissariat et déjà utilisé dans le premier bilan.
+
+Les sièges municipaux sont extraits des résultats complets officiels des municipales 2026, 1er tour du 15 mars et 2e tour du 22 mars. Pour chaque commune, je retiens le tour où des sièges sont attribués, puis je considère comme élus municipaux les candidats dont le rang est inférieur ou égal au nombre de sièges obtenus par leur liste.
+
+Les rapprochements nominaux reprennent la méthode du post *Qui part, qui reste ?* : normalisation des noms, comparaison par tokens, exclusions manuelles des faux positifs connus. Le résultat reste une donnée de travail : les homonymies et variations d'état civil peuvent créer quelques incertitudes.
+
+</details>

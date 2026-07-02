@@ -1,15 +1,10 @@
 [
   {
-    "listing": "/newsletter/index.html",
+    "listing": "/index.html",
     "items": [
-      "/newsletter/un-mois-de-contours-nc/index.html"
-    ]
-  },
-  {
-    "listing": "/articles/index.html",
-    "items": [
-      "/posts/provinciales-2026-troisieme-voie/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
+      "/posts/provinciales-2026-renouvellement-elus/index.html",
+      "/posts/provinciales-2026-troisieme-voie/index.html",
       "/posts/provinciales-2019-geographies-electorales/index.html",
       "/posts/provinciales-2026-professions-foi/index.html",
       "/posts/provinciales-2026-qui-part-qui-reste/index.html",
@@ -26,16 +21,23 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/articles/index.html",
     "items": [
-      "/posts/provinciales-2026-troisieme-voie/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
+      "/posts/provinciales-2026-renouvellement-elus/index.html",
+      "/posts/provinciales-2026-troisieme-voie/index.html",
       "/posts/provinciales-2019-geographies-electorales/index.html",
       "/posts/provinciales-2026-professions-foi/index.html",
       "/posts/provinciales-2026-qui-part-qui-reste/index.html",
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"
+    ]
+  },
+  {
+    "listing": "/newsletter/index.html",
+    "items": [
+      "/newsletter/un-mois-de-contours-nc/index.html"
     ]
   }
 ]

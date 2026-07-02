@@ -2,8 +2,12 @@
 title: "Provinciales 2026 : premier bilan des rapports de force"
 subtitle: "Abstention, familles politiques, nuances politiques et voix sans siège dans les trois provinces"
 author: "Jonas Brouillon"
-date: "2026-06-29"
+date: "2026-07-02"
+date-published: "2026-06-29"
+date-modified: "2026-07-02"
+published-title: "Mis à jour"
 lang: fr
+body-classes: article-updated
 categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
 tags: ["provinciales", "Nouvelle-Calédonie", "Congrès", "abstention", "rapports de force"]
 description: "Premier bilan des provinciales 2026 : rapports de force par province, abstention, familles politiques indépendantistes et non-indépendantistes, sièges et voix non représentées."
@@ -71,6 +75,18 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
   border-left: 4px solid var(--green);
   border-radius: 6px;
   margin: 1.2rem 0;
+  padding: 0.85rem 1rem;
+}
+
+.bilan-update {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-left: 5px solid #9b5f8f;
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  margin: 1rem 0 1.5rem;
   padding: 0.85rem 1rem;
 }
 
@@ -705,10 +721,14 @@ window.ContoursSketch = (() => {
     const data = p.data;
     const cats = toArray(p.options.categories);
     const compact = window.innerWidth < 760;
-    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? 126 : 0));
+    const compactExtraHeight = p.options.compactExtraHeight || (cats.length > 5 ? 196 : 126);
+    const compactTopMargin = p.options.compactTopMargin || (cats.length > 5 ? 112 : 92);
+    const compactBottomMargin = p.options.compactBottomMargin || (cats.length > 5 ? 224 : 158);
+    const desktopBottomMargin = p.options.desktopBottomMargin || (cats.length > 6 ? 126 : 86);
+    const { svg, rc, width, height } = base(id, (p.options.height || 560) + (compact ? compactExtraHeight : 0));
     const margin = compact
-      ? { top: 92, right: 40, bottom: 158, left: 72 }
-      : { top: 60, right: 40, bottom: 86, left: 110 };
+      ? { top: compactTopMargin, right: 40, bottom: compactBottomMargin, left: 72 }
+      : { top: 60, right: 40, bottom: desktopBottomMargin, left: 110 };
     const innerW = width - margin.left - margin.right;
     const innerH = height - margin.top - margin.bottom;
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
@@ -741,7 +761,7 @@ window.ContoursSketch = (() => {
           const yy = y(bottom + value);
           const hh = y(bottom) - y(bottom + value);
           roughRect(g, rc, x(String(year)), yy, x.bandwidth(), hh, cat.color);
-          if (value >= 2) {
+          if (value >= 2 && hh >= (p.options.minSegmentLabelHeight || 0)) {
             label(g, value, x(String(year)) + x.bandwidth() / 2, yy + hh / 2, {
               anchor: "middle",
               color: p.options.valueFormat === "pct" ? ink : "white",
@@ -753,8 +773,11 @@ window.ContoursSketch = (() => {
         bottom += value;
       });
     });
-    const stackedLegend = legendLayout(width, cats.length, 4, { maxCellWidth: 190 });
-    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, compact ? height - 56 - (stackedLegend.rows - 1) * 30 : height - 34 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
+    const stackedLegend = legendLayout(width, cats.length, 4, {
+      maxCellWidth: 190,
+      compactColumns: p.options.compactLegendColumns || 2
+    });
+    legend(svg, cats.map((d) => ({ label: d.label, color: d.color })), stackedLegend.x, compact ? height - 56 - (stackedLegend.rows - 1) * 30 : height - 22 - (stackedLegend.rows - 1) * 28, stackedLegend.columns, {
       cellWidth: stackedLegend.cellWidth,
       rowHeight: compact ? 30 : 28
     });
@@ -937,6 +960,10 @@ window.ContoursSketch = (() => {
 L'objectif ici n'est pas de descendre dans le détail infra-communal, mais de poser un premier bilan politique à l'échelle où les provinciales produisent leurs effets institutionnels : les trois assemblées de province et le Congrès.
 
 On regarde donc quatre choses : la mobilisation, le rapport indépendantistes / non-indépendantistes, les nuances internes à ces familles politiques, et l'écart entre les voix obtenues et les voix effectivement représentées par des sièges.
+:::
+
+::: bilan-update
+**Mise à jour du 2 juillet 2026, après une première publication le 29 juin.** Deux graphiques ont été ajoutés pour détailler les voix et les sièges du Congrès par nuances politiques depuis 1989. L'objectif est de rendre plus lisibles les regroupements utilisés dans les familles politiques : le centre reste classé parmi les non-indépendantistes, mais il est distingué des loyalistes ; les principales nuances indépendantistes sont également séparées.
 :::
 
 ::::::::::: bilan-stat-grid
@@ -1160,7 +1187,7 @@ Aux Îles, la part indépendantiste approche 98 % des exprimés. Mais cette quas
 
 ## En voix : un scrutin moins mobilisé, pas seulement recomposé
 
-La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu'en 1989, mais avec une participation plus basse qu'au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l'abstention.
+La comparaison en voix rappelle que les pourcentages ne racontent pas tout. Le scrutin 2026 se déroule dans un corps électoral plus large qu'en 1989, mais avec une participation plus basse qu'au milieu des années 2000. Les volumes de voix doivent donc être lus en même temps que l'abstention. On propose ici deux lectures : une série longue comparable depuis 1989, puis une version par nuances politiques qui distingue les familles internes aux non-indépendantistes comme aux indépendantistes.
 
 ::: {.column-page .bilan-plot}
 ```{r}
@@ -1178,7 +1205,7 @@ sketch_chart(
   id = "chart-voix-historique-congres",
   type = "line",
   data = voix_familles,
-  caption = "Voix agrégées par familles politiques au Congrès. L'Éveil océanien est isolé en 2019 et 2026.",
+  caption = "Voix agrégées par familles politiques au Congrès. L'Éveil océanien est isolé en 2019 et 2026 ; les listes pro-pays non rattachées aux deux grandes familles sont regroupées à part.",
   options = list(
     title = "Voix par familles politiques au Congrès depuis 1989",
     yLabel = "Voix",
@@ -1190,6 +1217,37 @@ sketch_chart(
 )
 ```
 :::
+
+Dans ce graphique, **non-indépendantiste ne veut pas dire loyaliste**. Le classement prolonge celui de la série historique extraite des tableaux Wikipédia, afin de garder une comparaison stable depuis 1989. La famille regroupe les listes qui ne portent pas l'indépendance dans ce scrutin : LL-LR, Agissons / LL-LR Nord, les listes du centre non-indépendantiste comme Une Province pour tous, Nous, réunis et Un espoir pour demain, la droite nationale et Un nouveau souffle aux Îles. À l'inverse, l'Éveil océanien est isolé, car sa position pivot rend trompeuse son addition automatique à cette famille ; Faire Pays est rangé avec les autres listes pro-pays.
+
+::: {.column-page .bilan-plot}
+```{r}
+#| label: fig-voix-nuances-congres
+sketch_chart(
+  id = "chart-voix-nuances-congres",
+  type = "stackedVertical",
+  data = congres_nuances_voix_long,
+  caption = "Lecture détaillée 1989-2026 des voix au Congrès par nuances politiques. Les listes du centre restent rattachées aux non-indépendantistes dans la série longue ; les principales nuances indépendantistes sont distinguées.",
+  options = list(
+    title = "Voix au Congrès par nuances politiques depuis 1989",
+    years = annees_scrutins,
+    categories = Map(
+      function(id, label, color) list(id = id, label = label, color = color),
+      famille_detail_order, unname(famille_detail_labels), unname(famille_detail_colors)
+    ),
+    yLabel = "Voix",
+    valueFormat = "int",
+    minSegmentLabelHeight = 34,
+    compactExtraHeight = 260,
+    compactTopMargin = 112,
+    compactBottomMargin = 286,
+    height = 700
+  )
+)
+```
+:::
+
+Ce graphique ne change pas le principe de classement : UNCT / Alliance, DECA, Avenir ensemble, Calédonie ensemble, Nous, réunis, Une Province pour tous et les listes proches du centre restent classées parmi les non-indépendantistes, car elles ne portent pas l'indépendance. Il détaille aussi la famille indépendantiste entre UC-FLNKS / FLNKS, UNI / Palika et autres listes indépendantistes. Quand les libellés anciens sont moins nets, ils restent isolés dans les catégories "autres" plutôt que d'être artificiellement rattachés à une nuance.
 
 La progression des indépendantistes au Sud se voit en part des exprimés, mais le bilan global dépend aussi de la démobilisation. L'Éveil océanien, lui, passe de 6 077 voix et 3 sièges au Congrès en 2019 à 8 399 voix et 4 sièges en 2026 : son rôle ne tient donc pas seulement à l'arithmétique des familles politiques, mais aussi à une implantation électorale qui se maintient et se renforce dans le Sud.
 
@@ -1386,6 +1444,35 @@ sketch_chart(
 
 ::: {.column-page .bilan-plot}
 ```{r}
+#| label: fig-congres-nuances-historique
+sketch_chart(
+  id = "chart-congres-nuances-historique",
+  type = "stackedVertical",
+  data = congres_nuances_sieges_long,
+  caption = "Répartition des sièges du Congrès par nuances politiques depuis 1989. Le centre non-indépendantiste est distingué des loyalistes, et les principales nuances indépendantistes sont séparées.",
+  options = list(
+    title = "Sièges du Congrès par nuances politiques",
+    years = annees_scrutins,
+    categories = Map(
+      function(id, label, color) list(id = id, label = label, color = color),
+      famille_detail_order, unname(famille_detail_labels), unname(famille_detail_colors)
+    ),
+    yLabel = "Sièges",
+    yMax = 54,
+    minSegmentLabelHeight = 24,
+    compactExtraHeight = 250,
+    compactTopMargin = 112,
+    compactBottomMargin = 276,
+    height = 650
+  )
+)
+```
+:::
+
+La lecture par nuance permet de distinguer le centre non-indépendantiste, très présent en sièges en 2004, 2009 et 2014, qui disparaît du Congrès en 2026 ; côté indépendantiste, l'équilibre entre UC-FLNKS / FLNKS, UNI / Palika et autres sensibilités varie fortement selon les scrutins.
+
+::: {.column-page .bilan-plot}
+```{r}
 #| label: fig-congres-2019-groupes
 sketch_chart(
   id = "chart-congres-hemicycle-2019",
@@ -1474,7 +1561,9 @@ Quatrième enseignement : chaque province garde sa logique propre. Le Sud donne 
 
 Les résultats 2026 s'appuient sur la publication complète du Haut-commissariat, PDF édité le 29 juin 2026 à 22:48:38. Par rapport à la première publication provisoire, les voix par liste et les sièges ne changent pas ; seuls quelques totaux techniques de votants, blancs/nuls et exprimés sont corrigés à l'unité.
 
-Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Pour conserver la comparabilité longue, les tableaux historiques gardent cette logique. Mais les graphiques du Congrès isolent l'Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans "autres / pro-pays" lorsqu'il n'est pas agrégé par Wikipédia dans la famille indépendantiste.
+Les séries historiques 1989-2019 reprennent les pages Wikipédia des provinciales, qui agrègent les résultats par province et par familles politiques. Le choix de classement vient d'abord de cette extraction structurée des tableaux Wikipédia : elle permet de conserver une série longue comparable, sans reclasser a posteriori chaque scrutin selon les débats du moment. Dans la version par nuances 1989-2026, les lignes de résultats par parti ou par liste permettent de distinguer le centre non-indépendantiste, la droite nationale, les loyalistes, les listes pro-pays et les principales nuances indépendantistes. Le centre reste toutefois rattaché sur le principe à la famille non-indépendantiste. Les graphiques par familles du Congrès isolent l'Éveil océanien en 2019 et 2026, car son rôle pivot rend trompeuse son addition automatique au camp non-indépendantiste. Faire Pays est isolé dans "autres / pro-pays" lorsqu'il n'est pas agrégé par Wikipédia dans la famille indépendantiste.
+
+Pour 2026, la famille non-indépendantiste inclut LL-LR, LL-LR Nord, Nous, réunis, Une Province pour tous / DVC-Calédonie ensemble, Un espoir pour demain, RN-MCFNC, Pour une Calédonie française et Un nouveau souffle. La famille indépendantiste inclut le FLNKS / Kanaky pour tous, l'UC-FLNKS, l'UNI / Palika, Nation autochtone, UCC, UPK / Alternative Nord, Baselaia et SKNC.
 
 Pour 1999, la série principale utilise le scrutin provincial initial. La page Wikipédia signale ensuite l'annulation du scrutin aux Îles et la partielle de 2000 ; cette particularité doit être gardée à l'esprit pour les lectures fines de cette année.
 
