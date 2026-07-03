@@ -21,13 +21,6 @@ toc: false
 
 Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous.
 
-```{=html}
-<!-- TODO: remplacer contact simple par formulaire popup avec routage :
-- collaboration scientifique -> @iac.nc
-- autres -> contact@contours.nc
--->
-```
-
 ::: contact-section
 ## contact général
 

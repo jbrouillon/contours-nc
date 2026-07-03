@@ -24,11 +24,13 @@ L'objectif est de proposer des analyses accessibles, documentées et reproductib
 
 ## auteur
 
-Le blog est présenté par [Jonas Brouillon]{.contours-word}, démographe calédonien, ingénieur d'études en sciences sociales à l'IAC depuis 2021, et responsable du Centre de Recherche Nord à Pouembout depuis 2026.
+[contours]{.contours-word} est créé et animé par [Jonas Brouillon]{.contours-word}, démographe calédonien. Son travail croise sciences sociales, cartographie, statistiques publiques et visualisation de données.
 
 [Jonas Brouillon]{.contours-word} est diplômé du [Master démographie]{.contours-word} de l'[Institut de Démographie de l'Université de Strasbourg](https://idus.unistra.fr/){target="_blank"} ainsi que du parcours Master de l'[École des Hautes Études en Démographie](https://ecolehed.fr/).
 
-Ce blog et ces travaux sont une initiative personnelle, développé en dehors du cadre professionnel, ayant pour but de rendre accessibles des analyses scientifiques au grand public sur des sujets d'intérêt pour la Nouvelle-Calédonie. Le temps long de la publication scientifique n'est parfois pas compatible avec la volonté de partager des analyses sur des sujets d'actualité, d'où le choix de ce format de blog. Les analyses publiées ici n'engagent que leur(s) auteur(s) et restent des analyses scientifiques, avec leurs limites et incertitudes, et ne sont pas des prises de position politiques. Les résultats doivent être considérés comme des éléments d'information et de réflexion, et non comme des recommandations ou des prescriptions d'action. Les analyses publiées ici sont basées sur des données publiques, des méthodes scientifiques reconnues et une démarche de transparence et de reproductibilité. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées.
+[contours]{.contours-word} est une initiative personnelle, éditorialement indépendante de ses activités professionnelles et des institutions auxquelles il peut être affilié. Les contenus publiés ici n'engagent que leur(s) auteur(s). Ils visent à rendre accessibles des analyses documentées et reproductibles sur des sujets d'intérêt pour la Nouvelle-Calédonie, à partir de données publiques et de méthodes explicites.
+
+Les analyses publiées ici comportent nécessairement des limites et des incertitudes. Elles doivent être considérées comme des éléments d'information et de réflexion, et non comme des prises de position politiques, des recommandations ou des prescriptions d'action. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées.
 
 ## ligne éditoriale
 
