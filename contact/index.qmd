@@ -4,8 +4,10 @@ image: "../images/contours-banner.png"
 toc: false
 ---
 
-<div id="contours-section-contact" class="contours-section-sketch"></div>
+::: {#contours-section-contact .contours-section-sketch}
+:::
 
+```{=html}
 <script type="module">
   import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
 
@@ -15,6 +17,7 @@ toc: false
     console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
   });
 </script>
+```
 
 Pour toute question, remarque ou proposition, utilisez les coordonnées ci-dessous.
 
@@ -40,12 +43,4 @@ Suivre les publications et actualités de Contours.nc :
 
 -   [Facebook](https://www.facebook.com/share/1RSsPGfKF4/){target="_blank" rel="noopener noreferrer"}
 -   [LinkedIn](https://www.linkedin.com/in/jonas-brouillon-65477a174/){target="_blank" rel="noopener noreferrer"}
-:::
-
-::: {.contact-section .contact-section--specialized}
-## collaboration scientifique
-
-[jonas.brouillon\@iac.nc](mailto:jonas.brouillon@iac.nc){.contact-email}
-
-Pour les collaborations de recherche, projets scientifiques ou demandes liées aux activités scientifiques.
 :::
