@@ -1,7 +1,14 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/newsletter/index.html",
     "items": [
+      "/newsletter/un-mois-de-contours-nc/index.html"
+    ]
+  },
+  {
+    "listing": "/articles/index.html",
+    "items": [
+      "/posts/provinciales-2026-congres-proportionnelle-nc/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
       "/posts/provinciales-2026-renouvellement-elus/index.html",
       "/posts/provinciales-2026-troisieme-voie/index.html",
@@ -21,8 +28,9 @@
     ]
   },
   {
-    "listing": "/articles/index.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/provinciales-2026-congres-proportionnelle-nc/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
       "/posts/provinciales-2026-renouvellement-elus/index.html",
       "/posts/provinciales-2026-troisieme-voie/index.html",
@@ -32,12 +40,6 @@
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
       "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html"
-    ]
-  },
-  {
-    "listing": "/newsletter/index.html",
-    "items": [
-      "/newsletter/un-mois-de-contours-nc/index.html"
     ]
   }
 ]

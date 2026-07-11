@@ -2,78 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://contours.nc/ressources/index.html</loc>
-    <lastmod>2026-06-27T03:25:02.342Z</lastmod>
+    <lastmod>2026-06-27T03:25:02.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2026-troisieme-voie/index.html</loc>
-    <lastmod>2026-06-30T03:36:05.152Z</lastmod>
+    <lastmod>2026-06-30T03:36:05.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/index.html</loc>
-    <lastmod>2026-06-30T01:28:08.972Z</lastmod>
+    <lastmod>2026-06-30T01:28:08.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2026-premier-bilan/index.html</loc>
-    <lastmod>2026-07-02T03:39:43.652Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/posts/participation-accessibilite-bureaux-noumea/index.html</loc>
-    <lastmod>2026-06-30T01:31:03.261Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/newsletter/un-mois-de-contours-nc/index.html</loc>
-    <lastmod>2026-06-27T04:07:03.821Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/index.html</loc>
-    <lastmod>2026-07-02T03:26:50.773Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/cartes/temps-trajet-bureaux-animation.html</loc>
-    <lastmod>2026-06-07T02:42:56.833Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/cartes/index.html</loc>
-    <lastmod>2026-06-27T03:25:02.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/about.html</loc>
-    <lastmod>2026-07-03T11:09:59.002Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/articles/index.html</loc>
-    <lastmod>2026-07-02T03:26:50.771Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/cartes/participation-municipales-animation.html</loc>
-    <lastmod>2026-06-07T02:42:56.833Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/contact/index.html</loc>
-    <lastmod>2026-07-03T11:07:58.753Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/newsletter/index.html</loc>
-    <lastmod>2026-06-27T04:02:38.210Z</lastmod>
-  </url>
-  <url>
-    <loc>https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/index.html</loc>
-    <lastmod>2026-06-30T01:31:44.757Z</lastmod>
+    <lastmod>2026-07-02T03:39:43.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2019-geographies-electorales/index.html</loc>
-    <lastmod>2026-06-30T01:30:09.845Z</lastmod>
+    <lastmod>2026-06-30T01:30:09.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/index.html</loc>
+    <lastmod>2026-06-30T01:31:44.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/newsletter/index.html</loc>
+    <lastmod>2026-06-27T04:02:38.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/contact/index.html</loc>
+    <lastmod>2026-07-03T11:07:58.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/cartes/participation-municipales-animation.html</loc>
+    <lastmod>2026-06-07T02:42:56.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/articles/index.html</loc>
+    <lastmod>2026-07-02T03:26:50.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/about.html</loc>
+    <lastmod>2026-07-03T11:09:59.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/cartes/index.html</loc>
+    <lastmod>2026-06-27T03:25:02.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/cartes/temps-trajet-bureaux-animation.html</loc>
+    <lastmod>2026-06-07T02:42:56.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/index.html</loc>
+    <lastmod>2026-07-02T03:26:50.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/newsletter/un-mois-de-contours-nc/index.html</loc>
+    <lastmod>2026-06-27T04:07:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/posts/participation-accessibilite-bureaux-noumea/index.html</loc>
+    <lastmod>2026-06-30T01:31:03.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://contours.nc/posts/provinciales-2026-congres-proportionnelle-nc/index.html</loc>
+    <lastmod>2026-07-11T02:01:14.471Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2026-professions-foi/index.html</loc>
-    <lastmod>2026-06-30T01:27:49.783Z</lastmod>
+    <lastmod>2026-06-30T01:27:49.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/provinciales-2026-renouvellement-elus/index.html</loc>
-    <lastmod>2026-07-02T05:16:45.768Z</lastmod>
+    <lastmod>2026-07-02T05:16:45.000Z</lastmod>
   </url>
   <url>
     <loc>https://contours.nc/posts/regroupement-bureaux-vote-noumea/index.html</loc>
-    <lastmod>2026-06-30T01:31:24.008Z</lastmod>
+    <lastmod>2026-06-30T01:31:24.000Z</lastmod>
   </url>
 </urlset>
