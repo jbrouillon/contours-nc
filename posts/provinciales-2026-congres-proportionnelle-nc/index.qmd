@@ -213,6 +213,51 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
     min-width: 760px;
   }
 }
+/* Empêche la grille Quarto de comprimer le corps de l'article sur mobile */
+@media (max-width: 991.98px) {
+  #quarto-content,
+  #quarto-content.page-columns,
+  main.content,
+  main#quarto-document-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  main#quarto-document-content {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .page-columns .content,
+  .page-columns .column-body,
+  .page-columns .column-page,
+  .page-columns .column-screen {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #quarto-margin-sidebar {
+    display: none !important;
+  }
+
+  p,
+  li,
+  blockquote,
+  .prop-lede,
+  .prop-note,
+  .prop-explain,
+  .prop-details {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
@@ -735,6 +780,7 @@ On peut en effet attribuer des sièges selon différentes formules dites de "la 
 Pour répondre à la question de la "sous-représentation de la Province Sud", nous allons également simuler le scénario de redistribution de sièges prévus par l'ex-accord de Bougival, ainsi que l'hypothèse d'un Congrès réparti directement à l'échelle NC, sans clé provinciale.
 :::
 
+
 ```{r}
 stat_cards()
 ```
@@ -751,6 +797,7 @@ La critique sur le poids des provinces est plus nuancée : supprimer la clé pro
 
 Avant même de parler du Congrès, le seuil change la composition des assemblées de province. C'est important, car le Congrès n'est pas élu séparément dans le système actuel : il est extrait des élus provinciaux. Si une liste n'entre pas dans son assemblée de province, elle ne peut pas ensuite peser au Congrès.
 
+::: {.column-page .sud-plot}
 ```{r assemblee-sud}
 sketch_chart(
   id = "chart-assemblee-sud",
@@ -762,11 +809,13 @@ sketch_chart(
   options = list(title = "Province Sud : le seuil rouvre surtout l'espace central et pro-pays")
 )
 ```
+:::
 
 Dans le Sud, l'effet serait le plus visible. À 5 % des exprimés, Nous, réunis entrerait à l'assemblée provinciale avec `r fmt_int(get_assem_sieges("Province Sud", "nous_reunis", sieges_assem_5))` sièges. LL-LR resterait très largement en tête, mais passerait de `r fmt_int(get_assem_sieges("Province Sud", "ll_lr", sieges_assem_actuels))` à `r fmt_int(get_assem_sieges("Province Sud", "ll_lr", sieges_assem_5))` sièges.
 
 À 3 %, le changement devient plus parlant : Une Province pour tous, Faire Pays et l'UNI / Palika obtiendraient aussi des élus. Ce n'est pas une alternance automatique : LL-LR resterait au niveau de la majorité absolue ou au-dessus selon la formule. Mais l'assemblée deviendrait beaucoup moins monocolore.
 
+::: {.column-page .nord-plot}
 ```{r assemblee-nord}
 sketch_chart(
   id = "chart-assemblee-nord",
@@ -781,9 +830,11 @@ sketch_chart(
   options = list(title = "Province Nord : les équilibres restent indépendantistes, mais les marges changent")
 )
 ```
+:::
 
 Dans le Nord, l'effet est plus limité. Les équilibres restent clairement dominés par les listes indépendantistes. À 3 %, Alternative Nord entrerait avec `r fmt_int(get_assem_sieges("Province Nord", "alternative_nord", sieges_assem_3))` siège ; avec Sainte-Laguë, Faire Pays pourrait aussi obtenir un siège. On parle donc d'une représentation plus fine, pas d'une bascule provinciale.
 
+::: {.column-page .iles-plot}
 ```{r assemblee-iles}
 sketch_chart(
   id = "chart-assemblee-iles",
@@ -798,6 +849,7 @@ sketch_chart(
   options = list(title = "Province des Îles : l'UCC entrerait, sans changer le rapport de force principal")
 )
 ```
+:::
 
 Aux Îles, l'effet principal tient en une phrase : l'UCC entrerait avec `r fmt_int(get_assem_sieges("Province des Iles", "ucc", sieges_assem_5))` siège. Le rapport de force principal resterait le même, mais l'assemblée serait un peu moins concentrée entre UC-FLNKS / FLNKS et Nation autochtone. Le passage de 5 % à 3 % ne change rien de plus ici.
 
@@ -815,7 +867,9 @@ Ce premier niveau de lecture est utile : le seuil à 5 % corrigerait déjà quel
 
 Le système actuel du Congrès part ensuite des provinces : `r fmt_int(32)` sièges viennent du Sud, `r fmt_int(15)` du Nord et `r fmt_int(7)` des Îles. Dans cette deuxième étape, je conserve cette clé territoriale. La première comparaison garde donc le seuil légal à 5 % des inscrits ; les suivantes remplacent seulement ce seuil par 5 %, puis 3 % des exprimés dans chaque province.
 
-C'est la modification institutionnelle la plus prudente : on ne remet pas en cause le poids des provinces dans le Congrès, on change seulement la porte d'entrée dans la répartition. Elle permet aussi de séparer deux questions souvent mélangées : le seuil exclut-il trop de listes ? Et la formule de répartition donne-t-elle une prime trop forte aux listes arrivées en tête ?
+C'est la modification institutionnelle la plus prudente : on ne remet pas en cause le poids des provinces dans le Congrès, on change seulement la porte d'entrée dans la répartition. Elle permet aussi de séparer deux questions souvent mélangées : le seuil exclut-il trop de listes ? Et la formule de répartition donne-t-elle une prime trop forte aux listes arrivées en tête ? 
+
+::: {.column-page .congres-plot}
 
 ```{r congres-provincial}
 sketch_chart(
@@ -827,6 +881,9 @@ sketch_chart(
   options = list(title = "Même clé provinciale : seuil et méthode ne déplacent pas les mêmes sièges")
 )
 ```
+
+::: 
+
 
 Avec le seuil légal à 5 % des inscrits, le recalcul Jefferson/D'Hondt retrouve bien la composition actuelle du Congrès. C'est le point de départ : la loi organique combine trois circonscriptions provinciales, un seuil en inscrits et une répartition à la plus forte moyenne.
 
@@ -850,8 +907,9 @@ Avec Sainte-Laguë, cette logique est un peu accentuée : les derniers sièges v
 
 L'une des réformes envisagées dans l'ex-accord de Bougival était d'augmenter la représentation du Sud au Congrès, le Congrès serait passé de `r fmt_int(54)` à `r fmt_int(56)` membres, avec `r fmt_int(37)` élus issus du Sud, `r fmt_int(14)` du Nord et `r fmt_int(5)` des Îles, au lieu de `r fmt_int(32)` / `r fmt_int(15)` / `r fmt_int(7)` aujourd'hui.
 
-On reprend donc ici les résultats des Provinciales 2026 selon cette répartition avec différents scénarios: seuil légal à 5 % des inscrits dans chaque province, puis seuils à 5 % et 3 % des exprimés, avec comparaison entre Jefferson/D'Hondt et Sainte-Laguë quand la formule change l'attribution des sièges.
+On reprend donc ici les résultats des Provinciales 2026 selon cette répartition avec différents scénarios: seuil légal à 5 % des inscrits dans chaque province, puis seuils à 5 % et 3 % des exprimés, avec comparaison entre Jefferson/D'Hondt et Sainte-Laguë quand la formule change l'attribution des sièges. 
 
+::: {.column-page .bougival-plot}
 ```{r congres-bougival}
 sketch_chart(
   id = "chart-congres-bougival",
@@ -862,6 +920,7 @@ sketch_chart(
   options = list(title = "Clé Bougival : le poids du Sud augmente, le seuil continue de filtrer")
 )
 ```
+:::
 
 Avec le seuil légal à 5 % des inscrits, le changement serait réel, mais pas illimité. LL-LR passerait de `r fmt_int(get_sieges("ll_lr", sieges_actuels))` à `r fmt_int(get_sieges("ll_lr", sieges_bougival_5_inscrits))` sièges. L'Éveil océanien gagnerait aussi un siège, de `r fmt_int(get_sieges("eveil", sieges_actuels))` à `r fmt_int(get_sieges("eveil", sieges_bougival_5_inscrits))`. En face, l'UC-FLNKS / FLNKS perdrait un siège et Nation autochtone passerait de `r fmt_int(get_sieges("nation", sieges_actuels))` à `r fmt_int(get_sieges("nation", sieges_bougival_5_inscrits))` sièges.
 
@@ -895,8 +954,9 @@ Les groupes sont agrégés uniquement quand la continuité politique est explici
 
 Ici, on ne corrige plus seulement le seuil d'accès : on transforme des rapports de force provinciaux en un seul marché électoral calédonien. Pour être comparable avec le système actuel, je teste d'abord 5 % des inscrits à l'échelle NC, puis 5 % et 3 % des exprimés NC.
 
-Précisons que ces scénarios restent assez peu réalistes, car si les élections étaient configurées de cette façon, les alliances entre différents mouvements politiques à l'échelle territoriale seraient sans doute bien plus importantes afin d'assurer une présence électorale partout. Les scénarios testés ici vont en effet s'avérer très pénalisants pour les mouvements présents sur une seule Province.
+Précisons que ces scénarios restent assez peu réalistes, car si les élections étaient configurées de cette façon, les alliances entre différents mouvements politiques à l'échelle territoriale seraient sans doute bien plus importantes afin d'assurer une présence électorale partout. Les scénarios testés ici vont en effet s'avérer très pénalisants pour les mouvements présents sur une seule Province. 
 
+::: {.column-page .congresnc-plot}
 ```{r congres-nc}
 sketch_chart(
   id = "chart-congres-nc",
@@ -907,6 +967,7 @@ sketch_chart(
   options = list(title = "Sans clé provinciale : le seuil pèse plus que la formule, sauf aux marges")
 )
 ```
+::: 
 
 Avec un seuil à 5 % des inscrits NC, un Congrès sans clé provinciale devient très sélectif. Seuls trois groupes franchiraient la barre : LL-LR, UC-FLNKS / FLNKS et UNI / Palika. L'Éveil océanien, pourtant représenté aujourd'hui, passerait sous le seuil national en inscrits. Dans cette hypothèse, LL-LR atteindrait même `r fmt_int(get_sieges("ll_lr", sieges_nc_5_inscrits))` sièges, soit la majorité absolue du Congrès.
 
