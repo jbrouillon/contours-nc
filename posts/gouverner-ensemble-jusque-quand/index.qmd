@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Gouverner ensemble, mais jusqu’à quand ?"
 subtitle: "Vingt-sept ans de pactes calédoniens à l’épreuve des faits"
 author: "Jonas Brouillon"
@@ -9,7 +9,7 @@ categories:
   - Provinciales 2026
   - Institutions
 description: "De l’alliance RPCR-FCCI au nouvel accord Loyalistes-Rassemblement-Éveil océanien, retour sur ce que les pactes calédoniens promettent, ce qu’ils distribuent et ce qu’ils réalisent vraiment."
-image: "../../images/previews/gouverner-ensemble-coalitions.png"
+image: "../../images/previews/gouverner-ensemble-facebook.png"
 image-alt: "Graphique des principales coalitions de gouvernance en Nouvelle-Calédonie"
 title-block-banner: true
 toc: true

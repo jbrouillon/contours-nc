@@ -27,6 +27,7 @@
 
 
 
+
 <style>
 .pactes-lede {
   font-size: 1.08rem;
@@ -1980,19 +1981,22 @@ window.ContoursPactes = (() => {
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{untitled,
-  author = {},
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
+  author = {Brouillon, Jonas},
+  title = {Gouverner ensemble, mais jusqu’à quand\,?},
+  date = {2026-07-12},
   url = {https://contours.nc/posts/gouverner-ensemble-jusque-quand/},
   langid = {fr}
 }
-</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-untitled" class="csl-entry quarto-appendix-citeas">
-n.d. <a href="https://contours.nc/posts/gouverner-ensemble-jusque-quand/">https://contours.nc/posts/gouverner-ensemble-jusque-quand/</a>.
+</code></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas">
+Brouillon, Jonas. 2026. <span>“Gouverner ensemble, mais jusqu’à
+quand ?”</span> July 12. <a href="https://contours.nc/posts/gouverner-ensemble-jusque-quand/">https://contours.nc/posts/gouverner-ensemble-jusque-quand/</a>.
 </div></div></section></div> ]]></description>
   <category>Provinciales 2026</category>
   <category>Institutions</category>
   <guid>https://contours.nc/posts/gouverner-ensemble-jusque-quand/</guid>
   <pubDate>Sat, 11 Jul 2026 13:00:00 GMT</pubDate>
-  <media:content url="https://contours.nc/images/previews/gouverner-ensemble-coalitions.png" medium="image" type="image/png" height="182" width="144"/>
+  <media:content url="https://contours.nc/images/previews/gouverner-ensemble-facebook.png" medium="image" type="image/png" height="76" width="144"/>
 </item>
 <item>
   <title>Et si on changeait les seuils des assemblées ?</title>
