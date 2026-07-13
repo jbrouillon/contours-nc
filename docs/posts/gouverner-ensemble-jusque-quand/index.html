@@ -229,9 +229,10 @@ ul.task-list li input[type="checkbox"] {
 }
 
 .pactes-period-grid {
+  box-sizing: border-box;
   display: grid;
   gap: 0.9rem;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
   margin: 1.2rem 0 2rem;
 }
 
@@ -239,6 +240,8 @@ ul.task-list li input[type="checkbox"] {
   background: #fffdf8;
   border: 1px solid rgba(65, 58, 48, 0.18);
   border-radius: 8px;
+  box-sizing: border-box;
+  min-width: 0;
   overflow: hidden;
   padding: 0.9rem 1rem;
   position: relative;
@@ -301,6 +304,7 @@ ul.task-list li input[type="checkbox"] {
   flex-wrap: wrap;
   gap: 0.35rem;
   margin: -0.28rem 0 0.75rem;
+  min-width: 0;
 }
 
 .pactes-chip {
@@ -311,7 +315,10 @@ ul.task-list li input[type="checkbox"] {
   font-size: 0.74rem;
   font-weight: 850;
   line-height: 1.15;
+  max-width: 100%;
+  overflow-wrap: break-word;
   padding: 0.24rem 0.5rem;
+  white-space: normal;
 }
 
 .pactes-chip:nth-child(2n) {
@@ -329,6 +336,7 @@ ul.task-list li input[type="checkbox"] {
   flex-wrap: wrap;
   gap: 0.32rem;
   margin: 0.38rem 0 0.22rem;
+  min-width: 0;
 }
 
 .pactes-block-chip {
@@ -339,7 +347,10 @@ ul.task-list li input[type="checkbox"] {
   font-size: 0.68rem;
   font-weight: 900;
   line-height: 1.12;
+  max-width: 100%;
+  overflow-wrap: break-word;
   padding: 0.2rem 0.46rem;
+  white-space: normal;
 }
 
 .pactes-block-chip:nth-child(2n) {
@@ -357,13 +368,16 @@ ul.task-list li input[type="checkbox"] {
   font-size: 0.86rem;
   line-height: 1.34;
   margin: 0.18rem 0 0;
+  overflow-wrap: break-word;
 }
 
 .pactes-sketch {
   background: #fffdf8;
   border: 1px solid rgba(65, 58, 48, 0.18);
   border-radius: 8px;
+  box-sizing: border-box;
   margin: 1.15rem 0 0.25rem;
+  max-width: 100%;
   min-height: 350px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -413,7 +427,7 @@ ul.task-list li input[type="checkbox"] {
   #title-block-header .quarto-title-banner,
   #quarto-document-content {
     display: block !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
     overflow-x: hidden;
   }
 
@@ -438,9 +452,9 @@ ul.task-list li input[type="checkbox"] {
 
   #title-block-header .title,
   #title-block-header .subtitle {
-    max-width: calc(100vw - 2rem) !important;
-    overflow-wrap: anywhere;
-    width: calc(100vw - 2rem) !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+    width: auto !important;
   }
 
   #quarto-document-content p,
@@ -451,16 +465,35 @@ ul.task-list li input[type="checkbox"] {
   .pactes-note,
   .pactes-sketch-caption {
     box-sizing: border-box;
-    max-width: calc(100vw - 2rem) !important;
-    overflow-wrap: anywhere;
-    width: calc(100vw - 2rem) !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word;
+    width: auto !important;
+  }
+
+  .pactes-period-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .pactes-period-card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .pactes-period-kicker,
+  .pactes-chip,
+  .pactes-block-chip {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .pactes-sketch {
-    margin-left: calc(50% - 50vw + 12px);
-    margin-right: calc(50% - 50vw + 12px);
-    max-width: calc(100vw - 24px);
-    width: calc(100vw - 24px);
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    width: 100%;
   }
 
   .pactes-sketch svg {
@@ -473,7 +506,7 @@ ul.task-list li input[type="checkbox"] {
   p,
   li {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
   }
 }
 </style>
