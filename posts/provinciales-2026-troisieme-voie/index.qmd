@@ -4,8 +4,10 @@ subtitle: "Éveil océanien, centres divisés, Faire Pays et souveraineté parta
 author: "Jonas Brouillon"
 date: "2026-06-30"
 lang: fr
-categories: ["Élections", "Provinciales 2026", "Analyse électorale","Analyse textuelle"]
-tags: ["troisième voie", "centre", "Faire Pays", "Éveil océanien", "programmes", "souveraineté partagée"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Analyse électorale
 description: "À partir des résultats, professions de foi et programmes des provinciales 2026, une cartographie de l'espace dit centriste ou pro-pays, situé entre l'UC-FLNKS et Les Loyalistes-Le Rassemblement."
 image: "../../images/previews/provinciales-2026-troisieme-voie-positionnement.webp"
 image-alt: "Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale"
@@ -666,6 +668,15 @@ window.ContoursTroisiemeVoie = (() => {
 })();
 </script>
 ```
+
+::: {.en-bref}
+## En bref
+
+- Dans le Sud, l’espace de la troisième voie existe électoralement, mais il est fragmenté au mauvais endroit.
+- L’Éveil océanien est la seule composante de cet espace représentée au Congrès ; les autres listes restent sous le seuil en part des inscrits.
+- Le mot “centriste” mélange au moins trois familles : pivot océanien, centre autonomiste non-indépendantiste et pro-pays / souveraineté partagée.
+- Leur point commun n’est pas un programme unique, mais une critique du face-à-face UC-FLNKS / LL-LR.
+:::
 
 ## Ce que l'on regarde
 

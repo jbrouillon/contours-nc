@@ -8,11 +8,14 @@ date-modified: "2026-07-02"
 published-title: "Mis à jour"
 lang: fr
 body-classes: article-updated
-categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
-tags: ["provinciales", "Nouvelle-Calédonie", "Congrès", "abstention", "rapports de force"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Analyse électorale
+  - Participation
 description: "Premier bilan des provinciales 2026 : rapports de force par province, abstention, familles politiques indépendantistes et non-indépendantistes, sièges et voix non représentées."
-image: "../../images/exports/provinciales-2026-congres-familles.png"
-image-alt: "Évolution des sièges du Congrès par grandes familles politiques depuis 1989"
+image: "../../images/previews/chart-voix-nuances-congres-contours-nc.png"
+image-alt: "Voix au Congrès par nuances politiques depuis 1989"
 title-block-banner: true
 toc: true
 toc-depth: 3
@@ -953,6 +956,15 @@ window.ContoursSketch = (() => {
 })();
 </script>
 ```
+
+::: {.en-bref}
+## En bref
+
+- Le Congrès 2026 se lit en trois blocs : 24 non-indépendantistes, 4 élus de l’Éveil océanien en position pivot et 26 indépendantistes.
+- La participation atteint 63,7 %, avec une abstention particulièrement forte aux Îles.
+- En 2026, 23 616 voix ne débouchent sur aucun siège provincial, soit 19,6 % des exprimés.
+- Le Sud donne une majorité non-indépendantiste concentrée autour de LL-LR, le Nord réorganise la concurrence UC / UNI, et les Îles restent presque entièrement indépendantistes mais très disputées.
+:::
 
 ## Ce que l'on regarde
 

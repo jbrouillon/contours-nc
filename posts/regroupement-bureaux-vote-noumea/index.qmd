@@ -3,8 +3,11 @@ title: "Quel est l’effet du regroupement des bureaux de vote sur les temps de 
 subtitle: "Méthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule"
 author: "Jonas Brouillon"
 date: "2026-05-24"
-categories: ["Cartographie", "Élections", "Nouméa"]
-tags: ["accessibilité", "dataviz", "R", "Nouvelle-Calédonie", "sciences sociales"]
+rubrique: "Territoires et société"
+categories:
+  - Bureaux de vote
+  - Participation
+  - Inégalités
 description: "Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres."
 image: "../../images/previews/regroupement-bureaux-vote-noumea.jpg"
 image-alt: "Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa"
@@ -261,6 +264,15 @@ cor_vehicle_time9 <- cor(
   use = "complete.obs"
 )
 ```
+
+::: {.en-bref}
+## En bref
+
+- Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes.
+- La part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.
+- Les effets ne sont pas homogènes : certains quartiers cumulent hausse des temps de marche et forte part de ménages sans véhicule.
+- Les résultats mesurent une accessibilité potentielle, pas les déplacements réels de chaque électeur.
+:::
 
 ## Résumé
 

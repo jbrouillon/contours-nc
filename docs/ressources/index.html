@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ressources – Contours</title>
+<title>Ressources – Contours</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -75,13 +75,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="ressources – Contours">
+<meta property="og:title" content="Ressources – Contours">
 <meta property="og:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
 <meta property="og:image" content="https://contours.nc/images/contours-banner.png">
 <meta property="og:site_name" content="Contours">
 <meta property="og:image:height" content="1040">
 <meta property="og:image:width" content="2800">
-<meta name="twitter:title" content="ressources – Contours">
+<meta name="twitter:title" content="Ressources – Contours">
 <meta name="twitter:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
 <meta name="twitter:image" content="https://contours.nc/images/contours-banner.png">
 <meta name="twitter:image-height" content="1040">
@@ -115,12 +115,20 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="../dossiers/index.html"> 
+<span class="menu-text">Dossiers</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="../cartes/index.html"> 
-<span class="menu-text">Cartes</span></a>
+<span class="menu-text">Cartes et visualisations</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../ressources/index.html" aria-current="page"> 
 <span class="menu-text">Ressources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presse/index.html"> 
+<span class="menu-text">Presse</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../contact/index.html"> 
@@ -144,23 +152,30 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#données" id="toc-données" class="nav-link active" data-scroll-target="#données">Données</a></li>
+  <li><a href="#méthodes" id="toc-méthodes" class="nav-link" data-scroll-target="#méthodes">Méthodes</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ressources</h1>
+<h1 class="title">Ressources</h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -184,15 +199,87 @@ ul.task-list li input[type="checkbox"] {
     console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
   });
 </script>
-<p>Cette page regroupera :</p>
-<ul>
-<li>sources de données utiles en Nouvelle-Calédonie ;</li>
-<li>scripts R et gabarits Quarto ;</li>
-<li>fonds de carte et ressources QGIS ;</li>
-<li>références méthodologiques en cartographie et sciences sociales.</li>
-</ul>
+<section class="resource-intro">
+  <p class="resource-lede">Données, méthodes et ressources réutilisables.</p>
+  <p>Cette page rassemble les ressources effectivement publiables de <span class="contours-word">contours.nc</span> : tables agrégées, fonds géographiques, données compilées et explications méthodologiques. Les scripts de production ne sont pas mis à disposition ici.</p>
+</section>
+<div class="resource-note">
+<p>Les données traitées ou compilées par <span class="contours-word">contours.nc</span> sont publiées sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr">CC BY 4.0</a>, sauf mention contraire. Cette licence porte sur le travail de traitement, d’harmonisation et de compilation ; les sources primaires restent soumises à leurs propres conditions de réutilisation et sont citées dans les articles associés.</p>
+</div>
+<section id="données" class="level2">
+<h2 class="anchored" data-anchor-id="données">Données</h2>
+<section class="resource-grid" aria-label="Données disponibles">
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV · Provinciales 2026</span>
+    <h3 class="anchored">Résultats par province et par liste</h3>
+    <p>Tables agrégées des résultats complets des provinciales 2026 par province et par commune.</p>
+    <p>Traitement <span class="contours-word">contours.nc</span> à partir des résultats officiels. Licence des tables traitées : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_province_listes.csv">Province</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_communes_listes.csv">Communes</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV · Séries longues</span>
+    <h3 class="anchored">Historique provincial 1989-2026</h3>
+    <p>Séries harmonisées de participation, blocs politiques par province et sièges au Congrès.</p>
+    <p>Compilation <span class="contours-word">contours.nc</span> à partir de sources primaires documentées dans les articles. Licence de la compilation : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_participation_1989_2026.csv">Participation</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_blocs_provinces_1989_2026.csv">Provinces</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_blocs_congres_1989_2026.csv">Congrès</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV / GeoJSON · Référentiel</span>
+    <h3 class="anchored">Bureaux de vote géolocalisés</h3>
+    <p>Référentiel consolidé des bureaux de vote utilisé pour les analyses électorales et d'accessibilité.</p>
+    <p>Consolidation et géolocalisation <span class="contours-word">contours.nc</span>. Licence du fichier traité : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/bureaux_reference_geolocalises.csv">CSV</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/bureaux_reference_geolocalises.geojson">GeoJSON</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">GeoJSON · Fonds</span>
+    <h3 class="anchored">Fonds géographiques simplifiés</h3>
+    <p>Communes, secteurs électoraux de Nouméa et IRIS utilisés dans les cartes et analyses spatiales.</p>
+    <p>Simplifications et assemblages publiés par <span class="contours-word">contours.nc</span>. Licence de ces fichiers traités : CC BY 4.0, en plus des obligations de citation des référentiels d'origine.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/nc_communes_simp.geojson">Communes</a>
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/secteurs_electoraux_noumea.geojson">Secteurs Nouméa</a>
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/iris_rgp_2019.geojson">IRIS 2019</a>
+    </div>
+  </article>
+</section>
+</section>
+<section id="méthodes" class="level2">
+<h2 class="anchored" data-anchor-id="méthodes">Méthodes</h2>
+<section class="resource-grid" aria-label="Méthodes">
+  <article class="resource-card">
+    <span class="resource-card__meta">Article méthode</span>
+    <h3 class="anchored">Simulations électorales</h3>
+    <p>Présentation des hypothèses de seuil, de répartition des sièges et de comparaison entre méthodes proportionnelles.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../posts/provinciales-2026-congres-proportionnelle-nc/">Lire</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">Article méthode</span>
+    <h3 class="anchored">Accessibilité aux bureaux de vote</h3>
+    <p>Explication de l'estimation des temps de trajet à pied, des sources géographiques et des limites d'interprétation.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../posts/regroupement-bureaux-vote-noumea/">Lire</a>
+    </div>
+  </article>
+</section>
 
 
+</section>
 
 </main> <!-- /main -->
 <script>

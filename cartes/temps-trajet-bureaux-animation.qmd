@@ -3,9 +3,10 @@ title: "Mobilités électorales à Nouméa (version animée)"
 toc: true
 date: 2026-02-05
 image: "../data/cartes/municipales 2026/temps trajet nouméa municipales 2026.gif"
+rubrique: "Cartographie et données"
 categories:
-  - cartes
-  - cartographie
+  - Cartes et données
+  - Nouméa
 ---
 
 ## Contexte

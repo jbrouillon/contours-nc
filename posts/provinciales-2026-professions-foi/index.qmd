@@ -4,8 +4,11 @@ subtitle: "Priorités, propositions et lignes de partage entre les listes"
 author: "Jonas Brouillon"
 date: "2026-06-21"
 lang: fr
-categories: ["Élections",  "Provinciales 2026", "Analyse textuelle", "Data mining"]
-tags: ["text mining", "professions de foi", "programmes", "propositions", "dataviz"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Programmes
+  - Analyse textuelle
 description: "Une analyse textuelle et une lecture détaillée des 22 professions de foi numériques des provinciales 2026 : thèmes dominants, mesures proposées et degré de précision des programmes."
 image: "../../images/previews/provinciales-2026-professions-foi.webp"
 image-alt: "Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026"

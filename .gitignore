@@ -26,6 +26,7 @@ data/**/*.prj
 data/outputs_capital_socio_economique/
 data/outputs_provinciales_candidats/ocr_images/
 data/outputs_provinciales_candidats/ocr_text/
+data/gouverner-ensemble-sources/
 # Sources téléchargeables ou exports intermédiaires recréables
 data/elections/data_raw/provinciales_2026/propagande_electronique/**/*.pdf
 data/elections/data_raw/*.pdf

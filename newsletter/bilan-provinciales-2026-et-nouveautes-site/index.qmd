@@ -1,0 +1,103 @@
+---
+title: "Avant et après les provinciales du 28 juin"
+subtitle: "Articles, interventions médias et nouveautés du site"
+author: "Jonas Brouillon"
+date: "2026-07-13"
+categories:
+  - Newsletter
+description: "Nouvelle newsletter : analyses publiées en amont et en aval des provinciales du 28 juin 2026, interventions médias et mise à jour de l'architecture du site."
+image: "../../images/contours-banner.png"
+toc: false
+title-block-banner: true
+---
+
+Bonjour à toutes et à tous,
+
+Depuis la dernière newsletter, les élections provinciales ont eu lieu, le **28 juin 2026**. Les articles publiés sur [contours.nc]{.contours-word} s'inscrivent donc dans deux temps : préparer la lecture du scrutin en amont, puis analyser ses résultats, ses recompositions et ses effets institutionnels en aval.
+
+Le site a aussi été réorganisé pour mieux retrouver les contenus déjà publiés. L'idée reste la même : produire des analyses lisibles, documentées et cartographiques pour éclairer les dynamiques politiques, sociales et territoriales de la Nouvelle-Calédonie.
+
+Cette lettre fait donc un point d'étape : les nouveaux articles, les interventions médias et les principales nouveautés du site.
+
+------------------------------------------------------------------------
+
+## Les articles du cycle électoral
+
+### Avant le 28 juin : comprendre l'offre politique
+
+Avant le scrutin, plusieurs articles ont posé les repères nécessaires pour lire les listes, les trajectoires et les programmes.
+
+[**Listes aux Provinciales 2026 : qui part ? qui reste ?**](https://contours.nc/posts/provinciales-2026-qui-part-qui-reste/) comparait les listes de 2019 et 2026 pour mesurer les continuités, les retours, les reclassements et les renouvellements de candidatures.
+
+[**Provinciales 2026 : qui propose quoi ?**](https://contours.nc/posts/provinciales-2026-professions-foi/) analysait les professions de foi pour repérer les priorités, les mots-signatures et les lignes de partage entre listes.
+
+### Après le scrutin : lire les résultats et leurs effets
+
+Après le 28 juin, les analyses se sont déplacées vers les rapports de force, la représentation et les conséquences institutionnelles.
+
+[**Provinciales 2026 : premier bilan des rapports de force**](https://contours.nc/posts/provinciales-2026-premier-bilan/) revient sur les résultats, la participation, les nuances politiques, la composition du Congrès et les voix qui ne débouchent sur aucun siège.
+
+[**Provinciales 2026 : qui est la "troisième voie" ?**](https://contours.nc/posts/provinciales-2026-troisieme-voie/) s'intéresse aux listes centristes, pro-pays ou de souveraineté partagée après le scrutin. L'article montre que cet espace existe électoralement, mais reste fragmenté.
+
+[**Provinciales 2026 : renouvellement et relèves locales**](https://contours.nc/posts/provinciales-2026-renouvellement-elus/) mesure le renouvellement des élus provinciaux : sortants reconduits, élus municipaux, anciens candidats et profils moins repérés dans les sources utilisées.
+
+[**Et si on changeait les seuils des assemblées ?**](https://contours.nc/posts/provinciales-2026-congres-proportionnelle-nc/) simule plusieurs règles de répartition des sièges : seuils en inscrits ou en exprimés, Congrès sans clé provinciale, clé Bougival et comparaison entre méthodes proportionnelles.
+
+[**Gouverner ensemble, mais jusqu'à quand ?**](https://contours.nc/posts/gouverner-ensemble-jusque-quand/) replace le nouvel accord Loyalistes-Rassemblement-Éveil océanien dans l'histoire des pactes calédoniens depuis 1999.
+
+------------------------------------------------------------------------
+
+## Un dossier pour suivre les Provinciales 2026
+
+Pour éviter de disperser les analyses, une nouvelle page rassemble désormais les articles du cycle électoral :
+
+[**Dossier Provinciales 2026**](https://contours.nc/dossiers/provinciales-2026/)
+
+On y retrouve les textes sur les candidatures, les professions de foi, les résultats, la troisième voie, le renouvellement des élus, les simulations institutionnelles et les prolongements sur les équilibres de gouvernement.
+
+------------------------------------------------------------------------
+
+## Interventions médias
+
+Les travaux publiés sur [contours.nc]{.contours-word} ont aussi circulé en dehors du site.
+
+J'ai participé à l'édition spéciale de **Caledonia** consacrée aux provinciales 2026, le 28 juin :
+
+[**Voir le direct Caledonia**](https://youtu.be/s2XX1c-XT0E?si=9D-559KBMj1GmXQO)
+
+J'ai également participé à **Politis**, sur Caledonia, autour de la question :
+
+[**La société calédonienne est-elle vraiment polarisée ?**](https://youtu.be/OUK9bwCCe_g?si=mWb3v5CRPqhliUGP)
+
+Cette discussion prolonge notamment l'article consacré à la troisième voie et aux recompositions entre les grands blocs politiques.
+
+Les reprises presse déjà signalées dans la première newsletter restent accessibles sur la nouvelle page dédiée, avec les interventions médias, les citations et les liens utiles :
+
+[**Presse et interventions**](https://contours.nc/presse/)
+
+------------------------------------------------------------------------
+
+## Le site évolue aussi
+
+Le site a été réorganisé pour rendre les contenus plus faciles à retrouver.
+
+La page d'accueil met davantage en avant le positionnement éditorial de [contours.nc]{.contours-word}, les derniers articles et la newsletter.
+
+La page [**Cartes et visualisations**](https://contours.nc/cartes/) rassemble désormais cartes, graphiques, simulations, animations et productions visuelles publiées sur le site.
+
+La page [**Ressources**](https://contours.nc/ressources/) a été clarifiée : elle présente les données publiables, les fonds géographiques et les explications méthodologiques, sans mettre à disposition les scripts de production. Les données traitées ou compilées par [contours.nc]{.contours-word} sont indiquées sous licence CC BY 4.0, en plus des sources primaires mentionnées dans les articles.
+
+Enfin, les articles longs ont maintenant un encadré **En bref**, pour donner quelques résultats clés avant d'entrer dans le détail.
+
+------------------------------------------------------------------------
+
+## La suite
+
+Les prochaines semaines permettront de prolonger ces analyses au-delà du seul moment électoral : fonctionnement des institutions, recompositions politiques, inégalités territoriales, accès aux services, données publiques et méthodes de cartographie.
+
+Merci pour vos lectures, vos partages, vos retours et vos corrections. Ils aident à faire de [contours.nc]{.contours-word} un espace de travail public, exigeant et utile au débat calédonien.
+
+À très bientôt,
+
+**Jonas Brouillon**  
+*Fondateur de [contours.nc]{.contours-word}*

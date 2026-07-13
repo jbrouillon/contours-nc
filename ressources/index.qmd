@@ -1,6 +1,7 @@
 ---
-title: "ressources"
+title: "Ressources"
 image: "../images/contours-banner.png"
+page-layout: full
 ---
 
 <div id="contours-section-ressources" class="contours-section-sketch"></div>
@@ -15,9 +16,89 @@ image: "../images/contours-banner.png"
   });
 </script>
 
-Cette page regroupera :
+```{=html}
+<section class="resource-intro">
+  <p class="resource-lede">Données, méthodes et ressources réutilisables.</p>
+  <p>Cette page rassemble les ressources effectivement publiables de <span class="contours-word">contours.nc</span> : tables agrégées, fonds géographiques, données compilées et explications méthodologiques. Les scripts de production ne sont pas mis à disposition ici.</p>
+</section>
+```
 
--   sources de données utiles en Nouvelle-Calédonie ;
--   scripts R et gabarits Quarto ;
--   fonds de carte et ressources QGIS ;
--   références méthodologiques en cartographie et sciences sociales.
+::: {.resource-note}
+Les données traitées ou compilées par <span class="contours-word">contours.nc</span> sont publiées sous licence [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr), sauf mention contraire. Cette licence porte sur le travail de traitement, d'harmonisation et de compilation ; les sources primaires restent soumises à leurs propres conditions de réutilisation et sont citées dans les articles associés.
+:::
+
+## Données
+
+```{=html}
+<section class="resource-grid" aria-label="Données disponibles">
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV · Provinciales 2026</span>
+    <h3>Résultats par province et par liste</h3>
+    <p>Tables agrégées des résultats complets des provinciales 2026 par province et par commune.</p>
+    <p>Traitement <span class="contours-word">contours.nc</span> à partir des résultats officiels. Licence des tables traitées : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_province_listes.csv">Province</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_communes_listes.csv">Communes</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV · Séries longues</span>
+    <h3>Historique provincial 1989-2026</h3>
+    <p>Séries harmonisées de participation, blocs politiques par province et sièges au Congrès.</p>
+    <p>Compilation <span class="contours-word">contours.nc</span> à partir de sources primaires documentées dans les articles. Licence de la compilation : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_participation_1989_2026.csv">Participation</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_blocs_provinces_1989_2026.csv">Provinces</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/provinciales_2026/provinciales_historique_blocs_congres_1989_2026.csv">Congrès</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">CSV / GeoJSON · Référentiel</span>
+    <h3>Bureaux de vote géolocalisés</h3>
+    <p>Référentiel consolidé des bureaux de vote utilisé pour les analyses électorales et d'accessibilité.</p>
+    <p>Consolidation et géolocalisation <span class="contours-word">contours.nc</span>. Licence du fichier traité : CC BY 4.0.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/elections/data_processed/bureaux_reference_geolocalises.csv">CSV</a>
+      <a class="resource-card__link" href="../data/elections/data_processed/bureaux_reference_geolocalises.geojson">GeoJSON</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">GeoJSON · Fonds</span>
+    <h3>Fonds géographiques simplifiés</h3>
+    <p>Communes, secteurs électoraux de Nouméa et IRIS utilisés dans les cartes et analyses spatiales.</p>
+    <p>Simplifications et assemblages publiés par <span class="contours-word">contours.nc</span>. Licence de ces fichiers traités : CC BY 4.0, en plus des obligations de citation des référentiels d'origine.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/nc_communes_simp.geojson">Communes</a>
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/secteurs_electoraux_noumea.geojson">Secteurs Nouméa</a>
+      <a class="resource-card__link" href="../data/02_geospatial/vecteurs/iris_rgp_2019.geojson">IRIS 2019</a>
+    </div>
+  </article>
+</section>
+```
+
+## Méthodes
+
+```{=html}
+<section class="resource-grid" aria-label="Méthodes">
+  <article class="resource-card">
+    <span class="resource-card__meta">Article méthode</span>
+    <h3>Simulations électorales</h3>
+    <p>Présentation des hypothèses de seuil, de répartition des sièges et de comparaison entre méthodes proportionnelles.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../posts/provinciales-2026-congres-proportionnelle-nc/">Lire</a>
+    </div>
+  </article>
+
+  <article class="resource-card">
+    <span class="resource-card__meta">Article méthode</span>
+    <h3>Accessibilité aux bureaux de vote</h3>
+    <p>Explication de l'estimation des temps de trajet à pied, des sources géographiques et des limites d'interprétation.</p>
+    <div class="resource-card__links">
+      <a class="resource-card__link" href="../posts/regroupement-bureaux-vote-noumea/">Lire</a>
+    </div>
+  </article>
+</section>
+```

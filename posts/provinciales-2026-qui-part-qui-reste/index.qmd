@@ -4,8 +4,10 @@ subtitle: "Ce que la comparaison des listes 2019 et 2026 dit du renouvellement d
 author: "Jonas Brouillon"
 date: "2026-06-15"
 lang: fr
-categories: ["Élections", "Data mining", "Provinciales 2026"]
-tags: ["provinciales", "candidatures", "listes", "renouvellement", "2026"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Candidatures
 description: "Sur 878 candidatures déposées, combien étaient déjà présentes en 2019 ? Combien d’élus reviennent ? Combien de nouveaux profils apparaissent ?"
 image: "../../images/previews/provinciales-2026-flux-sud.jpg"
 image-alt: "Graphique de flux des recompositions de candidatures dans la Province Sud entre les provinciales 2019 et 2026"
@@ -982,6 +984,15 @@ source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encod
 }
 </style>
 ```
+
+::: {.en-bref}
+## En bref
+
+- Les listes 2026 ne sont ni une reconduction de 2019, ni une page blanche : l’article compare les candidatures déposées officiellement en 2019 et 2026 pour repérer continuités, retours et profils nouveaux.
+- Le renouvellement est réel, mais une partie des profils déjà connus vient aussi des municipales 2026 ou de candidatures non élues.
+- Les recompositions diffèrent selon les provinces : continuité plus visible dans le Nord, recomposition plus éclatée dans le Sud, déplacements internes aux familles proches aux Îles.
+- Les premières places montrent moins une vague uniforme de nouveaux candidats qu’un tri politique entre sortants, anciens candidats et profils municipaux.
+:::
 
 ## Ce que l’on regarde
 

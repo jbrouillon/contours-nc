@@ -1,0 +1,1954 @@
+﻿---
+title: "Gouverner ensemble, mais jusqu’à quand ?"
+subtitle: "Vingt-sept ans de pactes calédoniens à l’épreuve des faits"
+author: "Jonas Brouillon"
+date: "2026-07-12"
+lang: fr
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Institutions
+description: "De l’alliance RPCR-FCCI au nouvel accord Loyalistes-Rassemblement-Éveil océanien, retour sur ce que les pactes calédoniens promettent, ce qu’ils distribuent et ce qu’ils réalisent vraiment."
+image: "../../images/previews/gouverner-ensemble-coalitions.png"
+image-alt: "Graphique des principales coalitions de gouvernance en Nouvelle-Calédonie"
+title-block-banner: true
+toc: true
+toc-depth: 3
+page-layout: full
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{=html}
+<style>
+.pactes-lede {
+  font-size: 1.08rem;
+  max-width: 82ch;
+}
+
+.pactes-note {
+  background: var(--surface-soft);
+  border-left: 4px solid #3f8f5a;
+  border-radius: 6px;
+  margin: 1.2rem 0 1.6rem;
+  padding: 0.85rem 1rem;
+}
+
+.pactes-period-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  margin: 1.2rem 0 2rem;
+}
+
+.pactes-period-card {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0.9rem 1rem;
+  position: relative;
+}
+
+.pactes-period-card::before {
+  background: linear-gradient(
+    180deg,
+    var(--accent, #3f8f5a) 0 45%,
+    var(--accent-2, var(--accent, #3f8f5a)) 45% 75%,
+    var(--accent-3, var(--accent-2, var(--accent, #3f8f5a))) 75% 100%
+  );
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 6px;
+}
+
+.pactes-period-card h3 {
+  color: var(--ink);
+  font-size: 1.02rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.pactes-period-meta {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0.28rem 0 0.7rem;
+}
+
+.pactes-period-block {
+  border-left: 2px solid color-mix(in srgb, var(--accent, #3f8f5a) 28%, #ded8cf);
+  border-top: 1px solid rgba(65, 58, 48, 0.11);
+  margin-top: 0.62rem;
+  padding: 0.58rem 0 0 0.62rem;
+}
+
+.pactes-period-kicker {
+  align-items: center;
+  background: color-mix(in srgb, var(--accent, #3f8f5a) 12%, #fffdf8);
+  border: 1px solid color-mix(in srgb, var(--accent, #3f8f5a) 38%, #fffdf8);
+  border-radius: 999px;
+  color: var(--accent, #3f8f5a);
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.15;
+  padding: 0.18rem 0.46rem;
+  text-transform: uppercase;
+}
+
+.pactes-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: -0.28rem 0 0.75rem;
+}
+
+.pactes-chip {
+  background: color-mix(in srgb, var(--accent, #3f8f5a) 10%, #fffdf8);
+  border: 1px solid color-mix(in srgb, var(--accent, #3f8f5a) 34%, #fffdf8);
+  border-radius: 999px;
+  color: #3b352d;
+  font-size: 0.74rem;
+  font-weight: 850;
+  line-height: 1.15;
+  padding: 0.24rem 0.5rem;
+}
+
+.pactes-chip:nth-child(2n) {
+  background: color-mix(in srgb, var(--accent-2, var(--accent, #3f8f5a)) 11%, #fffdf8);
+  border-color: color-mix(in srgb, var(--accent-2, var(--accent, #3f8f5a)) 34%, #fffdf8);
+}
+
+.pactes-chip:nth-child(3n) {
+  background: color-mix(in srgb, var(--accent-3, var(--accent-2, var(--accent, #3f8f5a))) 11%, #fffdf8);
+  border-color: color-mix(in srgb, var(--accent-3, var(--accent-2, var(--accent, #3f8f5a))) 34%, #fffdf8);
+}
+
+.pactes-block-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  margin: 0.38rem 0 0.22rem;
+}
+
+.pactes-block-chip {
+  background: color-mix(in srgb, var(--accent, #3f8f5a) 7%, #fffdf8);
+  border: 1px solid color-mix(in srgb, var(--accent, #3f8f5a) 30%, #ded8cf);
+  border-radius: 999px;
+  color: #3f3932;
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1.12;
+  padding: 0.2rem 0.46rem;
+}
+
+.pactes-block-chip:nth-child(2n) {
+  background: color-mix(in srgb, var(--accent-2, var(--accent, #3f8f5a)) 7%, #fffdf8);
+  border-color: color-mix(in srgb, var(--accent-2, var(--accent, #3f8f5a)) 30%, #ded8cf);
+}
+
+.pactes-block-chip:nth-child(3n) {
+  background: color-mix(in srgb, var(--accent-3, var(--accent-2, var(--accent, #3f8f5a))) 7%, #fffdf8);
+  border-color: color-mix(in srgb, var(--accent-3, var(--accent-2, var(--accent, #3f8f5a))) 32%, #ded8cf);
+}
+
+.pactes-period-card p {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.34;
+  margin: 0.18rem 0 0;
+}
+
+.pactes-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 350px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.pactes-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.pactes-sketch-download {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.pactes-sketch-download:hover {
+  background: #f3efe6;
+}
+
+.pactes-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.pactes-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+
+@media (max-width: 780px) {
+  #quarto-content,
+  #title-block-header,
+  #title-block-header .quarto-title-banner,
+  #quarto-document-content {
+    display: block !important;
+    max-width: 100vw !important;
+    overflow-x: hidden;
+  }
+
+  #title-block-header .quarto-title,
+  #title-block-header .quarto-title-meta,
+  #quarto-document-content,
+  .page-columns,
+  .column-body,
+  .column-page,
+  .column-screen,
+  .column-screen-inset {
+    box-sizing: border-box;
+    display: block !important;
+    grid-column: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    width: 100% !important;
+  }
+
+  #title-block-header .title,
+  #title-block-header .subtitle {
+    max-width: calc(100vw - 2rem) !important;
+    overflow-wrap: anywhere;
+    width: calc(100vw - 2rem) !important;
+  }
+
+  #quarto-document-content p,
+  #quarto-document-content li,
+  #quarto-document-content h2,
+  #quarto-document-content h3,
+  .pactes-lede,
+  .pactes-note,
+  .pactes-sketch-caption {
+    box-sizing: border-box;
+    max-width: calc(100vw - 2rem) !important;
+    overflow-wrap: anywhere;
+    width: calc(100vw - 2rem) !important;
+  }
+
+  .pactes-sketch {
+    margin-left: calc(50% - 50vw + 12px);
+    margin-right: calc(50% - 50vw + 12px);
+    max-width: calc(100vw - 24px);
+    width: calc(100vw - 24px);
+  }
+
+  .pactes-sketch svg {
+    max-width: none;
+    min-width: 760px;
+  }
+
+  .pactes-lede,
+  .pactes-note,
+  p,
+  li {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script>
+window.ContoursPactes = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+  const orange = "#c35a3b";
+  const gold = "#d9aa32";
+  const green = "#3f8f5a";
+  const blue = "#305f9f";
+  const teal = "#2f9fb3";
+  const purple = "#8a658b";
+  const fcci = "#6f8f4f";
+
+  const fmtYear = (value) => String(Math.round(value));
+  const fmtYears = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 }).format(value) + " an" + (value > 1.05 ? "s" : "");
+
+  const accords = [
+    {
+      id: "rpcr-fcci",
+      label: "RPCR-FCCI",
+      period: "1999-2004",
+      start: 1999.4,
+      end: 2004.4,
+      observedYears: 5.0,
+      seats: "28/54",
+      type: "Majorité négociée",
+      family: "institution",
+      partners: "RPCR + FCCI",
+      programmeScore: 0.5,
+      institutionScore: 3,
+      durationScore: 3,
+      outcome: "majorité installée, collégialité contestée",
+      color: blue
+    },
+    {
+      id: "themereau",
+      label: "Gouvernement Thémereau",
+      period: "2004-2007",
+      start: 2004.5,
+      end: 2007.6,
+      observedYears: 3.1,
+      seats: null,
+      type: "Majorité relative",
+      family: "gouvernement",
+      partners: "Avenir ensemble et compromis variables",
+      programmeScore: 2,
+      institutionScore: 2,
+      durationScore: 2.5,
+      outcome: "réformes concrètes, arbitrages différés",
+      color: "#7c8c52"
+    },
+    {
+      id: "accord-cadre-2007",
+      label: "Accord-cadre",
+      period: "2007-2009",
+      start: 2007.6,
+      end: 2009.4,
+      observedYears: 1.8,
+      seats: "35 voix",
+      type: "Accord de présidences",
+      family: "institution",
+      partners: "Rassemblement-UMP + Avenir ensemble + RPC",
+      programmeScore: 0.8,
+      institutionScore: 3,
+      durationScore: 2.2,
+      outcome: "présidences partagées, programme commun peu public",
+      color: "#6f7d95"
+    },
+    {
+      id: "entente-2009",
+      label: "Entente républicaine",
+      period: "2009-2011",
+      start: 2009.4,
+      end: 2011.15,
+      observedYears: 1.8,
+      seats: null,
+      type: "Pacte de stabilité",
+      family: "gouvernement",
+      partners: "Rassemblement-UMP + Calédonie ensemble + Avenir ensemble + LMD",
+      programmeScore: 2.2,
+      institutionScore: 3,
+      durationScore: 1.4,
+      outcome: "DPG substantielle, rupture autour des drapeaux et de la collégialité",
+      color: purple
+    },
+    {
+      id: "partage-pouvoir",
+      label: "Partage du pouvoir",
+      period: "2011-2014",
+      start: 2011.15,
+      end: 2014.4,
+      observedYears: 3.2,
+      seats: null,
+      type: "Coalition transpartisane",
+      family: "gouvernement",
+      partners: "Rassemblement-UMP + Avenir ensemble + UC-FLNKS et alliés",
+      programmeScore: 2,
+      institutionScore: 3,
+      durationScore: 2.6,
+      outcome: "mesures sociales, grands engagements structurels peu aboutis",
+      color: "#8a6f26"
+    },
+    {
+      id: "cgs-2014",
+      label: "Contrat de gouvernance solidaire",
+      period: "mai-déc. 2014",
+      start: 2014.38,
+      end: 2014.96,
+      observedYears: 0.6,
+      seats: "29/54",
+      type: "Contrat formalisé",
+      family: "formalise",
+      partners: "Calédonie ensemble + FPU + UCF",
+      programmeScore: 3,
+      institutionScore: 3,
+      durationScore: 0.8,
+      outcome: "agenda produit, pacte rompu sur la fiscalité",
+      color: orange
+    },
+    {
+      id: "plateforme-2017",
+      label: "Plateforme et accord transpartisan",
+      period: "2017-2018",
+      start: 2017.45,
+      end: 2018.9,
+      observedYears: 1.4,
+      seats: null,
+      type: "Accord référendaire",
+      family: "formalise",
+      partners: "Plateforme non-indépendantiste, puis CE-Rassemblement-MPC + UNI + UC-FLNKS",
+      programmeScore: 1.6,
+      institutionScore: 3,
+      durationScore: 1.3,
+      outcome: "gouvernement rétabli, plateforme divisée avant le référendum",
+      color: gold
+    },
+    {
+      id: "aec-eveil",
+      label: "Accord Avenir en confiance-Éveil",
+      period: "2019-2021",
+      start: 2019.4,
+      end: 2021.15,
+      observedYears: 1.8,
+      seats: "22 voix",
+      type: "Liste commune gouvernementale",
+      family: "institution",
+      partners: "Avenir en confiance + Éveil océanien",
+      programmeScore: 1.1,
+      institutionScore: 3,
+      durationScore: 1.5,
+      outcome: "sièges obtenus, New Deal non repris comme programme gouvernemental",
+      color: teal
+    },
+    {
+      id: "majorite-oceanienne",
+      label: "Majorité océanienne",
+      period: "2019-2024",
+      start: 2019.45,
+      end: 2024.65,
+      observedYears: 5.2,
+      seats: "29/54",
+      type: "Alliance de fait",
+      family: "fait",
+      partners: "Éveil océanien + UC-FLNKS et autres indépendantistes",
+      programmeScore: 0.7,
+      institutionScore: 2.5,
+      durationScore: 2.4,
+      outcome: "présidence du Congrès durable, programme commun peu public",
+      color: green
+    },
+    {
+      id: "gouvernement-mapou",
+      label: "Gouvernement Mapou",
+      period: "2021-2024",
+      start: 2021.52,
+      end: 2024.98,
+      observedYears: 3.5,
+      seats: "6/11",
+      type: "Gouvernement à majorité ind.-Éveil",
+      family: "gouvernement",
+      partners: "UNI + UC-FLNKS/Nationalistes + Éveil océanien",
+      programmeScore: 1.5,
+      institutionScore: 3,
+      durationScore: 2.7,
+      outcome: "6 sièges sur 11, exécutif maintenu jusqu'à décembre 2024",
+      color: green
+    },
+    {
+      id: "recompositions-2024",
+      label: "Recompositions Éveil",
+      period: "2024-2026",
+      start: 2024.65,
+      end: 2026.33,
+      observedYears: 1.7,
+      seats: "28 voix",
+      type: "Arrangements institutionnels",
+      family: "institution",
+      partners: "Éveil océanien + non-indépendantistes, puis CE-EO",
+      programmeScore: 0.5,
+      institutionScore: 2.5,
+      durationScore: 1.2,
+      outcome: "présidence, liste commune et intergroupe sans contrat de mandature public",
+      color: "#9a7a43"
+    },
+    {
+      id: "accord-2026",
+      label: "Accord LL-LR-Éveil",
+      period: "2026-2031",
+      start: 2026.52,
+      end: 2031,
+      observedYears: 0.1,
+      seats: "28/54",
+      type: "Accord en cours",
+      family: "en-cours",
+      partners: "Les Loyalistes + Le Rassemblement + Éveil océanien",
+      programmeScore: 0.9,
+      institutionScore: 1.5,
+      durationScore: 0.4,
+      outcome: "première présidence obtenue, programme détaillé encore attendu",
+      color: "#c54832"
+    }
+  ];
+
+  const coalitions = [
+    {
+      id: "rpcr-fcci",
+      period: "1999",
+      label: "RPCR-FCCI",
+      total: 28,
+      durationYears: 5.0,
+      duration: "≈5 ans",
+      detail: "Majorité absolue exacte : 24 élus RPCR et 4 élus FCCI.",
+      source: "Sénat, Wikipédia 1999",
+      segments: [
+        { label: "RPCR", seats: 24, color: blue, included: true },
+        { label: "autres loyalistes", seats: 7, color: blue, included: false },
+        { label: "FCCI", seats: 4, color: fcci, included: true },
+        { label: "autres ind.", seats: 19, color: green, included: false }
+      ]
+    },
+    {
+      id: "themereau",
+      period: "2004",
+      label: "Avenir ensemble sans majorité seule",
+      total: 16,
+      durationYears: 3.1,
+      duration: "≈3 ans",
+      detail: "Avenir ensemble pèse 16 sièges ; la droite loyaliste en compte 20 et reste distincte.",
+      source: "Wikipédia 2004, DPG 2004",
+      segments: [
+        { label: "droite loyaliste", seats: 20, color: blue, included: false },
+        { label: "Avenir ensemble", seats: 16, color: purple, included: true },
+        { label: "indépendantistes", seats: 18, color: green, included: false }
+      ]
+    },
+    {
+      id: "accord-cadre-2007",
+      period: "2007",
+      label: "Accord-cadre non-indépendantiste",
+      total: 36,
+      durationYears: 1.8,
+      duration: "≈2 ans",
+      detail: "L’accord additionne 20 sièges de droite loyaliste et 16 sièges Avenir ensemble.",
+      source: "Série historique locale / Gouv.nc",
+      segments: [
+        { label: "droite loyaliste", seats: 20, color: blue, included: true },
+        { label: "Avenir ensemble", seats: 16, color: purple, included: true },
+        { label: "indépendantistes", seats: 18, color: green, included: false }
+      ]
+    },
+    {
+      id: "entente-2009",
+      period: "2009",
+      label: "Entente républicaine",
+      total: 31,
+      durationYears: 1.8,
+      duration: "≈1,8 an",
+      detail: "Les familles non-indépendantistes totalisent 31 sièges, mais restent divisées entre loyalistes et centre.",
+      source: "Série historique locale / Wikipédia 2009",
+      segments: [
+        { label: "droite loyaliste", seats: 15, color: blue, included: true },
+        { label: "centre non-ind.", seats: 16, color: purple, included: true },
+        { label: "indépendantistes", seats: 23, color: green, included: false }
+      ]
+    },
+    {
+      id: "cgs-2014",
+      period: "2014",
+      label: "Contrat de gouvernance solidaire",
+      total: 29,
+      durationYears: 0.6,
+      duration: "≈7 mois",
+      detail: "Calédonie ensemble, FPU et UCF atteignent 29 sièges : majorité courte, accord formalisé.",
+      source: "Série historique locale / Wikipédia 2014",
+      segments: [
+        { label: "FPU + UCF", seats: 14, color: blue, included: true },
+        { label: "Calédonie ensemble", seats: 15, color: purple, included: true },
+        { label: "indépendantistes", seats: 25, color: green, included: false }
+      ]
+    },
+    {
+      id: "majorite-oceanienne",
+      period: "2019",
+      label: "Majorité océanienne au Congrès",
+      total: 29,
+      durationYears: 5.2,
+      duration: "≈5 ans",
+      durationColor: green,
+      detail: "26 élus indépendantistes et 3 Éveil forment la majorité ; droite et centre restent hors majorité.",
+      source: "Données locales 2019",
+      segments: [
+        { label: "droite/AEC", seats: 18, color: blue, included: false },
+        { label: "centre CE", seats: 7, color: purple, included: false },
+        { label: "Éveil océanien", seats: 3, color: teal, included: true },
+        { label: "indépendantistes", seats: 26, color: green, included: true }
+      ]
+    },
+    {
+      id: "gouvernement-mapou",
+      period: "2021-2024",
+      label: "Gouvernement Mapou",
+      total: 30,
+      durationYears: 3.5,
+      duration: "3,5 ans",
+      durationColor: green,
+      detail: "30 voix indépendantistes-Éveil ; les 24 voix restantes relèvent de la droite et du centre hors majorité.",
+      source: "Gouv.nc, Wikipédia 17e gouvernement",
+      segments: [
+        { label: "droite hors maj.", seats: 18, color: blue, included: false },
+        { label: "centre hors maj.", seats: 6, color: purple, included: false },
+        { label: "Éveil", seats: 3, color: teal, included: true },
+        { label: "UC-FLNKS/Nat.", seats: 13, color: green, included: true },
+        { label: "UNI + alliés", seats: 14, color: gold, included: true }
+      ]
+    },
+    {
+      id: "aec-eveil",
+      period: "2019",
+      label: "Liste AEC-Éveil au gouvernement",
+      total: 22,
+      durationYears: 1.8,
+      duration: "≈2 ans",
+      detail: "La liste AEC-Éveil obtient 22 voix ; Calédonie ensemble reste un groupe centre distinct.",
+      source: "Note de recherche, DPG 2019",
+      segments: [
+        { label: "AEC/loyalistes", seats: 18, color: blue, included: true },
+        { label: "appui centre", seats: 1, color: purple, included: true },
+        { label: "centre hors liste", seats: 6, color: purple, included: false },
+        { label: "Éveil", seats: 3, color: teal, included: true },
+        { label: "indépendantistes", seats: 26, color: green, included: false }
+      ]
+    },
+    {
+      id: "falaeo-2024",
+      period: "2024",
+      label: "Élection de Veylma Falaeo",
+      total: 28,
+      durationYears: 0.4,
+      duration: "vote ponctuel",
+      detail: "28 voix : droite loyaliste, centre Calédonie ensemble et Éveil s’additionnent sans se confondre.",
+      source: "Congrès 2024",
+      segments: [
+        { label: "droite/AEC", seats: 18, color: blue, included: true },
+        { label: "centre CE", seats: 7, color: purple, included: true },
+        { label: "Éveil", seats: 3, color: teal, included: true },
+        { label: "indépendantistes", seats: 26, color: green, included: false }
+      ]
+    },
+    {
+      id: "accord-2026",
+      period: "2026",
+      label: "Loyalistes-Rassemblement-Éveil",
+      total: 28,
+      durationYears: 0.1,
+      duration: "en cours",
+      detail: "24 élus LL-LR et 4 élus Éveil océanien : nouvelle majorité absolue exacte.",
+      source: "Résultats 2026",
+      segments: [
+        { label: "LL-LR", seats: 24, color: blue, included: true },
+        { label: "Éveil", seats: 4, color: teal, included: true },
+        { label: "indépendantistes", seats: 26, color: green, included: false }
+      ]
+    }
+  ];
+
+  const lawCategories = [
+    { label: "Fiscalité / finances", color: orange },
+    { label: "Social / santé", color: teal },
+    { label: "Travail / emploi / formation", color: purple },
+    { label: "Économie / entreprises / mines", color: gold },
+    { label: "Institutions / droit public", color: blue },
+    { label: "Éducation / culture / jeunesse", color: "#6f8f4f" },
+    { label: "Environnement / énergie / aménagement", color: green },
+    { label: "Transport / infrastructures", color: "#9a7a43" },
+    { label: "Autres textes", color: "#8a8277" }
+  ];
+
+  const lawMandatures = [
+    {
+      label: "1999-2004 · RPCR-FCCI",
+      total: 32,
+      classified: 32,
+      color: "#305f9f",
+      statusLabel: "32 lois",
+      note: "Majorité absolue exacte ; mise en route institutionnelle et fiscalité dominante.",
+      categories: [
+        { label: "Fiscalité / finances", count: 17 },
+        { label: "Social / santé", count: 4 },
+        { label: "Travail / emploi / formation", count: 4 },
+        { label: "Économie / entreprises / mines", count: 1 },
+        { label: "Institutions / droit public", count: 1 },
+        { label: "Transport / infrastructures", count: 2 },
+        { label: "Autres textes", count: 3 }
+      ]
+    },
+    {
+      label: "2004-2007 · Thémereau",
+      total: 27,
+      classified: 27,
+      color: "#8a658b",
+      statusLabel: "27 lois",
+      note: "Programme de confiance éprouvé au gouvernement ; forte séquence fiscale et sociale.",
+      categories: [
+        { label: "Fiscalité / finances", count: 13 },
+        { label: "Social / santé", count: 2 },
+        { label: "Travail / emploi / formation", count: 4 },
+        { label: "Économie / entreprises / mines", count: 1 },
+        { label: "Institutions / droit public", count: 2 },
+        { label: "Éducation / culture / jeunesse", count: 1 },
+        { label: "Environnement / énergie / aménagement", count: 2 },
+        { label: "Transport / infrastructures", count: 2 }
+      ]
+    },
+    {
+      label: "2007-2009 · Accord-cadre",
+      total: 16,
+      classified: 16,
+      color: "#305f9f",
+      statusLabel: "16 lois",
+      note: "Stabilisation non-indépendantiste ; moins de textes mais agenda fiscal continu.",
+      categories: [
+        { label: "Fiscalité / finances", count: 10 },
+        { label: "Social / santé", count: 3 },
+        { label: "Travail / emploi / formation", count: 1 },
+        { label: "Économie / entreprises / mines", count: 1 },
+        { label: "Transport / infrastructures", count: 1 }
+      ]
+    },
+    {
+      label: "2009-2011 · Entente républicaine",
+      total: 20,
+      classified: 20,
+      color: "#305f9f",
+      statusLabel: "20 lois",
+      note: "DPG fournie, puis crise de collégialité ; production avant bascule de 2011.",
+      categories: [
+        { label: "Fiscalité / finances", count: 5 },
+        { label: "Social / santé", count: 3 },
+        { label: "Travail / emploi / formation", count: 6 },
+        { label: "Éducation / culture / jeunesse", count: 1 },
+        { label: "Environnement / énergie / aménagement", count: 3 },
+        { label: "Transport / infrastructures", count: 1 },
+        { label: "Autres textes", count: 1 }
+      ]
+    },
+    {
+      label: "2011-2014 · Martin-Frogier-UC",
+      total: 41,
+      classified: 41,
+      color: green,
+      statusLabel: "41 lois",
+      note: "Retour à la stabilité ; mesures sociales, fiscales et institutionnelles.",
+      categories: [
+        { label: "Fiscalité / finances", count: 11 },
+        { label: "Social / santé", count: 6 },
+        { label: "Travail / emploi / formation", count: 6 },
+        { label: "Économie / entreprises / mines", count: 5 },
+        { label: "Institutions / droit public", count: 5 },
+        { label: "Éducation / culture / jeunesse", count: 2 },
+        { label: "Autres textes", count: 6 }
+      ]
+    },
+    {
+      label: "2014 · CGS",
+      total: 8,
+      classified: 8,
+      color: "#8a658b",
+      statusLabel: "8 lois",
+      note: "Contrat formalisé très court ; peu de textes avant rupture fiscale.",
+      categories: [
+        { label: "Fiscalité / finances", count: 5 },
+        { label: "Travail / emploi / formation", count: 1 },
+        { label: "Transport / infrastructures", count: 1 },
+        { label: "Autres textes", count: 1 }
+      ]
+    },
+    {
+      label: "2014-2019 · Germain / sortie référendaire",
+      total: 79,
+      classified: 79,
+      color: "#305f9f",
+      statusLabel: "79 lois",
+      note: "Pic législatif : TGC, concurrence, social, fiscalité et préparation référendaire.",
+      categories: [
+        { label: "Fiscalité / finances", count: 22 },
+        { label: "Social / santé", count: 13 },
+        { label: "Travail / emploi / formation", count: 8 },
+        { label: "Économie / entreprises / mines", count: 12 },
+        { label: "Institutions / droit public", count: 3 },
+        { label: "Éducation / culture / jeunesse", count: 1 },
+        { label: "Environnement / énergie / aménagement", count: 8 },
+        { label: "Transport / infrastructures", count: 5 },
+        { label: "Autres textes", count: 7 }
+      ]
+    },
+    {
+      label: "2019-2021 · AEC-Éveil",
+      total: 15,
+      classified: 15,
+      color: "#2f9fb3",
+      statusLabel: "15 lois",
+      note: "Début de mandature Santa ; textes fiscaux, travail et Covid.",
+      categories: [
+        { label: "Fiscalité / finances", count: 4 },
+        { label: "Social / santé", count: 2 },
+        { label: "Travail / emploi / formation", count: 3 },
+        { label: "Économie / entreprises / mines", count: 3 },
+        { label: "Institutions / droit public", count: 1 },
+        { label: "Éducation / culture / jeunesse", count: 2 }
+      ]
+    },
+    {
+      label: "2021-2024 · Mapou / majorité océanienne",
+      total: 42,
+      classified: 42,
+      color: green,
+      statusLabel: "41 lois + 1 en suspens",
+      note: "Durée longue ; finances, social, fonction publique, mines et réformes sectorielles.",
+      categories: [
+        { label: "Fiscalité / finances", count: 14 },
+        { label: "Social / santé", count: 8 },
+        { label: "Travail / emploi / formation", count: 2 },
+        { label: "Économie / entreprises / mines", count: 2 },
+        { label: "Institutions / droit public", count: 6 },
+        { label: "Éducation / culture / jeunesse", count: 3 },
+        { label: "Environnement / énergie / aménagement", count: 2 },
+        { label: "Autres textes", count: 5 }
+      ]
+    },
+    {
+      label: "2024-2026 · CE-Éveil / Ponga",
+      total: 30,
+      classified: 30,
+      color: "#9a7a43",
+      statusLabel: "29 lois + 1 en suspens",
+      note: "Séquence de soutien/reconstruction : fiscalité, social, emploi, économie et concurrence.",
+      categories: [
+        { label: "Fiscalité / finances", count: 6 },
+        { label: "Social / santé", count: 6 },
+        { label: "Travail / emploi / formation", count: 3 },
+        { label: "Économie / entreprises / mines", count: 4 },
+        { label: "Institutions / droit public", count: 3 },
+        { label: "Éducation / culture / jeunesse", count: 2 },
+        { label: "Environnement / énergie / aménagement", count: 2 },
+        { label: "Transport / infrastructures", count: 1 },
+        { label: "Autres textes", count: 3 }
+      ]
+    }
+  ];
+
+  function payload(id) {
+    return { accords, coalitions, lawCategories, lawMandatures };
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function base(id, height, minWidth = 760) {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    const tools = document.createElement("div");
+    tools.className = "pactes-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "pactes-sketch-download";
+    button.textContent = "PNG";
+    button.setAttribute("aria-label", "Télécharger le graphique en PNG");
+    button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+
+    const compact = window.innerWidth < 760;
+    const fallbackWidth = compact ? window.innerWidth - 24 : 980;
+    const width = Math.max(minWidth, Math.round(el.clientWidth || fallbackWidth));
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.pactesChart || "graphique")
+      .style("background", paper);
+    return { el, svg, rc: rough.svg(svg.node()), width, height };
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }, "image/png");
+    };
+    image.src = url;
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 800)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = color, fillStyle = "hachure") {
+    if (width <= 0 || height <= 0) return null;
+    const bg = g.append("rect")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("fill", color)
+      .attr("opacity", 0.12 * opacity);
+    const node = rc.rectangle(x, y, width, height, {
+      fill: color,
+      fillStyle,
+      fillWeight: 1.55,
+      hachureGap: 2.15,
+      hachureAngle: -42,
+      roughness: 1.35,
+      stroke,
+      strokeWidth: 1.2
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return { bg, node: d3.select(node) };
+  }
+
+  function roughCircle(g, rc, x, y, diameter, color, opacity = 1, stroke = ink) {
+    const node = rc.circle(x, y, diameter, {
+      fill: color,
+      fillStyle: "solid",
+      roughness: 1.55,
+      stroke,
+      strokeWidth: 1.1
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return d3.select(node);
+  }
+
+  function roughLine(g, rc, x1, y1, x2, y2, color = ink, width = 1.2, opacity = 1) {
+    const node = rc.line(x1, y1, x2, y2, {
+      stroke: color,
+      strokeWidth: width,
+      roughness: 1.25,
+      bowing: 1.1
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return d3.select(node);
+  }
+
+  function label(g, text, x, y, opts = {}) {
+    const halo = opts.halo !== false;
+    return g.append("text")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("text-anchor", opts.anchor || "start")
+      .attr("dominant-baseline", opts.baseline || "middle")
+      .attr("font-size", opts.size || 12)
+      .attr("font-weight", opts.weight || 400)
+      .attr("fill", opts.color || ink)
+      .attr("paint-order", "stroke")
+      .attr("stroke", halo ? paper : "none")
+      .attr("stroke-linejoin", "round")
+      .attr("stroke-width", halo ? (opts.haloWidth || 3.4) : 0)
+      .text(text);
+  }
+
+  function wrap(selection, width) {
+    selection.each(function() {
+      const text = d3.select(this);
+      const words = text.text().split(/\s+/).reverse();
+      const x = text.attr("x");
+      const y = text.attr("y");
+      let line = [];
+      let lineNumber = 0;
+      let word;
+      text.text(null);
+      let tspan = text.append("tspan").attr("x", x).attr("y", y);
+      while ((word = words.pop())) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", `${++lineNumber * 1.05}em`)
+            .text(word);
+        }
+      }
+    });
+  }
+
+  function chartTitle(svg, text, width, y = 30) {
+    const wrapWidth = window.innerWidth < 780
+      ? Math.max(245, Math.min(width - 36, window.innerWidth - 120))
+      : Math.min(width - 36, 1040);
+    return label(svg, text, 18, y, { size: 22, weight: 800 })
+      .call(wrap, wrapWidth);
+  }
+
+  function drawLegend(svg, rc, items, x, y, width) {
+    const compact = window.innerWidth < 760;
+    const columns = compact ? 2 : Math.min(4, items.length);
+    const cellWidth = Math.max(150, Math.min(230, width / columns));
+    const rowHeight = compact ? 29 : 26;
+    const g = svg.append("g").attr("transform", `translate(${x},${y})`);
+    items.forEach((item, i) => {
+      const gx = (i % columns) * cellWidth;
+      const gy = Math.floor(i / columns) * rowHeight;
+      const row = g.append("g").attr("transform", `translate(${gx},${gy})`);
+      roughRect(row, rc, 0, -8, 18, 14, item.color, 0.95, item.color, "solid");
+      label(row, item.label, 27, 0, { size: 11, color: muted, weight: 800 }).call(wrap, cellWidth - 35);
+    });
+  }
+
+  function renderTimeline(id) {
+    const data = payload(id).accords;
+    const compact = window.innerWidth < 760;
+    const rowHeight = compact ? 66 : 58;
+    const height = 126 + data.length * rowHeight + 82;
+    const { svg, rc, width } = base(id, height, compact ? 1040 : 1120);
+    chartTitle(svg, "Vingt-sept ans de pactes, alliances et majorités croisées", width, 30);
+
+    const margin = {
+      top: compact ? 106 : 92,
+      right: compact ? 44 : 78,
+      bottom: 82,
+      left: compact ? 218 : 285
+    };
+    const innerW = width - margin.left - margin.right;
+    const x = d3.scaleLinear().domain([1999, 2031]).range([0, innerW]);
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const ticks = [1999, 2004, 2009, 2014, 2019, 2024, 2026, 2031];
+
+    ticks.forEach((tick) => {
+      const tx = x(tick);
+      g.append("line")
+        .attr("x1", tx)
+        .attr("x2", tx)
+        .attr("y1", -16)
+        .attr("y2", data.length * rowHeight - 6)
+        .attr("stroke", tick === 2026 ? "#b77a43" : grid)
+        .attr("stroke-width", tick === 2026 ? 1.4 : 1)
+        .attr("stroke-dasharray", tick === 2026 ? "5 5" : null);
+      label(g, fmtYear(tick), tx, data.length * rowHeight + 23, {
+        anchor: "middle",
+        size: compact ? 11 : 12,
+        color: tick === 2026 ? "#9b6b43" : muted,
+        weight: tick === 2026 ? 800 : 500
+      });
+    });
+
+    data.forEach((d, i) => {
+      const y = i * rowHeight;
+      const x0 = x(d.start);
+      const x1 = x(d.end);
+      const barW = Math.max(7, x1 - x0);
+      label(g, d.period, -margin.left + 18, y + 16, { size: 12, color: muted, weight: 800 });
+      label(g, d.label, -12, y + 38, { anchor: "end", size: compact ? 12 : 13, weight: 800 })
+        .call(wrap, margin.left - 48);
+      const opacity = d.family === "en-cours" ? 0.55 : 0.92;
+      const rect = roughRect(g, rc, x0, y + 22, barW, 24, d.color, opacity, d.color);
+      if (d.family === "en-cours" && rect) {
+        rect.node.selectAll("path").attr("stroke-dasharray", "6 5");
+      }
+      const detail = d.seats ? `${d.type} · ${d.seats}` : d.type;
+      const detailInside = barW > (compact ? 118 : 150);
+      const detailX = detailInside ? x0 + 8 : Math.min(x1 + 10, innerW - 170);
+      label(g, detail, detailX, y + 34, {
+        size: compact ? 10 : 11,
+        color: ink,
+        weight: 800
+      }).call(wrap, detailInside ? Math.max(90, barW - 14) : 168);
+      if (!compact) {
+        label(g, d.outcome, Math.min(Math.max(x1 + 12, detailX + 155), innerW - 250), y + 34, {
+          size: 11,
+          color: muted
+        }).call(wrap, 245);
+      }
+    });
+
+    label(g, "2026 : nouveau pacte à suivre", x(2026) + 8, -28, {
+      size: 12,
+      color: "#9b6b43",
+      weight: 800
+    });
+
+    const legend = [
+      { label: "contrat ou texte plus formalisé", color: orange },
+      { label: "accord institutionnel", color: blue },
+      { label: "programme gouvernemental", color: purple },
+      { label: "alliance de fait", color: green }
+    ];
+    drawLegend(svg, rc, legend, compact ? 26 : Math.max(28, width / 2 - 430), height - 50, width - 52);
+    addSignature(svg, width, height);
+  }
+
+  function renderCoalitions(id) {
+    const orderHints = {
+      "aec-eveil": 2019.1,
+      "majorite-oceanienne": 2019.2,
+      "gouvernement-mapou": 2021.5
+    };
+    const data = payload(id).coalitions
+      .slice()
+      .sort((a, b) =>
+        (orderHints[a.id] || parseFloat(a.period) || 0) -
+        (orderHints[b.id] || parseFloat(b.period) || 0)
+      );
+    const compact = window.innerWidth < 760;
+    const rowHeight = compact ? 140 : 134;
+    const height = 140 + data.length * rowHeight + 126;
+    const { svg, rc, width } = base(id, height, compact ? 1320 : 1360);
+    chartTitle(svg, "Pactes, voix et durée : combien de temps derrière chaque majorité ?", width, 30);
+
+    const margin = compact
+      ? { top: 130, right: 430, bottom: 90, left: 250 }
+      : { top: 118, right: 460, bottom: 90, left: 292 };
+    const innerW = width - margin.left - margin.right;
+    const chartH = data.length * rowHeight - 14;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const x = d3.scaleLinear().domain([0, 54]).range([0, innerW]);
+    const maxDuration = d3.max(data, (d) => d.durationYears || 0) || 1;
+    const durationScale = d3.scaleLinear().domain([0, Math.max(5.2, maxDuration)]).range([0, compact ? 128 : 150]);
+    const barY = compact ? 43 : 40;
+    const barH = 28;
+    const majorityX = x(28);
+
+    [0, 14, 28, 42, 54].forEach((tick) => {
+      const tx = x(tick);
+      g.append("line")
+        .attr("x1", tx)
+        .attr("x2", tx)
+        .attr("y1", -16)
+        .attr("y2", chartH)
+        .attr("stroke", tick === 28 ? "#9a7a43" : grid)
+        .attr("stroke-width", tick === 28 ? 1.6 : 1)
+        .attr("stroke-dasharray", tick === 28 ? "6 5" : "3 6");
+      label(g, `${tick}`, tx, chartH + 24, {
+        anchor: "middle",
+        size: compact ? 10 : 11,
+        color: tick === 28 ? "#8a6537" : muted,
+        weight: tick === 28 ? 900 : 600
+      });
+    });
+
+    label(g, "majorité absolue", majorityX + 8, -26, {
+      size: 11,
+      color: "#8a6537",
+      weight: 900
+    }).call(wrap, 150);
+
+    data.forEach((d, i) => {
+      const y = i * rowHeight;
+      const row = g.append("g").attr("transform", `translate(0,${y})`);
+      let cursor = 0;
+
+      g.append("line")
+        .attr("x1", -margin.left + 18)
+        .attr("x2", innerW + margin.right - 24)
+        .attr("y1", y + rowHeight - 9)
+        .attr("y2", y + rowHeight - 9)
+        .attr("stroke", "rgba(65,58,48,0.12)");
+
+      label(row, d.period, -margin.left + 20, 18, {
+        size: compact ? 11 : 12,
+        color: muted,
+        weight: 900
+      });
+      label(row, d.label, -14, 45, {
+        anchor: "end",
+        size: compact ? 12 : 13,
+        weight: 900
+      }).call(wrap, margin.left - 44);
+
+      d.segments.forEach((s, j) => {
+        const x0 = x(cursor);
+        const w = x(s.seats) - x(0);
+        const opacity = s.included ? 0.88 : 0.24;
+        const stroke = s.included ? s.color : "#b8b0a5";
+        roughRect(row, rc, x0, barY, w, barH, s.color, opacity, stroke, s.included ? "hachure" : "solid");
+        const cx = x0 + w / 2;
+        const text = `${s.label} · ${s.seats}`;
+
+        if (w >= 72) {
+          label(row, text, cx, barY + barH / 2 + 1, {
+            anchor: "middle",
+            size: compact ? 10 : 11,
+            color: s.included ? ink : muted,
+            weight: s.included ? 900 : 700,
+            haloWidth: 4.4
+          }).call(wrap, Math.max(64, w - 12));
+        } else {
+          const calloutY = j % 2 === 0 ? 20 : 96;
+          roughLine(row, rc, cx, calloutY < barY ? barY : barY + barH, cx, calloutY, s.color, 1.1, 0.85);
+          label(row, text, Math.min(cx + 8, innerW - 96), calloutY, {
+            size: compact ? 9.5 : 10,
+            color: s.included ? s.color : muted,
+            weight: 850,
+            haloWidth: 4.4
+          }).call(wrap, 120);
+        }
+
+        cursor += s.seats;
+      });
+
+      label(row, `${d.total}/54`, innerW + 22, 23, {
+        size: compact ? 14 : 16,
+        color: d.total >= 28 ? ink : muted,
+        weight: 950
+      });
+      label(row, d.detail, innerW + 22, 51, {
+        size: compact ? 10 : 11,
+        color: muted,
+        weight: 650
+      }).call(wrap, margin.right - 44);
+      const durationColor = d.durationColor || (d.segments.find((s) => s.included)?.color || blue);
+      const durationW = Math.max(6, durationScale(d.durationYears || 0));
+      label(row, "durée", innerW + 22, 83, {
+        size: compact ? 9 : 10,
+        color: muted,
+        weight: 900
+      });
+      roughRect(row, rc, innerW + 74, 77, durationW, 11, durationColor, 0.68, durationColor, "solid");
+      label(row, d.duration, innerW + 84 + durationW, 83, {
+        size: compact ? 9.5 : 10.5,
+        color: ink,
+        weight: 850
+      }).call(wrap, margin.right - 90 - durationW);
+    });
+
+    const campLegend = [
+      { label: "droite / loyalistes", color: blue },
+      { label: "centre non-ind.", color: purple },
+      { label: "Éveil océanien", color: teal },
+      { label: "indépendantistes", color: green },
+      { label: "UNI et alliés", color: gold },
+      { label: "FCCI / alliés", color: fcci }
+    ];
+    drawLegend(svg, rc, campLegend, margin.left, height - 94, width - margin.left - 34);
+    const legendY = height - 20;
+    roughRect(svg, rc, margin.left, legendY - 9, 18, 14, blue, 0.88, blue, "hachure");
+    label(svg, "hachures : participe au pacte ou au vote", margin.left + 28, legendY, {
+      size: 11,
+      color: muted,
+      weight: 800
+    }).call(wrap, 260);
+    roughRect(svg, rc, margin.left + 326, legendY - 9, 18, 14, blue, 0.24, "#b8b0a5", "solid");
+    label(svg, "aplat pâle : hors pacte", margin.left + 354, legendY, {
+      size: 11,
+      color: muted,
+      weight: 800
+    }).call(wrap, 210);
+    roughRect(svg, rc, margin.left + 574, legendY - 7, 42, 10, green, 0.65, green, "solid");
+    label(svg, "barrette : durée", margin.left + 628, legendY, {
+      size: 11,
+      color: muted,
+      weight: 800
+    }).call(wrap, 180);
+    addSignature(svg, width, height);
+  }
+
+  function renderLois(id) {
+    const data = payload(id).lawMandatures;
+    const categories = payload(id).lawCategories;
+    const compact = window.innerWidth < 760;
+    const rowHeight = compact ? 132 : 122;
+    const height = 142 + data.length * rowHeight + 126;
+    const { svg, rc, width } = base(id, height, compact ? 1420 : 1360);
+    chartTitle(svg, "Lois du pays par coalition : l’activité suit aussi les recompositions", width, 30);
+
+    const margin = compact
+      ? { top: 126, right: 350, bottom: 112, left: 246 }
+      : { top: 118, right: 368, bottom: 112, left: 252 };
+    const innerW = width - margin.left - margin.right;
+    const chartH = data.length * rowHeight - 20;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const maxTotal = 90;
+    const x = d3.scaleLinear().domain([0, maxTotal]).range([0, innerW]);
+    const barH = compact ? 28 : 30;
+    const barY = compact ? 46 : 44;
+
+    [0, 30, 60, 90].forEach((tick) => {
+      const tx = x(tick);
+      g.append("line")
+        .attr("x1", tx)
+        .attr("x2", tx)
+        .attr("y1", -12)
+        .attr("y2", chartH)
+        .attr("stroke", grid)
+        .attr("stroke-width", 1)
+        .attr("stroke-dasharray", tick === 0 ? null : "3 6");
+      label(g, `${tick}`, tx, chartH + 24, {
+        anchor: "middle",
+        size: compact ? 10 : 11,
+        color: muted,
+        weight: 700
+      });
+    });
+    label(g, "lois du pays", x(90), chartH + 47, {
+      anchor: "end",
+      size: 11,
+      color: muted,
+      weight: 900
+    });
+
+    data.forEach((d, i) => {
+      const y = i * rowHeight;
+      const row = g.append("g").attr("transform", `translate(0,${y})`);
+      const totalW = x(d.total);
+      const missing = Math.max(0, d.total - d.classified);
+      let cursor = 0;
+
+      g.append("line")
+        .attr("x1", -margin.left + 18)
+        .attr("x2", innerW + margin.right - 26)
+        .attr("y1", y + rowHeight - 12)
+        .attr("y2", y + rowHeight - 12)
+        .attr("stroke", "rgba(65,58,48,0.12)");
+
+      const labelParts = d.label.split(" · ");
+      label(row, labelParts[0], -16, 22, {
+        anchor: "end",
+        size: compact ? 13 : 14,
+        weight: 950
+      });
+      label(row, labelParts.slice(1).join(" · "), -16, 43, {
+        anchor: "end",
+        size: compact ? 10.5 : 11.5,
+        color: muted,
+        weight: 850
+      }).call(wrap, margin.left - 42);
+      label(row, `${d.total} lois`, -16, 70, {
+        anchor: "end",
+        size: compact ? 11 : 12,
+        color: muted,
+        weight: 850
+      });
+
+      roughRect(row, rc, 0, barY, totalW, barH, "#ded8cf", 0.28, "#b8b0a5", "solid");
+
+      categories.forEach((cat) => {
+        const found = d.categories.find((item) => item.label === cat.label);
+        if (!found || found.count <= 0) return;
+        const x0 = x(cursor);
+        const w = x(found.count) - x(0);
+        roughRect(row, rc, x0, barY, w, barH, cat.color, 0.86, cat.color, "hachure");
+        if (w >= 36) {
+          label(row, `${found.count}`, x0 + w / 2, barY + barH / 2 + 1, {
+            anchor: "middle",
+            size: compact ? 10 : 11,
+            color: ink,
+            weight: 950,
+            haloWidth: 4.4
+          });
+        }
+        cursor += found.count;
+      });
+
+      if (missing > 0) {
+        const x0 = x(d.classified);
+        const w = x(missing) - x(0);
+        roughRect(row, rc, x0, barY, w, barH, "#ded8cf", 0.65, "#b8b0a5", "solid");
+        label(row, `${missing}`, x0 + w / 2, barY + barH / 2 + 1, {
+          anchor: "middle",
+          size: compact ? 10 : 11,
+          color: muted,
+          weight: 950,
+          haloWidth: 4.4
+        });
+      }
+
+      label(row, d.statusLabel || `${d.classified} lois`, Math.min(totalW + 12, innerW - 150), barY + barH / 2 + 4, {
+        size: compact ? 10 : 11,
+        color: missing ? "#8a6537" : muted,
+        weight: 900
+      }).call(wrap, 146);
+
+      const topCats = d.categories
+        .slice()
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 3)
+        .map((item) => `${item.label.replace(" / ", "/")} ${item.count}`)
+        .join(" · ");
+      label(row, topCats, innerW + 24, 26, {
+        size: compact ? 10 : 11,
+        color: ink,
+        weight: 900
+      }).call(wrap, margin.right - 46);
+      label(row, d.note, innerW + 24, 68, {
+        size: compact ? 9.5 : 10.5,
+        color: muted,
+        weight: 650
+      }).call(wrap, margin.right - 46);
+    });
+
+    const legendItems = categories;
+    drawLegend(svg, rc, legendItems, margin.left, height - 84, width - margin.left - 34);
+    addSignature(svg, width, height);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) {
+      window.setTimeout(() => render(id), 50);
+      return;
+    }
+    const el = document.getElementById(id);
+    if (!el) return;
+    const type = el.dataset.pactesChart;
+    if (type === "timeline") renderTimeline(id);
+    if (type === "coalitions") renderCoalitions(id);
+    if (type === "lois") renderLois(id);
+  }
+
+  function renderAll() {
+    document.querySelectorAll("[data-pactes-chart]").forEach((el) => render(el.id));
+  }
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(renderAll, 140);
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", renderAll);
+  } else {
+    renderAll();
+  }
+
+  return { render, renderAll };
+})();
+</script>
+```
+
+::: pactes-lede
+Le 9 juillet 2026, Les Loyalistes, Le Rassemblement et l’Éveil océanien annoncent une alliance de gouvernance pour la mandature 2026-2031. Elle doit porter Virginie Ruffenach à la présidence du Congrès, puis Milakulo Tukumuli à celle du gouvernement. Sur le papier, l’ambition est forte : tenir cinq ans, mettre de côté les divergences sur l’avenir institutionnel et articuler relance économique, urgence sociale, jeunesse, cohésion et transformation de la gouvernance.
+:::
+
+Le lendemain, la première promesse institutionnelle est tenue : Virginie Ruffenach est élue avec 28 voix, les 24 élus LL-LR et les 4 voix de l’Éveil. Le reste est plus exigeant. Un pacte de cinq ans est relativement long dans l’histoire politique récente de la Nouvelle-Calédonie : depuis 1999, certaines alliances ont tenu une mandature, mais beaucoup se sont recomposées au bout de quelques mois ou de deux ans. L’enjeu n’est donc pas seulement de savoir qui additionne 28 voix, mais ce que le pacte promet, ce qui est effectivement fait et ce qui reste invérifiable.
+
+::: en-bref
+## En bref
+
+- Un pacte ne se confond pas avec une déclaration de politique générale ni avec le programme propre de chaque parti.
+- Les accords calédoniens servent souvent à transformer une majorité relative ou fragile en majorité de gouvernement.
+- L’accord LL-LR / Éveil océanien de 2026 repose sur 28 sièges : une majorité absolue exacte, sans marge.
+- Le premier jalon est tenu avec l’élection de Virginie Ruffenach au Congrès ; gouvernement, portefeuilles, calendrier et mesures détaillées restent à vérifier.
+- L’ambition de tenir jusqu’en 2031 est longue au regard des séquences récentes et demande des indicateurs publics pour être évaluée.
+:::
+
+## Ce que l’on appelle un pacte
+
+La première précaution est de ne pas confondre trois objets : l’accord conclu entre des formations, la déclaration de politique générale du gouvernement qui en sort, et le programme propre de chaque parti. Une déclaration de politique générale peut mesurer l’action d’un gouvernement ; elle ne prouve pas automatiquement que tous les partenaires avaient signé chacune de ses mesures.
+
+L’article retient donc trois niveaux.
+
+1.  Les **accords programmatiques**, lorsqu’un texte ou des engagements publics permettent d’évaluer des mesures.
+2.  Les **accords de gouvernement**, matérialisés par une liste commune, l’entrée d’un partenaire dans l’exécutif ou une répartition des présidences.
+3.  Les **alliances de fait**, visibles dans les votes ou les intergroupes, mais sans programme commun publié.
+
+## Coalitions en sièges : ce que les pactes additionnent
+
+Pour éviter de confondre pacte politique et simple bloc électoral, il faut revenir aux sièges du Congrès et aux voix qui installent les exécutifs. Le graphique ne met pas toutes les séquences sur le même plan : parfois il s’agit d’une coalition signée, parfois d’une liste pour le gouvernement, parfois d’un vote de présidence. Il montre l’arithmétique institutionnelle et la durée observable sur lesquelles chacune s’appuie.
+
+::: column-page
+```{=html}
+<div id="chart-pactes-coalitions" class="pactes-sketch" data-pactes-chart="coalitions"></div>
+<p class="pactes-sketch-caption">Principales coalitions et arrangements de gouvernance exprimés en sièges ou en voix au Congrès. Le bleu distingue la droite loyaliste, le violet le centre non-indépendantiste, le turquoise l’Éveil océanien. La ligne verticale marque les 28 voix nécessaires à la majorité absolue sur 54 ; la barrette à droite indique la durée observée.</p>
+```
+:::
+
+## Lois du pays : ce que les coalitions produisent
+
+Le volume de textes adoptés ne prouve pas, à lui seul, qu’un pacte fonctionne. Il aide en revanche à distinguer une coalition qui tient les institutions d’une coalition qui transforme effectivement des arbitrages en droit. En séparant les mandatures selon les coalitions de gouvernement, on voit mieux l’effet des recompositions : certains arrangements courts produisent peu, d’autres séquences moins formalisées portent une grande partie des textes fiscaux, sociaux ou économiques.
+
+::: column-page
+```{=html}
+<div id="chart-pactes-lois" class="pactes-sketch" data-pactes-chart="lois"></div>
+<p class="pactes-sketch-caption">Lois du pays rattachées à la coalition en place au moment du vote. Pour 2019-2026, le graphique évite de lisser la longue mandature prolongée : il sépare la séquence Mapou de la séquence Ponga.</p>
+```
+:::
+
+## Le détail période par période
+
+Les graphiques précédents donnent l’arithmétique politique et une mesure de production législative. Pour éviter l’effet loupe sur quelques épisodes seulement, chaque séquence est ensuite lue avec le même gabarit : rapport de force, promesse ou contenu affiché, faits observables ou mesures non reprises, et limite de lecture. Les pastilles résument les ordres de grandeur avant d’entrer dans le détail.
+
+```{=html}
+<section class="pactes-period-grid">
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#6f8f4f;">
+    <h3>1999-2004 · RPCR-FCCI</h3>
+    <div class="pactes-period-meta">28/54 · environ 5 ans · gouvernement Lèques puis Frogier</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">28/54</span>
+      <span class="pactes-chip">5 ans</span>
+      <span class="pactes-chip">32 lois</span>
+      <span class="pactes-chip">fiscalité 17</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">RPCR 24</span><span class="pactes-block-chip">FCCI 4</span><span class="pactes-block-chip">28 exact</span></div>
+      <p>RPCR 24 sièges, FCCI 4 ; les autres élus loyalistes pèsent 7 sièges et les autres indépendantistes 19. La FCCI donne donc au RPCR la majorité absolue exacte.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">mise en route</span><span class="pactes-block-chip">responsabilités</span><span class="pactes-block-chip">peu écrit</span></div>
+      <p>Partage institutionnel RPCR-FCCI et mise en route des institutions de l’accord de Nouméa. L’alliance fonctionne surtout par répartition des responsabilités, sans programme public détaillé.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">32 lois</span><span class="pactes-block-chip">accord minier</span><span class="pactes-block-chip">transferts</span></div>
+      <p>Présidence et vice-présidence installées, premiers transferts de compétences, accord minier de 2000 et stabilité institutionnelle globalement tenue sur la mandature. En 2003, le Sénat relève déjà 29 lois du pays adoptées ; le relevé du Congrès en compte 32 sur la mandature, surtout en fiscalité et finances, puis social, santé, travail et formation. Les transferts du commerce extérieur, de l'inspection du travail, du vice-rectorat et de l'OPT avancent, avec des retards de compensation financière signalés.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">5 ans</span><span class="pactes-block-chip">contrat peu lisible</span><span class="pactes-block-chip">petit allié décisif</span></div>
+      <p>Le bilan des actes est possible, mais pas un bilan clause par clause : l’alliance est lisible, son contrat écrit l’est beaucoup moins. Elle montre surtout qu’un petit partenaire peut transformer une majorité relative en majorité absolue exacte. Le rapport sénatorial de 2004 décrit aussi des réunions informelles, en principe hebdomadaires, entre le Rassemblement et les indépendantistes pour surmonter les différends.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#8a658b; --accent-2:#305f9f; --accent-3:#3f8f5a;">
+    <h3>2004-2007 · Gouvernement Thémereau</h3>
+    <div class="pactes-period-meta">Avenir ensemble 16 sièges · droite loyaliste 20 · environ 3 ans</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">centre AE 16</span>
+      <span class="pactes-chip">droite 20</span>
+      <span class="pactes-chip">27 lois</span>
+      <span class="pactes-chip">75 propositions</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">centre AE 16</span><span class="pactes-block-chip">droite 20</span><span class="pactes-block-chip">ind. 18</span></div>
+      <p>Avenir ensemble dispose de 16 sièges dans l’espace centre non-indépendantiste ; la droite loyaliste en totalise 20 et les indépendantistes 18. La présidence du gouvernement repose donc sur des compromis successifs, pas sur un bloc non-indépendantiste homogène.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">75 propositions</span><span class="pactes-block-chip">social</span><span class="pactes-block-chip">fiscalité</span></div>
+      <p>Le programme Avenir ensemble est présenté avant le scrutin comme un « pacte de confiance » de cinq ans : 75 propositions autour du politique, du social, de l’économique et du rural, avec consensus, école prioritaire, SMG à 120 000 F, allocations familiales, habitat social, modernisation fiscale et emploi des jeunes.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">SMG</span><span class="pactes-block-chip">allocations</span><span class="pactes-block-chip">IRPP</span></div>
+      <p>IS PME, allocations familiales pour les familles modestes, réforme de l’IRPP et hausse du SMG sont réalisés ou engagés. La mandature 2004-2009 compte 43 lois du pays, dont 27 pendant la séquence Thémereau ; l’ensemble reste très fiscal, mais comprend aussi travail, formation, santé, social, transports et énergie. En revanche, TVA, emploi local, signes identitaires, euro ou révision de grands arbitrages économiques restent différés, abandonnés ou bloqués.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">3 ans</span><span class="pactes-block-chip">programme de campagne</span><span class="pactes-block-chip">arbitrages différés</span></div>
+      <p>L’action publique est réelle, mais le point de départ reste un programme de campagne. On lit donc une mise à l’épreuve gouvernementale, pas un contrat de coalition signé.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#8a658b;">
+    <h3>2007-2009 · Accord-cadre</h3>
+    <div class="pactes-period-meta">droite 20 + centre 16 · environ 2 ans · accord de présidences</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">droite 20</span>
+      <span class="pactes-chip">centre 16</span>
+      <span class="pactes-chip">2 ans</span>
+      <span class="pactes-chip">16 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite 20</span><span class="pactes-block-chip">centre AE 16</span><span class="pactes-block-chip">accord de postes</span></div>
+      <p>Le Congrès issu de 2004 donne 36 sièges aux familles non-indépendantistes, mais elles restent séparées entre droite loyaliste et centre Avenir ensemble. L’accord-cadre les additionne ponctuellement sans effacer cette ligne de partage.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">collégialité</span><span class="pactes-block-chip">rééquilibrage</span><span class="pactes-block-chip">solidarité</span></div>
+      <p>Ouvrir un accord de majorité entre Avenir ensemble et Rassemblement-UMP, sous conditions : respect de l’accord de Nouméa, gouvernement collégial, rôle des provinces, État impartial, rééquilibrage, égalité des chances et solidarité sociale.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">Frogier Congrès</span><span class="pactes-block-chip">Martin gouvernement</span><span class="pactes-block-chip">16 lois</span></div>
+      <p>Les discussions aboutissent à une répartition des responsabilités : Pierre Frogier au Congrès, Harold Martin au gouvernement, remise en fonctionnement de l’exécutif et coopération non-indépendantiste jusqu’aux provinciales suivantes. Mathias Chauchat confirme que l’accord-cadre fonde bien l’arrivée de Martin au gouvernement et de Frogier au Congrès.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">stabilité</span><span class="pactes-block-chip">peu programmatique</span><span class="pactes-block-chip">indépendantistes à distance</span></div>
+      <p>L’accord est d’abord un compromis de stabilité. Sa limite est politique : il remet les non-indépendantistes ensemble, mais tend aussi à réduire la place des indépendantistes dans la fabrique quotidienne des compromis.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#8a658b;">
+    <h3>2009-2011 · Entente républicaine</h3>
+    <div class="pactes-period-meta">droite 15 + centre 16 · environ 1,8 an · responsabilités réparties</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">droite 15</span>
+      <span class="pactes-chip">centre 16</span>
+      <span class="pactes-chip">1,8 an</span>
+      <span class="pactes-chip">20 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite 15</span><span class="pactes-block-chip">centre 16</span><span class="pactes-block-chip">ind. 23</span></div>
+      <p>Loyalistes et droite pèsent 15 sièges, le centre non-indépendantiste 16, les indépendantistes 23. L’entente additionne une majorité, mais pas un parti dominant.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">postes partagés</span><span class="pactes-block-chip">DPG fournie</span><span class="pactes-block-chip">stabilité</span></div>
+      <p>Répartir les responsabilités entre non-indépendantistes : Province Sud à Pierre Frogier, gouvernement à Philippe Gomès, Congrès à Harold Martin. Le JONC de 2011 évoque bien un pacte de stabilité institutionnelle entre RUMP, Calédonie ensemble et AE-LMD ; Pierre Frogier dit cependant en 2009 que « rien » n’a été signé.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">37/120 mesures</span><span class="pactes-block-chip">crise 2011</span><span class="pactes-block-chip">20 lois</span></div>
+      <p>La DPG reprend une feuille de route fournie : école, minimum vieillesse, prêts bonifiés, participation, encadrement des protections de marché, transferts, emploi local, signes identitaires et vie chère. La DPG Martin de 2011 indique que 37 des 120 mesures étaient réalisées au 3 mars 2011. Le Sénat détaille aussi la mécanique de crise : gouvernement Gomès tombé en février 2011, nouveaux exécutifs élus les 3 mars, 17 mars et 1er avril, puis démissions répétées de la liste Calédonie ensemble.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">1,8 an</span><span class="pactes-block-chip">drapeaux</span><span class="pactes-block-chip">collégialité rompue</span></div>
+      <p>La DPG de Philippe Gomès est détaillée, mais elle ne se confond pas avec un pacte signé. Sur l’ensemble de la mandature 2009-2014, 61 lois du pays sont adoptées ; ce chiffre mesure donc une période plus large que le seul gouvernement Gomès. La rupture vient ensuite du calendrier institutionnel, des drapeaux et de la collégialité.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#3f8f5a; --accent-3:#8a658b;">
+    <h3>2011-2014 · Axe Martin-Frogier-UC</h3>
+    <div class="pactes-period-meta">droite 15 + centre 16, puis UC associée · environ 3 ans</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">droite 15</span>
+      <span class="pactes-chip">centre 16</span>
+      <span class="pactes-chip">UC associée</span>
+      <span class="pactes-chip">3 ans</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite 15</span><span class="pactes-block-chip">centre 16</span><span class="pactes-block-chip">UC-FLNKS</span></div>
+      <p>Sur le même Congrès qu’en 2009, les 31 sièges non-indépendantistes restent partagés entre droite loyaliste et centre. Le fonctionnement gouvernemental associe ensuite l’UC-FLNKS, ce qui transforme l’équilibre sans fusionner les camps.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">nouvel équilibre</span><span class="pactes-block-chip">collégialité</span><span class="pactes-block-chip">sortie de crise</span></div>
+      <p>Après la chute du gouvernement Gomès, stabiliser la collégialité et recomposer un exécutif où le Rassemblement, l’Avenir ensemble et l’UC-FLNKS peuvent fonctionner ensemble, avec une vice-présidence UC. La DPG Martin parle alors d’un « nouvel équilibre politique et institutionnel ».</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">article 121</span><span class="pactes-block-chip">Wamytan Congrès</span><span class="pactes-block-chip">41 lois</span></div>
+      <p>Exécutif stabilisé après l’arrêt du Conseil d’État et la modification de la loi organique, vice-présidence UC installée, présidence Wamytan au Congrès, poursuite des transferts et de chantiers sociaux et institutionnels. La modification de l'article 121 empêche qu'une nouvelle démission collective d'une même liste fasse tomber le gouvernement pendant dix-huit mois ; le gouvernement élu le 10 juin 2011 tient jusqu'aux provinciales de mai 2014.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">3 ans</span><span class="pactes-block-chip">DPG surtout</span><span class="pactes-block-chip">stabilisation</span></div>
+      <p>Le compromis répond à une crise de fonctionnement plus qu’à un contrat programmatique complet. Ses actes sont visibles dans les institutions ; ses engagements communs restent difficiles à isoler des DPG et des positions partisanes. La production législative de la mandature est réelle, mais elle agrège deux séquences politiques très différentes : crise de 2011 puis stabilisation Martin.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#8a658b; --accent-2:#305f9f;">
+    <h3>2014 · Contrat de gouvernance solidaire</h3>
+    <div class="pactes-period-meta">centre CE 15 + droite FPU-UCF 14 · environ 7 mois</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">CE centre 15</span>
+      <span class="pactes-chip">FPU-UCF 14</span>
+      <span class="pactes-chip">7 mois</span>
+      <span class="pactes-chip">8 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">CE centre 15</span><span class="pactes-block-chip">droite 14</span><span class="pactes-block-chip">29/54</span></div>
+      <p>Calédonie ensemble compte 15 sièges dans l’espace centre ; FPU et UCF en ajoutent 14 côté droite loyaliste. Les trois formations atteignent 29 sièges face à 25 indépendantistes, mais la majorité reste composée de deux familles non-indépendantistes distinctes.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">contrat signé</span><span class="pactes-block-chip">réunion hebdo</span><span class="pactes-block-chip">conférence fiscale</span></div>
+      <p>Contrat Calédonie ensemble-FPU-UCF signé après les provinciales : 29 élus sur 54, gouvernement Cynthia Ligeard, Congrès Gaël Yanno, Province Sud Philippe Michel, réunion hebdomadaire des trois partenaires, conférence économique, sociale et fiscale et stabilité de mandature. La DPG Ligeard présente l’accord comme garantissant la stabilité des institutions sans se poser contre les indépendantistes.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">agenda partagé</span><span class="pactes-block-chip">3 textes fiscaux</span><span class="pactes-block-chip">8 lois</span></div>
+      <p>Conférence tenue les 20 et 21 août et agenda partagé produit. Le rapport sénatorial de 2014 précise que l'agenda vise un modèle économique plus endogène et compétitif, avec un volet fiscal central : meilleure répartition de la charge, financement pérenne des régimes sociaux, projet de CSG à 2 % sur les revenus bruts et taxe générale à la consommation. Trois textes fiscaux cristallisent ensuite la rupture : contribution additionnelle à l’IS, impôt sur les dividendes des sociétés et contribution calédonienne de solidarité, censés rapporter 10 à 11 milliards. La mandature 2014-2019 totalise ensuite 87 lois du pays, mais ce pic dépasse largement les sept mois du contrat.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">7 mois</span><span class="pactes-block-chip">rupture fiscale</span><span class="pactes-block-chip">exécution fragile</span></div>
+      <p>Le contenu est précis, mais la durée est très courte. Le FPU refuse les textes fiscaux, Calédonie ensemble démissionne du gouvernement et le pacte se brise au moment où l’agenda partagé devient vote contraignant. Cynthia Ligeard décrit alors le gouvernement comme une « machine lente » où le consensus doit être assuré en permanence, ce qui explique en partie l'écart entre contrat politique et capacité d'exécution.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#3f8f5a; --accent-3:#d9aa32;">
+    <h3>2017-2018 · Plateforme et accord transpartisan</h3>
+    <div class="pactes-period-meta">séquence référendaire · environ 1,4 an · sortie de crise</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">droite-centre</span>
+      <span class="pactes-chip">UC-UNI</span>
+      <span class="pactes-chip">1,4 an</span>
+      <span class="pactes-chip">79 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite-centre</span><span class="pactes-block-chip">UC-UNI</span><span class="pactes-block-chip">référendum</span></div>
+      <p>La séquence part d’une recomposition entre formations de droite et du centre non-indépendantiste, puis débouche sur un accord de fonctionnement avec l’UNI et l’UC-FLNKS pour remettre l’exécutif en marche.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">rétablir l’exécutif</span><span class="pactes-block-chip">sincérité</span><span class="pactes-block-chip">après-référendum</span></div>
+      <p>Plateforme non-indépendantiste pour les législatives, puis accord du 30 novembre 2017 avec l’UNI et l’UC-FLNKS : rétablir le gouvernement, garantir la sincérité de la consultation et préparer l’après-référendum.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">DPG Germain</span><span class="pactes-block-chip">TGC</span><span class="pactes-block-chip">79 lois</span></div>
+      <p>Exécutif remis en marche, DPG de Philippe Germain en décembre 2017 et organisation de la séquence référendaire. La plateforme non-indépendantiste, elle, se divise avant le scrutin. Cette fin de mandature porte une part importante des textes fiscaux, douaniers, sociaux et de concurrence qui expliquent le volume élevé de 2014-2019.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">1,4 an</span><span class="pactes-block-chip">blocage levé</span><span class="pactes-block-chip">stratégies divisées</span></div>
+      <p>Succès institutionnel immédiat, compromis politique de fond plus fragile : l’accord règle le blocage, pas durablement les désaccords stratégiques à l’approche du référendum.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#8a658b; --accent-3:#2f9fb3;">
+    <h3>2019-2021 · Avenir en confiance-Éveil</h3>
+    <div class="pactes-period-meta">AEC 18, centre CE 7, Éveil 3 · 22 voix pour la liste gouvernementale</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">AEC 18</span>
+      <span class="pactes-chip">centre CE 7</span>
+      <span class="pactes-chip">Éveil 3</span>
+      <span class="pactes-chip">2 ans</span>
+      <span class="pactes-chip">15 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite AEC 18</span><span class="pactes-block-chip">centre CE 7</span><span class="pactes-block-chip">Éveil 3</span></div>
+      <p>Avenir en confiance compte 18 sièges côté droite loyaliste, Calédonie ensemble 7 côté centre, l’Éveil 3 et les indépendantistes 26. La liste commune AEC-Éveil obtient 22 voix pour le gouvernement : elle ne transforme pas pour autant tout le centre en partenaire stable de l’accord.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">vice-prés. Sud</span><span class="pactes-block-chip">New Deal</span><span class="pactes-block-chip">10 mesures</span></div>
+      <p>Soutien de l’Éveil à Sonia Backès en Province Sud, vice-présidence provinciale et participation à une liste commune pour le gouvernement Santa. Le New Deal se présente comme un socle économique et social non négociable à appliquer rapidement, avec dix premières mesures en trois mois.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">5/11 gouvernement</span><span class="pactes-block-chip">15 lois</span><span class="pactes-block-chip">New Deal partiel</span></div>
+      <p>Postes et liste gouvernementale sont réalisés. Les mesures mises sur la table sont beaucoup plus larges : hausse de 10 % du salaire minimum, abattements de charges sur les bas salaires, TGC à deux taux, baisse de charges pour la production locale, fin des interdictions et quotas remplacés par une TRM plafonnée, fin des monopoles, statut d’auto-entrepreneur, permis dans les cursus, plafonds d’assurance auto et contrôle des prix.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">2 ans</span><span class="pactes-block-chip">DPG Santa</span><span class="pactes-block-chip">écart promesse-actes</span></div>
+      <p>Effet institutionnel net, mais le New Deal n’est pas repris tel quel dans la DPG de Thierry Santa. La promesse programmatique de l’Éveil reste donc beaucoup plus ambitieuse que ce qui est observable dans l’accord de gouvernement.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#3f8f5a; --accent-2:#2f9fb3; --accent-3:#d9aa32;">
+    <h3>2019-2024 · Majorité océanienne et Mapou</h3>
+    <div class="pactes-period-meta">29/54 au Congrès · 6/11 au gouvernement · jusqu’au 24 décembre 2024</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">29/54</span>
+      <span class="pactes-chip">6/11</span>
+      <span class="pactes-chip">42 lois</span>
+      <span class="pactes-chip">1 en suspens</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">ind. 26</span><span class="pactes-block-chip">Éveil 3</span><span class="pactes-block-chip">droite-centre hors majorité</span></div>
+      <p>Au Congrès, 26 élus indépendantistes et 3 élus Éveil peuvent former une majorité de 29. Droite loyaliste et centre non-indépendantiste restent alors hors de cette majorité. Pour le gouvernement Mapou, la liste UC-FLNKS et Nationalistes avec Éveil obtient 16 voix, l’UNI 14.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">intergroupe</span><span class="pactes-block-chip">faire pays</span><span class="pactes-block-chip">urgence financière</span></div>
+      <p>Majorité au Congrès avec l’Éveil et les indépendantistes, intergroupe avec l’UC-FLNKS et Nationalistes, puis bascule gouvernementale autour de Louis Mapou. Pierre-Christophe Pantz décrit l’Éveil comme un faiseur de roi qui refuse d’être automatiquement rangé dans le camp non-indépendantiste.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">Mapou 2021</span><span class="pactes-block-chip">42 lois</span><span class="pactes-block-chip">Do Kamo en suspens</span></div>
+      <p>Roch Wamytan est élu au Congrès, l’intergroupe UC-FLNKS et Nationalistes-Éveil atteint 16 élus en 2020, Louis Mapou prend la présidence du gouvernement en 2021, la majorité indépendantiste-Éveil dispose de 6 sièges sur 11 et l’exécutif tient jusqu’au 24 décembre 2024. Sur la séquence Mapou, 42 lois du pays se rattachent à la période : fiscalité et finances dominent, devant social-santé, droit public, jeunesse et textes sectoriels. Do Kamo / RUAMM reste le principal texte en suspens.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">3,5 ans</span><span class="pactes-block-chip">programme peu commun</span><span class="pactes-block-chip">Éveil pivot</span></div>
+      <p>La durée est forte et doit apparaître dans l’historique. La DPG Mapou donne un programme d’exécutif : faire pays, cohésion sociale, urgence financière, relance et relations extérieures. Mais le programme commun Éveil-indépendantistes reste moins public que ses effets institutionnels. La production de textes est importante, sans pouvoir être attribuée en bloc au seul gouvernement Mapou. La séquence confirme l’Éveil comme acteur pivot, et non comme simple appoint d’un camp déjà constitué.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#8a658b; --accent-3:#2f9fb3;">
+    <h3>2024-2026 · Bascule CE-Éveil / Ponga</h3>
+    <div class="pactes-period-meta">droite 18 + centre CE 7 + Éveil 3 · majorité inversée</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">droite 18</span>
+      <span class="pactes-chip">centre CE 7</span>
+      <span class="pactes-chip">Éveil 3</span>
+      <span class="pactes-chip">18 mois observés</span>
+      <span class="pactes-chip">30 lois</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">droite 18</span><span class="pactes-block-chip">centre CE 7</span><span class="pactes-block-chip">Éveil 3</span></div>
+      <p>Dans le Congrès 2019, Veylma Falaeo est élue par 28 voix contre 26. Le vote additionne droite loyaliste, centre Calédonie ensemble et Éveil ; ce n’est donc pas un bloc non-indépendantiste unique, mais une bascule où l’Éveil fait passer l’ensemble au-dessus du seuil.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">Congrès à 28</span><span class="pactes-block-chip">CE-Éveil au gouv.</span><span class="pactes-block-chip">urgence 9 mois</span></div>
+      <p>Nouvelle majorité institutionnelle autour de Veylma Falaeo, puis liste Calédonie ensemble-Éveil dans le gouvernement Ponga. La deuxième séquence est plus étroite : elle renvoie surtout au centre CE et à l’Éveil, pas à toute la droite loyaliste.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">2 sièges gouv.</span><span class="pactes-block-chip">30 lois</span><span class="pactes-block-chip">code minier en suspens</span></div>
+      <p>Veylma Falaeo est élue par 28 voix contre 26, la liste CE-Éveil obtient deux sièges au gouvernement en janvier 2025, puis un intergroupe CE-EO est créé avant de disparaître au printemps 2026. La période concentre 30 lois du pays : soutien budgétaire, TGC, eau, tourisme, représentativité patronale, ESS, emploi, reconstruction économique, solidarité alimentaire, concours de la fonction publique, concurrence et textes sociaux. Le code minier forme le point encore en suspens.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">18 mois</span><span class="pactes-block-chip">recomposition rapide</span><span class="pactes-block-chip">urgence plus que pacte</span></div>
+      <p>Arrangement surtout institutionnel, vite recomposé et sans contrat de mandature public ni feuille de mesures clairement attribuable à cette alliance. La DPG Ponga de février 2025 donne surtout un agenda d’urgence de neuf mois : assainir, relancer, reconstruire du commun. La forte activité législative de 2025-2026 dit donc davantage l’urgence de sortie de crise que la solidité d’un pacte long.</p>
+    </div>
+  </article>
+  <article class="pactes-period-card" style="--accent:#305f9f; --accent-2:#2f9fb3;">
+    <h3>2026 · LL-LR-Éveil</h3>
+    <div class="pactes-period-meta">28/54 · en cours · objectif affiché : 5 ans</div>
+    <div class="pactes-chip-row">
+      <span class="pactes-chip">28/54</span>
+      <span class="pactes-chip">objectif 5 ans</span>
+      <span class="pactes-chip">0 loi à ce stade</span>
+      <span class="pactes-chip">majorité exacte</span>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Rapport de force</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">LL-LR 24</span><span class="pactes-block-chip">Éveil 4</span><span class="pactes-block-chip">28 exact</span></div>
+      <p>LL-LR compte 24 sièges, l’Éveil 4, l’UC-FLNKS 16, l’UNI / Palika 7 et Nation autochtone 3. L’accord repose sur une majorité absolue exacte, sans marge.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Promesse ou contenu affiché</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">2026-2031</span><span class="pactes-block-chip">Ruffenach</span><span class="pactes-block-chip">Tukumuli</span></div>
+      <p>Accord de gouvernance 2026-2031 entre Les Loyalistes, Le Rassemblement et l’Éveil océanien : présidence du Congrès pour Virginie Ruffenach, candidature de Milakulo Tukumuli à la présidence du gouvernement, divergences institutionnelles mises de côté et quatre axes annoncés.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Fait, engagé ou non repris</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">Congrès tenu</span><span class="pactes-block-chip">gouvernement à venir</span><span class="pactes-block-chip">0 loi</span></div>
+      <p>Premier jalon tenu : Virginie Ruffenach est élue le 10 juillet 2026 avec 28 voix. Gouvernement, portefeuilles, calendrier et mesures détaillées restent à vérifier.</p>
+    </div>
+    <div class="pactes-period-block">
+      <div class="pactes-period-kicker">Lecture / limite</div>
+      <div class="pactes-block-chip-row"><span class="pactes-block-chip">objectif 5 ans</span><span class="pactes-block-chip">majorité sans marge</span><span class="pactes-block-chip">mesures à suivre</span></div>
+      <p>L’ambition de cinq ans est longue au regard de l’historique récent. À ce stade, pas encore de mesures détaillées, d’échéances, de financements ou d’indicateurs publics. Les rapports sénatoriaux de 2022 et 2023 rappelaient qu'un accord utile devait dépasser le seul institutionnel pour traiter économie, société, école, santé, finances et contexte régional : l'accord 2026 en reprend l'esprit général, mais pas encore la déclinaison opérationnelle.</p>
+    </div>
+  </article>
+</section>
+```
+
+## Sources
+
+Les fiches distinguent les engagements affichés, les actes observables et les limites de lecture. Les durées sont arrondies ; les sièges et les voix reprennent les résultats publiés, les textes institutionnels et les sources ci-dessous.
+
+- [Congrès de la Nouvelle-Calédonie, discours de Virginie Ruffenach élue présidente du Congrès, 10 juillet 2026](https://www.congres.nc/le-discours-de-virginie-ruffenach-elue-presidente-du-congres/).
+- [NC La 1ère / Franceinfo, Les Loyalistes, Le Rassemblement et l’Éveil océanien scellent une alliance de gouvernance, 9 juillet 2026](https://la1ere.franceinfo.fr/nouvellecaledonie/presidences-du-congres-et-du-gouvernement-les-loyalistes-le-rassemblement-et-l-eveil-oceanien-scellent-une-alliance-de-gouvernance-1718380.html).
+- [Radio Rythme Bleu, accord Loyalistes-Rassemblement-Éveil océanien, 9 juillet 2026](https://www.rrb.nc/article/les-loyalistes-le-rassemblement-et-leveil-oceanien-signent-un-accord-de-gouvernance).
+- [Les Nouvelles calédoniennes, genèse de l’accord de gouvernance, 9 juillet 2026](https://www.lnc.nc/article/comment-l-eveil-oceanien-et-les-loyalistes-le-rassemblement-ont-trouve-un-accord-de-gouvernance).
+- [Les Nouvelles calédoniennes, « Le programme de L'Avenir ensemble : 75 propositions pour un destin commun », 14 avril 2004](https://www.lnc.nc/article/politique/le-programme-de-l-avenir-ensemble-75-propositions-pour-un-destin-commun).
+- [Les Nouvelles calédoniennes, « L'Avenir ensemble croque le sandwich », 20 juillet 2007](https://www.lnc.nc/article/politique/l-avenir-ensemble-croque-le-sandwich).
+- [Les Nouvelles calédoniennes, « Le discours du gouvernement est bâti sur nos réflexions », 4 septembre 2009](https://www.lnc.nc/article/societe/le-discours-du-gouvernement-est-bati-sur-nos-reflexions).
+- [Les Nouvelles calédoniennes, « L'entente républicaine a du plomb dans l'aile ? », 18 février 2010](https://www.lnc.nc/article/politique/l-entente-republicaine-a-du-plomb-dans-l-aile).
+- [Les Nouvelles calédoniennes, « Les nouvelles cartes du paysage politique », 5 juin 2010](https://www.lnc.nc/article/politique/les-nouvelles-cartes-du-paysage-politique).
+- [Les Nouvelles calédoniennes, « La fin d'une entente républicaine », 8 mars 2011](https://www.lnc.nc/article/politique/la-fin-d-une-entente-republicaine).
+- [Les Nouvelles calédoniennes, « Le CGS, bientôt la fin ? », 13 décembre 2014](https://www.lnc.nc/article/pays/politique/le-cgs-bientot-la-fin).
+- [Les Nouvelles calédoniennes, « L'exécutif exécuté ? », 15 décembre 2014](https://www.lnc.nc/article/pays/politique/l-executif-execute).
+- [Les Nouvelles calédoniennes, « La faute à qui ? », 17 décembre 2014](https://www.lnc.nc/article/pays/politique/la-faute-a-qui).
+- [Les Nouvelles calédoniennes, « On n'a jamais tort de parier sur l'intelligence », 18 décembre 2014](https://www.lnc.nc/article/pays/politique/on-n-a-jamais-tort-de-parier-sur-l-intelligence).
+- Tableaux Wikipédia des provinciales [1999](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_1999), [2004](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2004), [2009](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2009), [2014](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2014) et [2019](https://fr.wikipedia.org/wiki/%C3%89lections_provinciales_n%C3%A9o-cal%C3%A9doniennes_de_2019).
+- [Résultats complets des provinciales 2026, Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13500/112224/file/PROVINCIALES_2026_R%C3%A9sultats_COMPLETS.pdf).
+- [Gouvernement de la Nouvelle-Calédonie, déclarations de politique générale](https://gouv.nc/actions-du-gouvernement/discours-de-politique-generale).
+- [Gouvernement de la Nouvelle-Calédonie, historique et composition des gouvernements](https://gouv.nc/gouvernement-et-institutions/un-peu-d-histoire).
+- [Congrès de la Nouvelle-Calédonie, textes adoptés et promulgués](https://www.congres.nc/documentation/).
+- [Congrès de la Nouvelle-Calédonie, lois du pays adoptées avant promulgation](https://www.congres.nc/lois-du-pays-adoptees-et-en-attente-de-promulgation/).
+- [Congrès de la Nouvelle-Calédonie, archive des lois du pays](https://www.congres.nc/lois/).
+- [Juridoc, textes consolidés de la Nouvelle-Calédonie](https://juridoc.gouv.nc/JuriDoc/JdTextes.nsf/Listetextes?OpenPage).
+- [Congrès de la Nouvelle-Calédonie, *Les lois du pays de 1999 à 2019*, document d’archive pour les 20 ans de la loi du pays](https://www.congres.nc/wp-content/uploads/2022/01/Les-lois-du-pays-de-1999-a-2019-Document-pour-les-20-ans-de-la-loi-du-pays.pdf).
+- [Congrès de la Nouvelle-Calédonie, « Le congrès 2019-2026 en chiffres clés », bilan de la Ve mandature](https://www.congres.nc/le-congres-2019-2026-en-chiffres-cles/).
+- [Wikipédia, dix-septième gouvernement de Nouvelle-Calédonie](https://fr.wikipedia.org/wiki/Dix-septi%C3%A8me_gouvernement_de_Nouvelle-Cal%C3%A9donie).
+- [Sénat, rapport budgétaire 2001 sur la Nouvelle-Calédonie](https://www.senat.fr/rap/a00-097-8/a00-097-84.html).
+- [Sénat, mission d’information en Nouvelle-Calédonie et à Wallis-et-Futuna, 2004](https://www.senat.fr/rap/r03-216/r03-216_mono.html).
+- [Sénat, « Nouvelle-Calédonie : le pari du destin commun », 2011](https://www.senat.fr/rap/r10-593/r10-593_mono.html).
+- [Sénat, rapport sur la modification de l’article 121 de la loi organique, 2011](https://www.senat.fr/rap/l10-586/l10-586_mono.html).
+- [Sénat, « Nouvelle-Calédonie : continuer à avancer vers le destin commun », 2014](https://www.senat.fr/rap/r14-104/r14-104_mono.html).
+- [Sénat, « Avenir institutionnel de la Nouvelle-Calédonie », rapport d’étape, 2022](https://www.senat.fr/rap/r21-831/r21-831_mono.html).
+- [Sénat, « Nouvelle-Calédonie : renouer avec la promesse d’un destin commun pour tous les Calédoniens », 2023](https://www.senat.fr/rap/r22-879/r22-879_mono.html).
+- [Mathias Chauchat, « La collégialité contre le désordre », 2007](https://larje.unc.nc/wp-content/uploads/sites/2/2017/01/collgialit__pipsa_2007.pdf).
+- [Mathias Chauchat, conférence sur les crises institutionnelles et politiques de la Nouvelle-Calédonie](https://larje.unc.nc/wp-content/uploads/sites/2/2017/01/Conf_crises_politiques_NC.pdf).
+- [Journal officiel de la Nouvelle-Calédonie, avis sur la modification de l’article 121 de la loi organique, 17 mai 2011](https://mobi-juridoc.gouv.nc/juridoc/jdj201.nsf/JoncP/2011-03740/%24File/2011-3740.pdf?openElement).
+- [Pierre Frogier, discours sur les deux drapeaux, 2010](https://larje.unc.nc/wp-content/uploads/sites/2/2017/01/Discours_Frogier_drapeau_2010.pdf).
+- [Philippe Gomès, déclaration de politique générale du 31 août 2009](https://larje.unc.nc/wp-content/uploads/sites/2/2017/01/_dpg_ph_gomes.pdf).
+- [Gouvernement de la Nouvelle-Calédonie, bilan de seize mois d’action du gouvernement Gomès](https://gouv.nc/actualites/26-10-2010/gouvernement-bilan-de-16-mois-dactions).
+- [Harold Martin, déclaration de politique générale du 28 novembre 2011](https://gouv.nc/sites/default/files/atoms/files/discours_de_politique_generale_declaration_de_politique_generale_du_gouvernement_de_la_nouvelle-caledonie_prononcee_par_harold_martin_le_28_novembre_2011_au_congres.pdf).
+- [Cynthia Ligeard, déclaration de politique générale du 29 août 2014](https://gouv.nc/sites/default/files/atoms/files/2-_dpg_-_ligeard-2014-01.pdf).
+- [Gouvernement de la Nouvelle-Calédonie, conférence économique, sociale et fiscale de 2014](https://gouv.nc/actualites/21-08-2014/conference-economique-sociale-et-fiscale-2-0).
+- [Gouvernement de la Nouvelle-Calédonie, point sur les réformes de l’agenda partagé, 2017](https://gouv.nc/actualites/10-01-2017/le-point-sur-les-reformes-de-lagenda-partage).
+- [Philippe Germain, déclaration de politique générale du 22 décembre 2017](https://gouv.nc/sites/default/files/atoms/files/2017.12.22_-_dpg_2017_0.pdf).
+- [DNC, présentation du New Deal calédonien de l’Éveil océanien, 13 juin 2019](https://www.dnc.nc/un-new-deal-caledonien/).
+- [Les Nouvelles calédoniennes, « L’Éveil océanien propose dix mesures pour relancer l’économie », 7 juin 2019](https://www.lnc.nc/breve/l-eveil-oceanien-propose-dix-mesures-pour-relancer-l-economie).
+- [Thierry Santa, déclaration de politique générale du 22 août 2019](https://gouv.nc/sites/default/files/atoms/files/2019.08.22_declaration_politique_generale_du_16e_gouv.pdf).
+- [Pierre-Christophe Pantz, « La majorité océanienne au Congrès est-elle minoritaire ? », 2020](https://larje.unc.nc/wp-content/uploads/sites/2/2020/07/Majorit%C3%A9-oc%C3%A9anienne-PANTZ.pdf).
+- [Louis Mapou, déclaration de politique générale du 25 novembre 2021](https://gouv.nc/sites/default/files/atoms/files/2021.11.25_dpg_louis_mapou_version_revisee.pdf).
+- [Alcide Ponga, déclaration de politique générale du 20 février 2025](https://gouv.nc/sites/default/files/atoms/files/250220-dpg-a.ponga-vdef.pdf).
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../provinciales-2026-premier-bilan/">
+    <span class="article-related-kicker">Rapports de force</span>
+    <span class="article-related-title">Provinciales 2026 : premier bilan</span>
+    <span class="article-related-note">Abstention, familles politiques, sièges et rôle pivot de l’Éveil océanien.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-troisieme-voie/">
+    <span class="article-related-kicker">Positionnement</span>
+    <span class="article-related-title">Qui est la troisième voie ?</span>
+    <span class="article-related-note">Éveil océanien, centres divisés, Faire Pays et souveraineté partagée.</span>
+  </a>
+  <a class="article-related-link" href="../provinciales-2026-congres-proportionnelle-nc/">
+    <span class="article-related-kicker">Institutions</span>
+    <span class="article-related-title">Et si on changeait les seuils ?</span>
+    <span class="article-related-note">Simulation des assemblées et du Congrès à partir des résultats 2026.</span>
+  </a>
+</div>
+</section>
+```

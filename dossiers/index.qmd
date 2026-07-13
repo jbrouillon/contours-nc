@@ -1,0 +1,45 @@
+---
+title: "Dossiers"
+description: "Dossiers éditoriaux de contours.nc : sélections d'articles, cartes, données et analyses autour d'un même sujet."
+image: "../images/contours-banner.png"
+page-layout: full
+toc: false
+---
+
+<div id="contours-section-dossiers" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-dossiers", {
+    sectionTitle: "Dossiers"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
+```{=html}
+<section class="dossier-intro">
+  <p class="dossier-lede">Des portes d'entrée thématiques pour suivre les analyses de <span class="contours-word">contours.nc</span>.</p>
+  <p>Chaque dossier rassemble les articles, cartes, visualisations et notes méthodologiques publiés autour d'un même sujet. La page est pensée pour s'enrichir au fil des publications.</p>
+</section>
+
+<section class="dossier-grid dossier-hub-grid" aria-label="Dossiers éditoriaux">
+  <article class="dossier-card">
+    <a class="dossier-card__image" href="provinciales-2026/">
+      <img src="../images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
+    </a>
+    <div class="dossier-card__body">
+      <span class="dossier-card__phase">Élections · dossier ouvert</span>
+      <h3><a href="provinciales-2026/">Provinciales 2026</a></h3>
+      <p>Analyses du scrutin, candidatures, programmes, résultats, recompositions, Congrès et simulations électorales.</p>
+      <div class="dossier-card__meta">
+        <span class="dossier-tag">Provinciales 2026</span>
+        <span class="dossier-tag">Analyse électorale</span>
+        <span class="dossier-tag">Cartes</span>
+      </div>
+      <a class="dossier-card__link" href="provinciales-2026/">Ouvrir le dossier</a>
+    </div>
+  </article>
+</section>
+```

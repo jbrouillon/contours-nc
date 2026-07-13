@@ -4,8 +4,10 @@ subtitle: "Avant d'aborder le scrutin de 2026, les bastions communaux et les zon
 author: "Jonas Brouillon"
 date: "2026-06-21"
 lang: fr
-categories: ["Élections", "Cartographie", "Provinciales 2019"]
-tags: ["géographie électorale", "provinciales", "communes", "Nouvelle-Calédonie", "cartographie"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2019
+  - Cartographie
 description: "Alors que le vote approche pour les provinciales 2026, retour sur les bastions communaux, les zones de faiblesse et les rapports de force du scrutin de 2019 dans les trois provinces."
 image: "../../data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp"
 image-alt: "Carte des listes arrivées en tête dans la Province Nord aux provinciales 2019"

@@ -3,8 +3,10 @@ title: "Cartographier le capital socio-économique en Nouvelle-Calédonie"
 subtitle: "Une lecture exploratoire des contrastes territoriaux à partir du RGP 2019"
 author: "Jonas Brouillon"
 date: "2026-05-29"
-categories: ["Cartographie", "Inégalités", "Nouvelle-Calédonie"]
-tags: ["ACP", "R", "dataviz", "recensement", "capital socio-économique"]
+rubrique: "Cartographie et données"
+categories:
+  - Inégalités
+  - Cartographie
 description: "Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie."
 image: "../../images/previews/capital-socio-economique-nc.jpg"
 image-alt: "Carte lissée du capital socio-économique en Nouvelle-Calédonie"
@@ -490,6 +492,15 @@ profile_heatmap <- capital_data |>
     )
   )
 ```
+
+::: {.en-bref}
+## En bref
+
+- L’indice synthétise cinq indicateurs du RGP 2019 : diplôme supérieur, emploi, CDI, accès à internet et motorisation.
+- La première dimension de l’ACP capte `r fmt_pct(var_dim1)` de l’information, signe d’un gradient territorial très structuré.
+- Les cartes lissées servent à rendre ce gradient lisible ; les calculs restent réalisés à l’échelle des IRIS.
+- L’indice décrit des territoires statistiques, pas des revenus individuels ni des patrimoines.
+:::
 
 ## Résumé
 

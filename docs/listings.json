@@ -2,12 +2,14 @@
   {
     "listing": "/newsletter/index.html",
     "items": [
+      "/newsletter/bilan-provinciales-2026-et-nouveautes-site/index.html",
       "/newsletter/un-mois-de-contours-nc/index.html"
     ]
   },
   {
-    "listing": "/articles/index.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/gouverner-ensemble-jusque-quand/index.html",
       "/posts/provinciales-2026-congres-proportionnelle-nc/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
       "/posts/provinciales-2026-renouvellement-elus/index.html",
@@ -21,15 +23,9 @@
     ]
   },
   {
-    "listing": "/cartes/index.html",
+    "listing": "/articles/index.html",
     "items": [
-      "/cartes/participation-municipales-animation.html",
-      "/cartes/temps-trajet-bureaux-animation.html"
-    ]
-  },
-  {
-    "listing": "/index.html",
-    "items": [
+      "/posts/gouverner-ensemble-jusque-quand/index.html",
       "/posts/provinciales-2026-congres-proportionnelle-nc/index.html",
       "/posts/provinciales-2026-premier-bilan/index.html",
       "/posts/provinciales-2026-renouvellement-elus/index.html",

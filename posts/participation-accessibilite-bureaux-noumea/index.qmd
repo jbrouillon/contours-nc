@@ -3,8 +3,11 @@ title: "Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment 
 subtitle: "Ce que dit, et ne dit pas, la participation en hausse aux municipales 2026"
 author: "Jonas Brouillon"
 date: "2026-06-07"
-categories: ["Cartographie", "Élections", "Nouméa", "Débat public"]
-tags: ["participation", "abstention", "municipales", "bureaux de vote", "Nouvelle-Calédonie"]
+rubrique: "Territoires et société"
+categories:
+  - Nouméa
+  - Participation
+  - Inégalités
 description: "Une vérification prudente de l'argument de la participation en hausse aux municipales 2026, dans le débat sur le regroupement des bureaux de vote à Nouméa."
 image: "../../images/previews/ecart-participation-noumea-2020-2026.jpg"
 image-alt: "Carte des écarts de participation entre les municipales 2020 et 2026 à Nouméa"
@@ -483,6 +486,15 @@ En résumé, quatre points guident l'analyse :
 -   cette hausse s'inscrit dans une hausse plus large du scrutin ;
 -   Nouméa reste très abstentionniste par rapport au reste du territoire ;
 -   à l'intérieur de Nouméa, certains quartiers progressent moins que la moyenne communale.
+
+::: {.en-bref}
+## En bref
+
+- La participation a bien augmenté à Nouméa entre les municipales 2020 et 2026, mais cela ne suffit pas à clore le débat sur le regroupement.
+- La hausse communale ne dit pas ce qu’aurait été la participation avec le maillage habituel des bureaux.
+- Certains quartiers progressent moins vite que la moyenne et restent plus abstentionnistes en 2026.
+- Les données ne prouvent pas un effet causal du regroupement ; elles montrent pourquoi le sujet reste ouvert.
+:::
 
 ## Nouméa progresse, mais reste très abstentionniste
 

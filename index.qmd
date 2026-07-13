@@ -6,14 +6,17 @@ image: images/contours-banner.png
 page-layout: full
 format: html
 toc: false
+body-classes: home-page
 listing:
+  id: recent-posts
   contents: posts
   type: default
   sort: "date desc"
   categories: true
   feed: true
+  max-items: 6
   sort-ui: false
-  filter-ui: true
+  filter-ui: false
 ---
 
 <div id="contours-sketch"></div>
@@ -31,46 +34,71 @@ listing:
   });
 </script>
 
-[contours]{.contours-word} est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
+[contours.nc]{.contours-word} est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
 
 Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démographe calédonien et ingénieur d'études en sciences sociales.
 
-## La dernière newsletter
+```{=html}
+<section class="home-positioning">
+  <p class="home-lede">Comprendre la Nouvelle-Calédonie par les données.</p>
+  <p>Cartes, statistiques et sciences sociales pour éclairer les dynamiques politiques, territoriales et sociales du pays.</p>
+</section>
+```
 
 ```{=html}
-<div class="quarto-listing quarto-listing-container-default latest-newsletter-listing">
-  <div class="list quarto-listing-default">
-    <div class="quarto-post image-right">
-      <div class="thumbnail">
-        <a href="newsletter/un-mois-de-contours-nc/">
-          <img loading="lazy" src="images/contours-banner.png" class="thumbnail-image" alt="">
-        </a>
-      </div>
-      <div class="body">
-        <h3 class="no-anchor listing-title">
-          <a href="newsletter/un-mois-de-contours-nc/">Un mois de contours.nc</a>
-        </h3>
-        <div class="listing-subtitle">
-          <a href="newsletter/un-mois-de-contours-nc/">Six analyses publiées, des relais dans les médias et la suite du projet</a>
-        </div>
-        <div class="listing-categories">
-          <div class="listing-category">Newsletter</div>
-        </div>
-        <div class="delink listing-description">
-          <a href="newsletter/un-mois-de-contours-nc/">
-            <p>Première newsletter de contours.nc : six analyses publiées, des premiers relais dans le débat public et la suite du projet.</p>
-          </a>
-        </div>
-      </div>
-      <div class="metadata">
-        <a href="newsletter/un-mois-de-contours-nc/">
-          <div class="listing-date">27 juin 2026</div>
-          <div class="listing-author">Jonas Brouillon</div>
-        </a>
-      </div>
-    </div>
+<section class="home-context">
+  <p><span class="contours-word">contours.nc</span> part de questions publiques concrètes : comment se recomposent les rapports de force politiques, où se concentrent les écarts territoriaux, ce que montrent les cartes quand on les confronte aux données et aux institutions.</p>
+  <p>Les articles privilégient les sources publiques, les méthodes reproductibles et une écriture située : assez précise pour documenter les choix, assez lisible pour nourrir le débat calédonien.</p>
+  <nav class="home-text-links" aria-label="Repères éditoriaux">
+    <a href="cartes/">Cartes et visualisations</a>
+    <a href="ressources/">Données et méthodes</a>
+    <a href="presse/">Presse et interventions</a>
+  </nav>
+</section>
+```
+
+```{=html}
+<section class="home-feature">
+  <div class="home-feature__body">
+    <span class="home-feature__eyebrow">Dossier à suivre</span>
+    <h2>Provinciales 2026</h2>
+    <p>Un point d’entrée unique pour retrouver les analyses du scrutin : candidatures, programmes, résultats, Congrès, troisième voie et simulations électorales.</p>
+    <a class="home-feature__link" href="dossiers/provinciales-2026/">Ouvrir le dossier</a>
   </div>
-</div>
+  <a class="home-feature__image" href="dossiers/provinciales-2026/" aria-label="Ouvrir le dossier Provinciales 2026">
+    <img src="images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
+  </a>
+</section>
 ```
 
 ## Derniers articles
+
+::: {#recent-posts}
+:::
+
+```{=html}
+<section class="home-newsletter">
+  <h2>Newsletter</h2>
+  <div class="home-newsletter-grid">
+    <div>
+      <p>Recevez les nouvelles publications de <span class="contours-word">contours.nc</span>. Environ un email par mois, avec les nouveaux articles, cartes et projets à venir.</p>
+      <p><a href="newsletter/un-mois-de-contours-nc/">Lire la dernière newsletter</a></p>
+    </div>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/contoursnc" method="post" class="embeddable-buttondown-form newsletter-form">
+      <label for="bd-email-home">Adresse email</label>
+      <div class="newsletter-form__row">
+        <input type="email" name="email" id="bd-email-home" required>
+        <input type="submit" value="S'abonner">
+      </div>
+      <p>
+        <a href="https://buttondown.com/refer/contoursnc" target="_blank" rel="noopener noreferrer">Powered by Buttondown.</a>
+      </p>
+      <p class="newsletter-privacy">
+        Votre adresse est transmise à Buttondown et utilisée uniquement pour vous envoyer la newsletter de Contours.
+        Vous pouvez vous désabonner à tout moment avec le lien présent dans chaque message.
+        <a href="https://buttondown.com/legal/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité de Buttondown</a>.
+      </p>
+    </form>
+  </div>
+</section>
+```

@@ -4,8 +4,11 @@ subtitle: "Assemblées provinciales, Congrès actuel, Congrès sans clé provinc
 author: "Jonas Brouillon"
 date: "2026-07-11"
 lang: fr
-categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
-tags: ["provinciales", "Congrès", "proportionnelle", "seuil électoral", "Nouvelle-Calédonie"]
+rubrique: "Méthodes"
+categories:
+  - Provinciales 2026
+  - Simulation
+  - Méthodes
 description: "Simulation des assemblées provinciales et du Congrès de la Nouvelle-Calédonie avec seuils en inscrits ou exprimés, Congrès sans clé provinciale, clé Bougival, et comparaison Jefferson/D'Hondt contre Sainte-Laguë."
 image: "../../images/previews/provinciales-2026-congres-proportionnelle-nc.png"
 image-alt: "Simulation des 40 sièges de l'assemblée de la Province Sud selon plusieurs seuils et méthodes de répartition"
@@ -759,6 +762,16 @@ window.ContoursProportionnelle = (() => {
 })();
 </script>
 ```
+
+::: {.en-bref}
+## En bref
+
+- Le seuil de 5 % des inscrits est plus exigeant qu’un seuil calculé sur les seuls exprimés, surtout quand la participation baisse.
+- Des seuils à 5 % ou 3 % des exprimés feraient entrer davantage de listes, principalement dans le Sud et aux Îles, sans fabriquer automatiquement une alternance.
+- La clé Bougival renforcerait le poids du Sud, mais LL-LR ne serait pas majoritaire seul avec le seuil légal.
+- Sans clé provinciale, le résultat dépend surtout du seuil : à 5 % des inscrits NC, l’hypothèse devient très sélective ; à 3 %, elle rouvre le jeu aux listes moyennes.
+- Sainte-Laguë joue surtout sur les derniers sièges : la méthode compte, mais moins que le seuil et l’échelle territoriale.
+:::
 
 ## Ce que l'on teste
 

@@ -4,8 +4,11 @@ subtitle: "Sortants reconduits, élus municipaux, simples candidats et profils n
 author: "Jonas Brouillon"
 date: "2026-07-02"
 lang: fr
-categories: ["Élections", "Provinciales 2026", "Analyse électorale"]
-tags: ["provinciales", "renouvellement", "élus", "municipales", "Nouvelle-Calédonie"]
+rubrique: "Politique et élections"
+categories:
+  - Provinciales 2026
+  - Élus
+  - Renouvellement
 description: "À partir des résultats complets des provinciales 2026 et des municipales 2026, une mesure du renouvellement réel parmi les élus provinciaux : sortants reconduits, nouveaux élus et élus municipaux"
 image: "../../images/previews/provinciales-2026-renouvellement-elus.png"
 image-alt: "Graphique de l'origine des élus provinciaux 2026 par liste"

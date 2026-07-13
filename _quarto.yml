@@ -9,13 +9,17 @@ project:
     - assets/**
     - images/contours-banner.svg
     - images/contours-hexagon.svg
+    - images/exports/provinciales-2026-congres-familles.png
   render:
     - "*.qmd"
     - "articles/*.qmd"
     - "cartes/*.qmd"
     - "contact/*.qmd"
+    - "dossiers/index.qmd"
+    - "dossiers/*/index.qmd"
     - "newsletter/*.qmd"
     - "newsletter/*/index.qmd"
+    - "presse/*.qmd"
     - "posts/*/index.qmd"
     - "ressources/*.qmd"
 
@@ -32,10 +36,14 @@ website:
     left:
       - text: "Articles"
         href: articles/index.qmd
-      - text: "Cartes"
+      - text: "Dossiers"
+        href: dossiers/index.qmd
+      - text: "Cartes et visualisations"
         href: cartes/index.qmd
       - text: "Ressources"
         href: ressources/index.qmd
+      - text: "Presse"
+        href: presse/index.qmd
       - text: "Contact"
         href: contact/index.qmd
       - text: "Newsletter"

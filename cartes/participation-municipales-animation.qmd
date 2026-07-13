@@ -4,10 +4,10 @@ subtitle: "Cartes animées de la participation au premier tour"
 toc: true
 date: 2026-06-06
 image: "../data/cartes/municipales 2026/municipales_participation_noumea_echelle_interne_2020_2026.gif"
+rubrique: "Cartographie et données"
 categories:
-  - cartes
-  - élections
   - Nouméa
+  - Participation
 ---
 
 ## Contexte

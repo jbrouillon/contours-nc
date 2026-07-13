@@ -1,0 +1,86 @@
+---
+title: "Presse et interventions"
+description: "Interventions médias, reprises dans la presse et contact presse autour des travaux publiés sur le site."
+image: "../images/contours-banner.png"
+page-layout: full
+toc: true
+toc-depth: 2
+---
+
+```{=html}
+<section class="presse-intro">
+  <p class="presse-lede">Interventions médiatiques, reprises de travaux et contacts pour les journalistes.</p>
+  <p>Cette page rassemble les passages médias, citations et reprises de <span class="contours-word">contours.nc</span>. Elle sert aussi de point d'entrée pour les rédactions qui souhaitent solliciter une analyse, une carte ou un éclairage méthodologique sur les dynamiques politiques, territoriales et sociales de la Nouvelle-Calédonie.</p>
+</section>
+```
+
+## Interventions médias
+
+```{=html}
+<section class="presse-list" aria-label="Interventions médias">
+  <article class="presse-item">
+    <div class="presse-item__meta">Télévision · Politis / Caledonia · juillet 2026</div>
+    <div class="presse-item__body">
+      <h3>La société calédonienne est-elle vraiment polarisée ?</h3>
+      <p>Émission autour des lignes de fracture et des recompositions, en lien avec <a href="../posts/provinciales-2026-troisieme-voie/">l'analyse sur la troisième voie</a>.</p>
+    </div>
+    <a class="presse-item__link" href="https://youtu.be/OUK9bwCCe_g?si=mWb3v5CRPqhliUGP">Voir</a>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">Télévision · Caledonia · 28 juin 2026</div>
+    <div class="presse-item__body">
+      <h3>Édition spéciale Provinciales 2026</h3>
+      <p>Participation au direct consacré aux résultats, aux rapports de force et à leur traduction institutionnelle.</p>
+    </div>
+    <a class="presse-item__link" href="https://youtu.be/s2XX1c-XT0E?si=9D-559KBMj1GmXQO">Voir</a>
+  </article>
+</section>
+```
+
+Les prochaines interventions pourront être classées ici par format : télévision, radio, podcasts, conférences ou débats publics.
+
+## Reprises et citations
+
+```{=html}
+<section class="presse-list" aria-label="Reprises et citations">
+  <article class="presse-item">
+    <div class="presse-item__meta">Presse régionale · Islands Business · 18 juin 2026</div>
+    <div class="presse-item__body">
+      <h3>Walking to the polling booth in Noumea</h3>
+      <p>Article de Nic Maclellan citant les analyses de <span class="contours-word">contours.nc</span> sur l'allongement des trajets vers les bureaux de vote à Nouméa.</p>
+    </div>
+    <a class="presse-item__link" href="https://islandsbusiness.com/news-break/walking-to-the-polling-booth-in-noumea/">Lire</a>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">Télévision / web · Nouvelle-Calédonie La 1ère · 4 juin 2026</div>
+    <div class="presse-item__body">
+      <h3>Le sénateur Robert Xowie interpelle le gouvernement sur la répartition des bureaux de vote à Nouméa</h3>
+      <p>Article de contexte autour du débat public sur les bureaux de vote à Nouméa.</p>
+    </div>
+    <a class="presse-item__link" href="https://la1ere.franceinfo.fr/nouvellecaledonie/provinciales-2026-le-senateur-robert-xowie-interpelle-le-gouvernement-sur-la-repartition-des-bureaux-de-vote-a-noumea-1707136.html">Lire</a>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">Presse · Les Nouvelles Calédoniennes · 1 juin 2026</div>
+    <div class="presse-item__body">
+      <h3>Une étude relance le débat sur le nombre de bureaux de vote à Nouméa</h3>
+      <p>Reprise de l'analyse sur les temps d'accès aux bureaux de vote et les effets possibles du regroupement des centres.</p>
+    </div>
+    <a class="presse-item__link" href="https://www.lnc.nc/article/une-etude-relance-le-debat-sur-le-nombre-de-bureaux-de-vote-a-noumea">Lire</a>
+  </article>
+</section>
+```
+
+Cette section peut accueillir ensuite les articles de presse, reprises de cartes, citations de résultats, ou réutilisations publiques des visualisations publiées sur [contours.nc]{.contours-word}.
+
+## Contact presse
+
+```{=html}
+<section class="presse-contact" aria-label="Contact presse">
+  <h3>Solliciter <span class="contours-word">contours.nc</span></h3>
+  <p>Pour une demande d'interview, un éclairage méthodologique, une carte ou une citation de travaux publiés, écrire à :</p>
+  <a class="presse-contact__mail" href="mailto:contact@contours.nc">contact@contours.nc</a>
+</section>
+```
