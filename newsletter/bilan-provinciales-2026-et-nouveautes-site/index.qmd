@@ -1,5 +1,5 @@
 ---
-title: "Avant et après les provinciales du 28 juin"
+title: "Bilan d'étape du site depuis les Provinciales"
 subtitle: "Articles, interventions médias et nouveautés du site"
 author: "Jonas Brouillon"
 date: "2026-07-13"
@@ -99,5 +99,5 @@ Merci pour vos lectures, vos partages, vos retours et vos corrections. Ils aiden
 
 À très bientôt,
 
-**Jonas Brouillon**  
+**Jonas Brouillon**\
 *Fondateur de [contours.nc]{.contours-word}*
