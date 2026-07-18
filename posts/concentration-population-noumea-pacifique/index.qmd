@@ -2,7 +2,7 @@
 title: "Pourquoi la population se concentre autour de Nouméa ?"
 subtitle: "Grand Nouméa, migrations, emplois et villes principales du Pacifique"
 author: "Jonas Brouillon"
-date: "2026-07-14"
+date: "2026-07-18"
 rubrique: "Territoires et société"
 categories:
   - Nouméa
@@ -1309,7 +1309,7 @@ window.ContoursConcentrationNoumea = (() => {
 </script>
 ```
 
-::: {.capital-lede}
+::: capital-lede
 La population calédonienne se concentre autour de Nouméa, mais cette concentration ne se lit plus seulement dans les limites de la commune. **Nouméa** est une commune. **Le Grand Nouméa** désigne l’ensemble formé par Nouméa, Dumbéa, Mont-Dore et Païta. C’est cette échelle qui permet de suivre le phénomène aujourd’hui.
 :::
 
@@ -1334,7 +1334,7 @@ do.call(
 )
 ```
 
-::: {.en-bref}
+::: en-bref
 ## En bref
 
 - En 2019, le Grand Nouméa compte `r fmt_int(grand_noumea_2019$population)` habitants, soit `r fmt_pct(grand_noumea_2019$part)` de la population calédonienne.
@@ -1350,7 +1350,7 @@ La première lecture porte sur la commune de Nouméa : sa part dans la populatio
 
 Ce qui recule dans les chiffres, c’est la part de la **commune** de Nouméa. Mais la population se reporte en grande partie sur les communes voisines : Dumbéa, Mont-Dore et Païta. Autrement dit, la concentration ne disparaît pas. Elle change d’échelle.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-concentration",
@@ -1401,7 +1401,7 @@ do.call(
 
 On appelle **solde naturel** la différence entre le nombre de naissances et le nombre de décès. Par exemple, 1 000 naissances et 600 décès donnent un solde naturel de +400. À l’échelle communale, la série comparable commence en 2005. Le graphique montre où cette différence est aujourd’hui la plus forte.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-solde-naturel-zones",
@@ -1431,7 +1431,7 @@ Dans l’ensemble du Grand Nouméa, les naissances restent plus nombreuses que l
 
 Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. Et comme les périodes durent cinq, sept ou huit ans, les résultats sont ramenés à une moyenne annuelle pour pouvoir les comparer.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-migrations-internes",
@@ -1461,7 +1461,7 @@ Les migrations internes et les arrivées depuis l’extérieur ne racontent pas 
 
 Le graphique suivant ne montre donc pas une moyenne annuelle et ne montre pas un bilan migratoire complet. Il montre des **volumes totaux d’arrivées depuis l’extérieur** sur chaque période, en distinguant le Grand Nouméa et le reste du territoire.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-arrivees-exterieures",
@@ -1486,7 +1486,7 @@ Entre 2014 et 2019, `r fmt_int(external_total_recent)` personnes arrivées de l�
 
 On peut ensuite remettre cette information en regard des arrivées internes dans le Grand Nouméa. Ici, les deux barres portent sur l’ensemble de chaque période : les arrivées internes comptent les personnes venues d’une autre grande région de Nouvelle-Calédonie ; les arrivées extérieures comptent les personnes venues de hors du territoire.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-grand-noumea-migrations",
@@ -1515,7 +1515,7 @@ Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la No
 
 À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population. Ce changement d’échelle est important : on quitte les arrivées localisées dans les grandes régions pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-composantes-croissance",
@@ -1537,7 +1537,7 @@ sketch_payload(
 
 Le même fichier ISEE permet de lire ces mouvements en taux d’accroissement. La courbe bleue donne l’évolution annuelle totale de la population. La courbe verte isole l’accroissement naturel. La courbe rouge correspond à l’accroissement migratoire apparent, obtenu par différence.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-taux-accroissement",
@@ -1564,7 +1564,7 @@ En 2019, les quatre premières communes par population sont Nouméa, Dumbéa, Mo
 
 L’écart tient donc à deux choses : le poids propre de Nouméa et de sa couronne, mais aussi l’absence d’une autre ville de taille comparable dans le reste du territoire.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-top-communes",
@@ -1584,7 +1584,7 @@ Une ville qui domine nettement les autres concentre aussi des ressources : servi
 
 Sur une carte classique, une commune très étendue paraît grande même si elle compte peu d’habitants. Ici, chaque commune devient donc un cercle : plus elle est peuplée, plus son cercle est gros. Les cercles restent proches de leur position réelle et se décalent légèrement lorsqu’ils se chevauchent. Un contour vert permet de suivre les quatre communes du Grand Nouméa tout au long de l’animation.
 
-::: {.column-page}
+::: column-page
 ```{r}
 map_payload(
   id = "carte-population-communes",
@@ -1609,7 +1609,7 @@ Les habitants se sont installés à Dumbéa, Mont-Dore et Païta plus vite que l
 
 > Exemple de lecture : une personne qui habite à Dumbéa et travaille à Nouméa compte parmi les habitants en emploi de la couronne, mais parmi les personnes qui travaillent à Nouméa.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-emplois-noumea-historique",
@@ -1650,7 +1650,7 @@ do.call(
 )
 ```
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-emplois-residence",
@@ -1687,7 +1687,7 @@ Le rapport [*State of Urbanization in the Blue Pacific*](https://fukuoka.unhabit
 
 Les pourcentages indiquent le poids de chaque périmètre dans la population totale du territoire. Les périmètres larges, fonctionnels ou estimés sont signalés par un astérisque, car leurs limites sont moins précises.
 
-::: {.column-page}
+::: column-page
 ```{r}
 sketch_payload(
   id = "chart-pacifique-villes",
