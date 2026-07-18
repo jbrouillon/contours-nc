@@ -7,8 +7,10 @@ page-layout: full
 toc: false
 ---
 
-<div id="contours-section-demographie-societe" class="contours-section-sketch"></div>
+::: {#contours-section-demographie-societe .contours-section-sketch}
+:::
 
+```{=html}
 <script type="module">
   import { renderContoursSectionBanner } from "../../assets/js/contours-sketch.js";
 
@@ -18,6 +20,7 @@ toc: false
     console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
   });
 </script>
+```
 
 ```{=html}
 <style>
@@ -58,7 +61,7 @@ toc: false
       <h3><a href="../../posts/concentration-population-noumea-pacifique/">Pourquoi la population se concentre autour de Nouméa ?</a></h3>
       <p>Une lecture des recensements, des migrations, des emplois et des villes principales du Pacifique pour comprendre le poids du Grand Nouméa.</p>
       <div class="dossier-card__meta">
-        <span class="dossier-tag">14 juillet 2026</span>
+        <span class="dossier-tag">18 juillet 2026</span>
         <span class="dossier-tag">Démographie</span>
         <span class="dossier-tag">Grand Nouméa</span>
       </div>

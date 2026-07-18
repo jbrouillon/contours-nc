@@ -1365,7 +1365,7 @@ window.ContoursConcentrationNoumea = (() => {
 <div class="cell-output-display">
 <details class="capital-data-details">
 <summary>Voir les données du graphique</summary>
-<div class="capital-data-details-body"><div id="gsjgdvntwk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="capital-data-details-body"><div id="olyqdsptyy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false" data-bgcolor="#FFFFFF">
@@ -1581,8 +1581,8 @@ window.ContoursConcentrationNoumea = (() => {
 <p>Pour éviter qu’une année exceptionnelle ne brouille la lecture, on compare des moyennes sur trois ans. À Nouméa, l’excédent annuel moyen des naissances sur les décès passe de +1 192 personnes en 2005-2007 à +356 en 2023-2025. Dans la couronne, il passe de +811 à +661. Les trois communes voisines ont donc pris le relais de Nouméa.</p>
 <p>Dans l’ensemble du Grand Nouméa, les naissances restent plus nombreuses que les décès, mais l’écart a presque diminué de moitié : +1 722 en 2019, contre +884 en 2025. La concentration ne disparaît pas pour autant : elle dépend aussi des déménagements et de l’endroit où se trouvent les emplois.</p>
 </section>
-<section id="le-grand-nouméa-gagne-des-habitants-mais-pas-au-même-rythme" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="le-grand-nouméa-gagne-des-habitants-mais-pas-au-même-rythme">2. Le Grand Nouméa gagne des habitants, mais pas au même rythme</h3>
+<section id="le-grand-nouméa-attire-des-migrations-internes" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="le-grand-nouméa-attire-des-migrations-internes">2. Le Grand Nouméa attire des migrations internes</h3>
 <p>À chaque recensement, l’ISEE demande où les habitants vivaient lors du recensement précédent. On peut ainsi compter les personnes qui sont arrivées dans une grande région et celles qui l’ont quittée. La différence entre les deux est appelée <strong>solde migratoire interne</strong>.</p>
 <p>Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. Et comme les périodes durent cinq, sept ou huit ans, les résultats sont ramenés à une moyenne annuelle pour pouvoir les comparer.</p>
 <div class="column-page">
@@ -1624,12 +1624,12 @@ window.ContoursConcentrationNoumea = (() => {
 </div>
 </div>
 </div>
-<p>Ce second graphique répond donc à une question plus simple : d’où viennent les personnes qui s’installent dans le Grand Nouméa entre deux recensements ? Entre 2014 et 2019, on y compte 6 345 arrivées internes et 14 760 arrivées depuis l’extérieur. Il ne s’agit pas d’un bilan : les départs internes sont pris en compte dans le graphique précédent sur les soldes, tandis que les départs vers l’extérieur ne sont pas détaillés par grande région.</p>
-<p>Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la Nouvelle-Calédonie, un bilan migratoire apparent : un solde territorial obtenu à partir de la variation totale de population et du solde naturel. On ne peut pas en déduire le solde externe du Grand Nouméa : le recensement localise les personnes arrivées de l’extérieur, mais pas les personnes parties vers l’extérieur selon leur région de départ.</p>
+<p>Ce second graphique répond donc à une question plus simple : d’où viennent les personnes qui s’installent dans le Grand Nouméa entre deux recensements ? Entre 2014 et 2019, on y compte 6 345 arrivées internes et 14 760 arrivées depuis l’extérieur. Notons que les départs vers l’extérieur par grande région ne sont pas documentés ici.</p>
+<p>Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la Nouvelle-Calédonie, un bilan migratoire apparent : un solde territorial obtenu à partir de la variation totale de population et du solde naturel.</p>
 </section>
 <section id="depuis-2015-la-nouvelle-calédonie-perd-des-habitants-par-migration" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="depuis-2015-la-nouvelle-calédonie-perd-des-habitants-par-migration">4. Depuis 2015, la Nouvelle-Calédonie perd des habitants par migration</h3>
-<p>À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population. Ce changement d’échelle est important : on quitte les arrivées localisées dans les grandes régions pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.</p>
+<p>À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.</p>
 <div class="column-page">
 <div class="cell">
 <div class="cell-output-display">
@@ -1651,7 +1651,7 @@ window.ContoursConcentrationNoumea = (() => {
 </div>
 </div>
 </div>
-<p>La longue série montre plusieurs phases de départs et d’arrivées. La période récente se distingue toutefois par sa durée : depuis 2015, le bilan migratoire apparent est négatif chaque année, alors que l’accroissement naturel reste positif. La concentration autour de Nouméa ne se lit donc pas seulement à partir des arrivées extérieures. Elle dépend aussi des déménagements internes et de l’endroit où se trouvent les logements, les emplois, les formations et les services. En 2019, 77,9 % de la population est née en Nouvelle-Calédonie, contre 75,0 % en 2014.</p>
+<p>La longue série montre plusieurs phases de départs et d’arrivées. La période récente se distingue toutefois par sa durée : depuis 2015, le bilan migratoire apparent est négatif chaque année, alors que l’accroissement naturel reste positif. La concentration autour de Nouméa ne se lit donc pas seulement à partir des arrivées extérieures. Elle dépend aussi des déménagements internes et de l’endroit où se trouvent les logements, les emplois, les formations et les services.</p>
 </section>
 </section>
 <section id="quatre-communes-loin-devant-les-autres" class="level2 page-columns page-full">
@@ -1760,7 +1760,7 @@ window.ContoursConcentrationNoumea = (() => {
 <div class="cell-output-display">
 <details class="capital-data-details">
 <summary>Voir les pays, capitales et villes associées</summary>
-<div class="capital-data-details-body"><div id="ilzzfaplns" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="capital-data-details-body"><div id="dhwztbksek" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false" data-bgcolor="#FFFFFF">

@@ -1425,7 +1425,7 @@ Pour éviter qu’une année exceptionnelle ne brouille la lecture, on compare d
 
 Dans l’ensemble du Grand Nouméa, les naissances restent plus nombreuses que les décès, mais l’écart a presque diminué de moitié : `r paste0("+", fmt_int(grand_noumea_natural_2019$solde_naturel))` en 2019, contre `r paste0("+", fmt_int(grand_noumea_natural_2025$solde_naturel))` en 2025. La concentration ne disparaît pas pour autant : elle dépend aussi des déménagements et de l’endroit où se trouvent les emplois.
 
-### 2. Le Grand Nouméa gagne des habitants, mais pas au même rythme
+### 2. Le Grand Nouméa attire des migrations internes
 
 À chaque recensement, l’ISEE demande où les habitants vivaient lors du recensement précédent. On peut ainsi compter les personnes qui sont arrivées dans une grande région et celles qui l’ont quittée. La différence entre les deux est appelée **solde migratoire interne**.
 
@@ -1507,13 +1507,13 @@ sketch_payload(
 ```
 :::
 
-Ce second graphique répond donc à une question plus simple : d’où viennent les personnes qui s’installent dans le Grand Nouméa entre deux recensements ? Entre 2014 et 2019, on y compte `r fmt_int(internal_gn_recent$arrivees_internes)` arrivées internes et `r fmt_int(external_gn_recent$total_externe_entrant)` arrivées depuis l’extérieur. Il ne s’agit pas d’un bilan : les départs internes sont pris en compte dans le graphique précédent sur les soldes, tandis que les départs vers l’extérieur ne sont pas détaillés par grande région.
+Ce second graphique répond donc à une question plus simple : d’où viennent les personnes qui s’installent dans le Grand Nouméa entre deux recensements ? Entre 2014 et 2019, on y compte `r fmt_int(internal_gn_recent$arrivees_internes)` arrivées internes et `r fmt_int(external_gn_recent$total_externe_entrant)` arrivées depuis l’extérieur. Notons que les départs vers l'extérieur par grande région ne sont pas documentés ici.
 
-Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la Nouvelle-Calédonie, un bilan migratoire apparent : un solde territorial obtenu à partir de la variation totale de population et du solde naturel. On ne peut pas en déduire le solde externe du Grand Nouméa : le recensement localise les personnes arrivées de l’extérieur, mais pas les personnes parties vers l’extérieur selon leur région de départ.
+Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la Nouvelle-Calédonie, un bilan migratoire apparent : un solde territorial obtenu à partir de la variation totale de population et du solde naturel.
 
 ### 4. Depuis 2015, la Nouvelle-Calédonie perd des habitants par migration
 
-À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population. Ce changement d’échelle est important : on quitte les arrivées localisées dans les grandes régions pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.
+À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.
 
 ::: column-page
 ```{r}
@@ -1556,7 +1556,7 @@ sketch_payload(
 ```
 :::
 
-La longue série montre plusieurs phases de départs et d’arrivées. La période récente se distingue toutefois par sa durée : depuis 2015, le bilan migratoire apparent est négatif chaque année, alors que l’accroissement naturel reste positif. La concentration autour de Nouméa ne se lit donc pas seulement à partir des arrivées extérieures. Elle dépend aussi des déménagements internes et de l’endroit où se trouvent les logements, les emplois, les formations et les services. En 2019, `r fmt_pct(born_nc_2019)` de la population est née en Nouvelle-Calédonie, contre `r fmt_pct(born_nc_2014)` en 2014.
+La longue série montre plusieurs phases de départs et d’arrivées. La période récente se distingue toutefois par sa durée : depuis 2015, le bilan migratoire apparent est négatif chaque année, alors que l’accroissement naturel reste positif. La concentration autour de Nouméa ne se lit donc pas seulement à partir des arrivées extérieures. Elle dépend aussi des déménagements internes et de l’endroit où se trouvent les logements, les emplois, les formations et les services.
 
 ## Quatre communes loin devant les autres
 
