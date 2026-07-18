@@ -25,6 +25,25 @@ toc: false
 ```{=html}
 <section class="viz-gallery-grid" aria-label="Galerie cartes et visualisations">
   <article class="viz-gallery-card">
+    <a class="viz-gallery-card__image" href="../posts/concentration-population-noumea-pacifique/#carte-population-communes">
+      <img src="../images/previews/evolution-population-communes-nc.png" alt="Carte animée de l’évolution de la population par commune en Nouvelle-Calédonie depuis 1956">
+    </a>
+    <div class="viz-gallery-card__body">
+      <span class="viz-gallery-card__meta">Nouvelle-Calédonie · carte animée</span>
+      <h3><a href="../posts/concentration-population-noumea-pacifique/#carte-population-communes">Population par commune depuis 1956</a></h3>
+      <p>Un cartogramme animé où la taille des cercles montre le nombre d’habitants et la couleur la part de chaque commune dans la population totale.</p>
+      <div class="viz-gallery-card__tags">
+        <span class="viz-gallery-tag">carte animée</span>
+        <span class="viz-gallery-tag">démographie</span>
+      </div>
+      <div class="viz-gallery-card__actions">
+        <a class="viz-gallery-card__link" href="../posts/concentration-population-noumea-pacifique/#carte-population-communes">Ouvrir la carte</a>
+        <a class="viz-gallery-card__secondary" href="../posts/concentration-population-noumea-pacifique/">Lire l’article</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="viz-gallery-card">
     <a class="viz-gallery-card__image" href="../images/previews/chart-voix-nuances-congres-contours-nc.png">
       <img src="../images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
     </a>

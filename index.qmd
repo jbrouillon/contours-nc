@@ -58,16 +58,33 @@ Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démograp
 ```
 
 ```{=html}
-<section class="home-feature">
-  <div class="home-feature__body">
-    <span class="home-feature__eyebrow">Dossier à suivre</span>
-    <h2>Provinciales 2026</h2>
-    <p>Un point d’entrée unique pour retrouver les analyses du scrutin : candidatures, programmes, résultats, Congrès, troisième voie et simulations électorales.</p>
-    <a class="home-feature__link" href="dossiers/provinciales-2026/">Ouvrir le dossier</a>
+<section class="home-dossier-block" aria-label="Dossiers à suivre">
+  <h2>Dossiers à suivre</h2>
+  <div class="dossier-grid dossier-hub-grid home-dossier-grid">
+    <article class="dossier-card">
+      <a class="dossier-card__image" href="dossiers/provinciales-2026/">
+        <img src="images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
+      </a>
+      <div class="dossier-card__body">
+        <span class="dossier-card__phase">Élections · dossier ouvert</span>
+        <h3><a href="dossiers/provinciales-2026/">Provinciales 2026</a></h3>
+        <p>Candidatures, programmes, résultats, Congrès, troisième voie et simulations électorales.</p>
+        <a class="dossier-card__link" href="dossiers/provinciales-2026/">Ouvrir le dossier</a>
+      </div>
+    </article>
+
+    <article class="dossier-card">
+      <a class="dossier-card__image" href="dossiers/demographie-societe/">
+        <img src="images/previews/chart-concentration-contours-nc.png" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
+      </a>
+      <div class="dossier-card__body">
+        <span class="dossier-card__phase">Territoires · dossier ouvert</span>
+        <h3><a href="dossiers/demographie-societe/">Démographie et société</a></h3>
+        <p>Population, mobilités, concentration urbaine et contrastes socio-économiques en Nouvelle-Calédonie.</p>
+        <a class="dossier-card__link" href="dossiers/demographie-societe/">Ouvrir le dossier</a>
+      </div>
+    </article>
   </div>
-  <a class="home-feature__image" href="dossiers/provinciales-2026/" aria-label="Ouvrir le dossier Provinciales 2026">
-    <img src="images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
-  </a>
 </section>
 ```
 

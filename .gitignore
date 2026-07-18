@@ -8,6 +8,7 @@ _site
 Thumbs.db
 desktop.ini
 .agents/
+tmp/
 __pycache__/
 *.py[cod]
 *.html

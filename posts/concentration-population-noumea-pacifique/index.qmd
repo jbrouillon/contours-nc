@@ -1,0 +1,1786 @@
+---
+title: "Pourquoi la population se concentre autour de Nouméa ?"
+subtitle: "Grand Nouméa, migrations, emplois et villes principales du Pacifique"
+author: "Jonas Brouillon"
+date: "2026-07-14"
+rubrique: "Territoires et société"
+categories:
+  - Nouméa
+  - Démographie
+  - Cartographie
+description: "La concentration démographique calédonienne ne se limite plus à la commune de Nouméa : elle se joue à l’échelle du Grand Nouméa. Recensements, migrations, emplois et comparaison avec le Pacifique permettent d’en comprendre les mécanismes."
+image: "../../images/previews/chart-concentration-contours-nc.png"
+image-alt: "Courbes de concentration de la population autour de Nouméa depuis 1956"
+title-block-banner: true
+toc: true
+toc-depth: 3
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(file.path(article_dir, "analysis.R"), local = knitr::knit_global(), encoding = "UTF-8")
+```
+
+```{=html}
+<style>
+.capital-lede {
+  max-width: 82ch;
+  font-size: 1.07rem;
+}
+
+.capital-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1.1rem 0 1.8rem;
+}
+
+.capital-stat-card {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.capital-stat-value {
+  color: var(--ink);
+  font-size: 1.55rem;
+  font-weight: 850;
+  line-height: 1.05;
+}
+
+.capital-stat-label {
+  font-weight: 850;
+  line-height: 1.25;
+  margin-top: 0.25rem;
+}
+
+.capital-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  margin: 0.35rem 0 0;
+}
+
+.capital-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 1.15rem 0 0.25rem;
+  min-height: 360px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.capital-sketch-tools {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.capital-sketch-download,
+.capital-map-play,
+.capital-map-step {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.24);
+  border-radius: 6px;
+  color: #282522;
+  cursor: pointer;
+  font-size: 0.76rem;
+  font-weight: 850;
+  line-height: 1;
+  padding: 0.38rem 0.48rem;
+}
+
+.capital-sketch-download:hover,
+.capital-map-play:hover,
+.capital-map-step:hover {
+  background: #f3efe6;
+}
+
+.capital-sketch-download:focus-visible,
+.capital-map-play:focus-visible,
+.capital-map-step:focus-visible,
+.capital-map-slider:focus-visible {
+  outline: 3px solid rgba(47, 107, 69, 0.28);
+  outline-offset: 2px;
+}
+
+.capital-sketch-download[disabled] {
+  cursor: progress;
+  opacity: 0.72;
+}
+
+.capital-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.capital-sketch-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.35rem 0 2rem;
+}
+
+.capital-data-details {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 0.4rem 0 2rem;
+}
+
+.capital-data-details summary {
+  color: #282522;
+  cursor: pointer;
+  font-weight: 850;
+  padding: 0.75rem 0.9rem;
+}
+
+.capital-data-details-body {
+  overflow-x: auto;
+  padding: 0 0.85rem 0.85rem;
+}
+
+.capital-data-details-body .gt_table {
+  margin-bottom: 0;
+}
+
+.capital-map-controls {
+  align-items: center;
+  background: #f8f4eb;
+  border-top: 1px solid rgba(65, 58, 48, 0.12);
+  display: flex;
+  gap: 0.55rem;
+  margin: 0 -0.25rem -0.25rem;
+  padding: 0.75rem 0.85rem 0.8rem;
+}
+
+.capital-map-year {
+  background: var(--green);
+  border-radius: 999px;
+  color: #fffdf8;
+  font-weight: 850;
+  min-width: 4rem;
+  padding: 0.35rem 0.55rem;
+  text-align: center;
+}
+
+.capital-map-slider-wrap {
+  flex: 1 1 auto;
+  min-width: 240px;
+}
+
+.capital-map-slider {
+  accent-color: var(--green);
+  display: block;
+  margin: 0;
+  width: 100%;
+}
+
+.capital-map-ticks {
+  color: var(--muted);
+  display: flex;
+  font-size: 0.62rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 750;
+  justify-content: space-between;
+  line-height: 1;
+  margin-top: 0.18rem;
+}
+
+.capital-map-step {
+  font-size: 0.92rem;
+  min-width: 2rem;
+  padding-inline: 0.42rem;
+}
+
+@media (max-width: 780px) {
+  .capital-sketch svg {
+    max-width: none;
+    min-width: 680px;
+  }
+
+  #chart-top-communes svg,
+  #chart-migrations-internes svg,
+  #chart-pacifique-villes svg {
+    min-width: 620px;
+  }
+
+  #carte-population-communes svg {
+    height: auto;
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .capital-map-controls {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .capital-map-slider-wrap {
+    flex-basis: 100%;
+    order: 5;
+  }
+
+  .capital-map-year {
+    margin-left: auto;
+    order: 4;
+  }
+
+  .capital-map-ticks span {
+    display: none;
+  }
+
+  .capital-map-ticks span:first-child,
+  .capital-map-ticks span:nth-child(6),
+  .capital-map-ticks span:last-child {
+    display: inline;
+  }
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gif.js.optimized@1.0.1/dist/gif.js"></script>
+<script>
+window.ContoursConcentrationNoumea = (() => {
+  const ink = "#282522";
+  const muted = "#625d55";
+  const grid = "#ded8cf";
+  const paper = "#fffdf8";
+
+  const fmtPct = (value) =>
+    new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value) + " %";
+  const fmtPctAxis = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(value) + " %";
+  const fmtInt = (value) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(value));
+
+  function payload(id) {
+    return JSON.parse(document.getElementById(`${id}-data`).textContent);
+  }
+
+  function base(id, height, minWidth = 680, exportFormat = "png") {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    const tools = document.createElement("div");
+    tools.className = "capital-sketch-tools";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "capital-sketch-download";
+    button.textContent = exportFormat.toUpperCase();
+    button.setAttribute("aria-label", exportFormat === "gif" ? "Télécharger l’animation en GIF" : "Télécharger le graphique en PNG");
+    if (exportFormat === "png") button.addEventListener("click", () => downloadPng(id));
+    tools.appendChild(button);
+    el.appendChild(tools);
+
+    const width = Math.max(minWidth, Math.round(el.clientWidth || 960));
+    const svg = d3.select(el)
+      .append("svg")
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("role", "img")
+      .attr("aria-label", el.dataset.sketchChart || "graphique")
+      .style("background", paper);
+
+    return { el, svg, rc: rough.svg(svg.node()), width, height, downloadButton: button };
+  }
+
+  function slug(text) {
+    return String(text || "graphique")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function roughSeed(value) {
+    let hash = 2166136261;
+    for (const char of String(value || "contours")) {
+      hash ^= char.charCodeAt(0);
+      hash = Math.imul(hash, 16777619);
+    }
+    return (Math.abs(hash) % 2147483646) + 1;
+  }
+
+  function downloadPng(id) {
+    const el = document.getElementById(id);
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+
+    const clone = svg.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    const viewBox = svg.viewBox.baseVal;
+    const width = viewBox && viewBox.width ? viewBox.width : svg.clientWidth;
+    const height = viewBox && viewBox.height ? viewBox.height : svg.clientHeight;
+    const xml = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(width * scale);
+      canvas.height = Math.ceil(height * scale);
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(pngBlob);
+        link.download = `${slug(id)}-contours-nc.png`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+      }, "image/png");
+    };
+    image.src = url;
+  }
+
+  async function svgFrameToCanvas(svgNode, canvas, frameWidth, frameHeight) {
+    const clone = svgNode.cloneNode(true);
+    clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    clone.setAttribute("width", frameWidth);
+    clone.setAttribute("height", frameHeight);
+    const xml = new XMLSerializer().serializeToString(clone);
+    const url = URL.createObjectURL(new Blob([xml], { type: "image/svg+xml;charset=utf-8" }));
+    const image = new Image();
+    try {
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = reject;
+        image.src = url;
+      });
+      const context = canvas.getContext("2d");
+      context.fillStyle = paper;
+      context.fillRect(0, 0, frameWidth, frameHeight);
+      context.drawImage(image, 0, 0, frameWidth, frameHeight);
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  async function gifWorkerUrl() {
+    const response = await fetch("https://cdn.jsdelivr.net/npm/gif.js.optimized@1.0.1/dist/gif.worker.js");
+    if (!response.ok) throw new Error("Le moteur GIF n’a pas pu être chargé.");
+    const source = await response.text();
+    return URL.createObjectURL(new Blob([source], { type: "text/javascript" }));
+  }
+
+  function addSignature(svg, width, height) {
+    svg.append("text")
+      .attr("x", width - 18)
+      .attr("y", height - 14)
+      .attr("text-anchor", "end")
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 13)
+      .attr("font-weight", 850)
+      .attr("fill", "#8a8277")
+      .text("contours.nc · © Jonas Brouillon");
+  }
+
+  function label(g, text, x, y, opts = {}) {
+    return g.append("text")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("text-anchor", opts.anchor || "start")
+      .attr("dominant-baseline", opts.baseline || "middle")
+      .attr("font-size", opts.size || 12)
+      .attr("font-weight", opts.weight || 400)
+      .attr("fill", opts.color || ink)
+      .text(text);
+  }
+
+  function wrap(selection, width) {
+    selection.each(function() {
+      const text = d3.select(this);
+      const words = text.text().split(/\s+/).reverse();
+      const x = text.attr("x");
+      const y = text.attr("y");
+      let line = [];
+      let lineNumber = 0;
+      let word;
+      text.text(null);
+      let tspan = text.append("tspan").attr("x", x).attr("y", y);
+      while ((word = words.pop())) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", `${++lineNumber * 1.05}em`)
+            .text(word);
+        }
+      }
+    });
+  }
+
+  function chartTitle(svg, text, width, y = 30) {
+    return label(svg, text, 18, y, { size: 22, weight: 850 }).call(wrap, width - 52);
+  }
+
+  function roughRect(g, rc, x, y, width, height, color, opacity = 1, stroke = color, fillStyle = "hachure") {
+    const node = rc.rectangle(x, y, Math.max(0.1, width), Math.max(0.1, height), {
+      fill: color,
+      fillStyle,
+      hachureGap: 2.2,
+      hachureAngle: -42,
+      fillWeight: 1.55,
+      roughness: 1.3,
+      bowing: 1.1,
+      stroke,
+      strokeWidth: stroke === "none" ? 0 : 1.15
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return d3.select(node);
+  }
+
+  function roughCircle(g, rc, x, y, diameter, color, opacity = 1, stroke = ink) {
+    const node = rc.circle(x, y, diameter, {
+      fill: color,
+      fillStyle: "solid",
+      roughness: 1.55,
+      stroke,
+      strokeWidth: 1
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return d3.select(node);
+  }
+
+  function roughPath(g, rc, d, color, width = 2.2, opacity = 1) {
+    if (!d) return null;
+    const node = rc.path(d, {
+      stroke: color,
+      strokeWidth: width,
+      roughness: 1.65,
+      bowing: 1.2,
+      fill: "none"
+    });
+    g.node().appendChild(node);
+    d3.select(node).attr("opacity", opacity);
+    return d3.select(node);
+  }
+
+  function axisBottom(g, x, y, ticks, format) {
+    ticks.forEach((tick) => {
+      const tx = x(tick);
+      g.append("line")
+        .attr("x1", tx).attr("x2", tx)
+        .attr("y1", 0).attr("y2", y)
+        .attr("stroke", grid)
+        .attr("stroke-width", 1);
+      label(g, format(tick), tx, y + 20, { anchor: "middle", size: 12, color: muted });
+    });
+  }
+
+  function axisLeft(g, y, width, ticks, format) {
+    ticks.forEach((tick) => {
+      const ty = y(tick);
+      g.append("line")
+        .attr("x1", 0).attr("x2", width)
+        .attr("y1", ty).attr("y2", ty)
+        .attr("stroke", grid)
+        .attr("stroke-width", 1);
+      label(g, format(tick), -10, ty, { anchor: "end", size: 12, color: muted });
+    });
+  }
+
+  function legend(svg, items, x, y, columns = items.length, opts = {}) {
+    const group = svg.append("g").attr("transform", `translate(${x},${y})`);
+    const cell = opts.cellWidth || 210;
+    const rowHeight = opts.rowHeight || 28;
+    items.forEach((item, i) => {
+      const gx = (i % columns) * cell;
+      const gy = Math.floor(i / columns) * rowHeight;
+      const g = group.append("g").attr("transform", `translate(${gx},${gy})`);
+      roughRect(g, rough.svg(svg.node()), 0, -8, 18, 14, item.color, 0.95, item.color);
+      label(g, item.label, 28, 0, { size: 12, weight: 700 }).call(wrap, cell - 34);
+    });
+  }
+
+  function renderLine(id, p) {
+    const data = p.data.map((d) => ({ ...d, annee: +d.annee, valeur: +d.valeur }));
+    const compact = window.innerWidth < 760;
+    const height = (p.options.height || 570) + (compact ? 90 : 0);
+    const { svg, rc, width } = base(id, height, compact ? 720 : 680);
+    const margin = compact
+      ? { top: 88, right: 96, bottom: 130, left: 82 }
+      : { top: 64, right: 118, bottom: 90, left: 96 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    chartTitle(svg, p.options.title, width, 30);
+
+    const years = [...new Set(data.map((d) => d.annee))].sort((a, b) => a - b);
+    const x = d3.scaleLinear().domain(d3.extent(years)).range([0, innerW]);
+    const yMin = p.options.yMin == null ? 0 : +p.options.yMin;
+    const yMax = p.options.yMax || d3.max(data, (d) => d.valeur) * 1.1;
+    const y = d3.scaleLinear().domain([yMin, yMax]).nice().range([innerH, 0]);
+    const valueFormat = p.options.valueFormat === "int" ? fmtInt : fmtPct;
+    const axisFormat = p.options.valueFormat === "int" ? fmtInt : fmtPctAxis;
+
+    const xTicks = p.options.xTicks || years;
+    axisBottom(g, x, innerH, xTicks, (d) => d);
+    axisLeft(g, y, innerW, y.ticks(5), axisFormat);
+    if (yMin < 0 && yMax > 0) {
+      g.append("line")
+        .attr("x1", 0)
+        .attr("x2", innerW)
+        .attr("y1", y(0))
+        .attr("y2", y(0))
+        .attr("stroke", ink)
+        .attr("stroke-width", 1.3)
+        .attr("stroke-dasharray", "6 7")
+        .attr("opacity", 0.45);
+    }
+    if (!compact && p.options.yLabel) {
+      label(g, p.options.yLabel, -70, innerH / 2, { anchor: "middle", size: 13, color: muted })
+        .attr("transform", `rotate(-90,-70,${innerH / 2})`);
+    }
+
+    const line = d3.line()
+      .x((d) => x(d.annee))
+      .y((d) => y(d.valeur))
+      .curve(d3.curveCatmullRom.alpha(0.35));
+
+    const series = d3.group(data, (d) => d.serie);
+    const legendItems = [];
+    for (const [serie, values] of series) {
+      const sorted = values.slice().sort((a, b) => a.annee - b.annee);
+      const color = sorted[0].couleur;
+      roughPath(g, rc, line(sorted), color, serie === "Grand Nouméa" ? 3.2 : 2.35);
+      sorted.forEach((d) => roughCircle(g, rc, x(d.annee), y(d.valeur), serie === "Grand Nouméa" ? 13 : 10, color, 0.95, color));
+      const last = sorted[sorted.length - 1];
+      label(g, valueFormat(last.valeur), x(last.annee) + 8, y(last.valeur), { size: 11, weight: 800, color });
+      legendItems.push({ label: serie, color });
+    }
+
+    const columns = compact ? 2 : Math.min(4, legendItems.length);
+    const cellWidth = compact ? 260 : 205;
+    legend(svg, legendItems, Math.max(24, (width - columns * cellWidth) / 2), height - (compact ? 72 : 46), columns, {
+      cellWidth,
+      rowHeight: 30
+    });
+    addSignature(svg, width, height);
+  }
+
+  function renderRankBars(id, p) {
+    const data = p.data.map((d) => ({ ...d, population: +d.population })).sort((a, b) => a.population - b.population);
+    const compact = window.innerWidth < 760;
+    const height = compact ? 640 : 590;
+    const { svg, rc, width } = base(id, height, 680);
+    const margin = { top: 76, right: 100, bottom: 54, left: compact ? 138 : 164 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const x = d3.scaleLinear().domain([0, d3.max(data, (d) => d.population) * 1.1]).range([0, innerW]);
+    const y = d3.scaleBand().domain(data.map((d) => d.commune)).range([innerH, 0]).padding(0.24);
+    axisBottom(g, x, innerH, x.ticks(5), fmtInt);
+
+    data.forEach((d) => {
+      const yy = y(d.commune);
+      roughRect(g, rc, 0, yy, x(d.population), y.bandwidth(), d.couleur, 0.95, d.couleur);
+      label(g, d.commune, -10, yy + y.bandwidth() / 2, { anchor: "end", size: 12, weight: 700 }).call(wrap, margin.left - 18);
+      label(g, fmtInt(d.population), x(d.population) + 7, yy + y.bandwidth() / 2, { size: 12, weight: 800, color: d.couleur });
+    });
+
+    legend(svg, [
+      { label: "Grand Nouméa", color: "#2f6b45" },
+      { label: "Autres communes", color: "#7a8c8d" }
+    ], Math.max(24, width - 420), height - 34, 2, { cellWidth: 190 });
+    addSignature(svg, width, height);
+  }
+
+  function renderComparison(id, p) {
+    const data = p.data
+      .map((d) => ({
+        ...d,
+        noyau: d.noyau == null ? null : +d.noyau,
+        elargi: +d.elargi
+      }))
+      .sort((a, b) => b.elargi - a.elargi);
+    const compact = window.innerWidth < 760;
+    const height = compact ? 780 : 720;
+    const { svg, rc, width } = base(id, height, compact ? 800 : 760);
+    const margin = { top: 126, right: 92, bottom: 62, left: compact ? 176 : 196 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    chartTitle(svg, p.options.title, width, 30);
+
+    const x = d3.scaleLinear().domain([0, 72]).range([0, innerW]);
+    const y = d3.scaleBand().domain(data.map((d) => d.cas)).range([0, innerH]).padding(0.3);
+    axisBottom(g, x, innerH, d3.range(0, 73, 12), fmtPctAxis);
+
+    legend(svg, [
+      { label: "Noyau administratif ou portuaire", color: "#c54832" },
+      { label: "Espace-capitale élargi", color: "#2f6b45" }
+    ], margin.left, 88, 2, { cellWidth: compact ? 280 : 300 });
+
+    data.forEach((d) => {
+      const yy = y(d.cas);
+      const barHeight = Math.min(24, y.bandwidth() * 0.52);
+      const barY = yy + 2;
+      const caseLabel = `${d.cas} · ${d.annee}`;
+      const outerLabel = `${d.elargi_lecture} : ${fmtPct(d.elargi)}${d.estimation ? "*" : ""}`;
+      const scopeLabel = d.noyau == null
+        ? outerLabel
+        : `${d.noyau_lecture} : ${fmtPct(d.noyau)}  →  ${outerLabel}`;
+
+      roughRect(g, rc, 0, barY, x(d.elargi), barHeight, "#2f6b45", 0.8, "#2f6b45");
+      if (d.noyau != null) {
+        const coreHeight = Math.max(10, barHeight * 0.55);
+        roughRect(
+          g,
+          rc,
+          0,
+          barY + (barHeight - coreHeight) / 2,
+          x(d.noyau),
+          coreHeight,
+          "#c54832",
+          0.98,
+          "#c54832",
+          "solid"
+        );
+        label(g, fmtPct(d.noyau), Math.max(6, x(d.noyau) - 5), barY + barHeight / 2, {
+          anchor: "end",
+          size: 10.5,
+          weight: 850,
+          color: "#fffdf8"
+        });
+      }
+
+      label(g, caseLabel, -12, barY + barHeight / 2, { anchor: "end", size: 12, weight: 850 }).call(wrap, margin.left - 24);
+      label(g, fmtPct(d.elargi) + (d.estimation ? "*" : ""), x(d.elargi) + 7, barY + barHeight / 2, {
+        size: 11.5,
+        weight: 850,
+        color: "#2f6b45"
+      });
+      label(g, scopeLabel, 2, barY + barHeight + 14, { size: 10.2, color: muted }).call(wrap, innerW - 4);
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function renderPacificBars(id, p) {
+    const data = p.data
+      .map((d) => ({
+        ...d,
+        population_totale: +d.population_totale,
+        population_noyau: d.population_noyau == null ? null : +d.population_noyau,
+        population_elargie: +d.population_elargie,
+        noyau: d.noyau == null ? null : +d.noyau,
+        elargi: +d.elargi
+      }))
+      .sort((a, b) => b.elargi - a.elargi);
+    const compact = window.innerWidth < 760;
+    const height = compact
+      ? Math.max(900, data.length * 72 + 210)
+      : Math.max(790, data.length * 62 + 220);
+    const { svg, rc, width } = base(id, height, compact ? 680 : 760);
+    const margin = { top: compact ? 118 : 112, right: compact ? 82 : 132, bottom: 66, left: compact ? 156 : 214 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const xMax = Math.max(70, Math.ceil(d3.max(data, (d) => d.elargi) / 10) * 10);
+    const x = d3.scaleLinear().domain([0, xMax]).range([0, innerW]);
+    const y = d3.scaleBand().domain(data.map((d) => d.cas)).range([0, innerH]).padding(0.18);
+    const colors = {
+      noyau: "#c54832",
+      elargi: "#2f6b45",
+      missing: "#b8afa3"
+    };
+
+    chartTitle(svg, p.options.title, width, 30);
+    legend(svg, [
+      { label: "Capitale seule", color: colors.noyau },
+      { label: "Agglomération ou ville associée", color: colors.elargi }
+    ], margin.left, compact ? 82 : 78, 2, { cellWidth: compact ? 220 : 280, rowHeight: 26 });
+    axisBottom(g, x, innerH, d3.range(0, xMax + 1, 10), fmtPctAxis);
+
+    data.forEach((d) => {
+      const yy = y(d.cas);
+      const band = y.bandwidth();
+      const barHeight = Math.min(22, band * 0.28);
+      const gap = Math.max(7, band * 0.1);
+      const coreY = yy + (band - (barHeight * 2 + gap)) / 2;
+      const aggloY = coreY + barHeight + gap;
+      const caseLabel = `${d.cas} · ${d.annee}`;
+
+      label(g, caseLabel, -12, yy + band / 2, { anchor: "end", size: compact ? 10.8 : 12, weight: 850 })
+        .call(wrap, margin.left - 26);
+
+      if (d.noyau != null) {
+        roughRect(g, rc, 0, coreY, x(d.noyau), barHeight, colors.noyau, 0.96, colors.noyau, "solid");
+        label(g, `${fmtPct(d.noyau)} · ${d.noyau_lecture}`, x(d.noyau) + 7, coreY + barHeight / 2, {
+          size: compact ? 9.5 : 10.8,
+          weight: 820,
+          color: colors.noyau
+        }).call(wrap, margin.right + 52);
+      } else {
+        g.append("line")
+          .attr("x1", 0)
+          .attr("x2", Math.min(58, innerW * 0.15))
+          .attr("y1", coreY + barHeight / 2)
+          .attr("y2", coreY + barHeight / 2)
+          .attr("stroke", colors.missing)
+          .attr("stroke-width", 1.4)
+          .attr("stroke-dasharray", "4 5");
+        label(g, "capitale seule non isolée", 66, coreY + barHeight / 2, {
+          size: compact ? 9.3 : 10.4,
+          weight: 760,
+          color: muted
+        });
+      }
+
+      roughRect(g, rc, 0, aggloY, x(d.elargi), barHeight, colors.elargi, 0.86, colors.elargi);
+      label(g, `${fmtPct(d.elargi)} · ${d.agglomeration}${d.estimation ? "*" : ""}`, x(d.elargi) + 7, aggloY + barHeight / 2, {
+        size: compact ? 9.5 : 10.8,
+        weight: 860,
+        color: colors.elargi
+      }).call(wrap, margin.right + 72);
+
+      g.append("title").text(
+        `${d.cas} : ${d.agglomeration} représente ${fmtPct(d.elargi)} du territoire` +
+        (d.noyau == null ? "" : ` ; ${d.noyau_lecture} seule représente ${fmtPct(d.noyau)}`)
+      );
+
+      if (!compact && d.elargi_lecture !== d.agglomeration) {
+        label(g, d.elargi_lecture, 0, aggloY + barHeight + 14, {
+          size: 9.5,
+          weight: 650,
+          color: muted
+        }).call(wrap, innerW * 0.64);
+      }
+    });
+
+    label(svg, "Part de la population totale du territoire", margin.left, height - 30, {
+      size: 10.5,
+      weight: 780,
+      color: muted
+    });
+
+    if (data.some((d) => d.estimation)) {
+      label(svg, "* périmètre large ou estimé", width - 18, height - 30, {
+        anchor: "end",
+        size: 10.5,
+        weight: 780,
+        color: muted
+      });
+    }
+
+    addSignature(svg, width, height);
+  }
+
+  function renderPairedBars(id, p) {
+    const data = p.data.map((d) => ({ ...d, valeur: +d.valeur }));
+    const compact = window.innerWidth < 760;
+    const height = p.options.height || (compact ? 560 : 500);
+    const { svg, rc, width } = base(id, height, compact ? 720 : 680);
+    const margin = { top: 118, right: 90, bottom: 62, left: compact ? 176 : 196 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const zones = p.options.zones || [...new Set(data.map((d) => d.zone))];
+    const measures = p.options.measures || [...new Set(data.map((d) => d.mesure))];
+    const xMax = p.options.xMax || Math.ceil(d3.max(data, (d) => d.valeur) / 10) * 10;
+    const x = d3.scaleLinear().domain([0, xMax]).range([0, innerW]);
+    const yZone = d3.scaleBand().domain(zones).range([0, innerH]).padding(0.24);
+    const yMeasure = d3.scaleBand().domain(measures).range([0, yZone.bandwidth()]).padding(0.16);
+    const valueFormat = p.options.valueFormat === "int" ? fmtInt : fmtPct;
+    const axisFormat = p.options.valueFormat === "int" ? fmtInt : fmtPctAxis;
+
+    chartTitle(svg, p.options.title, width, 30);
+    legend(
+      svg,
+      measures.map((measure) => {
+        const row = data.find((d) => d.mesure === measure);
+        return { label: measure, color: row ? row.couleur : "#7a8c8d" };
+      }),
+      margin.left,
+      88,
+      compact ? 1 : 2,
+      { cellWidth: compact ? 280 : 250, rowHeight: 26 }
+    );
+    axisBottom(g, x, innerH, p.options.xTicks || x.ticks(5), axisFormat);
+    if (p.options.xLabel) {
+      label(g, p.options.xLabel, 0, innerH + 46, { size: 11, weight: 780, color: muted });
+    }
+
+    zones.forEach((zone) => {
+      const yy = yZone(zone);
+      label(g, zone, -12, yy + yZone.bandwidth() / 2, {
+        anchor: "end",
+        size: 12,
+        weight: 850
+      }).call(wrap, margin.left - 24);
+    });
+
+    data.forEach((d) => {
+      const yy = yZone(d.zone) + yMeasure(d.mesure);
+      roughRect(g, rc, 0, yy, x(d.valeur), yMeasure.bandwidth(), d.couleur, 0.9, d.couleur);
+      label(g, valueFormat(d.valeur), x(d.valeur) + 7, yy + yMeasure.bandwidth() / 2, {
+        size: 11.5,
+        weight: 850,
+        color: d.couleur
+      });
+    });
+
+    addSignature(svg, width, height);
+  }
+
+  function normalizeKey(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, "");
+  }
+
+  function renderCartogram(id, p) {
+    const data = p.data.map((d) => ({ ...d, annee: +d.annee, population: d.population == null ? null : +d.population }));
+    const geojson = p.geojson;
+    const compact = window.innerWidth < 760;
+    const height = compact ? 700 : 720;
+    const { el, svg, rc, width, downloadButton } = base(id, height, compact ? 320 : 680, "gif");
+    const baseMapG = svg.append("g");
+    const linkG = svg.append("g").attr("aria-hidden", "true");
+    const circleG = svg.append("g");
+    const labelG = svg.append("g").attr("pointer-events", "none");
+    const legendG = svg.append("g").attr("aria-hidden", "true");
+    const years = [...new Set(data.map((d) => d.annee))].sort((a, b) => a - b);
+    const byYear = d3.group(data, (d) => d.annee, (d) => d.key);
+    const summary = new Map((p.options.summary || []).map((d) => [+d.annee, d]));
+    const grandKeys = new Set(data.filter((d) => d.isGrandNoumea).map((d) => d.key));
+    const maxPop = d3.max(data, (d) => d.population || 0);
+    const radius = d3.scaleSqrt().domain([0, maxPop]).range([3.5, compact ? 34 : 56]);
+    const shareColor = d3.scaleLinear()
+      .domain([0, 2, 8, 18, 35])
+      .range(["#f7efd9", "#e5cf93", "#d6a21f", "#d08b39", "#c54832"])
+      .clamp(true);
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    chartTitle(svg, compact ? "La population redessine les communes" : p.options.title, width, 30);
+
+    const projection = d3.geoIdentity().reflectY(true).fitExtent(
+      [[compact ? 18 : 38, compact ? 136 : 124], [width - (compact ? 18 : 38), height - (compact ? 190 : 142)]],
+      geojson
+    );
+    const path = d3.geoPath(projection);
+
+    label(svg, "GRAND NOUMÉA · 4 COMMUNES", 28, 68, { size: 10.5, weight: 900, color: "#2f6b45" });
+    const summaryValue = label(svg, "", 28, 92, { size: compact ? 17 : 22, weight: 900, color: ink });
+    const summaryDelta = label(svg, "", 28, 112, { size: 11.5, weight: 750, color: muted });
+    const yearLabel = label(svg, "", width - (compact ? 18 : 26), 86, { anchor: "end", size: compact ? 32 : 44, weight: 900, color: "#2f6b45" });
+
+    function featureName(feature) {
+      const props = feature.properties || {};
+      return props.commune || props.nom || props.nom_minus || "";
+    }
+
+    const featureByKey = new Map(geojson.features.map((feature) => [normalizeKey(featureName(feature)), feature]));
+
+    function rowsForYear(year) {
+      const yearMap = byYear.get(year) || new Map();
+      return Array.from(yearMap.values())
+        .map((rows) => Array.isArray(rows) ? rows[0] : rows)
+        .filter((row) => row && row.population);
+    }
+
+    function centroid(row) {
+      const feature = featureByKey.get(row.key);
+      if (!feature) return null;
+      return path.centroid(feature);
+    }
+
+    geojson.features.forEach((feature) => {
+      const grand = grandKeys.has(normalizeKey(featureName(feature)));
+      const node = rc.path(path(feature), {
+        fill: grand ? "#dce9df" : "#f3ead9",
+        fillStyle: "hachure",
+        hachureGap: grand ? 3.5 : 5.5,
+        hachureAngle: grand ? -38 : 44,
+        fillWeight: grand ? 1.05 : 0.7,
+        stroke: grand ? "#2f6b45" : "#8a8277",
+        strokeWidth: grand ? 1.25 : 0.7,
+        strokeLineDash: grand ? [] : [3, 5],
+        roughness: grand ? 1.05 : 0.8,
+        bowing: 0.7,
+        seed: roughSeed(featureName(feature))
+      });
+      baseMapG.node().appendChild(node);
+      d3.select(node).attr("opacity", grand ? 0.76 : 0.52);
+    });
+
+    function buildNodes(yearRows) {
+      const nodes = yearRows
+        .map((row) => {
+          const point = centroid(row);
+          if (!point || !Number.isFinite(point[0]) || !Number.isFinite(point[1])) return null;
+          const r = radius(row.population || 0);
+          return {
+            ...row,
+            anchorX: point[0],
+            anchorY: point[1],
+            x: point[0],
+            y: point[1],
+            r,
+            part: 0,
+            color: "#fffdf8"
+          };
+        })
+        .filter(Boolean);
+
+      const simulation = d3.forceSimulation(nodes)
+        .force("x", d3.forceX((d) => d.anchorX).strength(0.28))
+        .force("y", d3.forceY((d) => d.anchorY).strength(0.28))
+        .force("collide", d3.forceCollide((d) => d.r + 2.5).iterations(4))
+        .stop();
+
+      for (let i = 0; i < 240; i += 1) {
+        simulation.tick();
+        nodes.forEach((node) => {
+          node.x = Math.max(node.r + (compact ? 10 : 28), Math.min(width - node.r - (compact ? 10 : 28), node.x));
+          node.y = Math.max(node.r + 118, Math.min(height - node.r - (compact ? 184 : 132), node.y));
+        });
+      }
+
+      const totalYear = d3.sum(nodes, (d) => d.population || 0);
+      nodes.forEach((node) => {
+        node.part = totalYear ? 100 * node.population / totalYear : 0;
+        node.color = shareColor(node.part);
+      });
+      return nodes;
+    }
+
+    const nodesByYear = new Map(years.map((year) => [year, buildNodes(rowsForYear(year))]));
+    const finalNodes = nodesByYear.get(years[years.length - 1]) || [];
+    const fixedLabelKeys = new Set(finalNodes
+      .slice()
+      .sort((a, b) => b.population - a.population)
+      .slice(0, compact ? 6 : 10)
+      .map((d) => d.key));
+    grandKeys.forEach((key) => fixedLabelKeys.add(key));
+
+    function drawLegend() {
+      const boxY = height - (compact ? 154 : 112);
+      const boxHeight = compact ? 126 : 78;
+      legendG.append("rect")
+        .attr("x", 24)
+        .attr("y", boxY)
+        .attr("width", width - 48)
+        .attr("height", boxHeight)
+        .attr("rx", 10)
+        .attr("fill", "#f8f4eb")
+        .attr("stroke", "rgba(65, 58, 48, 0.14)");
+
+      label(legendG, "TAILLE = NOMBRE D’HABITANTS", compact ? 30 : 40, boxY + (compact ? 18 : 20), { size: 9.5, weight: 900, color: muted });
+      const sizeValues = [10000, 50000, 100000];
+      sizeValues.forEach((value, i) => {
+        const x = compact ? 42 + i * ((width - 84) / 3) : 52 + i * 112;
+        const r = Math.max(4, radius(value) * 0.28);
+        legendG.append("circle")
+          .attr("cx", x)
+          .attr("cy", boxY + (compact ? 42 : 52))
+          .attr("r", r)
+          .attr("fill", "#e5cf93")
+          .attr("fill-opacity", 0.72)
+          .attr("stroke", "#9a7d38");
+        label(legendG, `${value / 1000} k`, x + r + 6, boxY + (compact ? 42 : 52), { size: 10.5, weight: 800, color: ink });
+      });
+
+      const colorX = compact ? 30 : Math.max(430, width * 0.53);
+      label(legendG, "COULEUR = PART DE LA POPULATION", colorX, boxY + (compact ? 74 : 20), { size: 9.5, weight: 900, color: muted });
+      [1, 10, 30].forEach((value, i) => {
+        const x = compact ? 42 + i * ((width - 84) / 3) : colorX + 12 + i * 104;
+        legendG.append("circle")
+          .attr("cx", x)
+          .attr("cy", boxY + (compact ? 101 : 52))
+          .attr("r", 10)
+          .attr("fill", shareColor(value))
+          .attr("stroke", d3.color(shareColor(value)).darker(0.7));
+        label(legendG, `${value} %`, x + 17, boxY + (compact ? 101 : 52), { size: 10.5, weight: 800, color: ink });
+      });
+    }
+
+    function drawYear(year, animate = true) {
+      const nodes = nodesByYear.get(year) || [];
+      const yearIndex = years.indexOf(year);
+      const previousYear = yearIndex > 0 ? years[yearIndex - 1] : null;
+      const transition = svg.transition()
+        .duration(animate && !reduceMotion ? 760 : 0)
+        .ease(d3.easeCubicInOut);
+
+      yearLabel.text(year);
+      const summaryYear = summary.get(year);
+      if (summaryYear) {
+        summaryValue.text(`${fmtPct(+summaryYear.part)} · ${fmtInt(+summaryYear.population)} habitants`);
+        const previousSummary = previousYear == null ? null : summary.get(previousYear);
+        if (previousSummary) {
+          const delta = +summaryYear.population - +previousSummary.population;
+          summaryDelta.text(`${delta >= 0 ? "+" : ""}${fmtInt(delta)} habitants depuis ${previousYear}`);
+        } else {
+          summaryDelta.text("Point de départ de l’animation");
+        }
+      }
+
+      linkG.selectAll("line")
+        .data(nodes, (d) => d.key)
+        .join(
+          (enter) => enter.append("line")
+            .attr("x1", (d) => d.anchorX)
+            .attr("y1", (d) => d.anchorY)
+            .attr("x2", (d) => d.anchorX)
+            .attr("y2", (d) => d.anchorY)
+            .attr("stroke", "#8a8277")
+            .attr("stroke-width", 0.8)
+            .attr("stroke-dasharray", "2 5")
+            .attr("opacity", 0),
+          (update) => update,
+          (exit) => exit.transition(transition).attr("opacity", 0).remove()
+        )
+        .transition(transition)
+        .attr("x1", (d) => d.anchorX)
+        .attr("y1", (d) => d.anchorY)
+        .attr("x2", (d) => d.x)
+        .attr("y2", (d) => d.y)
+        .attr("opacity", (d) => d.isGrandNoumea ? 0.34 : 0.18);
+
+      let groups = circleG.selectAll("g.capital-map-node").data(nodes, (d) => d.key);
+      const entering = groups.enter()
+        .append("g")
+        .attr("class", "capital-map-node")
+        .attr("transform", (d) => `translate(${d.anchorX},${d.anchorY})`)
+        .attr("opacity", 0);
+
+      entering.append("circle").attr("class", "capital-map-halo").attr("r", 0).attr("fill", "none");
+      entering.append("circle").attr("class", "capital-map-bubble").attr("r", 0);
+      entering.append("title");
+
+      groups.exit().transition(transition).attr("opacity", 0).remove();
+      groups = entering.merge(groups);
+
+      groups.select("title").text((d) => `${d.commune} · ${fmtInt(d.population)} habitants · ${fmtPct(d.part)}`);
+      groups.transition(transition)
+        .attr("transform", (d) => `translate(${d.x},${d.y})`)
+        .attr("opacity", 1);
+
+      groups.select("circle.capital-map-halo")
+        .transition(transition)
+        .attr("r", (d) => d.r + (d.isGrandNoumea ? 5 : 2))
+        .attr("stroke", (d) => d.isGrandNoumea ? "#2f6b45" : "#fffdf8")
+        .attr("stroke-width", (d) => d.isGrandNoumea ? 3 : 1.5)
+        .attr("stroke-opacity", (d) => d.isGrandNoumea ? 0.34 : 0.24);
+
+      groups.select("circle.capital-map-bubble")
+        .transition(transition)
+        .attr("r", (d) => d.r)
+        .attr("fill", (d) => d.color)
+        .attr("fill-opacity", (d) => d.part >= 8 ? 0.9 : 0.72)
+        .attr("stroke", (d) => d.part >= 18 ? "#8f3b2f" : d3.color(d.color).darker(0.8))
+        .attr("stroke-width", (d) => d.isGrandNoumea ? 1.7 : 1);
+
+      const labelNodes = nodes.filter((d) => fixedLabelKeys.has(d.key));
+
+      let labels = labelG.selectAll("g.capital-map-node-label").data(labelNodes, (d) => d.key);
+      const labelsEntering = labels.enter()
+        .append("g")
+        .attr("class", "capital-map-node-label")
+        .attr("transform", (d) => `translate(${d.anchorX},${d.anchorY})`)
+        .attr("opacity", 0);
+      labelsEntering.append("text").attr("class", "capital-map-commune").attr("text-anchor", "middle");
+      labelsEntering.append("text").attr("class", "capital-map-population").attr("text-anchor", "middle");
+      labels.exit().transition(transition).attr("opacity", 0).remove();
+      labels = labelsEntering.merge(labels);
+
+      labels.transition(transition)
+        .attr("transform", (d) => `translate(${d.x},${d.y})`)
+        .attr("opacity", 1);
+      labels.select("text.capital-map-commune")
+        .text((d) => d.commune)
+        .attr("y", -5)
+        .attr("font-size", (d) => d.r > 30 ? 12 : 10)
+        .attr("font-weight", 900)
+        .attr("fill", (d) => d.part >= 18 ? "#fffdf8" : ink)
+        .attr("paint-order", "stroke")
+        .attr("stroke", (d) => d.part >= 18 ? "rgba(143,59,47,0.5)" : "rgba(255,253,248,0.88)")
+        .attr("stroke-width", 2.5);
+      labels.select("text.capital-map-population")
+        .text((d) => fmtInt(d.population))
+        .attr("y", 11)
+        .attr("font-size", (d) => d.r > 24 ? 10 : 8.5)
+        .attr("font-weight", 800)
+        .attr("fill", (d) => d.part >= 18 ? "#fffdf8" : muted);
+    }
+
+    drawLegend();
+    let index = 0;
+    let timer = null;
+    drawYear(years[index], false);
+
+    const controls = d3.select(el).append("div").attr("class", "capital-map-controls");
+    const previous = controls.append("button")
+      .attr("type", "button")
+      .attr("class", "capital-map-step")
+      .attr("aria-label", "Recensement précédent")
+      .text("←");
+    const play = controls.append("button")
+      .attr("type", "button")
+      .attr("class", "capital-map-play")
+      .attr("aria-label", "Lire l’évolution de la population")
+      .text("▶ Lire");
+    const next = controls.append("button")
+      .attr("type", "button")
+      .attr("class", "capital-map-step")
+      .attr("aria-label", "Recensement suivant")
+      .text("→");
+    const sliderWrap = controls.append("div").attr("class", "capital-map-slider-wrap");
+    const slider = sliderWrap.append("input")
+      .attr("class", "capital-map-slider")
+      .attr("type", "range")
+      .attr("min", 0)
+      .attr("max", years.length - 1)
+      .attr("step", 1)
+      .attr("value", index)
+      .attr("aria-label", "Choisir l’année du recensement");
+    const ticks = sliderWrap.append("div").attr("class", "capital-map-ticks");
+    ticks.selectAll("span").data(years).enter().append("span").text((d) => d);
+    const yearText = controls.append("span").attr("class", "capital-map-year").text(years[index]);
+
+    function setIndex(nextIndex, animate = true) {
+      index = Math.max(0, Math.min(years.length - 1, nextIndex));
+      slider.property("value", index);
+      yearText.text(years[index]);
+      drawYear(years[index], animate);
+    }
+
+    slider.on("input", function() {
+      stop(false);
+      setIndex(+this.value);
+    });
+
+    function start() {
+      if (timer) return;
+      if (index >= years.length - 1) setIndex(0, false);
+      play.text("❚❚ Pause");
+      timer = window.setInterval(() => {
+        if (index >= years.length - 1) {
+          stop(true);
+          return;
+        }
+        setIndex(index + 1, true);
+        if (index >= years.length - 1) {
+          window.setTimeout(() => stop(true), reduceMotion ? 0 : 800);
+        }
+      }, reduceMotion ? 900 : 1450);
+    }
+
+    function stop(atEnd = false) {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+      play.text(atEnd && index >= years.length - 1 ? "↻ Rejouer" : "▶ Lire");
+    }
+
+    previous.on("click", () => {
+      stop(false);
+      setIndex(index - 1);
+    });
+
+    next.on("click", () => {
+      stop(false);
+      setIndex(index + 1);
+    });
+
+    play.on("click", () => {
+      if (timer) stop(false);
+      else start();
+    });
+
+    async function downloadAnimation() {
+      if (!window.GIF || downloadButton.disabled) return;
+      stop(false);
+      const originalIndex = index;
+      let workerScriptUrl = null;
+      downloadButton.disabled = true;
+      downloadButton.textContent = `GIF 0/${years.length}`;
+      try {
+        workerScriptUrl = await gifWorkerUrl();
+        const targetFrameWidth = compact ? 1200 : 1800;
+        const maxFramePixels = compact ? 2600000 : 3200000;
+        const targetScale = Math.max(1, targetFrameWidth / width);
+        const pixelSafeScale = Math.sqrt(maxFramePixels / (width * height));
+        const scale = Math.max(1, Math.min(targetScale, pixelSafeScale));
+        const frameWidth = Math.max(1, Math.round(width * scale));
+        const frameHeight = Math.max(1, Math.round(height * scale));
+        const canvas = document.createElement("canvas");
+        canvas.width = frameWidth;
+        canvas.height = frameHeight;
+        const gif = new window.GIF({
+          workers: 2,
+          quality: 8,
+          width: frameWidth,
+          height: frameHeight,
+          background: paper,
+          workerScript: workerScriptUrl
+        });
+
+        for (let frameIndex = 0; frameIndex < years.length; frameIndex += 1) {
+          setIndex(frameIndex, false);
+          await new Promise((resolve) => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve)));
+          await svgFrameToCanvas(svg.node(), canvas, frameWidth, frameHeight);
+          gif.addFrame(canvas, {
+            copy: true,
+            delay: frameIndex === years.length - 1 ? 1800 : 1050
+          });
+          downloadButton.textContent = `GIF ${frameIndex + 1}/${years.length}`;
+        }
+        setIndex(originalIndex, false);
+
+        const blob = await new Promise((resolve, reject) => {
+          gif.on("progress", (progress) => {
+            downloadButton.textContent = `GIF ${Math.round(progress * 100)} %`;
+          });
+          gif.on("finished", resolve);
+          gif.on("abort", () => reject(new Error("Création du GIF interrompue.")));
+          gif.render();
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "evolution-population-communes-nouvelle-caledonie-contours-nc.gif";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+      } catch (error) {
+        console.error(error);
+        downloadButton.title = "Le GIF n’a pas pu être créé. Cliquez pour réessayer.";
+      } finally {
+        if (workerScriptUrl) URL.revokeObjectURL(workerScriptUrl);
+        setIndex(originalIndex, false);
+        downloadButton.disabled = false;
+        downloadButton.textContent = "GIF";
+      }
+    }
+
+    downloadButton.addEventListener("click", downloadAnimation);
+
+    addSignature(svg, width, height);
+  }
+
+  function render(id) {
+    if (!window.d3 || !window.rough) return;
+    const p = payload(id);
+    if (p.type === "line") renderLine(id, p);
+    if (p.type === "rankBars") renderRankBars(id, p);
+    if (p.type === "comparison") renderComparison(id, p);
+    if (p.type === "pacificBars") renderPacificBars(id, p);
+    if (p.type === "pairedBars") renderPairedBars(id, p);
+    if (p.type === "cartogram") renderCartogram(id, p);
+  }
+
+  return { render };
+})();
+</script>
+```
+
+::: {.capital-lede}
+La population calédonienne se concentre autour de Nouméa, mais cette concentration ne se lit plus seulement dans les limites de la commune. **Nouméa** est une commune. **Le Grand Nouméa** désigne l’ensemble formé par Nouméa, Dumbéa, Mont-Dore et Païta. C’est cette échelle qui permet de suivre le phénomène aujourd’hui.
+:::
+
+On part donc d’un constat simple : la part de Nouméa dans la population baisse depuis les années 1970, mais la population continue de se regrouper dans les communes voisines. Pour lire ce déplacement, l’article suit l’évolution depuis 1956, puis regarde les migrations, les naissances, les décès et les trajets domicile-travail.
+
+En 2019, Nouméa seule rassemble `r fmt_pct(noumea_2019$part)` de la population calédonienne. Mais si l’on ajoute Dumbéa, Mont-Dore et Païta, le Grand Nouméa atteint `r fmt_pct(grand_noumea_2019$part)`. Autrement dit, plus de deux habitants sur trois vivent dans ces quatre communes.
+
+```{r}
+do.call(
+  tags$section,
+  c(
+    list(class = "capital-stat-grid"),
+    lapply(seq_len(nrow(summary_cards)), function(i) {
+      tags$article(
+        class = "capital-stat-card",
+        tags$div(class = "capital-stat-value", summary_cards$value[[i]]),
+        tags$div(class = "capital-stat-label", summary_cards$label[[i]]),
+        tags$p(class = "capital-stat-note", summary_cards$note[[i]])
+      )
+    })
+  )
+)
+```
+
+::: {.en-bref}
+## En bref
+
+- En 2019, le Grand Nouméa compte `r fmt_int(grand_noumea_2019$population)` habitants, soit `r fmt_pct(grand_noumea_2019$part)` de la population calédonienne.
+- La part de Nouméa seule diminue depuis les années 1970, mais Dumbéa, Mont-Dore et Païta regroupent désormais `r fmt_int(couronne_2019$population)` habitants.
+- Entre 2014 et 2019, le Grand Nouméa gagne `r fmt_int(internal_gn_recent$solde_interne)` habitants dans ses échanges avec les autres grandes régions.
+- Sur la même période, `r fmt_int(external_total_recent)` personnes arrivées de l’extérieur s’installent en Nouvelle-Calédonie, dont `r fmt_int(external_gn_recent$total_externe_entrant)` dans le Grand Nouméa.
+- Dans le Pacifique insulaire, les villes principales concentrent souvent administrations, ports, services et emplois ; le Grand Nouméa se distingue par l’intensité de cette concentration.
+:::
+
+## Nouméa s’étend au-delà de ses limites
+
+La première lecture porte sur la commune de Nouméa : sa part dans la population totale augmente fortement jusqu’aux années 1970, puis diminue progressivement. Cette baisse donne l’impression d’un desserrement. Le graphique invite surtout à changer d’échelle.
+
+Ce qui recule dans les chiffres, c’est la part de la **commune** de Nouméa. Mais la population se reporte en grande partie sur les communes voisines : Dumbéa, Mont-Dore et Païta. Autrement dit, la concentration ne disparaît pas. Elle change d’échelle.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-concentration",
+  type = "line",
+  data = share_series,
+  caption = "Part de la population calédonienne vivant à Nouméa, dans sa couronne, dans le Grand Nouméa et dans la Province Sud. La couronne correspond ici à Dumbéa, Mont-Dore et Païta.",
+  options = list(
+    title = "La concentration s’est déplacée de Nouméa vers le Grand Nouméa",
+    yLabel = "Part de la population",
+    yMax = 80,
+    valueFormat = "pct",
+    height = 590
+  )
+)
+```
+:::
+
+La courbe raconte une transformation importante. En 1956, Nouméa compte `r fmt_int(noumea_1956$population)` habitants, soit `r fmt_pct(noumea_1956$part)` de la population. Le Grand Nouméa compte alors `r fmt_int(grand_noumea_1956$population)` habitants, soit `r fmt_pct(grand_noumea_1956$part)`. En 2019, le Grand Nouméa atteint `r fmt_int(grand_noumea_2019$population)` habitants, soit `r fmt_pct(grand_noumea_2019$part)`.
+
+Le changement est considérable : Nouméa reste le cœur de l’ensemble, mais une grande partie de la croissance se fait maintenant dans les trois communes voisines. Pour décrire la répartition actuelle de la population, le Grand Nouméa devient donc plus parlant que la commune de Nouméa seule.
+
+```{r}
+details_gt("Voir les données du graphique", table_zones_gt)
+```
+
+## D’où vient la croissance ?
+
+Quatre mouvements font varier la population : les naissances, les décès, les déménagements à l’intérieur de la Nouvelle-Calédonie et les arrivées ou départs vers l’extérieur. Les distinguer aide à lire ce qui relève de la croissance naturelle, des mobilités internes ou des liens avec l’extérieur.
+
+```{r}
+do.call(
+  tags$section,
+  c(
+    list(class = "capital-stat-grid"),
+    lapply(seq_len(nrow(growth_cards)), function(i) {
+      tags$article(
+        class = "capital-stat-card",
+        tags$div(class = "capital-stat-value", growth_cards$value[[i]]),
+        tags$div(class = "capital-stat-label", growth_cards$label[[i]]),
+        tags$p(class = "capital-stat-note", growth_cards$note[[i]])
+      )
+    })
+  )
+)
+```
+
+### 1. Les naissances dépassent encore les décès, surtout dans la couronne
+
+On appelle **solde naturel** la différence entre le nombre de naissances et le nombre de décès. Par exemple, 1 000 naissances et 600 décès donnent un solde naturel de +400. À l’échelle communale, la série comparable commence en 2005. Le graphique montre où cette différence est aujourd’hui la plus forte.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-solde-naturel-zones",
+  type = "line",
+  data = natural_balance_series,
+  caption = "Chaque courbe montre le nombre de naissances moins le nombre de décès dans l’année. La couronne regroupe Dumbéa, Mont-Dore et Païta. Les données 2025 sont provisoires.",
+  options = list(
+    title = "L’excédent des naissances diminue à Nouméa",
+    yLabel = "Naissances moins décès",
+    yMin = 0,
+    yMax = 1400,
+    xTicks = c(2005, 2010, 2015, 2020, 2025),
+    valueFormat = "int",
+    height = 570
+  )
+)
+```
+:::
+
+Pour éviter qu’une année exceptionnelle ne brouille la lecture, on compare des moyennes sur trois ans. À Nouméa, l’excédent annuel moyen des naissances sur les décès passe de `r paste0("+", fmt_int(round(natural_noumea_early$solde_naturel)))` personnes en 2005-2007 à `r paste0("+", fmt_int(round(natural_noumea_recent$solde_naturel)))` en 2023-2025. Dans la couronne, il passe de `r paste0("+", fmt_int(round(natural_crown_early$solde_naturel)))` à `r paste0("+", fmt_int(round(natural_crown_recent$solde_naturel)))`. Les trois communes voisines ont donc pris le relais de Nouméa.
+
+Dans l’ensemble du Grand Nouméa, les naissances restent plus nombreuses que les décès, mais l’écart a presque diminué de moitié : `r paste0("+", fmt_int(grand_noumea_natural_2019$solde_naturel))` en 2019, contre `r paste0("+", fmt_int(grand_noumea_natural_2025$solde_naturel))` en 2025. La concentration ne disparaît pas pour autant : elle dépend aussi des déménagements et de l’endroit où se trouvent les emplois.
+
+### 2. Le Grand Nouméa gagne des habitants, mais pas au même rythme
+
+À chaque recensement, l’ISEE demande où les habitants vivaient lors du recensement précédent. On peut ainsi compter les personnes qui sont arrivées dans une grande région et celles qui l’ont quittée. La différence entre les deux est appelée **solde migratoire interne**.
+
+Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. Et comme les périodes durent cinq, sept ou huit ans, les résultats sont ramenés à une moyenne annuelle pour pouvoir les comparer.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-migrations-internes",
+  type = "line",
+  data = internal_balance_series,
+  caption = "Moyenne annuelle des arrivées moins les départs entre cinq grandes régions. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés.",
+  options = list(
+    title = "Le Grand Nouméa reste gagnant, mais le Nord-Ouest prend parfois le relais",
+    yLabel = "Gain ou perte moyenne par an",
+    yMin = -400,
+    yMax = 550,
+    xTicks = c(1996, 2004, 2009, 2014, 2019),
+    valueFormat = "int",
+    height = 590
+  )
+)
+```
+:::
+
+À cette échelle, le Grand Nouméa gagne des habitants à chaque période depuis 1989-1996. Mais ce gain varie fortement : environ `r fmt_int(round(internal_gn_1989_1996$solde_interne_annuel))` personnes par an entre 1989 et 1996, `r fmt_int(round(internal_gn_1996_2004$solde_interne_annuel))` entre 1996 et 2004, puis seulement `r fmt_int(round(internal_gn_2009_2014$solde_interne_annuel))` entre 2009 et 2014.
+
+Durant cette dernière période, le Nord-Ouest gagne en moyenne `r fmt_int(round(internal_no_2009_2014$solde_interne_annuel))` habitants par an, davantage que le Grand Nouméa. Cette période correspond à la montée en puissance de VKP autour de l’usine du Nord. Le graphique ne dit pas tout des causes, mais il montre que les mobilités internes peuvent aussi accompagner le développement d’un autre pôle.
+
+### 3. Les arrivées de l’extérieur vont surtout vers le Grand Nouméa
+
+Les migrations internes et les arrivées depuis l’extérieur ne racontent pas exactement la même chose. Pour les migrations internes, on connaît les arrivées et les départs entre grandes régions : on peut donc calculer un solde. Pour les migrations depuis l’extérieur, le recensement permet surtout de compter les personnes qui vivaient hors de Nouvelle-Calédonie au recensement précédent et qui résident ensuite dans chaque grande région.
+
+Le graphique suivant ne montre donc pas une moyenne annuelle et ne montre pas un bilan migratoire complet. Il montre des **volumes totaux d’arrivées depuis l’extérieur** sur chaque période, en distinguant le Grand Nouméa et le reste du territoire.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-arrivees-exterieures",
+  type = "pairedBars",
+  data = external_entries_series,
+  caption = "Volumes totaux sur chaque période intercensitaire. Il s’agit des personnes qui vivaient hors de Nouvelle-Calédonie au recensement précédent et résident ensuite dans la région indiquée. Les départs vers l’extérieur ne sont pas connus par région.",
+  options = list(
+    title = "Les arrivées de l’extérieur se dirigent surtout vers le Grand Nouméa",
+    zones = unique(external_entries_series$zone),
+    measures = c("Grand Nouméa", "Reste du territoire"),
+    xMax = external_entries_xmax,
+    xTicks = seq(0, external_entries_xmax, by = 5000),
+    valueFormat = "int",
+    xLabel = "Personnes sur l’ensemble de la période",
+    height = 590
+  )
+)
+```
+:::
+
+Entre 2014 et 2019, `r fmt_int(external_total_recent)` personnes arrivées de l’extérieur s’installent en Nouvelle-Calédonie. Parmi elles, `r fmt_int(external_gn_recent$total_externe_entrant)` résident dans le Grand Nouméa, contre `r fmt_int(external_rest_recent)` dans le reste du territoire. Le Grand Nouméa reçoit donc `r fmt_pct(external_gn_share_recent)` de ces arrivées.
+
+On peut ensuite remettre cette information en regard des arrivées internes dans le Grand Nouméa. Ici, les deux barres portent sur l’ensemble de chaque période : les arrivées internes comptent les personnes venues d’une autre grande région de Nouvelle-Calédonie ; les arrivées extérieures comptent les personnes venues de hors du territoire.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-grand-noumea-migrations",
+  type = "pairedBars",
+  data = grand_noumea_migration_sources_series,
+  caption = "Volumes totaux sur chaque période intercensitaire. Les arrivées internes correspondent aux personnes qui vivaient dans une autre grande région au recensement précédent. Les arrivées extérieures correspondent aux personnes qui vivaient hors de Nouvelle-Calédonie.",
+  options = list(
+    title = "Grand Nouméa : arrivées internes et extérieures sur la période",
+    zones = unique(grand_noumea_migration_sources_series$zone),
+    measures = c("Arrivées internes", "Arrivées extérieures"),
+    xMax = grand_noumea_migration_sources_xmax,
+    xTicks = seq(0, grand_noumea_migration_sources_xmax, by = 5000),
+    valueFormat = "int",
+    xLabel = "Personnes sur l’ensemble de la période",
+    height = 590
+  )
+)
+```
+:::
+
+Ce second graphique répond donc à une question plus simple : d’où viennent les personnes qui s’installent dans le Grand Nouméa entre deux recensements ? Entre 2014 et 2019, on y compte `r fmt_int(internal_gn_recent$arrivees_internes)` arrivées internes et `r fmt_int(external_gn_recent$total_externe_entrant)` arrivées depuis l’extérieur. Il ne s’agit pas d’un bilan : les départs internes sont pris en compte dans le graphique précédent sur les soldes, tandis que les départs vers l’extérieur ne sont pas détaillés par grande région.
+
+Les données ISEE changent ensuite d’échelle. Elles donnent, pour toute la Nouvelle-Calédonie, un bilan migratoire apparent : un solde territorial obtenu à partir de la variation totale de population et du solde naturel. On ne peut pas en déduire le solde externe du Grand Nouméa : le recensement localise les personnes arrivées de l’extérieur, mais pas les personnes parties vers l’extérieur selon leur région de départ.
+
+### 4. Depuis 2015, la Nouvelle-Calédonie perd des habitants par migration
+
+À l’échelle de toute la Nouvelle-Calédonie, l’ISEE publie un bilan des entrées et des sorties en retirant les naissances et les décès de l’évolution totale de la population. Ce changement d’échelle est important : on quitte les arrivées localisées dans les grandes régions pour observer un solde territorial global, qui inclut aussi les départs vers l’extérieur.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-composantes-croissance",
+  type = "line",
+  data = growth_components_series,
+  caption = "Nouvelle-Calédonie, 1965-2022. Bilan migratoire apparent publié par l’ISEE : variation totale de la population, moins les naissances, plus les décès. Pour 2020-2022, l’ISEE prolonge la tendance migratoire observée entre 2014 et 2019.",
+  options = list(
+    title = "Le bilan des migrations a changé plusieurs fois de sens depuis 1965",
+    yLabel = "Personnes par an",
+    yMin = -4000,
+    yMax = 6000,
+    xTicks = c(1965, 1980, 1995, 2010, 2022),
+    valueFormat = "int",
+    height = 560
+  )
+)
+```
+:::
+
+Le même fichier ISEE permet de lire ces mouvements en taux d’accroissement. La courbe bleue donne l’évolution annuelle totale de la population. La courbe verte isole l’accroissement naturel. La courbe rouge correspond à l’accroissement migratoire apparent, obtenu par différence.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-taux-accroissement",
+  type = "line",
+  data = growth_rates_series,
+  caption = "Nouvelle-Calédonie, 1965-2022. Taux d’accroissement annuel total et naturel publiés par l’ISEE ; taux migratoire apparent calculé comme l’écart entre les deux. Les taux sont exprimés en % par an.",
+  options = list(
+    title = "Depuis 2015, le taux migratoire apparent tire la croissance vers le bas",
+    yLabel = "Taux annuel (%)",
+    yMin = -1.5,
+    yMax = 8,
+    xTicks = c(1965, 1980, 1995, 2010, 2022),
+    height = 560
+  )
+)
+```
+:::
+
+La longue série montre plusieurs phases de départs et d’arrivées. La période récente se distingue toutefois par sa durée : depuis 2015, le bilan migratoire apparent est négatif chaque année, alors que l’accroissement naturel reste positif. La concentration autour de Nouméa ne se lit donc pas seulement à partir des arrivées extérieures. Elle dépend aussi des déménagements internes et de l’endroit où se trouvent les logements, les emplois, les formations et les services. En 2019, `r fmt_pct(born_nc_2019)` de la population est née en Nouvelle-Calédonie, contre `r fmt_pct(born_nc_2014)` en 2014.
+
+## Quatre communes loin devant les autres
+
+En 2019, les quatre premières communes par population sont Nouméa, Dumbéa, Mont-Dore et Païta. La cinquième commune, `r fifth_commune_2019$territoire`, compte `r fmt_int(fifth_commune_2019$population)` habitants. Elle arrive très loin derrière Païta, qui compte `r fmt_int(top4_2019$population[[4]])` habitants.
+
+L’écart tient donc à deux choses : le poids propre de Nouméa et de sa couronne, mais aussi l’absence d’une autre ville de taille comparable dans le reste du territoire.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-top-communes",
+  type = "rankBars",
+  data = rank_2019,
+  caption = "Les douze communes les plus peuplées en 2019. Les quatre premières appartiennent au Grand Nouméa.",
+  options = list(
+    title = "En 2019, les quatre premières communes sont celles du Grand Nouméa"
+  )
+)
+```
+:::
+
+Une ville qui domine nettement les autres concentre aussi des ressources : services spécialisés, études supérieures, emplois qualifiés, grand hôpital, administrations. La suite de l’article montre comment cette concentration se voit dans les déplacements, le travail et la comparaison avec d’autres territoires du Pacifique.
+
+## Une carte où la taille montre la population
+
+Sur une carte classique, une commune très étendue paraît grande même si elle compte peu d’habitants. Ici, chaque commune devient donc un cercle : plus elle est peuplée, plus son cercle est gros. Les cercles restent proches de leur position réelle et se décalent légèrement lorsqu’ils se chevauchent. Un contour vert permet de suivre les quatre communes du Grand Nouméa tout au long de l’animation.
+
+::: {.column-page}
+```{r}
+map_payload(
+  id = "carte-population-communes",
+  data = map_population,
+  geojson_text = communes_geojson_text,
+  caption = "Communes de 1956 à 2019. La taille du cercle montre le nombre d’habitants ; sa couleur, la part de la commune dans la population totale. Le contour vert repère le Grand Nouméa. Utilisez les flèches, le curseur ou le bouton Lire pour parcourir les recensements.",
+  options = list(
+    title = "Quand les communes prennent la taille de leur population",
+    summary = zone_series |>
+      filter(zone == "Grand Nouméa") |>
+      transmute(annee, population, part)
+  )
+)
+```
+:::
+
+Cette animation donne une lecture visuelle du déséquilibre : les autres communes existent, progressent parfois fortement, mais elles restent beaucoup plus petites que le bloc Nouméa-Dumbéa-Mont-Dore-Païta.
+
+## Beaucoup habitent dans la couronne, mais travaillent à Nouméa
+
+Les habitants se sont installés à Dumbéa, Mont-Dore et Païta plus vite que les emplois ne s’y sont développés. Les recensements permettent de comparer le lieu d’habitation et le lieu de travail en 1989, 1996, 2009, 2014 et 2019. Nouméa reste le principal centre d’emploi, tandis que les trois communes voisines accueillent surtout des habitants.
+
+> Exemple de lecture : une personne qui habite à Dumbéa et travaille à Nouméa compte parmi les habitants en emploi de la couronne, mais parmi les personnes qui travaillent à Nouméa.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-emplois-noumea-historique",
+  type = "line",
+  data = commute_history_series,
+  caption = "Part des personnes en emploi selon leur commune de résidence et leur commune de travail. Les lieux de travail non renseignés en 2014 sont exclus pour conserver une comparaison communale.",
+  options = list(
+    title = "Le poids de Nouméa recule, mais l’écart demeure",
+    yLabel = "Part des personnes en emploi",
+    yMin = 35,
+    yMax = 70,
+    xTicks = work_years,
+    valueFormat = "pct",
+    height = 540
+  )
+)
+```
+:::
+
+En 1989, `r fmt_pct(commute_noumea_1989$part_emplois)` des personnes en emploi travaillent à Nouméa, tandis que `r fmt_pct(commute_noumea_1989$part_actifs_residents)` y habitent. En 2019, ces parts sont descendues à `r fmt_pct(commute_noumea$part_emplois)` et `r fmt_pct(commute_noumea$part_actifs_residents)`. Le poids de Nouméa recule donc, mais l’écart entre lieu de travail et lieu d’habitation reste presque aussi important.
+
+Les trajets de la couronne vers Nouméa deviennent moins fréquents en proportion, mais beaucoup plus nombreux en valeur absolue : `r fmt_int(crown_to_noumea_1989$crown_to_noumea)` personnes en 1989, soit `r fmt_pct(crown_to_noumea_1989$part)` des travailleurs de la couronne, contre `r fmt_int(crown_to_noumea)` personnes et `r fmt_pct(crown_to_noumea_share)` en 2019.
+
+```{r}
+do.call(
+  tags$section,
+  c(
+    list(class = "capital-stat-grid"),
+    lapply(seq_len(nrow(commute_cards)), function(i) {
+      tags$article(
+        class = "capital-stat-card",
+        tags$div(class = "capital-stat-value", commute_cards$value[[i]]),
+        tags$div(class = "capital-stat-label", commute_cards$label[[i]]),
+        tags$p(class = "capital-stat-note", commute_cards$note[[i]])
+      )
+    })
+  )
+)
+```
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-emplois-residence",
+  type = "pairedBars",
+  data = workplace_comparison,
+  caption = "Lieu d’habitation et lieu de travail des 111 467 personnes en emploi recensées en 2019. Chaque couleur totalise 100 %. La couronne regroupe Dumbéa, Mont-Dore et Païta.",
+  options = list(
+    title = "On travaille plus souvent à Nouméa qu’on n’y habite",
+    zones = c("Nouméa", "Couronne périurbaine", "Reste du territoire"),
+    measures = c("Personnes en emploi qui y habitent", "Personnes qui y travaillent"),
+    xMax = 60
+  )
+)
+```
+:::
+
+À Nouméa, `r fmt_int(commute_noumea$emplois)` personnes travaillent, mais seulement `r fmt_int(commute_noumea$actifs_residents)` personnes en emploi y habitent : l’écart est de `r fmt_int(commute_noumea$emplois - commute_noumea$actifs_residents)`. Dans la couronne, c’est l’inverse : `r fmt_int(commute_crown$actifs_residents)` personnes en emploi y habitent, pour `r fmt_int(commute_crown$emplois)` qui y travaillent.
+
+En 2019, `r fmt_int(crown_to_noumea)` habitants de Dumbéa, Mont-Dore et Païta travaillent à Nouméa, soit `r fmt_pct(crown_to_noumea_share)` des personnes en emploi de la couronne. Dans l’autre sens, ils ne sont que `r fmt_int(noumea_to_crown)`. À l’échelle des quatre communes, le Grand Nouméa regroupe à peu près autant de travailleurs que d’emplois. Mais, chaque jour, une grande partie des déplacements se fait de la couronne vers Nouméa.
+
+## Nouméa n’est pas un cas isolé dans le Pacifique
+
+Dans beaucoup d’îles du Pacifique, la ville principale est aussi le point d’entrée du territoire. On y trouve souvent le port ou l’aéroport, mais aussi les administrations, l’hôpital, les formations, les banques, les commerces spécialisés et une grande partie des emplois qualifiés. C’est ce que l’on appelle ici une **ville-porte**.
+
+Le mot ne signifie donc pas seulement « ville avec un port ». Il désigne un lieu par lequel il faut souvent passer pour voyager, étudier, se soigner, faire certaines démarches ou trouver certains emplois. Ces rôles peuvent être réunis dans une seule ville, ou partagés entre plusieurs villes.
+
+Les recherches sur les villes portuaires et l’urbanisation du Pacifique aboutissent à la même idée : un port ou un aéroport ne sert pas seulement au transport. Autour de lui se regroupent aussi des emplois, des services et des réseaux qui attirent la population.
+
+La concentration autour d’une capitale n’est donc pas propre à la Nouvelle-Calédonie. Selon UN-Habitat, près de la moitié des citadins du Pacifique vivent dans une capitale ou dans son district.
+
+Il y a toutefois un point de méthode : le **Grand Nouméa** comprend quatre communes. Le comparer à Papeete, Suva ou Port Vila seules reviendrait à comparer une agglomération entière à une seule commune. À l’inverse, prendre toute l’île de Tahiti serait trop large.
+
+Le rapport [*State of Urbanization in the Blue Pacific*](https://fukuoka.unhabitat.org/wp-content/uploads/2025/06/State-of-Urbanization-in-the-Blue-Pacific-Report_Jun2025_Online.pdf) invite surtout à distinguer les échelles : la capitale administrative seule ne dit pas toujours la même chose que l’agglomération, le district-capitale ou le pôle économique où se concentrent les fonctions urbaines. On reprend ici cette distinction sous une forme plus directe : **une barre pour la capitale seule, une autre pour l’agglomération ou la ville associée**.
+
+Les pourcentages indiquent le poids de chaque périmètre dans la population totale du territoire. Les périmètres larges, fonctionnels ou estimés sont signalés par un astérisque, car leurs limites sont moins précises.
+
+::: {.column-page}
+```{r}
+sketch_payload(
+  id = "chart-pacifique-villes",
+  type = "pacificBars",
+  data = pacific_capital_examples,
+  caption = "Lecture inspirée du rapport UN-Habitat (2025). Les barres comparent la capitale seule et l’agglomération, le district-capitale ou la ville associée. * Périmètre large, fonctionnel ou estimé. Données de 2017 à 2022, sauf Port Moresby dont l'ordre de grandeur est repris du rapport Blue Pacific.",
+  options = list(
+    title = "Capitales seules, agglomérations ou villes associées"
+  )
+)
+```
+:::
+
+```{r}
+details_gt("Voir les pays, capitales et villes associées", pacific_city_table_gt)
+```
+
+La différence est frappante. Papeete seule représente 9,6 % de la population polynésienne, mais l’agglomération continue de Mahina à Punaauia en rassemble 44,6 %. Suva seule représente 10,6 % de la population fidjienne, contre 30,3 % pour l’ensemble Suva–Lami–Nasinu–Nausori. La commune-centre donne donc souvent une image trop petite de la ville réellement vécue.
+
+Même avec cette comparaison plus juste, le Grand Nouméa reste très concentré : 67,2 % de la population du territoire vit dans ses quatre communes. Certains petits territoires insulaires atteignent aussi des niveaux très élevés, comme Funafuti à Tuvalu, Majuro aux Îles Marshall ou Koror à Palau, mais ce sont parfois des îles-capitales, des atolls ou des pôles économiques plutôt que des communes urbaines comparables. Le tableau permet donc de garder la réserve de lecture visible.
+
+Fidji apporte une nuance utile. Suva concentre les fonctions politiques et administratives, Lautoka possède aussi un port important, et Nadi joue le rôle de porte aérienne et touristique. Un territoire insulaire peut donc répartir certaines fonctions entre plusieurs villes.
+
+La Nouvelle-Calédonie ressemble ainsi à d’autres territoires du Pacifique où une ville principale concentre les passages et les possibilités. La comparaison aide surtout à situer l’intensité du cas calédonien et à repérer les configurations où les fonctions sont davantage partagées entre plusieurs villes.
+
+La population ne se regroupe donc pas autour de Nouméa par simple préférence pour la grande ville. Elle suit aussi les emplois, les études, les soins, les administrations et les liaisons avec l’extérieur. Tant que ces fonctions restent concentrées au même endroit, les habitants ont de bonnes raisons de s’en rapprocher.
+
+## Ce qu’il faut retenir
+
+La concentration autour de Nouméa se lit moins bien avec la seule commune-centre qu’avec le Grand Nouméa. Depuis les années 1970, Nouméa pèse moins dans la population totale, mais Dumbéa, Mont-Dore et Païta ont fortement grandi. En 2019, plus de deux habitants sur trois vivent dans ces quatre communes.
+
+Cette évolution tient à plusieurs mouvements qui se superposent : la croissance naturelle, les déménagements internes, les arrivées depuis l’extérieur, mais aussi la localisation des emplois, des études, des soins et des services spécialisés. La carte des communes et les trajets domicile-travail montrent ainsi un espace urbain plus large que la seule ville de Nouméa.
+
+La comparaison avec le Pacifique replace le cas calédonien dans un phénomène plus général : beaucoup de territoires insulaires concentrent population, port, administration et services dans une ville principale. Le Grand Nouméa se distingue surtout par l’intensité de cette concentration à l’échelle du territoire.
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
+    <span class="article-related-kicker">Inégalités territoriales</span>
+    <span class="article-related-title">Cartographier le capital socio-économique</span>
+    <span class="article-related-note">Une lecture statistique des contrastes sociaux et résidentiels à l’échelle des IRIS.</span>
+  </a>
+  <a class="article-related-link" href="../regroupement-bureaux-vote-noumea/">
+    <span class="article-related-kicker">Accessibilité</span>
+    <span class="article-related-title">Regroupement des bureaux de vote à Nouméa</span>
+    <span class="article-related-note">Un exemple concret de contrainte d’accès produite par l’organisation spatiale.</span>
+  </a>
+  <a class="article-related-link" href="../participation-accessibilite-bureaux-noumea/">
+    <span class="article-related-kicker">Participation</span>
+    <span class="article-related-title">Nouméa progresse, mais pas partout pareil</span>
+    <span class="article-related-note">Une lecture infra-communale des écarts de participation aux municipales.</span>
+  </a>
+</div>
+</section>
+```
+
+## Sources
+
+- ISEE, recensements de la population, [évolution de la population par commune et province](https://isee.nc/sites/default/files/2025-10/rp-population_0.xls).
+- ISEE, recensements de la population, [migrations internes par grande zone](https://isee.nc/sites/default/files/2025-11/rp-migrations-internes.xls).
+- ISEE, recensements de la population, [migrations depuis l’extérieur de la Nouvelle-Calédonie](https://isee.nc/sites/default/files/2025-11/rp-migrations-externes.xls).
+- ISEE, recensements de la population, [population selon le lieu de naissance et la date d’installation](https://isee.nc/sites/default/files/2025-10/rp-population-origine_0.xls).
+- ISEE, état civil et estimations de population, [évolution annuelle de la population](https://isee.nc/sites/default/files/2025-10/evolution-population_0.xlsx).
+- ISEE, état civil, [natalité et fécondité — naissances par commune de domicile](https://isee.nc/sites/default/files/2026-06/natalite-fecondite.xlsx).
+- ISEE, état civil, [mortalité et espérance de vie — décès par commune de domicile](https://isee.nc/sites/default/files/2026-06/mortalite-esperance%20de%20vie.xlsx).
+- ISEE, recensements de la population, [commune de résidence et commune de travail des actifs occupés](https://isee.nc/sites/default/files/2025-11/rp-commune-travail.xlsx).
+- Ades, Alberto F. et Edward L. Glaeser, 1995, [“Trade and Circuses: Explaining Urban Giants”](https://www.nber.org/papers/w4715), *Quarterly Journal of Economics*, version NBER.
+- Davis, James C. et J. Vernon Henderson, 2003, [“Evidence on the political economy of the urbanization process”](https://ideas.repec.org/a/eee/juecon/v53y2003i1p98-125.html), *Journal of Urban Economics*.
+- Henderson, J. Vernon, Zmarak Shalizi et Anthony J. Venables, 2001, [“Geography and development”](https://econpapers.repec.org/RePEc:oup:jecgeo:v:1:y:2001:i:1:p:81-105), *Journal of Economic Geography*.
+- Hoyle, Brian S., 1989, [“The port-city interface: Trends, problems and examples”](https://doi.org/10.1016/0016-7185(89)90026-2), *Geoforum*, 20(4), p. 429-435.
+- Hein, Carola, dir., 2011, [*Port Cities: Dynamic Landscapes and Global Networks*](https://www.routledge.com/Port-Cities-Dynamic-Landscapes-and-Global-Networks/Hein/p/book/9780415780438), Routledge.
+- Spoehr, Alexander, dir., 1963, [*Pacific Port Towns and Cities: A Symposium*](https://catalog.hathitrust.org/Record/007156638), Bishop Museum Press.
+- Connell, John et John Lea, 2002, [*Urbanisation in the Island Pacific: Towards Sustainable Development*](https://www.taylorfrancis.com/books/mono/10.4324/9780203453070/urbanisation-island-pacific-john-connell-john-lea).
+- Connell, John, 2011, [“Elephants in the Pacific? Pacific urbanisation and its discontents”](https://doi.org/10.1111/j.1467-8373.2011.01445.x), *Asia Pacific Viewpoint*, 52(2), p. 121-135.
+- Naidu, Vijay et Linda Vaike, 2016, [“Internal Migration in the Pacific Islands: a regional overview”](https://www.usp.ac.fj/journal-of-pacific-studies/wp-content/uploads/sites/162/2023/08/Internal-migration-in-the-Pacific-Islands-a-regional-overview.pdf), *The Journal of Pacific Studies*, 36(1), p. 91-110.
+- Kiddle, Gabriel Luke, Darryn McEvoy, David Mitchell, Paul Jones et Sarah Mecartney, 2017, [“Unpacking the Pacific Urban Agenda: Resilience Challenges and Opportunities”](https://doi.org/10.3390/su9101878), *Sustainability*, 9(10), 1878.
+- UN-Habitat, 2025, [*State of Urbanization in the Blue Pacific*](https://fukuoka.unhabitat.org/wp-content/uploads/2025/06/State-of-Urbanization-in-the-Blue-Pacific-Report_Jun2025_Online.pdf).
+- Banque mondiale, 2025, [*Seizing the Urban Opportunity in the Pacific*](https://www.worldbank.org/en/country/pacificislands/publication/seizing-the-urban-opportunity-in-the-pacific).
+- Samoa Bureau of Statistics, [*Population and Housing Census 2021 Final Report*](https://www.sbs.gov.ws/documents/census/2021/Census_2021_Final_Report.pdf).
+- Tonga Statistics Department / Pacific Community, [*Tonga 2021 Census of Population and Housing*](https://www.spc.int/digitallibrary/get/r4u84).
+- ISPF, [recensement de la population en Polynésie française 2022](https://www.ispf.pf/publication/1396).
+- Kiribati National Statistics Office / Pacific Community, [recensement de la population 2020](https://microdata.pacificdata.org/index.php/catalog/767/related-materials).
+- Tuvalu Central Statistics Division, [*Tuvalu Population and Housing Census 2022-23*](https://stats.gov.tv/news/tuvalu-population-and-housing-census-2022-23/).
+- Republic of the Marshall Islands / Pacific Community, [*Republic of the Marshall Islands 2021 Census Report*](https://rmihealth.org/media/attachments/2025/08/08/marshall_islands_2021_census_vol1_table_report.pdf).
+- UNESCO-IOC, [Majuro resident population and Delap-Uliga-Djarrit counts](https://tsunami.ioc.unesco.org/sites/default/files/medias/fichiers/2025/04/MH_MAJ_people_at_risk.pdf).
+- U.S. Census Bureau, [2020 Island Areas Censuses: Guam](https://www.census.gov/data/tables/2020/dec/2020-guam.html).
+- Palau Office of Planning and Statistics, [population census by state of residence](https://www.palaugov.pw/executive-branch/ministries/finance/budgetandplanning/population-census/).
+- Fiji Bureau of Statistics, [*2017 Population and Housing Census, Release 3*](https://www.statsfiji.gov.fj/download/121/phc-2017/729/2017-population-and-housing-census-release-3.pdf).
+- Fiji Ports Corporation, [ports de Suva, Lautoka et autres ports d’entrée](https://fijiports.com.fj/).
+- Fiji Airports, [Nadi International Airport comme principale porte internationale](https://fijiairports.com/).
+- Solomon Islands National Statistics Office, [*2019 Population and Housing Census, National Report*](https://www.solomons.gov.sb/wp-content/uploads/2023/09/Solomon-Islands-2019-Population-and-Housing-Census_National-Report-Vol-1-2.pdf).
+- Vanuatu National Statistics Office, [recensement 2020](https://vbos.gov.vu/index.php/en/census-and-surveys/census-report).
+- Gouvernement du Vanuatu, [*Vanuatu Affordable and Resilient Settlements Project* — périmètre fonctionnel de Greater Port Vila](https://mol.gov.vu/index.php/component/content/article/page-6?Itemid=280&catid=2).
