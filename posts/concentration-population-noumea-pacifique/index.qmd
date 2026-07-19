@@ -616,6 +616,81 @@ window.ContoursConcentrationNoumea = (() => {
     addSignature(svg, width, height);
   }
 
+  function renderPeriodBalanceBars(id, p) {
+    const data = p.data.map((d) => ({ ...d, valeur: +d.valeur }));
+    const compact = window.innerWidth < 760;
+    const height = (p.options.height || 710) + (compact ? 130 : 0);
+    const { svg, rc, width } = base(id, height, compact ? 760 : 760);
+    const margin = compact
+      ? { top: 150, right: 118, bottom: 72, left: 128 }
+      : { top: 132, right: 132, bottom: 72, left: 132 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const periods = p.options.periods || [...new Set(data.map((d) => d.periode))];
+    const series = p.options.series || [...new Set(data.map((d) => d.serie))];
+    const xMin = p.options.xMin == null ? d3.min(data, (d) => d.valeur) * 1.15 : +p.options.xMin;
+    const xMax = p.options.xMax == null ? d3.max(data, (d) => d.valeur) * 1.12 : +p.options.xMax;
+    const x = d3.scaleLinear().domain([xMin, xMax]).nice().range([0, innerW]);
+    const yPeriod = d3.scaleBand().domain(periods).range([0, innerH]).padding(0.2);
+    const ySerie = d3.scaleBand().domain(series).range([0, yPeriod.bandwidth()]).padding(0.14);
+    const signedInt = (value) => `${value > 0 ? "+" : ""}${fmtInt(value)}`;
+
+    chartTitle(svg, p.options.title, width, 30);
+    legend(
+      svg,
+      series.map((serie) => {
+        const row = data.find((d) => d.serie === serie);
+        return { label: serie, color: row ? row.couleur : "#7a8c8d" };
+      }),
+      margin.left,
+      78,
+      compact ? 2 : 3,
+      { cellWidth: compact ? 250 : 185, rowHeight: 28 }
+    );
+
+    axisBottom(g, x, innerH, p.options.xTicks || x.ticks(6), fmtInt);
+    if (p.options.xLabel) {
+      label(g, p.options.xLabel, 0, innerH + 48, { size: 11, weight: 780, color: muted });
+    }
+
+    g.append("line")
+      .attr("x1", x(0))
+      .attr("x2", x(0))
+      .attr("y1", 0)
+      .attr("y2", innerH)
+      .attr("stroke", ink)
+      .attr("stroke-width", 1.4)
+      .attr("stroke-dasharray", "6 7")
+      .attr("opacity", 0.5);
+
+    periods.forEach((period) => {
+      const yy = yPeriod(period);
+      label(g, period, -12, yy + yPeriod.bandwidth() / 2, {
+        anchor: "end",
+        size: 12,
+        weight: 850
+      });
+    });
+
+    data.forEach((d) => {
+      const yy = yPeriod(d.periode) + ySerie(d.serie);
+      const x0 = x(0);
+      const x1 = x(d.valeur);
+      const barX = Math.min(x0, x1);
+      const barW = Math.abs(x1 - x0);
+      roughRect(g, rc, barX, yy, barW, ySerie.bandwidth(), d.couleur, 0.9, d.couleur);
+      label(g, signedInt(d.valeur), d.valeur >= 0 ? x1 + 7 : x1 - 7, yy + ySerie.bandwidth() / 2, {
+        anchor: d.valeur >= 0 ? "start" : "end",
+        size: 10.8,
+        weight: 850,
+        color: d.couleur
+      });
+    });
+
+    addSignature(svg, width, height);
+  }
+
   function renderComparison(id, p) {
     const data = p.data
       .map((d) => ({
@@ -1298,6 +1373,7 @@ window.ContoursConcentrationNoumea = (() => {
     const p = payload(id);
     if (p.type === "line") renderLine(id, p);
     if (p.type === "rankBars") renderRankBars(id, p);
+    if (p.type === "periodBalanceBars") renderPeriodBalanceBars(id, p);
     if (p.type === "comparison") renderComparison(id, p);
     if (p.type === "pacificBars") renderPacificBars(id, p);
     if (p.type === "pairedBars") renderPairedBars(id, p);
@@ -1346,7 +1422,7 @@ do.call(
 
 ## Nouméa s’étend au-delà de ses limites
 
-La première lecture porte sur la commune de Nouméa : sa part dans la population totale augmente fortement jusqu’aux années 1970, puis diminue progressivement. Cette baisse donne l’impression d’un desserrement. Le graphique invite surtout à changer d’échelle.
+La première lecture porte sur la commune de Nouméa : sa part dans la population totale augmente fortement jusqu’aux années 1970, puis diminue progressivement au profit des 3 communes voisines.
 
 Ce qui recule dans les chiffres, c’est la part de la **commune** de Nouméa. Mais la population se reporte en grande partie sur les communes voisines : Dumbéa, Mont-Dore et Païta. Autrement dit, la concentration ne disparaît pas. Elle change d’échelle.
 
@@ -1429,31 +1505,33 @@ Dans l’ensemble du Grand Nouméa, les naissances restent plus nombreuses que l
 
 À chaque recensement, l’ISEE demande où les habitants vivaient lors du recensement précédent. On peut ainsi compter les personnes qui sont arrivées dans une grande région et celles qui l’ont quittée. La différence entre les deux est appelée **solde migratoire interne**.
 
-Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. Et comme les périodes durent cinq, sept ou huit ans, les résultats sont ramenés à une moyenne annuelle pour pouvoir les comparer.
+Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. On garde ici les **volumes totaux** entre deux recensements : ils disent combien d’habitants chaque région gagne ou perd dans ses échanges avec les autres régions.
 
 ::: column-page
 ```{r}
 sketch_payload(
   id = "chart-migrations-internes",
-  type = "line",
+  type = "periodBalanceBars",
   data = internal_balance_series,
-  caption = "Moyenne annuelle des arrivées moins les départs entre cinq grandes régions. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés.",
+  caption = "Solde total des arrivées moins les départs entre cinq grandes régions sur chaque période intercensitaire. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés.",
   options = list(
-    title = "Le Grand Nouméa reste gagnant, mais le Nord-Ouest prend parfois le relais",
-    yLabel = "Gain ou perte moyenne par an",
-    yMin = -400,
-    yMax = 550,
-    xTicks = c(1996, 2004, 2009, 2014, 2019),
+    title = "Le Grand Nouméa gagne à chaque période, mais pas toujours le plus",
+    xLabel = "Solde total sur la période",
+    xMin = -2200,
+    xMax = 4200,
+    xTicks = c(-2000, -1000, 0, 1000, 2000, 3000, 4000),
+    periods = c("1989-1996", "1996-2004", "2004-2009", "2009-2014", "2014-2019"),
+    series = c("Grand Nouméa", "Nord Ouest", "Sud rural", "Nord Est", "Îles Loyauté"),
     valueFormat = "int",
-    height = 590
+    height = 720
   )
 )
 ```
 :::
 
-À cette échelle, le Grand Nouméa gagne des habitants à chaque période depuis 1989-1996. Mais ce gain varie fortement : environ `r fmt_int(round(internal_gn_1989_1996$solde_interne_annuel))` personnes par an entre 1989 et 1996, `r fmt_int(round(internal_gn_1996_2004$solde_interne_annuel))` entre 1996 et 2004, puis seulement `r fmt_int(round(internal_gn_2009_2014$solde_interne_annuel))` entre 2009 et 2014.
+À cette échelle, le Grand Nouméa gagne des habitants à chaque période depuis 1989-1996. Mais le volume varie fortement : `r paste0("+", fmt_int(internal_gn_1989_1996$solde_interne))` habitants entre 1989 et 1996, `r paste0("+", fmt_int(internal_gn_1996_2004$solde_interne))` entre 1996 et 2004, puis seulement `r paste0("+", fmt_int(internal_gn_2009_2014$solde_interne))` entre 2009 et 2014. Entre 2014 et 2019, le solde redevient plus élevé : `r paste0("+", fmt_int(internal_gn_recent$solde_interne))`.
 
-Durant cette dernière période, le Nord-Ouest gagne en moyenne `r fmt_int(round(internal_no_2009_2014$solde_interne_annuel))` habitants par an, davantage que le Grand Nouméa. Cette période correspond à la montée en puissance de VKP autour de l’usine du Nord. Le graphique ne dit pas tout des causes, mais il montre que les mobilités internes peuvent aussi accompagner le développement d’un autre pôle.
+Durant cette dernière période, le Nord-Ouest gagne `r paste0("+", fmt_int(internal_no_2009_2014$solde_interne))` habitants dans ses échanges avec les autres régions, davantage que le Grand Nouméa. Cette période correspond à la montée en puissance de VKP autour de l’usine du Nord. Le graphique ne dit pas tout des causes, mais il montre que les mobilités internes peuvent aussi accompagner le développement d’un autre pôle.
 
 ### 3. Les arrivées de l’extérieur vont surtout vers le Grand Nouméa
 

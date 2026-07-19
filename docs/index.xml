@@ -618,6 +618,81 @@ window.ContoursConcentrationNoumea = (() => {
     addSignature(svg, width, height);
   }
 
+  function renderPeriodBalanceBars(id, p) {
+    const data = p.data.map((d) => ({ ...d, valeur: +d.valeur }));
+    const compact = window.innerWidth < 760;
+    const height = (p.options.height || 710) + (compact ? 130 : 0);
+    const { svg, rc, width } = base(id, height, compact ? 760 : 760);
+    const margin = compact
+      ? { top: 150, right: 118, bottom: 72, left: 128 }
+      : { top: 132, right: 132, bottom: 72, left: 132 };
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const periods = p.options.periods || [...new Set(data.map((d) => d.periode))];
+    const series = p.options.series || [...new Set(data.map((d) => d.serie))];
+    const xMin = p.options.xMin == null ? d3.min(data, (d) => d.valeur) * 1.15 : +p.options.xMin;
+    const xMax = p.options.xMax == null ? d3.max(data, (d) => d.valeur) * 1.12 : +p.options.xMax;
+    const x = d3.scaleLinear().domain([xMin, xMax]).nice().range([0, innerW]);
+    const yPeriod = d3.scaleBand().domain(periods).range([0, innerH]).padding(0.2);
+    const ySerie = d3.scaleBand().domain(series).range([0, yPeriod.bandwidth()]).padding(0.14);
+    const signedInt = (value) => `${value > 0 ? "+" : ""}${fmtInt(value)}`;
+
+    chartTitle(svg, p.options.title, width, 30);
+    legend(
+      svg,
+      series.map((serie) => {
+        const row = data.find((d) => d.serie === serie);
+        return { label: serie, color: row ? row.couleur : "#7a8c8d" };
+      }),
+      margin.left,
+      78,
+      compact ? 2 : 3,
+      { cellWidth: compact ? 250 : 185, rowHeight: 28 }
+    );
+
+    axisBottom(g, x, innerH, p.options.xTicks || x.ticks(6), fmtInt);
+    if (p.options.xLabel) {
+      label(g, p.options.xLabel, 0, innerH + 48, { size: 11, weight: 780, color: muted });
+    }
+
+    g.append("line")
+      .attr("x1", x(0))
+      .attr("x2", x(0))
+      .attr("y1", 0)
+      .attr("y2", innerH)
+      .attr("stroke", ink)
+      .attr("stroke-width", 1.4)
+      .attr("stroke-dasharray", "6 7")
+      .attr("opacity", 0.5);
+
+    periods.forEach((period) => {
+      const yy = yPeriod(period);
+      label(g, period, -12, yy + yPeriod.bandwidth() / 2, {
+        anchor: "end",
+        size: 12,
+        weight: 850
+      });
+    });
+
+    data.forEach((d) => {
+      const yy = yPeriod(d.periode) + ySerie(d.serie);
+      const x0 = x(0);
+      const x1 = x(d.valeur);
+      const barX = Math.min(x0, x1);
+      const barW = Math.abs(x1 - x0);
+      roughRect(g, rc, barX, yy, barW, ySerie.bandwidth(), d.couleur, 0.9, d.couleur);
+      label(g, signedInt(d.valeur), d.valeur >= 0 ? x1 + 7 : x1 - 7, yy + ySerie.bandwidth() / 2, {
+        anchor: d.valeur >= 0 ? "start" : "end",
+        size: 10.8,
+        weight: 850,
+        color: d.couleur
+      });
+    });
+
+    addSignature(svg, width, height);
+  }
+
   function renderComparison(id, p) {
     const data = p.data
       .map((d) => ({
@@ -1300,6 +1375,7 @@ window.ContoursConcentrationNoumea = (() => {
     const p = payload(id);
     if (p.type === "line") renderLine(id, p);
     if (p.type === "rankBars") renderRankBars(id, p);
+    if (p.type === "periodBalanceBars") renderPeriodBalanceBars(id, p);
     if (p.type === "comparison") renderComparison(id, p);
     if (p.type === "pacificBars") renderPacificBars(id, p);
     if (p.type === "pairedBars") renderPairedBars(id, p);
@@ -1347,7 +1423,7 @@ window.ContoursConcentrationNoumea = (() => {
 </section>
 <section id="nouméa-sétend-au-delà-de-ses-limites" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="nouméa-sétend-au-delà-de-ses-limites">Nouméa s’étend au-delà de ses limites</h2>
-<p>La première lecture porte sur la commune de Nouméa : sa part dans la population totale augmente fortement jusqu’aux années 1970, puis diminue progressivement. Cette baisse donne l’impression d’un desserrement. Le graphique invite surtout à changer d’échelle.</p>
+<p>La première lecture porte sur la commune de Nouméa : sa part dans la population totale augmente fortement jusqu’aux années 1970, puis diminue progressivement au profit des 3 communes voisines.</p>
 <p>Ce qui recule dans les chiffres, c’est la part de la <strong>commune</strong> de Nouméa. Mais la population se reporte en grande partie sur les communes voisines : Dumbéa, Mont-Dore et Païta. Autrement dit, la concentration ne disparaît pas. Elle change d’échelle.</p>
 <div class="column-page">
 <div class="cell">
@@ -1365,7 +1441,7 @@ window.ContoursConcentrationNoumea = (() => {
 <div class="cell-output-display">
 <details class="capital-data-details">
 <summary>Voir les données du graphique</summary>
-<div class="capital-data-details-body"><div id="olyqdsptyy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="capital-data-details-body"><div id="nhhujrmpcs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false" data-bgcolor="#FFFFFF">
@@ -1584,19 +1660,19 @@ window.ContoursConcentrationNoumea = (() => {
 <section id="le-grand-nouméa-attire-des-migrations-internes" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="le-grand-nouméa-attire-des-migrations-internes">2. Le Grand Nouméa attire des migrations internes</h3>
 <p>À chaque recensement, l’ISEE demande où les habitants vivaient lors du recensement précédent. On peut ainsi compter les personnes qui sont arrivées dans une grande région et celles qui l’ont quittée. La différence entre les deux est appelée <strong>solde migratoire interne</strong>.</p>
-<p>Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. Et comme les périodes durent cinq, sept ou huit ans, les résultats sont ramenés à une moyenne annuelle pour pouvoir les comparer.</p>
+<p>Il faut bien distinguer la commune de Nouméa du Grand Nouméa. Le graphique compare cinq grandes régions : un déménagement de Nouméa vers Dumbéa n’y apparaît pas, puisque les deux communes appartiennent au Grand Nouméa. On garde ici les <strong>volumes totaux</strong> entre deux recensements : ils disent combien d’habitants chaque région gagne ou perd dans ses échanges avec les autres régions.</p>
 <div class="column-page">
 <div class="cell">
 <div class="cell-output-display">
-<div id="chart-migrations-internes" class="capital-sketch" data-sketch-chart="Moyenne annuelle des arrivées moins les départs entre cinq grandes régions. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés."></div>
-<script type="application/json" id="chart-migrations-internes-data">{"type":"line","data":[{"annee":1996,"periode":"1989-1996","serie":"Îles Loyauté","valeur":-86,"couleur":"#7a8c8d"},{"annee":1996,"periode":"1989-1996","serie":"Nord Est","valeur":-68.71428571,"couleur":"#c54832"},{"annee":1996,"periode":"1989-1996","serie":"Nord Ouest","valeur":45.42857143,"couleur":"#d6a21f"},{"annee":1996,"periode":"1989-1996","serie":"Sud rural","valeur":-44.14285714,"couleur":"#2f6f8f"},{"annee":1996,"periode":"1989-1996","serie":"Grand Nouméa","valeur":153.42857143,"couleur":"#2f6b45"},{"annee":2004,"periode":"1996-2004","serie":"Îles Loyauté","valeur":-223.125,"couleur":"#7a8c8d"},{"annee":2004,"periode":"1996-2004","serie":"Nord Est","valeur":-214,"couleur":"#c54832"},{"annee":2004,"periode":"1996-2004","serie":"Nord Ouest","valeur":-24.5,"couleur":"#d6a21f"},{"annee":2004,"periode":"1996-2004","serie":"Sud rural","valeur":-21,"couleur":"#2f6f8f"},{"annee":2004,"periode":"1996-2004","serie":"Grand Nouméa","valeur":482.625,"couleur":"#2f6b45"},{"annee":2009,"periode":"2004-2009","serie":"Îles Loyauté","valeur":-339.4,"couleur":"#7a8c8d"},{"annee":2009,"periode":"2004-2009","serie":"Nord Est","valeur":-231,"couleur":"#c54832"},{"annee":2009,"periode":"2004-2009","serie":"Nord Ouest","valeur":33.4,"couleur":"#d6a21f"},{"annee":2009,"periode":"2004-2009","serie":"Sud rural","valeur":41,"couleur":"#2f6f8f"},{"annee":2009,"periode":"2004-2009","serie":"Grand Nouméa","valeur":496,"couleur":"#2f6b45"},{"annee":2014,"periode":"2009-2014","serie":"Îles Loyauté","valeur":-91,"couleur":"#7a8c8d"},{"annee":2014,"periode":"2009-2014","serie":"Nord Est","valeur":-165.8,"couleur":"#c54832"},{"annee":2014,"periode":"2009-2014","serie":"Nord Ouest","valeur":197.4,"couleur":"#d6a21f"},{"annee":2014,"periode":"2009-2014","serie":"Sud rural","valeur":1.8,"couleur":"#2f6f8f"},{"annee":2014,"periode":"2009-2014","serie":"Grand Nouméa","valeur":57.6,"couleur":"#2f6b45"},{"annee":2019,"periode":"2014-2019","serie":"Îles Loyauté","valeur":-128.6,"couleur":"#7a8c8d"},{"annee":2019,"periode":"2014-2019","serie":"Nord Est","valeur":-182.4,"couleur":"#c54832"},{"annee":2019,"periode":"2014-2019","serie":"Nord Ouest","valeur":23.6,"couleur":"#d6a21f"},{"annee":2019,"periode":"2014-2019","serie":"Sud rural","valeur":-17.4,"couleur":"#2f6f8f"},{"annee":2019,"periode":"2014-2019","serie":"Grand Nouméa","valeur":304.8,"couleur":"#2f6b45"}],"options":{"title":"Le Grand Nouméa reste gagnant, mais le Nord-Ouest prend parfois le relais","yLabel":"Gain ou perte moyenne par an","yMin":-400,"yMax":550,"xTicks":[1996,2004,2009,2014,2019],"valueFormat":"int","height":590}}</script>
+<div id="chart-migrations-internes" class="capital-sketch" data-sketch-chart="Solde total des arrivées moins les départs entre cinq grandes régions sur chaque période intercensitaire. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés."></div>
+<script type="application/json" id="chart-migrations-internes-data">{"type":"periodBalanceBars","data":[{"annee":1996,"periode":"1989-1996","duree":7,"serie":"Îles Loyauté","valeur":-602,"couleur":"#7a8c8d"},{"annee":1996,"periode":"1989-1996","duree":7,"serie":"Nord Est","valeur":-481,"couleur":"#c54832"},{"annee":1996,"periode":"1989-1996","duree":7,"serie":"Nord Ouest","valeur":318,"couleur":"#d6a21f"},{"annee":1996,"periode":"1989-1996","duree":7,"serie":"Sud rural","valeur":-309,"couleur":"#2f6f8f"},{"annee":1996,"periode":"1989-1996","duree":7,"serie":"Grand Nouméa","valeur":1074,"couleur":"#2f6b45"},{"annee":2004,"periode":"1996-2004","duree":8,"serie":"Îles Loyauté","valeur":-1785,"couleur":"#7a8c8d"},{"annee":2004,"periode":"1996-2004","duree":8,"serie":"Nord Est","valeur":-1712,"couleur":"#c54832"},{"annee":2004,"periode":"1996-2004","duree":8,"serie":"Nord Ouest","valeur":-196,"couleur":"#d6a21f"},{"annee":2004,"periode":"1996-2004","duree":8,"serie":"Sud rural","valeur":-168,"couleur":"#2f6f8f"},{"annee":2004,"periode":"1996-2004","duree":8,"serie":"Grand Nouméa","valeur":3861,"couleur":"#2f6b45"},{"annee":2009,"periode":"2004-2009","duree":5,"serie":"Îles Loyauté","valeur":-1697,"couleur":"#7a8c8d"},{"annee":2009,"periode":"2004-2009","duree":5,"serie":"Nord Est","valeur":-1155,"couleur":"#c54832"},{"annee":2009,"periode":"2004-2009","duree":5,"serie":"Nord Ouest","valeur":167,"couleur":"#d6a21f"},{"annee":2009,"periode":"2004-2009","duree":5,"serie":"Sud rural","valeur":205,"couleur":"#2f6f8f"},{"annee":2009,"periode":"2004-2009","duree":5,"serie":"Grand Nouméa","valeur":2480,"couleur":"#2f6b45"},{"annee":2014,"periode":"2009-2014","duree":5,"serie":"Îles Loyauté","valeur":-455,"couleur":"#7a8c8d"},{"annee":2014,"periode":"2009-2014","duree":5,"serie":"Nord Est","valeur":-829,"couleur":"#c54832"},{"annee":2014,"periode":"2009-2014","duree":5,"serie":"Nord Ouest","valeur":987,"couleur":"#d6a21f"},{"annee":2014,"periode":"2009-2014","duree":5,"serie":"Sud rural","valeur":9,"couleur":"#2f6f8f"},{"annee":2014,"periode":"2009-2014","duree":5,"serie":"Grand Nouméa","valeur":288,"couleur":"#2f6b45"},{"annee":2019,"periode":"2014-2019","duree":5,"serie":"Îles Loyauté","valeur":-643,"couleur":"#7a8c8d"},{"annee":2019,"periode":"2014-2019","duree":5,"serie":"Nord Est","valeur":-912,"couleur":"#c54832"},{"annee":2019,"periode":"2014-2019","duree":5,"serie":"Nord Ouest","valeur":118,"couleur":"#d6a21f"},{"annee":2019,"periode":"2014-2019","duree":5,"serie":"Sud rural","valeur":-87,"couleur":"#2f6f8f"},{"annee":2019,"periode":"2014-2019","duree":5,"serie":"Grand Nouméa","valeur":1524,"couleur":"#2f6b45"}],"options":{"title":"Le Grand Nouméa gagne à chaque période, mais pas toujours le plus","xLabel":"Solde total sur la période","xMin":-2200,"xMax":4200,"xTicks":[-2000,-1000,0,1000,2000,3000,4000],"periods":["1989-1996","1996-2004","2004-2009","2009-2014","2014-2019"],"series":["Grand Nouméa","Nord Ouest","Sud rural","Nord Est","Îles Loyauté"],"valueFormat":"int","height":720}}</script>
 <script>window.ContoursConcentrationNoumea && window.ContoursConcentrationNoumea.render('chart-migrations-internes');</script>
-<p class="capital-sketch-caption">Moyenne annuelle des arrivées moins les départs entre cinq grandes régions. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés.</p>
+<p class="capital-sketch-caption">Solde total des arrivées moins les départs entre cinq grandes régions sur chaque période intercensitaire. Un résultat positif signifie que la région gagne des habitants dans ces échanges. Les déménagements à l’intérieur d’une même région ne sont pas comptés.</p>
 </div>
 </div>
 </div>
-<p>À cette échelle, le Grand Nouméa gagne des habitants à chaque période depuis 1989-1996. Mais ce gain varie fortement : environ 153 personnes par an entre 1989 et 1996, 483 entre 1996 et 2004, puis seulement 58 entre 2009 et 2014.</p>
-<p>Durant cette dernière période, le Nord-Ouest gagne en moyenne 197 habitants par an, davantage que le Grand Nouméa. Cette période correspond à la montée en puissance de VKP autour de l’usine du Nord. Le graphique ne dit pas tout des causes, mais il montre que les mobilités internes peuvent aussi accompagner le développement d’un autre pôle.</p>
+<p>À cette échelle, le Grand Nouméa gagne des habitants à chaque période depuis 1989-1996. Mais le volume varie fortement : +1 074 habitants entre 1989 et 1996, +3 861 entre 1996 et 2004, puis seulement +288 entre 2009 et 2014. Entre 2014 et 2019, le solde redevient plus élevé : +1 524.</p>
+<p>Durant cette dernière période, le Nord-Ouest gagne +987 habitants dans ses échanges avec les autres régions, davantage que le Grand Nouméa. Cette période correspond à la montée en puissance de VKP autour de l’usine du Nord. Le graphique ne dit pas tout des causes, mais il montre que les mobilités internes peuvent aussi accompagner le développement d’un autre pôle.</p>
 </section>
 <section id="les-arrivées-de-lextérieur-vont-surtout-vers-le-grand-nouméa" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="les-arrivées-de-lextérieur-vont-surtout-vers-le-grand-nouméa">3. Les arrivées de l’extérieur vont surtout vers le Grand Nouméa</h3>
@@ -1760,7 +1836,7 @@ window.ContoursConcentrationNoumea = (() => {
 <div class="cell-output-display">
 <details class="capital-data-details">
 <summary>Voir les pays, capitales et villes associées</summary>
-<div class="capital-data-details-body"><div id="dhwztbksek" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="capital-data-details-body"><div id="zytiqpmcik" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   
   
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false" data-bgcolor="#FFFFFF">

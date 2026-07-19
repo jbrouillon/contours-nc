@@ -545,8 +545,9 @@ internal_balance_series <- internal_region_migrations |>
   transmute(
     annee,
     periode,
+    duree,
     serie = region,
-    valeur = solde_interne_annuel,
+    valeur = solde_interne,
     couleur = unname(region_colors[region])
   )
 
