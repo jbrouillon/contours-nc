@@ -24,7 +24,13 @@
   const correlationMatrixScaleState = new Map();
   const correlationMatrixMetricsState = new Map();
   const correlationIndicatorPanelState = new Map();
-  let cachedBundle = null;
+  const cachedBundle = {};
+  const bundlePromises = new Map();
+  const loadedBundleScopes = new Set();
+  const activeChartIds = new Set();
+  const renderRequestIds = new Map();
+  let chartObserver = null;
+  let lastViewportWidth = window.innerWidth;
 
   const correlationSpectralPalette = [
     "#9e0142", "#d53e4f", "#f46d43", "#fdae61", "#fee08b", "#ffffbf",
@@ -380,11 +386,44 @@
   }
 
   function mapBundle() {
-    if (cachedBundle) return cachedBundle;
+    return cachedBundle;
+  }
+
+  async function loadMapBundle(scope) {
+    if (loadedBundleScopes.has(scope)) return cachedBundle;
+    if (bundlePromises.has(scope)) return bundlePromises.get(scope);
     const node = document.getElementById("habitat-map-bundle-data");
     if (!node) return null;
-    cachedBundle = JSON.parse(node.textContent);
-    return cachedBundle;
+
+    const promise = (async () => {
+      const source = scope === "nc" ? node.dataset.ncSrc : node.dataset.grandSrc;
+      const legacySource = node.dataset.src;
+      if (source || legacySource) {
+        const response = await fetch(source || legacySource, { credentials: "same-origin" });
+        if (!response.ok) {
+          throw new Error(`Chargement des données impossible (${response.status})`);
+        }
+        Object.assign(cachedBundle, await response.json());
+        loadedBundleScopes.add(scope);
+        if (legacySource) {
+          loadedBundleScopes.add("grand");
+          loadedBundleScopes.add("nc");
+        }
+      } else {
+        Object.assign(cachedBundle, JSON.parse(node.textContent));
+        loadedBundleScopes.add("grand");
+        loadedBundleScopes.add("nc");
+      }
+      return cachedBundle;
+    })();
+
+    bundlePromises.set(scope, promise);
+    try {
+      return await promise;
+    } catch (error) {
+      bundlePromises.delete(scope);
+      throw error;
+    }
   }
 
   function slug(text) {
@@ -2991,11 +3030,11 @@
   }
 
   function renderExplorerMatrix(id, p) {
-    const bundle = mapBundle();
-    if (!bundle?.data || !bundle?.nc_data) return;
-
     const currentScale = explorerMatrixScaleState.get(id) || p.options.defaultScale || "grand";
     const isNc = currentScale === "nc";
+    const bundle = mapBundle();
+    if (isNc ? !bundle?.nc_data : !bundle?.data) return;
+
     const scaleKey = `${id}|${currentScale}`;
     const definitions = isNc ? ncMetricDefinitions : metricDefinitions;
     const metricOrder = isNc ? ncMetricOrder : explorerMetricOrder;
@@ -3390,11 +3429,11 @@
   }
 
   function renderCorrelationMatrix(id, p) {
-    const bundle = mapBundle();
-    if (!bundle?.data || !bundle?.nc_data) return;
-
     const currentScale = correlationMatrixScaleState.get(id) || p.options.defaultScale || "grand";
     const isNc = currentScale === "nc";
+    const bundle = mapBundle();
+    if (isNc ? !bundle?.nc_data : !bundle?.data) return;
+
     const scaleKey = `${id}|${currentScale}`;
     const definitions = isNc ? ncMetricDefinitions : metricDefinitions;
     const requestedMetrics = isNc
@@ -4207,15 +4246,81 @@
     });
   }
 
-  function render(id) {
+  function requiredBundleScope(id, p) {
+    if (["nc-rough-map", "nc-segregation-scatter"].includes(p.options.type)) {
+      return "nc";
+    }
+    if (["rough-map", "segregation-scatter"].includes(p.options.type)) {
+      return "grand";
+    }
+    if (p.options.type === "segregation-matrix") {
+      const scale = explorerMatrixScaleState.get(id) || p.options.defaultScale || "grand";
+      return scale === "nc" ? "nc" : "grand";
+    }
+    if (p.options.type === "segregation-correlation-matrix") {
+      const scale = correlationMatrixScaleState.get(id) || p.options.defaultScale || "grand";
+      return scale === "nc" ? "nc" : "grand";
+    }
+    return "grand";
+  }
+
+  function lazyMessage(el, text) {
+    const message = document.createElement("p");
+    message.className = "habitat-sketch-loading";
+    message.setAttribute("role", "status");
+    message.textContent = text;
+    el.replaceChildren(message);
+    el.classList.add("habitat-sketch--lazy");
+  }
+
+  function unloadChart(el) {
+    if (activeChartIds.has(el.id)) {
+      const height = Math.ceil(el.getBoundingClientRect().height);
+      el.style.minHeight = `${Math.max(420, height)}px`;
+    }
+    renderRequestIds.set(el.id, (renderRequestIds.get(el.id) || 0) + 1);
+    activeChartIds.delete(el.id);
+    el.setAttribute("aria-busy", "false");
+    lazyMessage(el, "La visualisation sera chargée à l’approche de l’écran.");
+  }
+
+  async function render(id) {
     const p = payload(id);
     if (!p || !p.options) return;
-    if (p.options.type === "rough-map") renderRoughMap(id, p);
-    if (p.options.type === "nc-rough-map") renderNcRoughMap(id, p);
-    if (p.options.type === "segregation-scatter") renderScatterPlot(id, p);
-    if (p.options.type === "nc-segregation-scatter") renderNcScatterPlot(id, p);
-    if (p.options.type === "segregation-matrix") renderExplorerMatrix(id, p);
-    if (p.options.type === "segregation-correlation-matrix") renderCorrelationMatrix(id, p);
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const requestId = (renderRequestIds.get(id) || 0) + 1;
+    renderRequestIds.set(id, requestId);
+    const wasActive = activeChartIds.has(id);
+    el.setAttribute("aria-busy", "true");
+    if (!wasActive) lazyMessage(el, "Chargement de la visualisation…");
+
+    try {
+      await loadMapBundle(requiredBundleScope(id, p));
+      if (renderRequestIds.get(id) !== requestId) return;
+      if (chartObserver && !el.dataset.nearViewport) {
+        unloadChart(el);
+        return;
+      }
+
+      el.style.removeProperty("min-height");
+      el.classList.remove("habitat-sketch--lazy");
+      if (p.options.type === "rough-map") renderRoughMap(id, p);
+      if (p.options.type === "nc-rough-map") renderNcRoughMap(id, p);
+      if (p.options.type === "segregation-scatter") renderScatterPlot(id, p);
+      if (p.options.type === "nc-segregation-scatter") renderNcScatterPlot(id, p);
+      if (p.options.type === "segregation-matrix") renderExplorerMatrix(id, p);
+      if (p.options.type === "segregation-correlation-matrix") renderCorrelationMatrix(id, p);
+      activeChartIds.add(id);
+      el.setAttribute("aria-busy", "false");
+    } catch (error) {
+      if (renderRequestIds.get(id) !== requestId) return;
+      console.error(error);
+      activeChartIds.delete(id);
+      el.setAttribute("aria-busy", "false");
+      lazyMessage(el, "Les données de cette visualisation n’ont pas pu être chargées.");
+    }
   }
 
   function renderAll() {
@@ -4225,13 +4330,47 @@
       });
       return;
     }
-    document.querySelectorAll(".habitat-sketch[id]").forEach((el) => render(el.id));
+
+    const charts = [...document.querySelectorAll(".habitat-sketch[id]")];
+    if (!("IntersectionObserver" in window)) {
+      charts.forEach((el) => void render(el.id));
+      return;
+    }
+
+    if (chartObserver) chartObserver.disconnect();
+    chartObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        if (entry.isIntersecting) {
+          el.dataset.nearViewport = "true";
+          if (!activeChartIds.has(el.id)) void render(el.id);
+        } else {
+          delete el.dataset.nearViewport;
+          unloadChart(el);
+        }
+      });
+    }, {
+      rootMargin: "700px 0px",
+      threshold: 0.01
+    });
+
+    charts.forEach((el) => {
+      if (!activeChartIds.has(el.id)) {
+        lazyMessage(el, "La visualisation sera chargée à l’approche de l’écran.");
+      }
+      chartObserver.observe(el);
+    });
   }
 
   let resizeTimer;
   window.addEventListener("resize", () => {
+    const viewportWidth = window.innerWidth;
+    if (Math.abs(viewportWidth - lastViewportWidth) < 12) return;
+    lastViewportWidth = viewportWidth;
     window.clearTimeout(resizeTimer);
-    resizeTimer = window.setTimeout(renderAll, 180);
+    resizeTimer = window.setTimeout(() => {
+      activeChartIds.forEach((id) => void render(id));
+    }, 220);
   });
   document.addEventListener("DOMContentLoaded", renderAll);
   document.addEventListener("quarto:render", renderAll);

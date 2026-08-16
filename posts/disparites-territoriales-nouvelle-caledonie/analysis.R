@@ -466,10 +466,13 @@ nc_linework <- list(
   sketch_areas = nc_sketch_areas
 )
 
-map_bundle <- list(
+map_bundle_grand <- list(
   geometry = map_geometry_json,
   linework = map_linework,
-  data = map_data,
+  data = map_data
+)
+
+map_bundle_nc <- list(
   nc_geometry = nc_geometry_json,
   nc_linework = nc_linework,
   nc_data = nc_data
@@ -671,17 +674,47 @@ nc_explorer_table <- nc_data |>
     `Sans véhicule` = taux_sans_vehicule
   )
 
-map_bundle_payload <- function() {
-  tags$script(
-    id = "habitat-map-bundle-data",
-    type = "application/json",
-    HTML(toJSON(
-      map_bundle,
+write_map_bundle_asset <- function(bundle, filename) {
+  asset_path <- file.path(project_dir, "assets", "data", filename)
+  dir.create(dirname(asset_path), recursive = TRUE, showWarnings = FALSE)
+  writeLines(
+    enc2utf8(toJSON(
+      bundle,
       auto_unbox = TRUE,
       dataframe = "rows",
       na = "null",
       digits = 8
-    ))
+    )),
+    asset_path,
+    useBytes = TRUE
+  )
+}
+
+map_bundle_payload <- function(
+  grand_src = paste0(
+    "../../assets/data/",
+    "disparites-territoriales-nouvelle-caledonie-grand.json"
+  ),
+  nc_src = paste0(
+    "../../assets/data/",
+    "disparites-territoriales-nouvelle-caledonie-nc.json"
+  )
+) {
+  write_map_bundle_asset(
+    map_bundle_grand,
+    "disparites-territoriales-nouvelle-caledonie-grand.json"
+  )
+  write_map_bundle_asset(
+    map_bundle_nc,
+    "disparites-territoriales-nouvelle-caledonie-nc.json"
+  )
+
+  tags$script(
+    id = "habitat-map-bundle-data",
+    type = "application/json",
+    `data-grand-src` = grand_src,
+    `data-nc-src` = nc_src,
+    HTML("{}")
   )
 }
 

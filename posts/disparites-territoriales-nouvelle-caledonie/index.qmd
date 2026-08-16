@@ -77,7 +77,10 @@ nc_explorer_metrics <- c(
 ```
 
 ```{r}
-map_bundle_payload()
+map_bundle_payload(
+  "../../assets/data/disparites-territoriales-nouvelle-caledonie-grand.json",
+  "../../assets/data/disparites-territoriales-nouvelle-caledonie-nc.json"
+)
 ```
 
 Une moyenne pour toute la Nouvelle-Calédonie peut cacher de grands écarts entre les territoires. Où le chômage est-il le plus présent ? Les quartiers où vivent davantage de cadres sont-ils aussi les mieux équipés ? Les mêmes contrastes apparaissent-ils dans les trois provinces et dans le Grand Nouméa ? Les cartes et graphiques de ce post permettent d’explorer directement ces questions.
