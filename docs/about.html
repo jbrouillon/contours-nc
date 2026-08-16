@@ -1296,6 +1296,26 @@ ul.task-list li input[type="checkbox"] {
     return true;
   };
 
+  const normalizeTableHeaderIds = () => {
+    document.querySelectorAll("table").forEach((table, tableIndex) => {
+      const prefix = table.id || `table-${tableIndex + 1}`;
+      const replacements = new Map();
+      table.querySelectorAll("th[id]").forEach((header, headerIndex) => {
+        const previousId = header.id;
+        const nextId = `${prefix}-heading-${headerIndex + 1}`;
+        replacements.set(previousId, nextId);
+        header.id = nextId;
+      });
+      table.querySelectorAll("[headers]").forEach((cell) => {
+        const headers = cell.getAttribute("headers").split(/\s+/);
+        cell.setAttribute(
+          "headers",
+          headers.map((id) => replacements.get(id) || id).join(" ")
+        );
+      });
+    });
+  };
+
   const openLightbox = (img) => {
     lightboxImg.src = img.currentSrc || img.src;
     lightboxImg.alt = img.alt || "";
@@ -1316,13 +1336,18 @@ ul.task-list li input[type="checkbox"] {
   };
 
   document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
+    const textAlternative = getCaption(img);
+    if (!img.hasAttribute("alt")) img.alt = textAlternative;
     if (!isEligible(img)) return;
     if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
     if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
     img.classList.add("quarto-lightbox-enabled");
     img.setAttribute("tabindex", "0");
     img.setAttribute("role", "button");
-    img.setAttribute("aria-label", "Agrandir l’image");
+    img.setAttribute(
+      "aria-label",
+      textAlternative ? `Agrandir l’image : ${textAlternative}` : "Agrandir l’image"
+    );
     img.addEventListener("click", () => openLightbox(img));
     img.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
@@ -1341,6 +1366,8 @@ ul.task-list li input[type="checkbox"] {
       closeLightbox();
     }
   });
+
+  normalizeTableHeaderIds();
 })();
 </script>
 

@@ -4,6 +4,7 @@ image: "../images/contours-banner.png"
 listing:
   contents:
   - "../posts/**/*.qmd"
+  - "!../posts/habiter-ville-coloniale-noumea/index.qmd"
   type: default
   sort: "date desc"
   categories: true

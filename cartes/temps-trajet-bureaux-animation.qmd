@@ -18,7 +18,7 @@ Cette visualisation explore les effets spatiaux du regroupement des bureaux de v
 ## Animation
 
 ::: viz-card
-![](../data/cartes/municipales%202026/temps%20trajet%20nouméa%20municipales%202026.gif){.viz-gif}
+![Évolution des temps de trajet à pied vers les bureaux de vote de Nouméa selon les scénarios de regroupement](../data/cartes/municipales%202026/temps%20trajet%20nouméa%20municipales%202026.gif){.viz-gif}
 
 *Animation représentant l’évolution spatiale des temps d’accès aux bureaux de vote selon différentes configurations territoriales.* [⬇ Télécharger le GIF](../data/cartes/municipales%202026/temps%20trajet%20nouméa%20municipales%202026.gif){.download-btn download="temps-trajet-noumea-bureaux.gif"}
 :::

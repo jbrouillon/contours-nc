@@ -1,0 +1,78 @@
+---
+title: "Après les élections, retour aux territoires"
+subtitle: "Deux nouvelles analyses, un dossier démographie et la suite de contours.nc"
+author: "Jonas Brouillon"
+date: "2026-08-16"
+categories:
+  - Newsletter
+description: "Depuis la fin du cycle électoral, contours.nc élargit ses publications à la démographie, aux territoires et aux inégalités sociales en Nouvelle-Calédonie."
+image: "../../images/previews/carte-segregations-quartiers-contours-nc.png"
+image-alt: "Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie"
+toc: false
+title-block-banner: true
+---
+
+Bonjour à toutes et à tous,
+
+La dernière newsletter, publiée le 13 juillet, dressait le bilan du cycle des élections provinciales. Depuis, [contours.nc]{.contours-word} a commencé à déplacer son regard vers des transformations moins liées au calendrier politique, mais tout aussi structurantes pour la Nouvelle-Calédonie : la répartition de la population, les mobilités, les inégalités entre territoires et les conditions de vie.
+
+Ce changement de focale ne signifie pas que les questions électorales disparaissent du site. Elles continueront d’être suivies lorsqu’une actualité ou de nouvelles données le justifieront. Mais, après plusieurs semaines très largement consacrées aux élections, l’objectif est désormais d’alimenter plus régulièrement le versant **démographie et société** de [contours.nc]{.contours-word}.
+
+Cette lettre présente les deux analyses publiées depuis le dernier point d’étape, le nouveau dossier qui les rassemble et les sujets que le site souhaite davantage explorer dans les prochains mois.
+
+------------------------------------------------------------------------
+
+## Deux nouvelles analyses
+
+### Pourquoi la population se concentre autour de Nouméa ?
+
+[**Pourquoi la population se concentre autour de Nouméa ?**](https://contours.nc/posts/concentration-population-noumea-pacifique/) suit l’évolution de la population depuis 1956 et montre que la concentration ne se lit plus seulement dans les limites de la commune de Nouméa.
+
+La part de la commune-centre diminue depuis les années 1970, mais Dumbéa, Mont-Dore et Païta ont fortement grandi. En 2019, les quatre communes du Grand Nouméa regroupent plus de deux habitants sur trois. L’article examine les naissances et les décès, les migrations internes et extérieures, la répartition des emplois et les déplacements domicile-travail.
+
+Une comparaison avec plusieurs villes principales du Pacifique permet aussi de replacer la situation calédonienne dans un phénomène plus large : dans de nombreux territoires insulaires, les administrations, les services, les infrastructures et les emplois se concentrent autour d’une ville-porte.
+
+### Explorer les disparités territoriales en Nouvelle-Calédonie
+
+[**Explorer les disparités territoriales en Nouvelle-Calédonie**](https://contours.nc/posts/disparites-territoriales-nouvelle-caledonie/) propose six visualisations interactives pour observer les écarts sociaux, résidentiels et matériels à deux échelles.
+
+La première couvre les **162 IRIS de Nouvelle-Calédonie en 2019**. La seconde permet de comparer **58 zones du Grand Nouméa** entre 2014 et 2019. Il est possible de choisir les indicateurs affichés, de les cartographier, de mesurer leurs corrélations et de comparer les profils des territoires dans deux matrices interactives.
+
+L’objectif n’est pas de classer les quartiers entre « bons » et « mauvais », mais de rendre visibles des géographies qui se superposent parfois : chômage, diplômes, catégories professionnelles, résidence en tribu, accès à internet, équipement des ménages ou conditions de logement.
+
+------------------------------------------------------------------------
+
+## Un dossier « Démographie et société »
+
+Ces publications sont désormais réunies dans le dossier [**Démographie et société**](https://contours.nc/dossiers/demographie-societe/), avec l’analyse consacrée au capital socio-économique des IRIS.
+
+Le dossier offre une porte d’entrée thématique vers les articles portant sur la population, les mobilités, l’organisation urbaine et les contrastes sociaux. Il est conçu pour s’enrichir progressivement, à mesure que de nouvelles données et de nouveaux sujets seront traités.
+
+Cette organisation complète le [**dossier Provinciales 2026**](https://contours.nc/dossiers/provinciales-2026/), qui reste accessible pour retrouver l’ensemble des analyses électorales publiées avant et après le scrutin.
+
+------------------------------------------------------------------------
+
+## Après la séquence électorale
+
+Les élections ont constitué le point de départ de [contours.nc]{.contours-word} et ont permis de montrer ce que les données, les cartes et les sciences sociales pouvaient apporter au débat public calédonien. Le projet n’a toutefois jamais eu vocation à devenir uniquement un site d’analyse électorale.
+
+Dans les prochains mois, je souhaite donc publier davantage de contenus sur les dynamiques démographiques et sociales :
+
+- les évolutions de la population, les départs, les arrivées et le vieillissement ;
+- l’habitat, l’histoire urbaine et les transformations du Grand Nouméa ;
+- l’accès aux services, aux équipements, à l’emploi et aux mobilités ;
+- les inégalités territoriales entre communes, quartiers et provinces ;
+- les méthodes permettant de mieux utiliser et expliquer les données publiques disponibles.
+
+Un prochain texte consacré à l’habitat et à l’histoire urbaine de Nouméa est notamment en préparation. D’autres formats plus courts pourront aussi accompagner les articles longs : cartes commentées, explorateurs interactifs, notes de méthode et mises à jour de données.
+
+L’idée reste la même : partir de questions concrètes, documenter les choix de méthode et rendre les résultats accessibles sans effacer leur complexité.
+
+------------------------------------------------------------------------
+
+Merci pour vos lectures, vos partages, vos remarques et les sujets que vous proposez. Ils contribuent directement à faire évoluer [contours.nc]{.contours-word}.
+
+À très bientôt,
+
+**Jonas Brouillon**\
+*Fondateur de [contours.nc]{.contours-word}*

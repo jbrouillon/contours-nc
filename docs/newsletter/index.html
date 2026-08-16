@@ -216,7 +216,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Catégories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Tous <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TmV3c2xldHRlcg==">Newsletter <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Catégories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Tous <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TmV3c2xldHRlcg==">Newsletter <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -285,7 +285,40 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1783861200000" data-listing-file-modified-sort="1783921504312" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="679">
+<div class="quarto-post image-right" data-index="0" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1786798800000" data-listing-file-modified-sort="1786853256726" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="660">
+<div class="thumbnail"><a href="../newsletter/apres-les-elections-demographie-territoires/index.html" class="no-external">
+
+<img loading="lazy" src="../images/previews/carte-segregations-quartiers-contours-nc.png" class="thumbnail-image" alt="Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../newsletter/apres-les-elections-demographie-territoires/index.html" class="no-external">Après les élections, retour aux territoires</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../newsletter/apres-les-elections-demographie-territoires/index.html" class="no-external">Deux nouvelles analyses, un dossier démographie et la suite de contours.nc</a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('TmV3c2xldHRlcg=='); return false;">Newsletter</div>
+
+</div>
+<div class="delink listing-description"><a href="../newsletter/apres-les-elections-demographie-territoires/index.html" class="no-external">
+<p>Depuis la fin du cycle électoral, contours.nc élargit ses publications à la démographie, aux territoires et aux inégalités sociales en Nouvelle-Calédonie.</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="../newsletter/apres-les-elections-demographie-territoires/index.html" class="no-external">
+<div class="listing-date">
+16 août 2026
+</div>
+<div class="listing-author">
+Jonas Brouillon
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1783861200000" data-listing-file-modified-sort="1783921504312" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="679">
 <div class="thumbnail"><a href="../newsletter/bilan-provinciales-2026-et-nouveautes-site/index.html" class="no-external">
 
 <img loading="lazy" src="../images/contours-banner.png" class="thumbnail-image">
@@ -318,7 +351,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1782478800000" data-listing-file-modified-sort="1782533223000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="513">
+<div class="quarto-post image-right" data-index="2" data-categories="TmV3c2xldHRlcg==" data-listing-date-sort="1782478800000" data-listing-file-modified-sort="1782533223000" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="513">
 <div class="thumbnail"><a href="../newsletter/un-mois-de-contours-nc/index.html" class="no-external">
 
 <img loading="lazy" src="../images/contours-banner.png" class="thumbnail-image">
@@ -1427,6 +1460,26 @@ Jonas Brouillon
     return true;
   };
 
+  const normalizeTableHeaderIds = () => {
+    document.querySelectorAll("table").forEach((table, tableIndex) => {
+      const prefix = table.id || `table-${tableIndex + 1}`;
+      const replacements = new Map();
+      table.querySelectorAll("th[id]").forEach((header, headerIndex) => {
+        const previousId = header.id;
+        const nextId = `${prefix}-heading-${headerIndex + 1}`;
+        replacements.set(previousId, nextId);
+        header.id = nextId;
+      });
+      table.querySelectorAll("[headers]").forEach((cell) => {
+        const headers = cell.getAttribute("headers").split(/\s+/);
+        cell.setAttribute(
+          "headers",
+          headers.map((id) => replacements.get(id) || id).join(" ")
+        );
+      });
+    });
+  };
+
   const openLightbox = (img) => {
     lightboxImg.src = img.currentSrc || img.src;
     lightboxImg.alt = img.alt || "";
@@ -1447,13 +1500,18 @@ Jonas Brouillon
   };
 
   document.querySelectorAll("main img, #quarto-content img").forEach((img) => {
+    const textAlternative = getCaption(img);
+    if (!img.hasAttribute("alt")) img.alt = textAlternative;
     if (!isEligible(img)) return;
     if (!img.hasAttribute("loading")) img.setAttribute("loading", "lazy");
     if (!img.hasAttribute("decoding")) img.setAttribute("decoding", "async");
     img.classList.add("quarto-lightbox-enabled");
     img.setAttribute("tabindex", "0");
     img.setAttribute("role", "button");
-    img.setAttribute("aria-label", "Agrandir l’image");
+    img.setAttribute(
+      "aria-label",
+      textAlternative ? `Agrandir l’image : ${textAlternative}` : "Agrandir l’image"
+    );
     img.addEventListener("click", () => openLightbox(img));
     img.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
@@ -1472,6 +1530,8 @@ Jonas Brouillon
       closeLightbox();
     }
   });
+
+  normalizeTableHeaderIds();
 })();
 </script>
 

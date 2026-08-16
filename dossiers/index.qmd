@@ -44,7 +44,7 @@ toc: false
 
   <article class="dossier-card">
     <a class="dossier-card__image" href="demographie-societe/">
-      <img src="../images/previews/chart-concentration-contours-nc.png" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
+      <img src="../images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie">
     </a>
     <div class="dossier-card__body">
       <span class="dossier-card__phase">Territoires · dossier ouvert</span>

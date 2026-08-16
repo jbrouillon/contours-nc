@@ -9,6 +9,7 @@ Thumbs.db
 desktop.ini
 .agents/
 tmp/
+/.tmp-*
 __pycache__/
 *.py[cod]
 *.html
@@ -45,6 +46,30 @@ data/cartes/provinciales_2019_focus/**/*.png
 images/previews/provinciales-2026-professions-foi.png
 posts/**/*.knit.md
 posts/**/index_files/
+
+# Documents de travail et archives de relecture, non publiés
+/data/dossier habitat.docx
+/habitat-relecture.zip
+
+# Article historique en pause : conservé localement, hors site et hors dépôt public
+/posts/habiter-ville-coloniale-noumea/
+/_freeze/posts/habiter-ville-coloniale-noumea/
+/images/previews/habiter-ville-coloniale-noumea.png
+
+# Matériaux démographiques encore en préparation, non requis par le site publié
+/_freeze/posts/migrations-externes-nouvelle-caledonie/
+/images/previews/migrations-externes-nouvelle-caledonie*.png
+/data/population/RP2019NC_OD_ind_*.xlsx
+/data/population/habitat-social.xls
+/data/population/logements-gn.xlsx
+/data/population/rp-structure-communautes.xls
+/data/population/rp1996-pop-menages-logements-commune.xls
+/data/population/rp2004-pop-menages-logements-commune.xls
+/data/population/rp2009-pop-menages-logements-commune.xls
+/data/population/rp2014-pop-logement-menages-provinces.xls
+/data/population/rp2019-dictionnaire-variables-individus.pdf
+/data/population/situation-demographique-2008.pdf
+/data/population/situation-demographique-2012.pdf
 
 /.quarto/
 **/*.quarto_ipynb

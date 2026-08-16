@@ -467,7 +467,7 @@ Il faut toutefois situer correctement ce type de travail. La note sur les temps 
 Le même principe vaut pour l'argument inverse. Dans la réponse publique, un raisonnement revient : la participation aurait augmenté aux municipales de 2026, y compris dans les quartiers où le regroupement était contesté. L'idée implicite est simple : si les électeurs sont venus plus nombreux, le regroupement n'aurait donc pas eu d'incidence.
 
 :::: portrait-callout
-![](../../images/naima-moutchou-croquis.webp){.portrait-sketch}
+![Croquis de Naïma Moutchou, rapporteure de la mission d’observation des élections municipales](../../images/naima-moutchou-croquis.webp){.portrait-sketch}
 
 ::: quote-bubble
 « Les chiffres sont en hausse par rapport aux élections de 2020 »

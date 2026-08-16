@@ -1,0 +1,449 @@
+/* Styles du dossier habitat et des explorateurs de quartiers. */
+.habitat-lede {
+  font-size: 1.08rem;
+  max-width: 82ch;
+}
+
+.habitat-byline-note {
+  background: #fbf7ee;
+  border-left: 5px solid var(--yellow);
+  border-radius: 8px;
+  color: var(--muted);
+  margin: 1rem 0 1.6rem;
+  padding: 0.8rem 0.95rem;
+}
+
+.habitat-byline-note strong {
+  color: var(--ink);
+}
+
+.habitat-stat-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  margin: 1.1rem 0 1.7rem;
+}
+
+.habitat-stat-card {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-left: 5px solid var(--green);
+  border-radius: 8px;
+  padding: 0.85rem 0.95rem;
+}
+
+.habitat-stat-card:nth-child(2n) {
+  border-left-color: var(--yellow);
+}
+
+.habitat-stat-card:nth-child(3n) {
+  border-left-color: var(--red);
+}
+
+.habitat-stat-value {
+  color: var(--ink);
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 1.72rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.habitat-stat-label {
+  color: var(--ink);
+  font-weight: 850;
+  line-height: 1.22;
+  margin-top: 0.28rem;
+}
+
+.habitat-stat-note {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  margin: 0.4rem 0 0;
+}
+
+.habitat-sketch {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 9px;
+  margin: 1.15rem 0 0.35rem;
+  min-height: 350px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem;
+  position: relative;
+}
+
+.habitat-sketch:focus-visible {
+  outline: 3px solid rgba(47, 107, 69, 0.28);
+  outline-offset: 3px;
+}
+
+.habitat-map path[tabindex="0"]:focus-visible {
+  stroke: #c54832;
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+
+.habitat-sketch-tools {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: flex-end;
+  padding: 0.35rem 0.4rem 0;
+}
+
+.habitat-sketch-download,
+.habitat-map-select {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.25);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 850;
+  line-height: 1;
+  padding: 0.42rem 0.52rem;
+}
+
+.habitat-map-select {
+  max-width: 28rem;
+  text-overflow: ellipsis;
+}
+
+.habitat-map-control-label {
+  align-items: center;
+  background: #fbf7ee;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 7px;
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  gap: 0.42rem;
+  padding: 0.3rem 0.42rem;
+}
+
+.habitat-map-hint {
+  background: #fbf7ee;
+  border-left: 4px solid var(--yellow);
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.8rem 0 0.3rem;
+  padding: 0.65rem 0.82rem;
+}
+
+.habitat-map-hint strong {
+  color: var(--ink);
+}
+
+.habitat-heatmap rect[tabindex="0"]:focus-visible {
+  outline: none;
+  stroke: #c54832;
+  stroke-width: 2px;
+}
+
+.habitat-profile-matrix {
+  max-height: 1150px;
+  overflow-y: auto;
+}
+
+.habitat-profile-matrix .habitat-sketch-tools {
+  background: rgba(255, 253, 248, 0.97);
+  padding-bottom: 0.35rem;
+  position: sticky;
+  top: 0;
+  z-index: 11;
+}
+
+.habitat-indicator-picker {
+  position: relative;
+}
+
+.habitat-indicator-picker summary {
+  background: #fbf7ee;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 7px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 850;
+  list-style-position: inside;
+  padding: 0.45rem 0.55rem;
+}
+
+.habitat-indicator-picker-grid {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.22);
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.14);
+  display: grid;
+  gap: 0.2rem 0.75rem;
+  grid-template-columns: repeat(2, minmax(170px, 1fr));
+  min-width: 560px;
+  padding: 0.65rem;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.3rem);
+  z-index: 12;
+}
+
+.habitat-indicator-picker-grid label {
+  align-items: center;
+  color: var(--ink);
+  display: flex;
+  font-size: 0.84rem;
+  font-weight: 760;
+  gap: 0.4rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.3rem;
+}
+
+.habitat-indicator-picker-grid input {
+  accent-color: var(--green);
+}
+
+.habitat-sketch-download {
+  cursor: pointer;
+}
+
+.habitat-sketch-download:hover,
+.habitat-map-select:hover {
+  background: #f3efe6;
+}
+
+.habitat-sketch-download:focus-visible,
+.habitat-map-select:focus-visible {
+  outline: 3px solid rgba(47, 107, 69, 0.28);
+  outline-offset: 2px;
+}
+
+.habitat-sketch svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.habitat-caption,
+.habitat-source {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.42;
+  margin: 0.35rem 0 0;
+}
+
+.habitat-source {
+  margin-bottom: 1.8rem;
+}
+
+.habitat-source a {
+  font-weight: 700;
+}
+
+.habitat-data-details {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  margin: 0.7rem 0 1.9rem;
+}
+
+.habitat-data-details summary {
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 850;
+  padding: 0.72rem 0.9rem;
+}
+
+.habitat-data-details > div {
+  overflow-x: auto;
+  padding: 0 0.85rem 0.85rem;
+}
+
+.habitat-data-details table {
+  font-size: 0.88rem;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.habitat-tooltip {
+  background: rgba(255, 253, 248, 0.98);
+  border: 1px solid rgba(65, 58, 48, 0.28);
+  border-radius: 7px;
+  box-shadow: 0 8px 22px rgba(30, 25, 15, 0.14);
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  max-width: 245px;
+  opacity: 0;
+  padding: 0.55rem 0.65rem;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(10px, 10px);
+  transition: opacity 100ms ease;
+  z-index: 5;
+}
+
+.habitat-tooltip strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.18rem;
+}
+
+.habitat-tooltip-note {
+  color: var(--muted);
+  display: inline-block;
+  font-size: 0.75rem;
+  line-height: 1.28;
+  margin-top: 0.32rem;
+}
+
+.habitat-method-note {
+  background: #fbf7ee;
+  border: 1px dashed rgba(65, 58, 48, 0.35);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 1rem 0 1.7rem;
+  padding: 0.75rem 0.9rem;
+}
+
+.habitat-correlation-key {
+  align-items: center;
+  background:
+    repeating-linear-gradient(
+      -38deg,
+      rgba(197, 72, 50, 0.035) 0,
+      rgba(197, 72, 50, 0.035) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    #fffaf1;
+  border: 1.5px dashed rgba(65, 58, 48, 0.5);
+  border-radius: 5px 9px 6px 10px;
+  box-shadow: 3px 3px 0 rgba(65, 58, 48, 0.07);
+  color: var(--muted);
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 3.4rem 1fr;
+  margin: 0.9rem 0 1.1rem;
+  padding: 0.75rem 0.9rem;
+  transform: rotate(-0.08deg);
+}
+
+.habitat-correlation-key-symbol {
+  align-items: center;
+  background:
+    repeating-linear-gradient(
+      -42deg,
+      rgba(197, 72, 50, 0.34) 0,
+      rgba(197, 72, 50, 0.34) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    rgba(252, 141, 89, 0.16);
+  border: 2px solid #403b36;
+  color: var(--ink);
+  display: flex;
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  height: 3.25rem;
+  justify-content: center;
+  line-height: 1;
+  transform: rotate(-2deg);
+  width: 3.25rem;
+}
+
+.habitat-correlation-key strong {
+  color: var(--ink);
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 1.08rem;
+}
+
+.habitat-correlation-key-symbol p {
+  font: inherit;
+  line-height: 1;
+  margin: 0;
+}
+
+.habitat-correlation-key-copy p {
+  font-size: 0.96rem;
+  line-height: 1.5;
+  margin: 0.3rem 0 0;
+}
+
+.habitat-bio {
+  background: #fbf7ee;
+  border-top: 4px solid var(--green);
+  border-radius: 8px;
+  margin-top: 2rem;
+  padding: 1rem 1.05rem;
+}
+
+.habitat-bio p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 780px) {
+  .habitat-correlation-key {
+    align-items: start;
+    grid-template-columns: 2.85rem 1fr;
+  }
+
+  .habitat-correlation-key-symbol {
+    font-size: 1.7rem;
+    height: 2.7rem;
+    width: 2.7rem;
+  }
+
+  .habitat-sketch svg {
+    max-width: none;
+    min-width: 690px;
+  }
+
+  .habitat-sketch-tools {
+    justify-content: flex-start;
+  }
+
+  .habitat-map-control-label {
+    flex: 1 1 100%;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .habitat-map-select {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .habitat-indicator-picker {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .habitat-indicator-picker-grid {
+    grid-template-columns: 1fr;
+    max-height: 65vh;
+    min-width: 0;
+    overflow-y: auto;
+    position: static;
+    width: 100%;
+  }
+
+  .habitat-map svg {
+    min-width: 620px;
+  }
+
+  .habitat-profile-matrix svg,
+  .habitat-correlation-matrix svg {
+    min-width: 1050px;
+  }
+
+  .habitat-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}

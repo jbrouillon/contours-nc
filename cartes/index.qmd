@@ -25,6 +25,27 @@ toc: false
 ```{=html}
 <section class="viz-gallery-grid" aria-label="Galerie cartes et visualisations">
   <article class="viz-gallery-card">
+    <a class="viz-gallery-card__image" href="../posts/disparites-territoriales-nouvelle-caledonie/">
+      <img src="../images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux">
+    </a>
+    <div class="viz-gallery-card__body">
+      <span class="viz-gallery-card__meta">Grand Nouméa · explorateurs interactifs</span>
+      <h3><a href="../posts/disparites-territoriales-nouvelle-caledonie/">Explorer les disparités territoriales en Nouvelle-Calédonie</a></h3>
+      <p>Onze indicateurs à cartographier, croiser dans un nuage de points et comparer dans une matrice multivariée des quartiers.</p>
+      <div class="viz-gallery-card__tags">
+        <span class="viz-gallery-tag">carte interactive</span>
+        <span class="viz-gallery-tag">corrélations</span>
+        <span class="viz-gallery-tag">matrice</span>
+      </div>
+      <div class="viz-gallery-card__actions">
+        <a class="viz-gallery-card__link" href="../posts/disparites-territoriales-nouvelle-caledonie/#carte-nc">Ouvrir la carte NC</a>
+        <a class="viz-gallery-card__secondary" href="../posts/disparites-territoriales-nouvelle-caledonie/#correlations-nc">Croiser les variables</a>
+        <a class="viz-gallery-card__secondary" href="../posts/disparites-territoriales-nouvelle-caledonie/#matrice">Ouvrir la matrice</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="viz-gallery-card">
     <a class="viz-gallery-card__image" href="../posts/concentration-population-noumea-pacifique/#carte-population-communes">
       <img src="../images/previews/evolution-population-communes-nc.png" alt="Carte animée de l’évolution de la population par commune en Nouvelle-Calédonie depuis 1956">
     </a>

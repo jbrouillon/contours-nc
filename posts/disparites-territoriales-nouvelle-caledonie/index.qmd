@@ -1,0 +1,380 @@
+---
+title: "Explorer les disparités territoriales en Nouvelle-Calédonie"
+subtitle: "Des 162 IRIS du pays aux quartiers du Grand Nouméa"
+aliases:
+  - "/posts/segregations-grand-noumea/index.html"
+  - "/posts/segregations-territoriales-nouvelle-caledonie/index.html"
+author: "Jonas Brouillon"
+date: "2026-08-16"
+rubrique: "Cartes et visualisations"
+categories:
+  - Nouvelle-Calédonie
+  - Cartographie
+  - Inégalités
+  - Recensement
+description: "Six visualisations interactives pour comprendre les écarts sociaux, résidentiels et matériels entre les 162 IRIS de Nouvelle-Calédonie, puis entre les quartiers du Grand Nouméa."
+image: "../../images/previews/carte-segregations-quartiers-contours-nc.png"
+image-alt: "Deux cartes crayonnées comparant des indicateurs entre les quartiers du Grand Nouméa"
+title-block-banner: true
+toc: true
+toc-depth: 3
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(
+  file.path(article_dir, "analysis.R"),
+  local = knitr::knit_global(),
+  encoding = "UTF-8"
+)
+explorer_metrics <- c(
+  "taux_nes_hors_nc",
+  "taux_sans_diplome",
+  "taux_chomage",
+  "taux_cdd",
+  "taux_employes_ouvriers",
+  "taux_cadres",
+  "taux_langue",
+  "taux_locataires",
+  "taux_non_reseau",
+  "taux_sans_eau",
+  "taux_sans_internet",
+  "taux_sans_automobile"
+)
+nc_explorer_metrics <- c(
+  "taux_tribu",
+  "taux_nes_hors_nc",
+  "taux_bepc_moins",
+  "taux_bac3_plus",
+  "taux_chomage",
+  "taux_emploi",
+  "taux_cdd",
+  "taux_cadres",
+  "taux_employes_ouvriers",
+  "taux_salaries_public",
+  "taux_familles_monoparentales",
+  "taux_65_plus",
+  "taux_locataires",
+  "taux_sans_electricite",
+  "taux_sans_eau",
+  "taux_sans_internet",
+  "taux_sans_vehicule",
+  "taux_navetteurs",
+  "taux_marche",
+  "taux_transport_commun"
+)
+```
+
+```{=html}
+<link rel="stylesheet" href="../../assets/css/habitat.css">
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<script src="../../assets/js/disparites-territoriales-nouvelle-caledonie.js"></script>
+```
+
+```{r}
+map_bundle_payload()
+```
+
+Une moyenne pour toute la Nouvelle-Calédonie peut cacher de grands écarts entre les territoires. Où le chômage est-il le plus présent ? Les quartiers où vivent davantage de cadres sont-ils aussi les mieux équipés ? Les mêmes contrastes apparaissent-ils dans les trois provinces et dans le Grand Nouméa ? Les cartes et graphiques de ce post permettent d’explorer directement ces questions.
+
+Un **IRIS** est une petite zone statistique utilisée pour diffuser les résultats du recensement. La première partie couvre les **162 IRIS de Nouvelle-Calédonie en 2019**. La seconde zoome sur **58 zones du Grand Nouméa**, rendues comparables pour suivre douze indicateurs entre 2014 et 2019.
+
+Les six visualisations offrent trois façons de regarder les données : les cartes montrent **où** se situent les écarts, les nuages de points indiquent si deux phénomènes évoluent ensemble, et les matrices résument plusieurs indicateurs à la fois. Elles décrivent des territoires, pas les personnes une par une. Une association visible sur une carte ou dans un graphique ne prouve donc pas qu’un phénomène en cause un autre.
+
+Deux indicateurs demandent une attention particulière. La part des personnes **résidant en tribu** décrit une situation résidentielle et foncière ; elle ne mesure pas l’appartenance communautaire. Dans le Grand Nouméa, la connaissance déclarée d’une langue kanak est utilisée comme **indicateur spatial indirect**. Elle ne définit pas davantage l’identité des habitants. Ces deux variables servent seulement à observer comment différentes réalités se rencontrent dans l’espace.
+
+## Nouvelle-Calédonie : 162 IRIS en 2019 {#nouvelle-caledonie}
+
+Les menus donnent accès à vingt indicateurs : diplômes, emploi, catégories professionnelles, structure familiale, lieu de naissance, habitat, équipement des ménages ou encore déplacements quotidiens. La vue peut couvrir tout le pays ou se limiter à une province.
+
+### Comparer deux indicateurs sur la carte {#carte-nc}
+
+Choisissez un indicateur pour chaque carte, puis le territoire à afficher. Les deux cartes gardent toujours la même vue, ce qui facilite la comparaison. Survolez un IRIS — ou sélectionnez-le au clavier — pour connaître son nom, sa commune, sa population et sa valeur.
+
+::: column-page
+```{r}
+map_figure(
+  "carte-segregations-nouvelle-caledonie",
+  options = list(
+    type = "nc-rough-map",
+    title = "Les disparités territoriales à l’échelle du pays",
+    metrics = nc_explorer_metrics,
+    defaultLeft = "taux_tribu",
+    defaultRight = "taux_sans_internet",
+    defaultView = "nc",
+    aria_label = paste(
+      "Deux cartes interactives comparant deux indicateurs entre les 162",
+      "IRIS de Nouvelle-Calédonie au recensement de 2019."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+Chaque indicateur possède sa propre légende. Une même couleur ne correspond donc pas forcément au même pourcentage sur les deux cartes. Le gris signale une donnée non disponible.
+
+</p>
+:::
+
+### Croiser les indicateurs entre IRIS {#correlations-nc}
+
+Chaque point représente un IRIS. Sa couleur indique la province et sa taille donne une idée de sa population. La droite rouge résume la tendance générale. Dans le calcul du coefficient de corrélation, chaque IRIS compte une fois, quelle que soit sa population.
+
+::::: {.habitat-correlation-key aria-label="Comment lire le coefficient de corrélation"}
+::: {.habitat-correlation-key-symbol aria-hidden="true"}
+r
+:::
+
+::: habitat-correlation-key-copy
+**Lire le coefficient de corrélation**
+
+Le **signe** donne le sens : avec un `r` positif, les deux indicateurs augmentent ensemble ; avec un `r` négatif, l’un tend à diminuer quand l’autre augmente. La **valeur absolue** `|r|` donne la force du lien : moins de `0,30`, il est faible ; de `0,30` à `0,60`, modéré ; de `0,60` à `0,80`, fort ; au-delà de `0,80`, très fort. Ces seuils sont des repères, pas des règles.
+
+Un `r` proche de zéro signifie seulement qu’il n’y a pas de relation **linéaire** nette. Il peut masquer une relation courbe et reste sensible aux valeurs extrêmes. Il ne démontre jamais qu’un indicateur cause l’autre.
+:::
+:::::
+
+::: column-page
+```{r}
+map_figure(
+  "correlations-segregations-nouvelle-caledonie",
+  options = list(
+    type = "nc-segregation-scatter",
+    title = "Comparer les indicateurs entre les IRIS",
+    metrics = nc_explorer_metrics,
+    defaultX = "taux_nes_hors_nc",
+    defaultY = "taux_cadres",
+    defaultView = "nc",
+    aria_label = paste(
+      "Nuage de points interactif croisant deux indicateurs entre les IRIS",
+      "de Nouvelle-Calédonie au recensement de 2019."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+Les IRIS n’ont ni la même population ni la même superficie. La taille des points rappelle cette différence, mais elle ne modifie pas le calcul. La corrélation décrit seulement ce qui va souvent ensemble dans l’espace ; elle ne donne pas une explication.
+
+</p>
+:::
+
+::: habitat-method-note
+**Un exemple en 2019.** Dans les IRIS renseignés, la part des personnes nées hors de Nouvelle-Calédonie et celle des cadres et professions intermédiaires évoluent assez souvent ensemble : leur coefficient atteint `r fmt_num(nc_correlations$nes_hors_nc_cadres, 2)`. Ce résultat décrit une géographie commune, mais ne dit rien de certain sur les personnes prises individuellement ni sur les causes de cette répartition.
+:::
+
+## Grand Nouméa : suivre les quartiers de 2014 à 2019 {#grand-noumea}
+
+Les tableaux par quartier de 2014 et 2019 offrent une vue plus fine de l’agglomération. Les deux outils ci-dessous utilisent les mêmes douze indicateurs et les mêmes 58 zones, afin que la comparaison reste cohérente d’une année à l’autre.
+
+### Comparer deux indicateurs sur la carte {#carte}
+
+Choisissez deux indicateurs, une année et un territoire. Les deux cartes restent synchronisées. Survolez un quartier — ou sélectionnez-le au clavier — pour afficher les effectifs utilisés et le pourcentage calculé.
+
+::: column-page
+```{r}
+map_figure(
+  "carte-segregations-quartiers",
+  options = list(
+    type = "rough-map",
+    title = "Les disparités entre les quartiers du Grand Nouméa",
+    metrics = explorer_metrics,
+    defaultLeft = "taux_nes_hors_nc",
+    defaultRight = "taux_cadres",
+    defaultYear = 2019,
+    defaultView = "noumea",
+    aria_label = paste(
+      "Deux cartes interactives comparant deux indicateurs dans les quartiers",
+      "du Grand Nouméa pour une année choisie entre 2014 et 2019."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+La légende d’un indicateur ne change pas entre 2014 et 2019. Elle reste cependant différente de celle de l’autre indicateur : comparez les formes spatiales et vérifiez les pourcentages dans chaque légende.
+
+</p>
+:::
+
+### Croiser deux indicateurs {#correlations}
+
+Choisissez deux indicateurs, une année et un territoire. Chaque point représente un quartier. La droite rouge montre la tendance générale : si elle monte, les deux indicateurs ont tendance à augmenter ensemble ; si elle descend, ils évoluent plutôt en sens inverse. Le coefficient `r` résume la force de cette relation.
+
+::::: {.habitat-correlation-key aria-label="Comment lire le coefficient de corrélation"}
+::: {.habitat-correlation-key-symbol aria-hidden="true"}
+r
+:::
+
+::: habitat-correlation-key-copy
+**Lire le coefficient de corrélation**
+
+Le **signe** donne le sens : avec un `r` positif, les deux indicateurs augmentent ensemble ; avec un `r` négatif, l’un tend à diminuer quand l’autre augmente. La **valeur absolue** `|r|` donne la force du lien : moins de `0,30`, il est faible ; de `0,30` à `0,60`, modéré ; de `0,60` à `0,80`, fort ; au-delà de `0,80`, très fort. Ces seuils sont des repères, pas des règles.
+
+Un `r` proche de zéro signifie seulement qu’il n’y a pas de relation **linéaire** nette. Il peut masquer une relation courbe et reste sensible aux valeurs extrêmes. Il ne démontre jamais qu’un indicateur cause l’autre.
+:::
+:::::
+
+::: column-page
+```{r}
+map_figure(
+  "correlations-segregations-quartiers",
+  options = list(
+    type = "segregation-scatter",
+    title = "Croiser les indicateurs entre quartiers",
+    metrics = explorer_metrics,
+    defaultX = "taux_nes_hors_nc",
+    defaultY = "taux_cadres",
+    defaultYear = 2019,
+    defaultView = "grand",
+    aria_label = paste(
+      "Nuage de points interactif croisant deux indicateurs dans les",
+      "quartiers du Grand Nouméa en 2014 ou en 2019."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+Une corrélation montre une ressemblance entre deux géographies. Elle ne suffit pas à expliquer pourquoi cette ressemblance existe.
+
+</p>
+:::
+
+## Passer des quartiers aux IRIS {#matrices}
+
+Les deux matrices suivantes changent d’échelle sans changer de mode de lecture. Sélectionnez **Nouvelle-Calédonie · IRIS** pour comparer les 162 IRIS du pays ou ceux d’une province. Sélectionnez **Grand Nouméa · quartiers** pour revenir aux 58 zones de l’agglomération et choisir 2014 ou 2019.
+
+### Comparer plusieurs dimensions {#matrice}
+
+Cette première matrice permet de comparer plusieurs dimensions sans changer de graphique. Cinq indicateurs sont affichés au départ ; ouvrez le menu **Indicateurs** pour retirer ou ajouter librement des colonnes. Chaque ligne correspond à un IRIS ou à un quartier, et chaque colonne à un indicateur. Le nombre inscrit dans la case est le pourcentage observé. La couleur situe la zone par rapport aux autres zones de la même échelle : rouge pour les valeurs les plus faibles, bleu pour les plus élevées. Elle ne signifie donc pas « mauvais » ou « bon ».
+
+::: column-page
+```{r}
+map_figure(
+  "matrice-segregations-quartiers",
+  options = list(
+    type = "segregation-matrix",
+    title = "Comparer les profils des territoires",
+    defaultScale = "grand",
+    defaultNcView = "nc",
+    defaultView = "grand",
+    defaultYear = 2019,
+    aria_label = paste(
+      "Matrice interactive comparant les profils des IRIS de Nouvelle-Calédonie",
+      "ou des quartiers du Grand Nouméa."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+Le pourcentage n’est pas toujours calculé sur la même population. Comparez d’abord les zones à l’intérieur d’une colonne ; les infobulles précisent ensuite les effectifs utilisés.
+
+</p>
+:::
+
+### Voir toutes les corrélations d’un coup {#matrice-correlations}
+
+La matrice de corrélations résume les liens entre les indicateurs sélectionnés. Le menu **Indicateurs** permet de composer la matrice ; sept variables sont proposées au départ pour conserver des libellés et des cases suffisamment grands. Chaque ligne et chaque colonne représentent une variable ; leur croisement affiche le coefficient `r`. Une case bleue indique que les deux variables ont tendance à augmenter ensemble, une case rouge qu’elles évoluent plutôt en sens inverse. Une teinte claire, proche du centre de la palette, signale qu’aucune relation linéaire nette ne se dégage.
+
+La diagonale vaut toujours `+1`, puisqu’un indicateur est parfaitement corrélé avec lui-même. Le tableau est aussi symétrique : les deux moitiés présentent les mêmes résultats. L’ordre n’est plus alphabétique : un regroupement automatique rapproche les variables dont la valeur absolue de `r` est la plus forte, afin de faire apparaître des blocs cohérents. Changez l’échelle, la province, la commune ou l’année pour voir si ces relations restent stables.
+
+::: column-page
+```{r}
+map_figure(
+  "matrice-correlations-quartiers",
+  options = list(
+    type = "segregation-correlation-matrix",
+    title = "Comment les indicateurs évoluent-ils ensemble ?",
+    metrics = explorer_metrics,
+    ncMetrics = nc_explorer_metrics,
+    defaultScale = "grand",
+    defaultNcView = "nc",
+    defaultYear = 2019,
+    defaultView = "grand",
+    aria_label = paste(
+      "Matrice interactive des corrélations entre les indicateurs des IRIS",
+      "de Nouvelle-Calédonie ou des quartiers du Grand Nouméa."
+    )
+  )
+)
+```
+
+<p class="habitat-caption">
+
+Une corrélation proche de `+1` ou de `−1` signale une association forte entre les zones comparées. Elle ne prouve jamais que l’un des indicateurs produit l’autre.
+
+</p>
+:::
+
+::: habitat-method-note
+**Un exemple dans le Grand Nouméa.** En 2019, la corrélation entre la part des personnes nées hors de Nouvelle-Calédonie et celle des cadres et professions intermédiaires atteint `r fmt_num(heatmap_correlations$nes_hors_nc_cadres, 2)` dans les 58 zones. Autrement dit, ces deux proportions sont souvent élevées dans les mêmes quartiers. Le graphique ne permet pas, à lui seul, de savoir pourquoi.
+:::
+
+## Données et méthode
+
+**Pour l’ensemble de la Nouvelle-Calédonie**, les contours des 162 IRIS et leurs données proviennent du recensement de 2019 diffusé par l’Isee, complété par PopGIS3. Vingt variables sont proposées : résidence en tribu, lieu de naissance, diplômes, emploi, chômage, contrats, catégories professionnelles, âge, familles monoparentales, logement, équipement et déplacements. Lorsqu’une valeur ne peut pas être calculée, l’IRIS apparaît en gris et n’entre pas dans la corrélation concernée.
+
+**Pour le Grand Nouméa**, les douze indicateurs portent sur le lieu de naissance, le diplôme, l’emploi, les catégories professionnelles, la langue, le logement et l’équipement. Les tableaux d’origine comptent 61 quartiers. Certains quartiers voisins ont été regroupés pour correspondre aux contours cartographiques disponibles : les visualisations présentent donc 58 zones comparables entre 2014 et 2019. Deux petits îlots rattachés à l’Anse-Vata ne sont pas dessinés dans la vue agrandie, afin de ne pas écraser la carte principale.
+
+Le dénominateur change selon l’indicateur. Le chômage est calculé parmi les personnes actives, les catégories professionnelles parmi les personnes en emploi, et certains équipements à partir des ménages. Les intitulés et les infobulles indiquent la population utilisée. Enfin, tous les résultats comparent des lieux : une relation entre quartiers ne peut pas être appliquée automatiquement à chaque personne qui y vit.
+
+<p class="habitat-source">
+
+Sources : Isee, recensements de la population ; <a href="https://ncl.popgis.spc.int/">PopGIS3 Nouvelle-Calédonie</a>, IRIS du RGP 2019 ; <a href="https://isee.nc/sites/default/files/2025-10/rp2014-quartiers-communes-plus-de-10000-habitants.xls">tableaux par quartier 2014</a> et <a href="https://isee.nc/sites/default/files/2025-10/rp2019-quartiers-communes-plus-de-10000-habitants.xls">tableaux par quartier 2019</a> ; calculs et visualisation : Contours NC.
+
+</p>
+
+<details class="habitat-data-details">
+
+<summary>Voir les données des IRIS de Nouvelle-Calédonie</summary>
+
+::: {}
+```{r}
+knitr::kable(nc_explorer_table)
+```
+:::
+
+</details>
+
+<details class="habitat-data-details">
+
+<summary>Voir les données des quartiers du Grand Nouméa</summary>
+
+::: {}
+```{r}
+knitr::kable(explorer_table, align = c("r", "l", "l", rep("r", 12)))
+```
+:::
+
+</details>
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
+    <span class="article-related-kicker">Inégalités territoriales</span>
+    <span class="article-related-title">Cartographier le capital socio-économique en Nouvelle-Calédonie</span>
+    <span class="article-related-note">Une autre lecture des contrastes sociaux et résidentiels à l’échelle infracommunale.</span>
+  </a>
+  <a class="article-related-link" href="../concentration-population-noumea-pacifique/">
+    <span class="article-related-kicker">Grand Nouméa</span>
+    <span class="article-related-title">Pourquoi la population se concentre autour de Nouméa ?</span>
+    <span class="article-related-note">Les dynamiques démographiques et migratoires qui structurent l’agglomération.</span>
+  </a>
+</div>
+</section>
+```

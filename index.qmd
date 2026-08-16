@@ -13,7 +13,8 @@ listing:
   type: default
   sort: "date desc"
   categories: true
-  feed: true
+  feed:
+    type: partial
   max-items: 6
   sort-ui: false
   filter-ui: false
@@ -75,7 +76,7 @@ Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démograp
 
     <article class="dossier-card">
       <a class="dossier-card__image" href="dossiers/demographie-societe/">
-        <img src="images/previews/chart-concentration-contours-nc.png" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
+        <img src="images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie">
       </a>
       <div class="dossier-card__body">
         <span class="dossier-card__phase">Territoires · dossier ouvert</span>
@@ -99,7 +100,7 @@ Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démograp
   <div class="home-newsletter-grid">
     <div>
       <p>Recevez les nouvelles publications de <span class="contours-word">contours.nc</span>. Environ un email par mois, avec les nouveaux articles, cartes et projets à venir.</p>
-      <p><a href="newsletter/un-mois-de-contours-nc/">Lire la dernière newsletter</a></p>
+      <p><a href="newsletter/apres-les-elections-demographie-territoires/">Lire la dernière newsletter</a></p>
     </div>
     <form action="https://buttondown.com/api/emails/embed-subscribe/contoursnc" method="post" class="embeddable-buttondown-form newsletter-form">
       <label for="bd-email-home">Adresse email</label>

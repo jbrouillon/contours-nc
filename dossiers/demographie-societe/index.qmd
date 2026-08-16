@@ -2,7 +2,8 @@
 title: "Démographie et société"
 subtitle: "Population, territoires, inégalités et transformations sociales en Nouvelle-Calédonie"
 description: "Dossier éditorial consacré aux dynamiques démographiques et sociales en Nouvelle-Calédonie : concentration de la population, mobilités, accès aux services et contrastes socio-économiques."
-image: "../../images/previews/chart-concentration-contours-nc.png"
+image: "../../images/previews/carte-segregations-quartiers-contours-nc.png"
+image-alt: "Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie"
 page-layout: full
 toc: false
 ---
@@ -43,7 +44,7 @@ toc: false
     <p>On y suit des phénomènes concrets : où vivent les habitants, comment les espaces urbains se transforment, où se concentrent les emplois et les services, et comment les inégalités sociales se lisent dans l’espace.</p>
   </div>
   <div class="dossier-hero__image dossier-hero__image--contain">
-    <img src="../../images/previews/chart-concentration-contours-nc.png" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
+    <img src="../../images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie">
   </div>
 </section>
 
@@ -83,6 +84,23 @@ toc: false
         <span class="dossier-tag">Cartographie</span>
       </div>
       <a class="dossier-card__link" href="../../posts/capital-socio-economique-nouvelle-caledonie/">Lire l’analyse</a>
+    </div>
+  </article>
+
+  <article class="dossier-card">
+    <a class="dossier-card__image" href="../../posts/disparites-territoriales-nouvelle-caledonie/">
+      <img src="../../images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux">
+    </a>
+    <div class="dossier-card__body">
+      <span class="dossier-card__phase">Inégalités territoriales</span>
+      <h3><a href="../../posts/disparites-territoriales-nouvelle-caledonie/">Explorer les disparités territoriales en Nouvelle-Calédonie</a></h3>
+      <p>Six visualisations pour comparer les 162 IRIS du pays et 58 zones du Grand Nouméa, croiser jusqu’à vingt indicateurs et lire leurs corrélations.</p>
+      <div class="dossier-card__meta">
+        <span class="dossier-tag">16 août 2026</span>
+        <span class="dossier-tag">Grand Nouméa</span>
+        <span class="dossier-tag">Inégalités</span>
+      </div>
+      <a class="dossier-card__link" href="../../posts/disparites-territoriales-nouvelle-caledonie/">Ouvrir les explorateurs</a>
     </div>
   </article>
 </section>
