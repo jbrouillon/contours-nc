@@ -18,13 +18,13 @@ project:
     - "newsletter/*/index.qmd"
     - "presse/*.qmd"
     - "posts/*/index.qmd"
-    - "!posts/habiter-ville-coloniale-noumea/index.qmd"
     - "ressources/*.qmd"
 
 website:
   title: "Contours"
   description: "Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie"
   site-url: "https://contours.nc/"
+  draft-mode: unlinked
   favicon: images/contours-hexagon.png
   open-graph: true
   twitter-card: true

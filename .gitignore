@@ -49,10 +49,14 @@ posts/**/index_files/
 
 # Documents de travail et archives de relecture, non publiés
 /data/dossier habitat.docx
+/data/Ordonnance 82 880 (1).pdf
+/data/paragraphe Tina.docx
+/data/pétitions habitants CHP.png
+/data/retouche deux paragraphes.docx
 /habitat-relecture.zip
+/docs/site_libs-Jonas/
 
-# Article historique en pause : conservé localement, hors site et hors dépôt public
-/posts/habiter-ville-coloniale-noumea/
+# Artefacts de rendu locaux de l'article, non requis dans le dépôt
 /_freeze/posts/habiter-ville-coloniale-noumea/
 /images/previews/habiter-ville-coloniale-noumea.png
 

@@ -793,10 +793,17 @@
     const currentView = ["grand", "noumea"].includes(storedView)
       ? storedView
       : defaultView;
+    const focusMapId = typeof p.options.focusMapId === "string"
+      ? p.options.focusMapId
+      : null;
+    const focusLabel = typeof p.options.focusLabel === "string"
+      ? p.options.focusLabel
+      : null;
     const compact = window.innerWidth < 760;
+    const mobileFit = compact && p.options.mobileFit === true;
     const height = compact ? 1240 : 685;
 
-    const ctx = base(id, height, compact ? 720 : 1080, (tools) => {
+    const configureMapTools = p.options.showControls === false ? null : (tools) => {
       function addSelect(labelText, ariaLabel, choices, selected, onChange) {
         const labelNode = document.createElement("label");
         labelNode.className = "habitat-map-control-label";
@@ -856,18 +863,29 @@
           renderRoughMap(id, p);
         }
       );
-    });
+    };
+    const chartElement = document.getElementById(id);
+    chartElement?.classList.toggle("habitat-map--mobile-fit", mobileFit);
+    const ctx = base(id, height, compact ? (mobileFit ? 360 : 720) : 1080, configureMapTools);
     if (!ctx) return;
 
     const { el, svg, rc, width } = ctx;
-    chartTitle(svg, p.options.title, width);
+    if (mobileFit) {
+      label(svg, p.options.title, 16, 27, {
+        family: "Cabin Sketch, sans-serif",
+        size: 19,
+        weight: 700
+      }).call(wrap, width - 32);
+    } else {
+      chartTitle(svg, p.options.title, width);
+    }
     const activeViewLabel = currentView === "noumea" ? "Nouméa agrandi" : "Grand Nouméa";
     label(
       svg,
       `${currentYear} · ${activeViewLabel} · chaque indicateur utilise sa propre légende`,
       20,
-      62,
-      { size: 12.5, weight: 750, color: muted }
+      mobileFit ? 78 : 62,
+      { size: mobileFit ? 10.5 : 12.5, weight: 750, color: muted }
     );
 
     const features = bundle.geometry.features || [];
@@ -906,6 +924,9 @@
       const fillGroup = parent.append("g");
       const textureGroup = parent.append("g").attr("pointer-events", "none");
       const boundaryGroup = parent.append("g");
+      const focusGroup = parent.append("g")
+        .attr("class", "habitat-map-focus")
+        .attr("pointer-events", "none");
       const hitGroup = parent.append("g");
       const filterKey = `${id}-${year}-${viewName}-${definition.rate}`;
       const internalFilters = pencilFilters(svg, `${filterKey}-internal`, {
@@ -942,6 +963,42 @@
           opacity: 0.96,
           seed: `map-pencil-${id}-${year}-${viewName}-${definition.rate}-${feature.properties.map_id}`
         });
+
+        if (focusMapId === feature.properties.map_id) {
+          const centroid = path.centroid(feature);
+          const bounds = path.bounds(feature);
+          const diameter = Math.max(
+            bounds[1][0] - bounds[0][0],
+            bounds[1][1] - bounds[0][1]
+          ) + (viewName === "grand" ? 18 : 26);
+          roughCircle(focusGroup, rc, centroid[0], centroid[1], diameter, ink, {
+            fill: "none",
+            stroke: ink,
+            strokeWidth: viewName === "grand" ? 2.3 : 2.7,
+            roughness: 2.35,
+            bowing: 1.75,
+            disableMultiStroke: false,
+            opacity: 0.98,
+            seed: `map-focus-circle-${id}-${year}-${definition.rate}-${focusMapId}`
+          });
+          label(
+            focusGroup,
+            focusLabel || feature.properties.map_label || focusMapId,
+            centroid[0],
+            centroid[1] - diameter / 2 - 9,
+            {
+              anchor: "middle",
+              family: "Cabin Sketch, sans-serif",
+              size: 15,
+              weight: 900,
+              color: ink
+            }
+          )
+            .attr("paint-order", "stroke")
+            .attr("stroke", paper)
+            .attr("stroke-width", 4)
+            .attr("stroke-linejoin", "round");
+        }
 
         const hit = hitGroup.append("path")
           .attr("d", pathData)
@@ -1023,20 +1080,22 @@
       });
     }
 
-    function drawCompactLegend(parent, definition, panelWidth) {
+    function drawCompactLegend(parent, definition, panelWidth, stacked = false) {
       const x = 18;
-      const y = 110;
-      const itemWidth = (panelWidth - 36) / definition.colors.length;
+      const y = stacked ? 96 : 110;
+      const columns = stacked ? 3 : definition.colors.length;
+      const itemWidth = (panelWidth - 36) / columns;
       definition.colors.forEach((color, index) => {
-        const itemX = x + index * itemWidth;
+        const itemX = x + (index % columns) * itemWidth;
+        const itemY = y + Math.floor(index / columns) * 24;
         parent.append("rect")
           .attr("x", itemX)
-          .attr("y", y - 6)
-          .attr("width", 16)
-          .attr("height", 13)
+          .attr("y", itemY - 6)
+          .attr("width", stacked ? 13 : 16)
+          .attr("height", stacked ? 11 : 13)
           .attr("fill", color)
           .attr("fill-opacity", 0.34);
-        roughRect(parent, rc, itemX, y - 7, 16, 13, color, {
+        roughRect(parent, rc, itemX, itemY - 7, stacked ? 13 : 16, stacked ? 11 : 13, color, {
           fill: color,
           fillStyle: "hachure",
           hachureAngle: -38,
@@ -1049,8 +1108,8 @@
           opacity: 0.96,
           seed: `compact-legend-${id}-${definition.rate}-${index}`
         });
-        label(parent, legendLabel(index, definition.thresholds), itemX + 20, y, {
-          size: 10.8,
+        label(parent, legendLabel(index, definition.thresholds), itemX + (stacked ? 16 : 20), itemY, {
+          size: stacked ? 8.4 : 10.8,
           weight: 750,
           color: muted
         });
@@ -1058,9 +1117,9 @@
     }
 
     const panelGap = compact ? 26 : 28;
-    const panelX = compact ? 28 : 24;
-    const panelTop = 86;
-    const panelWidth = compact ? width - 56 : (width - 2 * panelX - panelGap) / 2;
+    const panelX = compact ? (mobileFit ? 16 : 28) : 24;
+    const panelTop = mobileFit ? 102 : 86;
+    const panelWidth = compact ? width - 2 * panelX : (width - 2 * panelX - panelGap) / 2;
     const panelHeight = compact ? 540 : 565;
     const noumeaFeatures = features.filter((feature) => feature.properties.commune === "Nouméa");
     const activeFeatures = currentView === "noumea" ? noumeaFeatures : features;
@@ -1082,7 +1141,7 @@
       });
       label(panel, definition.label, 18, 24, {
         family: "Cabin Sketch, sans-serif",
-        size: compact ? 20 : 19,
+        size: mobileFit ? 17 : (compact ? 20 : 19),
         weight: 700
       }).call(wrap, panelWidth - 36);
       label(panel, `${currentYear} · ${activeViewLabel}`, 18, 78, {
@@ -1090,12 +1149,12 @@
         weight: 800,
         color: muted
       });
-      drawCompactLegend(panel, definition, panelWidth);
+      drawCompactLegend(panel, definition, panelWidth, mobileFit);
       drawView(
         panel,
         currentYear,
         activeFeatures,
-        [[14, 134], [panelWidth - 14, panelHeight - 16]],
+        [[14, mobileFit ? 146 : 134], [panelWidth - 14, panelHeight - 16]],
         currentView,
         definition
       );

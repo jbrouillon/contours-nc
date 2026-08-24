@@ -23,6 +23,7 @@
   const pageTitle = meta("citation_title")
     || document.querySelector("h1.title, h1")?.textContent?.trim()
     || document.title.replace(/\s*[-|]\s*Contours\s*$/i, "").trim();
+  const reviewMode = document.body.classList.contains("review-version");
 
   const section = document.createElement("section");
   section.className = "article-comments";
@@ -31,7 +32,7 @@
   const title = document.createElement("h2");
   title.className = "article-comments__title";
   title.id = "article-comments-title";
-  title.textContent = "Commentaires";
+  title.textContent = reviewMode ? "Commentaires sur cette version" : "Commentaires";
 
   const thread = document.createElement("div");
   thread.id = "cusdis_thread";
@@ -44,6 +45,26 @@
   section.append(title, thread);
 
   main.appendChild(section);
+
+  if (reviewMode) {
+    const reviewLinks = document.querySelectorAll('a[href="#article-comments-title"]');
+    const scrollToComments = (event) => {
+      event.preventDefault();
+      section.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+      });
+    };
+    reviewLinks.forEach((link) => link.addEventListener("click", scrollToComments));
+
+    const floatingButton = document.createElement("button");
+    floatingButton.type = "button";
+    floatingButton.className = "review-comment-button";
+    floatingButton.setAttribute("aria-label", "Ajouter un commentaire sur cette version");
+    floatingButton.innerHTML = '<i class="bi bi-chat-left-text" aria-hidden="true"></i><span>Commenter</span>';
+    floatingButton.addEventListener("click", scrollToComments);
+    document.body.appendChild(floatingButton);
+  }
 
   const endTargets = [main.querySelector(".article-share"), section].filter(Boolean);
   if (window.IntersectionObserver && endTargets.length) {

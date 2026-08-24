@@ -453,6 +453,12 @@
     min-width: 620px;
   }
 
+  .habitat-map--mobile-fit svg {
+    max-width: 100%;
+    min-width: 0;
+    width: 100%;
+  }
+
   .habitat-profile-matrix svg,
   .habitat-correlation-matrix svg {
     min-width: 1050px;
