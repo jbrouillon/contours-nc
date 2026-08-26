@@ -1,0 +1,3549 @@
+:root {
+  --paper: #f3eddf;
+  --paper-light: #fffaf0;
+  --ink: #1f2928;
+  --muted: #65706c;
+  --ocean: #d8ebea;
+  --teal: #356b6b;
+  --line: rgba(31, 41, 40, 0.2);
+  --contours-heading: "Cabin Sketch", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.72), transparent 26rem),
+    repeating-linear-gradient(4deg, rgba(42, 55, 50, 0.018) 0, rgba(42, 55, 50, 0.018) 1px, transparent 1px, transparent 5px);
+}
+
+.quarto-title-block,
+#quarto-draft-alert {
+  display: none !important;
+}
+
+#quarto-content,
+.page-columns,
+main.content {
+  display: block;
+  max-width: none !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#climate-map {
+  width: 100%;
+}
+
+.climate-explorer {
+  box-sizing: border-box;
+  width: min(1560px, 100%);
+  min-height: calc(100vh - 64px);
+  margin: 0 auto;
+  padding: clamp(16px, 2vw, 30px);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.explorer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 10px;
+}
+
+.eyebrow,
+.panel-kicker {
+  margin: 0 0 9px;
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.explorer-header h1 {
+  max-width: 980px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.lede {
+  max-width: 920px;
+  margin: 8px 0 0;
+  color: #47524f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.92rem, 1.15vw, 1.08rem);
+  line-height: 1.35;
+}
+
+.hero-formula {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: fit-content;
+  margin: 14px 0 0;
+  color: #52615d;
+  font: 800 0.68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-formula span,
+.hero-formula strong {
+  padding: 6px 9px 5px;
+  border: 1px solid rgba(53, 107, 107, 0.28);
+  border-radius: 8px 11px 7px 10px;
+  background: rgba(255, 250, 240, 0.62);
+}
+
+.hero-formula strong {
+  border-color: rgba(53, 107, 107, 0.58);
+  background: rgba(53, 107, 107, 0.1);
+  color: var(--teal);
+}
+
+.hero-formula b {
+  color: rgba(31, 41, 40, 0.48);
+  font-size: 0.85rem;
+}
+
+.header-stamp {
+  flex: 0 0 auto;
+  margin: 0 10px 0 0;
+  padding: 10px 15px 9px;
+  transform: rotate(2.5deg);
+  border: 2px solid rgba(53, 107, 107, 0.56);
+  border-radius: 48% 52% 45% 55%;
+  color: var(--teal);
+  font: 800 0.62rem/1.25 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.14em;
+  text-align: center;
+}
+
+.header-actions {
+  display: grid;
+  flex: 0 0 auto;
+  justify-items: center;
+  gap: 10px;
+}
+
+.language-switch {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 104px;
+  min-height: 34px;
+  padding: 1px 8px;
+  color: #52615d;
+}
+
+.language-switch-sketch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.language-switch-sketch path {
+  vector-effect: non-scaling-stroke;
+}
+
+.language-switch > span {
+  position: relative;
+  z-index: 1;
+  color: rgba(31, 41, 40, 0.3);
+  font: 700 0.66rem/1 Georgia, "Times New Roman", serif;
+}
+
+.language-button {
+  position: relative;
+  z-index: 1;
+  min-width: 36px;
+  padding: 7px 5px 6px;
+  border: 0;
+  background: transparent;
+  color: #65706c;
+  font: 850 0.68rem/1 "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.language-button[aria-pressed="true"] {
+  color: var(--teal);
+  text-decoration: underline 2px wavy rgba(53, 107, 107, 0.65);
+  text-underline-offset: 4px;
+}
+
+.language-button:hover {
+  color: var(--ink);
+}
+
+.story-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 28px 0 12px;
+}
+
+.story-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 10px 16px;
+  border: 1px solid rgba(31, 41, 40, 0.24);
+  border-radius: 14px 10px 16px 9px;
+  background: rgba(255, 250, 240, 0.55);
+  color: var(--ink);
+  font: 780 0.9rem/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.story-number {
+  color: var(--teal);
+  font: 850 0.7rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.12em;
+}
+
+.story-step[aria-current="step"] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper-light);
+  box-shadow: 4px 5px 0 rgba(53, 107, 107, 0.18);
+}
+
+.story-step[aria-current="step"] .story-number {
+  color: #9fc7c3;
+}
+
+.story-voice {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 300px);
+  align-items: center;
+  gap: 25px;
+  min-height: 142px;
+  margin-bottom: 14px;
+  padding: 20px 24px;
+  border: 1px solid rgba(31, 41, 40, 0.32);
+  border-radius: 11px 18px 12px 20px;
+  background:
+    linear-gradient(100deg, rgba(255, 250, 240, 0.96), rgba(231, 242, 237, 0.88)),
+    var(--paper-light);
+}
+
+.story-kicker {
+  margin: 0 0 6px;
+  color: var(--teal);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+}
+
+.story-headline {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3vw, 2.55rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.story-body {
+  max-width: 760px;
+  margin: 9px 0 0;
+  color: #4c5955;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.92rem;
+  line-height: 1.48;
+}
+
+.story-stat {
+  margin: 0;
+  padding: 15px 17px;
+  transform: rotate(-0.7deg);
+  border: 1px solid rgba(53, 107, 107, 0.38);
+  border-radius: 13px 9px 15px 8px;
+  background: rgba(255, 250, 240, 0.72);
+  color: #285b5e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.context-bridge {
+  --context-accent: var(--teal);
+  --context-wash: rgba(53, 107, 107, 0.08);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(360px, 1.22fr);
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 15px;
+  padding: 17px 22px 14px;
+  border: 0;
+  border-radius: 13px 9px 15px 10px;
+  background:
+    linear-gradient(105deg, rgba(255, 250, 240, 0.97), rgba(255, 250, 240, 0.9)),
+    repeating-linear-gradient(64deg, transparent 0, transparent 10px, var(--context-wash) 10px, var(--context-wash) 11px);
+  color: var(--ink);
+  box-shadow: 5px 6px 0 rgba(31, 41, 40, 0.11);
+}
+
+.context-bridge[data-context="co2"] {
+  --context-accent: #995f49;
+  --context-wash: rgba(153, 95, 73, 0.09);
+}
+
+.context-bridge[data-context="rain"] {
+  --context-accent: #2474a6;
+  --context-wash: rgba(36, 116, 166, 0.09);
+}
+
+.context-bridge[data-context="population"] {
+  --context-accent: #356b6b;
+  --context-wash: rgba(53, 107, 107, 0.08);
+}
+
+.context-frame {
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  display: block;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.context-frame path {
+  vector-effect: non-scaling-stroke;
+}
+
+.context-frame-line {
+  opacity: 0.76;
+}
+
+.context-frame-swatch {
+  opacity: 0.24;
+}
+
+.context-copy,
+.context-figure {
+  position: relative;
+  z-index: 1;
+}
+
+.context-kicker {
+  margin: 0 0 5px;
+  color: var(--context-accent);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.context-reading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.context-value {
+  color: var(--context-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.7rem);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+
+.context-unit {
+  max-width: 190px;
+  color: #52605c;
+  font-size: 0.7rem;
+  font-weight: 680;
+  line-height: 1.25;
+}
+
+.context-title {
+  margin: 9px 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+}
+
+.context-note {
+  margin: 5px 0 0;
+  color: #4c5955;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.context-source {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--context-accent);
+  font-size: 0.67rem;
+  font-weight: 750;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.context-source:hover {
+  color: var(--ink);
+}
+
+.context-source:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--context-accent) 55%, transparent);
+  outline-offset: 3px;
+}
+
+.context-figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.context-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.context-chart-caption {
+  min-height: 1.2em;
+  margin: -2px 5px 0;
+  color: #4c5955;
+  font: 700 0.64rem/1.25 "Segoe Print", "Bradley Hand", cursive;
+  text-align: center;
+}
+
+.context-rough-area {
+  opacity: 0.24;
+}
+
+.context-rough-line,
+.context-rough-marker,
+.context-endpoint,
+.context-marker-dot {
+  opacity: 0.96;
+}
+
+.context-rough-axis,
+.context-rough-tick,
+.context-threshold {
+  opacity: 0.66;
+}
+
+.context-axis-label,
+.context-endpoint-label,
+.context-marker-label,
+.context-zone-label,
+.context-empty-label {
+  fill: #40514d;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+}
+
+.context-axis-label {
+  font-size: 8.5px;
+}
+
+.context-endpoint-label {
+  fill: var(--context-accent);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.context-marker-label {
+  fill: var(--ink);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.context-zone-label {
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+}
+
+.context-empty-label {
+  font-size: 11px;
+}
+
+.context-enso-zone {
+  opacity: 0.72;
+}
+
+.scrolly-story {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(245px, 19vw, 285px) minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(10px, 1vw, 16px);
+  margin-top: 9px;
+}
+
+.scrolly-graphic {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+  box-sizing: border-box;
+  height: calc(100vh - 16px);
+  min-height: 620px;
+  padding: 10px 0 14px;
+  background: var(--paper);
+}
+
+.scrolly-graphic::after {
+  display: none;
+}
+
+.scrolly-graphic .story-nav {
+  position: relative;
+  z-index: 15;
+  margin: 0 0 7px;
+}
+
+.scrolly-graphic .story-step {
+  min-height: 42px;
+  padding: 7px 13px;
+}
+
+.scrolly-graphic .context-bridge {
+  position: relative;
+  z-index: 14;
+  min-height: 112px;
+  margin-bottom: 7px;
+  padding-top: 11px;
+  padding-bottom: 9px;
+}
+
+.scrolly-graphic .time-controls {
+  position: relative;
+  z-index: 15;
+  margin-bottom: 7px;
+}
+
+.scrolly-graphic .climate-workspace {
+  position: relative;
+  z-index: 2;
+  min-height: 440px;
+  height: 100%;
+}
+
+.scrolly-graphic .map-stage {
+  min-height: 440px;
+}
+
+.scrolly-graphic .territory-panel {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.scrolly-steps {
+  position: relative;
+  z-index: 20;
+  grid-column: 1;
+  grid-row: 1;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 10vh 3px 14vh;
+  pointer-events: none;
+}
+
+.scroll-step {
+  display: flex;
+  align-items: center;
+  min-height: 62vh;
+  pointer-events: none;
+}
+
+.scroll-step[data-step="opening"] {
+  min-height: 48vh;
+}
+
+.scroll-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 13px 11px;
+  transform: translateX(-8px);
+  border: 1px solid rgba(31, 41, 40, 0.27);
+  border-radius: 11px 18px 10px 16px;
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 6px 8px 0 rgba(32, 55, 51, 0.1);
+  opacity: 0.45;
+  transition: opacity 240ms ease, transform 240ms ease, box-shadow 240ms ease;
+  pointer-events: auto;
+  cursor: pointer;
+  backdrop-filter: blur(7px);
+}
+
+.scroll-step.is-active .scroll-card {
+  transform: translateX(0);
+  border-color: rgba(53, 107, 107, 0.46);
+  box-shadow: 7px 9px 0 rgba(53, 107, 107, 0.13);
+  opacity: 1;
+}
+
+.scroll-number {
+  margin: 0 0 5px;
+  color: var(--teal);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.scroll-card h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.16rem, 1.65vw, 1.55rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.scroll-card > p:not(.scroll-number) {
+  margin: 7px 0 0;
+  color: #4e5a56;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.74rem;
+  line-height: 1.35;
+}
+
+.scroll-card .scroll-evidence {
+  padding-top: 9px;
+  border-top: 1px dashed rgba(31, 41, 40, 0.24);
+  font-size: 0.7rem !important;
+  font-style: italic;
+}
+
+.scroll-live-stat {
+  display: inline-block;
+  padding: 7px 10px 6px;
+  transform: rotate(-0.5deg);
+  border: 1px solid rgba(53, 107, 107, 0.36);
+  border-radius: 8px 12px 7px 10px;
+  background: rgba(53, 107, 107, 0.08);
+  color: #356b6b !important;
+  font: 780 0.7rem/1.3 "Segoe Print", "Bradley Hand", cursive !important;
+}
+
+.scroll-cue {
+  display: inline-block;
+  margin-top: 9px;
+  color: var(--teal);
+  font: 780 0.62rem/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Map-first scrollytelling -------------------------------------------------- */
+.scrolly-graphic {
+  display: block;
+  padding: 8px 0 12px;
+}
+
+.scrolly-graphic::after {
+  display: none;
+}
+
+.scrolly-graphic .climate-workspace {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 7px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 630px;
+  padding: 6px;
+  overflow: hidden;
+  border: 2px solid rgba(31, 41, 40, 0.6);
+  border-radius: 23px 15px 27px 12px;
+  outline: 1px solid rgba(31, 41, 40, 0.22);
+  outline-offset: 3px;
+  box-shadow: 8px 10px 0 rgba(43, 67, 62, 0.1);
+}
+
+.scrolly-graphic .map-stage {
+  position: relative;
+  inset: auto;
+  order: 2;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(31, 41, 40, 0.36);
+  border-radius: 15px 9px 18px 8px;
+  background:
+    radial-gradient(circle at 48% 42%, rgba(239, 249, 245, 0.96), rgba(207, 229, 224, 0.84) 57%, rgba(184, 211, 207, 0.74)),
+    repeating-linear-gradient(63deg, transparent 0, transparent 10px, rgba(29, 78, 79, 0.055) 10px, rgba(29, 78, 79, 0.055) 11px),
+    repeating-linear-gradient(151deg, transparent 0, transparent 17px, rgba(67, 54, 39, 0.025) 17px, rgba(67, 54, 39, 0.025) 18px);
+  box-shadow: inset 0 0 0 rgba(53, 107, 107, 0);
+  transition: box-shadow 520ms ease;
+}
+
+.climate-explorer[data-story-step="rainfall"] .scrolly-graphic .map-stage {
+  box-shadow: inset 0 0 150px rgba(44, 123, 182, 0.16);
+}
+
+.climate-explorer[data-story-step="sea-rise"] .scrolly-graphic .map-stage {
+  box-shadow: inset 0 -120px 170px rgba(82, 111, 136, 0.17);
+}
+
+.scrolly-graphic .story-nav {
+  position: absolute;
+  top: 17px;
+  left: calc(50% + 126px);
+  z-index: 35;
+  width: min(650px, calc(100% - 282px));
+  margin: 0;
+  transform: translateX(-50%) rotate(-0.25deg);
+}
+
+.scrolly-graphic .story-step {
+  min-height: 39px;
+  padding: 6px 12px;
+  border: 2px solid rgba(31, 41, 40, 0.7);
+  border-radius: 12px 8px 14px 7px;
+  box-shadow: 2px 3px 0 rgba(31, 41, 40, 0.14);
+}
+
+.scrolly-graphic .time-controls {
+  position: absolute;
+  top: 70px;
+  left: calc(50% + 126px);
+  z-index: 35;
+  width: min(700px, calc(100% - 282px));
+  margin: 0;
+  padding: 7px 10px;
+  transform: translateX(-50%) rotate(0.15deg);
+  border: 1.5px solid rgba(31, 41, 40, 0.38);
+  border-radius: 10px 13px 8px 12px;
+  background: rgba(255, 250, 240, 0.88);
+  box-shadow: 3px 4px 0 rgba(31, 41, 40, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.scrolly-graphic .context-bridge {
+  position: relative;
+  inset: auto;
+  z-index: 34;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  box-sizing: border-box;
+  width: auto;
+  min-height: 0;
+  margin: 12px -2px 9px;
+  padding: 10px 11px 9px;
+  transform: rotate(-0.2deg);
+  border: 0;
+  border-radius: 13px 8px 15px 9px;
+  outline: 0;
+  box-shadow: 5px 7px 0 rgba(31, 41, 40, 0.12);
+}
+
+.scrolly-graphic .context-value {
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+}
+
+.scrolly-graphic .context-title {
+  margin-top: 6px;
+  font-size: 0.93rem;
+}
+
+.scrolly-graphic .context-note {
+  display: block;
+  overflow: visible;
+  margin-top: 4px;
+  font-size: 0.66rem;
+  line-height: 1.32;
+}
+
+.scrolly-graphic .context-source {
+  margin-top: 5px;
+  font-size: 0.63rem;
+}
+
+.scrolly-graphic .context-figure {
+  padding-top: 5px;
+  border-top: 1px dashed rgba(31, 41, 40, 0.2);
+}
+
+.scrolly-graphic .context-chart {
+  max-height: 76px;
+}
+
+.scrolly-graphic .territory-panel {
+  position: relative;
+  inset: auto;
+  z-index: 33;
+  order: 1;
+  flex: 0 0 245px;
+  align-self: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  padding: 18px 15px 14px;
+  overflow-y: auto;
+  transform: none;
+  border: 0;
+  border-radius: 9px 15px 8px 13px;
+  outline: 0;
+  box-shadow: 3px 4px 0 rgba(31, 41, 40, 0.08);
+}
+
+.scrolly-graphic .map-copy {
+  top: 124px;
+  left: 22px;
+  max-width: min(365px, calc(100% - 44px));
+}
+
+.scrolly-graphic .legend {
+  bottom: 22px;
+  left: 22px;
+  border: 2px solid rgba(31, 41, 40, 0.5);
+  outline: 1px solid rgba(31, 41, 40, 0.15);
+  outline-offset: 2px;
+}
+
+.scrolly-graphic .drag-hint {
+  right: auto;
+  bottom: 91px;
+  left: 26px;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+}
+
+/* Sketch language ---------------------------------------------------------- */
+.scroll-card,
+.ribbon-atlas,
+.metric-tab,
+.play-button,
+.reset-view,
+.legend,
+.climate-tooltip {
+  border-width: 2px;
+  border-color: rgba(31, 41, 40, 0.55);
+  outline: 1px solid rgba(31, 41, 40, 0.14);
+  outline-offset: 2px;
+}
+
+.ribbon-atlas {
+  position: relative;
+}
+
+.scroll-card {
+  position: relative;
+  border-radius: 9px 17px 8px 14px;
+  box-shadow: 7px 9px 0 rgba(31, 41, 40, 0.13);
+}
+
+.scroll-card::after,
+.ribbon-atlas::after {
+  position: absolute;
+  inset: 5px -5px -5px 5px;
+  z-index: -1;
+  border: 1px solid rgba(31, 41, 40, 0.23);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.scroll-number,
+.scroll-cue,
+.panel-kicker,
+.context-kicker,
+.drag-hint,
+.map-note {
+  font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+}
+
+.ocean-sphere-sketch {
+  fill: none;
+  stroke: rgba(28, 65, 69, 0.48);
+  stroke-width: 1.05;
+  stroke-dasharray: 8 1.6 3 1.8;
+  filter: url(#sketch-wobble);
+  pointer-events: none;
+}
+
+.ocean-sphere-sketch-echo {
+  stroke: rgba(28, 65, 69, 0.34);
+  stroke-width: 0.75;
+  stroke-dasharray: 4 1.4 9 2;
+  filter: url(#sketch-wobble-echo);
+}
+
+.graticule-sketch {
+  fill: none;
+  stroke: rgba(30, 69, 71, 0.14);
+  stroke-width: 0.45;
+  stroke-dasharray: 10 3 2 3;
+  filter: url(#sketch-wobble-echo);
+  pointer-events: none;
+}
+
+.world-land-sketch {
+  fill: none;
+  stroke: rgba(39, 60, 37, 0.6);
+  stroke-width: 1.05;
+  stroke-dasharray: 7 1.2 2.5 1.6;
+  filter: url(#sketch-wobble);
+  pointer-events: none;
+}
+
+.world-land-sketch-echo {
+  stroke: rgba(39, 60, 37, 0.42);
+  stroke-width: 0.7;
+  stroke-dasharray: 3 1 8 2;
+  filter: url(#sketch-wobble-echo);
+}
+
+.zone-sketch-layer {
+  pointer-events: none;
+}
+
+.zone-pencil-texture-layer,
+.rough-coast-layer {
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 130ms ease;
+}
+
+.climate-explorer:is(.is-playing, .is-scrubbing) :is(
+  .zone-pencil-texture-layer,
+  .zone-sketch-layer,
+  .rough-coast-layer,
+  .world-land-sketch,
+  .map-paper-texture
+) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.zone-pencil-texture {
+  mix-blend-mode: normal;
+}
+
+.zone-pencil-texture path[stroke]:not([stroke="none"]) {
+  stroke: var(--zone-pencil-color) !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rough-coast path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.rough-coast-sphere {
+  opacity: 0.58;
+}
+
+.rough-coast-land {
+  opacity: 0.72;
+  mix-blend-mode: multiply;
+}
+
+.map-stage.is-rotating .zone-pencil-texture-layer,
+.map-stage.is-rotating .rough-coast-layer {
+  opacity: 0;
+}
+
+.zone-sketch {
+  fill: none;
+  stroke: rgba(18, 45, 50, 0.52);
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 7 1.1 2.5 1.5;
+  filter: url(#sketch-wobble);
+  vector-effect: non-scaling-stroke;
+}
+
+.zone-sketch-echo {
+  stroke: rgba(18, 45, 50, 0.34);
+  stroke-width: 0.72;
+  stroke-dasharray: 3 1.3 9 2;
+  filter: url(#sketch-wobble-echo);
+}
+
+.zone {
+  stroke-width: 1.15;
+  stroke-linecap: round;
+}
+
+.map-code {
+  font-family: "Segoe Print", Georgia, serif;
+  font-size: 10.5px;
+}
+
+.portrait-ribbon-frame,
+.ribbon-frame,
+.legend-ramp {
+  stroke-dasharray: 5 1.5 2 1.5;
+}
+
+.chart-line {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 7 1.2 3 1.2;
+}
+
+.context-chart,
+.portrait-shift-spark,
+.territory-ribbon,
+.detail-chart,
+.ribbon-wall,
+.ribbon-detail-svg {
+  border-radius: 5px 8px 4px 7px;
+  background-color: rgba(255, 250, 240, 0.16);
+  background-image:
+    repeating-linear-gradient(72deg, rgba(31, 41, 40, 0.028) 0 0.7px, transparent 0.7px 9px),
+    repeating-linear-gradient(-8deg, rgba(53, 107, 107, 0.018) 0 0.6px, transparent 0.6px 13px);
+}
+
+.chart-sketch-frame {
+  opacity: 0.76;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.chart-sketch-frame path,
+.ribbon-detail-frame path,
+.ribbon-detail-marker path,
+.ribbon-wall-marker path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.explore-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-bottom: 13px;
+}
+
+.explore-row > span {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.explore-help {
+  flex: 1 1 230px;
+  color: #596560;
+  font: 680 0.65rem/1.3 Georgia, "Times New Roman", serif;
+}
+
+.metric-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  width: min(760px, 100%);
+}
+
+.method-drawer {
+  flex: 1 0 100%;
+  border: 1px solid rgba(31, 41, 40, 0.22);
+  border-radius: 10px 14px 9px 12px;
+  background: rgba(255, 250, 240, 0.58);
+}
+
+.method-drawer summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 13px;
+  color: #3e4e49;
+  font: 800 0.72rem/1.25 "Segoe Print", "Bradley Hand", cursive;
+  cursor: pointer;
+  list-style: none;
+}
+
+.method-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.method-drawer summary::before {
+  display: grid;
+  flex: 0 0 21px;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border: 1px solid var(--teal);
+  border-radius: 50%;
+  color: var(--teal);
+  content: "i";
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
+.method-drawer summary > span {
+  margin-right: auto;
+}
+
+.method-drawer summary::after {
+  color: var(--teal);
+  content: "+";
+  font: 900 1rem/1 Georgia, "Times New Roman", serif;
+}
+
+.method-drawer[open] summary::after {
+  content: "−";
+}
+
+.method-current {
+  color: var(--teal);
+  font: 800 0.65rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 12px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 41, 40, 0.16);
+  border-radius: 8px 12px 7px 10px;
+  background: rgba(31, 41, 40, 0.12);
+}
+
+.method-grid > div {
+  min-height: 108px;
+  padding: 12px 13px;
+  background: rgba(255, 250, 240, 0.94);
+}
+
+.method-label {
+  margin: 0 0 7px;
+  color: var(--teal);
+  font: 850 0.61rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.method-grid p:not(.method-label) {
+  margin: 0;
+  color: #4b5955;
+  font: 0.72rem/1.45 Georgia, "Times New Roman", serif;
+}
+
+.method-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 11px 13px 12px;
+}
+
+.method-actions a {
+  color: var(--teal);
+  font: 800 0.67rem/1.3 "Segoe Print", "Bradley Hand", cursive;
+  text-underline-offset: 3px;
+}
+
+.metric-tab,
+.play-button,
+.reset-view {
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.metric-tab {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 40px;
+  padding: 7px 11px;
+  border: 1px solid rgba(31, 41, 40, 0.22);
+  border-radius: 12px 9px 13px 8px;
+  background: rgba(255, 250, 240, 0.52);
+  font-size: 0.78rem;
+  font-weight: 780;
+  text-align: left;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.metric-tab-label {
+  flex: 1 1 auto;
+}
+
+.metric-help {
+  display: grid;
+  flex: 0 0 20px;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font: 900 0.68rem/1 Georgia, "Times New Roman", serif;
+}
+
+.metric-tab::after {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  z-index: 80;
+  width: min(310px, 78vw);
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 2px solid rgba(31, 41, 40, 0.58);
+  border-radius: 9px 13px 8px 11px;
+  background: rgba(255, 250, 240, 0.98);
+  box-shadow: 5px 6px 0 rgba(31, 41, 40, 0.13);
+  color: var(--ink);
+  content: attr(data-tooltip);
+  font: 680 0.72rem/1.42 Georgia, "Times New Roman", serif;
+  opacity: 0;
+  pointer-events: none;
+  text-align: left;
+  transform: translateY(4px);
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+
+.metric-tab:nth-child(even)::after {
+  right: 0;
+  left: auto;
+}
+
+.metric-tab:hover::after,
+.metric-tab:focus-visible::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.metric-tab small {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.metric-tab:hover {
+  z-index: 90;
+  transform: translateY(-1px);
+  background: rgba(255, 250, 240, 0.88);
+}
+
+.metric-tab:focus-visible {
+  z-index: 90;
+}
+
+.metric-tab[aria-pressed="true"] {
+  border-color: rgba(31, 41, 40, 0.7);
+  background: var(--ink);
+  color: #fffaf0;
+  box-shadow: 3px 4px 0 rgba(53, 107, 107, 0.2);
+}
+
+.metric-tab[aria-pressed="true"] small {
+  color: rgba(255, 250, 240, 0.7);
+}
+
+.time-controls {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 680px) 82px auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.play-button,
+.reset-view {
+  border: 1px solid rgba(31, 41, 40, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.72);
+}
+
+.play-button {
+  min-width: 92px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 780;
+}
+
+.play-icon {
+  display: inline-block;
+  min-width: 17px;
+  color: var(--teal);
+}
+
+.reset-view {
+  padding: 7px 12px;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.year-slider-label {
+  display: flex;
+  align-items: center;
+}
+
+.year-slider {
+  width: 100%;
+  accent-color: var(--teal);
+  cursor: ew-resize;
+}
+
+.year-output {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.climate-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  min-height: 650px;
+  overflow: hidden;
+  border: 1px solid rgba(31, 41, 40, 0.3);
+  border-radius: 22px 15px 26px 13px;
+  background: rgba(255, 250, 240, 0.42);
+  box-shadow: 8px 10px 0 rgba(43, 67, 62, 0.08);
+}
+
+.map-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 650px;
+  overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(255, 250, 240, 0.84), transparent 35%),
+    var(--ocean);
+}
+
+.map-stage::after {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-image:
+    repeating-linear-gradient(58deg, rgba(26, 72, 75, 0.045) 0, rgba(26, 72, 75, 0.045) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(122deg, rgba(73, 57, 39, 0.022) 0, rgba(73, 57, 39, 0.022) 1px, transparent 1px, transparent 16px);
+  content: "";
+  pointer-events: none;
+}
+
+.map-stage::before {
+  position: absolute;
+  top: 52%;
+  left: 54%;
+  z-index: 6;
+  width: 120px;
+  height: 120px;
+  transform: translate(-50%, -50%) scale(0.35) rotate(-3deg);
+  border: 3px solid rgba(167, 90, 82, 0.56);
+  border-radius: 47% 53% 44% 56%;
+  opacity: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.climate-explorer[data-story-step="rainfall"] .map-stage::before {
+  border-color: rgba(36, 116, 166, 0.58);
+}
+
+.climate-explorer[data-story-step="sea-rise"] .map-stage::before {
+  border-color: rgba(82, 111, 136, 0.58);
+}
+
+.climate-explorer.scene-kick .map-stage::before {
+  animation: scene-ripple 850ms cubic-bezier(0.16, 0.72, 0.28, 1);
+}
+
+@keyframes scene-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.28) rotate(-3deg);
+    opacity: 0.58;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(7.2) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+.map-copy {
+  position: absolute;
+  top: 19px;
+  left: 23px;
+  z-index: 8;
+  max-width: 470px;
+  pointer-events: none;
+}
+
+.map-question {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+  font-weight: 800;
+}
+
+.map-explainer {
+  width: fit-content;
+  max-width: 390px;
+  margin-top: 7px;
+  pointer-events: auto;
+}
+
+.map-explainer summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 4px 5px;
+  transform: rotate(-0.35deg);
+  border: 1px solid rgba(31, 41, 40, 0.38);
+  border-radius: 12px 8px 11px 7px;
+  background: rgba(255, 250, 240, 0.78);
+  color: #40504c;
+  font: 760 0.64rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  cursor: pointer;
+  list-style: none;
+}
+
+.map-explainer summary::-webkit-details-marker {
+  display: none;
+}
+
+.map-explainer summary span {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid currentColor;
+  border-radius: 47% 53% 45% 55%;
+  font: 900 0.67rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.map-explainer-body {
+  margin-top: 6px;
+  padding: 8px 10px 9px;
+  transform: rotate(0.2deg);
+  border: 1.5px solid rgba(31, 41, 40, 0.44);
+  border-radius: 8px 14px 9px 12px;
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 4px 5px 0 rgba(31, 41, 40, 0.1);
+}
+
+.map-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  font-weight: 650;
+}
+
+.map-reading-guide {
+  max-width: 410px;
+  margin: 7px 0 0;
+  padding: 5px 0 4px 10px;
+  border-left: 3px solid rgba(53, 107, 107, 0.48);
+  color: #40504c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.68rem;
+  line-height: 1.38;
+}
+
+.map-impact {
+  display: grid;
+  grid-template-columns: auto minmax(120px, 185px);
+  align-items: center;
+  gap: 11px;
+  width: fit-content;
+  max-width: 360px;
+  margin: 13px 0 0;
+  padding: 8px 13px 8px 11px;
+  transform: rotate(-0.7deg);
+  border: 2px solid rgba(31, 41, 40, 0.56);
+  border-radius: 9px 16px 8px 13px;
+  background: rgba(255, 250, 240, 0.88);
+  box-shadow: 4px 5px 0 rgba(31, 41, 40, 0.13);
+  backdrop-filter: blur(5px);
+}
+
+.map-impact-value {
+  color: #a64b45;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.5vw, 3.45rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+
+.climate-explorer[data-indicator="land"] .map-impact-value {
+  color: #9f403d;
+}
+
+.climate-explorer[data-indicator="rain"] .map-impact-value {
+  color: #2474a6;
+}
+
+.climate-explorer[data-indicator="sea_level"] .map-impact-value {
+  color: #416f96;
+}
+
+.map-impact-label {
+  color: #34433f;
+  font: 780 0.65rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.map-impact-value.is-rain-balance {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  color: var(--ink);
+  font-size: 1rem;
+  letter-spacing: normal;
+  white-space: normal;
+}
+
+.rain-impact-side {
+  display: grid;
+  min-width: 38px;
+  padding: 2px 4px 3px;
+  border-bottom: 2px solid currentColor;
+  text-align: center;
+}
+
+.rain-impact-side b {
+  font: 900 clamp(1.85rem, 2.8vw, 2.75rem)/0.82 Georgia, "Times New Roman", serif;
+  letter-spacing: -0.06em;
+}
+
+.rain-impact-side small {
+  margin-top: 4px;
+  font: 800 0.56rem/1 "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0.01em;
+}
+
+.rain-impact-side.is-drier {
+  color: #c85e2d;
+}
+
+.rain-impact-side.is-near {
+  min-width: 30px;
+  color: #6b7067;
+}
+
+.rain-impact-side.is-wetter {
+  color: #2474a6;
+}
+
+.climate-explorer[data-indicator="sea_level"] .map-impact-value {
+  color: #416f96;
+}
+
+.climate-explorer[data-indicator="rain"] .map-impact {
+  border-color: rgba(36, 116, 166, 0.68);
+  box-shadow: 4px 5px 0 rgba(36, 116, 166, 0.13);
+}
+
+.map-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.map-svg:active {
+  cursor: grabbing;
+}
+
+.map-paper-texture {
+  fill: #2d4440;
+  filter: url(#map-paper-noise);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ocean-sphere {
+  fill: rgba(224, 244, 242, 0.55);
+  stroke: rgba(37, 76, 78, 0.54);
+  stroke-width: 1.2;
+}
+
+.graticule {
+  fill: none;
+  stroke: rgba(37, 76, 78, 0.13);
+  stroke-width: 0.6;
+  stroke-dasharray: 2 5;
+}
+
+.world-land {
+  fill: rgba(111, 132, 96, 0.46);
+  stroke: rgba(47, 67, 47, 0.62);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+}
+
+.world-land-hatch {
+  fill: url(#map-pencil-hatch);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.zone {
+  stroke: rgba(28, 52, 57, 0.68);
+  stroke-width: 0.95;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition: stroke-width 120ms ease, filter 120ms ease;
+}
+
+.zone:hover,
+.zone:focus-visible {
+  stroke: #152c31;
+  stroke-width: 2.2;
+  outline: none;
+  filter: brightness(1.04);
+}
+
+.zone.is-selected {
+  stroke: #122a2e;
+  stroke-width: 2.5;
+  filter: drop-shadow(1px 2px 2px rgba(20, 35, 35, 0.25));
+}
+
+.map-code {
+  fill: #263f42;
+  stroke: rgba(255, 250, 240, 0.92);
+  stroke-width: 2.6px;
+  paint-order: stroke;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10px;
+  font-weight: 900;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.selection-marker {
+  pointer-events: none;
+}
+
+.selection-marker-rough path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.selection-marker circle:first-child {
+  fill: none;
+  stroke: #132e31;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+
+.selection-marker circle:last-child {
+  fill: #fffaf0;
+  stroke: #132e31;
+  stroke-width: 1.5;
+}
+
+.map-year {
+  position: absolute;
+  top: 54%;
+  left: 53%;
+  z-index: 4;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  color: rgba(255, 250, 240, 0.2);
+  text-shadow: 1px 2px 0 rgba(31, 41, 40, 0.1);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(7rem, 16vw, 15rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.08em;
+  mix-blend-mode: screen;
+  transition: color 180ms ease, transform 180ms ease;
+  pointer-events: none;
+}
+
+.climate-explorer.is-playing .map-year {
+  color: rgba(255, 250, 240, 0.34);
+  mix-blend-mode: normal;
+  text-shadow: none;
+}
+
+.climate-explorer.is-playing .play-button {
+  background: var(--ink);
+  color: var(--paper-light);
+}
+
+@keyframes year-beat {
+  from {
+    transform: translate(-50%, -50%) rotate(-2deg) scale(0.985);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-1deg) scale(1.025);
+  }
+}
+
+.legend {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: auto minmax(130px, 260px) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 16px;
+  border: 1px solid rgba(31, 41, 40, 0.18);
+  border-radius: 10px 12px 8px 11px;
+  background: rgba(255, 250, 240, 0.83);
+  backdrop-filter: blur(5px);
+}
+
+.legend-ramp {
+  position: relative;
+  height: 9px;
+  border: 1px solid rgba(31, 41, 40, 0.4);
+  border-radius: 999px;
+}
+
+.legend-mid {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%) rotate(-1deg);
+  color: #4f5c58;
+  font: 750 0.55rem/1 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.legend-label {
+  color: #4f5c58;
+  font-size: 0.63rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.drag-hint {
+  position: absolute;
+  right: 19px;
+  bottom: 14px;
+  z-index: 9;
+  margin: 0;
+  color: rgba(42, 58, 55, 0.7);
+  font: 650 0.63rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  pointer-events: none;
+}
+
+.climate-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 210px;
+  max-width: calc(100% - 24px);
+  box-sizing: border-box;
+  min-width: 175px;
+  padding: 9px 11px;
+  border: 1px solid rgba(31, 41, 40, 0.32);
+  border-radius: 9px 12px 8px 11px;
+  background: rgba(255, 250, 240, 0.95);
+  box-shadow: 4px 5px 0 rgba(31, 41, 40, 0.11);
+  contain: layout paint style;
+  pointer-events: none;
+  transform: translate3d(-200vw, -200vh, 0);
+  will-change: transform;
+}
+
+.climate-tooltip strong,
+.climate-tooltip span {
+  display: block;
+}
+
+.climate-tooltip strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.92rem;
+}
+
+.climate-tooltip span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.territory-panel {
+  --portrait-accent: var(--teal);
+  --portrait-wash: rgba(53, 107, 107, 0.08);
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  box-sizing: border-box;
+  padding: 27px 25px 22px;
+  border: 0;
+  border-radius: 12px 8px 15px 9px;
+  background:
+    linear-gradient(105deg, rgba(255, 250, 240, 0.97), rgba(255, 250, 240, 0.9)),
+    repeating-linear-gradient(64deg, transparent 0, transparent 10px, var(--portrait-wash) 10px, var(--portrait-wash) 11px);
+  box-shadow: 5px 7px 0 rgba(31, 41, 40, 0.12);
+}
+
+.territory-panel[data-portrait="ocean"],
+.territory-panel[data-portrait="land"] {
+  --portrait-accent: #a64b45;
+  --portrait-wash: rgba(166, 75, 69, 0.08);
+}
+
+.territory-panel[data-portrait="rain"] {
+  --portrait-accent: #2474a6;
+  --portrait-wash: rgba(36, 116, 166, 0.08);
+}
+
+.territory-panel[data-portrait="sea_level"] {
+  --portrait-accent: #416f96;
+  --portrait-wash: rgba(65, 111, 150, 0.08);
+}
+
+.territory-frame {
+  position: absolute;
+  inset: -3px;
+  z-index: 0;
+  display: block;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.territory-frame path {
+  vector-effect: non-scaling-stroke;
+}
+
+.territory-frame-line {
+  opacity: 0.78;
+}
+
+.territory-frame-swatch {
+  opacity: 0.24;
+}
+
+.territory-panel > :not(.territory-frame) {
+  position: relative;
+  z-index: 1;
+}
+
+.territory-panel::before {
+  content: none;
+}
+
+.territory-panel .panel-kicker {
+  margin-bottom: 6px;
+  color: var(--portrait-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.panel-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.65rem;
+  line-height: 1.02;
+}
+
+.panel-code {
+  min-height: 30px;
+  margin: 6px 0 13px;
+  color: var(--muted);
+  font: 750 0.68rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+  line-height: 1.35;
+}
+
+.portrait-summary {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 146px;
+  margin: 2px -4px 4px;
+  padding: 13px 12px 10px;
+}
+
+.portrait-summary-sketch {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.portrait-summary-sketch path {
+  vector-effect: non-scaling-stroke;
+}
+
+.portrait-summary-frame {
+  opacity: 0.78;
+}
+
+.portrait-summary-divider {
+  opacity: 0.72;
+}
+
+.portrait-summary-swatch {
+  opacity: 0.2;
+}
+
+.portrait-now,
+.portrait-shift {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.portrait-now {
+  padding-right: 11px;
+}
+
+.portrait-shift {
+  padding-left: 12px;
+}
+
+.portrait-reading-kicker,
+.portrait-shift-kicker,
+.panel-context-kicker {
+  margin: 0 0 7px;
+  color: var(--portrait-accent);
+  font: 850 0.55rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0.08em;
+}
+
+.panel-reading {
+  display: block;
+  padding: 0;
+}
+
+.panel-value {
+  display: block;
+  white-space: nowrap;
+  color: var(--portrait-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 1.9vw, 1.55rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-variant-numeric: tabular-nums;
+}
+
+.territory-panel[data-portrait="rain"] .panel-value {
+  font-size: 1.32rem;
+}
+
+.panel-year {
+  display: block;
+  min-height: 39px;
+  margin-top: 8px;
+  color: var(--muted);
+  font: 720 0.6rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.portrait-shift-value {
+  display: block;
+  white-space: nowrap;
+  color: var(--portrait-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+
+.portrait-shift-years {
+  display: block;
+  min-height: 28px;
+  margin-top: 4px;
+  color: #5c6864;
+  font: 720 0.51rem/1.3 "Segoe Print", "Bradley Hand", cursive;
+  overflow-wrap: anywhere;
+}
+
+.portrait-shift-years.is-period {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.portrait-shift-spark {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 1px 0 2px;
+  overflow: visible;
+}
+
+.portrait-shift-spark path {
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portrait-shift-zero {
+  opacity: 0.55;
+}
+
+.portrait-shift-archive {
+  opacity: 0.28;
+}
+
+.portrait-shift-progress {
+  opacity: 0.98;
+}
+
+.portrait-shift-note {
+  min-height: 28px;
+  margin: 0;
+  color: #53605c;
+  font: 720 0.53rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.portrait-shift[data-state="building"] .portrait-shift-value {
+  color: #7d7161;
+}
+
+.portrait-ribbon-block {
+  margin-top: 11px;
+  padding: 8px 5px 2px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.portrait-ribbon-heading {
+  display: flex;
+  justify-content: space-between;
+  color: var(--portrait-accent);
+  font: 820 0.58rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  font-weight: 820;
+  letter-spacing: 0.09em;
+}
+
+.territory-ribbon {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portrait-ribbon-frame {
+  fill: none;
+  stroke: rgba(31, 41, 40, 0.58);
+  stroke-width: 1;
+}
+
+.rough-ribbon-frame {
+  opacity: 0.88;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.rough-ribbon-frame path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portrait-ribbon-year {
+  fill: #66716d;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.portrait-ribbon-future {
+  fill: rgba(255, 250, 240, 0.6);
+  pointer-events: none;
+}
+
+.portrait-year-marker {
+  pointer-events: none;
+}
+
+.detail-figure {
+  margin: 3px 0 1px;
+}
+
+.detail-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+}
+
+.detail-chart-caption {
+  margin: -4px 4px 2px;
+  color: #56635f;
+  font: 720 0.6rem/1.25 "Segoe Print", "Bradley Hand", cursive;
+  text-align: center;
+}
+
+.portrait-chart-area {
+  opacity: 0.2;
+}
+
+.chart-line-archive {
+  opacity: 0.27;
+}
+
+.chart-progress-line {
+  opacity: 0.98;
+}
+
+.rough-chart-line path {
+  stroke-dasharray: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rough-zero-line path,
+.rough-year-marker path {
+  stroke-linecap: round;
+}
+
+.portrait-rough-axis,
+.zero-line {
+  opacity: 0.62;
+}
+
+.portrait-axis-label,
+.portrait-scale-label,
+.portrait-current-label {
+  fill: #52615d;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+}
+
+.portrait-axis-label,
+.portrait-scale-label {
+  font-size: 8px;
+}
+
+.portrait-current-label {
+  fill: var(--portrait-accent);
+  stroke: rgba(255, 250, 240, 0.94);
+  stroke-width: 3px;
+  paint-order: stroke;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.detail-year-marker,
+.year-dot {
+  pointer-events: none;
+}
+
+.climate-explorer.is-playing .panel-value,
+.climate-explorer.is-playing .portrait-shift-value,
+.climate-explorer.is-playing .detail-chart-caption {
+  text-shadow: 0 0 14px color-mix(in srgb, var(--portrait-accent) 24%, transparent);
+}
+
+.panel-context {
+  margin-top: 7px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(31, 41, 40, 0.22);
+}
+
+.panel-context-kicker {
+  margin-bottom: 6px;
+}
+
+.panel-stats {
+  display: grid;
+  gap: 6px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.panel-stats > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.72rem;
+}
+
+.panel-stats span {
+  color: var(--muted);
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 0.68rem;
+}
+
+.panel-stats strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 780;
+  text-align: right;
+}
+
+.panel-method {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(31, 41, 40, 0.25);
+  color: #6b736f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.69rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.ribbon-atlas {
+  margin-top: 26px;
+  padding: 24px 26px 20px;
+  border: 1px solid rgba(31, 41, 40, 0.3);
+  border-radius: 15px 23px 12px 20px;
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.93), rgba(247, 242, 229, 0.96)),
+    repeating-linear-gradient(0deg, transparent 0, transparent 25px, rgba(65, 93, 83, 0.06) 25px, rgba(65, 93, 83, 0.06) 26px);
+  box-shadow: 7px 8px 0 rgba(43, 67, 62, 0.07);
+}
+
+.ribbon-atlas-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 10px;
+}
+
+.ribbon-atlas-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 3vw, 2.3rem);
+  letter-spacing: -0.025em;
+}
+
+.ribbon-atlas-heading > p {
+  max-width: 460px;
+  margin: 0;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.ribbon-overview {
+  margin: 14px 0 28px;
+  padding: 10px 14px 16px;
+  border: 1px dashed rgba(31, 41, 40, 0.25);
+  border-radius: 10px 16px 9px 13px;
+  background: rgba(53, 107, 107, 0.035);
+}
+
+.ribbon-detail {
+  --detail-accent: #a64b45;
+  position: relative;
+  isolation: isolate;
+  margin: 18px 0 20px;
+  padding: 18px 20px 14px;
+  border: 1px solid rgba(31, 41, 40, 0.28);
+  border-radius: 12px 18px 10px 15px;
+  background:
+    linear-gradient(105deg, rgba(255, 250, 240, 0.97), rgba(249, 245, 234, 0.92)),
+    repeating-linear-gradient(64deg, transparent 0, transparent 11px, color-mix(in srgb, var(--detail-accent) 8%, transparent) 11px, color-mix(in srgb, var(--detail-accent) 8%, transparent) 12px);
+  box-shadow: 5px 6px 0 rgba(31, 41, 40, 0.09);
+}
+
+.ribbon-detail[data-indicator="land"] {
+  --detail-accent: #9f403d;
+}
+
+.ribbon-detail[data-indicator="rain"] {
+  --detail-accent: #2474a6;
+}
+
+.ribbon-detail[data-indicator="sea_level"] {
+  --detail-accent: #416f96;
+}
+
+.ribbon-detail[data-indicator="compare"] {
+  --detail-accent: #356b6b;
+}
+
+.ribbon-detail-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ribbon-detail-meta {
+  display: grid;
+  justify-items: end;
+  gap: 9px;
+}
+
+.territory-compare-control {
+  display: grid;
+  grid-template-columns: auto minmax(190px, 260px);
+  align-items: center;
+  gap: 9px;
+  color: #52615d;
+  font: 800 0.64rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.territory-compare-select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 36px;
+  padding: 7px 30px 7px 10px;
+  border: 1px solid rgba(53, 107, 107, 0.45);
+  border-radius: 8px 11px 7px 10px;
+  background-color: rgba(255, 250, 240, 0.96);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3 6 5 5 5-5' fill='none' stroke='%23356b6b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8'/%3E%3C/svg%3E");
+  background-position: right 9px center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  color: #34433f;
+  color-scheme: light;
+  font: 700 0.72rem/1.2 Inter, ui-sans-serif, system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.territory-compare-select option {
+  background: var(--paper-light);
+  color: var(--ink);
+}
+
+.territory-compare-select:hover,
+.territory-compare-select:focus-visible {
+  border-color: var(--teal);
+  outline: 2px solid rgba(53, 107, 107, 0.18);
+  outline-offset: 2px;
+}
+
+.ribbon-detail-heading .panel-kicker {
+  margin-bottom: 5px;
+  color: var(--detail-accent);
+}
+
+.ribbon-detail-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  line-height: 1.05;
+}
+
+.ribbon-detail-metric {
+  max-width: 520px;
+  margin: 0;
+  color: var(--detail-accent);
+  font: 800 0.72rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+  text-align: right;
+}
+
+.portrait-export {
+  padding: 8px 12px 7px;
+  border: 1px solid color-mix(in srgb, var(--detail-accent) 62%, transparent);
+  border-radius: 8px 12px 7px 10px;
+  background: color-mix(in srgb, var(--detail-accent) 8%, var(--paper-light));
+  color: var(--detail-accent);
+  font: 800 0.68rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  cursor: pointer;
+}
+
+.portrait-export:hover,
+.portrait-export:focus-visible {
+  background: color-mix(in srgb, var(--detail-accent) 15%, var(--paper-light));
+  outline: 2px solid color-mix(in srgb, var(--detail-accent) 28%, transparent);
+  outline-offset: 2px;
+}
+
+.portrait-export:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.ribbon-comparison {
+  --detail-accent: #416f96;
+  margin: 15px 0 0;
+  padding: 15px 0 0;
+  border-top: 2px dashed rgba(65, 111, 150, 0.34);
+}
+
+.ribbon-comparison[hidden] {
+  display: none;
+}
+
+.ribbon-comparison-toolbar {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.comparison-remove {
+  padding: 6px 9px;
+  border: 1px solid rgba(65, 111, 150, 0.35);
+  border-radius: 7px 10px 6px 9px;
+  background: transparent;
+  color: #526b7e;
+  font: 800 0.62rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  cursor: pointer;
+}
+
+.comparison-remove:hover,
+.comparison-remove:focus-visible {
+  background: rgba(65, 111, 150, 0.09);
+  outline: 2px solid rgba(65, 111, 150, 0.18);
+  outline-offset: 2px;
+}
+
+.ribbon-comparison-guide {
+  max-width: 820px;
+  margin: 0;
+  color: #596762;
+  font: 0.72rem/1.45 Georgia, "Times New Roman", serif;
+}
+
+.ribbon-detail.is-comparing > .territory-climate-summary,
+.ribbon-detail.is-comparing > .ribbon-detail-summary,
+.ribbon-detail.is-comparing > .ribbon-reading-key,
+.ribbon-detail.is-comparing > .ribbon-detail-figure,
+.ribbon-detail.is-comparing > .ribbon-detail-reading {
+  display: none;
+}
+
+.ribbon-detail.is-comparing {
+  --detail-accent: #416f96;
+  background:
+    linear-gradient(105deg, rgba(245, 248, 244, 0.98), rgba(248, 245, 234, 0.94)),
+    repeating-linear-gradient(64deg, transparent 0, transparent 11px, rgba(65, 111, 150, 0.055) 11px, rgba(65, 111, 150, 0.055) 12px);
+}
+
+.comparison-contrast {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+  gap: 22px;
+  margin: 12px 0;
+  padding: 13px 15px;
+  border-left: 4px solid #416f96;
+  border-radius: 7px 13px 8px 6px;
+  background: rgba(65, 111, 150, 0.08);
+}
+
+.comparison-contrast-kicker {
+  margin: 0 0 4px;
+  color: #416f96;
+  font: 850 0.58rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0.1em;
+}
+
+.comparison-contrast-title {
+  margin: 0;
+  color: #34433f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.98rem;
+}
+
+.comparison-contrast ul {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comparison-contrast li {
+  position: relative;
+  padding-left: 17px;
+  color: #45534f;
+  font: 0.7rem/1.4 Georgia, "Times New Roman", serif;
+}
+
+.comparison-contrast li::before {
+  position: absolute;
+  left: 0;
+  color: #416f96;
+  content: "↔";
+  font-weight: 900;
+}
+
+.comparison-pair-bg {
+  fill: rgba(65, 111, 150, 0.025);
+  stroke: rgba(65, 111, 150, 0.12);
+}
+
+.comparison-country-lane {
+  outline: none;
+}
+
+.comparison-country-lane:focus-visible .ribbon-detail-frame {
+  stroke: #183a3c;
+  stroke-width: 2.2;
+}
+
+.comparison-country-lane:focus-visible .ribbon-detail-frame path:not([stroke="none"]) {
+  stroke: #183a3c;
+  stroke-width: 1.55;
+}
+
+.comparison-country-label {
+  fill: #34433f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.comparison-country-lane-primary .comparison-country-label {
+  fill: #9f403d;
+}
+
+.comparison-country-lane-secondary .comparison-country-label {
+  fill: #416f96;
+}
+
+.comparison-pair-evolution-fo {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.comparison-pair-evolution {
+  overflow: hidden;
+  color: #64706c;
+  font: 700 8px/1.25 "Segoe Print", "Bradley Hand", cursive;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.comparison-pair-evolution.is-up {
+  color: #8b4b46;
+}
+
+.comparison-pair-evolution.is-wetter {
+  color: #2474a6;
+}
+
+.comparison-pair-evolution.is-down,
+.comparison-pair-evolution.is-drier {
+  color: #557089;
+}
+
+.ribbon-detail-summary {
+  margin: 7px 0 5px;
+  color: #5c6864;
+  font: 720 0.68rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.territory-climate-summary {
+  margin: 12px 0 10px;
+  padding: 11px 13px 10px;
+  border-left: 4px solid var(--detail-accent);
+  border-radius: 5px 12px 8px 5px;
+  background: color-mix(in srgb, var(--detail-accent) 8%, var(--paper-light));
+}
+
+.territory-summary-kicker {
+  margin: 0 0 4px;
+  color: var(--detail-accent);
+  font: 880 0.58rem/1.2 "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0.1em;
+}
+
+.territory-summary-text {
+  margin: 0;
+  color: #34433f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.86rem, 1.2vw, 1rem);
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.ribbon-reading-key {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.ribbon-reading-key li {
+  position: relative;
+  padding: 7px 9px 7px 24px;
+  border: 1px solid rgba(53, 107, 107, 0.24);
+  border-radius: 8px 11px 7px 9px;
+  background: rgba(53, 107, 107, 0.055);
+  color: #465550;
+  font: 720 0.66rem/1.3 Georgia, "Times New Roman", serif;
+}
+
+.ribbon-reading-key li::before {
+  position: absolute;
+  top: 7px;
+  left: 9px;
+  color: var(--detail-accent);
+  content: "?";
+  font-weight: 900;
+}
+
+.ribbon-detail-figure {
+  margin: 0;
+}
+
+.ribbon-detail-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  outline: none;
+}
+
+.ribbon-detail-svg:focus-visible {
+  border-radius: 8px;
+  outline: 3px solid color-mix(in srgb, var(--detail-accent) 34%, transparent);
+  outline-offset: 3px;
+}
+
+.ribbon-detail-band-bg {
+  fill: rgba(31, 41, 40, 0.08);
+}
+
+.ribbon-detail-metric-row {
+  cursor: pointer;
+  outline: none;
+}
+
+.ribbon-detail-row-bg {
+  fill: transparent;
+  stroke: transparent;
+  transition: fill 120ms ease, stroke 120ms ease;
+}
+
+.ribbon-detail-metric-row:hover .ribbon-detail-row-bg,
+.ribbon-detail-metric-row:focus-visible .ribbon-detail-row-bg {
+  fill: rgba(53, 107, 107, 0.055);
+  stroke: rgba(53, 107, 107, 0.24);
+}
+
+.ribbon-detail-metric-row.is-active-metric .ribbon-detail-row-bg {
+  fill: rgba(53, 107, 107, 0.095);
+  stroke: rgba(53, 107, 107, 0.4);
+}
+
+.ribbon-detail-row-title {
+  fill: #34423f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.ribbon-detail-row-range,
+.ribbon-detail-scale-label {
+  fill: #69746f;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 9px;
+  font-weight: 720;
+}
+
+.ribbon-detail-evolution-fo {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ribbon-detail-evolution {
+  color: #45534f;
+  font: 760 9px/1.28 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.ribbon-detail-evolution.is-up {
+  color: #8b4b46;
+}
+
+.ribbon-detail-evolution.is-wetter {
+  color: #2474a6;
+}
+
+.ribbon-detail-evolution.is-down {
+  color: #456f8a;
+}
+
+.ribbon-detail-evolution.is-drier {
+  color: #c85e2d;
+}
+
+.ribbon-detail-evolution.is-variable {
+  color: #5b6260;
+}
+
+.ribbon-detail-metric-row[data-indicator="sea_level"] .ribbon-detail-evolution.is-up {
+  color: #416f96;
+}
+
+.ribbon-detail-scale-label {
+  font-size: 8px;
+}
+
+.ribbon-detail-scale-mid {
+  fill: #4d5a56;
+  font-weight: 850;
+}
+
+.ribbon-detail-metric-row.is-active-metric .ribbon-detail-row-title {
+  fill: #285d5f;
+}
+
+.ribbon-detail-metric-row.is-active-metric .ribbon-detail-frame {
+  stroke: #285d5f;
+  stroke-width: 2;
+}
+
+.ribbon-detail-metric-row.is-active-metric .ribbon-detail-frame path:not([stroke="none"]),
+.ribbon-detail-metric-row.is-active-metric .chart-sketch-frame path:not([stroke="none"]) {
+  stroke: #285d5f;
+  stroke-width: 1.45;
+}
+
+.ribbon-detail-frame {
+  fill: none;
+  stroke: rgba(31, 41, 40, 0.68);
+  stroke-width: 1.4;
+  stroke-dasharray: 8 2 3 2;
+  pointer-events: none;
+}
+
+.ribbon-detail-stripe {
+  transition: opacity 100ms ease;
+}
+
+.ribbon-detail-stripe.is-current {
+  stroke: #182e2f;
+  stroke-width: 2.4;
+  paint-order: stroke;
+}
+
+.ribbon-detail-axis-label,
+.ribbon-detail-empty {
+  fill: #65706c;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.ribbon-detail-empty {
+  font-size: 15px;
+}
+
+.ribbon-detail-zero {
+  stroke: rgba(31, 41, 40, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.ribbon-detail-area {
+  fill: color-mix(in srgb, var(--detail-accent) 16%, transparent);
+}
+
+.ribbon-detail-line {
+  fill: none;
+  stroke: var(--detail-accent);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ribbon-detail-marker line,
+.ribbon-detail-marker path {
+  stroke: rgba(24, 46, 47, 0.78);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+}
+
+.ribbon-detail-dot {
+  fill: var(--paper-light);
+  stroke: var(--detail-accent);
+  stroke-width: 2.2;
+}
+
+.ribbon-detail-hit {
+  fill: transparent;
+  cursor: crosshair;
+}
+
+.ribbon-detail-caption {
+  margin: -3px 4px 0;
+  color: #596560;
+  font: 700 0.65rem/1.35 Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+.ribbon-detail-reading {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  width: fit-content;
+  min-height: 26px;
+  margin: 8px 0 0 auto;
+  padding: 6px 10px 5px;
+  transform: rotate(-0.25deg);
+  border: 1px solid color-mix(in srgb, var(--detail-accent) 42%, transparent);
+  border-radius: 8px 11px 7px 10px;
+  background: color-mix(in srgb, var(--detail-accent) 7%, var(--paper-light));
+}
+
+.story-conclusion {
+  margin-top: 30px;
+  padding: 24px 22px 20px;
+  border-top: 3px double rgba(53, 107, 107, 0.5);
+  border-bottom: 1px solid rgba(31, 41, 40, 0.2);
+  background:
+    linear-gradient(115deg, rgba(221, 237, 232, 0.58), rgba(255, 250, 240, 0.68));
+}
+
+.story-conclusion-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.story-conclusion-heading h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.4rem, 2.4vw, 2.05rem);
+  letter-spacing: -0.025em;
+}
+
+.story-conclusion-lede {
+  max-width: 430px;
+  margin: 0;
+  color: #596560;
+  font: 0.76rem/1.45 Georgia, "Times New Roman", serif;
+}
+
+.conclusion-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.conclusion-card {
+  position: relative;
+  min-height: 158px;
+  padding: 18px 16px 15px;
+  border: 1px solid rgba(31, 41, 40, 0.25);
+  border-radius: 10px 15px 9px 13px;
+  background: rgba(255, 250, 240, 0.78);
+}
+
+.conclusion-card[data-conclusion="heat"] {
+  border-top: 4px solid #a64b45;
+}
+
+.conclusion-card[data-conclusion="rain"] {
+  border-top: 4px solid #2474a6;
+}
+
+.conclusion-card[data-conclusion="sea"] {
+  border-top: 4px solid #416f96;
+}
+
+.conclusion-index {
+  position: absolute;
+  top: 13px;
+  right: 14px;
+  color: rgba(31, 41, 40, 0.28);
+  font: 850 0.62rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.1em;
+}
+
+.conclusion-card h4 {
+  margin: 0 36px 9px 0;
+  color: #34423f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.conclusion-card p {
+  margin: 0 0 12px;
+  color: #34433f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.conclusion-card small {
+  display: block;
+  color: #65706c;
+  font: 700 0.64rem/1.4 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.conclusion-footnote {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 1px dashed rgba(31, 41, 40, 0.26);
+}
+
+.conclusion-footnote p {
+  max-width: 900px;
+  margin: 0;
+  color: #596560;
+  font: italic 0.71rem/1.45 Georgia, "Times New Roman", serif;
+}
+
+.conclusion-footnote a {
+  flex: 0 0 auto;
+  color: var(--teal);
+  font: 800 0.67rem/1.3 "Segoe Print", "Bradley Hand", cursive;
+  text-underline-offset: 3px;
+}
+
+.ribbon-wall-active {
+  width: fit-content;
+  margin: 8px 0 5px;
+  padding: 6px 9px;
+  border-left: 3px solid var(--teal);
+  color: #4e5c58;
+  font: 720 0.68rem/1.35 Georgia, "Times New Roman", serif;
+}
+
+.ribbon-detail-value {
+  color: var(--detail-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.ribbon-detail-year {
+  color: #5c6864;
+  font: 750 0.65rem/1.3 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.ribbon-wall-wrap {
+  position: relative;
+}
+
+.ribbon-wall {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  transition: opacity 180ms ease;
+}
+
+.ribbon-atlas.is-updating .ribbon-wall {
+  opacity: 0.48;
+}
+
+.ribbon-row {
+  cursor: pointer;
+}
+
+.ribbon-stripe {
+  cursor: crosshair;
+}
+
+.ribbon-row-bg {
+  fill: transparent;
+  transition: fill 120ms ease;
+}
+
+.ribbon-row:hover .ribbon-row-bg,
+.ribbon-row:focus-visible .ribbon-row-bg {
+  fill: rgba(53, 107, 107, 0.08);
+}
+
+.ribbon-row.is-selected .ribbon-row-bg {
+  fill: rgba(53, 107, 107, 0.13);
+}
+
+.ribbon-row:focus-visible {
+  outline: none;
+}
+
+.ribbon-territory {
+  fill: #34423f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 9px;
+  font-weight: 650;
+  pointer-events: none;
+}
+
+.ribbon-row.is-selected .ribbon-territory {
+  fill: #356b6b;
+  font-weight: 900;
+}
+
+.ribbon-frame {
+  fill: none;
+  stroke: rgba(31, 41, 40, 0.38);
+  stroke-width: 0.8;
+  pointer-events: none;
+}
+
+.ribbon-row.is-selected .ribbon-frame {
+  stroke: #183a3c;
+  stroke-width: 1.7;
+}
+
+.ribbon-row.is-selected .rough-ribbon-frame {
+  opacity: 1;
+}
+
+.ribbon-row.is-selected .rough-ribbon-frame path:not([stroke="none"]) {
+  stroke: #183a3c;
+  stroke-width: 1.15;
+}
+
+.ribbon-wall-marker {
+  stroke: rgba(24, 47, 47, 0.88);
+  stroke-width: 1.1;
+  stroke-dasharray: 2 2;
+  pointer-events: none;
+}
+
+.ribbon-axis-year {
+  fill: #69746f;
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.ribbon-tooltip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  width: min(240px, calc(100vw - 24px));
+  min-width: 190px;
+  max-width: 280px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 2px solid rgba(31, 41, 40, 0.58);
+  border-radius: 9px 13px 8px 11px;
+  background: rgba(255, 250, 240, 0.98);
+  box-shadow: 5px 6px 0 rgba(31, 41, 40, 0.13);
+  contain: layout paint style;
+  pointer-events: none;
+  transform: translate3d(-200vw, -200vh, 0);
+  will-change: transform;
+}
+
+.ribbon-tooltip strong,
+.ribbon-tooltip span,
+.ribbon-tooltip b,
+.ribbon-tooltip small {
+  display: block;
+}
+
+.ribbon-tooltip strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+}
+
+.ribbon-tooltip span {
+  margin-top: 2px;
+  color: #65706c;
+  font-size: 0.67rem;
+}
+
+.ribbon-tooltip b {
+  margin-top: 7px;
+  color: var(--teal);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.ribbon-tooltip small {
+  margin-top: 2px;
+  color: #596560;
+  font: 700 0.62rem/1.35 "Segoe Print", "Bradley Hand", cursive;
+}
+
+.climate-note {
+  max-width: 1050px;
+  margin: 18px auto 35px;
+  padding: 0 24px;
+  color: #5b6662;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Keep title-like labels that are not native headings in the Contours h3 face. */
+.story-headline,
+.context-title,
+.scroll-card h2,
+.map-question,
+.climate-tooltip strong,
+.panel-title,
+.ribbon-atlas-heading h2,
+.ribbon-detail-title,
+.comparison-contrast-title,
+.ribbon-tooltip strong,
+.story-conclusion-heading h3,
+.conclusion-card h4 {
+  font-family: var(--contours-heading);
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+.climate-error {
+  max-width: 720px;
+  margin: 4rem auto;
+  padding: 1.2rem;
+  border: 1px solid #9b4b34;
+  background: #fffaf0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(53, 107, 107, 0.4);
+  outline-offset: 2px;
+}
+
+@media (max-width: 960px) {
+  .story-voice {
+    grid-template-columns: 1fr;
+  }
+
+  .context-bridge {
+    grid-template-columns: 1fr;
+  }
+
+  .story-stat {
+    max-width: 420px;
+    text-align: left;
+  }
+
+  .metric-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ribbon-reading-key {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .climate-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .territory-panel {
+    border: 0;
+  }
+
+  .ribbon-atlas-heading {
+    display: block;
+  }
+
+  .ribbon-atlas-heading > p {
+    margin-top: 8px;
+  }
+
+  .story-conclusion-heading {
+    display: block;
+  }
+
+  .comparison-contrast {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .story-conclusion-lede {
+    margin-top: 8px;
+  }
+
+  .conclusion-cards {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 620px) {
+  .climate-explorer {
+    padding: 17px 12px 26px;
+  }
+
+  .ribbon-reading-key {
+    grid-template-columns: 1fr;
+  }
+
+  .eyebrow {
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+  }
+
+  .explorer-header {
+    display: block;
+  }
+
+  .header-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 12px;
+  }
+
+  .header-stamp {
+    display: none;
+  }
+
+  .hero-formula {
+    gap: 5px;
+    font-size: 0.58rem;
+  }
+
+  .hero-formula span,
+  .hero-formula strong {
+    padding: 5px 7px 4px;
+  }
+
+  .story-nav {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 21px;
+  }
+
+  .story-step {
+    min-height: 46px;
+    padding: 8px 12px;
+  }
+
+  .story-voice {
+    min-height: 0;
+    padding: 16px;
+  }
+
+  .context-bridge {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .explore-row {
+    display: block;
+  }
+
+  .explore-row > span {
+    display: block;
+    margin-bottom: 7px;
+  }
+
+  .explore-help {
+    display: block;
+    margin-bottom: 9px;
+  }
+
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .method-grid > div {
+    min-height: 0;
+  }
+
+  .method-actions,
+  .conclusion-footnote {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .metric-tabs {
+    gap: 6px;
+    width: 100%;
+  }
+
+  .metric-tab {
+    min-height: 44px;
+    padding: 8px 10px;
+    font-size: 0.77rem;
+  }
+
+  .time-controls {
+    grid-template-columns: auto 1fr 62px;
+    gap: 7px;
+  }
+
+  .reset-view {
+    display: none;
+  }
+
+  .play-button {
+    min-width: 70px;
+    padding: 7px 10px;
+  }
+
+  .map-stage {
+    min-height: 540px;
+  }
+
+  .climate-workspace {
+    min-height: 540px;
+  }
+
+  .ribbon-atlas {
+    padding: 18px 12px 12px;
+    overflow-x: auto;
+  }
+
+  .ribbon-wall {
+    width: 1000px;
+  }
+
+  .legend {
+    right: 12px;
+    bottom: 35px;
+    left: 12px;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .drag-hint {
+    right: auto;
+    left: 14px;
+    bottom: 12px;
+  }
+
+  .map-year {
+    top: 57%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    font-size: clamp(6rem, 28vw, 8rem);
+  }
+}
+
+@media (max-width: 1239px) {
+  .scrolly-story {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scrolly-graphic {
+    position: relative;
+    top: auto;
+    order: 2;
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding-top: 0;
+  }
+
+  .scrolly-graphic::after {
+    display: none;
+  }
+
+  .scrolly-graphic .story-nav {
+    display: none;
+  }
+
+  .scrolly-graphic .climate-workspace {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: auto;
+    overflow: visible;
+  }
+
+  .scrolly-graphic .time-controls {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 0;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 8px;
+    transform: none;
+  }
+
+  .scrolly-graphic .map-stage {
+    position: relative;
+    inset: auto;
+    order: 1;
+    min-height: 560px;
+    height: 68vh;
+  }
+
+  .scrolly-graphic .context-bridge {
+    position: relative;
+    inset: auto;
+    grid-template-columns: minmax(220px, 0.8fr) minmax(280px, 1.2fr);
+    box-sizing: border-box;
+    width: 100%;
+    margin: 14px 0 10px;
+    transform: none;
+  }
+
+  .scrolly-graphic .territory-panel {
+    position: relative;
+    inset: auto;
+    order: 3;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    transform: none;
+  }
+
+  .scrolly-graphic .map-copy {
+    top: 82px;
+    left: 18px;
+  }
+
+  .scrolly-graphic .drag-hint {
+    right: 16px;
+    left: auto;
+  }
+
+  .scrolly-steps {
+    order: 1;
+    display: grid;
+    grid-auto-columns: min(82vw, 330px);
+    grid-auto-flow: column;
+    gap: 10px;
+    width: auto;
+    margin: 0 -12px 15px;
+    padding: 4px 12px 12px;
+    overflow-x: auto;
+    align-items: start;
+    scroll-snap-type: x mandatory;
+    pointer-events: auto;
+  }
+
+  .scroll-step {
+    min-height: 0;
+    scroll-snap-align: center;
+  }
+
+  .scroll-step[data-step="opening"] {
+    min-height: 0;
+  }
+
+  .scroll-card {
+    height: auto;
+    min-height: 160px;
+    transform: none;
+    opacity: 0.72;
+  }
+
+  .scroll-step.is-active .scroll-card {
+    transform: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .scrolly-graphic .map-stage {
+    min-height: 530px;
+    height: 72vh;
+  }
+
+  .scrolly-graphic .context-bridge {
+    grid-template-columns: 1fr;
+    padding: 18px 16px 14px;
+  }
+
+  .ribbon-detail {
+    min-width: 680px;
+    padding: 15px 16px 12px;
+  }
+
+  .ribbon-comparison {
+    min-width: 0;
+  }
+
+  .ribbon-detail-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .ribbon-detail-meta {
+    justify-items: start;
+  }
+
+  .territory-compare-control {
+    grid-template-columns: auto minmax(190px, 1fr);
+  }
+
+  .ribbon-comparison-toolbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ribbon-detail-metric {
+    text-align: left;
+  }
+
+  .scrolly-graphic .context-chart {
+    max-height: 105px;
+  }
+
+  .scrolly-graphic .map-copy {
+    top: 75px;
+    right: 15px;
+    max-width: 270px;
+  }
+
+  .map-impact {
+    grid-template-columns: auto minmax(90px, 130px);
+    gap: 8px;
+    max-width: 250px;
+    padding-right: 9px;
+  }
+
+  .map-impact-value {
+    font-size: 2rem;
+  }
+
+  .scrolly-graphic .drag-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

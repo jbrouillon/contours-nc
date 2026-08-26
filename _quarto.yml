@@ -25,11 +25,11 @@ website:
   description: "Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie"
   site-url: "https://contours.nc/"
   draft-mode: unlinked
-  favicon: images/contours-hexagon.png
+  favicon: images/contours-hexagon-256.png
   open-graph: true
   twitter-card: true
   navbar:
-    logo: images/contours-hexagon.png
+    logo: images/contours-hexagon-256.png
     title: "Contours"
     left:
       - text: "Articles"

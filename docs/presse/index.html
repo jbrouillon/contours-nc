@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -41,10 +44,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -266,35 +269,65 @@ ul.task-list li input[type="checkbox"] {
 
 </main> <!-- /main -->
 <script>
+
 (() => {
+
   const sourceToc = document.querySelector("#TOC");
+
   const main = document.querySelector("main#quarto-document-content");
+
   if (!sourceToc || !main || main.querySelector(".mobile-page-toc")) return;
 
+
+
   const sourceList = sourceToc.querySelector(":scope > ul");
+
   if (!sourceList) return;
 
+
+
   const details = document.createElement("details");
+
   details.className = "mobile-page-toc";
 
+
+
   const summary = document.createElement("summary");
+
   summary.textContent = "Sur cette page";
 
+
+
   const nav = document.createElement("nav");
+
   nav.setAttribute("aria-label", "Sommaire de la page");
 
+
+
   const list = sourceList.cloneNode(true);
+
   list.querySelectorAll("[id]").forEach((node) => node.removeAttribute("id"));
+
   list.querySelectorAll("ul.collapse").forEach((node) => {
+
     node.classList.remove("collapse");
+
     node.style.display = "block";
+
   });
 
+
+
   nav.appendChild(list);
+
   details.append(summary, nav);
+
   main.insertBefore(details, main.firstElementChild);
+
 })();
+
 </script>
+
 <nav class="floating-social" aria-label="Contacts et réseaux">
 
   <a class="floating-social__link" href="../contact/" aria-label="Contacter Contours.nc">
@@ -332,571 +365,1179 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 
 <script>
+
 (() => {
+
   const citationSection = document.querySelector("#quarto-citation");
+
   if (!citationSection || citationSection.dataset.contoursCitation === "true") return;
 
+
+
   const decodeEntities = (value) => {
+
     let decoded = value || "";
+
     const textarea = document.createElement("textarea");
+
     for (let i = 0; i < 3; i += 1) {
+
       textarea.innerHTML = decoded;
+
       const next = textarea.value;
+
       if (next === decoded) break;
+
       decoded = next;
+
     }
+
     return decoded;
+
   };
+
   const clean = (value) => decodeEntities(value).replace(/\s+/g, " ").trim();
+
   const meta = (name) => clean(document.querySelector(`meta[name="${name}"]`)?.content || "");
+
   const metas = (name) => Array.from(document.querySelectorAll(`meta[name="${name}"]`))
+
     .map((item) => clean(item.content))
+
     .filter(Boolean);
 
+
+
   const nativeBibtex = citationSection
+
     .querySelector(".quarto-appendix-bibtex code")
+
     ?.textContent
+
     ?.trim() || "";
 
+
+
   const title = meta("citation_title")
+
     || clean(document.querySelector("h1.title")?.textContent)
+
     || clean(document.title.replace(/\s*[–—|-]\s*Contours\s*$/i, ""));
 
+
+
   const fallbackAuthor = clean(
+
     document.querySelector(".quarto-title-meta > div:first-child .quarto-title-meta-contents")?.textContent
+
   );
+
   const authors = metas("citation_author");
+
   if (!authors.length && fallbackAuthor) authors.push(fallbackAuthor);
 
+
+
   const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+
   const url = meta("citation_fulltext_html_url") || new URL(canonical, window.location.href).href;
+
   const language = meta("citation_language") || document.documentElement.lang || "fr";
+
   const rawDate = meta("citation_publication_date")
+
     || meta("citation_online_date")
+
     || document.querySelector("time")?.getAttribute("datetime")
+
     || "";
 
+
+
   const parseDate = (value) => {
+
     const match = value.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
+
     if (!match) return null;
+
     return {
+
       year: match[1],
+
       month: match[2].padStart(2, "0"),
+
       day: match[3].padStart(2, "0"),
+
       value: new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
+
     };
+
   };
+
+
 
   const date = parseDate(rawDate);
+
   const year = date?.year || new Date().getFullYear().toString();
+
   const dateLong = date
+
     ? new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" }).format(date.value)
+
     : year;
+
   const dateApa = date
+
     ? new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long" }).format(date.value)
+
     : "";
+
   const accessDate = new Intl.DateTimeFormat("fr-FR", {
+
     day: "numeric",
+
     month: "long",
+
     year: "numeric"
+
   }).format(new Date());
 
+
+
   const splitName = (fullName) => {
+
     const parts = clean(fullName).split(" ").filter(Boolean);
+
     if (parts.length < 2) return { given: "", family: parts[0] || "" };
+
     return { given: parts.slice(0, -1).join(" "), family: parts.at(-1) };
+
   };
+
+
 
   const names = authors.map(splitName);
+
   const joinNames = (items, lastJoin = " et ") => {
+
     if (items.length < 2) return items[0] || "";
+
     if (items.length === 2) return items.join(lastJoin);
+
     return `${items.slice(0, -1).join(", ")}${lastJoin}${items.at(-1)}`;
+
   };
+
+
 
   const initials = (given) => given
+
     .split(/[\s-]+/)
+
     .filter(Boolean)
+
     .map((part) => `${part.charAt(0).toLocaleUpperCase("fr-FR")}.`)
+
     .join(" ");
 
+
+
   const apaAuthors = joinNames(
+
     names.map(({ given, family }) => `${family}, ${initials(given)}`.trim()),
+
     " & "
+
   );
+
   const chicagoAuthors = joinNames(
+
     names.map(({ given, family }, index) => index === 0
+
       ? `${family}, ${given}`.trim().replace(/,$/, "")
+
       : `${given} ${family}`.trim())
+
   );
+
   const isoAuthors = names
+
     .map(({ given, family }) => `${family.toLocaleUpperCase("fr-FR")}, ${given}`.trim().replace(/,$/, ""))
+
     .join(" ; ");
 
+
+
   const risAuthors = names
+
     .map(({ given, family }) => `AU  - ${family}, ${given}`.trimEnd())
+
     .join("\n");
+
   const risDate = date ? `${date.year}/${date.month}/${date.day}` : year;
+
   const ris = [
+
     "TY  - ELEC",
+
     risAuthors,
+
     `TI  - ${title}`,
+
     "T2  - Contours",
+
     `PY  - ${year}`,
+
     `DA  - ${risDate}`,
+
     `UR  - ${url}`,
+
     `LA  - ${language}`,
+
     "ER  -"
+
   ].filter(Boolean).join("\n");
 
+
+
   const fallbackBibtex = `@online{contours${year},
+
   author = {${authors.join(" and ")}},
+
   title = {${title}},
+
   date = {${date ? `${date.year}-${date.month}-${date.day}` : year}},
+
   url = {${url}},
+
   langid = {${language}}
+
 }`;
 
+
+
   const formats = {
+
     apa: {
+
       label: "APA 7",
+
       value: `${apaAuthors} (${year}${dateApa ? `, ${dateApa}` : ""}). ${title}. Contours. ${url}`
+
     },
+
     chicago: {
+
       label: "Chicago",
+
       value: `${chicagoAuthors}. « ${title} ». Contours, ${dateLong}. ${url}.`
+
     },
+
     iso: {
+
       label: "ISO 690",
+
       value: `${isoAuthors}. ${title} [en ligne]. Contours, ${dateLong} [consulté le ${accessDate}]. Disponible à l’adresse : ${url}.`
+
     },
+
     bibtex: {
+
       label: "BibTeX",
+
       extension: "bib",
+
       value: nativeBibtex || fallbackBibtex
+
     },
+
     ris: {
+
       label: "RIS",
+
       extension: "ris",
+
       value: ris
+
     }
+
   };
+
+
 
   const appendix = citationSection.closest("#quarto-appendix");
+
   appendix?.classList.add("article-citation-appendix");
+
   citationSection.dataset.contoursCitation = "true";
+
   citationSection.className = "article-citation";
+
   citationSection.innerHTML = `
+
     <button class="article-citation__trigger" type="button"
+
       aria-expanded="false" aria-controls="article-citation-panel"
+
       data-testid="article-citation-trigger">
+
       <span class="article-citation__trigger-icon" aria-hidden="true"><i class="bi bi-quote"></i></span>
+
       <span class="article-citation__trigger-label">Comment citer cet article&nbsp;?</span>
+
       <i class="bi bi-chevron-down article-citation__chevron" aria-hidden="true"></i>
+
     </button>
+
     <div class="article-citation__panel" id="article-citation-panel" hidden>
+
       <div class="article-citation__intro">
+
         <div>
+
           <h2 class="article-citation__title">Citer cet article</h2>
+
           <p>Choisissez le format qui convient à votre usage.</p>
+
         </div>
+
       </div>
+
       <div class="article-citation__formats" role="group" aria-label="Format de citation"></div>
+
       <div class="article-citation__output" aria-live="polite">
+
         <pre><code></code></pre>
+
       </div>
+
       <div class="article-citation__actions">
+
         <button class="article-citation__copy" type="button">
+
           <i class="bi bi-copy" aria-hidden="true"></i>
+
           <span>Copier la citation</span>
+
         </button>
+
         <button class="article-citation__download" type="button" hidden>
+
           <i class="bi bi-download" aria-hidden="true"></i>
+
           <span>Télécharger</span>
+
         </button>
+
         <span class="article-citation__status" role="status" aria-live="polite"></span>
+
       </div>
+
     </div>`;
 
+
+
   const trigger = citationSection.querySelector(".article-citation__trigger");
+
   const panel = citationSection.querySelector(".article-citation__panel");
+
   const formatList = citationSection.querySelector(".article-citation__formats");
+
   const output = citationSection.querySelector(".article-citation__output code");
+
   const copyButton = citationSection.querySelector(".article-citation__copy");
+
   const downloadButton = citationSection.querySelector(".article-citation__download");
+
   const downloadLabel = downloadButton.querySelector("span");
+
   const status = citationSection.querySelector(".article-citation__status");
+
   let activeFormat = "apa";
+
   let statusTimer;
 
+
+
   const setStatus = (message) => {
+
     window.clearTimeout(statusTimer);
+
     status.textContent = message;
+
     statusTimer = window.setTimeout(() => { status.textContent = ""; }, 2400);
+
   };
+
+
 
   const renderFormat = (format) => {
+
     activeFormat = format;
+
     output.textContent = formats[format].value;
+
     formatList.querySelectorAll("button").forEach((button) => {
+
       const selected = button.dataset.format === format;
+
       button.classList.toggle("is-active", selected);
+
       button.setAttribute("aria-pressed", selected.toString());
+
     });
+
+
 
     const extension = formats[format].extension;
+
     downloadButton.hidden = !extension;
+
     if (extension) downloadLabel.textContent = `Télécharger .${extension}`;
+
   };
+
+
 
   Object.entries(formats).forEach(([key, format]) => {
+
     const button = document.createElement("button");
+
     button.type = "button";
+
     button.className = "article-citation__format";
+
     button.dataset.format = key;
+
     button.setAttribute("aria-pressed", "false");
+
     button.textContent = format.label;
+
     button.addEventListener("click", () => renderFormat(key));
+
     formatList.appendChild(button);
+
   });
+
+
 
   trigger.addEventListener("click", () => {
+
     const open = trigger.getAttribute("aria-expanded") === "true";
+
     trigger.setAttribute("aria-expanded", (!open).toString());
+
     panel.hidden = open;
+
   });
 
+
+
   const copyToClipboard = async (text) => {
+
     if (navigator.clipboard?.writeText) {
+
       await navigator.clipboard.writeText(text);
+
       return;
+
     }
+
     const textarea = document.createElement("textarea");
+
     textarea.value = text;
+
     textarea.setAttribute("readonly", "");
+
     textarea.style.position = "fixed";
+
     textarea.style.top = "-1000px";
+
     document.body.appendChild(textarea);
+
     textarea.select();
+
     document.execCommand("copy");
+
     textarea.remove();
+
   };
+
+
 
   copyButton.addEventListener("click", async () => {
+
     try {
+
       await copyToClipboard(formats[activeFormat].value);
+
       setStatus("Citation copiée");
+
     } catch (error) {
+
       setStatus("Copie impossible");
+
     }
+
   });
+
+
 
   downloadButton.addEventListener("click", () => {
+
     const format = formats[activeFormat];
+
     if (!format.extension) return;
+
     const slug = window.location.pathname.split("/").filter(Boolean).at(-1) || "article-contours";
+
     const blob = new Blob([format.value], { type: "text/plain;charset=utf-8" });
+
     const objectUrl = URL.createObjectURL(blob);
+
     const link = document.createElement("a");
+
     link.href = objectUrl;
+
     link.download = `${slug}.${format.extension}`;
+
     document.body.appendChild(link);
+
     link.click();
+
     link.remove();
+
     URL.revokeObjectURL(objectUrl);
+
     setStatus(`Fichier .${format.extension} préparé`);
+
   });
 
+
+
   renderFormat(activeFormat);
+
 })();
+
 </script>
+
 <script>
+
 (() => {
+
   const path = window.location.pathname.replace(/\/index\.html$/, "/");
+
   if (!/\/posts\/[^/]+\/?$/.test(path)) return;
 
+
+
   const main = document.querySelector("main.content");
+
   if (!main) return;
 
+
+
   const title = document.querySelector("h1.title, h1")?.textContent?.trim() || document.title;
+
   const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+
   const url = new URL(canonical, window.location.href).href;
+
   const encodedTitle = encodeURIComponent(title);
+
   const encodedUrl = encodeURIComponent(url);
 
+
+
   const makeShareLink = ({ name, icon, href }) => {
+
     const link = document.createElement("a");
+
     link.className = "article-share__button";
+
     link.href = href;
+
     link.target = "_blank";
+
     link.rel = "noopener noreferrer";
+
     link.setAttribute("aria-label", `Partager sur ${name}`);
+
     link.title = `Partager sur ${name}`;
+
     link.innerHTML = `<i class="bi ${icon}" aria-hidden="true"></i><span class="article-share__button-label">${name}</span>`;
+
     return link;
+
   };
+
+
 
   const copyToClipboard = async (text) => {
+
     if (navigator.clipboard?.writeText) {
+
       await navigator.clipboard.writeText(text);
+
       return;
+
     }
 
+
+
     const textarea = document.createElement("textarea");
+
     textarea.value = text;
+
     textarea.setAttribute("readonly", "");
+
     textarea.style.position = "fixed";
+
     textarea.style.top = "-1000px";
+
     document.body.appendChild(textarea);
+
     textarea.select();
+
     document.execCommand("copy");
+
     textarea.remove();
+
   };
+
+
 
   const makeNewsletterCta = () => {
+
     const cta = document.createElement("div");
+
     cta.className = "article-newsletter-cta";
+
     cta.innerHTML = '<a href="/newsletter"><i class="bi bi-envelope-paper" aria-hidden="true"></i><span>Recevoir la newsletter</span></a>';
+
     return cta;
+
   };
+
+
 
   if (!main.querySelector(".article-share")) {
+
     const share = document.createElement("div");
+
     share.className = "article-share";
+
     share.setAttribute("role", "navigation");
+
     share.setAttribute("aria-label", "Partager cet article");
 
+
+
     const label = document.createElement("span");
+
     label.className = "article-share__title";
+
     label.textContent = "Partager";
 
+
+
     const buttons = document.createElement("div");
+
     buttons.className = "article-share__buttons";
 
+
+
     [
+
       {
+
         name: "Facebook",
+
         icon: "bi-facebook",
+
         href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`
+
       },
+
       {
+
         name: "LinkedIn",
+
         icon: "bi-linkedin",
+
         href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`
+
       },
+
       {
+
         name: "X",
+
         icon: "bi-twitter-x",
+
         href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+
       },
+
       {
+
         name: "WhatsApp",
+
         icon: "bi-whatsapp",
+
         href: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`
+
       },
+
       {
+
         name: "Email",
+
         icon: "bi-envelope-fill",
+
         href: `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`
+
       }
+
     ].forEach((item) => buttons.appendChild(makeShareLink(item)));
 
+
+
     const copyButton = document.createElement("button");
+
     copyButton.className = "article-share__button";
+
     copyButton.type = "button";
+
     copyButton.setAttribute("aria-label", "Copier le lien de l'article");
+
     copyButton.title = "Copier le lien";
+
     copyButton.innerHTML = '<i class="bi bi-link-45deg" aria-hidden="true"></i><span class="article-share__button-label">Copier</span>';
 
+
+
     const status = document.createElement("p");
+
     status.className = "article-share__status";
+
     status.setAttribute("aria-live", "polite");
 
+
+
     copyButton.addEventListener("click", async () => {
+
       try {
+
         await copyToClipboard(url);
+
         status.textContent = "Lien copi\u00e9";
+
       } catch (error) {
+
         status.textContent = "Copie impossible";
+
       }
 
+
+
       window.setTimeout(() => {
+
         status.textContent = "";
+
       }, 2400);
+
     });
 
+
+
     buttons.appendChild(copyButton);
+
     share.append(label, buttons, status, makeNewsletterCta());
+
     main.appendChild(share);
+
   }
+
 })();
+
 </script>
+
 <script>
+
 (() => {
+
   const normalizePath = (value) => {
+
     const path = value.replace(/\/index\.html$/, "/");
+
     return path.endsWith("/") ? path : `${path}/`;
+
   };
 
+
+
   const currentPath = normalizePath(window.location.pathname);
+
   if (!/\/posts\/[^/]+\/$/.test(currentPath)) return;
 
+
+
   const main = document.querySelector("main.content");
+
   if (!main || main.querySelector("#cusdis_thread")) return;
 
+
+
   const meta = (name) => document.querySelector(`meta[name="${name}"]`)?.content?.trim() || "";
+
   const canonical = meta("citation_fulltext_html_url")
+
     || document.querySelector('link[rel="canonical"]')?.href
+
     || window.location.href;
+
   const pageUrl = new URL(canonical, window.location.href);
+
   pageUrl.hash = "";
+
   pageUrl.search = "";
 
+
+
   const pagePath = normalizePath(pageUrl.pathname);
+
   const pageTitle = meta("citation_title")
+
     || document.querySelector("h1.title, h1")?.textContent?.trim()
+
     || document.title.replace(/\s*[-|]\s*Contours\s*$/i, "").trim();
 
+  const reviewMode = document.body.classList.contains("review-version");
+
+
+
   const section = document.createElement("section");
+
   section.className = "article-comments";
+
   section.setAttribute("aria-labelledby", "article-comments-title");
 
+
+
   const title = document.createElement("h2");
+
   title.className = "article-comments__title";
+
   title.id = "article-comments-title";
-  title.textContent = "Commentaires";
+
+  title.textContent = reviewMode ? "Commentaires sur cette version" : "Commentaires";
+
+
 
   const thread = document.createElement("div");
+
   thread.id = "cusdis_thread";
+
   thread.dataset.host = "https://cusdis.com";
+
   thread.dataset.appId = "fc8f899f-0955-4999-99f3-9c70d4d66c5b";
+
   thread.dataset.pageId = pagePath.replace(/\/$/, "") || "/";
+
   thread.dataset.pageUrl = pageUrl.href;
+
   thread.dataset.pageTitle = pageTitle;
+
+
 
   section.append(title, thread);
 
+
+
   main.appendChild(section);
 
-  const endTargets = [main.querySelector(".article-share"), section].filter(Boolean);
-  if (window.IntersectionObserver && endTargets.length) {
-    const visibleTargets = new WeakMap();
-    const setTocVisibility = (entries) => {
-      entries.forEach((entry) => {
-        visibleTargets.set(entry.target, entry.isIntersecting);
+
+
+  if (reviewMode) {
+
+    const reviewLinks = document.querySelectorAll('a[href="#article-comments-title"]');
+
+    const scrollToComments = (event) => {
+
+      event.preventDefault();
+
+      section.scrollIntoView({
+
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+
+        block: "start"
+
       });
-      const articleEndIsVisible = endTargets.some((target) => visibleTargets.get(target));
-      document.body.classList.toggle("article-end-active", articleEndIsVisible);
+
     };
 
+    reviewLinks.forEach((link) => link.addEventListener("click", scrollToComments));
+
+
+
+    const floatingButton = document.createElement("button");
+
+    floatingButton.type = "button";
+
+    floatingButton.className = "review-comment-button";
+
+    floatingButton.setAttribute("aria-label", "Ajouter un commentaire sur cette version");
+
+    floatingButton.innerHTML = '<i class="bi bi-chat-left-text" aria-hidden="true"></i><span>Commenter</span>';
+
+    floatingButton.addEventListener("click", scrollToComments);
+
+    document.body.appendChild(floatingButton);
+
+  }
+
+
+
+  const endTargets = [main.querySelector(".article-share"), section].filter(Boolean);
+
+  if (window.IntersectionObserver && endTargets.length) {
+
+    const visibleTargets = new WeakMap();
+
+    const setTocVisibility = (entries) => {
+
+      entries.forEach((entry) => {
+
+        visibleTargets.set(entry.target, entry.isIntersecting);
+
+      });
+
+      const articleEndIsVisible = endTargets.some((target) => visibleTargets.get(target));
+
+      document.body.classList.toggle("article-end-active", articleEndIsVisible);
+
+    };
+
+
+
     const observer = new IntersectionObserver(setTocVisibility, {
+
       rootMargin: "0px 0px -18% 0px",
+
       threshold: 0.01
+
     });
 
+
+
     endTargets.forEach((target) => observer.observe(target));
+
   }
+
+
 
   if (document.querySelector('script[src="https://cusdis.com/js/cusdis.es.js"]')) {
+
     window.CUSDIS?.renderTo?.(thread);
+
     return;
+
   }
 
+
+
   const script = document.createElement("script");
+
   script.async = true;
+
   script.defer = true;
+
   script.src = "https://cusdis.com/js/cusdis.es.js";
+
   document.body.appendChild(script);
+
 })();
+
 </script>
+
 <script>
+
 (() => {
+
   const normalizePath = (value) => {
+
     const path = value.replace(/\/index\.html$/, "/");
+
     return path.endsWith("/") ? path : `${path}/`;
+
   };
 
+
+
   const path = normalizePath(window.location.pathname);
+
   if (!/\/newsletter\/[^/]+\/$/.test(path)) return;
 
+
+
   const main = document.querySelector("main.content");
+
   if (!main || main.querySelector(".newsletter-signup")) return;
 
+
+
   const section = document.createElement("section");
+
   section.className = "newsletter-signup";
+
   section.setAttribute("aria-labelledby", "newsletter-signup-title");
+
   section.innerHTML = `
+
     <h2 id="newsletter-signup-title">Recevoir les prochaines newsletters</h2>
+
     <form action="https://buttondown.com/api/emails/embed-subscribe/contoursnc" method="post" class="embeddable-buttondown-form newsletter-form">
+
       <label for="bd-email-newsletter-end">Adresse email</label>
+
       <div class="newsletter-form__row">
+
         <input type="email" name="email" id="bd-email-newsletter-end" required>
+
         <input type="submit" value="S'abonner">
+
       </div>
+
       <p>
+
         <a href="https://buttondown.com/refer/contoursnc" target="_blank" rel="noopener noreferrer">Powered by Buttondown.</a>
+
       </p>
+
       <p class="newsletter-privacy">
+
         Votre adresse est transmise à Buttondown et utilisée uniquement pour vous envoyer la newsletter de Contours.
+
         Vous pouvez vous désabonner à tout moment avec le lien présent dans chaque message.
+
         <a href="https://buttondown.com/legal/privacy" target="_blank" rel="noopener noreferrer">Politique de confidentialité de Buttondown</a>.
+
       </p>
+
     </form>`;
 
+
+
   main.appendChild(section);
+
 })();
+
 </script>
+
 <script>
+
 (() => {
+
   const updatedPosts = document.querySelectorAll(
+
     ".quarto-listing .quarto-post[data-listing-date-modified-sort]"
+
   );
+
+
 
   if (!updatedPosts.length) return;
 
+
+
   const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
+
     day: "numeric",
+
     month: "long",
+
     timeZone: "Pacific/Noumea",
+
     year: "numeric"
+
   });
+
+
 
   const formatDate = (value) => {
+
     const timestamp = Number(value);
+
     if (!Number.isFinite(timestamp)) return "";
+
     const date = new Date(timestamp);
+
     if (Number.isNaN(date.getTime())) return "";
+
     return dateFormatter.format(date);
+
   };
 
+
+
   updatedPosts.forEach((post) => {
+
     if (post.querySelector(".listing-update-banner")) return;
 
+
+
     const modifiedDate = formatDate(
+
       post.getAttribute("data-listing-date-modified-sort")
+
     );
+
     if (!modifiedDate) return;
 
+
+
     const title = post.querySelector(".listing-title");
+
     if (!title) return;
 
+
+
     const banner = document.createElement("div");
+
     banner.className = "listing-update-banner";
 
+
+
     const label = document.createElement("span");
+
     label.className = "listing-update-banner__label";
+
     label.innerHTML = "Mis &agrave; jour";
 
+
+
     const date = document.createElement("span");
+
     date.className = "listing-update-banner__date";
+
     date.textContent = modifiedDate;
 
+
+
     banner.append(label, date);
+
     title.insertAdjacentElement("beforebegin", banner);
+
     post.classList.add("quarto-post--updated");
+
   });
+
 })();
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

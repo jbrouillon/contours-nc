@@ -46,6 +46,9 @@ data/cartes/provinciales_2019_focus/**/*.png
 images/previews/provinciales-2026-professions-foi.png
 posts/**/*.knit.md
 posts/**/index_files/
+/posts/pacific-climate-fingerprints/docs/
+/posts/pacific-climate-fingerprints/site_libs/
+/data/pacific-climate-fingerprints/raw/
 
 # Documents de travail et archives de relecture, non publiés
 /data/dossier habitat.docx
