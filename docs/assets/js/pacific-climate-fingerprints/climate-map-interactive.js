@@ -22,9 +22,7 @@ const DATA = {
   territoryContext: `${DATA_ROOT}/territory_context.csv`,
   eez: `${DATA_ROOT}/eez.geojson`,
   sources: `${DATA_ROOT}/SOURCES.md`,
-  land: mobileLite
-    ? "https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json"
-    : "https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json"
+  land: "https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json"
 };
 
 const SOURCE_URLS = {
@@ -240,7 +238,7 @@ function appendRasterRibbon(selection, rows, {
   height,
   className
 }) {
-  if (!mobileLite || !rows.length) return null;
+  if (!rows.length) return null;
   const start = Math.floor(domain[0]);
   const end = Math.ceil(domain[1]);
   const canvas = document.createElement("canvas");
@@ -1018,42 +1016,11 @@ async function build() {
     .scale(330)
     .translate([455, 348])
     .clipAngle(90)
-    .precision(0.7);
+    .precision(1.15);
   const path = d3.geoPath(projection);
   const graticule = d3.geoGraticule10();
 
   const defs = svg.append("defs");
-  if (!mobileLite) {
-    defs.append("filter")
-      .attr("id", "map-paper-noise")
-      .html(`<feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" stitchTiles="stitch"/>
-        <feColorMatrix type="saturate" values="0"/>
-        <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>`);
-  }
-
-  function appendSketchFilter(id, { frequency, scale, seed }) {
-    const filter = defs.append("filter")
-      .attr("id", id)
-      .attr("x", "-6%").attr("y", "-6%")
-      .attr("width", "112%").attr("height", "112%");
-    filter.append("feTurbulence")
-      .attr("type", "fractalNoise")
-      .attr("baseFrequency", frequency)
-      .attr("numOctaves", 2)
-      .attr("seed", seed)
-      .attr("result", "noise");
-    filter.append("feDisplacementMap")
-      .attr("in", "SourceGraphic")
-      .attr("in2", "noise")
-      .attr("scale", scale)
-      .attr("xChannelSelector", "R")
-      .attr("yChannelSelector", "G");
-  }
-
-  if (!mobileLite) {
-    appendSketchFilter("sketch-wobble", { frequency: "0.028", scale: 3.2, seed: 7 });
-    appendSketchFilter("sketch-wobble-echo", { frequency: "0.065", scale: 5, seed: 19 });
-  }
 
   const pencilHatch = defs.append("pattern")
     .attr("id", "map-pencil-hatch")
@@ -1100,8 +1067,8 @@ async function build() {
     .attr("tabindex", 0)
     .attr("role", "button")
     .attr("data-code", d => d.code)
-    .on("pointerenter", (event, d) => showTooltip(event, d.code))
-    .on("pointermove", (event, d) => showTooltip(event, d.code))
+    .on("pointerenter", mobileLite ? null : (event, d) => showTooltip(event, d.code))
+    .on("pointermove", mobileLite ? null : event => scheduleMapTooltipPosition(event, false))
     .on("pointerleave", hideTooltip)
     .on("focus", (event, d) => showTooltip(event, d.code, true))
     .on("blur", hideTooltip)
@@ -2123,7 +2090,7 @@ async function build() {
         height: stripHeight,
         className: "ribbon-wall-raster"
       });
-      if (mobileLite) {
+      if (raster || mobileLite) {
         if (!raster) {
           group.append("rect")
             .attr("class", "ribbon-wall-raster")
@@ -2145,18 +2112,31 @@ async function build() {
             if (row) showRibbonTooltip(event, code, row);
           })
           .on("pointerleave", hideRibbonTooltip);
-        group.append("rect")
-          .attr("class", "ribbon-frame")
-          .attr("x", stripX).attr("y", -1)
-          .attr("width", stripWidth).attr("height", stripHeight + 2)
-          .attr("fill", "none")
-          .attr("stroke", "rgba(31, 41, 40, 0.62)");
-        group.append("line")
-          .attr("class", "ribbon-wall-marker")
-          .attr("x1", 0).attr("x2", 0)
-          .attr("y1", -4).attr("y2", stripHeight + 4)
-          .attr("stroke", "rgba(24, 47, 47, 0.88)")
-          .attr("stroke-width", 1.05);
+        if (mobileLite) {
+          group.append("rect")
+            .attr("class", "ribbon-frame")
+            .attr("x", stripX).attr("y", -1)
+            .attr("width", stripWidth).attr("height", stripHeight + 2)
+            .attr("fill", "none")
+            .attr("stroke", "rgba(31, 41, 40, 0.62)");
+          group.append("line")
+            .attr("class", "ribbon-wall-marker")
+            .attr("x1", 0).attr("x2", 0)
+            .attr("y1", -4).attr("y2", stripHeight + 4)
+            .attr("stroke", "rgba(24, 47, 47, 0.88)")
+            .attr("stroke-width", 1.05);
+        } else {
+          const roughFrame = roughFrameTemplates[stableSeed(code) % roughFrameTemplates.length].cloneNode(true);
+          roughFrame.setAttribute("transform", `translate(0 ${((stableSeed(code) % 5) - 2) * 0.08})`);
+          this.appendChild(roughFrame);
+          appendRough(group, roughWall.line(0, -4, 0, stripHeight + 4, {
+            seed: stableSeed(`${state.indicator}-${code}-atlas-marker`),
+            stroke: "rgba(24, 47, 47, 0.88)",
+            strokeWidth: 1.05,
+            roughness: 1.7,
+            bowing: 1.25
+          }), "ribbon-wall-marker rough-year-marker");
+        }
       } else {
         group.selectAll("rect.ribbon-stripe")
           .data(values)
@@ -2276,8 +2256,8 @@ async function build() {
       ribbonTooltip.hidden = false;
       if (!ribbonTooltipSize || layoutKey !== ribbonTooltipLayoutKey) {
         ribbonTooltipSize = {
-          width: ribbonTooltip.offsetWidth,
-          height: ribbonTooltip.offsetHeight
+          width: Math.min(240, Math.max(190, window.innerWidth - 24)),
+          height: 112
         };
         ribbonTooltipLayoutKey = layoutKey;
       }
@@ -3356,18 +3336,20 @@ async function build() {
       .attr("visibility", selectedVisible ? "visible" : "hidden");
   }
 
-  function renderGeometry() {
+  function renderGeometry(interactive = false) {
     svg.select(".ocean-sphere").attr("d", path);
-    svg.selectAll(".ocean-sphere-sketch").attr("d", path);
     svg.select(".graticule").attr("d", path);
-    svg.select(".graticule-sketch").attr("d", path);
     svg.select(".world-land").attr("d", path);
     svg.select(".world-land-hatch").attr("d", path);
-    svg.selectAll(".world-land-sketch").attr("d", path);
     zones.attr("d", path);
-    sketchZones.attr("d", path);
-    sketchZonesEcho.attr("d", path);
-    zoneTextureClipPaths.forEach(clipPath => clipPath.attr("d", path));
+    if (!interactive) {
+      svg.selectAll(".ocean-sphere-sketch").attr("d", path);
+      svg.select(".graticule-sketch").attr("d", path);
+      svg.selectAll(".world-land-sketch").attr("d", path);
+      sketchZones.attr("d", path);
+      sketchZonesEcho.attr("d", path);
+      zoneTextureClipPaths.forEach(clipPath => clipPath.attr("d", path));
+    }
 
     labels.each(function(d) {
       const point = projection(d.coordinates);
@@ -3404,6 +3386,7 @@ async function build() {
   function renderSketchTextures() {
     zoneTextureLayer.selectAll("*").remove();
     zoneTextureLayer.attr("data-selected", state.selected ?? "");
+    zoneTextureLayer.attr("data-rendered", "true");
     roughCoastLayer.selectAll("*").remove();
     if (mobileLite) return;
 
@@ -3533,7 +3516,7 @@ async function build() {
     root.querySelector(".legend-mid").textContent = state.indicator === "rain" ? t("map.rainNear") : t("map.reference");
     root.querySelector(".legend-ramp").style.background = `linear-gradient(90deg, ${metric.colors.join(", ")})`;
     if (detail) renderGeometry();
-    if (zoneTextureLayer.attr("data-selected") !== (state.selected ?? "")) {
+    if (zoneTextureLayer.attr("data-rendered") !== "true") {
       renderSketchTextures();
     } else if (!state.playing) {
       updateZoneTextureColors();
@@ -4018,7 +4001,10 @@ async function build() {
       mapTooltipContentKey = contentKey;
       const layoutKey = `${state.lang}:${state.indicator}:${code}:${Boolean(rainReading)}`;
       if (!mapTooltipSize || layoutKey !== mapTooltipLayoutKey) {
-        mapTooltipSize = { width: tooltip.offsetWidth, height: tooltip.offsetHeight };
+        mapTooltipSize = {
+          width: 210,
+          height: state.indicator === "rain" ? 76 : 58
+        };
         mapTooltipLayoutKey = layoutKey;
       }
     }
@@ -4322,23 +4308,40 @@ async function build() {
   });
 
   if (!mobileLite) {
+    let dragRenderFrame = null;
+    let pendingRotation = null;
+    const renderPendingRotation = (full = false) => {
+      if (pendingRotation) projection.rotate(pendingRotation);
+      pendingRotation = null;
+      renderGeometry(!full);
+    };
     svg.call(d3.drag()
       .on("start", event => {
         event.subject.rotation = projection.rotate();
         event.subject.pointer = [event.x, event.y];
+        hideTooltip();
         stage.classList.add("is-rotating");
       })
       .on("drag", event => {
         const start = event.subject.rotation ?? initialRotation;
         const origin = event.subject.pointer ?? [event.x, event.y];
-        projection.rotate([
+        pendingRotation = [
           start[0] + (event.x - origin[0]) / 3,
           Math.max(-55, Math.min(55, start[1] - (event.y - origin[1]) / 3)),
           0
-        ]);
-        renderGeometry();
+        ];
+        if (dragRenderFrame !== null) return;
+        dragRenderFrame = window.requestAnimationFrame(() => {
+          dragRenderFrame = null;
+          renderPendingRotation(false);
+        });
       })
       .on("end", () => {
+        if (dragRenderFrame !== null) {
+          window.cancelAnimationFrame(dragRenderFrame);
+          dragRenderFrame = null;
+        }
+        renderPendingRotation(true);
         renderSketchTextures();
         stage.classList.remove("is-rotating");
       }));

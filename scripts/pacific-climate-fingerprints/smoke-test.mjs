@@ -6,6 +6,13 @@ globalThis.document = browserWindow.document;
 globalThis.navigator = browserWindow.navigator;
 browserWindow.document.body.innerHTML = '<div id="climate-map"></div>';
 
+const rasterContext = {
+  fillStyle: "",
+  fillRect() {}
+};
+browserWindow.HTMLCanvasElement.prototype.getContext = () => rasterContext;
+browserWindow.HTMLCanvasElement.prototype.toDataURL = () => "data:image/png;base64,iVBORw0KGgo=";
+
 const { translate } = await import("../../assets/js/pacific-climate-fingerprints/climate-i18n.js");
 const i18nSource = await Deno.readTextFile("../../assets/js/pacific-climate-fingerprints/climate-i18n.js");
 const enStart = i18nSource.indexOf("  en: {");
@@ -57,7 +64,7 @@ globalThis.fetch = async (input, init) => {
       headers: { "content-type": "application/json" }
     });
   }
-  if (url.includes("world-atlas@2/land-50m.json")) {
+  if (url.includes("world-atlas@2/land-110m.json")) {
     return new Response(JSON.stringify({
       type: "Topology",
       objects: { land: { type: "GeometryCollection", geometries: [] } },
@@ -84,7 +91,11 @@ const actual = {
   detailEvolution: document.querySelectorAll(".ribbon-detail-evolution").length,
   territorySummary: document.querySelector(".territory-summary-text")?.textContent,
   portraitStripes: document.querySelectorAll(".portrait-stripe").length,
+  portraitRasters: document.querySelectorAll(".portrait-ribbon-raster").length,
+  wallStripes: document.querySelectorAll(".ribbon-stripe").length,
+  wallRasters: document.querySelectorAll(".ribbon-wall-raster").length,
   detailStripes: document.querySelectorAll(".ribbon-detail-stripe").length,
+  detailRasters: document.querySelectorAll(".ribbon-detail-raster").length,
   detailTitle: document.querySelector(".ribbon-detail-title")?.textContent,
   detailMetric: document.querySelector(".ribbon-detail-metric")?.textContent,
   tooltipPortal: document.querySelector(".ribbon-tooltip")?.parentElement === document.body,
@@ -94,7 +105,7 @@ const actual = {
   year: document.querySelector(".year-output")?.textContent
 };
 
-if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 176 || actual.detailStripes !== 430 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
+if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
   throw new Error(JSON.stringify(actual));
 }
 
@@ -131,15 +142,14 @@ if (mapTooltip.hidden || !mapTooltip.style.transform.includes("translate3d")) {
 }
 mapTooltipZone.dispatchEvent(new browserWindow.MouseEvent("pointerleave", { bubbles: true }));
 
-const ribbonTooltipStripe = document.querySelector("rect.ribbon-stripe");
-ribbonTooltipStripe.dispatchEvent(new browserWindow.MouseEvent("pointerenter", { bubbles: true, clientX: 520, clientY: 430 }));
-ribbonTooltipStripe.dispatchEvent(new browserWindow.MouseEvent("pointermove", { bubbles: true, clientX: 540, clientY: 440 }));
+const ribbonTooltipStripe = document.querySelector(".ribbon-row");
+ribbonTooltipStripe.dispatchEvent(new browserWindow.FocusEvent("focus"));
 await new Promise(resolve => browserWindow.requestAnimationFrame(resolve));
 const testedRibbonTooltip = document.querySelector(".ribbon-tooltip");
 if (testedRibbonTooltip.hidden || !testedRibbonTooltip.style.transform.includes("translate3d")) {
   throw new Error("Ribbon tooltip positioning failed");
 }
-ribbonTooltipStripe.dispatchEvent(new browserWindow.MouseEvent("pointerleave", { bubbles: true }));
+ribbonTooltipStripe.dispatchEvent(new browserWindow.FocusEvent("blur"));
 
 document.querySelector('.scroll-step[data-step="rainfall"]').dispatchEvent(new browserWindow.Event("click", { bubbles: true }));
 if (document.querySelector(".year-output")?.textContent !== "2015" || !document.querySelector('.scroll-step[data-step="rainfall"]').classList.contains("is-active")) {
@@ -156,10 +166,11 @@ const interaction = {
   question: document.querySelector(".map-question")?.textContent,
   headline: document.querySelector(".story-headline")?.textContent,
   contextKicker: document.querySelector(".context-kicker")?.textContent,
-  portraitStripes: document.querySelectorAll(".portrait-stripe").length
+  portraitStripes: document.querySelectorAll(".portrait-stripe").length,
+  portraitRasters: document.querySelectorAll(".portrait-ribbon-raster").length
 };
 
-if (interaction.year !== "2000" || interaction.title !== "Tonga" || interaction.portraitStripes !== 47 || !interaction.contextKicker.includes("ENSO") || !interaction.question.includes("rainfall deficit or surplus") || interaction.headline !== "One Pacific, opposite rain") {
+if (interaction.year !== "2000" || interaction.title !== "Tonga" || interaction.portraitStripes !== 0 || interaction.portraitRasters !== 1 || !interaction.contextKicker.includes("ENSO") || !interaction.question.includes("rainfall deficit or surplus") || interaction.headline !== "One Pacific, opposite rain") {
   throw new Error(JSON.stringify(interaction));
 }
 
