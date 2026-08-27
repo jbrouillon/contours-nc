@@ -2620,6 +2620,39 @@ main.content {
   outline: none;
 }
 
+.portrait-ribbon-raster,
+.ribbon-wall-raster,
+.ribbon-detail-raster {
+  image-rendering: pixelated;
+}
+
+.climate-explorer[data-render-mode="lite"] .ribbon-atlas {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+
+.climate-explorer[data-render-mode="lite"] :is(
+  .map-paper-texture,
+  .zone,
+  .world-land,
+  .world-land-hatch,
+  .selection-marker
+) {
+  filter: none !important;
+}
+
+.climate-explorer[data-render-mode="lite"] * {
+  backdrop-filter: none !important;
+}
+
+.climate-explorer[data-render-mode="lite"] :is(.drag-hint, .reset-view) {
+  display: none;
+}
+
+.climate-explorer[data-render-mode="lite"].scene-kick .map-stage::before {
+  animation: none;
+}
+
 .ribbon-detail-svg:focus-visible {
   border-radius: 8px;
   outline: 3px solid color-mix(in srgb, var(--detail-accent) 34%, transparent);
@@ -3322,11 +3355,12 @@ input:focus-visible {
 
   .ribbon-atlas {
     padding: 18px 12px 12px;
-    overflow-x: auto;
+    overflow-x: hidden;
   }
 
   .ribbon-wall {
-    width: 1000px;
+    width: 100%;
+    min-height: 0;
   }
 
   .legend {
@@ -3480,7 +3514,9 @@ input:focus-visible {
   }
 
   .ribbon-detail {
-    min-width: 680px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     padding: 15px 16px 12px;
   }
 

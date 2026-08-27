@@ -11,6 +11,9 @@ import {
   translate
 } from "./climate-i18n.js";
 
+const mobileLite = window.matchMedia(
+  "(max-width: 760px), (pointer: coarse) and (max-width: 1024px)"
+).matches;
 const DATA_ROOT = "../../assets/data/pacific-climate-fingerprints";
 
 const DATA = {
@@ -19,7 +22,9 @@ const DATA = {
   territoryContext: `${DATA_ROOT}/territory_context.csv`,
   eez: `${DATA_ROOT}/eez.geojson`,
   sources: `${DATA_ROOT}/SOURCES.md`,
-  land: "https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json"
+  land: mobileLite
+    ? "https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json"
+    : "https://cdn.jsdelivr.net/npm/world-atlas@2/land-50m.json"
 };
 
 const SOURCE_URLS = {
@@ -161,6 +166,7 @@ let activeScrollStep = null;
 let sceneEffectTimer = null;
 let contextFrameKind = null;
 let contextRenderState = null;
+let atlasReady = !mobileLite;
 
 function t(key, variables = {}) {
   return translate(state.lang, key, variables);
@@ -223,6 +229,47 @@ function appendRough(svgSelection, node, className) {
   node.setAttribute("class", className);
   svgSelection.node().appendChild(node);
   return d3.select(node);
+}
+
+function appendRasterRibbon(selection, rows, {
+  domain,
+  color,
+  x,
+  y,
+  width,
+  height,
+  className
+}) {
+  if (!mobileLite || !rows.length) return null;
+  const start = Math.floor(domain[0]);
+  const end = Math.ceil(domain[1]);
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, end - start + 1);
+  canvas.height = 1;
+  const context = canvas.getContext("2d");
+  if (!context) return null;
+
+  context.fillStyle = "#dedbd0";
+  context.fillRect(0, 0, canvas.width, 1);
+  rows.forEach(row => {
+    const column = Math.round(row.year) - start;
+    if (column < 0 || column >= canvas.width || !Number.isFinite(row.value)) return;
+    context.fillStyle = color(row.value);
+    context.fillRect(column, 0, 1, 1);
+  });
+
+  try {
+    return selection.append("image")
+      .attr("class", className)
+      .attr("x", x)
+      .attr("y", y)
+      .attr("width", width)
+      .attr("height", height)
+      .attr("preserveAspectRatio", "none")
+      .attr("href", canvas.toDataURL("image/png"));
+  } catch {
+    return null;
+  }
 }
 
 function signed(value, digits = 1) {
@@ -342,7 +389,7 @@ function buildPortraitHistory(rows, indicator, windowSize = 10) {
 
 function createShell() {
   root.innerHTML = `
-    <section class="climate-explorer" lang="${state.lang}" aria-label="${t("ui.explorerAria")}">
+    <section class="climate-explorer" data-render-mode="${mobileLite ? "lite" : "full"}" lang="${state.lang}" aria-label="${t("ui.explorerAria")}">
       <header class="explorer-header">
         <div>
           <p class="eyebrow">${t("header.eyebrow")}</p>
@@ -976,11 +1023,13 @@ async function build() {
   const graticule = d3.geoGraticule10();
 
   const defs = svg.append("defs");
-  defs.append("filter")
-    .attr("id", "map-paper-noise")
-    .html(`<feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>`);
+  if (!mobileLite) {
+    defs.append("filter")
+      .attr("id", "map-paper-noise")
+      .html(`<feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="table" tableValues="0 0.055"/></feComponentTransfer>`);
+  }
 
   function appendSketchFilter(id, { frequency, scale, seed }) {
     const filter = defs.append("filter")
@@ -1001,8 +1050,10 @@ async function build() {
       .attr("yChannelSelector", "G");
   }
 
-  appendSketchFilter("sketch-wobble", { frequency: "0.028", scale: 3.2, seed: 7 });
-  appendSketchFilter("sketch-wobble-echo", { frequency: "0.065", scale: 5, seed: 19 });
+  if (!mobileLite) {
+    appendSketchFilter("sketch-wobble", { frequency: "0.028", scale: 3.2, seed: 7 });
+    appendSketchFilter("sketch-wobble-echo", { frequency: "0.065", scale: 5, seed: 19 });
+  }
 
   const pencilHatch = defs.append("pattern")
     .attr("id", "map-pencil-hatch")
@@ -1017,7 +1068,7 @@ async function build() {
     .attr("stroke-width", 0.55)
     .attr("stroke-dasharray", "7 2.5");
 
-  const zoneTextureClipPaths = new Map(features.map(feature => {
+  const zoneTextureClipPaths = new Map((mobileLite ? [] : features).map(feature => {
     const clipPath = defs.append("clipPath")
       .attr("id", `zone-texture-clip-${feature.code.toLowerCase()}`)
       .append("path")
@@ -1027,14 +1078,16 @@ async function build() {
 
   svg.append("rect").attr("class", "map-paper-texture").attr("width", 900).attr("height", 650);
   svg.append("path").datum({ type: "Sphere" }).attr("class", "ocean-sphere");
-  svg.append("path").datum({ type: "Sphere" }).attr("class", "ocean-sphere-sketch ocean-sphere-sketch-echo");
-  svg.append("path").datum({ type: "Sphere" }).attr("class", "ocean-sphere-sketch");
   svg.append("path").datum(graticule).attr("class", "graticule");
-  svg.append("path").datum(graticule).attr("class", "graticule-sketch");
   svg.append("path").datum(land).attr("class", "world-land");
   svg.append("path").datum(land).attr("class", "world-land-hatch");
-  svg.append("path").datum(land).attr("class", "world-land-sketch world-land-sketch-echo");
-  svg.append("path").datum(land).attr("class", "world-land-sketch");
+  if (!mobileLite) {
+    svg.append("path").datum({ type: "Sphere" }).attr("class", "ocean-sphere-sketch ocean-sphere-sketch-echo");
+    svg.append("path").datum({ type: "Sphere" }).attr("class", "ocean-sphere-sketch");
+    svg.append("path").datum(graticule).attr("class", "graticule-sketch");
+    svg.append("path").datum(land).attr("class", "world-land-sketch world-land-sketch-echo");
+    svg.append("path").datum(land).attr("class", "world-land-sketch");
+  }
   const roughCoastLayer = svg.append("g")
     .attr("class", "rough-coast-layer")
     .attr("pointer-events", "none");
@@ -1064,19 +1117,23 @@ async function build() {
     .attr("class", "zone-pencil-texture-layer")
     .attr("pointer-events", "none");
 
-  const sketchZones = svg.append("g")
-    .attr("class", "zone-sketch-layer")
-    .selectAll("path.zone-sketch")
-    .data(features)
-    .join("path")
-    .attr("class", "zone-sketch");
+  const sketchZones = mobileLite
+    ? d3.select(null)
+    : svg.append("g")
+      .attr("class", "zone-sketch-layer")
+      .selectAll("path.zone-sketch")
+      .data(features)
+      .join("path")
+      .attr("class", "zone-sketch");
 
-  const sketchZonesEcho = svg.append("g")
-    .attr("class", "zone-sketch-layer zone-sketch-layer-echo")
-    .selectAll("path.zone-sketch-echo")
-    .data(features)
-    .join("path")
-    .attr("class", "zone-sketch zone-sketch-echo");
+  const sketchZonesEcho = mobileLite
+    ? d3.select(null)
+    : svg.append("g")
+      .attr("class", "zone-sketch-layer zone-sketch-layer-echo")
+      .selectAll("path.zone-sketch-echo")
+      .data(features)
+      .join("path")
+      .attr("class", "zone-sketch zone-sketch-echo");
 
   const labelLayer = svg.append("g").attr("class", "map-labels");
   const labels = labelLayer.selectAll("text")
@@ -1086,16 +1143,18 @@ async function build() {
     .text(d => d.code);
 
   const marker = svg.append("g").attr("class", "selection-marker");
-  const roughMarker = roughMap.circle(0, 0, 28, {
-    seed: stableSeed("map-selection-marker"),
-    stroke: "#132e31",
-    strokeWidth: 1.35,
-    roughness: 2.2,
-    bowing: 1.8,
-    fill: "none"
-  });
-  roughMarker.setAttribute("class", "selection-marker-rough");
-  marker.node().appendChild(roughMarker);
+  if (!mobileLite) {
+    const roughMarker = roughMap.circle(0, 0, 28, {
+      seed: stableSeed("map-selection-marker"),
+      stroke: "#132e31",
+      strokeWidth: 1.35,
+      roughness: 2.2,
+      bowing: 1.8,
+      fill: "none"
+    });
+    roughMarker.setAttribute("class", "selection-marker-rough");
+    marker.node().appendChild(roughMarker);
+  }
   marker.append("circle").attr("r", 4);
 
   function currentRows(code) {
@@ -1904,50 +1963,79 @@ async function build() {
       : t("ribbon.noneDescription"));
     if (!rows.length) return;
 
-    const roughRibbon = rough.svg(ribbon.node());
+    const roughRibbon = mobileLite ? null : rough.svg(ribbon.node());
     const width = 310;
-    const x = d3.scaleLinear().domain(d3.extent(rows, d => d.year)).range([7, width - 7]);
+    const yearDomain = d3.extent(rows, d => d.year);
+    const x = d3.scaleLinear().domain(yearDomain).range([7, width - 7]);
     const color = metricScale(metric);
     const stripeWidth = Math.max(1, x(rows[0].year + 1) - x(rows[0].year) + 0.45);
 
-    ribbon.selectAll("rect.portrait-stripe")
-      .data(rows)
-      .join("rect")
-      .attr("class", "portrait-stripe")
-      .attr("x", d => x(d.year))
-      .attr("y", (_, i) => 12 + ((i % 5) - 2) * 0.18)
-      .attr("width", stripeWidth)
-      .attr("height", (_, i) => 30 + ((i % 4) - 1.5) * 0.24)
-      .attr("fill", d => color(d.value));
+    const raster = appendRasterRibbon(ribbon, rows, {
+      domain: yearDomain,
+      color,
+      x: 7,
+      y: 12,
+      width: width - 14,
+      height: 30,
+      className: "portrait-ribbon-raster"
+    });
+    if (!raster) {
+      ribbon.selectAll("rect.portrait-stripe")
+        .data(rows)
+        .join("rect")
+        .attr("class", "portrait-stripe")
+        .attr("x", d => x(d.year))
+        .attr("y", (_, i) => 12 + ((i % 5) - 2) * 0.18)
+        .attr("width", stripeWidth)
+        .attr("height", (_, i) => 30 + ((i % 4) - 1.5) * 0.24)
+        .attr("fill", d => color(d.value));
+    }
 
     ribbon.append("rect")
       .attr("class", "portrait-ribbon-future")
       .attr("y", 11)
       .attr("height", 32);
 
-    appendRough(ribbon, roughRibbon.rectangle(6, 11, width - 12, 32, {
-      seed: stableSeed(`${state.indicator}-${title}-portrait-frame`),
-      stroke: "rgba(31, 41, 40, 0.72)",
-      strokeWidth: 1.05,
-      roughness: 2.25,
-      bowing: 1.65,
-      fill: "rgba(31, 41, 40, 0.12)",
-      fillStyle: "hachure",
-      hachureAngle: -8,
-      hachureGap: 7,
-      fillWeight: 0.45
-    }), "portrait-ribbon-frame rough-ribbon-frame");
+    if (mobileLite) {
+      ribbon.append("rect")
+        .attr("class", "portrait-ribbon-frame")
+        .attr("x", 6).attr("y", 11)
+        .attr("width", width - 12).attr("height", 32)
+        .attr("fill", "none")
+        .attr("stroke", "rgba(31, 41, 40, 0.72)");
+    } else {
+      appendRough(ribbon, roughRibbon.rectangle(6, 11, width - 12, 32, {
+        seed: stableSeed(`${state.indicator}-${title}-portrait-frame`),
+        stroke: "rgba(31, 41, 40, 0.72)",
+        strokeWidth: 1.05,
+        roughness: 2.25,
+        bowing: 1.65,
+        fill: "rgba(31, 41, 40, 0.12)",
+        fillStyle: "hachure",
+        hachureAngle: -8,
+        hachureGap: 7,
+        fillWeight: 0.45
+      }), "portrait-ribbon-frame rough-ribbon-frame");
+    }
 
     ribbon.append("text").attr("class", "portrait-ribbon-year").attr("x", 7).attr("y", 57).text(rows[0].year);
     ribbon.append("text").attr("class", "portrait-ribbon-year").attr("x", width - 7).attr("y", 57).attr("text-anchor", "end").text(rows.at(-1).year);
 
-    appendRough(ribbon, roughRibbon.line(0, 7, 0, 48, {
-      seed: stableSeed(`${state.indicator}-${title}-ribbon-marker`),
-      stroke: metricAccents[state.indicator],
-      strokeWidth: 1.55,
-      roughness: 1.8,
-      bowing: 1.35
-    }), "portrait-year-marker rough-year-marker");
+    if (mobileLite) {
+      ribbon.append("line")
+        .attr("class", "portrait-year-marker")
+        .attr("x1", 0).attr("x2", 0).attr("y1", 7).attr("y2", 48)
+        .attr("stroke", metricAccents[state.indicator])
+        .attr("stroke-width", 1.55);
+    } else {
+      appendRough(ribbon, roughRibbon.line(0, 7, 0, 48, {
+        seed: stableSeed(`${state.indicator}-${title}-ribbon-marker`),
+        stroke: metricAccents[state.indicator],
+        strokeWidth: 1.55,
+        roughness: 1.8,
+        bowing: 1.35
+      }), "portrait-year-marker rough-year-marker");
+    }
 
     panelRenderState.ribbonX = x;
     panelRenderState.ribbonBounds = [7, width - 7];
@@ -1957,12 +2045,12 @@ async function build() {
     const metric = metrics[state.indicator];
     const years = yearsByMetric.get(state.indicator);
     const color = metricScale(metric);
-    const splitAt = Math.ceil(ribbonCodes.length / 2);
-    const stripX = 145;
-    const stripWidth = 390;
+    const splitAt = mobileLite ? ribbonCodes.length : Math.ceil(ribbonCodes.length / 2);
+    const stripX = mobileLite ? 110 : 145;
+    const stripWidth = mobileLite ? 280 : 390;
     const stripHeight = 13;
-    const roughWall = rough.svg(ribbonWall.node());
-    const roughFrameTemplates = d3.range(2).map(index => {
+    const roughWall = mobileLite ? null : rough.svg(ribbonWall.node());
+    const roughFrameTemplates = mobileLite ? [] : d3.range(2).map(index => {
       const template = roughWall.rectangle(stripX, -1, stripWidth, stripHeight + 2, {
         seed: stableSeed(`${state.indicator}-atlas-template-${index}`),
         stroke: "rgba(31, 41, 40, 0.62)",
@@ -1976,10 +2064,12 @@ async function build() {
     ribbonX = d3.scaleLinear().domain([years[0], years.at(-1)]).range([stripX, stripX + stripWidth]);
     const stripeWidth = Math.max(1, ribbonX(years[0] + 1) - ribbonX(years[0]) + 0.35);
 
-    ribbonWall.attr("viewBox", "0 0 1180 360").selectAll("*").remove();
+    ribbonWall
+      .attr("viewBox", mobileLite ? "0 0 420 650" : "0 0 1180 360")
+      .selectAll("*").remove();
 
-    [0, 1].forEach(col => {
-      const x0 = col === 0 ? 22 : 612;
+    d3.range(mobileLite ? 1 : 2).forEach(col => {
+      const x0 = col === 0 ? (mobileLite ? 15 : 22) : 612;
       ribbonWall.append("text").attr("class", "ribbon-axis-year").attr("x", x0 + stripX).attr("y", 25).text(years[0]);
       ribbonWall.append("text").attr("class", "ribbon-axis-year").attr("x", x0 + stripX + stripWidth).attr("y", 25).attr("text-anchor", "end").text(years.at(-1));
     });
@@ -1993,9 +2083,9 @@ async function build() {
       .attr("aria-label", code => t("selection.select", { territory: territoryLabel(code) }))
       .attr("data-code", code => code)
       .attr("transform", (_, i) => {
-        const col = i < splitAt ? 0 : 1;
+        const col = mobileLite || i < splitAt ? 0 : 1;
         const row = col === 0 ? i : i - splitAt;
-        return `translate(${col === 0 ? 22 : 612},${42 + row * 27})`;
+        return `translate(${col === 0 ? (mobileLite ? 15 : 22) : 612},${42 + row * 27})`;
       })
       .on("click", (_, code) => selectTerritory(code, { revealDetail: true }))
       .on("focus", (event, code) => {
@@ -2013,7 +2103,7 @@ async function build() {
     rows.append("rect")
       .attr("class", "ribbon-row-bg")
       .attr("x", -8).attr("y", -5)
-      .attr("width", 550).attr("height", 24)
+      .attr("width", mobileLite ? 400 : 550).attr("height", 24)
       .attr("rx", 7);
 
     rows.append("text")
@@ -2024,28 +2114,73 @@ async function build() {
     rows.each(function(code) {
       const group = d3.select(this);
       const values = byMetric.get(state.indicator)?.get(code) ?? [];
-      group.selectAll("rect.ribbon-stripe")
-        .data(values)
-        .join("rect")
-        .attr("class", "ribbon-stripe")
-        .attr("x", d => ribbonX(d.year))
-        .attr("y", (_, i) => ((i % 5) - 2) * 0.12)
-        .attr("width", stripeWidth)
-        .attr("height", (_, i) => stripHeight + ((i % 4) - 1.5) * 0.18)
-        .attr("fill", d => color(d.value))
-        .on("pointerenter", (event, row) => showRibbonTooltip(event, code, row))
-        .on("pointermove", (event, row) => showRibbonTooltip(event, code, row))
-        .on("pointerleave", hideRibbonTooltip);
-      const roughFrame = roughFrameTemplates[stableSeed(code) % roughFrameTemplates.length].cloneNode(true);
-      roughFrame.setAttribute("transform", `translate(0 ${((stableSeed(code) % 5) - 2) * 0.08})`);
-      this.appendChild(roughFrame);
-      appendRough(group, roughWall.line(0, -4, 0, stripHeight + 4, {
-        seed: stableSeed(`${state.indicator}-${code}-atlas-marker`),
-        stroke: "rgba(24, 47, 47, 0.88)",
-        strokeWidth: 1.05,
-        roughness: 1.7,
-        bowing: 1.25
-      }), "ribbon-wall-marker rough-year-marker");
+      const raster = appendRasterRibbon(group, values, {
+        domain: [years[0], years.at(-1)],
+        color,
+        x: stripX,
+        y: 0,
+        width: stripWidth,
+        height: stripHeight,
+        className: "ribbon-wall-raster"
+      });
+      if (mobileLite) {
+        if (!raster) {
+          group.append("rect")
+            .attr("class", "ribbon-wall-raster")
+            .attr("x", stripX).attr("y", 0)
+            .attr("width", stripWidth).attr("height", stripHeight)
+            .attr("fill", "#dedbd0");
+        }
+        const inspectRow = event => closestRow(
+          values,
+          Math.round(ribbonX.invert(d3.pointer(event, this)[0]))
+        );
+        group.append("rect")
+          .attr("class", "ribbon-band-hit")
+          .attr("x", stripX).attr("y", 0)
+          .attr("width", stripWidth).attr("height", stripHeight)
+          .attr("fill", "transparent")
+          .on("pointerenter pointermove", event => {
+            const row = inspectRow(event);
+            if (row) showRibbonTooltip(event, code, row);
+          })
+          .on("pointerleave", hideRibbonTooltip);
+        group.append("rect")
+          .attr("class", "ribbon-frame")
+          .attr("x", stripX).attr("y", -1)
+          .attr("width", stripWidth).attr("height", stripHeight + 2)
+          .attr("fill", "none")
+          .attr("stroke", "rgba(31, 41, 40, 0.62)");
+        group.append("line")
+          .attr("class", "ribbon-wall-marker")
+          .attr("x1", 0).attr("x2", 0)
+          .attr("y1", -4).attr("y2", stripHeight + 4)
+          .attr("stroke", "rgba(24, 47, 47, 0.88)")
+          .attr("stroke-width", 1.05);
+      } else {
+        group.selectAll("rect.ribbon-stripe")
+          .data(values)
+          .join("rect")
+          .attr("class", "ribbon-stripe")
+          .attr("x", d => ribbonX(d.year))
+          .attr("y", (_, i) => ((i % 5) - 2) * 0.12)
+          .attr("width", stripeWidth)
+          .attr("height", (_, i) => stripHeight + ((i % 4) - 1.5) * 0.18)
+          .attr("fill", d => color(d.value))
+          .on("pointerenter", (event, row) => showRibbonTooltip(event, code, row))
+          .on("pointermove", (event, row) => showRibbonTooltip(event, code, row))
+          .on("pointerleave", hideRibbonTooltip);
+        const roughFrame = roughFrameTemplates[stableSeed(code) % roughFrameTemplates.length].cloneNode(true);
+        roughFrame.setAttribute("transform", `translate(0 ${((stableSeed(code) % 5) - 2) * 0.08})`);
+        this.appendChild(roughFrame);
+        appendRough(group, roughWall.line(0, -4, 0, stripHeight + 4, {
+          seed: stableSeed(`${state.indicator}-${code}-atlas-marker`),
+          stroke: "rgba(24, 47, 47, 0.88)",
+          strokeWidth: 1.05,
+          roughness: 1.7,
+          bowing: 1.25
+        }), "ribbon-wall-marker rough-year-marker");
+      }
     });
 
     ribbonSignature = `${state.indicator}:${state.lang}`;
@@ -2057,6 +2192,7 @@ async function build() {
   }
 
   function scheduleRibbonWall() {
+    if (!atlasReady) return;
     window.clearTimeout(ribbonRenderTimer);
     root.querySelector(".ribbon-atlas").classList.add("is-updating");
     ribbonRenderTimer = window.setTimeout(() => {
@@ -2073,6 +2209,34 @@ async function build() {
     ribbonWall.selectAll(".ribbon-wall-marker")
       .attr("transform", `translate(${ribbonX(state.year)} 0)`)
       .attr("visibility", inRange ? "visible" : "hidden");
+  }
+
+  function ensureAtlasRendered() {
+    if (atlasReady) return;
+    atlasReady = true;
+    const atlas = root.querySelector(".ribbon-atlas");
+    atlas?.classList.remove("is-deferred");
+    drawRibbonWall();
+    renderRibbonDetail();
+  }
+
+  function setupDeferredAtlas() {
+    if (atlasReady) return;
+    const atlas = root.querySelector(".ribbon-atlas");
+    if (!atlas) return;
+    atlas.classList.add("is-deferred");
+    atlas.addEventListener("focusin", ensureAtlasRendered, { once: true });
+    atlas.addEventListener("pointerdown", ensureAtlasRendered, { once: true });
+    if ("IntersectionObserver" in window) {
+      const observer = new window.IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        observer.disconnect();
+        ensureAtlasRendered();
+      }, { rootMargin: "700px 0px" });
+      observer.observe(atlas);
+    } else {
+      ensureAtlasRendered();
+    }
   }
 
   function scheduleRibbonTooltipPosition(event, keyboard) {
@@ -2718,15 +2882,15 @@ async function build() {
       secondary: secondaryByMetric.get(metricKey)
     }));
     const seriesByMetric = new Map(pairs.map(item => [item.metricKey, item]));
-    const width = 1100;
-    const stripX = 260;
-    const stripRight = width - 30;
+    const width = mobileLite ? 440 : 1100;
+    const stripX = mobileLite ? 150 : 260;
+    const stripRight = width - (mobileLite ? 12 : 30);
     const stripHeight = 30;
     const rowStart = 34;
     const rowGap = 148;
     const x = d3.scaleLinear().domain(ribbonYearDomain).range([stripX, stripRight]);
     const stripeWidth = Math.max(2, x(ribbonYearDomain[0] + 1) - x(ribbonYearDomain[0]) + 0.5);
-    const roughComparison = rough.svg(ribbonComparison.node());
+    const roughComparison = mobileLite ? null : rough.svg(ribbonComparison.node());
 
     section.hidden = false;
     detailPanel.classList.add("is-comparing");
@@ -2738,7 +2902,7 @@ async function build() {
 
     ribbonComparison.selectAll("*").remove();
     ribbonComparison
-      .attr("viewBox", "0 0 1100 640")
+      .attr("viewBox", `0 0 ${width} 640`)
       .attr("aria-label", t("comparison.pairedAria", { primary: primaryTitle, secondary: secondaryTitle }));
     ribbonComparison.append("title").text(t("comparison.pairedAria", { primary: primaryTitle, secondary: secondaryTitle }));
     ribbonComparison.append("desc").text(t("comparison.guide"));
@@ -2772,14 +2936,16 @@ async function build() {
     metricRows.each(function(d) {
       const group = d3.select(this);
       const color = metricScale(d.metric);
-      appendRough(group, roughComparison.rectangle(8, -10, width - 16, 136, {
-        seed: stableSeed(`${d.metricKey}-comparison-row`),
-        stroke: "rgba(53, 76, 72, 0.32)",
-        strokeWidth: 0.9,
-        roughness: 1.55,
-        bowing: 1.1,
-        fill: "none"
-      }), "chart-sketch-frame comparison-row-sketch");
+      if (!mobileLite) {
+        appendRough(group, roughComparison.rectangle(8, -10, width - 16, 136, {
+          seed: stableSeed(`${d.metricKey}-comparison-row`),
+          stroke: "rgba(53, 76, 72, 0.32)",
+          strokeWidth: 0.9,
+          roughness: 1.55,
+          bowing: 1.1,
+          fill: "none"
+        }), "chart-sketch-frame comparison-row-sketch");
+      }
       const lanes = [
         { key: "primary", code: state.selected, title: primaryTitle, series: d.primary, y: 25 },
         { key: "secondary", code: state.compared, title: secondaryTitle, series: d.secondary, y: 72 }
@@ -2799,7 +2965,7 @@ async function build() {
         lane.append("foreignObject")
           .attr("class", "comparison-pair-evolution-fo")
           .attr("x", 20).attr("y", laneData.y + 12)
-          .attr("width", 222).attr("height", 28)
+          .attr("width", mobileLite ? 120 : 222).attr("height", 28)
           .append("xhtml:div")
           .attr("class", `comparison-pair-evolution is-${laneData.series.evolution.category}`)
           .text(laneData.series.evolution.text);
@@ -2807,27 +2973,47 @@ async function build() {
           .attr("class", "ribbon-detail-band-bg")
           .attr("x", stripX).attr("y", laneData.y)
           .attr("width", stripRight - stripX).attr("height", stripHeight);
-        const laneStripes = lane.selectAll("rect.ribbon-detail-stripe")
-          .data(laneData.series.rows)
-          .join("rect")
-          .attr("class", "ribbon-detail-stripe")
-          .attr("x", row => x(row.year))
-          .attr("y", (_, index) => laneData.y + ((index % 5) - 2) * 0.16)
-          .attr("width", stripeWidth)
-          .attr("height", (_, index) => stripHeight + ((index % 4) - 1.5) * 0.2)
-          .attr("fill", row => color(row.value));
+        const raster = appendRasterRibbon(lane, laneData.series.rows, {
+          domain: ribbonYearDomain,
+          color,
+          x: stripX,
+          y: laneData.y,
+          width: stripRight - stripX,
+          height: stripHeight,
+          className: "ribbon-detail-raster"
+        });
+        const laneStripes = raster
+          ? d3.select(null)
+          : lane.selectAll("rect.ribbon-detail-stripe")
+            .data(laneData.series.rows)
+            .join("rect")
+            .attr("class", "ribbon-detail-stripe")
+            .attr("x", row => x(row.year))
+            .attr("y", (_, index) => laneData.y + ((index % 5) - 2) * 0.16)
+            .attr("width", stripeWidth)
+            .attr("height", (_, index) => stripHeight + ((index % 4) - 1.5) * 0.2)
+            .attr("fill", row => color(row.value));
         const laneStripeByYear = new Map();
         laneStripes.each(function(row) {
           laneStripeByYear.set(row.year, this);
         });
-        appendRough(lane, roughComparison.rectangle(stripX, laneData.y, stripRight - stripX, stripHeight, {
-          seed: stableSeed(`${d.metricKey}-${laneData.key}-comparison-band`),
-          stroke: "rgba(31, 41, 40, 0.72)",
-          strokeWidth: 1.05,
-          roughness: 1.8,
-          bowing: 1.25,
-          fill: "none"
-        }), "ribbon-detail-frame rough-ribbon-frame");
+        if (mobileLite) {
+          lane.append("rect")
+            .attr("class", "ribbon-detail-frame")
+            .attr("x", stripX).attr("y", laneData.y)
+            .attr("width", stripRight - stripX).attr("height", stripHeight)
+            .attr("fill", "none")
+            .attr("stroke", "rgba(31, 41, 40, 0.72)");
+        } else {
+          appendRough(lane, roughComparison.rectangle(stripX, laneData.y, stripRight - stripX, stripHeight, {
+            seed: stableSeed(`${d.metricKey}-${laneData.key}-comparison-band`),
+            stroke: "rgba(31, 41, 40, 0.72)",
+            strokeWidth: 1.05,
+            roughness: 1.8,
+            bowing: 1.25,
+            fill: "none"
+          }), "ribbon-detail-frame rough-ribbon-frame");
+        }
 
         const inspectRow = event => closestRow(laneData.series.rows, Math.round(x.invert(d3.pointer(event, ribbonComparison.node())[0])));
         let inspectedYear = null;
@@ -2892,13 +3078,20 @@ async function build() {
         .attr("text-anchor", "end")
         .text(`${signed(d.metric.domain[2])} ${d.metric.unit} · ${metricText(d.metric, "high")}`);
       const marker = group.append("g").attr("class", "ribbon-detail-marker comparison-pair-marker");
-      appendRough(marker, roughComparison.line(0, 20, 0, 108, {
-        seed: stableSeed(`${d.metricKey}-comparison-marker`),
-        stroke: "rgba(24, 46, 47, 0.82)",
-        strokeWidth: 1.15,
-        roughness: 1.65,
-        bowing: 1.15
-      }), "rough-year-marker");
+      if (mobileLite) {
+        marker.append("line")
+          .attr("x1", 0).attr("x2", 0).attr("y1", 20).attr("y2", 108)
+          .attr("stroke", "rgba(24, 46, 47, 0.82)")
+          .attr("stroke-width", 1.15);
+      } else {
+        appendRough(marker, roughComparison.line(0, 20, 0, 108, {
+          seed: stableSeed(`${d.metricKey}-comparison-marker`),
+          stroke: "rgba(24, 46, 47, 0.82)",
+          strokeWidth: 1.15,
+          roughness: 1.65,
+          bowing: 1.15
+        }), "rough-year-marker");
+      }
     });
 
     ribbonComparisonState = {
@@ -2916,15 +3109,15 @@ async function build() {
     const detailMetric = root.querySelector(".ribbon-detail-metric");
     const detailSummary = root.querySelector(".ribbon-detail-summary");
     const detailCaption = root.querySelector(".ribbon-detail-caption");
-    const width = 1100;
-    const stripX = 240;
-    const stripRight = width - 32;
+    const width = mobileLite ? 440 : 1100;
+    const stripX = mobileLite ? 140 : 240;
+    const stripRight = width - (mobileLite ? 12 : 32);
     const stripHeight = 42;
     const rowStart = 38;
     const rowGap = 96;
     const x = d3.scaleLinear().domain(ribbonYearDomain).range([stripX, stripRight]);
     const stripeWidth = Math.max(2, x(ribbonYearDomain[0] + 1) - x(ribbonYearDomain[0]) + 0.5);
-    const roughDetail = rough.svg(ribbonDetail.node());
+    const roughDetail = mobileLite ? null : rough.svg(ribbonDetail.node());
     const series = ribbonMetricKeys.map(metricKey => {
       const rows = [...(byMetric.get(metricKey)?.get(state.selected) ?? [])]
         .sort((a, b) => d3.ascending(a.year, b.year));
@@ -2952,6 +3145,7 @@ async function build() {
 
     ribbonDetail.selectAll("*").remove();
     ribbonDetail
+      .attr("viewBox", `0 0 ${width} 430`)
       .attr("aria-label", t("atlas.detailCompareAria", { territory: title }));
     ribbonDetail.append("title").text(t("atlas.detailCompareAria", { territory: title }));
     ribbonDetail.append("desc").text(t("atlas.detailCompareCaption"));
@@ -2994,7 +3188,7 @@ async function build() {
     metricRows.append("foreignObject")
       .attr("class", "ribbon-detail-evolution-fo")
       .attr("x", 20).attr("y", 43)
-      .attr("width", 205).attr("height", 40)
+      .attr("width", mobileLite ? 108 : 205).attr("height", 40)
       .append("xhtml:div")
       .attr("class", d => `ribbon-detail-evolution is-${d.evolution.category}`)
       .text(d => d.evolution.text);
@@ -3006,35 +3200,57 @@ async function build() {
     metricRows.each(function(d) {
       const group = d3.select(this);
       const color = metricScale(d.metric);
-      appendRough(group, roughDetail.rectangle(8, -8, width - 16, 88, {
-        seed: stableSeed(`${state.selected}-${d.metricKey}-detail-row`),
-        stroke: "rgba(53, 76, 72, 0.3)",
-        strokeWidth: 0.9,
-        roughness: 1.5,
-        bowing: 1.05,
-        fill: "none"
-      }), "chart-sketch-frame ribbon-detail-row-sketch");
-      const detailStripes = group.selectAll("rect.ribbon-detail-stripe")
-        .data(d.rows)
-        .join("rect")
-        .attr("class", "ribbon-detail-stripe")
-        .attr("x", row => x(row.year))
-        .attr("y", (_, index) => 4 + ((index % 5) - 2) * 0.22)
-        .attr("width", stripeWidth)
-        .attr("height", (_, index) => stripHeight + ((index % 4) - 1.5) * 0.25)
-        .attr("fill", row => color(row.value));
+      if (!mobileLite) {
+        appendRough(group, roughDetail.rectangle(8, -8, width - 16, 88, {
+          seed: stableSeed(`${state.selected}-${d.metricKey}-detail-row`),
+          stroke: "rgba(53, 76, 72, 0.3)",
+          strokeWidth: 0.9,
+          roughness: 1.5,
+          bowing: 1.05,
+          fill: "none"
+        }), "chart-sketch-frame ribbon-detail-row-sketch");
+      }
+      const raster = appendRasterRibbon(group, d.rows, {
+        domain: ribbonYearDomain,
+        color,
+        x: stripX,
+        y: 4,
+        width: stripRight - stripX,
+        height: stripHeight,
+        className: "ribbon-detail-raster"
+      });
+      const detailStripes = raster
+        ? d3.select(null)
+        : group.selectAll("rect.ribbon-detail-stripe")
+          .data(d.rows)
+          .join("rect")
+          .attr("class", "ribbon-detail-stripe")
+          .attr("x", row => x(row.year))
+          .attr("y", (_, index) => 4 + ((index % 5) - 2) * 0.22)
+          .attr("width", stripeWidth)
+          .attr("height", (_, index) => stripHeight + ((index % 4) - 1.5) * 0.25)
+          .attr("fill", row => color(row.value));
       const detailStripeByYear = new Map();
       detailStripes.each(function(row) {
         detailStripeByYear.set(row.year, this);
       });
-      appendRough(group, roughDetail.rectangle(stripX, 4, stripRight - stripX, stripHeight, {
-        seed: stableSeed(`${state.selected}-${d.metricKey}-detail-band`),
-        stroke: "rgba(31, 41, 40, 0.72)",
-        strokeWidth: 1.15,
-        roughness: 1.85,
-        bowing: 1.3,
-        fill: "none"
-      }), "ribbon-detail-frame rough-ribbon-frame");
+      if (mobileLite) {
+        group.append("rect")
+          .attr("class", "ribbon-detail-frame")
+          .attr("x", stripX).attr("y", 4)
+          .attr("width", stripRight - stripX).attr("height", stripHeight)
+          .attr("fill", "none")
+          .attr("stroke", "rgba(31, 41, 40, 0.72)");
+      } else {
+        appendRough(group, roughDetail.rectangle(stripX, 4, stripRight - stripX, stripHeight, {
+          seed: stableSeed(`${state.selected}-${d.metricKey}-detail-band`),
+          stroke: "rgba(31, 41, 40, 0.72)",
+          strokeWidth: 1.15,
+          roughness: 1.85,
+          bowing: 1.3,
+          fill: "none"
+        }), "ribbon-detail-frame rough-ribbon-frame");
+      }
       group.append("text")
         .attr("class", "ribbon-detail-scale-label")
         .attr("x", stripX).attr("y", 62)
@@ -3050,13 +3266,20 @@ async function build() {
         .attr("text-anchor", "end")
         .text(`${signed(d.metric.domain[2])} ${d.metric.unit} · ${metricText(d.metric, "high")}`);
       const marker = group.append("g").attr("class", "ribbon-detail-marker");
-      appendRough(marker, roughDetail.line(0, 0, 0, 50, {
-        seed: stableSeed(`${state.selected}-${d.metricKey}-detail-marker`),
-        stroke: "rgba(24, 46, 47, 0.82)",
-        strokeWidth: 1.15,
-        roughness: 1.65,
-        bowing: 1.15
-      }), "rough-year-marker");
+      if (mobileLite) {
+        marker.append("line")
+          .attr("x1", 0).attr("x2", 0).attr("y1", 0).attr("y2", 50)
+          .attr("stroke", "rgba(24, 46, 47, 0.82)")
+          .attr("stroke-width", 1.15);
+      } else {
+        appendRough(marker, roughDetail.line(0, 0, 0, 50, {
+          seed: stableSeed(`${state.selected}-${d.metricKey}-detail-marker`),
+          stroke: "rgba(24, 46, 47, 0.82)",
+          strokeWidth: 1.15,
+          roughness: 1.65,
+          bowing: 1.15
+        }), "rough-year-marker");
+      }
 
       const inspectRow = event => closestRow(d.rows, Math.round(x.invert(d3.pointer(event, ribbonDetail.node())[0])));
       let inspectedYear = null;
@@ -3181,6 +3404,8 @@ async function build() {
   function renderSketchTextures() {
     zoneTextureLayer.selectAll("*").remove();
     zoneTextureLayer.attr("data-selected", state.selected ?? "");
+    roughCoastLayer.selectAll("*").remove();
+    if (mobileLite) return;
 
     features.forEach(feature => {
       const pathData = path(feature);
@@ -3210,7 +3435,6 @@ async function build() {
     });
     updateZoneTextureColors();
 
-    roughCoastLayer.selectAll("*").remove();
     [
       {
         datum: { type: "Sphere" },
@@ -3252,7 +3476,7 @@ async function build() {
     const color = metricScale(metric);
     const rowsThisYear = rowByMetricYearCode.get(state.indicator)?.get(state.year);
     zones.interrupt();
-    const target = animate && !reducedMotion
+    const target = animate && !reducedMotion && !mobileLite
       ? zones.transition().duration(220).ease(d3.easeCubicOut)
       : zones;
 
@@ -3322,7 +3546,7 @@ async function build() {
     } else {
       updatePanelYear();
     }
-    if (secondary) {
+    if (secondary && atlasReady) {
       updateRibbonWallState();
       updateRibbonDetail();
     }
@@ -3850,6 +4074,7 @@ async function build() {
   }
 
   function triggerSceneEffect() {
+    if (mobileLite) return;
     const explorer = root.querySelector(".climate-explorer");
     window.clearTimeout(sceneEffectTimer);
     explorer.classList.remove("scene-kick");
@@ -4096,29 +4321,32 @@ async function build() {
     renderSketchTextures();
   });
 
-  svg.call(d3.drag()
-    .on("start", event => {
-      event.subject.rotation = projection.rotate();
-      event.subject.pointer = [event.x, event.y];
-      stage.classList.add("is-rotating");
-    })
-    .on("drag", event => {
-      const start = event.subject.rotation ?? initialRotation;
-      const origin = event.subject.pointer ?? [event.x, event.y];
-      projection.rotate([
-        start[0] + (event.x - origin[0]) / 3,
-        Math.max(-55, Math.min(55, start[1] - (event.y - origin[1]) / 3)),
-        0
-      ]);
-      renderGeometry();
-    })
-    .on("end", () => {
-      renderSketchTextures();
-      stage.classList.remove("is-rotating");
-    }));
+  if (!mobileLite) {
+    svg.call(d3.drag()
+      .on("start", event => {
+        event.subject.rotation = projection.rotate();
+        event.subject.pointer = [event.x, event.y];
+        stage.classList.add("is-rotating");
+      })
+      .on("drag", event => {
+        const start = event.subject.rotation ?? initialRotation;
+        const origin = event.subject.pointer ?? [event.x, event.y];
+        projection.rotate([
+          start[0] + (event.x - origin[0]) / 3,
+          Math.max(-55, Math.min(55, start[1] - (event.y - origin[1]) / 3)),
+          0
+        ]);
+        renderGeometry();
+      })
+      .on("end", () => {
+        renderSketchTextures();
+        stage.classList.remove("is-rotating");
+      }));
+  }
 
   renderGeometry();
   configureMetric(state.indicator);
+  setupDeferredAtlas();
 }
 
 build().catch(error => {
