@@ -89,6 +89,11 @@ const actual = {
   wallRows: document.querySelectorAll(".ribbon-row").length,
   detailMetricRows: document.querySelectorAll(".ribbon-detail-metric-row").length,
   detailEvolution: document.querySelectorAll(".ribbon-detail-evolution").length,
+  detailAxisCaption: document.querySelector(".ribbon-detail-svg .ribbon-detail-axis-caption")?.textContent,
+  detailColorKeys: document.querySelectorAll(".ribbon-detail-svg .ribbon-detail-color-key").length,
+  detailColorKeysAbove: [...document.querySelectorAll(".ribbon-detail-svg .ribbon-detail-color-key")]
+    .every(key => key.getAttribute("transform")?.endsWith(",-10)")),
+  obsoleteScaleMids: document.querySelectorAll(".ribbon-detail-scale-mid").length,
   territorySummary: document.querySelector(".territory-summary-text")?.textContent,
   portraitStripes: document.querySelectorAll(".portrait-stripe").length,
   portraitRasters: document.querySelectorAll(".portrait-ribbon-raster").length,
@@ -105,7 +110,7 @@ const actual = {
   year: document.querySelector(".year-output")?.textContent
 };
 
-if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
+if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || actual.detailAxisCaption !== "CHRONOLOGY (YEARS)" || actual.detailColorKeys !== 4 || !actual.detailColorKeysAbove || actual.obsoleteScaleMids !== 0 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
   throw new Error(JSON.stringify(actual));
 }
 
@@ -121,9 +126,11 @@ const frenchCopy = {
   contextTitle: document.querySelector(".context-title")?.textContent,
   panelTitle: document.querySelector(".panel-title")?.textContent,
   summary: document.querySelector(".territory-summary-text")?.textContent,
-  seaTitle: document.querySelector("#story-sea-rise h2")?.textContent
+  seaTitle: document.querySelector("#story-sea-rise h2")?.textContent,
+  axisCaption: document.querySelector(".ribbon-detail-svg .ribbon-detail-axis-caption")?.textContent,
+  colorKey: document.querySelector(".ribbon-detail-svg .ribbon-detail-color-key text")?.textContent
 };
-if (frenchCopy.header !== "Un même Pacifique, vingt-deux trajectoires climatiques." || !frenchCopy.lede?.includes("sans masquer les différences") || frenchCopy.prompt !== "Choisissez l’indicateur à afficher pour l’ensemble des territoires." || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux trajectoires climatiques" || !frenchCopy.atlasIntro?.includes("les quatre séries climatiques") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Le niveau marin s’élève") {
+if (frenchCopy.header !== "Un même Pacifique, vingt-deux trajectoires climatiques." || !frenchCopy.lede?.includes("sans masquer les différences") || frenchCopy.prompt !== "Choisissez l’indicateur à afficher pour l’ensemble des territoires." || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux trajectoires climatiques" || !frenchCopy.atlasIntro?.includes("les quatre séries climatiques") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Le niveau marin s’élève" || frenchCopy.axisCaption !== "CHRONOLOGIE (ANNÉES)" || !frenchCopy.colorKey?.startsWith("COMMENT LIRE LES COULEURS —")) {
   throw new Error(JSON.stringify(frenchCopy));
 }
 document.querySelector('.language-button[data-lang="en"]').click();
@@ -131,6 +138,14 @@ await new Promise(resolve => setTimeout(resolve, 50));
 if (document.querySelector(".panel-title")?.textContent !== "New Caledonia" || document.querySelector(".explorer-header h1")?.textContent !== "One Pacific. Twenty-two climate trajectories.") {
   throw new Error("Switching back to English failed");
 }
+
+const comparisonSelect = document.querySelector(".territory-compare-select");
+comparisonSelect.value = "FJ";
+comparisonSelect.dispatchEvent(new browserWindow.Event("change", { bubbles: true }));
+if (document.querySelectorAll(".ribbon-comparison-svg .ribbon-detail-color-key").length !== 4 || ![...document.querySelectorAll(".ribbon-comparison-svg .ribbon-detail-color-key")].every(key => key.getAttribute("transform")?.endsWith(",-8)")) || document.querySelector(".ribbon-comparison-svg .ribbon-detail-axis-caption")?.textContent !== "CHRONOLOGY (YEARS)" || document.querySelectorAll(".ribbon-comparison-svg .ribbon-detail-scale-mid").length) {
+  throw new Error("Comparison ribbon labels are ambiguous");
+}
+document.querySelector(".comparison-remove").click();
 
 const mapTooltipZone = document.querySelector('path.zone[data-code="FJ"]');
 mapTooltipZone.dispatchEvent(new browserWindow.MouseEvent("pointerenter", { bubbles: true, clientX: 320, clientY: 240 }));
@@ -194,6 +209,8 @@ let exportStrokeCount = 0;
 let exportTextCount = 0;
 let exportBezierCount = 0;
 let exportInvalidNoneFillCount = 0;
+const exportTexts = [];
+const exportTextEntries = [];
 const canvasStates = [];
 const mockCanvasContext = {
   globalAlpha: 1,
@@ -227,7 +244,11 @@ const mockCanvasContext = {
     exportStrokeCount += 1;
     if (this.strokeStyle === "none") exportInvalidNoneFillCount += 1;
   },
-  fillText() { exportTextCount += 1; },
+  fillText(value, x, y) {
+    exportTextCount += 1;
+    exportTexts.push(String(value));
+    exportTextEntries.push({ value: String(value), x, y });
+  },
   measureText(value) { return { width: String(value).length * 10 }; }
 };
 browserWindow.HTMLCanvasElement.prototype.getContext = () => mockCanvasContext;
@@ -237,8 +258,13 @@ browserWindow.HTMLCanvasElement.prototype.toBlob = function(callback) {
 browserWindow.HTMLAnchorElement.prototype.click = function() {};
 document.querySelector(".portrait-export").click();
 await new Promise(resolve => setTimeout(resolve, 50));
-if (exportStrokeCount < 40 || exportBezierCount < 200 || exportTextCount < 20 || exportInvalidNoneFillCount) {
-  throw new Error(JSON.stringify({ exportStrokeCount, exportBezierCount, exportTextCount, exportInvalidNoneFillCount }));
+const exportColourKeys = exportTextEntries.filter(entry => entry.value.startsWith("HOW TO READ THE COLOURS —"));
+const exportChronologies = exportTextEntries.filter(entry => entry.value === "CHRONOLOGY (YEARS)");
+const exportColourKeysAbove = exportColourKeys.length === 4
+  && exportChronologies.length === 4
+  && exportColourKeys.every((entry, index) => entry.y < exportChronologies[index].y);
+if (exportStrokeCount < 40 || exportBezierCount < 200 || exportTextCount < 20 || exportInvalidNoneFillCount || !exportTexts.includes("CHRONOLOGY (YEARS)") || !exportTexts.some(value => value.startsWith("HOW TO READ THE COLOURS —")) || !exportColourKeysAbove || exportTexts.includes("0 = reference")) {
+  throw new Error(JSON.stringify({ exportStrokeCount, exportBezierCount, exportTextCount, exportInvalidNoneFillCount, exportTexts }));
 }
 
 console.log(JSON.stringify({ ...actual, interaction, exportStrokeCount, exportBezierCount, exportTextCount, exportInvalidNoneFillCount, status: "ok" }));

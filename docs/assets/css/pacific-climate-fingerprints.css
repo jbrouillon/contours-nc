@@ -2824,6 +2824,39 @@ main.content {
   font-weight: 750;
 }
 
+.ribbon-detail-axis-caption {
+  fill: #356b6b;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.ribbon-detail-color-key {
+  pointer-events: none;
+}
+
+.ribbon-detail-color-key-bg {
+  fill: rgba(255, 253, 247, 0.94);
+  stroke: rgba(53, 76, 72, 0.36);
+  stroke-width: 0.7px;
+}
+
+.ribbon-detail-color-swatch {
+  stroke: rgba(31, 41, 40, 0.3);
+  stroke-width: 0.45px;
+}
+
+.ribbon-detail-color-key text {
+  fill: #52615d;
+  font-family: "Segoe Print", "Bradley Hand", cursive;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.ribbon-detail-color-key.is-compact text {
+  font-size: 8px;
+  letter-spacing: -0.01em;
+}
+
 .ribbon-detail-empty {
   font-size: 15px;
 }

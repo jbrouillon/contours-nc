@@ -276,6 +276,51 @@ function signed(value, digits = 1) {
   return `${value > 0 ? "+" : value < 0 ? "−" : ""}${fixed}`;
 }
 
+function metricColorScaleText(metric) {
+  return t("ribbon.colorScale", {
+    low: `${signed(metric.domain[0])} ${metric.unit}`,
+    lowLabel: metricText(metric, "low"),
+    mid: t("map.reference"),
+    high: `${signed(metric.domain[2])} ${metric.unit}`,
+    highLabel: metricText(metric, "high")
+  });
+}
+
+function metricColorScaleCompactText(metric) {
+  return t("ribbon.colorScaleCompact", {
+    low: `${signed(metric.domain[0])} ${metric.unit}`,
+    high: `${signed(metric.domain[2])} ${metric.unit}`
+  });
+}
+
+function appendRibbonColorKey(group, metric, x, y) {
+  const compact = mobileLite;
+  const panelWidth = compact ? 278 : 610;
+  const key = group.append("g")
+    .attr("class", `ribbon-detail-color-key${compact ? " is-compact" : ""}`)
+    .attr("transform", `translate(${x},${y})`);
+  key.append("rect")
+    .attr("class", "ribbon-detail-color-key-bg")
+    .attr("x", -7)
+    .attr("y", -5)
+    .attr("width", panelWidth)
+    .attr("height", 18)
+    .attr("rx", 5);
+  key.selectAll("rect.ribbon-detail-color-swatch")
+    .data(metric.colors)
+    .join("rect")
+    .attr("class", "ribbon-detail-color-swatch")
+    .attr("x", (_, index) => index * 13)
+    .attr("y", 0)
+    .attr("width", 13)
+    .attr("height", 8)
+    .attr("fill", color => color);
+  key.append("text")
+    .attr("x", metric.colors.length * 13 + 9)
+    .attr("y", 8)
+    .text(compact ? metricColorScaleCompactText(metric) : metricColorScaleText(metric));
+}
+
 function formatValue(value, metric) {
   if (!Number.isFinite(value)) return t("common.noData");
   return `${signed(value, 1)} ${metric.unit}`;
@@ -2713,6 +2758,24 @@ async function build() {
         context.font = '700 18px "Segoe Print", "Bradley Hand", cursive';
         wrapCanvasText(context, item.evolution.text, 112, y + 66, 315, 24, 3);
 
+        context.fillStyle = "rgba(255, 253, 247, 0.9)";
+        canvasRoundRect(context, bandStart, y - 42, bandWidth, 30, 7);
+        context.fill();
+        roughExport.rectangle(bandStart, y - 42, bandWidth, 30, {
+          seed: stableSeed(`${state.selected}-${item.metricKey}-export-colour-key`),
+          stroke: "rgba(53, 76, 72, 0.42)",
+          strokeWidth: 1,
+          roughness: 1.25,
+          bowing: 0.9
+        });
+        item.metric.colors.forEach((swatch, swatchIndex) => {
+          context.fillStyle = swatch;
+          context.fillRect(bandStart + 12 + swatchIndex * 17, y - 33, 17, 11);
+        });
+        context.fillStyle = "#52615d";
+        context.font = '700 16px "Segoe Print", "Bradley Hand", cursive';
+        context.fillText(metricColorScaleText(item.metric), bandStart + 74, y - 22);
+
         context.fillStyle = "rgba(31, 41, 40, 0.08)";
         context.fillRect(bandStart, y, bandWidth, 72);
         const yearWidth = bandWidth / (domainEnd - domainStart + 1);
@@ -2742,7 +2805,7 @@ async function build() {
         context.textAlign = "left";
         context.fillText(String(domainStart), bandStart, y + 105);
         context.textAlign = "center";
-        context.fillText(t("map.reference"), (bandStart + bandEnd) / 2, y + 105);
+        context.fillText(t("ribbon.timeAxis"), (bandStart + bandEnd) / 2, y + 105);
         context.textAlign = "right";
         context.fillText(String(domainEnd), bandEnd, y + 105);
         context.textAlign = "left";
@@ -2873,7 +2936,7 @@ async function build() {
     const stripX = mobileLite ? 150 : 260;
     const stripRight = width - (mobileLite ? 12 : 30);
     const stripHeight = 30;
-    const rowStart = 34;
+    const rowStart = 46;
     const rowGap = 148;
     const x = d3.scaleLinear().domain(ribbonYearDomain).range([stripX, stripRight]);
     const stripeWidth = Math.max(2, x(ribbonYearDomain[0] + 1) - x(ribbonYearDomain[0]) + 0.5);
@@ -2902,6 +2965,11 @@ async function build() {
       .attr("x", stripRight).attr("y", 23)
       .attr("text-anchor", "end")
       .text(ribbonYearDomain[1]);
+    ribbonComparison.append("text")
+      .attr("class", "ribbon-detail-axis-label ribbon-detail-axis-caption")
+      .attr("x", (stripX + stripRight) / 2).attr("y", 23)
+      .attr("text-anchor", "middle")
+      .text(t("ribbon.timeAxis"));
 
     const metricRows = ribbonComparison.selectAll("g.ribbon-detail-metric-row")
       .data(pairs)
@@ -3050,20 +3118,7 @@ async function build() {
           });
       });
 
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label")
-        .attr("x", stripX).attr("y", 121)
-        .text(`${metricText(d.metric, "low")} · ${signed(d.metric.domain[0])} ${d.metric.unit}`);
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label ribbon-detail-scale-mid")
-        .attr("x", (stripX + stripRight) / 2).attr("y", 121)
-        .attr("text-anchor", "middle")
-        .text(t("map.reference"));
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label")
-        .attr("x", stripRight).attr("y", 121)
-        .attr("text-anchor", "end")
-        .text(`${signed(d.metric.domain[2])} ${d.metric.unit} · ${metricText(d.metric, "high")}`);
+      appendRibbonColorKey(group, d.metric, stripX, -8);
       const marker = group.append("g").attr("class", "ribbon-detail-marker comparison-pair-marker");
       if (mobileLite) {
         marker.append("line")
@@ -3100,7 +3155,7 @@ async function build() {
     const stripX = mobileLite ? 140 : 240;
     const stripRight = width - (mobileLite ? 12 : 32);
     const stripHeight = 42;
-    const rowStart = 38;
+    const rowStart = 48;
     const rowGap = 96;
     const x = d3.scaleLinear().domain(ribbonYearDomain).range([stripX, stripRight]);
     const stripeWidth = Math.max(2, x(ribbonYearDomain[0] + 1) - x(ribbonYearDomain[0]) + 0.5);
@@ -3146,6 +3201,11 @@ async function build() {
       .attr("x", stripRight).attr("y", 23)
       .attr("text-anchor", "end")
       .text(ribbonYearDomain[1]);
+    ribbonDetail.append("text")
+      .attr("class", "ribbon-detail-axis-label ribbon-detail-axis-caption")
+      .attr("x", (stripX + stripRight) / 2).attr("y", 23)
+      .attr("text-anchor", "middle")
+      .text(t("ribbon.timeAxis"));
 
     const metricRows = ribbonDetail.selectAll("g.ribbon-detail-metric-row")
       .data(series)
@@ -3238,20 +3298,7 @@ async function build() {
           fill: "none"
         }), "ribbon-detail-frame rough-ribbon-frame");
       }
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label")
-        .attr("x", stripX).attr("y", 62)
-        .text(`${metricText(d.metric, "low")} · ${signed(d.metric.domain[0])} ${d.metric.unit}`);
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label ribbon-detail-scale-mid")
-        .attr("x", (stripX + stripRight) / 2).attr("y", 62)
-        .attr("text-anchor", "middle")
-        .text(t("map.reference"));
-      group.append("text")
-        .attr("class", "ribbon-detail-scale-label")
-        .attr("x", stripRight).attr("y", 62)
-        .attr("text-anchor", "end")
-        .text(`${signed(d.metric.domain[2])} ${d.metric.unit} · ${metricText(d.metric, "high")}`);
+      appendRibbonColorKey(group, d.metric, stripX, -10);
       const marker = group.append("g").attr("class", "ribbon-detail-marker");
       if (mobileLite) {
         marker.append("line")
