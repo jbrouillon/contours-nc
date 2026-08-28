@@ -513,7 +513,7 @@ function createShell() {
               <span class="map-impact-label"></span>
             </p>
           </div>
-          <svg class="map-svg" viewBox="0 0 900 650" role="img" aria-label="${t("map.aria")}"></svg>
+          <svg class="map-svg" width="900" height="650" viewBox="0 0 900 650" role="img" aria-label="${t("map.aria")}"></svg>
           <div class="map-year" aria-hidden="true"></div>
           <div class="climate-tooltip" role="status" hidden></div>
           <div class="legend" aria-label="${t("map.legendAria")}">
@@ -953,7 +953,12 @@ async function build() {
       station_year_latest: d.station_year_latest === "" ? NaN : +d.station_year_latest
     })),
     d3.json(DATA.eez),
-    d3.json(DATA.land)
+    mobileLite
+      ? Promise.resolve(null)
+      : d3.json(DATA.land).catch(error => {
+          console.warn("World land layer unavailable; continuing with the climate zones.", error);
+          return null;
+        })
   ]);
 
   const byMetric = d3.group(raw, d => d.indicator, d => d.code);
@@ -977,7 +982,9 @@ async function build() {
     code: countryToCode.get(feature.properties.country)
   })).filter(d => d.code);
 
-  const land = topojson.feature(landTopo, landTopo.objects.land);
+  const land = landTopo?.objects?.land
+    ? topojson.feature(landTopo, landTopo.objects.land)
+    : { type: "FeatureCollection", features: [] };
   const svg = d3.select(root).select(".map-svg");
   const ribbonWall = d3.select(root).select(".ribbon-wall");
   const ribbonDetail = d3.select(root).select(".ribbon-detail-svg");

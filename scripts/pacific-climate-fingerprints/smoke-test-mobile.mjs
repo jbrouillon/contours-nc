@@ -70,6 +70,8 @@ if (error) throw new Error(error.textContent);
 const beforeAtlas = {
   renderMode: document.querySelector(".climate-explorer")?.dataset.renderMode,
   land: requestedLand,
+  svgWidth: document.querySelector(".map-svg")?.getAttribute("width"),
+  svgHeight: document.querySelector(".map-svg")?.getAttribute("height"),
   zones: document.querySelectorAll("path.zone").length,
   sketchZones: document.querySelectorAll("path.zone-sketch").length,
   mapFilters: document.querySelectorAll(".map-svg filter").length,
@@ -81,7 +83,7 @@ const beforeAtlas = {
   detailRows: document.querySelectorAll(".ribbon-detail-metric-row").length
 };
 
-if (beforeAtlas.renderMode !== "lite" || !beforeAtlas.land.includes("land-110m.json") || beforeAtlas.zones !== 21 || beforeAtlas.sketchZones !== 0 || beforeAtlas.mapFilters !== 0 || beforeAtlas.zoneTextures !== 0 || beforeAtlas.roughCoasts !== 0 || beforeAtlas.portraitStripes !== 0 || beforeAtlas.portraitRasters !== 1 || beforeAtlas.wallRows !== 0 || beforeAtlas.detailRows !== 0 || !atlasObserverCallback) {
+if (beforeAtlas.renderMode !== "lite" || beforeAtlas.land !== "" || beforeAtlas.svgWidth !== "900" || beforeAtlas.svgHeight !== "650" || beforeAtlas.zones !== 21 || beforeAtlas.sketchZones !== 0 || beforeAtlas.mapFilters !== 0 || beforeAtlas.zoneTextures !== 0 || beforeAtlas.roughCoasts !== 0 || beforeAtlas.portraitStripes !== 0 || beforeAtlas.portraitRasters !== 1 || beforeAtlas.wallRows !== 0 || beforeAtlas.detailRows !== 0 || !atlasObserverCallback) {
   throw new Error(JSON.stringify(beforeAtlas));
 }
 
