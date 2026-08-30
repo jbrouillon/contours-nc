@@ -4262,3 +4262,9 @@ input:focus-visible {
     display: none !important;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .territory-picker {
+    display: none !important;
+  }
+}
