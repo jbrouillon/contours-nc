@@ -4258,7 +4258,7 @@ input:focus-visible {
   }
 }
 @media (min-width: 1025px) {
-  .territory-select {
+  .territory-picker {
     display: none !important;
   }
 }
