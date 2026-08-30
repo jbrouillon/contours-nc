@@ -4257,3 +4257,14 @@ input:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+@media (min-width: 1025px) {
+  .territory-picker {
+    display: none !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .territory-picker {
+    display: none !important;
+  }
+}

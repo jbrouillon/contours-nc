@@ -1069,13 +1069,14 @@ async function build() {
       station_count_latest: d.station_count_latest === "" ? NaN : +d.station_count_latest,
       station_year_latest: d.station_year_latest === "" ? NaN : +d.station_year_latest
     })),
-    d3.json(DATA.eez),
-    mobileLite
-      ? Promise.resolve(null)
-      : d3.json(DATA.land).catch(error => {
-          console.warn("World land layer unavailable; continuing with the climate zones.", error);
-          return null;
-        })
+d3.json(DATA.eez),
+d3.json(DATA.land).catch(error => {
+  console.warn(
+    "World land layer unavailable; continuing with the climate zones.",
+    error
+  );
+  return null;
+})
   ]);
 
   const byMetric = d3.group(raw, d => d.indicator, d => d.code);
