@@ -149,7 +149,8 @@ const anchors = {
 
 const root = document.querySelector("#climate-map");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const compactStory = window.matchMedia("(max-width: 1239px)").matches;
+const compactStoryQuery = window.matchMedia("(max-width: 1239px)");
+const isCompactStory = () => compactStoryQuery.matches;
 const state = {
   indicator: "ocean",
   chapter: "warming",
@@ -432,17 +433,17 @@ function buildPortraitHistory(rows, indicator, windowSize = 10) {
 
 function createShell() {
   root.innerHTML = `
-    <section class="climate-explorer" data-render-mode="${mobileLite ? "lite" : "full"}" lang="${state.lang}" aria-label="${t("ui.explorerAria")}">
+    <section class="climate-explorer" data-render-mode="${mobileLite ? "lite" : "full"}" lang="${state.lang}" aria-label="${t("ui.explorerAria")}" aria-busy="true">
       <header class="explorer-header">
         <div>
           <p class="eyebrow">${t("header.eyebrow")}</p>
           <h1>${t("header.title")}</h1>
           <p class="lede">${t("header.lede")}</p>
-          <p class="hero-formula" aria-label="${t("header.formulaSignals")}, ${t("header.formulaTerritories")}, ${t("header.formulaResult")}">
+          <p class="hero-formula" aria-label="${t("header.formulaAria")}">
             <span>${t("header.formulaSignals")}</span>
-            <b aria-hidden="true">×</b>
+            <b aria-hidden="true">+</b>
             <span>${t("header.formulaTerritories")}</span>
-            <b aria-hidden="true">=</b>
+            <b aria-hidden="true">→</b>
             <strong>${t("header.formulaResult")}</strong>
           </p>
         </div>
@@ -553,12 +554,16 @@ function createShell() {
                 <p class="map-reading-guide"></p>
               </div>
             </details>
+            <label class="territory-picker">
+              <span>${t("map.territoryLabel")}</span>
+              <select class="territory-select" aria-label="${t("map.territoryAria")}"></select>
+            </label>
             <p class="map-impact" aria-live="polite">
               <strong class="map-impact-value"></strong>
               <span class="map-impact-label"></span>
             </p>
           </div>
-          <svg class="map-svg" width="900" height="650" viewBox="0 0 900 650" role="img" aria-label="${t("map.aria")}"></svg>
+          <svg class="map-svg" width="900" height="650" viewBox="0 0 900 650" role="group" aria-label="${t("map.aria")}"></svg>
           <div class="map-year" aria-hidden="true"></div>
           <div class="climate-tooltip" role="status" hidden></div>
           <div class="legend" aria-label="${t("map.legendAria")}">
@@ -621,7 +626,7 @@ function createShell() {
         <div class="ribbon-overview">
           <p class="ribbon-wall-active"></p>
           <div class="ribbon-wall-wrap">
-            <svg class="ribbon-wall" viewBox="0 0 1180 360" role="img" aria-label="${t("atlas.aria")}"></svg>
+            <svg class="ribbon-wall" viewBox="0 0 1180 360" role="group" aria-label="${t("atlas.aria")}"></svg>
           </div>
         </div>
         <aside class="ribbon-detail" data-indicator="${state.indicator}" aria-labelledby="ribbon-detail-title">
@@ -653,7 +658,7 @@ function createShell() {
             <li>${t("atlas.readingBlank")}</li>
           </ul>
           <figure class="ribbon-detail-figure">
-            <svg class="ribbon-detail-svg" viewBox="0 0 1100 430" role="img" tabindex="0"></svg>
+            <svg class="ribbon-detail-svg" viewBox="0 0 1100 430" role="group" tabindex="0"></svg>
             <figcaption class="ribbon-detail-caption"></figcaption>
           </figure>
           <p class="ribbon-detail-reading" aria-live="polite">
@@ -677,7 +682,7 @@ function createShell() {
             </ul>
           </div>
           <figure class="ribbon-detail-figure">
-            <svg class="ribbon-comparison-svg ribbon-detail-svg" viewBox="0 0 1100 640" role="img" tabindex="0"></svg>
+            <svg class="ribbon-comparison-svg ribbon-detail-svg" viewBox="0 0 1100 640" role="group" tabindex="0"></svg>
             <figcaption class="ribbon-comparison-caption ribbon-detail-caption"></figcaption>
           </figure>
           <p class="ribbon-comparison-reading ribbon-detail-reading" aria-live="polite">
@@ -744,27 +749,30 @@ function setupScrollyLayout() {
 
   const steps = document.createElement("div");
   steps.className = "scrolly-steps";
+  if (isCompactStory()) steps.tabIndex = 0;
   steps.innerHTML = `
     <article id="story-opening" class="scroll-step is-active" data-step="opening" data-chapter="warming" data-indicator="ocean" data-year="2025">
       <div class="scroll-card">
         <p class="scroll-number">${t("scrolly.opening.number")}</p>
         <h2>${t("scrolly.opening.title")}</h2>
-        <p>${t(compactStory ? "scrolly.opening.bodyCompact" : "scrolly.opening.bodyDesktop")}</p>
-        <span class="scroll-cue">${t(compactStory ? "scrolly.opening.cueCompact" : "scrolly.opening.cueDesktop")}</span>
+        <p>${t(isCompactStory() ? "scrolly.opening.bodyCompact" : "scrolly.opening.bodyDesktop")}</p>
+        <span class="scroll-cue">${t(isCompactStory() ? "scrolly.opening.cueCompact" : "scrolly.opening.cueDesktop")}</span>
       </div>
     </article>
     <article id="story-warming" class="scroll-step" data-step="warming" data-chapter="warming" data-indicator="ocean" data-year="2025" data-start-year="1960" data-autoplay="true" data-duration="3000">
       <div class="scroll-card">
         <p class="scroll-number">${t("scrolly.warming.number")}</p>
         <h2>${t("scrolly.warming.title")}</h2>
-        <p>${t(compactStory ? "scrolly.warming.bodyCompact" : "scrolly.warming.bodyDesktop")}</p>
+        <p>${t(isCompactStory() ? "scrolly.warming.bodyCompact" : "scrolly.warming.bodyDesktop")}</p>
+        <p class="scroll-evidence">${t("scrolly.warming.evidence")}</p>
       </div>
     </article>
     <article id="story-warming-land" class="scroll-step" data-step="warming-land" data-chapter="warming" data-indicator="land" data-year="2025" data-start-year="1960" data-autoplay="true" data-duration="2200">
       <div class="scroll-card">
         <p class="scroll-number">${t("scrolly.landWarming.number")}</p>
         <h2>${t("scrolly.landWarming.title")}</h2>
-        <p>${t(compactStory ? "scrolly.landWarming.bodyCompact" : "scrolly.landWarming.bodyDesktop")}</p>
+        <p>${t(isCompactStory() ? "scrolly.landWarming.bodyCompact" : "scrolly.landWarming.bodyDesktop")}</p>
+        <p class="scroll-evidence">${t("scrolly.landWarming.evidence")}</p>
       </div>
     </article>
     <article id="story-rainfall" class="scroll-step" data-step="rainfall" data-chapter="rainfall" data-indicator="rain" data-year="2015">
@@ -772,6 +780,7 @@ function setupScrollyLayout() {
         <p class="scroll-number">${t("scrolly.rain.number")}</p>
         <h2>${t("scrolly.rain.title")}</h2>
         <p>${t("scrolly.rain.body")}</p>
+        <p class="scroll-evidence">${t("scrolly.rain.evidence")}</p>
       </div>
     </article>
     <article id="story-sea-rise" class="scroll-step" data-step="sea-rise" data-chapter="sea-rise" data-indicator="sea_level" data-year="2023">
@@ -779,6 +788,7 @@ function setupScrollyLayout() {
         <p class="scroll-number">${t("scrolly.sea.number")}</p>
         <h2>${t("scrolly.sea.title")}</h2>
         <p>${t("scrolly.sea.body")}</p>
+        <p class="scroll-evidence">${t("scrolly.sea.evidence")}</p>
       </div>
     </article>
     <article id="story-explore" class="scroll-step scroll-step-explore" data-step="explore">
@@ -790,14 +800,66 @@ function setupScrollyLayout() {
       </div>
     </article>`;
 
+  const storyControls = document.createElement("div");
+  storyControls.className = "story-controls";
+  storyControls.innerHTML = `
+    <button type="button" class="story-control story-previous">
+      <span aria-hidden="true">←</span>
+      <span class="story-control-label">${t("scrolly.previous")}</span>
+    </button>
+    <div class="story-progress-wrap">
+      <output class="story-progress" role="status" aria-live="polite" aria-atomic="true"></output>
+      <span class="story-progress-track" aria-hidden="true"><span></span></span>
+    </div>
+    <button type="button" class="story-control story-next">
+      <span class="story-control-label">${t("scrolly.next")}</span>
+      <span aria-hidden="true">→</span>
+    </button>
+    <p class="story-instructions">${t("scrolly.instructions")}</p>`;
+
   storyVoice.classList.add("sr-only");
   explorer.dataset.storyStep = "opening";
   explorer.insertBefore(scrolly, storyNav);
   graphic.append(storyVoice, workspace);
-  workspace.append(storyNav, timeControls);
+  workspace.prepend(storyNav, timeControls);
   territoryPanel.insertBefore(contextBridge, territoryPanel.querySelector(".panel-context"));
-  scrolly.append(graphic, steps);
+  scrolly.append(steps, storyControls, graphic);
   explorer.insertBefore(exploreRow, ribbonAtlas);
+}
+
+function updateStoryAccessibility() {
+  const steps = Array.from(root.querySelectorAll(".scroll-step"));
+  if (!steps.length) return;
+  const activeIndex = Math.max(0, steps.findIndex(step => step.classList.contains("is-active")));
+
+  steps.forEach((step, index) => {
+    const isActive = index === activeIndex;
+    const title = step.querySelector("h2")?.textContent?.trim() || "";
+    step.setAttribute("role", "group");
+    step.setAttribute("aria-roledescription", t("scrolly.slide"));
+    step.setAttribute("aria-label", t("scrolly.slideLabel", {
+      current: index + 1,
+      total: steps.length,
+      title
+    }));
+    if (isActive) step.setAttribute("aria-current", "step");
+    else step.removeAttribute("aria-current");
+  });
+
+  const current = activeIndex + 1;
+  const progress = root.querySelector(".story-progress");
+  if (progress) {
+    progress.textContent = t("scrolly.progress", { current, total: steps.length });
+    progress.setAttribute("aria-label", t("scrolly.progressAria", { current, total: steps.length }));
+  }
+  root.querySelector(".story-progress-wrap")?.style.setProperty(
+    "--story-progress",
+    `${(current / steps.length) * 100}%`
+  );
+  const previous = root.querySelector(".story-previous");
+  const next = root.querySelector(".story-next");
+  if (previous) previous.disabled = activeIndex === 0;
+  if (next) next.disabled = activeIndex === steps.length - 1;
 }
 
 function updateMethodDrawer() {
@@ -840,6 +902,7 @@ function applyStaticCopy() {
   setText(".hero-formula span:first-child", "header.formulaSignals");
   setText(".hero-formula span:nth-of-type(2)", "header.formulaTerritories");
   setText(".hero-formula strong", "header.formulaResult");
+  setAria(".hero-formula", "header.formulaAria");
   setHtml(".header-stamp", "header.stamp");
   setAria(".language-switch", "language.group");
   root.querySelectorAll(".language-button").forEach(button => {
@@ -881,6 +944,8 @@ function applyStaticCopy() {
   updateMethodDrawer();
   setAria(".map-svg", "map.aria");
   setAria(".legend", "map.legendAria");
+  setText(".territory-picker > span", "map.territoryLabel");
+  setAria(".territory-select", "map.territoryAria");
   setText(".map-explainer summary", "map.explain");
   const explainerSummary = root.querySelector(".map-explainer summary");
   if (explainerSummary) explainerSummary.insertAdjacentHTML("afterbegin", '<span aria-hidden="true">?</span>');
@@ -915,19 +980,25 @@ function applyStaticCopy() {
   setText(".conclusion-footnote a", "conclusion.source");
   setAria(".ribbon-wall", "atlas.aria");
   setAria(".scrolly-story", "scrolly.aria");
+  setAria(".scrolly-steps", "scrolly.instructions");
+  setText(".story-previous .story-control-label", "scrolly.previous");
+  setAria(".story-previous", "scrolly.previousAria");
+  setText(".story-next .story-control-label", "scrolly.next");
+  setAria(".story-next", "scrolly.nextAria");
+  setText(".story-instructions", "scrolly.instructions");
 
   const scrollyCopy = [
     ["#story-opening .scroll-number", "scrolly.opening.number"],
     ["#story-opening h2", "scrolly.opening.title"],
-    ["#story-opening .scroll-card > p:not(.scroll-number):not(.scroll-live-stat)", compactStory ? "scrolly.opening.bodyCompact" : "scrolly.opening.bodyDesktop"],
-    ["#story-opening .scroll-cue", compactStory ? "scrolly.opening.cueCompact" : "scrolly.opening.cueDesktop"],
+    ["#story-opening .scroll-card > p:not(.scroll-number):not(.scroll-live-stat)", isCompactStory() ? "scrolly.opening.bodyCompact" : "scrolly.opening.bodyDesktop"],
+    ["#story-opening .scroll-cue", isCompactStory() ? "scrolly.opening.cueCompact" : "scrolly.opening.cueDesktop"],
     ["#story-warming .scroll-number", "scrolly.warming.number"],
     ["#story-warming h2", "scrolly.warming.title"],
-    ["#story-warming .scroll-card > p:not(.scroll-number):not(.scroll-evidence)", compactStory ? "scrolly.warming.bodyCompact" : "scrolly.warming.bodyDesktop"],
+    ["#story-warming .scroll-card > p:not(.scroll-number):not(.scroll-evidence)", isCompactStory() ? "scrolly.warming.bodyCompact" : "scrolly.warming.bodyDesktop"],
     ["#story-warming .scroll-evidence", "scrolly.warming.evidence"],
     ["#story-warming-land .scroll-number", "scrolly.landWarming.number"],
     ["#story-warming-land h2", "scrolly.landWarming.title"],
-    ["#story-warming-land .scroll-card > p:not(.scroll-number):not(.scroll-evidence)", compactStory ? "scrolly.landWarming.bodyCompact" : "scrolly.landWarming.bodyDesktop"],
+    ["#story-warming-land .scroll-card > p:not(.scroll-number):not(.scroll-evidence)", isCompactStory() ? "scrolly.landWarming.bodyCompact" : "scrolly.landWarming.bodyDesktop"],
     ["#story-warming-land .scroll-evidence", "scrolly.landWarming.evidence"],
     ["#story-rainfall .scroll-number", "scrolly.rain.number"],
     ["#story-rainfall h2", "scrolly.rain.title"],
@@ -943,6 +1014,7 @@ function applyStaticCopy() {
     ["#story-explore .scroll-cue", "scrolly.explore.cue"]
   ];
   scrollyCopy.forEach(([selector, key]) => setText(selector, key));
+  updateStoryAccessibility();
 }
 
 function drawLanguageSwitchSketch() {
@@ -1116,7 +1188,7 @@ async function build() {
     .data(features)
     .join("path")
     .attr("class", "zone")
-    .attr("tabindex", 0)
+    .attr("tabindex", mobileLite ? -1 : 0)
     .attr("role", "button")
     .attr("data-code", d => d.code)
     .on("pointerenter", mobileLite ? null : (event, d) => showTooltip(event, d.code))
@@ -1178,6 +1250,21 @@ async function build() {
 
   function currentRows(code) {
     return byMetric.get(state.indicator)?.get(code) ?? [];
+  }
+
+  function populateTerritoryPicker() {
+    const select = root.querySelector(".territory-select");
+    if (!select) return;
+    const codes = Array.from(new Set(features.map(feature => feature.code)))
+      .sort((a, b) => d3.ascending(territoryLabel(a), territoryLabel(b)));
+    const options = codes.map(code => {
+      const option = document.createElement("option");
+      option.value = code;
+      option.textContent = `${territoryLabel(code)} · ${code}`;
+      return option;
+    });
+    select.replaceChildren(...options);
+    select.value = state.selected;
   }
 
   function populateComparisonSelect() {
@@ -3535,6 +3622,7 @@ async function build() {
     mapYear.textContent = state.year;
     yearOutput.textContent = state.year;
     slider.value = state.year;
+    slider.setAttribute("aria-valuetext", `${state.year} · ${metricText(metric, "label")}`);
 
     if (temporalOnly) return;
 
@@ -4077,6 +4165,8 @@ async function build() {
 
   function selectTerritory(code, { revealDetail = false } = {}) {
     state.selected = code;
+    const territorySelect = root.querySelector(".territory-select");
+    if (territorySelect) territorySelect.value = code;
     updateSelectionMarker();
     populateComparisonSelect();
     hideTooltip();
@@ -4124,9 +4214,14 @@ async function build() {
   }
 
   function activateScrollStep(step) {
-    if (!step || activeScrollStep === step) return;
+    if (!step) return;
+    if (activeScrollStep === step) {
+      updateStoryAccessibility();
+      return;
+    }
     activeScrollStep = step;
     root.querySelectorAll(".scroll-step").forEach(node => node.classList.toggle("is-active", node === step));
+    updateStoryAccessibility();
     root.querySelector(".climate-explorer").dataset.storyStep = step.dataset.step;
 
     const key = step.dataset.indicator;
@@ -4136,7 +4231,7 @@ async function build() {
     }
     const year = +step.dataset.year;
     const startYear = +step.dataset.startYear;
-    const autoplayEnabled = step.dataset.autoplay === "true" && !compactStory && !reducedMotion;
+    const autoplayEnabled = step.dataset.autoplay === "true" && !isCompactStory() && !reducedMotion;
     configureMetric(key, {
       year: autoplayEnabled && Number.isFinite(startYear) ? startYear : year,
       animate: !reducedMotion && !autoplayEnabled
@@ -4241,6 +4336,7 @@ async function build() {
     ribbonSignature = null;
     ribbonDetailState = null;
     ribbonComparisonState = null;
+    populateTerritoryPicker();
     populateComparisonSelect();
     updateMap(false);
     scheduleRibbonWall();
@@ -4255,6 +4351,10 @@ async function build() {
   });
 
   root.querySelector(".portrait-export").addEventListener("click", exportTerritoryPortrait);
+
+  const territorySelect = root.querySelector(".territory-select");
+  territorySelect.addEventListener("change", event => selectTerritory(event.target.value));
+  populateTerritoryPicker();
 
   const comparisonSelect = root.querySelector(".territory-compare-select");
   comparisonSelect.addEventListener("change", event => {
@@ -4287,15 +4387,41 @@ async function build() {
   scrollSteps.forEach(step => step.addEventListener("click", () => activateScrollStep(step)));
 
   const scrollyStepsNode = root.querySelector(".scrolly-steps");
+  const previousStoryButton = root.querySelector(".story-previous");
+  const nextStoryButton = root.querySelector(".story-next");
   let storyActivationTimer = null;
 
+  function showStoryStep(index) {
+    const target = scrollSteps[Math.max(0, Math.min(scrollSteps.length - 1, index))];
+    if (!target) return;
+    activateScrollStep(target);
+    target.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "nearest",
+      inline: "center"
+    });
+  }
+
+  function moveStoryStep(direction) {
+    const activeIndex = Math.max(0, scrollSteps.indexOf(activeScrollStep));
+    showStoryStep(activeIndex + direction);
+  }
+
+  previousStoryButton.addEventListener("click", () => moveStoryStep(-1));
+  nextStoryButton.addEventListener("click", () => moveStoryStep(1));
+  scrollyStepsNode.addEventListener("keydown", event => {
+    if (!isCompactStory() || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+    event.preventDefault();
+    moveStoryStep(event.key === "ArrowLeft" ? -1 : 1);
+  });
+
   function activateClosestScrollStep() {
-    const focus = compactStory
+    const focus = isCompactStory()
       ? scrollyStepsNode.getBoundingClientRect().left + scrollyStepsNode.clientWidth / 2
       : window.innerHeight * 0.5;
     const closest = d3.least(scrollSteps, step => {
       const bounds = step.getBoundingClientRect();
-      const center = compactStory
+      const center = isCompactStory()
         ? (bounds.left + bounds.right) / 2
         : (bounds.top + bounds.bottom) / 2;
       return Math.abs(center - focus);
@@ -4308,12 +4434,20 @@ async function build() {
     storyActivationTimer = window.setTimeout(activateClosestScrollStep, 70);
   }
 
-  (compactStory ? scrollyStepsNode : window)
-    .addEventListener("scroll", scheduleStoryActivation, { passive: true });
+  scrollyStepsNode.addEventListener("scroll", scheduleStoryActivation, { passive: true });
+  window.addEventListener("scroll", scheduleStoryActivation, { passive: true });
+  let previousCompactMode = isCompactStory();
   window.addEventListener("resize", () => {
     mapTooltipBounds = null;
     mapTooltipSize = null;
     ribbonTooltipSize = null;
+    const compactMode = isCompactStory();
+    if (compactMode !== previousCompactMode) {
+      previousCompactMode = compactMode;
+      if (compactMode) scrollyStepsNode.tabIndex = 0;
+      else scrollyStepsNode.removeAttribute("tabindex");
+      applyStaticCopy();
+    }
     scheduleStoryActivation();
   }, { passive: true });
   activateClosestScrollStep();
@@ -4404,6 +4538,7 @@ async function build() {
   renderGeometry();
   configureMetric(state.indicator);
   setupDeferredAtlas();
+  explorer.setAttribute("aria-busy", "false");
 }
 
 build().catch(error => {

@@ -114,6 +114,21 @@ if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || act
   throw new Error(JSON.stringify(actual));
 }
 
+const accessibility = {
+  storyFirst: document.querySelector(".scrolly-story")?.firstElementChild?.classList.contains("scrolly-steps"),
+  workspaceFirst: document.querySelector(".climate-workspace")?.firstElementChild?.classList.contains("story-nav"),
+  territoryOptions: document.querySelectorAll(".territory-select option").length,
+  mapRole: document.querySelector(".map-svg")?.getAttribute("role"),
+  wallRole: document.querySelector(".ribbon-wall")?.getAttribute("role"),
+  activeStep: document.querySelector('.scroll-step[aria-current="step"]')?.dataset.step,
+  progress: document.querySelector(".story-progress")?.textContent,
+  previousDisabled: document.querySelector(".story-previous")?.disabled,
+  busy: document.querySelector(".climate-explorer")?.getAttribute("aria-busy")
+};
+if (!accessibility.storyFirst || !accessibility.workspaceFirst || accessibility.territoryOptions !== 21 || accessibility.mapRole !== "group" || accessibility.wallRole !== "group" || accessibility.activeStep !== "opening" || accessibility.progress !== "Step 1 of 6" || !accessibility.previousDisabled || accessibility.busy !== "false") {
+  throw new Error(JSON.stringify(accessibility));
+}
+
 document.querySelector('.language-button[data-lang="fr"]').click();
 await new Promise(resolve => setTimeout(resolve, 50));
 const frenchCopy = {
@@ -130,7 +145,7 @@ const frenchCopy = {
   axisCaption: document.querySelector(".ribbon-detail-svg .ribbon-detail-axis-caption")?.textContent,
   colorKey: document.querySelector(".ribbon-detail-svg .ribbon-detail-color-key text")?.textContent
 };
-if (frenchCopy.header !== "Un même Pacifique, vingt-deux trajectoires climatiques." || !frenchCopy.lede?.includes("sans masquer les différences") || frenchCopy.prompt !== "Choisissez l’indicateur à afficher pour l’ensemble des territoires." || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux trajectoires climatiques" || !frenchCopy.atlasIntro?.includes("les quatre séries climatiques") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Le niveau marin s’élève" || frenchCopy.axisCaption !== "CHRONOLOGIE (ANNÉES)" || !frenchCopy.colorKey?.startsWith("COMMENT LIRE LES COULEURS —")) {
+if (frenchCopy.header !== "Un même Pacifique, vingt-deux trajectoires climatiques." || !frenchCopy.lede?.includes("les pluies divergent") || frenchCopy.prompt !== "Choisissez l’indicateur à afficher pour l’ensemble des territoires." || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux trajectoires climatiques" || !frenchCopy.atlasIntro?.includes("les quatre séries climatiques") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Le niveau marin s’élève" || frenchCopy.axisCaption !== "CHRONOLOGIE (ANNÉES)" || !frenchCopy.colorKey?.startsWith("COMMENT LIRE LES COULEURS —")) {
   throw new Error(JSON.stringify(frenchCopy));
 }
 document.querySelector('.language-button[data-lang="en"]').click();
