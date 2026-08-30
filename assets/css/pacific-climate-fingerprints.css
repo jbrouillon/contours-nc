@@ -4257,3 +4257,8 @@ input:focus-visible {
     animation-iteration-count: 1 !important;
   }
 }
+@media (min-width: 1025px) {
+  .territory-select {
+    display: none !important;
+  }
+}
