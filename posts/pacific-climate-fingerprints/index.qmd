@@ -1,6 +1,6 @@
 ---
 title: "Empreintes climatiques du Pacifique"
-description: "Jusqu’à quatre séries climatiques alignées pour comprendre les trajectoires de vingt-deux territoires du Pacifique."
+description: "Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique."
 draft: true
 body-classes: climate-page
 citation: false
@@ -25,42 +25,42 @@ format:
 :::::::: {.climate-fallback aria-labelledby="climate-fallback-title"}
 <p class="climate-fallback-kicker">
 
-EMPREINTES CLIMATIQUES DU PACIFIQUE · ARCHIVES JUSQU’EN 2025
+EMPREINTES CLIMATIQUES DU PACIFIQUE · OBSERVATIONS JUSQU’EN 2025
 
 </p>
 
-# Un même Pacifique, vingt-deux trajectoires climatiques. {#climate-fallback-title}
+# Un même Pacifique. Vingt-deux empreintes climatiques. {#climate-fallback-title}
 
-La mer et les terres se réchauffent, les pluies divergent, le niveau marin monte. Cette visualisation aligne, pour chaque territoire, jusqu’à quatre séries climatiques dont les périodes d’observation varient.
+Le réchauffement traverse le Pacifique, mais son empreinte n’est jamais exactement la même d’un territoire à l’autre. Ici, une **empreinte climatique** aligne jusqu’à quatre signaux observés dans le temps : température de l’océan, température des terres, pluies et niveau marin.
 
 :::::: climate-fallback-summary
 ::: climate-fallback-card
-**Températures.** En 2025, les 21 territoires cartographiés sont plus chauds que leur propre référence pour la température de surface de la mer.
+**2025 : un signal commun.** Les 21 territoires cartographiés ont tous une température de surface de la mer supérieure à leur propre référence locale.
 :::
 
 ::: climate-fallback-card
-**Pluies.** Elles ne changent pas partout dans le même sens : chaque territoire est comparé à sa propre normale.
+**Mais pas une trajectoire unique.** Les pluies évoluent différemment selon les territoires : plus humides ici, plus sèches ailleurs, souvent très variables.
 :::
 
 ::: climate-fallback-card
-**Niveau marin.** La série est plus courte, de 1993 à 2023, et doit être interprétée séparément des séries de température.
+**Un océan qui monte.** Le niveau marin ajoute un signal plus récent, observé sur une série plus courte, de 1993 à 2023.
 :::
 ::::::
 
 ::: climate-fallback-definition
-**Comment lire une couleur ?** Elle représente un écart à la référence locale du territoire, et non une température, une pluie ou un niveau marin absolus. Une zone vide signifie qu’aucune observation n’est disponible ; les valeurs manquantes ne sont pas interpolées.
+**Comment lire les couleurs ?** Elles montrent un écart à la référence locale de chaque territoire, pas son climat absolu. Une couleur pâle signifie « proche de la référence » ; une zone vide signifie « pas d’observation publiée ». Les valeurs manquantes ne sont jamais interpolées.
 :::
 
 <p class="climate-fallback-status" role="status">
 
-Chargement de la carte interactive… Si elle ne s’affiche pas, consultez les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes sur les données</a> ou <a href="../../assets/data/pacific-climate-fingerprints/climate_interactive.csv" download>téléchargez les données</a>.
+Chargement de l’expérience interactive… Si elle ne s’affiche pas, consultez les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes sur les données</a> ou <a href="../../assets/data/pacific-climate-fingerprints/climate_interactive.csv" download>téléchargez les données</a>.
 
 </p>
 ::::::::
 :::::::::
 
 ::: climate-note
-Sources: <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> climate and population indicators; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> atmospheric CO₂; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> Oceanic Niño Index. Values are annual and missing climate observations are not interpolated. Rainfall labels use the source's reported standard error; the 21 mapped territories exclude Pitcairn, which remains in the 22-territory ribbon atlas. See <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">data notes</a> for transformations and caveats.
+Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.
 :::
 
 ```{=html}
