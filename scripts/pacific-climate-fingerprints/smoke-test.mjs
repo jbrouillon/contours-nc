@@ -154,11 +154,10 @@ const accessibility = {
   mapRole: document.querySelector(".map-svg")?.getAttribute("role"),
   wallRole: document.querySelector(".ribbon-wall")?.getAttribute("role"),
   activeStep: document.querySelector('.scroll-step[aria-current="step"]')?.dataset.step,
-  progress: document.querySelector(".story-progress")?.textContent,
-  previousDisabled: document.querySelector(".story-previous")?.disabled,
+  storyControls: document.querySelectorAll(".story-control").length,
   busy: document.querySelector(".climate-explorer")?.getAttribute("aria-busy")
 };
-if (!accessibility.storyFirst || !accessibility.workspaceFirst || accessibility.territoryOptions !== 21 || accessibility.mapRole !== "group" || accessibility.wallRole !== "group" || accessibility.activeStep !== "opening" || accessibility.progress !== "Step 1 of 6" || !accessibility.previousDisabled || accessibility.busy !== "false") {
+if (!accessibility.storyFirst || !accessibility.workspaceFirst || accessibility.territoryOptions !== 21 || accessibility.mapRole !== "group" || accessibility.wallRole !== "group" || accessibility.activeStep !== "opening" || accessibility.storyControls !== 0 || accessibility.busy !== "false") {
   throw new Error(JSON.stringify(accessibility));
 }
 

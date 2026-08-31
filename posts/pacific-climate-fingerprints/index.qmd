@@ -20,7 +20,6 @@ format:
     toc: false
     css:
       - ../../assets/css/pacific-climate-fingerprints.css
-      - ../../assets/css/climate-story-slides.css
 ---
 
 ::::::::: {#climate-map}
@@ -66,5 +65,5 @@ Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferr
 :::
 
 ```{=html}
-<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-runtime-slides.js"></script>
+<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-map-interactive.js?v=scroll-mode-1"></script>
 ```

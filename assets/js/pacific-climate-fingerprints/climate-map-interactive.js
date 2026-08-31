@@ -800,30 +800,13 @@ function setupScrollyLayout() {
       </div>
     </article>`;
 
-  const storyControls = document.createElement("div");
-  storyControls.className = "story-controls";
-  storyControls.innerHTML = `
-    <button type="button" class="story-control story-previous">
-      <span aria-hidden="true">←</span>
-      <span class="story-control-label">${t("scrolly.previous")}</span>
-    </button>
-    <div class="story-progress-wrap">
-      <output class="story-progress" role="status" aria-live="polite" aria-atomic="true"></output>
-      <span class="story-progress-track" aria-hidden="true"><span></span></span>
-    </div>
-    <button type="button" class="story-control story-next">
-      <span class="story-control-label">${t("scrolly.next")}</span>
-      <span aria-hidden="true">→</span>
-    </button>
-    <p class="story-instructions">${t("scrolly.instructions")}</p>`;
-
   storyVoice.classList.add("sr-only");
   explorer.dataset.storyStep = "opening";
   explorer.insertBefore(scrolly, storyNav);
   graphic.append(storyVoice, workspace);
   workspace.prepend(storyNav, timeControls);
   territoryPanel.insertBefore(contextBridge, territoryPanel.querySelector(".panel-context"));
-  scrolly.append(steps, storyControls, graphic);
+  scrolly.append(steps, graphic);
   explorer.insertBefore(exploreRow, ribbonAtlas);
 }
 
@@ -834,32 +817,10 @@ function updateStoryAccessibility() {
 
   steps.forEach((step, index) => {
     const isActive = index === activeIndex;
-    const title = step.querySelector("h2")?.textContent?.trim() || "";
     step.setAttribute("role", "group");
-    step.setAttribute("aria-roledescription", t("scrolly.slide"));
-    step.setAttribute("aria-label", t("scrolly.slideLabel", {
-      current: index + 1,
-      total: steps.length,
-      title
-    }));
     if (isActive) step.setAttribute("aria-current", "step");
     else step.removeAttribute("aria-current");
   });
-
-  const current = activeIndex + 1;
-  const progress = root.querySelector(".story-progress");
-  if (progress) {
-    progress.textContent = t("scrolly.progress", { current, total: steps.length });
-    progress.setAttribute("aria-label", t("scrolly.progressAria", { current, total: steps.length }));
-  }
-  root.querySelector(".story-progress-wrap")?.style.setProperty(
-    "--story-progress",
-    `${(current / steps.length) * 100}%`
-  );
-  const previous = root.querySelector(".story-previous");
-  const next = root.querySelector(".story-next");
-  if (previous) previous.disabled = activeIndex === 0;
-  if (next) next.disabled = activeIndex === steps.length - 1;
 }
 
 function updateMethodDrawer() {
@@ -981,11 +942,6 @@ function applyStaticCopy() {
   setAria(".ribbon-wall", "atlas.aria");
   setAria(".scrolly-story", "scrolly.aria");
   setAria(".scrolly-steps", "scrolly.instructions");
-  setText(".story-previous .story-control-label", "scrolly.previous");
-  setAria(".story-previous", "scrolly.previousAria");
-  setText(".story-next .story-control-label", "scrolly.next");
-  setAria(".story-next", "scrolly.nextAria");
-  setText(".story-instructions", "scrolly.instructions");
 
   const scrollyCopy = [
     ["#story-opening .scroll-number", "scrolly.opening.number"],
@@ -4388,33 +4344,7 @@ d3.json(DATA.land).catch(error => {
   scrollSteps.forEach(step => step.addEventListener("click", () => activateScrollStep(step)));
 
   const scrollyStepsNode = root.querySelector(".scrolly-steps");
-  const previousStoryButton = root.querySelector(".story-previous");
-  const nextStoryButton = root.querySelector(".story-next");
   let storyActivationFrame = null;
-
-  function showStoryStep(index) {
-    const target = scrollSteps[Math.max(0, Math.min(scrollSteps.length - 1, index))];
-    if (!target) return;
-    activateScrollStep(target);
-    target.scrollIntoView({
-      behavior: reducedMotion ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center"
-    });
-  }
-
-  function moveStoryStep(direction) {
-    const activeIndex = Math.max(0, scrollSteps.indexOf(activeScrollStep));
-    showStoryStep(activeIndex + direction);
-  }
-
-  previousStoryButton.addEventListener("click", () => moveStoryStep(-1));
-  nextStoryButton.addEventListener("click", () => moveStoryStep(1));
-  scrollyStepsNode.addEventListener("keydown", event => {
-    if (!isCompactStory() || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
-    event.preventDefault();
-    moveStoryStep(event.key === "ArrowLeft" ? -1 : 1);
-  });
 
   function activateClosestScrollStep() {
     const horizontalStory = isCompactStory();

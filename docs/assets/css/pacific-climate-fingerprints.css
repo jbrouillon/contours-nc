@@ -657,77 +657,6 @@ main.content {
   pointer-events: none;
 }
 
-.story-controls {
-  display: none;
-}
-
-.story-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 44px;
-  padding: 8px 11px;
-  border: 2px solid rgba(31, 41, 40, 0.5);
-  border-radius: 10px 7px 12px 8px;
-  background: rgba(255, 250, 240, 0.94);
-  color: var(--ink);
-  font: 800 0.72rem/1.1 "Atkinson Hyperlegible", Inter, sans-serif;
-  box-shadow: 2px 3px 0 rgba(31, 41, 40, 0.1);
-}
-
-.story-control:not(:disabled) {
-  cursor: pointer;
-}
-
-.story-control:disabled {
-  border-color: rgba(31, 41, 40, 0.2);
-  box-shadow: none;
-  color: #747b78;
-  opacity: 0.72;
-}
-
-.story-progress-wrap {
-  --story-progress: 16.666%;
-  display: grid;
-  align-content: center;
-  gap: 5px;
-  min-width: 0;
-}
-
-.story-progress {
-  color: var(--teal);
-  font: 850 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
-  text-align: center;
-}
-
-.story-progress-track {
-  position: relative;
-  display: block;
-  height: 6px;
-  overflow: hidden;
-  border: 1px solid rgba(53, 107, 107, 0.45);
-  border-radius: 50%;
-  background: rgba(53, 107, 107, 0.1);
-}
-
-.story-progress-track > span {
-  display: block;
-  width: var(--story-progress);
-  height: 100%;
-  border-radius: inherit;
-  background: var(--teal);
-  transition: width 220ms ease;
-}
-
-.story-instructions {
-  grid-column: 1 / -1;
-  margin: 0;
-  color: #596560;
-  font: 700 0.76rem/1.35 "Atkinson Hyperlegible", Inter, sans-serif;
-  text-align: center;
-}
-
 .scroll-step {
   display: flex;
   align-items: center;
@@ -3797,22 +3726,6 @@ input:focus-visible {
     transform: none;
   }
 
-  .story-controls {
-    position: relative;
-    z-index: 21;
-    order: 1;
-    display: grid;
-    grid-template-columns: auto minmax(78px, 1fr) auto;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    max-width: 620px;
-    margin: 0 auto 12px;
-    padding: 8px 10px 9px;
-    border: 1px solid rgba(31, 41, 40, 0.24);
-    border-radius: 10px 15px 9px 13px;
-    background: rgba(255, 250, 240, 0.72);
-  }
 }
 
 @media (max-width: 620px) {
@@ -3942,11 +3855,6 @@ input:focus-visible {
   .scroll-card {
     min-height: 180px;
     padding: 13px;
-  }
-
-  .story-controls {
-    margin-bottom: 10px;
-    padding-inline: 7px;
   }
 
   .scrolly-graphic .climate-workspace {
