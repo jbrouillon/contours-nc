@@ -149,7 +149,8 @@ const anchors = {
 
 const root = document.querySelector("#climate-map");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const compactStory = window.matchMedia("(max-width: 1239px)").matches;
+const compactStoryMedia = window.matchMedia("(max-width: 1239px)");
+const compactStory = compactStoryMedia.matches;
 const state = {
   indicator: "ocean",
   chapter: "warming",
@@ -4287,15 +4288,16 @@ async function build() {
   scrollSteps.forEach(step => step.addEventListener("click", () => activateScrollStep(step)));
 
   const scrollyStepsNode = root.querySelector(".scrolly-steps");
-  let storyActivationTimer = null;
+  let storyActivationFrame = null;
 
   function activateClosestScrollStep() {
-    const focus = compactStory
+    const horizontalStory = compactStoryMedia.matches;
+    const focus = horizontalStory
       ? scrollyStepsNode.getBoundingClientRect().left + scrollyStepsNode.clientWidth / 2
       : window.innerHeight * 0.5;
     const closest = d3.least(scrollSteps, step => {
       const bounds = step.getBoundingClientRect();
-      const center = compactStory
+      const center = horizontalStory
         ? (bounds.left + bounds.right) / 2
         : (bounds.top + bounds.bottom) / 2;
       return Math.abs(center - focus);
@@ -4304,12 +4306,15 @@ async function build() {
   }
 
   function scheduleStoryActivation() {
-    window.clearTimeout(storyActivationTimer);
-    storyActivationTimer = window.setTimeout(activateClosestScrollStep, 70);
+    if (storyActivationFrame !== null) return;
+    storyActivationFrame = window.requestAnimationFrame(() => {
+      storyActivationFrame = null;
+      activateClosestScrollStep();
+    });
   }
 
-  (compactStory ? scrollyStepsNode : window)
-    .addEventListener("scroll", scheduleStoryActivation, { passive: true });
+  window.addEventListener("scroll", scheduleStoryActivation, { passive: true });
+  scrollyStepsNode.addEventListener("scroll", scheduleStoryActivation, { passive: true });
   window.addEventListener("resize", () => {
     mapTooltipBounds = null;
     mapTooltipSize = null;

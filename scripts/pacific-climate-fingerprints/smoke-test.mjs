@@ -6,6 +6,17 @@ globalThis.document = browserWindow.document;
 globalThis.navigator = browserWindow.navigator;
 browserWindow.document.body.innerHTML = '<div id="climate-map"></div>';
 
+browserWindow.matchMedia = query => ({
+  matches: false,
+  media: query,
+  onchange: null,
+  addEventListener() {},
+  removeEventListener() {},
+  addListener() {},
+  removeListener() {},
+  dispatchEvent() { return true; }
+});
+
 const rasterContext = {
   fillStyle: "",
   fillRect() {}
@@ -113,6 +124,28 @@ const actual = {
 if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || actual.detailAxisCaption !== "CHRONOLOGY (YEARS)" || actual.detailColorKeys !== 4 || !actual.detailColorKeysAbove || actual.obsoleteScaleMids !== 0 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
   throw new Error(JSON.stringify(actual));
 }
+
+const scrollTestSteps = [...document.querySelectorAll(".scroll-step")];
+let scrollTestOffset = 0;
+browserWindow.innerHeight = 800;
+scrollTestSteps.forEach((step, index) => {
+  step.getBoundingClientRect = () => {
+    const top = 1000 + index * 500 - scrollTestOffset;
+    return { top, bottom: top + 300, left: 0, right: 300, width: 300, height: 300 };
+  };
+});
+scrollTestOffset = 1000 + 3 * 500 + 150 - browserWindow.innerHeight / 2;
+browserWindow.dispatchEvent(new browserWindow.Event("scroll"));
+await new Promise(resolve => browserWindow.requestAnimationFrame(resolve));
+if (!document.querySelector('.scroll-step[data-step="rainfall"]').classList.contains("is-active") || document.querySelector(".year-output")?.textContent !== "2015") {
+  throw new Error(JSON.stringify({
+    message: "Vertical scrolling did not activate the closest story scene immediately",
+    active: document.querySelector(".scroll-step.is-active")?.dataset.step,
+    year: document.querySelector(".year-output")?.textContent,
+    compact: browserWindow.matchMedia("(max-width: 1239px)").matches
+  }));
+}
+document.querySelector('.scroll-step[data-step="opening"]').dispatchEvent(new browserWindow.Event("click", { bubbles: true }));
 
 document.querySelector('.language-button[data-lang="fr"]').click();
 await new Promise(resolve => setTimeout(resolve, 50));

@@ -28,5 +28,5 @@ Sources: <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferre
 :::
 
 ```{=html}
-<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-map-interactive.js"></script>
+<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-map-interactive.js?v=scroll-sync-1"></script>
 ```

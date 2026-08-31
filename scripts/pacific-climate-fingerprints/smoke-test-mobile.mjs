@@ -87,6 +87,25 @@ if (beforeAtlas.renderMode !== "lite" || beforeAtlas.land !== "" || beforeAtlas.
   throw new Error(JSON.stringify(beforeAtlas));
 }
 
+const compactScroller = document.querySelector(".scrolly-steps");
+const compactScrollSteps = [...document.querySelectorAll(".scroll-step")];
+let compactScrollOffset = 0;
+Object.defineProperty(compactScroller, "clientWidth", { configurable: true, value: 600 });
+compactScroller.getBoundingClientRect = () => ({ top: 0, bottom: 180, left: 0, right: 600, width: 600, height: 180 });
+compactScrollSteps.forEach((step, index) => {
+  step.getBoundingClientRect = () => {
+    const left = index * 340 - compactScrollOffset;
+    return { top: 0, bottom: 160, left, right: left + 320, width: 320, height: 160 };
+  };
+});
+compactScrollOffset = 3 * 340 + 160 - compactScroller.clientWidth / 2;
+compactScroller.dispatchEvent(new browserWindow.Event("scroll"));
+await new Promise(resolve => browserWindow.requestAnimationFrame(resolve));
+if (!document.querySelector('.scroll-step[data-step="rainfall"]').classList.contains("is-active") || document.querySelector(".year-output")?.textContent !== "2015") {
+  throw new Error("Horizontal scrolling did not activate the closest compact story scene immediately");
+}
+document.querySelector('.scroll-step[data-step="opening"]').dispatchEvent(new browserWindow.Event("click", { bubbles: true }));
+
 atlasObserverCallback([{ isIntersecting: true }]);
 await new Promise(resolve => setTimeout(resolve, 50));
 
