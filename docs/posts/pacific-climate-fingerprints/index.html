@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
 
-<title>Pacific Climate Fingerprints – Contours</title>
+<title>Empreintes climatiques du Pacifique – Contours</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,9 +88,12 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="../../assets/css/pacific-climate-fingerprints.css">
-<meta property="og:title" content="Pacific Climate Fingerprints – Contours">
+<link rel="stylesheet" href="../../assets/css/climate-story-slides.css">
+<meta property="og:title" content="Empreintes climatiques du Pacifique – Contours">
+<meta property="og:description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
 <meta property="og:site_name" content="Contours">
-<meta name="twitter:title" content="Pacific Climate Fingerprints – Contours">
+<meta name="twitter:title" content="Empreintes climatiques du Pacifique – Contours">
+<meta name="twitter:description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -165,9 +169,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Pacific Climate Fingerprints</h1>
+<h1 class="title">Empreintes climatiques du Pacifique</h1>
 </div>
 
+<div>
+  <div class="description">
+    Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta column-page">
@@ -183,12 +192,37 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div id="climate-map">
-
+<div class="climate-fallback" aria-labelledby="climate-fallback-title">
+<p class="climate-fallback-kicker">
+</p><p>EMPREINTES CLIMATIQUES DU PACIFIQUE · OBSERVATIONS JUSQU’EN 2025</p>
+<p></p>
+<section id="climate-fallback-title" class="level1">
+<h1>Un même Pacifique. Vingt-deux empreintes climatiques.</h1>
+<p>Le réchauffement traverse le Pacifique, mais son empreinte n’est jamais exactement la même d’un territoire à l’autre. Ici, une <strong>empreinte climatique</strong> aligne jusqu’à quatre signaux observés dans le temps : température de l’océan, température des terres, pluies et niveau marin.</p>
+<div class="climate-fallback-summary">
+<div class="climate-fallback-card">
+<p><strong>2025 : un signal commun.</strong> Les 21 territoires cartographiés ont tous une température de surface de la mer supérieure à leur propre référence locale.</p>
+</div>
+<div class="climate-fallback-card">
+<p><strong>Mais pas une trajectoire unique.</strong> Les pluies évoluent différemment selon les territoires : plus humides ici, plus sèches ailleurs, souvent très variables.</p>
+</div>
+<div class="climate-fallback-card">
+<p><strong>Un océan qui monte.</strong> Le niveau marin ajoute un signal plus récent, observé sur une série plus courte, de 1993 à 2023.</p>
+</div>
+</div>
+<div class="climate-fallback-definition">
+<p><strong>Comment lire les couleurs ?</strong> Elles montrent un écart à la référence locale de chaque territoire, pas son climat absolu. Une couleur pâle signifie « proche de la référence » ; une zone vide signifie « pas d’observation publiée ». Les valeurs manquantes ne sont jamais interpolées.</p>
+</div>
+<p class="climate-fallback-status" role="status">
+</p><p>Chargement de l’expérience interactive… Si elle ne s’affiche pas, consultez les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes sur les données</a> ou <a href="../../assets/data/pacific-climate-fingerprints/climate_interactive.csv" download="">téléchargez les données</a>.</p>
+<p></p>
+</section>
+</div>
 </div>
 <div class="climate-note">
-<p>Sources: <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> climate and population indicators; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> atmospheric CO₂; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> Oceanic Niño Index. Values are annual and missing climate observations are not interpolated. Rainfall labels use the source’s reported standard error; the 21 mapped territories exclude Pitcairn, which remains in the 22-territory ribbon atlas. See <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">data notes</a> for transformations and caveats.</p>
+<p>Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.</p>
 </div>
-<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-map-interactive.js?v=scroll-sync-1"></script>
+<script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-runtime-slides.js"></script>
 
 
 

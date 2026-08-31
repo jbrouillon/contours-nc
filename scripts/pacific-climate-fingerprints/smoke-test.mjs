@@ -121,7 +121,7 @@ const actual = {
   year: document.querySelector(".year-output")?.textContent
 };
 
-if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || actual.detailAxisCaption !== "CHRONOLOGY (YEARS)" || actual.detailColorKeys !== 4 || !actual.detailColorKeysAbove || actual.obsoleteScaleMids !== 0 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 indicators · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
+if (actual.zones !== 21 || actual.sketchZones !== 42 || actual.tabs !== 4 || actual.stories !== 3 || actual.scrollSteps !== 6 || actual.wallRows !== 22 || actual.detailMetricRows !== 4 || actual.detailEvolution !== 4 || actual.detailAxisCaption !== "CHRONOLOGY (YEARS)" || actual.detailColorKeys !== 4 || !actual.detailColorKeysAbove || actual.obsoleteScaleMids !== 0 || !actual.territorySummary?.includes("ocean and land are warmer") || actual.portraitStripes !== 0 || actual.portraitRasters !== 1 || actual.wallStripes !== 0 || actual.wallRasters !== 21 || actual.detailStripes !== 0 || actual.detailRasters !== 4 || actual.detailTitle !== "New Caledonia" || actual.detailMetric !== "4 signals · 1 shared timeline" || !actual.tooltipPortal || actual.contextTitle !== "The backdrop, not a local score" || actual.contextValue !== "427.4" || actual.title !== "New Caledonia" || actual.year !== "2025") {
   throw new Error(JSON.stringify(actual));
 }
 
@@ -147,6 +147,21 @@ if (!document.querySelector('.scroll-step[data-step="rainfall"]').classList.cont
 }
 document.querySelector('.scroll-step[data-step="opening"]').dispatchEvent(new browserWindow.Event("click", { bubbles: true }));
 
+const accessibility = {
+  storyFirst: document.querySelector(".scrolly-story")?.firstElementChild?.classList.contains("scrolly-steps"),
+  workspaceFirst: document.querySelector(".climate-workspace")?.firstElementChild?.classList.contains("story-nav"),
+  territoryOptions: document.querySelectorAll(".territory-select option").length,
+  mapRole: document.querySelector(".map-svg")?.getAttribute("role"),
+  wallRole: document.querySelector(".ribbon-wall")?.getAttribute("role"),
+  activeStep: document.querySelector('.scroll-step[aria-current="step"]')?.dataset.step,
+  progress: document.querySelector(".story-progress")?.textContent,
+  previousDisabled: document.querySelector(".story-previous")?.disabled,
+  busy: document.querySelector(".climate-explorer")?.getAttribute("aria-busy")
+};
+if (!accessibility.storyFirst || !accessibility.workspaceFirst || accessibility.territoryOptions !== 21 || accessibility.mapRole !== "group" || accessibility.wallRole !== "group" || accessibility.activeStep !== "opening" || accessibility.progress !== "Step 1 of 6" || !accessibility.previousDisabled || accessibility.busy !== "false") {
+  throw new Error(JSON.stringify(accessibility));
+}
+
 document.querySelector('.language-button[data-lang="fr"]').click();
 await new Promise(resolve => setTimeout(resolve, 50));
 const frenchCopy = {
@@ -163,12 +178,12 @@ const frenchCopy = {
   axisCaption: document.querySelector(".ribbon-detail-svg .ribbon-detail-axis-caption")?.textContent,
   colorKey: document.querySelector(".ribbon-detail-svg .ribbon-detail-color-key text")?.textContent
 };
-if (frenchCopy.header !== "Un même Pacifique, vingt-deux trajectoires climatiques." || !frenchCopy.lede?.includes("sans masquer les différences") || frenchCopy.prompt !== "Choisissez l’indicateur à afficher pour l’ensemble des territoires." || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux trajectoires climatiques" || !frenchCopy.atlasIntro?.includes("les quatre séries climatiques") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Le niveau marin s’élève" || frenchCopy.axisCaption !== "CHRONOLOGIE (ANNÉES)" || !frenchCopy.colorKey?.startsWith("COMMENT LIRE LES COULEURS —")) {
+if (frenchCopy.header !== "Un même Pacifique. Vingt-deux empreintes climatiques." || !frenchCopy.lede?.includes("empreinte climatique") || frenchCopy.prompt !== "Choisissez un signal et comparez-le dans tout le Pacifique" || frenchCopy.question !== "Température de la mer : plus chaude ou plus fraîche que la normale ?" || frenchCopy.atlasTitle !== "Vingt-deux empreintes, un même Pacifique" || !frenchCopy.atlasIntro?.includes("les quatre séries") || frenchCopy.contextTitle !== "Une tendance mondiale, pas un bilan local" || frenchCopy.panelTitle !== "Nouvelle-Calédonie" || !frenchCopy.summary?.includes("leurs niveaux de référence") || frenchCopy.seaTitle !== "Une série plus courte ajoute un autre signal à la hausse" || frenchCopy.axisCaption !== "CHRONOLOGIE (ANNÉES)" || !frenchCopy.colorKey?.startsWith("COMMENT LIRE LES COULEURS —")) {
   throw new Error(JSON.stringify(frenchCopy));
 }
 document.querySelector('.language-button[data-lang="en"]').click();
 await new Promise(resolve => setTimeout(resolve, 50));
-if (document.querySelector(".panel-title")?.textContent !== "New Caledonia" || document.querySelector(".explorer-header h1")?.textContent !== "One Pacific. Twenty-two climate trajectories.") {
+if (document.querySelector(".panel-title")?.textContent !== "New Caledonia" || document.querySelector(".explorer-header h1")?.textContent !== "One Pacific. Twenty-two climate fingerprints.") {
   throw new Error("Switching back to English failed");
 }
 

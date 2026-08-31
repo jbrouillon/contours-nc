@@ -77,13 +77,19 @@ const beforeAtlas = {
   mapFilters: document.querySelectorAll(".map-svg filter").length,
   zoneTextures: document.querySelectorAll(".zone-pencil-texture").length,
   roughCoasts: document.querySelectorAll(".rough-coast").length,
+  zonesRemovedFromTabOrder: [...document.querySelectorAll("path.zone")]
+    .every(zone => zone.getAttribute("tabindex") === "-1"),
+  territoryOptions: document.querySelectorAll(".territory-select option").length,
+  storyControls: document.querySelectorAll(".story-control").length,
+  storyProgress: document.querySelector(".story-progress")?.textContent,
+  activeStep: document.querySelector('.scroll-step[aria-current="step"]')?.dataset.step,
   portraitStripes: document.querySelectorAll(".portrait-stripe").length,
   portraitRasters: document.querySelectorAll(".portrait-ribbon-raster").length,
   wallRows: document.querySelectorAll(".ribbon-row").length,
   detailRows: document.querySelectorAll(".ribbon-detail-metric-row").length
 };
 
-if (beforeAtlas.renderMode !== "lite" || beforeAtlas.land !== "" || beforeAtlas.svgWidth !== "900" || beforeAtlas.svgHeight !== "650" || beforeAtlas.zones !== 21 || beforeAtlas.sketchZones !== 0 || beforeAtlas.mapFilters !== 0 || beforeAtlas.zoneTextures !== 0 || beforeAtlas.roughCoasts !== 0 || beforeAtlas.portraitStripes !== 0 || beforeAtlas.portraitRasters !== 1 || beforeAtlas.wallRows !== 0 || beforeAtlas.detailRows !== 0 || !atlasObserverCallback) {
+if (beforeAtlas.renderMode !== "lite" || !beforeAtlas.land.includes("world-atlas@2/land-110m.json") || beforeAtlas.svgWidth !== "900" || beforeAtlas.svgHeight !== "650" || beforeAtlas.zones !== 21 || beforeAtlas.sketchZones !== 0 || beforeAtlas.mapFilters !== 0 || beforeAtlas.zoneTextures !== 0 || beforeAtlas.roughCoasts !== 0 || !beforeAtlas.zonesRemovedFromTabOrder || beforeAtlas.territoryOptions !== 21 || beforeAtlas.storyControls !== 2 || beforeAtlas.storyProgress !== "Step 1 of 6" || beforeAtlas.activeStep !== "opening" || beforeAtlas.portraitStripes !== 0 || beforeAtlas.portraitRasters !== 1 || beforeAtlas.wallRows !== 0 || beforeAtlas.detailRows !== 0 || !atlasObserverCallback) {
   throw new Error(JSON.stringify(beforeAtlas));
 }
 
