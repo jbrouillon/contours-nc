@@ -2,7 +2,7 @@
 title: "Empreintes climatiques du Pacifique"
 subtitle: "Un même océan, vingt-deux trajectoires"
 author: "Jonas Brouillon"
-date: "2026-09-04"
+date: "2026-08-31"
 lang: fr
 rubrique: "Cartes et visualisations"
 categories:
