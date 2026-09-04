@@ -41,11 +41,11 @@ if (missingReferences.length) {
   fail(`Missing local page resources:\n${missingReferences.join("\n")}`);
 }
 
-if (!/<meta name="robots" content="noindex, nofollow">/.test(page)) {
-  fail("The unpublished page is missing its noindex, nofollow directive");
+if (/<meta name="robots" content="noindex, nofollow">/.test(page)) {
+  fail("The published page still has a noindex, nofollow directive");
 }
-if (!/<meta name="quarto:status" content="draft">/.test(page)) {
-  fail("The generated page is not marked as a Quarto draft");
+if (/<meta name="quarto:status" content="draft">/.test(page)) {
+  fail("The generated page is still marked as a Quarto draft");
 }
 
 const publicIndexes = [
@@ -57,8 +57,8 @@ const publicIndexes = [
 ];
 for (const path of publicIndexes) {
   const content = await Deno.readTextFile(new URL(path, repositoryRoot));
-  if (content.includes("posts/pacific-climate-fingerprints")) {
-    fail(`The unpublished page is referenced by ${path}`);
+  if (!content.includes("posts/pacific-climate-fingerprints")) {
+    fail(`The published page is missing from ${path}`);
   }
 }
 
@@ -102,8 +102,8 @@ console.log(JSON.stringify({
   missingReferences: missingReferences.length,
   publicationFiles: publicationFiles.length,
   publishedAssetBytes,
-  unlisted: true,
-  noindex: true,
+  listed: true,
+  indexable: true,
   cname,
   status: "ok"
 }));

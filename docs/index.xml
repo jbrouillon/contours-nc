@@ -17,7 +17,19 @@
 <width>144</width>
 </image>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Sat, 15 Aug 2026 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 03 Sep 2026 13:00:00 GMT</lastBuildDate>
+<item>
+  <title>Empreintes climatiques du Pacifique</title>
+  <dc:creator>Jonas Brouillon</dc:creator>
+  <link>https://contours.nc/posts/pacific-climate-fingerprints/</link>
+  <description><![CDATA[ Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique. ]]></description>
+  <category>Changement climatique</category>
+  <category>Pacifique</category>
+  <category>Datavisualisation</category>
+  <guid>https://contours.nc/posts/pacific-climate-fingerprints/</guid>
+  <pubDate>Thu, 03 Sep 2026 13:00:00 GMT</pubDate>
+  <media:content url="https://contours.nc/images/previews/pacific-climate-fingerprints.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Explorer les disparités territoriales en Nouvelle-Calédonie</title>
   <dc:creator>Jonas Brouillon</dc:creator>

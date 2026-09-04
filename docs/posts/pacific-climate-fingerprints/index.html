@@ -6,7 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
+<meta name="author" content="Jonas Brouillon">
+<meta name="description" content="Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique.">
 
 <title>Empreintes climatiques du Pacifique – Contours</title>
 <style>
@@ -76,30 +77,36 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm" crossorigin="">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/topojson-client@3/+esm" crossorigin="">
 <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.esm.js" crossorigin="">
 <link rel="preload" href="../../assets/data/pacific-climate-fingerprints/climate_interactive.csv" as="fetch">
 <link rel="preload" href="../../assets/data/pacific-climate-fingerprints/eez.geojson" as="fetch">
-<meta name="quarto:status" content="draft">
 
 
 <link rel="stylesheet" href="../../styles.css">
 <link rel="stylesheet" href="../../assets/css/pacific-climate-fingerprints.css">
 <meta property="og:title" content="Empreintes climatiques du Pacifique – Contours">
-<meta property="og:description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
+<meta property="og:description" content="Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique.">
+<meta property="og:image" content="https://contours.nc/images/previews/pacific-climate-fingerprints.png">
 <meta property="og:site_name" content="Contours">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="Capture de la dataviz Empreintes climatiques du Pacifique, avec son titre et les premières étapes du récit interactif">
 <meta name="twitter:title" content="Empreintes climatiques du Pacifique – Contours">
-<meta name="twitter:description" content="Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique.">
+<meta name="twitter:image" content="https://contours.nc/images/previews/pacific-climate-fingerprints.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:image:alt" content="Capture de la dataviz Empreintes climatiques du Pacifique, avec son titre et les premières étapes du récit interactif">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-fixed climate-page quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><div id="quarto-draft-alert" class="alert alert-warning"><i class="bi bi-pencil-square"></i>Brouillon</div>
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -169,18 +176,36 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Empreintes climatiques du Pacifique</h1>
-</div>
+<p class="subtitle lead">Un même océan, vingt-deux trajectoires</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Changement climatique</div>
+    <div class="quarto-category">Pacifique</div>
+    <div class="quarto-category">Datavisualisation</div>
+  </div>
+  </div>
 
 <div>
   <div class="description">
-    Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique.
+    Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique.
   </div>
 </div>
 
 
 <div class="quarto-title-meta column-page">
 
+    <div>
+    <div class="quarto-title-meta-heading">Auteur·rice</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jonas Brouillon </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">4 septembre 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -219,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="climate-note">
-<p>Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.</p>
+<p>Cette visualisation est la soumission de <em>Contours</em> au <a href="https://pacificdatavizchallenge.org/fr" target="_blank" rel="noreferrer">Pacific Dataviz Challenge 2026</a>, consacré au changement climatique. Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.</p>
 </div>
 <script type="module" src="../../assets/js/pacific-climate-fingerprints/climate-map-interactive.js?v=scroll-mode-1"></script>
 

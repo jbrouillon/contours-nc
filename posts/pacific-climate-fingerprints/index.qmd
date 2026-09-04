@@ -1,13 +1,22 @@
 ---
 title: "Empreintes climatiques du Pacifique"
-description: "Explorez comment l’océan, les terres, les pluies et le niveau marin ont évolué dans 22 territoires du Pacifique."
-draft: true
+subtitle: "Un même océan, vingt-deux trajectoires"
+author: "Jonas Brouillon"
+date: "2026-09-04"
+lang: fr
+rubrique: "Cartes et visualisations"
+categories:
+  - Changement climatique
+  - Pacifique
+  - Datavisualisation
+description: "Une dataviz interactive pour comparer l’océan, les terres, les pluies et le niveau marin dans 22 territoires du Pacifique."
+image: "../../images/previews/pacific-climate-fingerprints.png"
+image-alt: "Capture de la dataviz Empreintes climatiques du Pacifique, avec son titre et les premières étapes du récit interactif"
 body-classes: climate-page
 citation: false
 google-scholar: false
 header-includes:
   - |
-    <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/d3@7/+esm" crossorigin>
     <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/topojson-client@3/+esm" crossorigin>
@@ -61,7 +70,7 @@ Chargement de l’expérience interactive… Si elle ne s’affiche pas, consult
 :::::::::
 
 ::: climate-note
-Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.
+Cette visualisation est la soumission de <em>Contours</em> au <a href="https://pacificdatavizchallenge.org/fr" target="_blank" rel="noreferrer">Pacific Dataviz Challenge 2026</a>, consacré au changement climatique. Sources : <a href="https://stats.pacificdata.org/" target="_blank" rel="noreferrer">Pacific Data Hub</a> (indicateurs climatiques et démographiques) ; <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noreferrer">NOAA Global Monitoring Laboratory</a> (CO₂ atmosphérique) ; <a href="https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt" target="_blank" rel="noreferrer">NOAA Climate Prediction Center</a> (Oceanic Niño Index). Les valeurs sont annuelles et les observations manquantes ne sont pas interpolées. La carte couvre 21 territoires ; Pitcairn, non cartographié, reste présent dans l’atlas qui en réunit 22. Les périodes d’observation et les références diffèrent selon les indicateurs : voir les <a href="../../assets/data/pacific-climate-fingerprints/SOURCES.md">notes méthodologiques</a> pour les transformations et précautions d’interprétation.
 :::
 
 ```{=html}
