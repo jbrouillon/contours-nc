@@ -18,7 +18,7 @@ image: "images/contours-banner.png"
 </script>
 ```
 
-[contours]{.contours-word} est un espace de publication consacré aux sciences sociales, à la cartographie et à la visualisation de données en Nouvelle-Calédonie.
+[contours]{.contours-word} est un espace de publication consacré aux sciences sociales, à la cartographie et à la visualisation de données en Nouvelle-Calédonie et dans le Pacifique.
 
 L'objectif est de proposer des analyses accessibles, documentées et reproductibles sur les dynamiques territoriales calédoniennes : populations, élections, mobilités, alimentation, infrastructures, environnement, inégalités spatiales et politiques publiques.
 
@@ -28,7 +28,7 @@ L'objectif est de proposer des analyses accessibles, documentées et reproductib
 
 [Jonas Brouillon]{.contours-word} est diplômé du [Master démographie]{.contours-word} de l'[Institut de Démographie de l'Université de Strasbourg](https://idus.unistra.fr/){target="_blank"} ainsi que du parcours Master de l'[École des Hautes Études en Démographie](https://ecolehed.fr/).
 
-[contours]{.contours-word} est une initiative personnelle, éditorialement indépendante de ses activités professionnelles et des institutions auxquelles il peut être affilié. Les contenus publiés ici n'engagent que leur(s) auteur(s). Ils visent à rendre accessibles des analyses documentées et reproductibles sur des sujets d'intérêt pour la Nouvelle-Calédonie, à partir de données publiques et de méthodes explicites.
+[contours]{.contours-word} est une initiative personnelle, éditorialement indépendante de ses activités professionnelles et des institutions auxquelles il peut être affilié. Les contenus publiés ici n'engagent que leur(s) auteur(s). Ils visent à rendre accessibles des analyses documentées et reproductibles sur des sujets d'intérêt pour la Nouvelle-Calédonie et le Pacifique, à partir de données publiques et de méthodes explicites.
 
 Les analyses publiées ici comportent nécessairement des limites et des incertitudes. Elles doivent être considérées comme des éléments d'information et de réflexion, et non comme des prises de position politiques, des recommandations ou des prescriptions d'action. Les sources de données, les codes utilisés pour les analyses et les visualisations seront partagés dans la mesure du possible pour permettre à chacun de vérifier, reproduire ou approfondir les analyses présentées.
 

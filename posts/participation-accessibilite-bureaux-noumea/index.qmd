@@ -3,6 +3,8 @@ title: "Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment 
 subtitle: "Ce que dit, et ne dit pas, la participation en hausse aux municipales 2026"
 author: "Jonas Brouillon"
 date: "2026-06-07"
+research-note: true
+note-number: "2026-03"
 rubrique: "Territoires et société"
 categories:
   - Nouméa

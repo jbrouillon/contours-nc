@@ -1,0 +1,29 @@
+---
+title: "Notes de recherche"
+image: "../images/contours-banner.png"
+listing:
+  contents:
+    - "../posts/**/*.qmd"
+  include:
+    research-note: true
+  type: default
+  sort: "date desc"
+  sort-ui: false
+  filter-ui: false
+---
+
+<div id="contours-section-notes" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-notes", {
+    sectionTitle: "Notes de recherche"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
+Une sélection d’analyses de Contours fondées sur des données documentées, une méthode explicite et des résultats discutés.
+
+Le statut de « Note de recherche » signale un niveau renforcé de formalisation et de documentation ; il ne correspond pas à une évaluation par les pairs.

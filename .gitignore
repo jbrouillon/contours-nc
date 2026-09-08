@@ -49,6 +49,8 @@ posts/**/index_files/
 /posts/pacific-climate-fingerprints/docs/
 /posts/pacific-climate-fingerprints/site_libs/
 /data/pacific-climate-fingerprints/raw/
+/data/_sources_locales/
+/data/outputs_regroupement_bureaux_vote_noumea_v2/
 
 # Documents de travail et archives de relecture, non publiés
 /data/dossier habitat.docx

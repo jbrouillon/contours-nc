@@ -6,6 +6,8 @@ aliases:
   - "/posts/segregations-territoriales-nouvelle-caledonie/index.html"
 author: "Jonas Brouillon"
 date: "2026-08-16"
+research-note: true
+note-number: "2026-07"
 rubrique: "Cartes et visualisations"
 categories:
   - Nouvelle-Calédonie

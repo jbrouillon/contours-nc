@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jonas Brouillon">
-<meta name="description" content="Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.">
+<meta name="description" content="À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?">
 
-<title>Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours</title>
+<title>[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -76,34 +76,36 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Recherche"
   }
 }</script>
-<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours">
-<meta property="og:description" content="Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.">
-<meta property="og:image" content="https://contours.nc/images/previews/regroupement-bureaux-vote-noumea.jpg">
+<meta property="og:title" content="[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours">
+<meta property="og:description" content="À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?">
+<meta property="og:image" content="https://contours.nc/images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png">
 <meta property="og:site_name" content="Contours">
-<meta property="og:image:alt" content="Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa">
-<meta name="twitter:title" content="Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours">
-<meta name="twitter:description" content="Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.">
-<meta name="twitter:image" content="https://contours.nc/images/previews/regroupement-bureaux-vote-noumea.jpg">
-<meta name="twitter:image:alt" content="Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa">
+<meta property="og:image:height" content="1520">
+<meta property="og:image:width" content="2360">
+<meta property="og:image:alt" content="Deux cartes comparant les temps de trajet vers les lieux de vote à Nouméa">
+<meta name="twitter:title" content="[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ? – Contours">
+<meta name="twitter:description" content="À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?">
+<meta name="twitter:image" content="https://contours.nc/images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png">
+<meta name="twitter:image-height" content="1520">
+<meta name="twitter:image-width" content="2360">
+<meta name="twitter:image:alt" content="Deux cartes comparant les temps de trajet vers les lieux de vote à Nouméa">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="citation_title" content="Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?">
+<link rel="canonical" href="https://contours.nc/posts/regroupement-bureaux-vote-noumea/">
+<meta name="citation_title" content="[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?">
 <meta name="citation_author" content="Jonas Brouillon">
-<meta name="citation_publication_date" content="2026-05-24">
-<meta name="citation_cover_date" content="2026-05-24">
+<meta name="citation_publication_date" content="2026-09-07">
+<meta name="citation_cover_date" content="2026-09-07">
 <meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-05-24">
+<meta name="citation_online_date" content="2026-09-07">
 <meta name="citation_fulltext_html_url" content="https://contours.nc/posts/regroupement-bureaux-vote-noumea/">
 <meta name="citation_language" content="fr">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed article-updated quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -124,10 +126,21 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../articles/index.html"> 
-<span class="menu-text">Articles</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-articles" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Articles</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">    
+        <li>
+    <a class="dropdown-item" href="../../articles/index.html">
+ <span class="dropdown-text">Tous les articles</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../notes/index.html">
+ <span class="dropdown-text">Notes de recherche</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../dossiers/index.html"> 
 <span class="menu-text">Dossiers</span></a>
@@ -169,11 +182,11 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</h1>
-            <p class="subtitle lead">Méthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule</p>
+      <h1 class="title">[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</h1>
+            <p class="subtitle lead">Quand les bureaux sont réunis dans neuf lieux, qui s’éloigne des urnes ?</p>
                   <div>
         <div class="description">
-          Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.
+          À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?
         </div>
       </div>
                           <div class="quarto-categories">
@@ -195,12 +208,18 @@ ul.task-list li input[type="checkbox"] {
     </div>
       
       <div>
-      <div class="quarto-title-meta-heading">Date de publication</div>
+      <div class="quarto-title-meta-heading">Mis à jour</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">24 mai 2026</p>
+        <p class="date">7 septembre 2026</p>
       </div>
     </div>
     
+      <div>
+      <div class="quarto-title-meta-heading">Modifié</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">7 septembre 2026</p>
+      </div>
+    </div>
       
     </div>
     
@@ -213,100 +232,321 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#en-bref" id="toc-en-bref" class="nav-link active" data-scroll-target="#en-bref">En bref</a></li>
-  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">Résumé</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#pourquoi-estimer-des-temps-de-trajet" id="toc-pourquoi-estimer-des-temps-de-trajet" class="nav-link" data-scroll-target="#pourquoi-estimer-des-temps-de-trajet">Pourquoi estimer des temps de trajet ?</a></li>
-  <li><a href="#les-données-mobilisées" id="toc-les-données-mobilisées" class="nav-link" data-scroll-target="#les-données-mobilisées">Les données mobilisées</a></li>
-  <li><a href="#chaîne-de-traitement" id="toc-chaîne-de-traitement" class="nav-link" data-scroll-target="#chaîne-de-traitement">Chaîne de traitement</a></li>
-  <li><a href="#trois-configurations-comparées" id="toc-trois-configurations-comparées" class="nav-link" data-scroll-target="#trois-configurations-comparées">Trois configurations comparées</a></li>
-  <li><a href="#mesurer-leffet-du-regroupement" id="toc-mesurer-leffet-du-regroupement" class="nav-link" data-scroll-target="#mesurer-leffet-du-regroupement">Mesurer l’effet du regroupement</a></li>
-  <li><a href="#où-le-manque-de-véhicule-pèse-le-plus" id="toc-où-le-manque-de-véhicule-pèse-le-plus" class="nav-link" data-scroll-target="#où-le-manque-de-véhicule-pèse-le-plus">Où le manque de véhicule pèse le plus ?</a></li>
-  <li><a href="#accessibilité-et-abstention" id="toc-accessibilité-et-abstention" class="nav-link" data-scroll-target="#accessibilité-et-abstention">Accessibilité et abstention</a></li>
-  <li><a href="#limites-méthodologiques" id="toc-limites-méthodologiques" class="nav-link" data-scroll-target="#limites-méthodologiques">Limites méthodologiques</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#à-lire-aussi" id="toc-à-lire-aussi" class="nav-link" data-scroll-target="#à-lire-aussi">À lire aussi</a></li>
-  <li><a href="#sources-et-données-utilisées" id="toc-sources-et-données-utilisées" class="nav-link" data-scroll-target="#sources-et-données-utilisées">Sources et données utilisées</a>
+  <li><a href="#où-en-est-le-débat" id="toc-où-en-est-le-débat" class="nav-link active" data-scroll-target="#où-en-est-le-débat">Où en est le débat ?</a></li>
+  <li><a href="#en-bref" id="toc-en-bref" class="nav-link" data-scroll-target="#en-bref">En bref</a></li>
+  <li><a href="#de-57-bureaux-administratifs-à-neuf-lieux" id="toc-de-57-bureaux-administratifs-à-neuf-lieux" class="nav-link" data-scroll-target="#de-57-bureaux-administratifs-à-neuf-lieux">De 57 bureaux administratifs à neuf lieux</a></li>
+  <li><a href="#deux-nouméa-à-comparer-dun-seul-regard" id="toc-deux-nouméa-à-comparer-dun-seul-regard" class="nav-link" data-scroll-target="#deux-nouméa-à-comparer-dun-seul-regard">Deux Nouméa à comparer d’un seul regard</a></li>
+  <li><a href="#à-pied-la-proximité-recule-nettement" id="toc-à-pied-la-proximité-recule-nettement" class="nav-link" data-scroll-target="#à-pied-la-proximité-recule-nettement">À pied, la proximité recule nettement</a>
   <ul class="collapse">
-  <li><a href="#données-géographiques-et-traitements" id="toc-données-géographiques-et-traitements" class="nav-link" data-scroll-target="#données-géographiques-et-traitements">Données géographiques et traitements</a></li>
+  <li><a href="#le-plus-proche-nest-pas-toujours-celui-où-lon-vote" id="toc-le-plus-proche-nest-pas-toujours-celui-où-lon-vote" class="nav-link" data-scroll-target="#le-plus-proche-nest-pas-toujours-celui-où-lon-vote">Le plus proche n’est pas toujours celui où l’on vote</a></li>
   </ul></li>
+  <li><a href="#avec-ou-sans-voiture-retenir-le-trajet-le-plus-logique" id="toc-avec-ou-sans-voiture-retenir-le-trajet-le-plus-logique" class="nav-link" data-scroll-target="#avec-ou-sans-voiture-retenir-le-trajet-le-plus-logique">Avec ou sans voiture : retenir le trajet le plus logique</a></li>
+  <li><a href="#sans-véhicule-la-distance-ne-pèse-pas-de-la-même-façon" id="toc-sans-véhicule-la-distance-ne-pèse-pas-de-la-même-façon" class="nav-link" data-scroll-target="#sans-véhicule-la-distance-ne-pèse-pas-de-la-même-façon">Sans véhicule, la distance ne pèse pas de la même façon</a></li>
+  <li><a href="#abstention-quartiers" id="toc-abstention-quartiers" class="nav-link" data-scroll-target="#abstention-quartiers">À chaque scrutin, de forts écarts entre quartiers</a>
+  <ul class="collapse">
+  <li><a href="#municipales-2026-le-dispositif-à-huit-centres" id="toc-municipales-2026-le-dispositif-à-huit-centres" class="nav-link" data-scroll-target="#municipales-2026-le-dispositif-à-huit-centres">Municipales 2026 : le dispositif à huit centres</a></li>
+  <li><a href="#provinciales-2026-le-dispositif-à-neuf-centres" id="toc-provinciales-2026-le-dispositif-à-neuf-centres" class="nav-link" data-scroll-target="#provinciales-2026-le-dispositif-à-neuf-centres">Provinciales 2026 : le dispositif à neuf centres</a></li>
+  </ul></li>
+  <li><a href="#limites" id="toc-limites" class="nav-link" data-scroll-target="#limites">Limites</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#sources-et-reproductibilité" id="toc-sources-et-reproductibilité" class="nav-link" data-scroll-target="#sources-et-reproductibilité">Sources et reproductibilité</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
-<section id="en-bref" class="level2 en-bref">
+<link rel="stylesheet" href="../../assets/css/habitat.css">
+<p class="article-version-history"><a href="./v1/">Consulter la version 1 · mai 2026</a></p>
+<script src="../../assets/vendor/d3.v7.min.js"></script>
+<script src="../../assets/vendor/rough.v4.js"></script>
+<p>À Nouméa, un <strong>bureau de vote</strong> et un <strong>lieu de vote</strong> ne désignent pas la même chose. Le bureau est l’unité administrative à laquelle un électeur est rattaché ; le lieu est le bâtiment où il doit effectivement se rendre. Les 57 bureaux peuvent donc conserver leur numéro tout en étant concentrés dans un nombre beaucoup plus réduit de sites.</p>
+<p>Ce décalage est devenu un enjeu concret depuis les scrutins organisés après les violences de mai 2024. Présenté d’abord dans un contexte exceptionnel, le regroupement a été reconduit en 2026 : huit lieux pour les municipales, puis neuf pour les provinciales. La question n’est donc pas seulement combien de bureaux existent sur le papier, mais <strong>à quelle distance des habitants les urnes sont réellement installées</strong>.</p>
+<p><strong>Ce qui change depuis la V1.</strong> Publiée en mai 2026, la première version était une exploration à pied : elle retenait 54 bureaux et associait chaque cellule habitée au lieu ouvert le plus proche. Cette V2 réintègre les 57 bureaux, actualise les routes et leur raccordement, conserve la grille de population SPC recalée sur le RP 2025 et ajoute une seconde lecture, plus proche de la règle électorale : le trajet vers le bureau correspondant au secteur. Elle étend aussi l’analyse à la voiture, au bus et aux écarts de participation.</p>
+<section id="où-en-est-le-débat" class="level2">
+<h2 class="anchored" data-anchor-id="où-en-est-le-débat">Où en est le débat ?</h2>
+<p><strong>Point d’étape au 6 septembre 2026.</strong> Le regroupement n’est ni une simple hypothèse cartographique ni une organisation définitivement stabilisée. Quatre repères permettent de comprendre la situation étudiée dans cet article :</p>
+<ul>
+<li><strong>juin-juillet 2024</strong> — les législatives anticipées sont organisées dans le contexte exceptionnel qui suit les violences de mai, avec des bureaux réunis dans un petit nombre de sites ;</li>
+<li><strong>15 mars 2026</strong> — les municipales se déroulent avec 57 bureaux administratifs répartis dans huit lieux ;</li>
+<li><strong>28 juin 2026</strong> — les provinciales utilisent neuf lieux et le juge des référés laisse ce dispositif en vigueur pour le scrutin ;</li>
+<li><strong>septembre 2026</strong> — après la proposition d’annulation formulée par la rapporteure publique, la perspective d’un <a href="https://www.lnc.nc/article/noumea-vers-un-retour-a-37-lieux-de-vote">retour à 37 lieux de vote</a> est évoquée ; la décision du tribunal est annoncée pour le 23 septembre.</li>
+</ul>
+<p>Les cartes comparent donc des configurations qui ont structuré les scrutins de 2026, pas un maillage appelé à rester nécessairement en place. La <a href="../../presse/">revue de presse du site</a> suivra les développements ultérieurs.</p>
+</section>
+<section id="en-bref" class="level2">
 <h2 class="anchored" data-anchor-id="en-bref">En bref</h2>
-<ul>
-<li>Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes.</li>
-<li>La part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.</li>
-<li>Les effets ne sont pas homogènes : certains quartiers cumulent hausse des temps de marche et forte part de ménages sans véhicule.</li>
-<li>Les résultats mesurent une accessibilité potentielle, pas les déplacements réels de chaque électeur.</li>
-</ul>
+<section class="vote-brief" data-vote-brief="" data-cells="data/accessibilite_cellules.csv" data-boundary="data/noumea_limite.geojson" data-points="data/points_vote.geojson" data-iris="data/iris_context.geojson" data-secteurs="data/vote_context_secteurs.geojson" data-stops="data/bus_stops.geojson">
+  <div class="vote-brief-launch">
+    <div>
+      <p class="vote-brief-kicker">Lecture express</p>
+      <p class="vote-brief-lede">Neuf écrans pour voir le changement de maillage, les trois modes de trajet et les écarts de participation entre quartiers.</p>
+    </div>
+    <button class="vote-brief-open" type="button" data-vote-brief-open="" aria-haspopup="dialog">
+      Voir l’article en bref <span aria-hidden="true">→</span>
+    </button>
+  </div>
+
+  <div class="vote-brief-dialog" data-vote-brief-dialog="" role="dialog" aria-modal="true" aria-labelledby="vote-brief-title" hidden="">
+    <div class="vote-brief-panel">
+      <header class="vote-brief-header">
+        <div>
+          <p class="vote-brief-kicker">Lecture express</p>
+          <h2 id="vote-brief-title" class="anchored">En bref</h2>
+        </div>
+        <div class="vote-brief-header-tools">
+          <span class="vote-brief-count" data-vote-brief-count="" aria-live="polite">1 / 9</span>
+          <button class="vote-brief-close" type="button" data-vote-brief-close="" aria-label="Fermer le résumé">×</button>
+        </div>
+      </header>
+
+      <div class="vote-brief-stage">
+        <article class="vote-brief-slide" data-vote-brief-slide="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">1 · Maillage · provinciales 2026</p>
+            <h3 class="anchored">Pour voter, 57 bureaux administratifs sont répartis dans neuf lieux.</h3>
+            <p class="vote-brief-big"><span>57</span><span aria-hidden="true">→</span><span>9 lieux</span></p>
+            <p>Le numéro du bureau ne change pas, mais le point de rendez-vous se concentre : la proximité offerte par le maillage habituel disparaît dans une grande partie de la ville.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="mesh" viewbox="0 0 420 240" role="img" aria-label="Comparaison cartographique des 57 bureaux habituels et des neuf lieux regroupés"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">2 · Marche · vers le bureau attribué</p>
+            <h3 class="anchored">À pied, le temps moyen à l’aller passe de 14,5 min à 21,8 min.</h3>
+            <p class="vote-brief-big"><span>14,5 min</span><span aria-hidden="true">→</span><span>21,8 min</span></p>
+            <p>Chaque cellule est reliée au bureau de son secteur. Les deux cartes utilisent la même échelle : l’orange commence dès 20 minutes aller et le rouge dès 30 minutes.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="pair9" viewbox="0 0 420 240" role="img" aria-label="Deux cartes des temps de marche, avec 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">3 · Marche · au-delà de 30 minutes</p>
+            <h3 class="anchored">Avec neuf lieux, 21,0 % des habitants sont à plus de 30 minutes de marche de leur bureau attribué.</h3>
+            <p class="vote-brief-big"><span>21,0 %</span></p>
+            <p>Avec les bureaux habituels, cette part est de 7,7 %.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="time9" viewbox="0 0 420 240" role="img" aria-label="Carte des temps de marche vers les neuf lieux de vote"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">4 · Marche · 8 lieux ou 9 lieux</p>
+            <h3 class="anchored">Le neuvième lieu réduit surtout les temps de marche du nord-ouest.</h3>
+            <p class="vote-brief-big"><span>−3,0 min en moyenne</span></p>
+            <p>Par rapport aux huit centres des municipales, la division de Ko We Kara entre le collège de Kaméré et Vincent-Kafoa réduit surtout les trajets attribués dans le nord.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="pair8" viewbox="0 0 420 240" role="img" aria-label="Deux cartes des temps de marche vers huit puis neuf lieux de vote"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">5 · Avec une voiture · maillage habituel ou 9 lieux</p>
+            <h3 class="anchored">Avec une voiture disponible, le meilleur temps moyen passe de 6,7 min à 8,3 min.</h3>
+            <p class="vote-brief-big"><span>6,7 min</span><span aria-hidden="true">→</span><span>8,3 min</span></p>
+            <p>À proximité, le calcul conserve la marche directe. Ailleurs, il retient la voiture si son temps porte-à-porte — conduite, accès et stationnement compris — est plus court.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="carpair" viewbox="0 0 420 240" role="img" aria-label="Deux cartes du meilleur temps estimé à pied ou en voiture vers 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">6 · À pied ou en bus · maillage habituel ou 9 lieux</p>
+            <h3 class="anchored">Sans voiture, le meilleur temps moyen passe de 11,4 min à 17,6 min.</h3>
+            <p class="vote-brief-big"><span>11,4 min</span><span aria-hidden="true">→</span><span>17,6 min</span></p>
+            <p>Le calcul retient le plus court entre la marche directe et Tanéo. Un trajet en bus n’est donc pas imposé à quelqu’un qui habite déjà près du lieu de vote.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="buspair" viewbox="0 0 420 240" role="img" aria-label="Deux cartes du meilleur temps estimé à pied ou en bus vers 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">7 · Mobilité · ménages sans véhicule</p>
+            <h3 class="anchored">Près de trois ménages sur dix dépendent d’une alternative à la voiture.</h3>
+            <p class="vote-brief-big"><span>27,4 %</span></p>
+            <p>Cette proportion correspond aux ménages de Nouméa sans aucun véhicule. La marche, le bus ou l’aide d’un proche deviennent alors décisifs.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="vehicle" viewbox="0 0 420 240" role="img" aria-label="Carte de la part des ménages sans véhicule par IRIS"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">8 · Abstention · municipales 2026</p>
+            <h3 class="anchored">Aux municipales, l’abstention va de 38,0 % dans le secteur de PK6 Nord à 66,9 % dans celui de Portes-de-Fer Nord.</h3>
+            <p class="vote-brief-big"><span>28,9 points du minimum au maximum</span></p>
+            <p>Le bureau dérogatoire Mairie 3 mis à part, le taux est de 38,0 % dans le secteur de Marie-Courtot 2, à PK6 Nord. Il atteint 66,9 % dans celui de Gustave-Mouchet 2, à Portes-de-Fer Nord.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="municipal" viewbox="0 0 420 240" role="img" aria-label="Carte des taux d’abstention par secteur électoral de Nouméa aux municipales de 2026"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide="" hidden="">
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">9 · Abstention · provinciales 2026</p>
+            <h3 class="anchored">Aux provinciales, l’abstention va de 15,1 % dans le secteur de N’Géa à 54,3 % dans celui du centre-ville.</h3>
+            <p class="vote-brief-big"><span>39,2 points du minimum au maximum</span></p>
+            <p>Le bureau dérogatoire Mairie 3 mis à part, le taux est de 15,1 % dans le secteur de Jean-Mermoud 2, à N’Géa. Il atteint 54,3 % dans celui de Mairie 2, au centre-ville.</p>
+            <a class="vote-brief-read" href="#abstention-quartiers" data-vote-brief-close="">Lire l’analyse détaillée ↓</a>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="provincial" viewbox="0 0 420 240" role="img" aria-label="Carte des taux d’abstention par secteur électoral de Nouméa aux provinciales de 2026"></svg>
+        </article>
+      </div>
+
+      <footer class="vote-brief-nav">
+        <button type="button" data-vote-brief-prev="">← Précédent</button>
+        <div class="vote-brief-dots" data-vote-brief-dots="" aria-label="Choisir une diapositive"></div>
+        <button type="button" data-vote-brief-next="">Suivant →</button>
+      </footer>
+    </div>
+  </div>
 </section>
-<section id="résumé" class="level2">
-<h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
-<p>Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.</p>
-<p>Les résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.</p>
-<p>L’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.</p>
-<p>Cette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote.</p>
-<details class="note-deroulable">
-<summary>
-Avertissement
-</summary>
-<p>Cette note constitue un travail exploratoire et méthodologique réalisé dans un objectif d’analyse spatiale rapide des effets potentiels du regroupement des bureaux de vote à Nouméa. Les résultats présentés doivent être considérés comme des estimations préliminaires destinées à alimenter une réflexion publique et scientifique plus large.</p>
-<p>Les traitements, indicateurs et cartes ont vocation à être consolidés dans le cadre d’une publication ultérieure plus complète, intégrant notamment :</p>
-<ul>
-<li><p>des tests de sensibilité méthodologique ;</p></li>
-<li><p>une validation plus fine des itinéraires piétons ;</p></li>
-<li><p>des analyses statistiques complémentaires ;</p></li>
-<li><p>un croisement plus approfondi avec les données socio-électorales et territoriales.</p></li>
-</ul>
-<p>Les résultats présentés ici ne constituent donc pas une mesure définitive des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles.</p>
-</details>
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-brief.js"></script>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>La question du regroupement des bureaux de vote s’est imposée dans le débat public calédonien à partir des élections législatives anticipées de 2024, organisées dans le contexte exceptionnel des émeutes et des tensions sécuritaires ayant suivi les événements du 13 mai.</p>
-<p>À Nouméa, les 56 bureaux de vote habituels avaient alors été regroupés sur seulement 7 sites afin de sécuriser l’organisation du scrutin. Ce dispositif exceptionnel avait été présenté comme une réponse aux contraintes logistiques et sécuritaires du moment. Malgré cette réorganisation, la participation au second tour des législatives avait atteint un niveau particulièrement élevé à l’échelle du territoire.</p>
-<p>Le regroupement des bureaux de vote n’est cependant pas resté limité à ce seul contexte d’urgence. Le dispositif a ensuite été largement reconduit lors des élections municipales de 2026, avec une organisation reposant sur 8 grands sites de vote à l’échelle de la commune. Cette décision a suscité plusieurs critiques et recours politiques autour des questions d’accessibilité, de proximité du vote et de sincérité du scrutin.</p>
-<p>Derrière ces débats institutionnels se pose une question plus concrète et plus territoriale : comment le regroupement des centres de vote modifie-t-il réellement les conditions d’accès au vote selon les quartiers de Nouméa ?</p>
-<p>En effet, deux électeurs inscrits dans une même commune ne font pas nécessairement face au même coût de déplacement. La structure du réseau routier, les ruptures urbaines, la distance aux centres ouverts ou encore l’accès à un véhicule peuvent fortement modifier l’accessibilité réelle au vote.</p>
-<p>Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées :</p>
-<ul>
-<li>la configuration habituelle des bureaux de vote ;</li>
-<li>un scénario à 8 centres regroupés ;</li>
-<li>un scénario à 9 centres regroupés.</li>
-</ul>
-<p>L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.</p>
+<section id="de-57-bureaux-administratifs-à-neuf-lieux" class="level2">
+<h2 class="anchored" data-anchor-id="de-57-bureaux-administratifs-à-neuf-lieux">De 57 bureaux administratifs à neuf lieux</h2>
+<p>Nouméa compte 57 bureaux de vote administratifs, habituellement répartis dans un maillage plus fin de la ville. En 2026, ce n’est pas leur nombre qui change, mais leur implantation physique : ils sont réunis dans huit lieux aux municipales puis, selon <a href="https://www.noumea.nc/noumea-dynamique/actu-agenda/organisation-elections-provinciales-noumea-28-juin-2026">l’organisation annoncée par la Ville</a>, dans neuf lieux aux provinciales du 28 juin. Les électeurs conservent leur numéro de bureau, mais doivent se rendre sur le site auquel celui-ci est rattaché.</p>
+<p>Ce changement pose une question simple : <strong>combien de temps faut-il pour atteindre un lieu de vote, et comment cette contrainte varie-t-elle selon l’endroit où l’on habite et le moyen de transport disponible ?</strong></p>
 </section>
-<section id="pourquoi-estimer-des-temps-de-trajet" class="level2">
-<h2 class="anchored" data-anchor-id="pourquoi-estimer-des-temps-de-trajet">Pourquoi estimer des temps de trajet ?</h2>
-<p>Le regroupement de bureaux de vote change la géographie concrète de l’accès au vote. Deux électeurs rattachés administrativement au même scrutin ne font pas nécessairement face au même effort de déplacement selon le quartier, la densité du réseau viaire, la localisation des centres ouverts et la possibilité ou non d’utiliser une voiture.</p>
-<p>Cette note documente une estimation des temps de trajet piéton vers le point de vote le plus proche à Nouméa. L’objectif n’est pas de reconstituer les trajets réellement empruntés par chaque électeur, mais de produire un indicateur spatial comparable entre plusieurs configurations :</p>
-<ul>
-<li>une configuration de référence avec les bureaux de vote géolocalisés ;</li>
-<li>une configuration à 8 centres de vote regroupés ;</li>
-<li>une configuration à 9 centres de vote regroupés, sans Ko We Kara, avec l’ajout du collège de Kaméré et de la salle de boxe Vincent Kafoa.</li>
-</ul>
-<p>Le résultat doit être lu comme une mesure d’accessibilité potentielle. Il devient particulièrement utile lorsqu’il est rapproché de la part des ménages sans véhicule, issue du RGP 2019 à l’échelle IRIS.</p>
+<section id="deux-nouméa-à-comparer-dun-seul-regard" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="deux-nouméa-à-comparer-dun-seul-regard">Deux Nouméa à comparer d’un seul regard</h2>
+<p>Trois configurations sont comparées : le maillage habituel, les huit lieux utilisés aux municipales, puis les neuf lieux retenus pour les provinciales. La carte place désormais côte à côte le maillage habituel et le regroupement. Le sélecteur choisit le scénario de droite, à huit ou neuf lieux, puis l’une des trois situations de mobilité : à pied, avec une voiture disponible, ou à pied et en bus.</p>
+<p>Le maillage habituel comprend ici les <strong>57 bureaux</strong> du référentiel géographique de la Ville, numérotés de 1 à 57 sans interruption. Plusieurs bureaux occupent le même équipement scolaire et leurs points sont donc très proches sur la carte ; aucun n’est retiré du calcul. Ce scénario décrit une offre électorale de proximité habituelle, et non la disponibilité ponctuelle des bâtiments le jour d’un scrutin.</p>
+<p>À pied, le temps comprend la courte liaison entre le centre de la cellule et la route, le parcours sur le réseau et la liaison finale jusqu’au lieu de vote. Il s’agit d’un indicateur d’accessibilité potentielle, pas d’un itinéraire recommandé ni d’une observation des déplacements réels.</p>
+<div class="column-page">
+<div id="comparaison-accessibilite-vote-v2" class="habitat-sketch habitat-map access-compare-v2" data-access-compare-v2="" data-sketch-chart="Comparaison des temps de trajet vers les lieux de vote à Nouméa" data-cells="data/accessibilite_cellules.csv" data-boundary="data/noumea_limite.geojson" data-routes="data/noumea_routes.geojson" data-points="data/points_vote.geojson" data-iris="data/iris_context.geojson" data-stops="data/bus_stops.geojson" data-stats="data/mobility_stats.csv" data-method-stats="data/destination_method_stats.csv" data-metadata="data/metadata.json">
+  <p class="habitat-sketch-loading">Chargement de la carte interactive…</p>
+</div>
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-compare.js"></script>
+<p class="habitat-caption">
+</p><p>La carte de gauche garde toujours les <strong>57 bureaux habituels</strong> ; celle de droite affiche les <strong>9 lieux des provinciales</strong> par défaut ou les 8 lieux des municipales. En mode marche, le sélecteur « Destination » permet de comparer le <strong>lieu le plus proche</strong> au <strong>bureau attribué au secteur électoral</strong>. Les modes voiture et bus restent calculés vers le lieu le plus proche. Les trois modes utilisent <strong>la même échelle de couleurs en minutes</strong> : une durée inférieure à 10 minutes reste bleu-vert, qu’elle corresponde à la marche, à la voiture ou au bus. Dans les modes motorisés, la marche directe est conservée lorsqu’elle est plus rapide : une personne voisine du bureau n’est pas artificiellement envoyée vers sa voiture ou un arrêt de bus. Les surfaces sont lissées dans un rayon de <strong>500 mètres</strong> pour faciliter la lecture. À pied, l’orange commence dès <strong>20 minutes à l’aller</strong> — 40 minutes aller-retour — et le rouge dès <strong>30 minutes</strong>, soit une heure aller-retour. Au survol, le contour et le nom de l’IRIS apparaissent avec les deux valeurs exactes de la cellule de 100 mètres ; avec l’affectation sectorielle, l’info-bulle précise aussi le bureau et le lieu attendus. En mode bus, les points bleus représentent les arrêts actifs dans l’offre reconstituée.</p>
+<p></p>
+</div>
 </section>
-<section id="les-données-mobilisées" class="level2">
-<h2 class="anchored" data-anchor-id="les-données-mobilisées">Les données mobilisées</h2>
-<p>L’estimation s’appuie sur cinq familles de données locales :</p>
-<ul>
-<li>les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de vote réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul ;</li>
-<li>la liste des centres regroupés, saisie comme points de destination alternatifs ;</li>
-<li>le réseau routier BDROUTE-NC, transformé en graphe de déplacement ;</li>
-<li>la grille de population <code>NCL_Pop_Grid_2020.tif</code>, utilisée pour ne calculer l’indicateur que sur les cellules habitées ;</li>
-<li>les IRIS du RGP 2019, dont le champ <code>percent_menages_sans_vehicules</code>.</li>
-</ul>
-<p>Toutes les opérations de distance et de réseau sont réalisées dans le système projeté RGNC91-93 / Lambert New Caledonia, EPSG:3163. Les temps sont exprimés en minutes, avec une hypothèse de marche à <code>5 km/h</code>.</p>
+<section id="à-pied-la-proximité-recule-nettement" class="level2">
+<h2 class="anchored" data-anchor-id="à-pied-la-proximité-recule-nettement">À pied, la proximité recule nettement</h2>
+<p>En retenant le <strong>bureau attribué au secteur</strong> — la convention affichée par défaut sur la carte — les trois configurations se distinguent immédiatement.</p>
+<div class="habitat-stat-grid" aria-label="Temps moyens selon la configuration">
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">14,5 min</div>
+    <div class="habitat-stat-label">Maillage habituel</div>
+    <p class="habitat-stat-note">Temps moyen vers le bureau attribué.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">24,8 min</div>
+    <div class="habitat-stat-label">Huit lieux de vote</div>
+    <p class="habitat-stat-note">Soit 10,2 min de plus.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">21,8 min</div>
+    <div class="habitat-stat-label">Neuf lieux de vote</div>
+    <p class="habitat-stat-note">Soit 7,2 min de plus.</p>
+  </div>
+</div>
+<p>Avec neuf lieux, le temps moyen augmente de 7,2 min. La part située à plus de trente minutes de marche passe de 7,7 % à 21,0 %.</p>
+<p>Le neuvième lieu améliore toutefois sensiblement la situation par rapport à la configuration municipale à huit : il retranche en moyenne 3,0 min, notamment dans le nord de Nouméa.</p>
+<section id="le-plus-proche-nest-pas-toujours-celui-où-lon-vote" class="level3">
+<h3 class="anchored" data-anchor-id="le-plus-proche-nest-pas-toujours-celui-où-lon-vote">Le plus proche n’est pas toujours celui où l’on vote</h3>
+<p>Les deux méthodes ne répondent pas tout à fait à la même question. Le <strong>lieu le plus proche</strong> mesure une accessibilité théorique : si un centre voisin accueille les électeurs d’un autre secteur, il est quand même retenu. Le <strong>bureau attribué</strong> respecte le découpage électoral : chaque cellule de population est reliée au bureau de son secteur, puis au lieu où ce bureau est regroupé. Cette seconde lecture est affichée par défaut.</p>
+<div class="destination-method-grid" aria-label="Comparaison des temps moyens à pied selon la méthode d’affectation">
+  <article class="destination-method-card">
+    <div class="destination-method-kicker">Lieu le plus proche</div>
+    <div class="destination-method-flow" aria-label="12 minutes avec 57 bureaux, 22,7 minutes avec huit centres et 19,7 minutes avec neuf centres">
+      <span><strong>12,0 min</strong><small>57 bureaux</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>22,7 min</strong><small>8 centres</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>19,7 min</strong><small>9 centres</small></span>
+    </div>
+    <p class="destination-method-summary">De 57 à 9 lieux : <strong>+7,6 min</strong>. Avec neuf lieux, <strong>12,1 %</strong> de la population est à plus de 30 minutes.</p>
+  </article>
+  <article class="destination-method-card">
+    <div class="destination-method-kicker">Bureau attribué au secteur</div>
+    <div class="destination-method-flow" aria-label="14,5 minutes avec 57 bureaux, 24,8 minutes avec huit centres et 21,8 minutes avec neuf centres">
+      <span><strong>14,5 min</strong><small>57 bureaux</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>24,8 min</strong><small>8 centres</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>21,8 min</strong><small>9 centres</small></span>
+    </div>
+    <p class="destination-method-summary">De 57 à 9 lieux : <strong>+7,2 min</strong>. Avec neuf lieux, <strong>21,0 %</strong> de la population est à plus de 30 minutes.</p>
+  </article>
+</div>
+<p><strong>Comment lire l’évolution depuis la V1 ?</strong> À méthode comparable, la V1 estimait le trajet vers le lieu le plus proche à 13,3 minutes avec 54 bureaux et 21,8 minutes avec neuf lieux. Après la mise à jour du réseau et la réintégration des 57 bureaux, la V2 obtient 12,0 min et 19,7 min. Les 14,5 min et 21,8 min affichées par défaut correspondent à la nouvelle méthode par secteur : le même chiffre de 21,8 minutes dans les deux versions est donc une coïncidence, pas le même calcul.</p>
+<p>Le niveau est logiquement plus élevé lorsque l’on respecte les secteurs, mais le diagnostic central change peu : le regroupement ajoute 7,6 min avec la première méthode et 7,2 min avec la seconde. En revanche, le choix de la destination pèse davantage sur la fréquence des trajets très longs. L’affectation sectorielle est donc plus proche de la contrainte électorale attendue ; le lieu le plus proche reste utile comme mesure d’accessibilité potentielle.</p>
+<p>Cette seconde estimation ne localise pas les électeurs individuellement : elle applique les limites officielles des secteurs à la grille de population. Elle suppose donc que les habitants d’une cellule relèvent du bureau du secteur qui la contient.</p>
+</section>
+</section>
+<section id="avec-ou-sans-voiture-retenir-le-trajet-le-plus-logique" class="level2">
+<h2 class="anchored" data-anchor-id="avec-ou-sans-voiture-retenir-le-trajet-le-plus-logique">Avec ou sans voiture : retenir le trajet le plus logique</h2>
+<p>La carte <strong>« Avec une voiture »</strong> ne suppose pas que chacun conduise, même pour quelques centaines de mètres. Pour chaque cellule, elle compare la marche directe au trajet automobile porte-à-porte et conserve le plus court. La branche automobile utilise les routes et les sens uniques de BDROUTE, une vitesse en mouvement plafonnée à <strong>30 km/h</strong>, puis un forfait de <strong>5 minutes</strong> pour accéder au véhicule, démarrer, stationner et rejoindre le lieu de vote. Le meilleur temps moyen est ainsi de 6,7 min avec les bureaux habituels et de 8,3 min avec neuf lieux. Ces valeurs servent à comparer les scénarios ; elles ne prédisent ni les embouteillages ni la disponibilité du stationnement le jour du vote.</p>
+<p>La carte <strong>« À pied ou en bus »</strong> suit le même principe. Pour chaque cellule, elle compare la marche directe au meilleur itinéraire Tanéo calculé pour cinq départs entre 8 heures et 16 heures, puis conserve le temps le plus court. Près d’un lieu de vote, la valeur peut donc être celle de la marche ; lorsque Tanéo est plus avantageux, elle comprend la marche jusqu’à l’arrêt, l’attente, le trajet, les correspondances et la marche finale. Le meilleur temps moyen atteint 17,6 min avec neuf lieux, contre 11,4 min dans le maillage habituel. Les points bleus représentent les arrêts actifs de l’offre reconstituée.</p>
+<p>La branche Tanéo est une <strong>reconstitution</strong>, et non le rejeu d’une archive exacte du 28 juin. L’offre spéciale est documentée, tout comme la réorganisation du réseau entrée en vigueur le 22 juin ; faute de GTFS historique publié pour ce dimanche, le calcul utilise l’offre du samedi du réseau postérieur à cette réorganisation. Lorsqu’aucun itinéraire en bus n’est calculable, la marche directe reste disponible. Les <a href="https://www.lnc.nc/article/provinciales-les-bus-taneo-circuleront-exceptionnellement-le-dimanche-28-juin">horaires exceptionnels du scrutin</a>, <a href="https://www.taneo.nc/actualites/partir-du-22-juin-2026-plus-de-frequences-plus-de-connexions-plus-de-simplicite">l’évolution du réseau au 22 juin</a> et le <a href="https://transport.data.gouv.fr/datasets/reseau-taneo-1?locale=fr">GTFS Tanéo</a> permettent d’en donner un ordre de grandeur transparent.</p>
+</section>
+<section id="sans-véhicule-la-distance-ne-pèse-pas-de-la-même-façon" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="sans-véhicule-la-distance-ne-pèse-pas-de-la-même-façon">Sans véhicule, la distance ne pèse pas de la même façon</h2>
+<p>La distance ne pèse pas de la même façon sur tout le monde. À Nouméa, 27,4 % des ménages ne disposent d’aucun véhicule d’après le RGP 2019. Dans ces foyers, un lieu de vote plus éloigné rend plus importante la marche, le transport collectif ou l’aide d’un proche.</p>
+<p>Cette donnée ne permet pas de savoir comment chaque électeur se déplace. Elle signale néanmoins que le même allongement théorique n’a pas le même poids selon les ressources de mobilité disponibles dans le quartier.</p>
+<div class="column-page">
+<div id="motorisation-noumea-v2" class="habitat-sketch habitat-map" data-vote-context-map-v2="" data-sketch-chart="Ménages sans véhicule à Nouméa" data-boundary="data/noumea_limite.geojson" data-routes="data/noumea_routes.geojson" data-iris="data/iris_context.geojson" data-secteurs="data/vote_context_secteurs.geojson" data-stats="data/vote_context_stats.csv" data-modes="vehicles" data-default="vehicles" data-query="mobilite">
+  <p class="habitat-sketch-loading">Chargement de la carte de motorisation…</p>
+</div>
+<p class="habitat-caption">
+</p><p>Cette carte porte uniquement sur la motorisation. Une couleur représente un IRIS du RGP 2019 ; elle ne décrit ni le comportement électoral ni le mode de déplacement réellement choisi le jour du vote.</p>
+<p></p>
+</div>
+</section>
+<section id="abstention-quartiers" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="abstention-quartiers">À chaque scrutin, de forts écarts entre quartiers</h2>
+<div class="habitat-stat-grid" aria-label="Trois repères sur l’abstention à Nouméa">
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">28,9 pts</div>
+    <div class="habitat-stat-label">Du taux minimum au taux maximum · municipales</div>
+    <p class="habitat-stat-note">Hors Mairie 3 : de 38,0 % à PK6 Nord à 66,9 % à Portes-de-Fer Nord.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">39,2 pts</div>
+    <div class="habitat-stat-label">Du taux minimum au taux maximum · provinciales</div>
+    <p class="habitat-stat-note">Hors Mairie 3 : de 15,1 % à N’Géa à 54,3 % au centre-ville.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">57</div>
+    <div class="habitat-stat-label">Périmètres électoraux analysés</div>
+    <p class="habitat-stat-note">Un secteur d’affectation pour chacun des 57 bureaux administratifs.</p>
+  </div>
+</div>
+<p>Les cartes et le graphique ci-dessous décrivent, pour chaque scrutin, la variation du taux d’abstention entre les <strong>57 secteurs électoraux</strong> de Nouméa. Les écarts de 28,9 et 39,2 points ne sont pas des moyennes : ils correspondent au <strong>taux le plus élevé moins le taux le plus faible</strong>, en laissant de côté le bureau dérogatoire Mairie 3. La question est simple : <strong>la participation est-elle homogène dans la ville ?</strong> La réponse est non, avec de forts écarts d’un secteur à l’autre.</p>
+<section id="municipales-2026-le-dispositif-à-huit-centres" class="level3">
+<h3 class="anchored" data-anchor-id="municipales-2026-le-dispositif-à-huit-centres">Municipales 2026 : le dispositif à huit centres</h3>
+<p>À l’échelle de Nouméa, l’abstention municipale atteint 51,3 %. Mais cette moyenne recouvre des situations très différentes. Le bureau dérogatoire Mairie 3 mis à part, le taux est de 38,0 % dans le secteur de Marie-Courtot 2, à PK6 Nord, et atteint 66,9 % dans celui de Gustave-Mouchet 2, à Portes-de-Fer Nord. L’écart entre ces deux taux est de <strong>28,9 points de pourcentage</strong>.</p>
+<p>12 secteurs restent sous 45 % d’abstention tandis que 8 atteignent ou dépassent 60 %. Le phénomène ne se limite donc pas à deux cas isolés.</p>
+</section>
+<section id="provinciales-2026-le-dispositif-à-neuf-centres" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="provinciales-2026-le-dispositif-à-neuf-centres">Provinciales 2026 : le dispositif à neuf centres</h3>
+<p>Aux provinciales du 28 juin, l’abstention moyenne atteint 34,2 %. Le bureau dérogatoire Mairie 3 mis à part, le taux est de 15,1 % dans le secteur de Jean-Mermoud 2, à N’Géa, et atteint 54,3 % dans celui de Mairie 2, au centre-ville. L’écart entre ces deux taux est de <strong>39,2 points de pourcentage</strong>.</p>
+<p>16 secteurs restent sous 25 % d’abstention, tandis que 13 atteignent ou dépassent 40 %. Plusieurs secteurs de Portes-de-Fer Nord, Magenta Est et Aérodrome Sud figurent dans le haut de la distribution ; N’Géa, Tina et Motor Pool se situent plutôt à l’autre extrémité.</p>
+<p>La moitié centrale des secteurs s’étend encore de 24,8 % à 39,1 %. La géographie de la participation ne tient donc pas seulement à quelques valeurs extrêmes.</p>
+<p>Le secteur Mairie 3 constitue un cas particulier : il ne compte que 83 inscrits aux municipales et 62 aux provinciales, avec trois votants dans chaque cas. Ses taux très élevés sont visibles sur les cartes, mais ce secteur atypique est exclu des repères chiffrés ci-dessus afin de ne pas le présenter comme un quartier résidentiel ordinaire.</p>
+<div class="column-page">
+<div id="contexte-social-electoral-v2" class="habitat-sketch habitat-map" data-vote-context-map-v2="" data-sketch-chart="Abstention par secteur électoral à Nouméa" data-boundary="data/noumea_limite.geojson" data-routes="data/noumea_routes.geojson" data-iris="data/iris_context.geojson" data-secteurs="data/vote_context_secteurs.geojson" data-stats="data/vote_context_stats.csv" data-modes="municipal,provincial" data-default="municipal" data-layout="pair" data-query="scrutin">
+  <p class="habitat-sketch-loading">Chargement de la carte d’abstention…</p>
+</div>
+<p class="habitat-caption">
+</p><p>Les deux cartes montrent les <strong>57 secteurs électoraux officiels</strong>, sans lissage. Dans chaque panneau, le vert signale les taux d’abstention les plus faibles et le rouge les plus élevés. Les classes chiffrées figurent sous chaque carte : elles vont de moins de 40 % à 60 % ou plus pour les municipales, et de moins de 20 % à 40 % ou plus pour les provinciales.</p>
+<p></p>
+</div>
+<div class="column-page">
+<div id="dispersion-abstention-noumea-v2" class="habitat-sketch habitat-sketch--mobile-fluid" data-vote-abstention-spread-v2="" data-default="provincial" data-sketch-chart="Nuage interactif des bureaux de vote selon leur taux d’abstention" data-rows="data/vote_context_bureaux.csv">
+  <p class="habitat-sketch-loading">Chargement du graphique d’abstention…</p>
+</div>
+<p class="habitat-caption">
+</p><p>Le graphique s’ouvre sur les <strong>provinciales 2026</strong>. Chaque point représente un bureau de vote : sa position sur l’axe horizontal donne le <strong>taux d’abstention parmi les inscrits</strong>, et sa couleur le rattache à l’un des cinq secteurs de la ville. Le sélecteur permet d’afficher les municipales ; le survol ou le menu « Repérer » donne le libellé, l’IRIS, le secteur et les effectifs du bureau. Le trait noir indique la moyenne de Nouméa. <strong>Mairie 3 n’est pas affiché dans ce graphique</strong> : ce bureau dérogatoire ne compte que trois votants et son taux extrême étirerait artificiellement l’échelle. Il reste présent dans les données et sur les cartes.</p>
+<p></p>
+</div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -317,1831 +557,69 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Les rasters analytiques ne sont renseignés que sur les cellules habitées. Les rasters lissés servent à la cartographie finale, mais les statistiques descriptives ci-dessous sont calculées sur les cellules habitées, pondérées par la population de la grille.</p>
+<p>Ces visualisations décrivent où la participation est plus ou moins forte ; elles n’expliquent pas pourquoi. La distance au lieu de vote peut constituer une contrainte parmi d’autres, aux côtés des caractéristiques sociales des quartiers, des inscriptions sur les listes, des enjeux du scrutin et de la mobilisation politique. Les temps sont modélisés pour une population localisée sur une grille, tandis que l’abstention porte sur les électeurs inscrits : une corrélation entre les deux donnerait ici une précision trompeuse. L’<a href="../participation-accessibilite-bureaux-noumea/">analyse des municipales de 2026</a> examine plus précisément l’évolution de la participation depuis 2020.</p>
 </div>
 </div>
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-v2-context.js"></script>
 </section>
-<section id="chaîne-de-traitement" class="level2">
-<h2 class="anchored" data-anchor-id="chaîne-de-traitement">Chaîne de traitement</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A[Résultats par bureau et centres regroupés] --&gt; B[Points sources]
-  C[Réseau routier BDROUTE-NC] --&gt; D[Graphe piéton pondéré en minutes]
-  E[Grille population 2020] --&gt; F[Cellules habitées]
-  B --&gt; G[Rattachement au nœud routier le plus proche]
-  F --&gt; H[Rattachement au nœud routier le plus proche]
-  D --&gt; I[Plus courts chemins vers la source la plus proche]
-  G --&gt; I
-  H --&gt; I
-  I --&gt; J[Temps par cellule habitée]
-  J --&gt; K[Comparaison bureaux complets / 8 centres / 9 centres]
-  K --&gt; L[Croisement avec IRIS RGP 2019]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Le principe est le suivant. Chaque segment du réseau routier devient une arête de graphe. Son poids correspond au temps nécessaire pour le parcourir à pied. Les bureaux ou centres de vote sont rattachés au nœud routier le plus proche ; les cellules habitées le sont également. On ajoute ensuite une source artificielle connectée à tous les points de vote, puis on calcule le plus court chemin vers l’ensemble des nœuds du réseau. Le temps final d’une cellule correspond au temps d’accès au réseau plus le temps de réseau jusqu’au point de vote le plus proche.</p>
-<p>Ce choix permet de comparer des configurations de manière homogène. Il évite aussi une lecture purement à vol d’oiseau, qui sous-estime souvent les contraintes réelles dans une ville structurée par les routes, les ruptures de pente, les baies, les emprises et les détours.</p>
 </section>
-<section id="trois-configurations-comparées" class="level2">
-<h2 class="anchored" data-anchor-id="trois-configurations-comparées">Trois configurations comparées</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="ahsviwpwwi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ahsviwpwwi table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#ahsviwpwwi thead, #ahsviwpwwi tbody, #ahsviwpwwi tfoot, #ahsviwpwwi tr, #ahsviwpwwi td, #ahsviwpwwi th {
-  border-style: none;
-}
-
-#ahsviwpwwi p {
-  margin: 0;
-  padding: 0;
-}
-
-#ahsviwpwwi .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#ahsviwpwwi .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#ahsviwpwwi .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#ahsviwpwwi .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#ahsviwpwwi .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#ahsviwpwwi .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#ahsviwpwwi .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#ahsviwpwwi .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#ahsviwpwwi .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#ahsviwpwwi .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#ahsviwpwwi .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ahsviwpwwi .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#ahsviwpwwi .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#ahsviwpwwi .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#ahsviwpwwi .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ahsviwpwwi .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#ahsviwpwwi .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#ahsviwpwwi .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#ahsviwpwwi .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ahsviwpwwi .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#ahsviwpwwi .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ahsviwpwwi .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#ahsviwpwwi .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ahsviwpwwi .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ahsviwpwwi .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ahsviwpwwi .gt_left {
-  text-align: left;
-}
-
-#ahsviwpwwi .gt_center {
-  text-align: center;
-}
-
-#ahsviwpwwi .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#ahsviwpwwi .gt_font_normal {
-  font-weight: normal;
-}
-
-#ahsviwpwwi .gt_font_bold {
-  font-weight: bold;
-}
-
-#ahsviwpwwi .gt_font_italic {
-  font-style: italic;
-}
-
-#ahsviwpwwi .gt_super {
-  font-size: 65%;
-}
-
-#ahsviwpwwi .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#ahsviwpwwi .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#ahsviwpwwi .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#ahsviwpwwi .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#ahsviwpwwi .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#ahsviwpwwi .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#ahsviwpwwi .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#ahsviwpwwi .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#ahsviwpwwi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="scénario" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">scénario</th>
-<th id="population-couverte" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population couverte</th>
-<th id="moyenne" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">moyenne (min)</th>
-<th id="médiane" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">médiane (min)</th>
-<th id="a75-%-sous" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P75 (min)</th>
-<th id="a90-%-sous" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P90 (min)</th>
-<th id="pop.->-15-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; 15 min (%)</th>
-<th id="pop.->-30-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; 30 min (%)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="scénario">Bureaux de vote habituels</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">13,3</td>
-<td class="gt_row gt_right" headers="médiane">10,9</td>
-<td class="gt_row gt_right" headers="75 % sous">15,5</td>
-<td class="gt_row gt_right" headers="90 % sous">22,4</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">28,1</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">5,2</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="scénario">8 centres regroupés</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">24,9</td>
-<td class="gt_row gt_right" headers="médiane">22,1</td>
-<td class="gt_row gt_right" headers="75 % sous">30,3</td>
-<td class="gt_row gt_right" headers="90 % sous">47,0</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">75,7</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">25,7</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="scénario">9 centres regroupés</td>
-<td class="gt_row gt_right" headers="population couverte">93 084</td>
-<td class="gt_row gt_right" headers="moyenne">21,8</td>
-<td class="gt_row gt_right" headers="médiane">19,2</td>
-<td class="gt_row gt_right" headers="75 % sous">26,4</td>
-<td class="gt_row gt_right" headers="90 % sous">38,7</td>
-<td class="gt_row gt_right" headers="pop. > 15 min">68,1</td>
-<td class="gt_row gt_right" headers="pop. > 30 min">17,2</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="8" class="gt_sourcenote">Lecture : statistiques pondérées par la population de la grille habitée.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Dans la configuration de référence, le temps moyen pondéré est de 13,3 min. Il passe à 24,9 min dans le scénario à 8 centres, puis à 21,8 min dans le scénario à 9 centres.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../data/cartes/municipales 2026/temps trajet nouméa bureaux complets.webp" class="img-fluid figure-img"></p>
-<figcaption>Temps de trajet à pied (5 km/h) vers le bureau de vote le plus proche (configuration de référence, 54 bureaux retenus).</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés.webp" class="img-fluid figure-img"></p>
-<figcaption>Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 8 centres regroupés).</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../data/cartes/municipales 2026/temps trajet nouméa bureaux regroupés sans koe kara.webp" class="img-fluid figure-img"></p>
-<figcaption>Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 9 centres regroupés).</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>La différence entre les scénarios ne se résume pas à une hausse uniforme. Le regroupement agit surtout sur la queue de distribution : dans le scénario à 9 centres, 17,2 % de la population couverte dépasse 30 minutes à pied, contre 5,2 % dans la configuration de référence.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/distribution-temps-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Distribution pondérée des temps de trajet par configuration.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/courbes-cumulees-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Part cumulée de la population selon le temps maximal d’accès.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="mesurer-leffet-du-regroupement" class="level2">
-<h2 class="anchored" data-anchor-id="mesurer-leffet-du-regroupement">Mesurer l’effet du regroupement</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div id="rgvstkadtx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rgvstkadtx table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#rgvstkadtx thead, #rgvstkadtx tbody, #rgvstkadtx tfoot, #rgvstkadtx tr, #rgvstkadtx td, #rgvstkadtx th {
-  border-style: none;
-}
-
-#rgvstkadtx p {
-  margin: 0;
-  padding: 0;
-}
-
-#rgvstkadtx .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#rgvstkadtx .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#rgvstkadtx .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#rgvstkadtx .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#rgvstkadtx .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#rgvstkadtx .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#rgvstkadtx .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#rgvstkadtx .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#rgvstkadtx .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#rgvstkadtx .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#rgvstkadtx .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#rgvstkadtx .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#rgvstkadtx .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#rgvstkadtx .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#rgvstkadtx .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgvstkadtx .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#rgvstkadtx .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#rgvstkadtx .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#rgvstkadtx .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgvstkadtx .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#rgvstkadtx .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgvstkadtx .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#rgvstkadtx .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgvstkadtx .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#rgvstkadtx .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#rgvstkadtx .gt_left {
-  text-align: left;
-}
-
-#rgvstkadtx .gt_center {
-  text-align: center;
-}
-
-#rgvstkadtx .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#rgvstkadtx .gt_font_normal {
-  font-weight: normal;
-}
-
-#rgvstkadtx .gt_font_bold {
-  font-weight: bold;
-}
-
-#rgvstkadtx .gt_font_italic {
-  font-style: italic;
-}
-
-#rgvstkadtx .gt_super {
-  font-size: 65%;
-}
-
-#rgvstkadtx .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#rgvstkadtx .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#rgvstkadtx .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#rgvstkadtx .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#rgvstkadtx .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#rgvstkadtx .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#rgvstkadtx .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#rgvstkadtx .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#rgvstkadtx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="comparaison" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">comparaison</th>
-<th id="hausse-moyenne" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">moyenne (min)</th>
-<th id="hausse-médiane" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">médiane (min)</th>
-<th id="P75" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P75 (min)</th>
-<th id="P90" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">P90 (min)</th>
-<th id="pop.-+5-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; +5 min (%)</th>
-<th id="pop.-+10-min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population &gt; +10 min (%)</th>
-<th id="pop.-temps-réduit" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">population avec baisse (%)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="comparaison">8 centres - bureaux habituels</td>
-<td class="gt_row gt_right" headers="hausse moyenne">11,6</td>
-<td class="gt_row gt_right" headers="hausse médiane">10,5</td>
-<td class="gt_row gt_right" headers="P75">17,6</td>
-<td class="gt_row gt_right" headers="P90">27,8</td>
-<td class="gt_row gt_right" headers="pop. +5 min">64,5</td>
-<td class="gt_row gt_right" headers="pop. +10 min">51,3</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">9,1</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center" headers="comparaison">9 centres - bureaux habituels</td>
-<td class="gt_row gt_right" headers="hausse moyenne">8,5</td>
-<td class="gt_row gt_right" headers="hausse médiane">6,2</td>
-<td class="gt_row gt_right" headers="P75">14,6</td>
-<td class="gt_row gt_right" headers="P90">22,1</td>
-<td class="gt_row gt_right" headers="pop. +5 min">53,3</td>
-<td class="gt_row gt_right" headers="pop. +10 min">39,2</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">14,4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="comparaison">9 centres - 8 centres</td>
-<td class="gt_row gt_right" headers="hausse moyenne">−3,1</td>
-<td class="gt_row gt_right" headers="hausse médiane">0,0</td>
-<td class="gt_row gt_right" headers="P75">0,0</td>
-<td class="gt_row gt_right" headers="P90">0,0</td>
-<td class="gt_row gt_right" headers="pop. +5 min">0,0</td>
-<td class="gt_row gt_right" headers="pop. +10 min">0,0</td>
-<td class="gt_row gt_right" headers="pop. temps réduit">17,3</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="8" class="gt_sourcenote">Lecture : un delta positif indique un temps plus long que dans la configuration de référence.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Le scénario à 8 centres ajoute en moyenne 11,6 min par rapport aux bureaux habituels. Le scénario à 9 centres réduit cette hausse moyenne à 8,5 min. L’ajout de Kaméré et de la salle Vincent Kafoa ne compense pas tout l’effet du regroupement, mais il améliore nettement l’accessibilité des quartiers du nord de Nouméa.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/distribution-deltas-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Distribution pondérée des écarts de temps entre configurations.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="où-le-manque-de-véhicule-pèse-le-plus" class="level2">
-<h2 class="anchored" data-anchor-id="où-le-manque-de-véhicule-pèse-le-plus">Où le manque de véhicule pèse le plus ?</h2>
-<p>Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l’absence de véhicule rend le déplacement plus contraint.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../data/cartes/municipales 2026/menages sans véhicules noumea 2019.webp" class="img-fluid figure-img"></p>
-<figcaption>Part des ménages sans véhicule à Nouméa, par IRIS, d’après le RGP 2019.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>À l’échelle des IRIS couverts par la grille habitée, la part moyenne agrégée des ménages sans véhicule est de 27,4 %. La corrélation simple entre la part de ménages sans véhicule et le temps moyen en scénario à 9 centres est de -0,02; celle avec le delta 9 centres moins bureaux habituels est de -0,36.</p>
-<p>Le signal n’est pas une relation linéaire simple. Certains IRIS très peu motorisés sont proches d’un centre, tandis que d’autres quartiers plus motorisés peuvent connaître une forte hausse. L’analyse pertinente est donc celle du cumul local entre forte part de ménages sans véhicule et hausse de temps.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/scatter-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Part de ménages sans véhicule et hausse moyenne de temps à l’IRIS.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div id="enboftsrad" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#enboftsrad table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#enboftsrad thead, #enboftsrad tbody, #enboftsrad tfoot, #enboftsrad tr, #enboftsrad td, #enboftsrad th {
-  border-style: none;
-}
-
-#enboftsrad p {
-  margin: 0;
-  padding: 0;
-}
-
-#enboftsrad .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#enboftsrad .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#enboftsrad .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#enboftsrad .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#enboftsrad .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#enboftsrad .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#enboftsrad .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#enboftsrad .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#enboftsrad .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#enboftsrad .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#enboftsrad .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#enboftsrad .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#enboftsrad .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#enboftsrad .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#enboftsrad .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#enboftsrad .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#enboftsrad .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#enboftsrad .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#enboftsrad .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#enboftsrad .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#enboftsrad .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#enboftsrad .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#enboftsrad .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#enboftsrad .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#enboftsrad .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#enboftsrad .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#enboftsrad .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#enboftsrad .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#enboftsrad .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#enboftsrad .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#enboftsrad .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#enboftsrad .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#enboftsrad .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#enboftsrad .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#enboftsrad .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#enboftsrad .gt_left {
-  text-align: left;
-}
-
-#enboftsrad .gt_center {
-  text-align: center;
-}
-
-#enboftsrad .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#enboftsrad .gt_font_normal {
-  font-weight: normal;
-}
-
-#enboftsrad .gt_font_bold {
-  font-weight: bold;
-}
-
-#enboftsrad .gt_font_italic {
-  font-style: italic;
-}
-
-#enboftsrad .gt_super {
-  font-size: 65%;
-}
-
-#enboftsrad .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#enboftsrad .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#enboftsrad .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#enboftsrad .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#enboftsrad .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#enboftsrad .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#enboftsrad .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#enboftsrad .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#enboftsrad div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
-<thead>
-<tr class="gt_col_headings header">
-<th id="IRIS" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">IRIS</th>
-<th id="profil" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">profil</th>
-<th id="ménages-sans-véhicule" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ménages sans véhicule</th>
-<th id="sans-véhicule" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ménages sans véhicule (%)</th>
-<th id="temps-bureaux" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bureaux habituels (min)</th>
-<th id="temps-9-centres" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">9 centres (min)</th>
-<th id="delta" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hausse (min)</th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Vallée des Colons Sud Ouest</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">286</td>
-<td class="gt_row gt_right" headers="sans véhicule">24,5</td>
-<td class="gt_row gt_right" headers="temps bureaux">5,6</td>
-<td class="gt_row gt_right" headers="temps 9 centres">27,3</td>
-<td class="gt_row gt_right" headers="delta">21,7</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">N'Géa</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">361</td>
-<td class="gt_row gt_right" headers="sans véhicule">26,7</td>
-<td class="gt_row gt_right" headers="temps bureaux">7,7</td>
-<td class="gt_row gt_right" headers="temps 9 centres">22,8</td>
-<td class="gt_row gt_right" headers="delta">15,0</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Magenta Est</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">382</td>
-<td class="gt_row gt_right" headers="sans véhicule">24,6</td>
-<td class="gt_row gt_right" headers="temps bureaux">13,0</td>
-<td class="gt_row gt_right" headers="temps 9 centres">26,9</td>
-<td class="gt_row gt_right" headers="delta">13,9</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Portes de Fer - Nord</td>
-<td class="gt_row gt_left" headers="profil">forte part sans véhicule et hausse forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">369</td>
-<td class="gt_row gt_right" headers="sans véhicule">52,0</td>
-<td class="gt_row gt_right" headers="temps bureaux">8,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">21,2</td>
-<td class="gt_row gt_right" headers="delta">13,1</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Faubourg Blanchot</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">257</td>
-<td class="gt_row gt_right" headers="sans véhicule">22,2</td>
-<td class="gt_row gt_right" headers="temps bureaux">8,0</td>
-<td class="gt_row gt_right" headers="temps 9 centres">26,8</td>
-<td class="gt_row gt_right" headers="delta">18,8</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Normandie Sud</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">150</td>
-<td class="gt_row gt_right" headers="sans véhicule">25,0</td>
-<td class="gt_row gt_right" headers="temps bureaux">19,5</td>
-<td class="gt_row gt_right" headers="temps 9 centres">48,9</td>
-<td class="gt_row gt_right" headers="delta">29,4</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Quartier Latin - Vallée du Génie</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">439</td>
-<td class="gt_row gt_right" headers="sans véhicule">33,7</td>
-<td class="gt_row gt_right" headers="temps bureaux">6,5</td>
-<td class="gt_row gt_right" headers="temps 9 centres">16,3</td>
-<td class="gt_row gt_right" headers="delta">9,8</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Vallée des Colons Sud Est</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">189</td>
-<td class="gt_row gt_right" headers="sans véhicule">15,2</td>
-<td class="gt_row gt_right" headers="temps bureaux">7,3</td>
-<td class="gt_row gt_right" headers="temps 9 centres">25,2</td>
-<td class="gt_row gt_right" headers="delta">17,9</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Trianon</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">251</td>
-<td class="gt_row gt_right" headers="sans véhicule">17,5</td>
-<td class="gt_row gt_right" headers="temps bureaux">9,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">21,1</td>
-<td class="gt_row gt_right" headers="delta">12,0</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Ouémo</td>
-<td class="gt_row gt_left" headers="profil">hausse de temps très forte</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">88</td>
-<td class="gt_row gt_right" headers="sans véhicule">11,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">9,8</td>
-<td class="gt_row gt_right" headers="temps 9 centres">43,7</td>
-<td class="gt_row gt_right" headers="delta">34,0</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="IRIS">Magenta Tours</td>
-<td class="gt_row gt_left" headers="profil">très forte part sans véhicule</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">515</td>
-<td class="gt_row gt_right" headers="sans véhicule">71,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">10,4</td>
-<td class="gt_row gt_right" headers="temps 9 centres">15,9</td>
-<td class="gt_row gt_right" headers="delta">5,5</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="IRIS">Aérodrome Sud</td>
-<td class="gt_row gt_left" headers="profil">cumul intermédiaire</td>
-<td class="gt_row gt_right" headers="ménages sans véhicule">368</td>
-<td class="gt_row gt_right" headers="sans véhicule">33,9</td>
-<td class="gt_row gt_right" headers="temps bureaux">5,1</td>
-<td class="gt_row gt_right" headers="temps 9 centres">12,7</td>
-<td class="gt_row gt_right" headers="delta">7,6</td>
-</tr>
-</tbody><tfoot>
-<tr class="gt_sourcenotes odd">
-<td colspan="7" class="gt_sourcenote">Classement par indice de cumul : ménages sans véhicule estimés × hausse moyenne positive.</td>
-</tr>
-</tfoot>
-
-</table>
-
-</div>
-</div>
-</div>
-<p>Ces zones prioritaires ne racontent pas toutes la même chose.</p>
-<p>Dans un premier groupe, <strong>Vallée des Colons Sud Ouest</strong>, <strong>N’Géa</strong>, <strong>Magenta Est</strong>, <strong>Faubourg Blanchot</strong>, <strong>Vallée des Colons Sud Est</strong> et <strong>Trianon</strong> combinent surtout un volume important de ménages sans véhicule avec une hausse nette du temps de marche. La question à documenter cartographiquement est alors celle de la perte de proximité : le changement de lieu de vote transforme un déplacement court en trajet plus long, y compris dans des quartiers résidentiels relativement denses.</p>
-<p>Un deuxième groupe relève davantage de la vulnérabilité sociale à l’accessibilité. <strong>Portes de Fer - Nord</strong> et <strong>Magenta Tours</strong> ressortent parce que la part de ménages sans véhicule y est très élevée. Même lorsque la hausse moyenne n’est pas la plus spectaculaire, l’absence de véhicule rend le déplacement plus dépendant de la marche, du transport collectif ou de l’accompagnement par un tiers.</p>
-<p>Enfin, <strong>Normandie Sud</strong> et <strong>Ouémo</strong> doivent être lus comme des cas de géographie du réseau : la hausse moyenne y est forte, voire très forte, ce qui invite à vérifier les itinéraires piétons, les ruptures urbaines et la position réelle du centre le plus proche.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/classes-vehicules-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Temps et hausse moyenne selon la part de ménages sans véhicule dans l’IRIS.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="accessibilité-et-abstention" class="level2">
-<h2 class="anchored" data-anchor-id="accessibilité-et-abstention">Accessibilité et abstention</h2>
-<p>La carte de l’abstention au 1er tour permet de donner un aperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajet les plus importants. Cependant, il n’est pas possible d’établir de corrélation directe étant donné que les causes de l’abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d’isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../data/cartes/municipales 2026/abstention nouméa 2026 bureaux complets.webp" class="img-fluid figure-img"></p>
-<figcaption>Abstention au premier tour des municipales 2026 par bureau de vote à Nouméa.</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="limites-méthodologiques" class="level2">
-<h2 class="anchored" data-anchor-id="limites-méthodologiques">Limites méthodologiques</h2>
-<p>Plusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.</p>
-<p>Premièrement, les temps de trajet estimés reposent sur un modèle théorique de déplacement piéton. Les calculs utilisent une vitesse uniforme de marche fixée à 5 km/h et ne prennent pas en compte les différences d’âge, de mobilité réduite, de conditions climatiques, de sécurité piétonne ou de fatigue.</p>
-<p>Deuxièmement, le réseau routier utilisé comme support de calcul ne représente pas nécessairement l’ensemble des cheminements réellement empruntés par les habitants. Certains raccourcis, escaliers, passages piétons informels ou chemins secondaires peuvent être absents du réseau utilisé.</p>
-<p>Troisièmement, les estimations reposent sur un rattachement des cellules habitées et des bureaux de vote au nœud routier le plus proche. Cette opération introduit une approximation spatiale qui peut localement modifier les temps calculés, notamment dans les secteurs de faible densité ou proches de ruptures du réseau.</p>
-<p>Quatrièmement, l’analyse porte uniquement sur l’accessibilité piétonne potentielle et ne prend pas en compte les autres modes de déplacement (voiture, transport collectif, covoiturage, taxi, etc.). Les résultats ne doivent donc pas être interprétés comme une estimation directe de la difficulté réelle d’accès au vote pour l’ensemble de la population.</p>
-<p>Cinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.</p>
-<p>Enfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives.</p>
+<section id="limites" class="level2">
+<h2 class="anchored" data-anchor-id="limites">Limites</h2>
+<p>La grille SPC 2020 ne constitue pas un dénombrement à la cellule. Elle répartit la population sur une empreinte bâtie à partir du recensement de 2011, puis applique une croissance uniforme jusqu’en 2020. Son total est ici recalé sur le RP 2025, mais les déplacements récents à l’intérieur de Nouméa peuvent rester imparfaitement localisés.</p>
+<p>La BDROUTE décrit précisément la voirie, mais pas tous les cheminements piétons : escaliers, passages informels, traversées, accès privés et coupures temporaires peuvent manquer. Le modèle à pied utilise une vitesse uniforme de 5 km/h et n’intègre ni pente, ni chaleur, ni handicap, ni qualité des trottoirs. Avec une voiture, le calcul choisit entre cette marche directe et une convention automobile porte-à-porte — 30 km/h au maximum en mouvement et 5 minutes fixes — sans données observées de congestion ni d’occupation du stationnement. Sans voiture, il choisit entre la marche directe et une branche Tanéo fondée sur des horaires reconstruits, non sur des temps de parcours observés.</p>
+<p>Deux conventions de destination sont présentées pour la marche. La première retient le lieu géographiquement le plus proche ; la seconde applique à chaque cellule le bureau de son secteur électoral, puis le lieu de regroupement correspondant. Sur les 3 350 cellules retenues, 21 centres de cellules situés juste hors des polygones ont été rattachés au secteur voisin, toujours à moins de 98 mètres ; ils représentent environ 0,1 % de la population pondérée. Aucune des deux méthodes ne reconstitue le trajet individuel des électeurs. Les cartes d’abstention décrivent les résultats des secteurs officiels, mais ne permettent pas, à elles seules, d’expliquer la participation.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Cette première estimation montre que le regroupement des bureaux de vote ne produit pas seulement un déplacement administratif des lieux de vote : il modifie sensiblement les conditions concrètes d’accès au scrutin. À Nouméa, le passage des bureaux habituels aux centres regroupés augmente le temps moyen d’accès piéton, qui passe de 13,3 min dans la configuration de référence à 21,8 min dans le scénario à 9 centres.</p>
-<p>L’effet le plus important concerne toutefois les situations d’éloignement. La part de population située à plus de 30 minutes à pied d’un centre de vote passe de 5,2 % avec les bureaux habituels à 17,2 % dans le scénario à 9 centres. L’ajout d’un neuvième centre améliore une partie de la situation par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais il ne rétablit pas la proximité offerte par le maillage habituel des bureaux.</p>
-<p>Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d’accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n’est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.</p>
+<p>Le premier résultat est net : ramener le maillage habituel de 57 bureaux à neuf lieux ne déplace pas seulement une moyenne, mais redistribue la contrainte dans la ville. Avec le bureau attribué au secteur, le temps moyen à pied passe de 14,5 min à 21,8 min et la part située à plus de trente minutes de 7,7 % à 21,0 %. Le lieu le plus proche donne des niveaux plus bas — 12,0 min puis 19,7 min — mais une hausse moyenne très voisine. Le constat résiste donc au choix de la méthode.</p>
+<p>Les autres modes atténuent cet allongement sans l’effacer. Lorsqu’une voiture est disponible, le meilleur temps moyen — marche directe ou voiture — passe de 6,7 min à 8,3 min. Pour l’option marche ou Tanéo, il passe de 11,4 min à 17,6 min. Ces écarts comptent d’autant plus que 27,4 % des ménages nouméens ne disposent d’aucun véhicule : l’accessibilité d’un lieu de vote dépend donc à la fois de sa position et des solutions de mobilité réellement disponibles.</p>
+<p>Le neuvième lieu apporte un gain tangible par rapport aux huit centres des municipales : 3,1 min en moyenne, surtout dans le nord de Nouméa. Ce résultat montre que le nombre de sites compte, mais aussi leur localisation. Neuf lieux restent cependant loin de restituer la proximité du maillage habituel.</p>
+<p>Enfin, les forts écarts d’abstention entre secteurs rappellent que la participation électorale est profondément territorialisée, sans permettre d’attribuer ces différences au seul éloignement des urnes. L’accès physique est une contrainte parmi d’autres, mais c’est aussi l’une de celles sur lesquelles l’organisation du scrutin peut agir directement. Dans le débat encore ouvert sur le nombre de lieux à maintenir ou à rouvrir, l’enjeu n’est donc pas seulement administratif : il consiste à articuler implantation des sites, desserte en transport collectif et proximité pour les habitants les moins mobiles.</p>
 </section>
-<section id="à-lire-aussi" class="level2">
-<h2 class="anchored" data-anchor-id="à-lire-aussi">À lire aussi</h2>
-<section class="article-related">
-<div class="article-related-grid">
-  <a class="article-related-link" href="../participation-accessibilite-bureaux-noumea/">
-    <span class="article-related-kicker">Suite du débat</span>
-    <span class="article-related-title">Le débat est-il vraiment clos ?</span>
-    <span class="article-related-note">La participation municipale 2026 relue à partir des mêmes enjeux d'accessibilité.</span>
-  </a>
-  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
-    <span class="article-related-kicker">Inégalités territoriales</span>
-    <span class="article-related-title">Capital socio-économique en Nouvelle-Calédonie</span>
-    <span class="article-related-note">Un indice territorial pour replacer la motorisation et l'accès aux ressources dans leur contexte social.</span>
-  </a>
-  <a class="article-related-link" href="../provinciales-2019-geographies-electorales/">
-    <span class="article-related-kicker">Géographie électorale</span>
-    <span class="article-related-title">Retour sur les provinciales 2019</span>
-    <span class="article-related-note">Une autre lecture des territoires électoraux, à l'échelle des communes et quartiers.</span>
-  </a>
+<section id="sources-et-reproductibilité" class="level2">
+<h2 class="anchored" data-anchor-id="sources-et-reproductibilité">Sources et reproductibilité</h2>
+<ul>
+<li><a href="https://pacificdata.org/data/dataset/ncl_population_grid_2020">New Caledonia Population Grid 2020</a>, SPC–SDD, grille retenue et recalée sur le RP 2025, licence CC BY 4.0.</li>
+<li><a href="https://www.insee.fr/fr/statistiques/8658726">Population de référence de Nouméa en 2025</a>, Insee–ISEE : 85 976 habitants en population municipale.</li>
+<li><a href="https://data.gouv.nc/explore/dataset/base-de-donnees-routieres-bdroute-nc-au-format-geodatabase/">BDROUTE-NC au format géodatabase</a>, Gouvernement de la Nouvelle-Calédonie / DITTT, mise à jour du 16 mars 2026.</li>
+<li><a href="https://data.gouv.nc/explore/dataset/bureauvote-gdb/">Bureaux de vote de Nouméa</a>, Ville de Nouméa : 57 points officiels, numérotés de 1 à 57.</li>
+<li><a href="https://transport.data.gouv.fr/datasets/reseau-taneo-1?locale=fr">Réseau Tanéo au format GTFS</a>, SMTU / Point d’accès national transport ; <a href="https://www.lnc.nc/article/provinciales-les-bus-taneo-circuleront-exceptionnellement-le-dimanche-28-juin">offre exceptionnelle du 28 juin</a>.</li>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-municipales-2026">Résultats des élections municipales 2026</a> — ministère de l’Intérieur / Haut-commissariat.</li>
+<li><a href="https://www.noumea.nc/noumea-dynamique/actu-agenda/second-tour-elections-municipales-22-mars-2026">Bureaux et huit lieux de vote des municipales 2026</a> — Ville de Nouméa, correspondance entre chaque bureau et son site de regroupement.</li>
+<li><a href="https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Resultats">Résultats des élections provinciales 2026 par bureau</a> — tableau Province Sud diffusé par le Haut-commissariat le 16 juillet 2026.</li>
+<li><a href="https://data.gouv.nc/explore/dataset/secteurselectoraux-gdb/">Secteurs électoraux de Nouméa</a> — Ville de Nouméa, couche mise à jour en juin 2026.</li>
+<li><a href="https://www.noumea.nc/sites/default/files/pages-2022/05/bat4-mairie-word-conseillers-quartier-a4.pdf">Périmètres des cinq secteurs des conseils de quartier</a> — Ville de Nouméa.</li>
+<li>IRIS et motorisation — RGP 2019, ISEE.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled" title="Méthode et scripts R">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</section>
-</section>
-<section id="sources-et-données-utilisées" class="level2">
-<h2 class="anchored" data-anchor-id="sources-et-données-utilisées">Sources et données utilisées</h2>
-<p>Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.</p>
-<ul>
-<li><p>Résultats électoraux par bureau de vote — Ministère de l’intérieur</p></li>
-<li><p>Base de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).</p></li>
-<li><p>Human Settlement Footprint / grille de population 2020 — Pacific Community (SPC).</p>
-<p>https://pacificdata.org/data/dataset</p></li>
-<li><p>Recensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).</p>
-<p>https://www.isee.nc/population/recensement-de-la-population</p></li>
-</ul>
-<section id="données-géographiques-et-traitements" class="level3">
-<h3 class="anchored" data-anchor-id="données-géographiques-et-traitements">Données géographiques et traitements</h3>
-<ul>
-<li><p>Système de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).</p></li>
-<li><p>Traitements spatiaux réalisés sous R et QGIS.</p></li>
-<li><p>Calculs de réseau réalisés à partir d’une représentation graphe du réseau routier.</p></li>
-</ul>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Méthode et scripts R
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La chaîne de calcul, les dépendances, les fichiers produits et les deux scripts R sont réunis dans l’<a href="../../ressources/accessibilite-bureaux-vote-noumea.html">espace de reproductibilité consacré à cette analyse</a>. Cette page distingue les données sources, les hypothèses de modélisation et les fichiers directement réutilisables.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{brouillon2026,
   author = {Brouillon, Jonas},
-  title = {Quel est l’effet du regroupement des bureaux de vote sur les
-    temps de trajet à Nouméa\,?},
-  date = {2026-05-24},
+  title = {{[}Version 2{]} Quel est l’effet du regroupement des bureaux
+    de vote sur les temps de trajet à Nouméa\,?},
+  date = {2026-09-07},
   url = {https://contours.nc/posts/regroupement-bureaux-vote-noumea/},
   langid = {fr}
 }
 </code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Veuillez citer ce travail comme suit&nbsp;:</div><div id="ref-brouillon2026" class="csl-entry quarto-appendix-citeas" role="listitem">
-Brouillon, Jonas. 2026. <span>“Quel est l’effet du regroupement des
-bureaux de vote sur les temps de trajet à Nouméa ?”</span> May 24. <a href="https://contours.nc/posts/regroupement-bureaux-vote-noumea/">https://contours.nc/posts/regroupement-bureaux-vote-noumea/</a>.
+Brouillon, Jonas. 2026. <span>“[Version 2] Quel est l’effet du
+regroupement des bureaux de vote sur les temps de trajet à
+Nouméa ?”</span> September 7. <a href="https://contours.nc/posts/regroupement-bureaux-vote-noumea/">https://contours.nc/posts/regroupement-bureaux-vote-noumea/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script>
 
@@ -3827,6 +2305,7 @@ bureaux de vote sur les temps de trajet à Nouméa ?”</span> May 24. <a href
 </div>
   </div>
 </footer>
+<script type="module" src="../../assets/js/sketch-labels.js"></script>
 <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
   <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
   <figure class="image-lightbox__figure figure">

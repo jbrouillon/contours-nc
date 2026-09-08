@@ -1,0 +1,7 @@
+"method","method_label","scenario","scenario_label","variable","population_couverte","moyenne","mediane","p75","p90","part_pop_plus_15","part_pop_plus_30"
+"nearest","Lieu le plus proche","bureaux_complets","57 bureaux habituels","bureaux_complets",85976,12.0432498848804,9.56340193225006,13.9774448296479,20.6774689743108,21.252782273662,3.86190088856009
+"nearest","Lieu le plus proche","centres_8","8 centres municipaux","centres_8",85976,22.7452058971719,19.6479859887719,27.2028653382368,44.7206516181986,69.9485360158784,19.6627759780783
+"nearest","Lieu le plus proche","centres_9","9 centres provinciaux","centres_9",85976,19.6552999657378,17.1295911676566,24.3056974329349,32.4657675012313,60.8982850111097,12.0789953887049
+"assigned","Bureau attribué","bureaux_complets","57 bureaux habituels","assigned_bureaux_complets",85976,14.5389249352634,11.8765493826551,17.0813577617795,26.8044118179946,33.1789650051452,7.70810345922737
+"assigned","Bureau attribué","centres_8","8 centres municipaux","assigned_centres_8",85976,24.782615686284,22.2388556301116,31.3985202380541,45.6438935257701,73.9584853796472,28.5284088199438
+"assigned","Bureau attribué","centres_9","9 centres provinciaux","assigned_centres_9",85976,21.7637028146493,19.0315493857705,28.3960611722156,38.5232559144954,64.9469726174682,21.0280945876501

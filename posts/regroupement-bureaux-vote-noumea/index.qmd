@@ -1,745 +1,593 @@
 ---
-title: "Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?"
-subtitle: "Méthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule"
+title: "[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?"
+subtitle: "Quand les bureaux sont réunis dans neuf lieux, qui s’éloigne des urnes ?"
 author: "Jonas Brouillon"
-date: "2026-05-24"
+date: "2026-09-07"
+date-published: "2026-05-24"
+date-modified: "2026-09-07"
+published-title: "Mis à jour"
+body-classes: article-updated
+research-note: true
+note-number: "2026-01"
 rubrique: "Territoires et société"
 categories:
   - Bureaux de vote
   - Participation
   - Inégalités
-description: "Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres."
-image: "../../images/previews/regroupement-bureaux-vote-noumea.jpg"
-image-alt: "Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa"
+description: "À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?"
+image: "../../images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png"
+image-alt: "Deux cartes comparant les temps de trajet vers les lieux de vote à Nouméa"
 title-block-banner: true
 toc: true
 toc-depth: 3
+resources:
+  - "data/**"
+  - "analysis_v2.R"
+  - "analysis_mobility.R"
 execute:
   echo: false
   warning: false
   message: false
+  freeze: false
 ---
 
 ```{r setup}
 library(dplyr)
-library(ggplot2)
-library(gt)
-library(scales)
-library(sf)
-library(terra)
-library(tidyr)
 library(here)
+library(scales)
 
-theme_set(theme_minimal(base_size = 12))
-
-crs_proj <- 3163
-
-# Chemins robustes depuis la racine du projet Quarto
-project_dir <- here::here()
-data_path <- function(...) file.path(project_dir, "data", ...)
-
-out_dir <- data_path("outputs_noumea_municipales_2026_v2")
-
-time_paths <- c(
-  bureaux_complets = file.path(out_dir, "noumea_temps_pieton_bureaux_complets_min_cellules_habitees.tif"),
-  centres_8 = file.path(out_dir, "noumea_temps_pieton_centres_regroupes_8_min_cellules_habitees.tif"),
-  centres_9 = file.path(out_dir, "noumea_temps_pieton_centres_regroupes_9_sans_kowe_kara_kamere_kafoa_min_cellules_habitees.tif")
-)
-
-iris_path <- data_path("02_geospatial", "vecteurs", "iris_rgp_2019.geojson")
-pop_path <- data_path("02_geospatial", "rasters", "NCL_Pop_Grid_2020.tif")
-
-required_files <- c(
-  time_paths,
-  iris = iris_path,
-  population = pop_path
-)
-
-missing_files <- required_files[!file.exists(required_files)]
-
-if (length(missing_files) > 0) {
-  stop(
-    "Fichiers de données manquants :\n",
-    paste(missing_files, collapse = "\n"),
-    "\n\nRacine du projet détectée par here::here() : ", project_dir,
-    "\n\nSi cette racine n'est pas celle du projet Quarto, ouvre le dossier racine dans ton IDE ou crée un fichier .here à la racine."
-  )
-}
-
-weighted_mean <- function(x, w) {
-  ok <- is.finite(x) & is.finite(w) & w > 0
-  if (!any(ok)) return(NA_real_)
-  sum(x[ok] * w[ok], na.rm = TRUE) / sum(w[ok], na.rm = TRUE)
-}
-
-weighted_quantile <- function(x, w, probs) {
-  ok <- is.finite(x) & is.finite(w) & w > 0
-  x <- x[ok]
-  w <- w[ok]
-  if (length(x) == 0) {
-    return(rep(NA_real_, length(probs)))
-  }
-  ord <- order(x)
-  x <- x[ord]
-  w <- w[ord]
-  cw <- cumsum(w) / sum(w)
-  vapply(probs, function(p) x[which(cw >= p)[1]], numeric(1))
-}
-
-weighted_share <- function(condition, w) {
-  ok <- !is.na(condition) & is.finite(w) & w > 0
-  if (!any(ok)) return(NA_real_)
-  100 * sum(w[ok & condition], na.rm = TRUE) / sum(w[ok], na.rm = TRUE)
-}
-
-fmt_min <- function(x, digits = 1) {
-  ifelse(
-    is.na(x),
-    "données à calculer",
-    paste0(number(x, accuracy = 10^-digits, decimal.mark = ",", big.mark = " "), " min")
-  )
-}
-
-fmt_pct <- function(x, digits = 1) {
-  ifelse(
-    is.na(x),
-    "données à calculer",
-    paste0(number(x, accuracy = 10^-digits, decimal.mark = ",", big.mark = " "), " %")
-  )
-}
-
-time_rasters <- rast(time_paths)
-names(time_rasters) <- names(time_paths)
-
-iris_rgp <- st_read(iris_path, quiet = TRUE) |>
-  st_make_valid() |>
-  mutate(codgeo_i = suppressWarnings(as.integer(codgeo))) |>
-  filter(codgeo_i >= 1800, codgeo_i < 1900) |>
-  st_transform(crs_proj) |>
-  select(
-    codgeo,
-    libgeo,
-    nb_de_menages,
-    percent_menages_sans_vehicules,
-    population_totale
-  )
-
-noumea <- iris_rgp |>
-  st_union() |>
-  st_make_valid() |>
-  st_buffer(0)
-
-pop <- rast(pop_path)
-noumea_pop_crs <- st_transform(noumea, crs(pop))
-
-pop_noumea <- pop |>
-  crop(vect(noumea_pop_crs)) |>
-  mask(vect(noumea_pop_crs), touches = TRUE) |>
-  project(time_rasters[[1]], method = "near") |>
-  mask(time_rasters[[1]])
-names(pop_noumea) <- "pop"
-
-cell_df <- as.data.frame(c(time_rasters, pop_noumea), xy = TRUE, cells = TRUE, na.rm = FALSE) |>
-  filter(!is.na(pop), pop > 0, !is.na(bureaux_complets)) |>
-  mutate(
-    delta_8_vs_full = centres_8 - bureaux_complets,
-    delta_9_vs_full = centres_9 - bureaux_complets,
-    delta_9_vs_8 = centres_9 - centres_8
-  )
-
-if (nrow(cell_df) == 0) {
-  stop(
-    "Les fichiers sont trouvés, mais cell_df est vide après filtrage. Vérifie l'alignement des rasters, les valeurs NA et la projection."
-  )
-}
-
-scenario_vars <- tibble(
-  scenario = factor(
-    c("Bureaux de vote habituels", "8 centres regroupés", "9 centres regroupés"),
-    levels = c("Bureaux de vote habituels", "8 centres regroupés", "9 centres regroupés")
-  ),
-  variable = c("bureaux_complets", "centres_8", "centres_9")
-)
-
-scenario_stats <- scenario_vars |>
-  rowwise() |>
-  mutate(
-    population_couverte = sum(cell_df$pop[is.finite(cell_df[[variable]])], na.rm = TRUE),
-    moyenne = weighted_mean(cell_df[[variable]], cell_df$pop),
-    mediane = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.50),
-    p75 = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.75),
-    p90 = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.90),
-    part_pop_plus_15 = weighted_share(cell_df[[variable]] > 15, cell_df$pop),
-    part_pop_plus_30 = weighted_share(cell_df[[variable]] > 30, cell_df$pop)
-  ) |>
-  ungroup()
-
-delta_vars <- tibble(
-  comparaison = factor(
-    c("8 centres - bureaux habituels", "9 centres - bureaux habituels", "9 centres - 8 centres"),
-    levels = c("8 centres - bureaux habituels", "9 centres - bureaux habituels", "9 centres - 8 centres")
-  ),
-  variable = c("delta_8_vs_full", "delta_9_vs_full", "delta_9_vs_8")
-)
-
-delta_stats <- delta_vars |>
-  rowwise() |>
-  mutate(
-    moyenne = weighted_mean(cell_df[[variable]], cell_df$pop),
-    mediane = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.50),
-    p75 = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.75),
-    p90 = weighted_quantile(cell_df[[variable]], cell_df$pop, 0.90),
-    part_pop_plus_5 = weighted_share(cell_df[[variable]] > 5, cell_df$pop),
-    part_pop_plus_10 = weighted_share(cell_df[[variable]] > 10, cell_df$pop),
-    part_pop_baisse = weighted_share(cell_df[[variable]] < 0, cell_df$pop)
-  ) |>
-  ungroup()
-
-points_sf <- st_as_sf(cell_df, coords = c("x", "y"), crs = crs_proj, remove = FALSE)
-cell_iris <- st_join(points_sf, iris_rgp, join = st_within, left = FALSE)
-
-iris_stats <- cell_iris |>
-  st_drop_geometry() |>
-  group_by(codgeo, libgeo, nb_de_menages, percent_menages_sans_vehicules, population_totale) |>
-  summarise(
-    population_grille = sum(pop, na.rm = TRUE),
-    mean_bureaux_complets = weighted_mean(bureaux_complets, pop),
-    mean_centres_8 = weighted_mean(centres_8, pop),
-    mean_centres_9 = weighted_mean(centres_9, pop),
-    mean_delta_8_vs_full = weighted_mean(delta_8_vs_full, pop),
-    mean_delta_9_vs_full = weighted_mean(delta_9_vs_full, pop),
-    mean_delta_9_vs_8 = weighted_mean(delta_9_vs_8, pop),
-    .groups = "drop"
-  ) |>
-  mutate(
-    menages_sans_vehicules = nb_de_menages * percent_menages_sans_vehicules / 100,
-    indice_cumul = menages_sans_vehicules * pmax(mean_delta_9_vs_full, 0),
-    classe_sans_vehicule = factor(
-      ntile(percent_menages_sans_vehicules, 3),
-      levels = 1:3,
-      labels = c("part faible", "part intermédiaire", "part élevée")
-    )
-  )
-
-vehicle_summary <- iris_stats |>
-  summarise(
-    n_iris = n(),
-    menages = sum(nb_de_menages, na.rm = TRUE),
-    menages_sans_vehicules = sum(menages_sans_vehicules, na.rm = TRUE),
-    part_menages_sans_vehicules = 100 * menages_sans_vehicules / menages,
-    menages_sans_vehicules_delta_gt10 = sum(
-      menages_sans_vehicules[mean_delta_9_vs_full > 10],
-      na.rm = TRUE
-    ),
-    part_sans_vehicules_delta_gt10 = 100 * menages_sans_vehicules_delta_gt10 / menages_sans_vehicules
-  )
-
-zones_prioritaires <- iris_stats |>
-  arrange(desc(indice_cumul)) |>
-  slice_head(n = 12) |>
-  mutate(
-    profil = case_when(
-      percent_menages_sans_vehicules >= 50 & mean_delta_9_vs_full >= 10 ~
-        "forte part sans véhicule et hausse forte",
-      percent_menages_sans_vehicules >= 50 ~
-        "très forte part sans véhicule",
-      percent_menages_sans_vehicules >= 30 & mean_delta_9_vs_full >= 10 ~
-        "cumul social et accessibilité",
-      mean_delta_9_vs_full >= 20 ~
-        "hausse de temps très forte",
-      TRUE ~
-        "cumul intermédiaire"
-    )
-  )
-
-cor_vehicle_delta9 <- cor(
-  iris_stats$percent_menages_sans_vehicules,
-  iris_stats$mean_delta_9_vs_full,
-  use = "complete.obs"
-)
-
-cor_vehicle_time9 <- cor(
-  iris_stats$percent_menages_sans_vehicules,
-  iris_stats$mean_centres_9,
-  use = "complete.obs"
-)
-```
-
-::: {.en-bref}
-## En bref
-
-- Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes.
-- La part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.
-- Les effets ne sont pas homogènes : certains quartiers cumulent hausse des temps de marche et forte part de ménages sans véhicule.
-- Les résultats mesurent une accessibilité potentielle, pas les déplacements réels de chaque électeur.
-:::
-
-## Résumé
-
-Le regroupement des bureaux de vote modifie concrètement les conditions d’accès au vote à l’échelle des quartiers. À partir d’une modélisation des temps de trajet piétons sur réseau routier, cette note explore les effets potentiels de plusieurs scénarios de regroupement des centres de vote à Nouméa.
-
-Les résultats montrent une hausse importante des temps d’accès moyens et, surtout, une augmentation marquée de la population située à plus de 30 minutes à pied d’un centre de vote. Dans le scénario à 9 centres regroupés, le temps moyen estimé passe de 13,3 à 21,8 minutes, tandis que la part de population située à plus de 30 minutes à pied passe de 5,2 % à 17,2 %.
-
-L’analyse montre également que les effets du regroupement ne sont pas homogènes. Certains quartiers cumulent hausse des temps de trajet et forte part de ménages sans véhicule, ce qui peut accentuer localement les contraintes d’accès au vote.
-
-Cette note constitue un travail exploratoire destiné à alimenter une réflexion plus large sur l’accessibilité électorale et les inégalités spatiales d’accès au vote.
-
-<details class="note-deroulable">
-
-<summary>Avertissement</summary>
-
-Cette note constitue un travail exploratoire et méthodologique réalisé dans un objectif d’analyse spatiale rapide des effets potentiels du regroupement des bureaux de vote à Nouméa. Les résultats présentés doivent être considérés comme des estimations préliminaires destinées à alimenter une réflexion publique et scientifique plus large.
-
-Les traitements, indicateurs et cartes ont vocation à être consolidés dans le cadre d’une publication ultérieure plus complète, intégrant notamment :
-
--   des tests de sensibilité méthodologique ;
-
--   une validation plus fine des itinéraires piétons ;
-
--   des analyses statistiques complémentaires ;
-
--   un croisement plus approfondi avec les données socio-électorales et territoriales.
-
-Les résultats présentés ici ne constituent donc pas une mesure définitive des déplacements réels des électeurs, mais un indicateur d’accessibilité potentielle construit à partir de données spatiales disponibles.
-
-</details>
-
-## Introduction
-
-La question du regroupement des bureaux de vote s’est imposée dans le débat public calédonien à partir des élections législatives anticipées de 2024, organisées dans le contexte exceptionnel des émeutes et des tensions sécuritaires ayant suivi les événements du 13 mai.
-
-À Nouméa, les 56 bureaux de vote habituels avaient alors été regroupés sur seulement 7 sites afin de sécuriser l’organisation du scrutin. Ce dispositif exceptionnel avait été présenté comme une réponse aux contraintes logistiques et sécuritaires du moment. Malgré cette réorganisation, la participation au second tour des législatives avait atteint un niveau particulièrement élevé à l’échelle du territoire.
-
-Le regroupement des bureaux de vote n’est cependant pas resté limité à ce seul contexte d’urgence. Le dispositif a ensuite été largement reconduit lors des élections municipales de 2026, avec une organisation reposant sur 8 grands sites de vote à l’échelle de la commune. Cette décision a suscité plusieurs critiques et recours politiques autour des questions d’accessibilité, de proximité du vote et de sincérité du scrutin.
-
-Derrière ces débats institutionnels se pose une question plus concrète et plus territoriale : comment le regroupement des centres de vote modifie-t-il réellement les conditions d’accès au vote selon les quartiers de Nouméa ?
-
-En effet, deux électeurs inscrits dans une même commune ne font pas nécessairement face au même coût de déplacement. La structure du réseau routier, les ruptures urbaines, la distance aux centres ouverts ou encore l’accès à un véhicule peuvent fortement modifier l’accessibilité réelle au vote.
-
-Cette note propose une première estimation spatiale des effets potentiels du regroupement des bureaux de vote à Nouméa à partir d’un calcul de temps de trajet piétons sur réseau routier. Trois configurations sont comparées :
-
--   la configuration habituelle des bureaux de vote ;
--   un scénario à 8 centres regroupés ;
--   un scénario à 9 centres regroupés.
-
-L’objectif n’est pas de mesurer directement les comportements électoraux ni d’expliquer l’abstention, mais de produire un indicateur d’accessibilité potentielle permettant d’identifier les secteurs où le regroupement pourrait augmenter les contraintes de déplacement, en particulier pour les ménages les moins motorisés.
-
-## Pourquoi estimer des temps de trajet ?
-
-Le regroupement de bureaux de vote change la géographie concrète de l'accès au vote. Deux électeurs rattachés administrativement au même scrutin ne font pas nécessairement face au même effort de déplacement selon le quartier, la densité du réseau viaire, la localisation des centres ouverts et la possibilité ou non d'utiliser une voiture.
-
-Cette note documente une estimation des temps de trajet piéton vers le point de vote le plus proche à Nouméa. L'objectif n'est pas de reconstituer les trajets réellement empruntés par chaque électeur, mais de produire un indicateur spatial comparable entre plusieurs configurations :
-
--   une configuration de référence avec les bureaux de vote géolocalisés ;
--   une configuration à 8 centres de vote regroupés ;
--   une configuration à 9 centres de vote regroupés, sans Ko We Kara, avec l'ajout du collège de Kaméré et de la salle de boxe Vincent Kafoa.
-
-Le résultat doit être lu comme une mesure d'accessibilité potentielle. Il devient particulièrement utile lorsqu'il est rapproché de la part des ménages sans véhicule, issue du RGP 2019 à l'échelle IRIS.
-
-## Les données mobilisées
-
-L'estimation s'appuie sur cinq familles de données locales :
-
--   les résultats électoraux par bureau, pour isoler les bureaux de Nouméa et leurs coordonnées ; les bureaux de vote réputés dégradés à la rentrée 2025 et possiblement affectés pour une réouverture (Gustave LODS et PERVENCHES) ont été retirés du calcul ;
--   la liste des centres regroupés, saisie comme points de destination alternatifs ;
--   le réseau routier BDROUTE-NC, transformé en graphe de déplacement ;
--   la grille de population `NCL_Pop_Grid_2020.tif`, utilisée pour ne calculer l'indicateur que sur les cellules habitées ;
--   les IRIS du RGP 2019, dont le champ `percent_menages_sans_vehicules`.
-
-Toutes les opérations de distance et de réseau sont réalisées dans le système projeté RGNC91-93 / Lambert New Caledonia, EPSG:3163. Les temps sont exprimés en minutes, avec une hypothèse de marche à `5 km/h`.
-
-::: callout-important
-Les rasters analytiques ne sont renseignés que sur les cellules habitées. Les rasters lissés servent à la cartographie finale, mais les statistiques descriptives ci-dessous sont calculées sur les cellules habitées, pondérées par la population de la grille.
-:::
-
-## Chaîne de traitement
-
-```{mermaid}
-flowchart LR
-  A[Résultats par bureau et centres regroupés] --> B[Points sources]
-  C[Réseau routier BDROUTE-NC] --> D[Graphe piéton pondéré en minutes]
-  E[Grille population 2020] --> F[Cellules habitées]
-  B --> G[Rattachement au nœud routier le plus proche]
-  F --> H[Rattachement au nœud routier le plus proche]
-  D --> I[Plus courts chemins vers la source la plus proche]
-  G --> I
-  H --> I
-  I --> J[Temps par cellule habitée]
-  J --> K[Comparaison bureaux complets / 8 centres / 9 centres]
-  K --> L[Croisement avec IRIS RGP 2019]
-```
-
-Le principe est le suivant. Chaque segment du réseau routier devient une arête de graphe. Son poids correspond au temps nécessaire pour le parcourir à pied. Les bureaux ou centres de vote sont rattachés au nœud routier le plus proche ; les cellules habitées le sont également. On ajoute ensuite une source artificielle connectée à tous les points de vote, puis on calcule le plus court chemin vers l'ensemble des nœuds du réseau. Le temps final d'une cellule correspond au temps d'accès au réseau plus le temps de réseau jusqu'au point de vote le plus proche.
-
-Ce choix permet de comparer des configurations de manière homogène. Il évite aussi une lecture purement à vol d'oiseau, qui sous-estime souvent les contraintes réelles dans une ville structurée par les routes, les ruptures de pente, les baies, les emprises et les détours.
-
-## Trois configurations comparées
-
-```{r tableau-scenarios}
-scenario_stats |>
-  select(
-    scénario = scenario,
-    `population couverte` = population_couverte,
-    `moyenne` = moyenne,
-    `médiane` = mediane,
-    `75 % sous` = p75,
-    `90 % sous` = p90,
-    `pop. > 15 min` = part_pop_plus_15,
-    `pop. > 30 min` = part_pop_plus_30
-  ) |>
-  gt() |>
-  fmt_number(
-    columns = c(`population couverte`),
-    decimals = 0,
-    sep_mark = " ",
-    dec_mark = ","
-  ) |>
-  fmt_number(
-    columns = c(`moyenne`, `médiane`, `75 % sous`, `90 % sous`),
-    decimals = 1,
-    dec_mark = ","
-  ) |>
-  fmt_number(
-    columns = c(`pop. > 15 min`, `pop. > 30 min`),
-    decimals = 1,
-    dec_mark = ","
-  ) |>
-  cols_label(
-    `moyenne` = "moyenne (min)",
-    `médiane` = "médiane (min)",
-    `75 % sous` = "P75 (min)",
-    `90 % sous` = "P90 (min)",
-    `pop. > 15 min` = "population > 15 min (%)",
-    `pop. > 30 min` = "population > 30 min (%)"
-  ) |>
-  tab_source_note("Lecture : statistiques pondérées par la population de la grille habitée.")
-```
-
-Dans la configuration de référence, le temps moyen pondéré est de `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "Bureaux de vote habituels"])`. Il passe à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "8 centres regroupés"])` dans le scénario à 8 centres, puis à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres.
-
-```{r temps-bureaux-complets, fig.cap="Temps de trajet à pied (5 km/h) vers le bureau de vote le plus proche (configuration de référence, 54 bureaux retenus)."}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux complets.webp"))
-
-```
-
-```{r temps-bureaux-8, fig.cap="Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 8 centres regroupés)."}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés.webp"))
-
-```
-
-```{r temps-bureaux-9, fig.cap="Temps de trajet à pied (5 km/h) vers le centre de vote le plus proche (configuration à 9 centres regroupés)."}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "temps trajet nouméa bureaux regroupés sans koe kara.webp"))
-
-```
-
-La différence entre les scénarios ne se résume pas à une hausse uniforme. Le regroupement agit surtout sur la queue de distribution : dans le scénario à 9 centres, `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "9 centres regroupés"])` de la population couverte dépasse 30 minutes à pied, contre `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "Bureaux de vote habituels"])` dans la configuration de référence.
-
-```{r distribution-temps, fig.cap="Distribution pondérée des temps de trajet par configuration."}
-time_long <- cell_df |>
-  select(pop, bureaux_complets, centres_8, centres_9) |>
-  pivot_longer(-pop, names_to = "scenario", values_to = "temps_min") |>
+data_dir <- here::here("posts", "regroupement-bureaux-vote-noumea", "data")
+scenario_stats <- read.csv(file.path(data_dir, "scenario_stats.csv"), check.names = FALSE) |>
   mutate(
     scenario = recode(
       scenario,
-      bureaux_complets = "Bureaux de vote habituels",
-      centres_8 = "8 centres regroupés",
-      centres_9 = "9 centres regroupés"
+      "8 centres regroupes" = "8 centres regroupés",
+      "9 centres regroupes" = "9 centres regroupés"
     ),
     scenario = factor(
       scenario,
       levels = c("Bureaux de vote habituels", "8 centres regroupés", "9 centres regroupés")
     )
   )
-
-ggplot(time_long, aes(x = temps_min, weight = pop, fill = scenario)) +
-  geom_histogram(
-    aes(y = after_stat(count / sum(count) * 100)),
-    binwidth = 5,
-    boundary = 0,
-    color = "white",
-    linewidth = 0.2
-  ) +
-  facet_wrap(~scenario, ncol = 1) +
-  scale_x_continuous(labels = label_number(suffix = " min"), breaks = seq(0, 100, 15)) +
-  scale_y_continuous(labels = label_number(suffix = " %")) +
-  scale_fill_manual(values = c("#2f6f8f", "#d08b39", "#6a994e")) +
-  labs(x = "Temps de trajet à pied", y = "Part de la population couverte", fill = NULL) +
-  theme(legend.position = "none")
-```
-
-```{r courbes-cumulees, fig.cap="Part cumulée de la population selon le temps maximal d'accès."}
-time_cdf <- time_long |>
-  filter(is.finite(temps_min), is.finite(pop), pop > 0) |>
-  arrange(scenario, temps_min) |>
-  group_by(scenario) |>
-  mutate(part_cumulee = 100 * cumsum(pop) / sum(pop)) |>
-  ungroup()
-
-ggplot(time_cdf, aes(x = temps_min, y = part_cumulee, color = scenario)) +
-  geom_step(linewidth = 1) +
-  scale_x_continuous(labels = label_number(suffix = " min"), breaks = seq(0, 100, 15)) +
-  scale_y_continuous(labels = label_number(suffix = " %"), limits = c(0, 100)) +
-  scale_color_manual(values = c("#2f6f8f", "#d08b39", "#6a994e")) +
-  labs(x = "Temps maximal d'accès", y = "Population cumulée", color = NULL)
-```
-
-## Mesurer l'effet du regroupement
-
-```{r tableau-deltas}
-delta_stats |>
-  select(
-    comparaison,
-    `hausse moyenne` = moyenne,
-    `hausse médiane` = mediane,
-    `P75` = p75,
-    `P90` = p90,
-    `pop. +5 min` = part_pop_plus_5,
-    `pop. +10 min` = part_pop_plus_10,
-    `pop. temps réduit` = part_pop_baisse
-  ) |>
-  gt() |>
-  fmt_number(
-    columns = c(`hausse moyenne`, `hausse médiane`, `P75`, `P90`),
-    decimals = 1,
-    dec_mark = ","
-  ) |>
-  fmt_number(
-    columns = c(`pop. +5 min`, `pop. +10 min`, `pop. temps réduit`),
-    decimals = 1,
-    dec_mark = ","
-  ) |>
-  cols_label(
-    `hausse moyenne` = "moyenne (min)",
-    `hausse médiane` = "médiane (min)",
-    `P75` = "P75 (min)",
-    `P90` = "P90 (min)",
-    `pop. +5 min` = "population > +5 min (%)",
-    `pop. +10 min` = "population > +10 min (%)",
-    `pop. temps réduit` = "population avec baisse (%)"
-  ) |>
-  tab_source_note("Lecture : un delta positif indique un temps plus long que dans la configuration de référence.")
-```
-
-Le scénario à 8 centres ajoute en moyenne `r fmt_min(delta_stats$moyenne[delta_stats$comparaison == "8 centres - bureaux habituels"])` par rapport aux bureaux habituels. Le scénario à 9 centres réduit cette hausse moyenne à `r fmt_min(delta_stats$moyenne[delta_stats$comparaison == "9 centres - bureaux habituels"])`. L'ajout de Kaméré et de la salle Vincent Kafoa ne compense pas tout l'effet du regroupement, mais il améliore nettement l'accessibilité des quartiers du nord de Nouméa.
-
-```{r distribution-deltas, fig.cap="Distribution pondérée des écarts de temps entre configurations."}
-delta_long <- cell_df |>
-  select(pop, delta_8_vs_full, delta_9_vs_full, delta_9_vs_8) |>
-  pivot_longer(-pop, names_to = "comparaison", values_to = "delta_min") |>
+delta_stats <- read.csv(file.path(data_dir, "delta_stats.csv"), check.names = FALSE)
+mobility_stats <- read.csv(file.path(data_dir, "mobility_stats.csv"), check.names = FALSE)
+destination_method_stats <- read.csv(
+  file.path(data_dir, "destination_method_stats.csv"),
+  check.names = FALSE
+)
+iris_stats <- read.csv(file.path(data_dir, "iris_stats.csv"), check.names = FALSE) |>
   mutate(
-    comparaison = recode(
-      comparaison,
-      delta_8_vs_full = "8 centres - bureaux habituels",
-      delta_9_vs_full = "9 centres - bureaux habituels",
-      delta_9_vs_8 = "9 centres - 8 centres"
-    ),
-    comparaison = factor(
-      comparaison,
-      levels = c("8 centres - bureaux habituels", "9 centres - bureaux habituels", "9 centres - 8 centres")
+    classe_sans_vehicule = factor(
+      classe_sans_vehicule,
+      levels = c("part faible", "part intermediaire", "part elevee"),
+      labels = c("part faible", "part intermédiaire", "part élevée")
     )
   )
+population_audit <- read.csv(file.path(data_dir, "audit_rattachement_population.csv"))
+vote_context_stats <- read.csv(file.path(data_dir, "vote_context_stats.csv"), check.names = FALSE)
+vote_context_bureaux <- read.csv(
+  file.path(data_dir, "vote_context_bureaux.csv"),
+  check.names = FALSE,
+  colClasses = c(code_bv = "character")
+)
 
-ggplot(delta_long, aes(x = delta_min, weight = pop, fill = comparaison)) +
-  geom_vline(xintercept = 0, color = "#333333", linewidth = 0.5) +
-  geom_histogram(
-    aes(y = after_stat(count / sum(count) * 100)),
-    binwidth = 3,
-    boundary = 0,
-    color = "white",
-    linewidth = 0.2
-  ) +
-  facet_wrap(~comparaison, ncol = 1) +
-  scale_x_continuous(labels = label_number(suffix = " min")) +
-  scale_y_continuous(labels = label_number(suffix = " %")) +
-  scale_fill_manual(values = c("#c65f3f", "#d08b39", "#5b8e7d")) +
-  labs(x = "Écart de temps", y = "Part de la population couverte", fill = NULL) +
-  theme(legend.position = "none")
-```
+fmt_min <- function(x) paste0(number(x, accuracy = 0.1, decimal.mark = ","), " min")
+fmt_pct <- function(x) paste0(number(x, accuracy = 0.1, decimal.mark = ","), " %")
+fmt_points <- function(x) {
+  rounded <- floor(as.numeric(x) * 10 + 0.5 + 1e-9) / 10
+  number(rounded, accuracy = 0.1, decimal.mark = ",")
+}
+mob_stat <- function(mode, scenario, variable = "moyenne") {
+  row <- mobility_stats |>
+    filter(.data$mode == .env$mode, .data$scenario == .env$scenario)
+  as.numeric(row[[variable]][1])
+}
+destination_stat <- function(method, scenario, variable = "moyenne") {
+  row <- destination_method_stats |>
+    filter(.data$method == .env$method, .data$scenario == .env$scenario)
+  as.numeric(row[[variable]][1])
+}
+destination_delta <- function(method, scenario) {
+  destination_stat(method, scenario) - destination_stat(method, "bureaux_complets")
+}
 
-## Où le manque de véhicule pèse le plus ?
-
-Le croisement avec le RGP 2019 ne doit pas être interprété comme une causalité entre motorisation et distance au bureau. Il sert plutôt à identifier les zones où une hausse de temps de marche peut toucher des ménages pour lesquels l'absence de véhicule rend le déplacement plus contraint.
-
-```{r menages-sans-vehicules, fig.cap="Part des ménages sans véhicule à Nouméa, par IRIS, d'après le RGP 2019."}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "menages sans véhicules noumea 2019.webp"))
-
-```
-
-À l'échelle des IRIS couverts par la grille habitée, la part moyenne agrégée des ménages sans véhicule est de `r fmt_pct(vehicle_summary$part_menages_sans_vehicules)`. La corrélation simple entre la part de ménages sans véhicule et le temps moyen en scénario à 9 centres est de `r number(cor_vehicle_time9, accuracy = 0.01, decimal.mark = ",")`; celle avec le delta 9 centres moins bureaux habituels est de `r number(cor_vehicle_delta9, accuracy = 0.01, decimal.mark = ",")`.
-
-Le signal n'est pas une relation linéaire simple. Certains IRIS très peu motorisés sont proches d'un centre, tandis que d'autres quartiers plus motorisés peuvent connaître une forte hausse. L'analyse pertinente est donc celle du cumul local entre forte part de ménages sans véhicule et hausse de temps.
-
-```{r scatter-vehicules, fig.cap="Part de ménages sans véhicule et hausse moyenne de temps à l'IRIS."}
-labels_exposes <- iris_stats |>
-  arrange(desc(indice_cumul)) |>
-  slice_head(n = 8)
-
-ggplot(
-  iris_stats,
-  aes(
-    x = percent_menages_sans_vehicules,
-    y = mean_delta_9_vs_full,
-    size = menages_sans_vehicules
-  )
-) +
-  geom_hline(yintercept = 0, color = "#555555", linewidth = 0.4) +
-  geom_point(alpha = 0.72, color = "#2f6f8f") +
-  geom_text(
-    data = labels_exposes,
-    aes(label = libgeo),
-    size = 3,
-    check_overlap = TRUE,
-    nudge_y = 1.2
-  ) +
-  scale_x_continuous(labels = label_number(suffix = " %")) +
-  scale_y_continuous(labels = label_number(suffix = " min")) +
-  scale_size_continuous(range = c(2, 9), labels = label_number(big.mark = " ")) +
-  labs(
-    x = "Ménages sans véhicule",
-    y = "Hausse moyenne du temps, 9 centres vs bureaux habituels",
-    size = "Ménages sans véhicule"
-  )
-```
-
-```{r tableau-exposition}
-zones_prioritaires |>
-  transmute(
-    IRIS = libgeo,
-    `profil` = profil,
-    `ménages sans véhicule` = menages_sans_vehicules,
-    `sans véhicule` = percent_menages_sans_vehicules,
-    `temps bureaux` = mean_bureaux_complets,
-    `temps 9 centres` = mean_centres_9,
-    `delta` = mean_delta_9_vs_full,
-  ) |>
-  gt() |>
-  fmt_number(columns = c(`ménages sans véhicule`), decimals = 0, sep_mark = " ", dec_mark = ",") |>
-  fmt_number(columns = c(`sans véhicule`, `temps bureaux`, `temps 9 centres`, `delta`), decimals = 1, dec_mark = ",") |>
-  cols_label(
-    `sans véhicule` = "ménages sans véhicule (%)",
-    `temps bureaux` = "bureaux habituels (min)",
-    `temps 9 centres` = "9 centres (min)",
-    `delta` = "hausse (min)"
-  ) |>
-  tab_source_note("Classement par indice de cumul : ménages sans véhicule estimés × hausse moyenne positive.")
-```
-
-Ces zones prioritaires ne racontent pas toutes la même chose.
-
-Dans un premier groupe, **Vallée des Colons Sud Ouest**, **N'Géa**, **Magenta Est**, **Faubourg Blanchot**, **Vallée des Colons Sud Est** et **Trianon** combinent surtout un volume important de ménages sans véhicule avec une hausse nette du temps de marche. La question à documenter cartographiquement est alors celle de la perte de proximité : le changement de lieu de vote transforme un déplacement court en trajet plus long, y compris dans des quartiers résidentiels relativement denses.
-
-Un deuxième groupe relève davantage de la vulnérabilité sociale à l'accessibilité. **Portes de Fer - Nord** et **Magenta Tours** ressortent parce que la part de ménages sans véhicule y est très élevée. Même lorsque la hausse moyenne n'est pas la plus spectaculaire, l'absence de véhicule rend le déplacement plus dépendant de la marche, du transport collectif ou de l'accompagnement par un tiers.
-
-Enfin, **Normandie Sud** et **Ouémo** doivent être lus comme des cas de géographie du réseau : la hausse moyenne y est forte, voire très forte, ce qui invite à vérifier les itinéraires piétons, les ruptures urbaines et la position réelle du centre le plus proche.
-
-```{r classes-vehicules, fig.cap="Temps et hausse moyenne selon la part de ménages sans véhicule dans l'IRIS."}
-vehicle_classes <- iris_stats |>
-  group_by(classe_sans_vehicule) |>
+vehicle_summary <- iris_stats |>
   summarise(
     menages = sum(nb_de_menages, na.rm = TRUE),
-    part_sans_vehicule = weighted_mean(percent_menages_sans_vehicules, nb_de_menages),
-    temps_9_centres = weighted_mean(mean_centres_9, population_grille),
-    delta_9_vs_full = weighted_mean(mean_delta_9_vs_full, population_grille),
-    .groups = "drop"
-  ) |>
-  pivot_longer(
-    c(temps_9_centres, delta_9_vs_full),
-    names_to = "indicateur",
-    values_to = "minutes"
-  ) |>
-  mutate(
-    indicateur = recode(
-      indicateur,
-      temps_9_centres = "Temps moyen, 9 centres",
-      delta_9_vs_full = "Hausse moyenne vs bureaux"
-    )
+    menages_sans_vehicules = sum(menages_sans_vehicules, na.rm = TRUE),
+    part_menages_sans_vehicules = 100 * menages_sans_vehicules / menages
   )
 
-ggplot(vehicle_classes, aes(x = classe_sans_vehicule, y = minutes, fill = indicateur)) +
-  geom_col(position = position_dodge(width = 0.72), width = 0.62) +
-  scale_y_continuous(labels = label_number(suffix = " min")) +
-  scale_fill_manual(values = c("#2f6f8f", "#d08b39")) +
-  labs(x = "Classe d'IRIS selon la part de ménages sans véhicule", y = "Minutes", fill = NULL) +
-  theme(legend.position = "bottom")
+abstention_municipales <- vote_context_stats$abstention[
+  grepl("Municipales", vote_context_stats$scrutin)
+]
+abstention_provinciales <- vote_context_stats$abstention[
+  grepl("Provinciales", vote_context_stats$scrutin)
+]
+
+municipales_quartiers <- vote_context_bureaux |>
+  filter(
+    !is.na(abstention_municipales),
+    code_bv != "0057"
+  )
+provinciales_quartiers <- vote_context_bureaux |>
+  filter(
+    !is.na(abstention_provinciales),
+    code_bv != "0057"
+  )
+
+municipales_distribution <- municipales_quartiers |>
+  summarise(
+    minimum = min(abstention_municipales),
+    q25 = quantile(abstention_municipales, 0.25),
+    mediane = median(abstention_municipales),
+    q75 = quantile(abstention_municipales, 0.75),
+    maximum = max(abstention_municipales),
+    amplitude = maximum - minimum,
+    sous_45 = sum(abstention_municipales < 45),
+    au_moins_60 = sum(abstention_municipales >= 60)
+  )
+
+provinciales_distribution <- provinciales_quartiers |>
+  summarise(
+    minimum = min(abstention_provinciales),
+    q25 = quantile(abstention_provinciales, 0.25),
+    mediane = median(abstention_provinciales),
+    q75 = quantile(abstention_provinciales, 0.75),
+    maximum = max(abstention_provinciales),
+    amplitude = maximum - minimum,
+    sous_25 = sum(abstention_provinciales < 25),
+    au_moins_40 = sum(abstention_provinciales >= 40)
+  )
+
+municipales_min <- municipales_quartiers |>
+  slice_min(abstention_municipales, n = 1, with_ties = FALSE)
+municipales_max <- municipales_quartiers |>
+  slice_max(abstention_municipales, n = 1, with_ties = FALSE)
+provinciales_min <- provinciales_quartiers |>
+  slice_min(abstention_provinciales, n = 1, with_ties = FALSE)
+provinciales_max <- provinciales_quartiers |>
+  slice_max(abstention_provinciales, n = 1, with_ties = FALSE)
+mairie_3 <- vote_context_bureaux |> filter(code_bv == "0057")
 ```
 
-## Accessibilité et abstention
-
-La carte de l'abstention au 1er tour permet de donner un aperçu des zones les plus abstentionnistes et de leur correspondance avec les temps de trajet les plus importants. Cependant, il n'est pas possible d'établir de corrélation directe étant donné que les causes de l'abstention sont multifactorielles. Une modélisation statistique combinant diverses variables socio-démographiques et électorales serait nécessaire pour tenter d'isoler les effets propres de la distance, cela resterait cependant sujet à incertitudes.
-
-```{r abstention-2026, fig.cap="Abstention au premier tour des municipales 2026 par bureau de vote à Nouméa."}
-knitr::include_graphics(data_path("cartes", "municipales 2026", "abstention nouméa 2026 bureaux complets.webp"))
-
+```{=html}
+<link rel="stylesheet" href="../../assets/css/habitat.css">
+<p class="article-version-history"><a href="./v1/">Consulter la version 1 · mai 2026</a></p>
+<script src="../../assets/vendor/d3.v7.min.js"></script>
+<script src="../../assets/vendor/rough.v4.js"></script>
 ```
 
-## Limites méthodologiques
+À Nouméa, un **bureau de vote** et un **lieu de vote** ne désignent pas la même chose. Le bureau est l’unité administrative à laquelle un électeur est rattaché ; le lieu est le bâtiment où il doit effectivement se rendre. Les 57 bureaux peuvent donc conserver leur numéro tout en étant concentrés dans un nombre beaucoup plus réduit de sites.
 
-Plusieurs limites doivent être gardées à l’esprit dans l’interprétation des résultats.
+Ce décalage est devenu un enjeu concret depuis les scrutins organisés après les violences de mai 2024. Présenté d’abord dans un contexte exceptionnel, le regroupement a été reconduit en 2026 : huit lieux pour les municipales, puis neuf pour les provinciales. La question n’est donc pas seulement combien de bureaux existent sur le papier, mais **à quelle distance des habitants les urnes sont réellement installées**.
 
-Premièrement, les temps de trajet estimés reposent sur un modèle théorique de déplacement piéton. Les calculs utilisent une vitesse uniforme de marche fixée à 5 km/h et ne prennent pas en compte les différences d’âge, de mobilité réduite, de conditions climatiques, de sécurité piétonne ou de fatigue.
+**Ce qui change depuis la V1.** Publiée en mai 2026, la première version était une exploration à pied : elle retenait 54 bureaux et associait chaque cellule habitée au lieu ouvert le plus proche. Cette V2 réintègre les 57 bureaux, actualise les routes et leur raccordement, conserve la grille de population SPC recalée sur le RP 2025 et ajoute une seconde lecture, plus proche de la règle électorale : le trajet vers le bureau correspondant au secteur. Elle étend aussi l’analyse à la voiture, au bus et aux écarts de participation.
 
-Deuxièmement, le réseau routier utilisé comme support de calcul ne représente pas nécessairement l’ensemble des cheminements réellement empruntés par les habitants. Certains raccourcis, escaliers, passages piétons informels ou chemins secondaires peuvent être absents du réseau utilisé.
+## Où en est le débat ?
 
-Troisièmement, les estimations reposent sur un rattachement des cellules habitées et des bureaux de vote au nœud routier le plus proche. Cette opération introduit une approximation spatiale qui peut localement modifier les temps calculés, notamment dans les secteurs de faible densité ou proches de ruptures du réseau.
+**Point d’étape au 6 septembre 2026.** Le regroupement n’est ni une simple hypothèse cartographique ni une organisation définitivement stabilisée. Quatre repères permettent de comprendre la situation étudiée dans cet article :
 
-Quatrièmement, l’analyse porte uniquement sur l’accessibilité piétonne potentielle et ne prend pas en compte les autres modes de déplacement (voiture, transport collectif, covoiturage, taxi, etc.). Les résultats ne doivent donc pas être interprétés comme une estimation directe de la difficulté réelle d’accès au vote pour l’ensemble de la population.
+- **juin-juillet 2024** — les législatives anticipées sont organisées dans le contexte exceptionnel qui suit les violences de mai, avec des bureaux réunis dans un petit nombre de sites ;
+- **15 mars 2026** — les municipales se déroulent avec 57 bureaux administratifs répartis dans huit lieux ;
+- **28 juin 2026** — les provinciales utilisent neuf lieux et le juge des référés laisse ce dispositif en vigueur pour le scrutin ;
+- **septembre 2026** — après la proposition d’annulation formulée par la rapporteure publique, la perspective d’un [retour à 37 lieux de vote](https://www.lnc.nc/article/noumea-vers-un-retour-a-37-lieux-de-vote) est évoquée ; la décision du tribunal est annoncée pour le 23 septembre.
 
-Cinquièmement, les résultats ne permettent pas d’établir un lien causal direct entre distance au bureau de vote et participation électorale. L’abstention dépend également de nombreux facteurs politiques, sociaux, économiques et contextuels qui dépassent le seul enjeu de l’accessibilité spatiale.
+Les cartes comparent donc des configurations qui ont structuré les scrutins de 2026, pas un maillage appelé à rester nécessairement en place. La [revue de presse du site](../../presse/) suivra les développements ultérieurs.
 
-Enfin, les cartes lissées utilisées pour la visualisation servent principalement à faciliter la lecture spatiale. Elles ne remplacent pas les rasters analytiques d’origine, qui demeurent la référence pour les calculs statistiques et les comparaisons quantitatives.
+## En bref
+
+```{=html}
+<section
+  class="vote-brief"
+  data-vote-brief
+  data-cells="data/accessibilite_cellules.csv"
+  data-boundary="data/noumea_limite.geojson"
+  data-points="data/points_vote.geojson"
+  data-iris="data/iris_context.geojson"
+  data-secteurs="data/vote_context_secteurs.geojson"
+  data-stops="data/bus_stops.geojson">
+  <div class="vote-brief-launch">
+    <div>
+      <p class="vote-brief-kicker">Lecture express</p>
+      <p class="vote-brief-lede">Neuf écrans pour voir le changement de maillage, les trois modes de trajet et les écarts de participation entre quartiers.</p>
+    </div>
+    <button class="vote-brief-open" type="button" data-vote-brief-open aria-haspopup="dialog">
+      Voir l’article en bref <span aria-hidden="true">→</span>
+    </button>
+  </div>
+
+  <div class="vote-brief-dialog" data-vote-brief-dialog role="dialog" aria-modal="true" aria-labelledby="vote-brief-title" hidden>
+    <div class="vote-brief-panel">
+      <header class="vote-brief-header">
+        <div>
+          <p class="vote-brief-kicker">Lecture express</p>
+          <h2 id="vote-brief-title">En bref</h2>
+        </div>
+        <div class="vote-brief-header-tools">
+          <span class="vote-brief-count" data-vote-brief-count aria-live="polite">1 / 9</span>
+          <button class="vote-brief-close" type="button" data-vote-brief-close aria-label="Fermer le résumé">×</button>
+        </div>
+      </header>
+
+      <div class="vote-brief-stage">
+        <article class="vote-brief-slide" data-vote-brief-slide>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">1 · Maillage · provinciales 2026</p>
+            <h3>Pour voter, 57 bureaux administratifs sont répartis dans neuf lieux.</h3>
+            <p class="vote-brief-big"><span>57</span><span aria-hidden="true">→</span><span>9 lieux</span></p>
+            <p>Le numéro du bureau ne change pas, mais le point de rendez-vous se concentre : la proximité offerte par le maillage habituel disparaît dans une grande partie de la ville.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="mesh" viewBox="0 0 420 240" role="img" aria-label="Comparaison cartographique des 57 bureaux habituels et des neuf lieux regroupés"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">2 · Marche · vers le bureau attribué</p>
+            <h3>À pied, le temps moyen à l’aller passe de `r fmt_min(destination_stat("assigned", "bureaux_complets"))` à `r fmt_min(destination_stat("assigned", "centres_9"))`.</h3>
+            <p class="vote-brief-big"><span>`r fmt_min(destination_stat("assigned", "bureaux_complets"))`</span><span aria-hidden="true">→</span><span>`r fmt_min(destination_stat("assigned", "centres_9"))`</span></p>
+            <p>Chaque cellule est reliée au bureau de son secteur. Les deux cartes utilisent la même échelle : l’orange commence dès 20 minutes aller et le rouge dès 30 minutes.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="pair9" viewBox="0 0 420 240" role="img" aria-label="Deux cartes des temps de marche, avec 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">3 · Marche · au-delà de 30 minutes</p>
+            <h3>Avec neuf lieux, `r fmt_pct(destination_stat("assigned", "centres_9", "part_pop_plus_30"))` des habitants sont à plus de 30 minutes de marche de leur bureau attribué.</h3>
+            <p class="vote-brief-big"><span>`r fmt_pct(destination_stat("assigned", "centres_9", "part_pop_plus_30"))`</span></p>
+            <p>Avec les bureaux habituels, cette part est de `r fmt_pct(destination_stat("assigned", "bureaux_complets", "part_pop_plus_30"))`.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="time9" viewBox="0 0 420 240" role="img" aria-label="Carte des temps de marche vers les neuf lieux de vote"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">4 · Marche · 8 lieux ou 9 lieux</p>
+            <h3>Le neuvième lieu réduit surtout les temps de marche du nord-ouest.</h3>
+            <p class="vote-brief-big"><span>−`r number(destination_stat("assigned", "centres_8") - destination_stat("assigned", "centres_9"), accuracy = 0.1, decimal.mark = ",")` min en moyenne</span></p>
+            <p>Par rapport aux huit centres des municipales, la division de Ko We Kara entre le collège de Kaméré et Vincent-Kafoa réduit surtout les trajets attribués dans le nord.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="pair8" viewBox="0 0 420 240" role="img" aria-label="Deux cartes des temps de marche vers huit puis neuf lieux de vote"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">5 · Avec une voiture · maillage habituel ou 9 lieux</p>
+            <h3>Avec une voiture disponible, le meilleur temps moyen passe de `r fmt_min(mob_stat("car", "bureaux_complets"))` à `r fmt_min(mob_stat("car", "centres_9"))`.</h3>
+            <p class="vote-brief-big"><span>`r fmt_min(mob_stat("car", "bureaux_complets"))`</span><span aria-hidden="true">→</span><span>`r fmt_min(mob_stat("car", "centres_9"))`</span></p>
+            <p>À proximité, le calcul conserve la marche directe. Ailleurs, il retient la voiture si son temps porte-à-porte — conduite, accès et stationnement compris — est plus court.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="carpair" viewBox="0 0 420 240" role="img" aria-label="Deux cartes du meilleur temps estimé à pied ou en voiture vers 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">6 · À pied ou en bus · maillage habituel ou 9 lieux</p>
+            <h3>Sans voiture, le meilleur temps moyen passe de `r fmt_min(mob_stat("bus", "bureaux_complets"))` à `r fmt_min(mob_stat("bus", "centres_9"))`.</h3>
+            <p class="vote-brief-big"><span>`r fmt_min(mob_stat("bus", "bureaux_complets"))`</span><span aria-hidden="true">→</span><span>`r fmt_min(mob_stat("bus", "centres_9"))`</span></p>
+            <p>Le calcul retient le plus court entre la marche directe et Tanéo. Un trajet en bus n’est donc pas imposé à quelqu’un qui habite déjà près du lieu de vote.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="buspair" viewBox="0 0 420 240" role="img" aria-label="Deux cartes du meilleur temps estimé à pied ou en bus vers 57 bureaux puis neuf lieux"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">7 · Mobilité · ménages sans véhicule</p>
+            <h3>Près de trois ménages sur dix dépendent d’une alternative à la voiture.</h3>
+            <p class="vote-brief-big"><span>`r fmt_pct(vehicle_summary$part_menages_sans_vehicules)`</span></p>
+            <p>Cette proportion correspond aux ménages de Nouméa sans aucun véhicule. La marche, le bus ou l’aide d’un proche deviennent alors décisifs.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="vehicle" viewBox="0 0 420 240" role="img" aria-label="Carte de la part des ménages sans véhicule par IRIS"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">8 · Abstention · municipales 2026</p>
+            <h3>Aux municipales, l’abstention va de `r fmt_pct(municipales_distribution$minimum)` dans le secteur de PK6 Nord à `r fmt_pct(municipales_distribution$maximum)` dans celui de Portes-de-Fer Nord.</h3>
+            <p class="vote-brief-big"><span>`r fmt_points(municipales_distribution$amplitude)` points du minimum au maximum</span></p>
+            <p>Le bureau dérogatoire Mairie 3 mis à part, le taux est de `r fmt_pct(municipales_min$abstention_municipales)` dans le secteur de Marie-Courtot 2, à PK6 Nord. Il atteint `r fmt_pct(municipales_max$abstention_municipales)` dans celui de Gustave-Mouchet 2, à Portes-de-Fer Nord.</p>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="municipal" viewBox="0 0 420 240" role="img" aria-label="Carte des taux d’abstention par secteur électoral de Nouméa aux municipales de 2026"></svg>
+        </article>
+
+        <article class="vote-brief-slide" data-vote-brief-slide hidden>
+          <div class="vote-brief-copy">
+            <p class="vote-brief-step">9 · Abstention · provinciales 2026</p>
+            <h3>Aux provinciales, l’abstention va de `r fmt_pct(provinciales_distribution$minimum)` dans le secteur de N’Géa à `r fmt_pct(provinciales_distribution$maximum)` dans celui du centre-ville.</h3>
+            <p class="vote-brief-big"><span>`r fmt_points(provinciales_distribution$amplitude)` points du minimum au maximum</span></p>
+            <p>Le bureau dérogatoire Mairie 3 mis à part, le taux est de `r fmt_pct(provinciales_min$abstention_provinciales)` dans le secteur de Jean-Mermoud 2, à N’Géa. Il atteint `r fmt_pct(provinciales_max$abstention_provinciales)` dans celui de Mairie 2, au centre-ville.</p>
+            <a class="vote-brief-read" href="#abstention-quartiers" data-vote-brief-close>Lire l’analyse détaillée ↓</a>
+          </div>
+          <svg class="vote-brief-sketch" data-vote-brief-sketch="provincial" viewBox="0 0 420 240" role="img" aria-label="Carte des taux d’abstention par secteur électoral de Nouméa aux provinciales de 2026"></svg>
+        </article>
+      </div>
+
+      <footer class="vote-brief-nav">
+        <button type="button" data-vote-brief-prev>← Précédent</button>
+        <div class="vote-brief-dots" data-vote-brief-dots aria-label="Choisir une diapositive"></div>
+        <button type="button" data-vote-brief-next>Suivant →</button>
+      </footer>
+    </div>
+  </div>
+</section>
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-brief.js"></script>
+```
+
+## De 57 bureaux administratifs à neuf lieux
+
+Nouméa compte 57 bureaux de vote administratifs, habituellement répartis dans un maillage plus fin de la ville. En 2026, ce n’est pas leur nombre qui change, mais leur implantation physique : ils sont réunis dans huit lieux aux municipales puis, selon [l’organisation annoncée par la Ville](https://www.noumea.nc/noumea-dynamique/actu-agenda/organisation-elections-provinciales-noumea-28-juin-2026), dans neuf lieux aux provinciales du 28 juin. Les électeurs conservent leur numéro de bureau, mais doivent se rendre sur le site auquel celui-ci est rattaché.
+
+Ce changement pose une question simple : **combien de temps faut-il pour atteindre un lieu de vote, et comment cette contrainte varie-t-elle selon l’endroit où l’on habite et le moyen de transport disponible ?**
+
+## Deux Nouméa à comparer d’un seul regard
+
+Trois configurations sont comparées : le maillage habituel, les huit lieux utilisés aux municipales, puis les neuf lieux retenus pour les provinciales. La carte place désormais côte à côte le maillage habituel et le regroupement. Le sélecteur choisit le scénario de droite, à huit ou neuf lieux, puis l’une des trois situations de mobilité : à pied, avec une voiture disponible, ou à pied et en bus.
+
+Le maillage habituel comprend ici les **57 bureaux** du référentiel géographique de la Ville, numérotés de 1 à 57 sans interruption. Plusieurs bureaux occupent le même équipement scolaire et leurs points sont donc très proches sur la carte ; aucun n’est retiré du calcul. Ce scénario décrit une offre électorale de proximité habituelle, et non la disponibilité ponctuelle des bâtiments le jour d’un scrutin.
+
+À pied, le temps comprend la courte liaison entre le centre de la cellule et la route, le parcours sur le réseau et la liaison finale jusqu’au lieu de vote. Il s’agit d’un indicateur d’accessibilité potentielle, pas d’un itinéraire recommandé ni d’une observation des déplacements réels.
+
+::: column-page
+```{=html}
+<div
+  id="comparaison-accessibilite-vote-v2"
+  class="habitat-sketch habitat-map access-compare-v2"
+  data-access-compare-v2
+  data-sketch-chart="Comparaison des temps de trajet vers les lieux de vote à Nouméa"
+  data-cells="data/accessibilite_cellules.csv"
+  data-boundary="data/noumea_limite.geojson"
+  data-routes="data/noumea_routes.geojson"
+  data-points="data/points_vote.geojson"
+  data-iris="data/iris_context.geojson"
+  data-stops="data/bus_stops.geojson"
+  data-stats="data/mobility_stats.csv"
+  data-method-stats="data/destination_method_stats.csv"
+  data-metadata="data/metadata.json">
+  <p class="habitat-sketch-loading">Chargement de la carte interactive…</p>
+</div>
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-compare.js"></script>
+```
+
+<p class="habitat-caption">
+
+La carte de gauche garde toujours les **57 bureaux habituels** ; celle de droite affiche les **9 lieux des provinciales** par défaut ou les 8 lieux des municipales. En mode marche, le sélecteur « Destination » permet de comparer le **lieu le plus proche** au **bureau attribué au secteur électoral**. Les modes voiture et bus restent calculés vers le lieu le plus proche. Les trois modes utilisent **la même échelle de couleurs en minutes** : une durée inférieure à 10 minutes reste bleu-vert, qu’elle corresponde à la marche, à la voiture ou au bus. Dans les modes motorisés, la marche directe est conservée lorsqu’elle est plus rapide : une personne voisine du bureau n’est pas artificiellement envoyée vers sa voiture ou un arrêt de bus. Les surfaces sont lissées dans un rayon de **500 mètres** pour faciliter la lecture. À pied, l’orange commence dès **20 minutes à l’aller** — 40 minutes aller-retour — et le rouge dès **30 minutes**, soit une heure aller-retour. Au survol, le contour et le nom de l’IRIS apparaissent avec les deux valeurs exactes de la cellule de 100 mètres ; avec l’affectation sectorielle, l’info-bulle précise aussi le bureau et le lieu attendus. En mode bus, les points bleus représentent les arrêts actifs dans l’offre reconstituée.
+
+</p>
+:::
+
+## À pied, la proximité recule nettement
+
+En retenant le **bureau attribué au secteur** — la convention affichée par défaut sur la carte — les trois configurations se distinguent immédiatement.
+
+```{=html}
+<div class="habitat-stat-grid" aria-label="Temps moyens selon la configuration">
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">`r fmt_min(destination_stat("assigned", "bureaux_complets"))`</div>
+    <div class="habitat-stat-label">Maillage habituel</div>
+    <p class="habitat-stat-note">Temps moyen vers le bureau attribué.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">`r fmt_min(destination_stat("assigned", "centres_8"))`</div>
+    <div class="habitat-stat-label">Huit lieux de vote</div>
+    <p class="habitat-stat-note">Soit `r fmt_min(destination_delta("assigned", "centres_8"))` de plus.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">`r fmt_min(destination_stat("assigned", "centres_9"))`</div>
+    <div class="habitat-stat-label">Neuf lieux de vote</div>
+    <p class="habitat-stat-note">Soit `r fmt_min(destination_delta("assigned", "centres_9"))` de plus.</p>
+  </div>
+</div>
+```
+
+Avec neuf lieux, le temps moyen augmente de `r fmt_min(destination_delta("assigned", "centres_9"))`. La part située à plus de trente minutes de marche passe de `r fmt_pct(destination_stat("assigned", "bureaux_complets", "part_pop_plus_30"))` à `r fmt_pct(destination_stat("assigned", "centres_9", "part_pop_plus_30"))`.
+
+Le neuvième lieu améliore toutefois sensiblement la situation par rapport à la configuration municipale à huit : il retranche en moyenne `r fmt_min(destination_stat("assigned", "centres_8") - destination_stat("assigned", "centres_9"))`, notamment dans le nord de Nouméa.
+
+### Le plus proche n’est pas toujours celui où l’on vote
+
+Les deux méthodes ne répondent pas tout à fait à la même question. Le **lieu le plus proche** mesure une accessibilité théorique : si un centre voisin accueille les électeurs d’un autre secteur, il est quand même retenu. Le **bureau attribué** respecte le découpage électoral : chaque cellule de population est reliée au bureau de son secteur, puis au lieu où ce bureau est regroupé. Cette seconde lecture est affichée par défaut.
+
+```{=html}
+<div class="destination-method-grid" aria-label="Comparaison des temps moyens à pied selon la méthode d’affectation">
+  <article class="destination-method-card">
+    <div class="destination-method-kicker">Lieu le plus proche</div>
+    <div class="destination-method-flow" aria-label="12 minutes avec 57 bureaux, 22,7 minutes avec huit centres et 19,7 minutes avec neuf centres">
+      <span><strong>`r fmt_min(destination_stat("nearest", "bureaux_complets"))`</strong><small>57 bureaux</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>`r fmt_min(destination_stat("nearest", "centres_8"))`</strong><small>8 centres</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>`r fmt_min(destination_stat("nearest", "centres_9"))`</strong><small>9 centres</small></span>
+    </div>
+    <p class="destination-method-summary">De 57 à 9 lieux : <strong>+`r fmt_min(destination_delta("nearest", "centres_9"))`</strong>. Avec neuf lieux, <strong>`r fmt_pct(destination_stat("nearest", "centres_9", "part_pop_plus_30"))`</strong> de la population est à plus de 30 minutes.</p>
+  </article>
+  <article class="destination-method-card">
+    <div class="destination-method-kicker">Bureau attribué au secteur</div>
+    <div class="destination-method-flow" aria-label="14,5 minutes avec 57 bureaux, 24,8 minutes avec huit centres et 21,8 minutes avec neuf centres">
+      <span><strong>`r fmt_min(destination_stat("assigned", "bureaux_complets"))`</strong><small>57 bureaux</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>`r fmt_min(destination_stat("assigned", "centres_8"))`</strong><small>8 centres</small></span>
+      <i class="destination-method-arrow" aria-hidden="true">→</i>
+      <span><strong>`r fmt_min(destination_stat("assigned", "centres_9"))`</strong><small>9 centres</small></span>
+    </div>
+    <p class="destination-method-summary">De 57 à 9 lieux : <strong>+`r fmt_min(destination_delta("assigned", "centres_9"))`</strong>. Avec neuf lieux, <strong>`r fmt_pct(destination_stat("assigned", "centres_9", "part_pop_plus_30"))`</strong> de la population est à plus de 30 minutes.</p>
+  </article>
+</div>
+```
+
+**Comment lire l’évolution depuis la V1 ?** À méthode comparable, la V1 estimait le trajet vers le lieu le plus proche à 13,3 minutes avec 54 bureaux et 21,8 minutes avec neuf lieux. Après la mise à jour du réseau et la réintégration des 57 bureaux, la V2 obtient `r fmt_min(destination_stat("nearest", "bureaux_complets"))` et `r fmt_min(destination_stat("nearest", "centres_9"))`. Les `r fmt_min(destination_stat("assigned", "bureaux_complets"))` et `r fmt_min(destination_stat("assigned", "centres_9"))` affichées par défaut correspondent à la nouvelle méthode par secteur : le même chiffre de 21,8 minutes dans les deux versions est donc une coïncidence, pas le même calcul.
+
+Le niveau est logiquement plus élevé lorsque l’on respecte les secteurs, mais le diagnostic central change peu : le regroupement ajoute `r fmt_min(destination_delta("nearest", "centres_9"))` avec la première méthode et `r fmt_min(destination_delta("assigned", "centres_9"))` avec la seconde. En revanche, le choix de la destination pèse davantage sur la fréquence des trajets très longs. L’affectation sectorielle est donc plus proche de la contrainte électorale attendue ; le lieu le plus proche reste utile comme mesure d’accessibilité potentielle.
+
+Cette seconde estimation ne localise pas les électeurs individuellement : elle applique les limites officielles des secteurs à la grille de population. Elle suppose donc que les habitants d’une cellule relèvent du bureau du secteur qui la contient.
+
+## Avec ou sans voiture : retenir le trajet le plus logique
+
+La carte **« Avec une voiture »** ne suppose pas que chacun conduise, même pour quelques centaines de mètres. Pour chaque cellule, elle compare la marche directe au trajet automobile porte-à-porte et conserve le plus court. La branche automobile utilise les routes et les sens uniques de BDROUTE, une vitesse en mouvement plafonnée à **30 km/h**, puis un forfait de **5 minutes** pour accéder au véhicule, démarrer, stationner et rejoindre le lieu de vote. Le meilleur temps moyen est ainsi de `r fmt_min(mob_stat("car", "bureaux_complets"))` avec les bureaux habituels et de `r fmt_min(mob_stat("car", "centres_9"))` avec neuf lieux. Ces valeurs servent à comparer les scénarios ; elles ne prédisent ni les embouteillages ni la disponibilité du stationnement le jour du vote.
+
+La carte **« À pied ou en bus »** suit le même principe. Pour chaque cellule, elle compare la marche directe au meilleur itinéraire Tanéo calculé pour cinq départs entre 8 heures et 16 heures, puis conserve le temps le plus court. Près d’un lieu de vote, la valeur peut donc être celle de la marche ; lorsque Tanéo est plus avantageux, elle comprend la marche jusqu’à l’arrêt, l’attente, le trajet, les correspondances et la marche finale. Le meilleur temps moyen atteint `r fmt_min(mob_stat("bus", "centres_9"))` avec neuf lieux, contre `r fmt_min(mob_stat("bus", "bureaux_complets"))` dans le maillage habituel. Les points bleus représentent les arrêts actifs de l’offre reconstituée.
+
+La branche Tanéo est une **reconstitution**, et non le rejeu d’une archive exacte du 28 juin. L’offre spéciale est documentée, tout comme la réorganisation du réseau entrée en vigueur le 22 juin ; faute de GTFS historique publié pour ce dimanche, le calcul utilise l’offre du samedi du réseau postérieur à cette réorganisation. Lorsqu’aucun itinéraire en bus n’est calculable, la marche directe reste disponible. Les [horaires exceptionnels du scrutin](https://www.lnc.nc/article/provinciales-les-bus-taneo-circuleront-exceptionnellement-le-dimanche-28-juin), [l’évolution du réseau au 22 juin](https://www.taneo.nc/actualites/partir-du-22-juin-2026-plus-de-frequences-plus-de-connexions-plus-de-simplicite) et le [GTFS Tanéo](https://transport.data.gouv.fr/datasets/reseau-taneo-1?locale=fr) permettent d’en donner un ordre de grandeur transparent.
+
+## Sans véhicule, la distance ne pèse pas de la même façon
+
+La distance ne pèse pas de la même façon sur tout le monde. À Nouméa, `r fmt_pct(vehicle_summary$part_menages_sans_vehicules)` des ménages ne disposent d’aucun véhicule d’après le RGP 2019. Dans ces foyers, un lieu de vote plus éloigné rend plus importante la marche, le transport collectif ou l’aide d’un proche.
+
+Cette donnée ne permet pas de savoir comment chaque électeur se déplace. Elle signale néanmoins que le même allongement théorique n’a pas le même poids selon les ressources de mobilité disponibles dans le quartier.
+
+::: column-page
+```{=html}
+<div
+  id="motorisation-noumea-v2"
+  class="habitat-sketch habitat-map"
+  data-vote-context-map-v2
+  data-sketch-chart="Ménages sans véhicule à Nouméa"
+  data-boundary="data/noumea_limite.geojson"
+  data-routes="data/noumea_routes.geojson"
+  data-iris="data/iris_context.geojson"
+  data-secteurs="data/vote_context_secteurs.geojson"
+  data-stats="data/vote_context_stats.csv"
+  data-modes="vehicles"
+  data-default="vehicles"
+  data-query="mobilite">
+  <p class="habitat-sketch-loading">Chargement de la carte de motorisation…</p>
+</div>
+```
+
+<p class="habitat-caption">
+
+Cette carte porte uniquement sur la motorisation. Une couleur représente un IRIS du RGP 2019 ; elle ne décrit ni le comportement électoral ni le mode de déplacement réellement choisi le jour du vote.
+
+</p>
+:::
+
+## À chaque scrutin, de forts écarts entre quartiers {#abstention-quartiers}
+
+```{=html}
+<div class="habitat-stat-grid" aria-label="Trois repères sur l’abstention à Nouméa">
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">`r fmt_points(municipales_distribution$amplitude)` pts</div>
+    <div class="habitat-stat-label">Du taux minimum au taux maximum · municipales</div>
+    <p class="habitat-stat-note">Hors Mairie 3 : de `r fmt_pct(municipales_distribution$minimum)` à PK6 Nord à `r fmt_pct(municipales_distribution$maximum)` à Portes-de-Fer Nord.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">`r fmt_points(provinciales_distribution$amplitude)` pts</div>
+    <div class="habitat-stat-label">Du taux minimum au taux maximum · provinciales</div>
+    <p class="habitat-stat-note">Hors Mairie 3 : de `r fmt_pct(provinciales_distribution$minimum)` à N’Géa à `r fmt_pct(provinciales_distribution$maximum)` au centre-ville.</p>
+  </div>
+  <div class="habitat-stat-card">
+    <div class="habitat-stat-value">57</div>
+    <div class="habitat-stat-label">Périmètres électoraux analysés</div>
+    <p class="habitat-stat-note">Un secteur d’affectation pour chacun des 57 bureaux administratifs.</p>
+  </div>
+</div>
+```
+
+Les cartes et le graphique ci-dessous décrivent, pour chaque scrutin, la variation du taux d’abstention entre les **57 secteurs électoraux** de Nouméa. Les écarts de `r fmt_points(municipales_distribution$amplitude)` et `r fmt_points(provinciales_distribution$amplitude)` points ne sont pas des moyennes : ils correspondent au **taux le plus élevé moins le taux le plus faible**, en laissant de côté le bureau dérogatoire Mairie 3. La question est simple : **la participation est-elle homogène dans la ville ?** La réponse est non, avec de forts écarts d’un secteur à l’autre.
+
+### Municipales 2026 : le dispositif à huit centres
+
+À l’échelle de Nouméa, l’abstention municipale atteint `r fmt_pct(abstention_municipales)`. Mais cette moyenne recouvre des situations très différentes. Le bureau dérogatoire Mairie 3 mis à part, le taux est de `r fmt_pct(municipales_min$abstention_municipales)` dans le secteur de Marie-Courtot 2, à PK6 Nord, et atteint `r fmt_pct(municipales_max$abstention_municipales)` dans celui de Gustave-Mouchet 2, à Portes-de-Fer Nord. L’écart entre ces deux taux est de **`r fmt_points(municipales_distribution$amplitude)` points de pourcentage**.
+
+`r municipales_distribution$sous_45` secteurs restent sous 45 % d’abstention tandis que `r municipales_distribution$au_moins_60` atteignent ou dépassent 60 %. Le phénomène ne se limite donc pas à deux cas isolés.
+
+### Provinciales 2026 : le dispositif à neuf centres
+
+Aux provinciales du 28 juin, l’abstention moyenne atteint `r fmt_pct(abstention_provinciales)`. Le bureau dérogatoire Mairie 3 mis à part, le taux est de `r fmt_pct(provinciales_min$abstention_provinciales)` dans le secteur de Jean-Mermoud 2, à N’Géa, et atteint `r fmt_pct(provinciales_max$abstention_provinciales)` dans celui de Mairie 2, au centre-ville. L’écart entre ces deux taux est de **`r fmt_points(provinciales_distribution$amplitude)` points de pourcentage**.
+
+`r provinciales_distribution$sous_25` secteurs restent sous 25 % d’abstention, tandis que `r provinciales_distribution$au_moins_40` atteignent ou dépassent 40 %. Plusieurs secteurs de Portes-de-Fer Nord, Magenta Est et Aérodrome Sud figurent dans le haut de la distribution ; N’Géa, Tina et Motor Pool se situent plutôt à l’autre extrémité.
+
+La moitié centrale des secteurs s’étend encore de `r fmt_pct(provinciales_distribution$q25)` à `r fmt_pct(provinciales_distribution$q75)`. La géographie de la participation ne tient donc pas seulement à quelques valeurs extrêmes.
+
+Le secteur Mairie 3 constitue un cas particulier : il ne compte que `r mairie_3$inscrits_municipales` inscrits aux municipales et `r mairie_3$inscrits_provinciales` aux provinciales, avec trois votants dans chaque cas. Ses taux très élevés sont visibles sur les cartes, mais ce secteur atypique est exclu des repères chiffrés ci-dessus afin de ne pas le présenter comme un quartier résidentiel ordinaire.
+
+::: column-page
+```{=html}
+<div
+  id="contexte-social-electoral-v2"
+  class="habitat-sketch habitat-map"
+  data-vote-context-map-v2
+  data-sketch-chart="Abstention par secteur électoral à Nouméa"
+  data-boundary="data/noumea_limite.geojson"
+  data-routes="data/noumea_routes.geojson"
+  data-iris="data/iris_context.geojson"
+  data-secteurs="data/vote_context_secteurs.geojson"
+  data-stats="data/vote_context_stats.csv"
+  data-modes="municipal,provincial"
+  data-default="municipal"
+  data-layout="pair"
+  data-query="scrutin">
+  <p class="habitat-sketch-loading">Chargement de la carte d’abstention…</p>
+</div>
+```
+
+<p class="habitat-caption">
+
+Les deux cartes montrent les **57 secteurs électoraux officiels**, sans lissage. Dans chaque panneau, le vert signale les taux d’abstention les plus faibles et le rouge les plus élevés. Les classes chiffrées figurent sous chaque carte : elles vont de moins de 40 % à 60 % ou plus pour les municipales, et de moins de 20 % à 40 % ou plus pour les provinciales.
+
+</p>
+:::
+
+::: column-page
+```{=html}
+<div
+  id="dispersion-abstention-noumea-v2"
+  class="habitat-sketch habitat-sketch--mobile-fluid"
+  data-vote-abstention-spread-v2
+  data-default="provincial"
+  data-sketch-chart="Nuage interactif des bureaux de vote selon leur taux d’abstention"
+  data-rows="data/vote_context_bureaux.csv">
+  <p class="habitat-sketch-loading">Chargement du graphique d’abstention…</p>
+</div>
+```
+
+<p class="habitat-caption">
+
+Le graphique s’ouvre sur les **provinciales 2026**. Chaque point représente un bureau de vote : sa position sur l’axe horizontal donne le **taux d’abstention parmi les inscrits**, et sa couleur le rattache à l’un des cinq secteurs de la ville. Le sélecteur permet d’afficher les municipales ; le survol ou le menu « Repérer » donne le libellé, l’IRIS, le secteur et les effectifs du bureau. Le trait noir indique la moyenne de Nouméa. **Mairie 3 n’est pas affiché dans ce graphique** : ce bureau dérogatoire ne compte que trois votants et son taux extrême étirerait artificiellement l’échelle. Il reste présent dans les données et sur les cartes.
+
+</p>
+:::
+
+::: callout-important
+Ces visualisations décrivent où la participation est plus ou moins forte ; elles n’expliquent pas pourquoi. La distance au lieu de vote peut constituer une contrainte parmi d’autres, aux côtés des caractéristiques sociales des quartiers, des inscriptions sur les listes, des enjeux du scrutin et de la mobilisation politique. Les temps sont modélisés pour une population localisée sur une grille, tandis que l’abstention porte sur les électeurs inscrits : une corrélation entre les deux donnerait ici une précision trompeuse. L’[analyse des municipales de 2026](../participation-accessibilite-bureaux-noumea/) examine plus précisément l’évolution de la participation depuis 2020.
+:::
+
+```{=html}
+<script src="../../assets/js/regroupement-bureaux-vote-noumea-v2-context.js"></script>
+```
+
+## Limites
+
+La grille SPC 2020 ne constitue pas un dénombrement à la cellule. Elle répartit la population sur une empreinte bâtie à partir du recensement de 2011, puis applique une croissance uniforme jusqu’en 2020. Son total est ici recalé sur le RP 2025, mais les déplacements récents à l’intérieur de Nouméa peuvent rester imparfaitement localisés.
+
+La BDROUTE décrit précisément la voirie, mais pas tous les cheminements piétons : escaliers, passages informels, traversées, accès privés et coupures temporaires peuvent manquer. Le modèle à pied utilise une vitesse uniforme de 5 km/h et n’intègre ni pente, ni chaleur, ni handicap, ni qualité des trottoirs. Avec une voiture, le calcul choisit entre cette marche directe et une convention automobile porte-à-porte — 30 km/h au maximum en mouvement et 5 minutes fixes — sans données observées de congestion ni d’occupation du stationnement. Sans voiture, il choisit entre la marche directe et une branche Tanéo fondée sur des horaires reconstruits, non sur des temps de parcours observés.
+
+Deux conventions de destination sont présentées pour la marche. La première retient le lieu géographiquement le plus proche ; la seconde applique à chaque cellule le bureau de son secteur électoral, puis le lieu de regroupement correspondant. Sur les 3 350 cellules retenues, 21 centres de cellules situés juste hors des polygones ont été rattachés au secteur voisin, toujours à moins de 98 mètres ; ils représentent environ 0,1 % de la population pondérée. Aucune des deux méthodes ne reconstitue le trajet individuel des électeurs. Les cartes d’abstention décrivent les résultats des secteurs officiels, mais ne permettent pas, à elles seules, d’expliquer la participation.
 
 ## Conclusion
 
-Cette première estimation montre que le regroupement des bureaux de vote ne produit pas seulement un déplacement administratif des lieux de vote : il modifie sensiblement les conditions concrètes d'accès au scrutin. À Nouméa, le passage des bureaux habituels aux centres regroupés augmente le temps moyen d'accès piéton, qui passe de `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "Bureaux de vote habituels"])` dans la configuration de référence à `r fmt_min(scenario_stats$moyenne[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres.
+Le premier résultat est net : ramener le maillage habituel de 57 bureaux à neuf lieux ne déplace pas seulement une moyenne, mais redistribue la contrainte dans la ville. Avec le bureau attribué au secteur, le temps moyen à pied passe de `r fmt_min(destination_stat("assigned", "bureaux_complets"))` à `r fmt_min(destination_stat("assigned", "centres_9"))` et la part située à plus de trente minutes de `r fmt_pct(destination_stat("assigned", "bureaux_complets", "part_pop_plus_30"))` à `r fmt_pct(destination_stat("assigned", "centres_9", "part_pop_plus_30"))`. Le lieu le plus proche donne des niveaux plus bas — `r fmt_min(destination_stat("nearest", "bureaux_complets"))` puis `r fmt_min(destination_stat("nearest", "centres_9"))` — mais une hausse moyenne très voisine. Le constat résiste donc au choix de la méthode.
 
-L'effet le plus important concerne toutefois les situations d'éloignement. La part de population située à plus de 30 minutes à pied d'un centre de vote passe de `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "Bureaux de vote habituels"])` avec les bureaux habituels à `r fmt_pct(scenario_stats$part_pop_plus_30[scenario_stats$scenario == "9 centres regroupés"])` dans le scénario à 9 centres. L'ajout d'un neuvième centre améliore une partie de la situation par rapport au scénario à 8 centres, notamment dans le nord de Nouméa, mais il ne rétablit pas la proximité offerte par le maillage habituel des bureaux.
+Les autres modes atténuent cet allongement sans l’effacer. Lorsqu’une voiture est disponible, le meilleur temps moyen — marche directe ou voiture — passe de `r fmt_min(mob_stat("car", "bureaux_complets"))` à `r fmt_min(mob_stat("car", "centres_9"))`. Pour l’option marche ou Tanéo, il passe de `r fmt_min(mob_stat("bus", "bureaux_complets"))` à `r fmt_min(mob_stat("bus", "centres_9"))`. Ces écarts comptent d’autant plus que `r fmt_pct(vehicle_summary$part_menages_sans_vehicules)` des ménages nouméens ne disposent d’aucun véhicule : l’accessibilité d’un lieu de vote dépend donc à la fois de sa position et des solutions de mobilité réellement disponibles.
 
-Le croisement avec la part de ménages sans véhicule invite enfin à lire ces résultats comme un enjeu d'accessibilité différenciée. Les effets du regroupement ne touchent pas tous les quartiers avec la même intensité, et les secteurs qui cumulent hausse des temps de marche et faible motorisation constituent les principaux points de vigilance. La question n'est donc pas seulement de savoir si le vote reste juridiquement possible, mais dans quelles conditions pratiques il le demeure selon les quartiers et les ressources de mobilité des habitants.
+Le neuvième lieu apporte un gain tangible par rapport aux huit centres des municipales : `r fmt_min(abs(delta_stats$moyenne[delta_stats$variable == "delta_9_vs_8"]))` en moyenne, surtout dans le nord de Nouméa. Ce résultat montre que le nombre de sites compte, mais aussi leur localisation. Neuf lieux restent cependant loin de restituer la proximité du maillage habituel.
 
-## À lire aussi
+Enfin, les forts écarts d’abstention entre secteurs rappellent que la participation électorale est profondément territorialisée, sans permettre d’attribuer ces différences au seul éloignement des urnes. L’accès physique est une contrainte parmi d’autres, mais c’est aussi l’une de celles sur lesquelles l’organisation du scrutin peut agir directement. Dans le débat encore ouvert sur le nombre de lieux à maintenir ou à rouvrir, l’enjeu n’est donc pas seulement administratif : il consiste à articuler implantation des sites, desserte en transport collectif et proximité pour les habitants les moins mobiles.
 
-```{=html}
-<section class="article-related">
-<div class="article-related-grid">
-  <a class="article-related-link" href="../participation-accessibilite-bureaux-noumea/">
-    <span class="article-related-kicker">Suite du débat</span>
-    <span class="article-related-title">Le débat est-il vraiment clos ?</span>
-    <span class="article-related-note">La participation municipale 2026 relue à partir des mêmes enjeux d'accessibilité.</span>
-  </a>
-  <a class="article-related-link" href="../capital-socio-economique-nouvelle-caledonie/">
-    <span class="article-related-kicker">Inégalités territoriales</span>
-    <span class="article-related-title">Capital socio-économique en Nouvelle-Calédonie</span>
-    <span class="article-related-note">Un indice territorial pour replacer la motorisation et l'accès aux ressources dans leur contexte social.</span>
-  </a>
-  <a class="article-related-link" href="../provinciales-2019-geographies-electorales/">
-    <span class="article-related-kicker">Géographie électorale</span>
-    <span class="article-related-title">Retour sur les provinciales 2019</span>
-    <span class="article-related-note">Une autre lecture des territoires électoraux, à l'échelle des communes et quartiers.</span>
-  </a>
-</div>
-</section>
-```
+## Sources et reproductibilité
 
-## Sources et données utilisées
+- [New Caledonia Population Grid 2020](https://pacificdata.org/data/dataset/ncl_population_grid_2020), SPC–SDD, grille retenue et recalée sur le RP 2025, licence CC BY 4.0.
+- [Population de référence de Nouméa en 2025](https://www.insee.fr/fr/statistiques/8658726), Insee–ISEE : 85 976 habitants en population municipale.
+- [BDROUTE-NC au format géodatabase](https://data.gouv.nc/explore/dataset/base-de-donnees-routieres-bdroute-nc-au-format-geodatabase/), Gouvernement de la Nouvelle-Calédonie / DITTT, mise à jour du 16 mars 2026.
+- [Bureaux de vote de Nouméa](https://data.gouv.nc/explore/dataset/bureauvote-gdb/), Ville de Nouméa : 57 points officiels, numérotés de 1 à 57.
+- [Réseau Tanéo au format GTFS](https://transport.data.gouv.fr/datasets/reseau-taneo-1?locale=fr), SMTU / Point d’accès national transport ; [offre exceptionnelle du 28 juin](https://www.lnc.nc/article/provinciales-les-bus-taneo-circuleront-exceptionnellement-le-dimanche-28-juin).
+- [Résultats des élections municipales 2026](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-municipales-2026) — ministère de l’Intérieur / Haut-commissariat.
+- [Bureaux et huit lieux de vote des municipales 2026](https://www.noumea.nc/noumea-dynamique/actu-agenda/second-tour-elections-municipales-22-mars-2026) — Ville de Nouméa, correspondance entre chaque bureau et son site de regroupement.
+- [Résultats des élections provinciales 2026 par bureau](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Resultats) — tableau Province Sud diffusé par le Haut-commissariat le 16 juillet 2026.
+- [Secteurs électoraux de Nouméa](https://data.gouv.nc/explore/dataset/secteurselectoraux-gdb/) — Ville de Nouméa, couche mise à jour en juin 2026.
+- [Périmètres des cinq secteurs des conseils de quartier](https://www.noumea.nc/sites/default/files/pages-2022/05/bat4-mairie-word-conseillers-quartier-a4.pdf) — Ville de Nouméa.
+- IRIS et motorisation — RGP 2019, ISEE.
 
-Les analyses présentées dans cette note reposent sur plusieurs jeux de données publics et institutionnels.
-
--   Résultats électoraux par bureau de vote — Ministère de l'intérieur
-
--   Base de données routière BDROUTE-NC — Direction des Infrastructures, de la Topographie et des Transports terrestres (DITTT).
-
--   Human Settlement Footprint / grille de population 2020 — Pacific Community (SPC).
-
-    https://pacificdata.org/data/dataset
-
--   Recensement Général de la Population 2019 — Institut de la statistique et des études économiques de Nouvelle-Calédonie (ISEE).
-
-    https://www.isee.nc/population/recensement-de-la-population
-
-### Données géographiques et traitements
-
--   Système de coordonnées : RGNC91-93 / Lambert New Caledonia (EPSG:3163).
-
--   Traitements spatiaux réalisés sous R et QGIS.
-
--   Calculs de réseau réalisés à partir d’une représentation graphe du réseau routier.
+::: {.callout-note title="Méthode et scripts R"}
+La chaîne de calcul, les dépendances, les fichiers produits et les deux scripts R sont réunis dans l’[espace de reproductibilité consacré à cette analyse](../../ressources/accessibilite-bureaux-vote-noumea.qmd). Cette page distingue les données sources, les hypothèses de modélisation et les fichiers directement réutilisables.
+:::

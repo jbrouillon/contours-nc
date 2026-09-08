@@ -3,6 +3,8 @@ title: "Provinciales 2026 : qui propose quoi ?"
 subtitle: "Priorités, propositions et lignes de partage entre les listes"
 author: "Jonas Brouillon"
 date: "2026-06-21"
+research-note: true
+note-number: "2026-04"
 lang: fr
 rubrique: "Politique et élections"
 categories:

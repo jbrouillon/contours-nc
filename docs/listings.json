@@ -1,5 +1,17 @@
 [
   {
+    "listing": "/notes/index.html",
+    "items": [
+      "/posts/regroupement-bureaux-vote-noumea/index.html",
+      "/posts/disparites-territoriales-nouvelle-caledonie/index.html",
+      "/posts/concentration-population-noumea-pacifique/index.html",
+      "/posts/provinciales-2026-congres-proportionnelle-nc/index.html",
+      "/posts/provinciales-2026-professions-foi/index.html",
+      "/posts/participation-accessibilite-bureaux-noumea/index.html",
+      "/posts/capital-socio-economique-nouvelle-caledonie/index.html"
+    ]
+  },
+  {
     "listing": "/newsletter/index.html",
     "items": [
       "/newsletter/apres-les-elections-demographie-territoires/index.html",
@@ -10,6 +22,7 @@
   {
     "listing": "/articles/index.html",
     "items": [
+      "/posts/regroupement-bureaux-vote-noumea/index.html",
       "/posts/pacific-climate-fingerprints/index.html",
       "/posts/disparites-territoriales-nouvelle-caledonie/index.html",
       "/posts/concentration-population-noumea-pacifique/index.html",
@@ -22,13 +35,13 @@
       "/posts/provinciales-2026-professions-foi/index.html",
       "/posts/provinciales-2026-qui-part-qui-reste/index.html",
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
-      "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
-      "/posts/regroupement-bureaux-vote-noumea/index.html"
+      "/posts/capital-socio-economique-nouvelle-caledonie/index.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/posts/regroupement-bureaux-vote-noumea/index.html",
       "/posts/pacific-climate-fingerprints/index.html",
       "/posts/disparites-territoriales-nouvelle-caledonie/index.html",
       "/posts/concentration-population-noumea-pacifique/index.html",
@@ -41,8 +54,7 @@
       "/posts/provinciales-2026-professions-foi/index.html",
       "/posts/provinciales-2026-qui-part-qui-reste/index.html",
       "/posts/participation-accessibilite-bureaux-noumea/index.html",
-      "/posts/capital-socio-economique-nouvelle-caledonie/index.html",
-      "/posts/regroupement-bureaux-vote-noumea/index.html"
+      "/posts/capital-socio-economique-nouvelle-caledonie/index.html"
     ]
   }
 ]

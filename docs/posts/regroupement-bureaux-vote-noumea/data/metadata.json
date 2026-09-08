@@ -1,0 +1,82 @@
+{
+  "version": "2.0",
+  "produced_at": "2026-09-07T12:35:17+1100",
+  "walking_speed_kmh": 5,
+  "population": {
+    "source": "SPC New_Caledonia_Population_Grid",
+    "source_year": 2020,
+    "release": "SPC-SDD 2021",
+    "resolution": "100 m",
+    "source_url": "https://pacificdata.org/data/dataset/f3abaff7-0d7d-48f2-bd3b-265d1b1e5732/resource/65791c86-0bc3-4de3-8cdf-6cd3518ca733/download/NCL_Pop_Grid_2020.tif",
+    "spc_noumea_before_calibration": 91207.5552187631,
+    "spc_network_covered_before_calibration": 91168.4805127153,
+    "excluded_cells_over_500m": 4,
+    "excluded_population_over_500m": 39.0747060478,
+    "official_noumea_rp2025": 85976,
+    "calibration_factor": 0.94304522261,
+    "official_source_url": "https://www.insee.fr/fr/statistiques/8658726"
+  },
+  "routes": {
+    "source": "Gouvernement de la Nouvelle-Calédonie / DITTT — BDROUTE-NC",
+    "data_version": "2026-03-16",
+    "source_url": "https://sig-public.gouv.nc/plateforme_telechargement/BDROUTENC.zip",
+    "segments_main_component": 12041,
+    "graph_nodes": 9844,
+    "graph_edges": 12041,
+    "topology_orientation_share": 1,
+    "topology_endpoint_error_p99_m": 0
+  },
+  "mobility": {
+    "car": {
+      "model": "meilleur temps entre la marche directe et un ordre de grandeur automobile porte-à-porte sur les voies carrossables de BDROUTE",
+      "selection_rule": "minimum cellule par cellule entre marche et voiture",
+      "route_types": ["VCU", "VCS", "B", "VR", "VS", "RP"],
+      "direction": "sens uniques de BDROUTE respectés",
+      "speed": "seg_vitesse_max plafonnée à 30 km/h pour représenter une progression urbaine",
+      "fixed_overhead_min": 5,
+      "fixed_overhead_definition": "accès au véhicule, mise en route, stationnement et marche finale ; la congestion exceptionnelle reste exclue"
+    },
+    "bus": {
+      "operator": "Tanéo / SMTU",
+      "source_url": "https://api.taneo.nc/v1/gtfs/download",
+      "reconstruction": "service du samedi postérieur au 22 juin, reconstitué avec le GTFS du 20260905",
+      "service_window": "06:00-18:00",
+      "sampled_departures": [8, 10, 12, 14, 16],
+      "selection_rule": "minimum cellule par cellule entre marche directe et trajet Tanéo complet ; la marche est conservée si aucun trajet Tanéo n'est calculable",
+      "access_walk_limit_m": 1600,
+      "egress_walk_limit_m": 2200,
+      "transfer_walk_limit_m": 140,
+      "walk_speed_kmh": 4.5
+    }
+  },
+  "destination_methods": {
+    "nearest": "temps minimal vers n'importe quel lieu ouvert dans la configuration",
+    "assigned": "temps vers le bureau ou le lieu attribué au secteur électoral de la cellule",
+    "municipal_assignments_url": "https://www.noumea.nc/noumea-dynamique/actu-agenda/second-tour-elections-municipales-22-mars-2026",
+    "provincial_assignments_url": "https://services6.arcgis.com/dIDU3ttIicDWLftk/arcgis/rest/services/SecteursElectoraux_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson&outSR=4326",
+    "cells_joined_within_sector": 3329,
+    "cells_joined_to_nearest_sector": 21,
+    "population_joined_to_nearest_sector": 107.6385262387,
+    "maximum_nearest_sector_distance_m": 97.5894646842
+  },
+  "sources": {
+    "bureaux_habituels": 57,
+    "bureaux_habituels_url": "https://services6.arcgis.com/dIDU3ttIicDWLftk/arcgis/rest/services/BureauVote_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson&outSR=4326&orderByFields=num_bv",
+    "bureaux_habituels_reference": "Ville de Nouméa — BureauVote_gdb",
+    "centres_8": 8,
+    "centres_9": 9,
+    "municipales_bureaux": 57,
+    "provinciales_bureaux": 57,
+    "provinciales_bureaux_url": "https://www.nouvelle-caledonie.gouv.fr/contenu/telechargement/13530/112411/file/PROVINCIALES_2026_PSUD_R%C3%A9sultats_BV.pdf",
+    "secteurs_electoraux": 57,
+    "secteurs_electoraux_url": "https://services6.arcgis.com/dIDU3ttIicDWLftk/arcgis/rest/services/SecteursElectoraux_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson&outSR=4326"
+  },
+  "snap_population": {
+    "n_cellules": 3350,
+    "population": 85976,
+    "snap_mediane_m": 16.2088920397,
+    "snap_p90_m": 49.3271273354,
+    "snap_p99_m": 118.9572006591,
+    "snap_max_m": 246.8352698653
+  }
+}

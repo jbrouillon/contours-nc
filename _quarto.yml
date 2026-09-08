@@ -7,6 +7,9 @@ project:
     - .nojekyll
     - CNAME
     - assets/**
+    - "posts/regroupement-bureaux-vote-noumea/v1/index.html"
+    - "posts/regroupement-bureaux-vote-noumea/v1/index_files/**"
+    - "posts/regroupement-bureaux-vote-noumea/v2/index.html"
   render:
     - "*.qmd"
     - "articles/*.qmd"
@@ -16,13 +19,14 @@ project:
     - "dossiers/*/index.qmd"
     - "newsletter/*.qmd"
     - "newsletter/*/index.qmd"
+    - "notes/*.qmd"
     - "presse/*.qmd"
     - "posts/*/index.qmd"
     - "ressources/*.qmd"
 
 website:
   title: "Contours"
-  description: "Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie"
+  description: "Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation"
   site-url: "https://contours.nc/"
   draft-mode: unlinked
   favicon: images/contours-hexagon-256.png
@@ -33,7 +37,11 @@ website:
     title: "Contours"
     left:
       - text: "Articles"
-        href: articles/index.qmd
+        menu:
+          - text: "Tous les articles"
+            href: articles/index.qmd
+          - text: "Notes de recherche"
+            href: notes/index.qmd
       - text: "Dossiers"
         href: dossiers/index.qmd
       - text: "Cartes et visualisations"
@@ -56,6 +64,7 @@ website:
 
 format:
   html:
+    canonical-url: true
     theme:
       light: cosmo
     css: styles.css
@@ -71,6 +80,8 @@ format:
       - includes/article-comments.html
       - includes/newsletter-signup.html
       - includes/listing-updates.html
+      - text: |
+          <script type="module" src="/assets/js/sketch-labels.js"></script>
       - text: |
           <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
             <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>

@@ -8,7 +8,7 @@
 <title>Contours</title>
 <link>https://contours.nc/</link>
 <atom:link href="https://contours.nc/index.xml" rel="self" type="application/rss+xml"/>
-<description>Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie</description>
+<description>Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation</description>
 <image>
 <url>https://contours.nc/images/contours-banner.png</url>
 <title>Contours</title>
@@ -17,7 +17,19 @@
 <width>144</width>
 </image>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Sun, 30 Aug 2026 13:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 06 Sep 2026 13:00:00 GMT</lastBuildDate>
+<item>
+  <title>[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</title>
+  <dc:creator>Jonas Brouillon</dc:creator>
+  <link>https://contours.nc/posts/regroupement-bureaux-vote-noumea/</link>
+  <description><![CDATA[ À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ? ]]></description>
+  <category>Bureaux de vote</category>
+  <category>Participation</category>
+  <category>Inégalités</category>
+  <guid>https://contours.nc/posts/regroupement-bureaux-vote-noumea/</guid>
+  <pubDate>Sun, 06 Sep 2026 13:00:00 GMT</pubDate>
+  <media:content url="https://contours.nc/images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png" medium="image" type="image/png" height="93" width="144"/>
+</item>
 <item>
   <title>Empreintes climatiques du Pacifique</title>
   <dc:creator>Jonas Brouillon</dc:creator>
@@ -169,18 +181,6 @@
   <guid>https://contours.nc/posts/capital-socio-economique-nouvelle-caledonie/</guid>
   <pubDate>Thu, 28 May 2026 13:00:00 GMT</pubDate>
   <media:content url="https://contours.nc/images/previews/capital-socio-economique-nc.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title>Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</title>
-  <dc:creator>Jonas Brouillon</dc:creator>
-  <link>https://contours.nc/posts/regroupement-bureaux-vote-noumea/</link>
-  <description><![CDATA[ Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres. ]]></description>
-  <category>Bureaux de vote</category>
-  <category>Participation</category>
-  <category>Inégalités</category>
-  <guid>https://contours.nc/posts/regroupement-bureaux-vote-noumea/</guid>
-  <pubDate>Sat, 23 May 2026 13:00:00 GMT</pubDate>
-  <media:content url="https://contours.nc/images/previews/regroupement-bureaux-vote-noumea.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>

@@ -3,6 +3,8 @@ title: "Et si on changeait les seuils des assemblées ?"
 subtitle: "Assemblées provinciales, Congrès actuel, Congrès sans clé provinciale et clé Bougival à partir des résultats 2026"
 author: "Jonas Brouillon"
 date: "2026-07-11"
+research-note: true
+note-number: "2026-05"
 lang: fr
 rubrique: "Méthodes"
 categories:

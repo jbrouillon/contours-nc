@@ -3,6 +3,8 @@ title: "Cartographier le capital socio-économique en Nouvelle-Calédonie"
 subtitle: "Une lecture exploratoire des contrastes territoriaux à partir du RGP 2019"
 author: "Jonas Brouillon"
 date: "2026-05-29"
+research-note: true
+note-number: "2026-02"
 rubrique: "Cartographie et données"
 categories:
   - Inégalités

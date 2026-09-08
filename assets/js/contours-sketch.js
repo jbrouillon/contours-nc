@@ -31,8 +31,8 @@ export async function renderContoursBanner(target = "#contours-banner", options 
   const defaultSubtitleLines = sectionTitle
     ? [{ x: 850, y: 294, text: sectionTitle, fontSize: 54, anchor: "middle" }]
     : [
-        { x: 575, y: 255, text: "Blog de recherche en sciences sociales", fontSize: 34 },
-        { x: 680, y: 305, text: "en Nouvelle-Calédonie", fontSize: 34 }
+        { x: 850, y: 255, text: "Carnet de recherche", fontSize: 34, anchor: "middle" },
+        { x: 850, y: 305, text: "Nouvelle-Calédonie & Pacifique", fontSize: 34, anchor: "middle" }
       ]
   const subtitleLines = (options.subtitleLines ?? defaultSubtitleLines).map((line) => {
     if (Array.isArray(line)) {

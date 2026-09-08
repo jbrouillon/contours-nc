@@ -3,6 +3,8 @@ title: "Pourquoi la population se concentre autour de Nouméa ?"
 subtitle: "Grand Nouméa, migrations, emplois et villes principales du Pacifique"
 author: "Jonas Brouillon"
 date: "2026-07-18"
+research-note: true
+note-number: "2026-06"
 rubrique: "Territoires et société"
 categories:
   - Nouméa

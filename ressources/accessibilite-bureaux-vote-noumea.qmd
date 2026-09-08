@@ -1,0 +1,61 @@
+---
+title: "Accessibilité aux lieux de vote à Nouméa"
+subtitle: "Méthode, scripts R et données réutilisables"
+description: "Documentation reproductible des calculs de temps de trajet vers les lieux de vote à Nouméa."
+page-layout: article
+toc: true
+toc-depth: 2
+resources:
+  - "../posts/regroupement-bureaux-vote-noumea/analysis_v2.R"
+  - "../posts/regroupement-bureaux-vote-noumea/analysis_mobility.R"
+  - "../posts/regroupement-bureaux-vote-noumea/data/**"
+---
+
+Cette page accompagne l’article [Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?](../posts/regroupement-bureaux-vote-noumea/). Elle rassemble au même endroit les scripts, les hypothèses de calcul et les fichiers légers utilisés par les cartes interactives.
+
+## Scripts R
+
+- [Analyse principale : marche, réseau routier, scénarios et exports](../posts/regroupement-bureaux-vote-noumea/analysis_v2.R)
+- [Module complémentaire : voiture et réseau Tanéo](../posts/regroupement-bureaux-vote-noumea/analysis_mobility.R)
+
+Le point d’entrée est `analysis_v2.R`. Il appelle automatiquement le module de mobilité ; les deux fichiers s’exécutent directement dans un environnement R.
+
+Les principales dépendances sont `dplyr`, `igraph`, `jsonlite`, `sf`, `stringr`, `terra`, `tibble` et `data.table`.
+
+## Ce que calcule la chaîne
+
+1. La grille de population SPC est découpée sur Nouméa et recalée sur la population municipale de référence de 2025.
+2. Chaque cellule habitée est raccordée à BDROUTE-NC et à l’un des 57 secteurs électoraux. Deux temps de marche sont calculés : vers le lieu ouvert le plus proche, puis vers le bureau ou le centre effectivement attribué au secteur.
+3. Les destinations attribuées aux municipales proviennent de la liste publiée par la Ville ; celles des provinciales utilisent le champ `site` de la couche des secteurs électoraux mise à jour en juin 2026.
+4. Le module complémentaire calcule un ordre de grandeur porte-à-porte en voiture et reconstitue les trajets Tanéo à partir du GTFS. Pour chaque cellule, il compare ensuite ces résultats à la marche directe et conserve l’option la plus rapide. Ces deux modes utilisent le lieu le plus proche.
+5. Des contrôles vérifient les 57 identifiants de bureaux, l’exhaustivité des affectations, la connectivité du réseau et la couverture de la population avant l’export.
+
+Les cartes lissent les valeurs dans un rayon de 500 mètres pour rendre les tendances lisibles. Les info-bulles conservent la valeur non lissée de la cellule de 100 mètres.
+
+## Fichiers directement réutilisables
+
+- [Temps de trajet par cellule habitée — CSV](../posts/regroupement-bureaux-vote-noumea/data/accessibilite_cellules.csv)
+- [Comparaison des indicateurs selon la méthode de destination — CSV](../posts/regroupement-bureaux-vote-noumea/data/destination_method_stats.csv)
+- [Statistiques par mode et scénario — CSV](../posts/regroupement-bureaux-vote-noumea/data/mobility_stats.csv)
+- [Bureaux habituels et lieux regroupés — GeoJSON](../posts/regroupement-bureaux-vote-noumea/data/points_vote.geojson)
+- [Arrêts Tanéo actifs dans l’offre reconstituée — GeoJSON](../posts/regroupement-bureaux-vote-noumea/data/bus_stops.geojson)
+- [IRIS et indicateurs de motorisation — GeoJSON](../posts/regroupement-bureaux-vote-noumea/data/iris_context.geojson)
+- [Secteurs électoraux et abstention — GeoJSON](../posts/regroupement-bureaux-vote-noumea/data/vote_context_secteurs.geojson)
+- [Audit du rattachement des cellules aux secteurs — CSV](../posts/regroupement-bureaux-vote-noumea/data/audit_affectation_secteurs.csv)
+- [Audit des destinations attribuées — CSV](../posts/regroupement-bureaux-vote-noumea/data/audit_destinations_attribuees.csv)
+
+## Sources et conventions
+
+La chaîne utilise la grille de population SPC 2020, la population municipale 2025 Insee–ISEE, BDROUTE-NC, le référentiel des bureaux et secteurs électoraux de la Ville de Nouméa, les résultats officiels de 2026 et le GTFS Tanéo.
+
+Les paramètres structurants sont documentés dans les scripts : marche à 5 km/h ; voiture plafonnée à 30 km/h en mouvement avec un forfait porte-à-porte de 5 minutes ; bus calculé pour cinq heures de départ, avec marche d’accès, attente, correspondances et marche finale. Les colonnes `assigned_*` du fichier par cellule conservent les temps vers la destination sectorielle, tandis que les colonnes historiques sans préfixe correspondent au lieu le plus proche. Les cartes « avec une voiture » et « à pied ou en bus » retiennent le minimum entre la marche directe et l’alternative motorisée, afin de ne pas imposer un détour aux habitants déjà proches du lieu de vote. Les colonnes `car_motorized_*` et `bus_transit_*` conservent aussi les résultats motorisés seuls pour l’audit.
+
+Sur les 3 350 cellules analysées, 3 329 tombent directement dans un secteur. Les 21 autres, soit environ 0,1 % de la population pondérée, sont rattachées au secteur voisin ; la distance maximale au polygone est inférieure à 98 mètres.
+
+::: {.callout-note}
+Ces résultats mesurent une accessibilité potentielle. Ils ne reconstituent ni les déplacements individuels, ni la congestion et le stationnement du jour du vote, ni une archive exacte du service Tanéo du 28 juin.
+:::
+
+## Réutilisation
+
+Les fichiers traités ou compilés par <span class="contours-word">contours.nc</span> sont proposés sous licence [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr), sauf mention contraire. Les données sources restent soumises à leurs licences respectives et doivent être citées séparément.

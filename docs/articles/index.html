@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -45,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -108,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -139,17 +136,18 @@ window.Quarto = {
 
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="articles – Contours">
-<meta property="og:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
+<meta property="og:description" content="Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation">
 <meta property="og:image" content="https://contours.nc/images/contours-banner.png">
 <meta property="og:site_name" content="Contours">
 <meta property="og:image:height" content="1040">
 <meta property="og:image:width" content="2800">
 <meta name="twitter:title" content="articles – Contours">
-<meta name="twitter:description" content="Sciences sociales, cartographie et visualisation en Nouvelle-Calédonie">
+<meta name="twitter:description" content="Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation">
 <meta name="twitter:image" content="https://contours.nc/images/contours-banner.png">
 <meta name="twitter:image-height" content="1040">
 <meta name="twitter:image-width" content="2800">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://contours.nc/articles/">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -173,10 +171,21 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="../articles/index.html" aria-current="page"> 
-<span class="menu-text">Articles</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-articles" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Articles</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">    
+        <li>
+    <a class="dropdown-item" href="../articles/index.html">
+ <span class="dropdown-text">Tous les articles</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../notes/index.html">
+ <span class="dropdown-text">Notes de recherche</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../dossiers/index.html"> 
 <span class="menu-text">Dossiers</span></a>
@@ -220,7 +229,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Catégories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Toutes <span class="quarto-category-count">(14)</span></div><div class="category" data-category="QW5hbHlzZSUyMCVDMyVBOWxlY3RvcmFsZQ==">Analyse électorale <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QW5hbHlzZSUyMHRleHR1ZWxsZQ==">Analyse textuelle <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QnVyZWF1eCUyMGRlJTIwdm90ZQ==">Bureaux de vote <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2FuZGlkYXR1cmVz">Candidatures <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2FydG9ncmFwaGll">Cartographie <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q2hhbmdlbWVudCUyMGNsaW1hdGlxdWU=">Changement climatique <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YXZpc3VhbGlzYXRpb24=">Datavisualisation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCVDMyVBOW1vZ3JhcGhpZQ==">Démographie <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTg5bHVz">Élus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW4lQzMlQTlnYWxpdCVDMyVBOXM=">Inégalités <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SW5zdGl0dXRpb25z">Institutions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TSVDMyVBOXRob2Rlcw==">Méthodes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm91bSVDMyVBOWE=">Nouméa <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Tm91dmVsbGUtQ2FsJUMzJUE5ZG9uaWU=">Nouvelle-Calédonie <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFjaWZpcXVl">Pacifique <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFydGljaXBhdGlvbg==">Participation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UHJvZ3JhbW1lcw==">Programmes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdmluY2lhbGVzJTIwMjAxOQ==">Provinciales 2019 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdmluY2lhbGVzJTIwMjAyNg==">Provinciales 2026 <span class="quarto-category-count">(7)</span></div><div class="category" data-category="UmVjZW5zZW1lbnQ=">Recensement <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVub3V2ZWxsZW1lbnQ=">Renouvellement <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2ltdWxhdGlvbg==">Simulation <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Catégories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">Tous <span class="quarto-category-count">(14)</span></div><div class="category" data-category="QW5hbHlzZSUyMCVDMyVBOWxlY3RvcmFsZQ==">Analyse électorale <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QW5hbHlzZSUyMHRleHR1ZWxsZQ==">Analyse textuelle <span class="quarto-category-count">(1)</span></div><div class="category" data-category="QnVyZWF1eCUyMGRlJTIwdm90ZQ==">Bureaux de vote <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2FuZGlkYXR1cmVz">Candidatures <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2FydG9ncmFwaGll">Cartographie <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Q2hhbmdlbWVudCUyMGNsaW1hdGlxdWU=">Changement climatique <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YXZpc3VhbGlzYXRpb24=">Datavisualisation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RCVDMyVBOW1vZ3JhcGhpZQ==">Démographie <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTg5bHVz">Élus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW4lQzMlQTlnYWxpdCVDMyVBOXM=">Inégalités <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SW5zdGl0dXRpb25z">Institutions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="TSVDMyVBOXRob2Rlcw==">Méthodes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Tm91bSVDMyVBOWE=">Nouméa <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Tm91dmVsbGUtQ2FsJUMzJUE5ZG9uaWU=">Nouvelle-Calédonie <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFjaWZpcXVl">Pacifique <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGFydGljaXBhdGlvbg==">Participation <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UHJvZ3JhbW1lcw==">Programmes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdmluY2lhbGVzJTIwMjAxOQ==">Provinciales 2019 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJvdmluY2lhbGVzJTIwMjAyNg==">Provinciales 2026 <span class="quarto-category-count">(7)</span></div><div class="category" data-category="UmVjZW5zZW1lbnQ=">Recensement <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UmVub3V2ZWxsZW1lbnQ=">Renouvellement <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U2ltdWxhdGlvbg==">Simulation <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -287,7 +296,44 @@ window.Quarto = {
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Q2hhbmdlbWVudCUyMGNsaW1hdGlxdWUlMkNQYWNpZmlxdWUlMkNEYXRhdmlzdWFsaXNhdGlvbg==" data-listing-date-sort="1788094800000" data-listing-file-modified-sort="1788560125972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="295">
+<div class="quarto-post image-right" data-index="0" data-categories="QnVyZWF1eCUyMGRlJTIwdm90ZSUyQ1BhcnRpY2lwYXRpb24lMkNJbiVDMyVBOWdhbGl0JUMzJUE5cw==" data-listing-date-sort="1788699600000" data-listing-file-modified-sort="1788745805330" data-listing-date-modified-sort="1788699600000" data-listing-reading-time-sort="31" data-listing-word-count-sort="6012">
+<div class="thumbnail"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
+
+<img loading="lazy" src="../images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png" class="thumbnail-image" alt="Deux cartes comparant les temps de trajet vers les lieux de vote à Nouméa">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">Quand les bureaux sont réunis dans neuf lieux, qui s’éloigne des urnes ?</a>
+</div>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('QnVyZWF1eCUyMGRlJTIwdm90ZQ=='); return false;">Bureaux de vote</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGFydGljaXBhdGlvbg=='); return false;">Participation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SW4lQzMlQTlnYWxpdCVDMyVBOXM='); return false;">Inégalités</div>
+
+</div>
+<div class="delink listing-description"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
+<p>À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?</p>
+</a></div>
+</div>
+<div class="metadata">
+<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
+<div class="listing-date">
+7 sept. 2026
+</div>
+<div class="listing-author">
+Jonas Brouillon
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Q2hhbmdlbWVudCUyMGNsaW1hdGlxdWUlMkNQYWNpZmlxdWUlMkNEYXRhdmlzdWFsaXNhdGlvbg==" data-listing-date-sort="1788094800000" data-listing-file-modified-sort="1788560125972" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="295">
 <div class="thumbnail"><a href="../posts/pacific-climate-fingerprints/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/pacific-climate-fingerprints.png" class="thumbnail-image" alt="Capture de la dataviz Empreintes climatiques du Pacifique, avec son titre et les premières étapes du récit interactif">
@@ -324,7 +370,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Tm91dmVsbGUtQ2FsJUMzJUE5ZG9uaWUlMkNDYXJ0b2dyYXBoaWUlMkNJbiVDMyVBOWdhbGl0JUMzJUE5cyUyQ1JlY2Vuc2VtZW50" data-listing-date-sort="1786798800000" data-listing-file-modified-sort="1788050081771" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2274">
+<div class="quarto-post image-right" data-index="2" data-categories="Tm91dmVsbGUtQ2FsJUMzJUE5ZG9uaWUlMkNDYXJ0b2dyYXBoaWUlMkNJbiVDMyVBOWdhbGl0JUMzJUE5cyUyQ1JlY2Vuc2VtZW50" data-listing-date-sort="1786798800000" data-listing-file-modified-sort="1788666526989" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2274">
 <div class="thumbnail"><a href="../posts/disparites-territoriales-nouvelle-caledonie/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/carte-segregations-quartiers-contours-nc.png" class="thumbnail-image" alt="Deux cartes crayonnées comparant des indicateurs entre les quartiers du Grand Nouméa">
@@ -363,7 +409,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Tm91bSVDMyVBOWElMkNEJUMzJUE5bW9ncmFwaGllJTJDQ2FydG9ncmFwaGll" data-listing-date-sort="1784293200000" data-listing-file-modified-sort="1788050081771" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="76" data-listing-word-count-sort="15017">
+<div class="quarto-post image-right" data-index="3" data-categories="Tm91bSVDMyVBOWElMkNEJUMzJUE5bW9ncmFwaGllJTJDQ2FydG9ncmFwaGll" data-listing-date-sort="1784293200000" data-listing-file-modified-sort="1788666513017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="76" data-listing-word-count-sort="15017">
 <div class="thumbnail"><a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/chart-concentration-contours-nc.png" class="thumbnail-image" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
@@ -400,7 +446,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0luc3RpdHV0aW9ucw==" data-listing-date-sort="1783774800000" data-listing-file-modified-sort="1788050081779" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="89" data-listing-word-count-sort="17603">
+<div class="quarto-post image-right" data-index="4" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0luc3RpdHV0aW9ucw==" data-listing-date-sort="1783774800000" data-listing-file-modified-sort="1788050081779" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="89" data-listing-word-count-sort="17603">
 <div class="thumbnail"><a href="../posts/gouverner-ensemble-jusque-quand/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/gouverner-ensemble-facebook.png" class="thumbnail-image" alt="Graphique des principales coalitions de gouvernance en Nouvelle-Calédonie">
@@ -435,7 +481,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1NpbXVsYXRpb24lMkNNJUMzJUE5dGhvZGVz" data-listing-date-sort="1783688400000" data-listing-file-modified-sort="1788050081780" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="46" data-listing-word-count-sort="9112">
+<div class="quarto-post image-right" data-index="5" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1NpbXVsYXRpb24lMkNNJUMzJUE5dGhvZGVz" data-listing-date-sort="1783688400000" data-listing-file-modified-sort="1788666499099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="46" data-listing-word-count-sort="9112">
 <div class="thumbnail"><a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/provinciales-2026-congres-proportionnelle-nc.png" class="thumbnail-image" alt="Simulation des 40 sièges de l&amp;#039;assemblée de la Province Sud selon plusieurs seuils et méthodes de répartition">
@@ -472,7 +518,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0FuYWx5c2UlMjAlQzMlQTlsZWN0b3JhbGUlMkNQYXJ0aWNpcGF0aW9u" data-listing-date-sort="1782910800000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="1782910800000" data-listing-reading-time-sort="62" data-listing-word-count-sort="12245">
+<div class="quarto-post image-right" data-index="6" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0FuYWx5c2UlMjAlQzMlQTlsZWN0b3JhbGUlMkNQYXJ0aWNpcGF0aW9u" data-listing-date-sort="1782910800000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="1782910800000" data-listing-reading-time-sort="62" data-listing-word-count-sort="12245">
 <div class="thumbnail"><a href="../posts/provinciales-2026-premier-bilan/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/chart-voix-nuances-congres-contours-nc.png" class="thumbnail-image" alt="Voix au Congrès par nuances politiques depuis 1989">
@@ -509,7 +555,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQyVDMyU4OWx1cyUyQ1Jlbm91dmVsbGVtZW50" data-listing-date-sort="1782910800000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4659">
+<div class="quarto-post image-right" data-index="7" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQyVDMyU4OWx1cyUyQ1Jlbm91dmVsbGVtZW50" data-listing-date-sort="1782910800000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4659">
 <div class="thumbnail"><a href="../posts/provinciales-2026-renouvellement-elus/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/provinciales-2026-renouvellement-elus.png" class="thumbnail-image" alt="Graphique de l&amp;#039;origine des élus provinciaux 2026 par liste">
@@ -546,7 +592,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0FuYWx5c2UlMjAlQzMlQTlsZWN0b3JhbGU=" data-listing-date-sort="1782738000000" data-listing-file-modified-sort="1788050081797" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6366">
+<div class="quarto-post image-right" data-index="8" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0FuYWx5c2UlMjAlQzMlQTlsZWN0b3JhbGU=" data-listing-date-sort="1782738000000" data-listing-file-modified-sort="1788050081797" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6366">
 <div class="thumbnail"><a href="../posts/provinciales-2026-troisieme-voie/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/provinciales-2026-troisieme-voie-positionnement.webp" class="thumbnail-image" alt="Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale">
@@ -581,7 +627,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="UHJvdmluY2lhbGVzJTIwMjAxOSUyQ0NhcnRvZ3JhcGhpZQ==" data-listing-date-sort="1781960400000" data-listing-file-modified-sort="1788050081780" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4635">
+<div class="quarto-post image-right" data-index="9" data-categories="UHJvdmluY2lhbGVzJTIwMjAxOSUyQ0NhcnRvZ3JhcGhpZQ==" data-listing-date-sort="1781960400000" data-listing-file-modified-sort="1788050081780" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4635">
 <div class="thumbnail"><a href="../posts/provinciales-2019-geographies-electorales/index.html" class="no-external">
 
 <img loading="lazy" src="../data/cartes/provinciales_2019_focus/province/province_nord_parti_en_tete_lisse_opacite_marge_moderee.webp" class="thumbnail-image" alt="Carte des listes arrivées en tête dans la Province Nord aux provinciales 2019">
@@ -616,7 +662,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1Byb2dyYW1tZXMlMkNBbmFseXNlJTIwdGV4dHVlbGxl" data-listing-date-sort="1781960400000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3460">
+<div class="quarto-post image-right" data-index="10" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1Byb2dyYW1tZXMlMkNBbmFseXNlJTIwdGV4dHVlbGxl" data-listing-date-sort="1781960400000" data-listing-file-modified-sort="1788666485150" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3460">
 <div class="thumbnail"><a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/provinciales-2026-professions-foi.webp" class="thumbnail-image" alt="Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026">
@@ -653,7 +699,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0NhbmRpZGF0dXJlcw==" data-listing-date-sort="1781442000000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6338">
+<div class="quarto-post image-right" data-index="11" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0NhbmRpZGF0dXJlcw==" data-listing-date-sort="1781442000000" data-listing-file-modified-sort="1788050081789" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6338">
 <div class="thumbnail"><a href="../posts/provinciales-2026-qui-part-qui-reste/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/provinciales-2026-flux-sud.jpg" class="thumbnail-image" alt="Graphique de flux des recompositions de candidatures dans la Province Sud entre les provinciales 2019 et 2026">
@@ -688,7 +734,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Tm91bSVDMyVBOWElMkNQYXJ0aWNpcGF0aW9uJTJDSW4lQzMlQTlnYWxpdCVDMyVBOXM=" data-listing-date-sort="1780750800000" data-listing-file-modified-sort="1788050081780" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6850">
+<div class="quarto-post image-right" data-index="12" data-categories="Tm91bSVDMyVBOWElMkNQYXJ0aWNpcGF0aW9uJTJDSW4lQzMlQTlnYWxpdCVDMyVBOXM=" data-listing-date-sort="1780750800000" data-listing-file-modified-sort="1788666471208" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6850">
 <div class="thumbnail"><a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/ecart-participation-noumea-2020-2026.jpg" class="thumbnail-image" alt="Carte des écarts de participation entre les municipales 2020 et 2026 à Nouméa">
@@ -725,7 +771,7 @@ Jonas Brouillon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="SW4lQzMlQTlnYWxpdCVDMyVBOXMlMkNDYXJ0b2dyYXBoaWU=" data-listing-date-sort="1779973200000" data-listing-file-modified-sort="1788050081768" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="39" data-listing-word-count-sort="7736">
+<div class="quarto-post image-right" data-index="13" data-categories="SW4lQzMlQTlnYWxpdCVDMyVBOXMlMkNDYXJ0b2dyYXBoaWU=" data-listing-date-sort="1779973200000" data-listing-file-modified-sort="1788666457317" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="39" data-listing-word-count-sort="7736">
 <div class="thumbnail"><a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">
 
 <img loading="lazy" src="../images/previews/capital-socio-economique-nc.jpg" class="thumbnail-image" alt="Carte lissée du capital socio-économique en Nouvelle-Calédonie">
@@ -753,43 +799,6 @@ Jonas Brouillon
 <a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">
 <div class="listing-date">
 29 mai 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="13" data-categories="QnVyZWF1eCUyMGRlJTIwdm90ZSUyQ1BhcnRpY2lwYXRpb24lMkNJbiVDMyVBOWdhbGl0JUMzJUE5cw==" data-listing-date-sort="1779541200000" data-listing-file-modified-sort="1788050081799" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5400">
-<div class="thumbnail"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/regroupement-bureaux-vote-noumea.jpg" class="thumbnail-image" alt="Carte des temps de trajet à pied vers le bureau de vote le plus proche à Nouméa">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">Méthode d’estimation, effets du regroupement des centres et lien avec les ménages sans véhicule</a>
-</div>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('QnVyZWF1eCUyMGRlJTIwdm90ZQ=='); return false;">Bureaux de vote</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGFydGljaXBhdGlvbg=='); return false;">Participation</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW4lQzMlQTlnYWxpdCVDMyVBOXM='); return false;">Inégalités</div>
-
-</div>
-<div class="delink listing-description"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
-<p>Une estimation cartographique des temps d’accès piéton aux bureaux de vote à Nouméa, avant et après regroupement des centres.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
-<div class="listing-date">
-24 mai 2026
 </div>
 <div class="listing-author">
 Jonas Brouillon
@@ -2484,6 +2493,7 @@ Jonas Brouillon
 </div>
   </div>
 </footer>
+<script type="module" src="../assets/js/sketch-labels.js"></script>
 <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
   <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
   <figure class="image-lightbox__figure figure">

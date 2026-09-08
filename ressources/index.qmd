@@ -19,7 +19,7 @@ page-layout: full
 ```{=html}
 <section class="resource-intro">
   <p class="resource-lede">Données, méthodes et ressources réutilisables.</p>
-  <p>Cette page rassemble les ressources effectivement publiables de <span class="contours-word">contours.nc</span> : tables agrégées, fonds géographiques, données compilées et explications méthodologiques. Les scripts de production ne sont pas mis à disposition ici.</p>
+  <p>Cette page rassemble les ressources effectivement publiables de <span class="contours-word">contours.nc</span> : tables agrégées, fonds géographiques, données compilées, explications méthodologiques et scripts R documentés.</p>
 </section>
 ```
 
@@ -93,11 +93,12 @@ Les données traitées ou compilées par <span class="contours-word">contours.nc
   </article>
 
   <article class="resource-card">
-    <span class="resource-card__meta">Article méthode</span>
-    <h3>Accessibilité aux bureaux de vote</h3>
-    <p>Explication de l'estimation des temps de trajet à pied, des sources géographiques et des limites d'interprétation.</p>
+    <span class="resource-card__meta">Méthode · scripts R · données</span>
+    <h3>Accessibilité aux lieux de vote à Nouméa</h3>
+    <p>Chaîne reproductible des temps de trajet à pied, en voiture et en bus : sources, hypothèses, contrôles et fichiers produits.</p>
     <div class="resource-card__links">
-      <a class="resource-card__link" href="../posts/regroupement-bureaux-vote-noumea/">Lire</a>
+      <a class="resource-card__link" href="accessibilite-bureaux-vote-noumea.html">Méthode et scripts</a>
+      <a class="resource-card__link" href="../posts/regroupement-bureaux-vote-noumea/">Article</a>
     </div>
   </article>
 </section>

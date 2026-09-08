@@ -45,6 +45,15 @@ Les prochaines interventions pourront être classées ici par format : télévis
 ```{=html}
 <section class="presse-list" aria-label="Reprises et citations">
   <article class="presse-item">
+    <div class="presse-item__meta">Presse · Les Nouvelles calédoniennes · 4 septembre 2026</div>
+    <div class="presse-item__body">
+      <h3>Nouméa : vers un retour à 37 lieux de vote ?</h3>
+      <p>Suite juridictionnelle du débat sur le regroupement : le rapporteur public propose l’annulation de l’arrêté ayant retenu neuf lieux pour les provinciales.</p>
+    </div>
+    <a class="presse-item__link" href="https://www.lnc.nc/article/noumea-vers-un-retour-a-37-lieux-de-vote">Lire</a>
+  </article>
+
+  <article class="presse-item">
     <div class="presse-item__meta">Presse régionale · Islands Business · 18 juin 2026</div>
     <div class="presse-item__body">
       <h3>Walking to the polling booth in Noumea</h3>

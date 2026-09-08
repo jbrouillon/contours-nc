@@ -35,13 +35,12 @@ listing:
   });
 </script>
 
-[contours.nc]{.contours-word} est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
+[contours.nc]{.contours-word} est un carnet de recherche et de datavisualisation consacré à la Nouvelle-Calédonie et au Pacifique : cartes, données publiques, sciences sociales, méthodes reproductibles et analyses spatiales.
 
 Ce blog est créé et alimenté par [Jonas Brouillon]{.contours-word}, démographe calédonien et ingénieur d'études en sciences sociales.
 
 ```{=html}
 <section class="home-positioning">
-  <p class="home-lede">Comprendre la Nouvelle-Calédonie par les données.</p>
   <p>Cartes, statistiques et sciences sociales pour éclairer les dynamiques politiques, territoriales et sociales du pays.</p>
 </section>
 ```

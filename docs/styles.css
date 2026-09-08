@@ -2516,6 +2516,96 @@ main.content:has(.contours-section-sketch) > #title-block-header {
   line-height: 1.15;
 }
 
+/* Libellés éditoriaux : même vocabulaire crayonné que le marqueur de version. */
+:is(
+  .listing-update-banner,
+  .quarto-category,
+  .listing-category,
+  .quarto-title-meta-heading,
+  .home-kicker,
+  .dossier-kicker,
+  .resource-kicker,
+  .gallery-kicker,
+  .home-feature__eyebrow,
+  .dossier-card__phase,
+  .viz-gallery-card__meta,
+  .resource-card__meta,
+  .dossier-tag,
+  .viz-gallery-tag,
+  .resource-tag,
+  .article-related-kicker,
+  .destination-method-kicker,
+  .vote-brief-kicker,
+  .vote-brief-step
+) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #315d49 !important;
+}
+
+.contours-sketch-label {
+  align-items: center;
+  display: inline-flex !important;
+  font-family: "Cabin Sketch", system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  isolation: isolate;
+  line-height: 1.08 !important;
+  max-width: 100%;
+  padding: 0.34rem 0.58rem 0.3rem !important;
+  position: relative;
+  width: fit-content;
+}
+
+.contours-sketch-label__content {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: inherit;
+  max-width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.contours-sketch-label__sketch {
+  height: calc(100% + 10px);
+  inset: -5px;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  transform: rotate(var(--sketch-label-rotation, -0.25deg));
+  width: calc(100% + 10px);
+}
+
+.listing-update-banner.contours-sketch-label {
+  margin-bottom: 0.62rem;
+}
+
+.quarto-categories,
+.listing-categories,
+.dossier-card__meta,
+.viz-gallery-card__tags,
+.resource-card__links {
+  gap: 0.55rem !important;
+  row-gap: 0.62rem !important;
+}
+
+.quarto-title-meta-heading.contours-sketch-label {
+  font-size: 0.74rem !important;
+  margin-bottom: 0.45rem;
+}
+
+.article-related-kicker.contours-sketch-label {
+  margin-bottom: 0.55rem;
+}
+
+.vote-brief-kicker.contours-sketch-label,
+.vote-brief-step.contours-sketch-label {
+  letter-spacing: 0.035em;
+  margin-bottom: 0.52rem;
+}
+
 .dossier-card__link,
 .viz-gallery-card__link,
 .resource-card__link,
@@ -2670,4 +2760,24 @@ main.content:has(.contours-section-sketch) > #title-block-header {
   .presse-contact {
     background: color-mix(in srgb, var(--surface) 88%, var(--ink));
   }
+}
+/* Article regroupement des bureaux de vote — carte V2 */
+.access-map-v2 {
+  position: relative;
+  min-height: 520px;
+}
+
+.access-map-error {
+  margin: 1rem;
+  color: #6d665d;
+  font-size: 0.92rem;
+}
+
+.access-map-tooltip {
+  z-index: 20;
+  max-width: 240px;
+}
+
+.access-map-v2 .access-cell {
+  cursor: crosshair;
 }
