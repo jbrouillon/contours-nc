@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "produced_at": "2026-09-07T12:35:17+1100",
+  "produced_at": "2026-09-09T14:14:25+1100",
   "walking_speed_kmh": 5,
   "population": {
     "source": "SPC New_Caledonia_Population_Grid",
@@ -34,15 +34,18 @@
       "direction": "sens uniques de BDROUTE respectés",
       "speed": "seg_vitesse_max plafonnée à 30 km/h pour représenter une progression urbaine",
       "fixed_overhead_min": 5,
+      "sensitivity_fixed_overhead_min": 10,
       "fixed_overhead_definition": "accès au véhicule, mise en route, stationnement et marche finale ; la congestion exceptionnelle reste exclue"
     },
     "bus": {
       "operator": "Tanéo / SMTU",
       "source_url": "https://api.taneo.nc/v1/gtfs/download",
-      "reconstruction": "service du samedi postérieur au 22 juin, reconstitué avec le GTFS du 20260905",
+      "reconstruction": "service du samedi postérieur au 22 juin, reconstitué avec le GTFS du 20260912",
       "service_window": "06:00-18:00",
       "sampled_departures": [8, 10, 12, 14, 16],
-      "selection_rule": "minimum cellule par cellule entre marche directe et trajet Tanéo complet ; la marche est conservée si aucun trajet Tanéo n'est calculable",
+      "selection_rule": "à chaque horaire, minimum cellule par cellule entre marche directe et trajet Tanéo complet ; médiane des cinq valeurs comme indicateur principal",
+      "favorable_rule": "minimum des cinq valeurs comme horaire le plus favorable",
+      "unavailable_rule": "marche directe si aucun trajet Tanéo n'est calculable à l'horaire",
       "access_walk_limit_m": 1600,
       "egress_walk_limit_m": 2200,
       "transfer_walk_limit_m": 140,
@@ -50,8 +53,10 @@
     }
   },
   "destination_methods": {
-    "nearest": "temps minimal vers n'importe quel lieu ouvert dans la configuration",
+    "nearest": "temps minimal vers n'importe quel bureau de vote ouvert dans la configuration",
     "assigned": "temps vers le bureau ou le lieu attribué au secteur électoral de la cellule",
+    "modes": ["walk", "car", "bus"],
+    "comparison_rule": "pour chaque mode, assigned et nearest utilisent la même destination pour la marche directe et l'alternative motorisée",
     "municipal_assignments_url": "https://www.noumea.nc/noumea-dynamique/actu-agenda/second-tour-elections-municipales-22-mars-2026",
     "provincial_assignments_url": "https://services6.arcgis.com/dIDU3ttIicDWLftk/arcgis/rest/services/SecteursElectoraux_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson&outSR=4326",
     "cells_joined_within_sector": 3329,
@@ -59,8 +64,14 @@
     "population_joined_to_nearest_sector": 107.6385262387,
     "maximum_nearest_sector_distance_m": 97.5894646842
   },
+  "sensitivity": {
+    "walk_speed_kmh": [5, 4],
+    "car_door_to_door_overhead_min": [5, 10],
+    "bus_departure_summary": ["median", "minimum"]
+  },
   "sources": {
     "bureaux_habituels": 57,
+    "lieux_habituels": 37,
     "bureaux_habituels_url": "https://services6.arcgis.com/dIDU3ttIicDWLftk/arcgis/rest/services/BureauVote_gdb/FeatureServer/0/query?where=1%3D1&outFields=*&returnGeometry=true&f=geojson&outSR=4326&orderByFields=num_bv",
     "bureaux_habituels_reference": "Ville de Nouméa — BureauVote_gdb",
     "centres_8": 8,

@@ -1,0 +1,37 @@
+"mode","method","scenario","variant","variant_label","is_main","moyenne","augmentation_moyenne","part_pop_plus_30","part_pop_hausse_plus_5"
+"bus","assigned","bureaux_complets","bus_best","Tanéo · meilleur des 5 départs",FALSE,13.5282822101259,0,5.58638637172462,0
+"bus","assigned","centres_8","bus_best","Tanéo · meilleur des 5 départs",FALSE,21.7353142343027,8.20703202417676,20.1591310476076,54.6606775421014
+"bus","assigned","centres_9","bus_best","Tanéo · meilleur des 5 départs",FALSE,19.3233322077843,5.79504999765831,13.2659388836978,47.485786893623
+"bus","assigned","bureaux_complets","bus_median","Tanéo · médiane des 5 départs",TRUE,13.7694861512516,0,6.32422680680467,0
+"bus","assigned","centres_8","bus_median","Tanéo · médiane des 5 départs",TRUE,22.5674925162109,8.79800636495935,23.1838092480642,57.6269394740124
+"bus","assigned","centres_9","bus_median","Tanéo · médiane des 5 départs",TRUE,20.0448533726482,6.27536722139665,16.603483599851,49.3858137861198
+"bus","nearest","bureaux_complets","bus_best","Tanéo · meilleur des 5 départs",FALSE,11.119106283041,0,2.6996215237499,0
+"bus","nearest","centres_8","bus_best","Tanéo · meilleur des 5 départs",FALSE,19.4958433210238,8.37673703798286,13.3173310114159,55.7269130868578
+"bus","nearest","centres_9","bus_best","Tanéo · meilleur des 5 départs",FALSE,16.8598981901698,5.74079190712887,6.29801901277963,46.916248933799
+"bus","nearest","bureaux_complets","bus_median","Tanéo · médiane des 5 départs",TRUE,11.3631321661208,0,3.30613137092602,0
+"bus","nearest","centres_8","bus_median","Tanéo · médiane des 5 départs",TRUE,20.3281192489467,8.96498708282595,15.9118301843789,57.5630831172496
+"bus","nearest","centres_9","bus_median","Tanéo · médiane des 5 départs",TRUE,17.6003622308346,6.23723006471387,8.63215005250023,48.1980240592406
+"car","assigned","bureaux_complets","car_10","Voiture · forfait 10 min",FALSE,10.5375700871941,0,0,0
+"car","assigned","centres_8","car_10","Voiture · forfait 10 min",FALSE,13.7355458842095,3.19797579701532,0,29.4798546677507
+"car","assigned","centres_9","car_10","Voiture · forfait 10 min",FALSE,12.9920908360499,2.45452074885579,0,22.857849203515
+"car","assigned","bureaux_complets","car_5","Voiture · forfait 5 min",TRUE,7.23470594398051,0,0,0
+"car","assigned","centres_8","car_5","Voiture · forfait 5 min",TRUE,9.24330737138788,2.00860142740738,0,12.0393614523041
+"car","assigned","centres_9","car_5","Voiture · forfait 5 min",TRUE,8.69832682134588,1.46362087736538,0,6.72610771280286
+"car","nearest","bureaux_complets","car_10","Voiture · forfait 10 min",FALSE,9.36699736985141,0,0,0
+"car","nearest","centres_8","car_10","Voiture · forfait 10 min",FALSE,13.3054467687275,3.93844939887611,0,38.1249108774961
+"car","nearest","centres_9","car_10","Voiture · forfait 10 min",FALSE,12.5467952312599,3.17979786140851,0,31.3885090611691
+"car","nearest","bureaux_complets","car_5","Voiture · forfait 5 min",TRUE,6.65076664981266,0,0,0
+"car","nearest","centres_8","car_5","Voiture · forfait 5 min",TRUE,8.85579934572314,2.20503269591048,0,14.2501898535837
+"car","nearest","centres_9","car_5","Voiture · forfait 5 min",TRUE,8.29436788141666,1.643601231604,0,8.65610117565862
+"walk","assigned","bureaux_complets","walk_4","Marche à 4 km/h",FALSE,18.1736561690793,0,12.2748479528492,0
+"walk","assigned","centres_8","walk_4","Marche à 4 km/h",FALSE,30.9782696078551,12.8046134387758,44.7230311631288,66.1414291041808
+"walk","assigned","centres_9","walk_4","Marche à 4 km/h",FALSE,27.2046285183116,9.03097234923233,35.3950666807454,56.6097060043406
+"walk","assigned","bureaux_complets","walk_5","Marche à 5 km/h",TRUE,14.5389249352634,0,7.70810345922737,0
+"walk","assigned","centres_8","walk_5","Marche à 5 km/h",TRUE,24.782615686284,10.2436907510206,28.5284088199438,63.4209213234574
+"walk","assigned","centres_9","walk_5","Marche à 5 km/h",TRUE,21.7637028146493,7.22477787938586,21.0280945876501,53.2270980316188
+"walk","nearest","bureaux_complets","walk_4","Marche à 4 km/h",FALSE,15.0540623561005,0,7.92579325713139,0
+"walk","nearest","centres_8","walk_4","Marche à 4 km/h",FALSE,28.4315073714648,13.3774450153643,35.1614506462678,69.2368605683164
+"walk","nearest","centres_9","walk_4","Marche à 4 km/h",FALSE,24.5691249571722,9.51506260107172,25.7257088451946,60.0155619379397
+"walk","nearest","bureaux_complets","walk_5","Marche à 5 km/h",TRUE,12.0432498848804,0,3.86190088856009,0
+"walk","nearest","centres_8","walk_5","Marche à 5 km/h",TRUE,22.7452058971719,10.7019560122914,19.6627759780783,67.1319239270127
+"walk","nearest","centres_9","walk_5","Marche à 5 km/h",TRUE,19.6552999657378,7.61205008085737,12.0789953887049,57.247905957952

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,9 +10,6 @@
 
 <title>Accessibilité aux lieux de vote à Nouméa – Contours</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -37,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <link href="../images/contours-hexagon-256.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -217,9 +215,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="ce-que-calcule-la-chaîne">Ce que calcule la chaîne</h2>
 <ol type="1">
 <li>La grille de population SPC est découpée sur Nouméa et recalée sur la population municipale de référence de 2025.</li>
-<li>Chaque cellule habitée est raccordée à BDROUTE-NC et à l’un des 57 secteurs électoraux. Deux temps de marche sont calculés : vers le lieu ouvert le plus proche, puis vers le bureau ou le centre effectivement attribué au secteur.</li>
+<li>Chaque cellule habitée est raccordée à BDROUTE-NC et à l’un des 57 secteurs électoraux. Deux destinations sont calculées pour chaque mode : <code>assigned</code>, le bureau ou le lieu effectivement attribué au secteur, et <code>nearest</code>, le bureau de vote ouvert le plus proche. <code>Assigned</code> constitue l’indicateur principal ; <code>nearest</code> est un scénario favorable théorique.</li>
 <li>Les destinations attribuées aux municipales proviennent de la liste publiée par la Ville ; celles des provinciales utilisent le champ <code>site</code> de la couche des secteurs électoraux mise à jour en juin 2026.</li>
-<li>Le module complémentaire calcule un ordre de grandeur porte-à-porte en voiture et reconstitue les trajets Tanéo à partir du GTFS. Pour chaque cellule, il compare ensuite ces résultats à la marche directe et conserve l’option la plus rapide. Ces deux modes utilisent le lieu le plus proche.</li>
+<li>Le module complémentaire calcule un ordre de grandeur porte-à-porte en voiture et reconstitue les trajets Tanéo à partir du GTFS. La marche et l’alternative motorisée visent toujours la même destination, qu’elle soit <code>assigned</code> ou <code>nearest</code>.</li>
+<li>Pour Tanéo, cinq départs sont testés à 8 h, 10 h, 12 h, 14 h et 16 h. À chaque horaire, la valeur est le minimum entre la marche directe et le trajet Tanéo complet ; si Tanéo est indisponible, la marche est conservée. Le minimum, la médiane et le maximum des cinq valeurs sont exportés. La médiane est l’indicateur principal et le minimum représente l’horaire le plus favorable.</li>
+<li>Le test de sensibilité compare une marche à 5 et 4 km/h, un forfait voiture de 5 et 10 minutes, puis la médiane et le meilleur des cinq départs Tanéo.</li>
 <li>Des contrôles vérifient les 57 identifiants de bureaux, l’exhaustivité des affectations, la connectivité du réseau et la couverture de la population avant l’export.</li>
 </ol>
 <p>Les cartes lissent les valeurs dans un rayon de 500 mètres pour rendre les tendances lisibles. Les info-bulles conservent la valeur non lissée de la cellule de 100 mètres.</p>
@@ -230,6 +230,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/accessibilite_cellules.csv">Temps de trajet par cellule habitée — CSV</a></li>
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/destination_method_stats.csv">Comparaison des indicateurs selon la méthode de destination — CSV</a></li>
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/mobility_stats.csv">Statistiques par mode et scénario — CSV</a></li>
+<li><a href="../posts/regroupement-bureaux-vote-noumea/data/sensitivity_stats.csv">Tests de sensibilité — CSV</a></li>
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/points_vote.geojson">Bureaux habituels et lieux regroupés — GeoJSON</a></li>
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/bus_stops.geojson">Arrêts Tanéo actifs dans l’offre reconstituée — GeoJSON</a></li>
 <li><a href="../posts/regroupement-bureaux-vote-noumea/data/iris_context.geojson">IRIS et indicateurs de motorisation — GeoJSON</a></li>
@@ -241,7 +242,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="sources-et-conventions" class="level2">
 <h2 class="anchored" data-anchor-id="sources-et-conventions">Sources et conventions</h2>
 <p>La chaîne utilise la grille de population SPC 2020, la population municipale 2025 Insee–ISEE, BDROUTE-NC, le référentiel des bureaux et secteurs électoraux de la Ville de Nouméa, les résultats officiels de 2026 et le GTFS Tanéo.</p>
-<p>Les paramètres structurants sont documentés dans les scripts : marche à 5 km/h ; voiture plafonnée à 30 km/h en mouvement avec un forfait porte-à-porte de 5 minutes ; bus calculé pour cinq heures de départ, avec marche d’accès, attente, correspondances et marche finale. Les colonnes <code>assigned_*</code> du fichier par cellule conservent les temps vers la destination sectorielle, tandis que les colonnes historiques sans préfixe correspondent au lieu le plus proche. Les cartes « avec une voiture » et « à pied ou en bus » retiennent le minimum entre la marche directe et l’alternative motorisée, afin de ne pas imposer un détour aux habitants déjà proches du lieu de vote. Les colonnes <code>car_motorized_*</code> et <code>bus_transit_*</code> conservent aussi les résultats motorisés seuls pour l’audit.</p>
+<p>Les paramètres structurants sont documentés dans les scripts : marche à 5 km/h ; voiture plafonnée à 30 km/h en mouvement avec un forfait porte-à-porte de 5 minutes ; Tanéo calculé pour cinq heures de départ, avec marche d’accès, attente, correspondances et marche finale. Les variantes de sensibilité utilisent respectivement 4 km/h, 10 minutes et le meilleur des cinq départs.</p>
+<p>Dans le fichier par cellule, les champs principaux suivent la convention <code>&lt;mode&gt;_&lt;destination&gt;_&lt;scenario&gt;</code> pour la voiture et Tanéo ; la marche conserve les champs historiques sans préfixe pour <code>nearest</code> et <code>assigned_*</code> pour la destination sectorielle. Les cinq champs horaires Tanéo se terminent par <code>_h08</code>, <code>_h10</code>, <code>_h12</code>, <code>_h14</code> et <code>_h16</code> ; les résumés portent les suffixes <code>_min</code>, <code>_median</code> et <code>_max</code>. Les colonnes <code>car_motorized_*</code> et <code>bus_transit_*</code> conservent l’alternative motorisée seule pour l’audit. Les anciens champs voiture et bus sans méthode sont maintenus comme alias documentés de <code>nearest</code>, afin de ne pas casser les réutilisations antérieures.</p>
 <p>Sur les 3 350 cellules analysées, 3 329 tombent directement dans un secteur. Les 21 autres, soit environ 0,1 % de la population pondérée, sont rattachées au secteur voisin ; la distance maximale au polygone est inférieure à 98 mètres.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -253,7 +255,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ces résultats mesurent une accessibilité potentielle. Ils ne reconstituent ni les déplacements individuels, ni la congestion et le stationnement du jour du vote, ni une archive exacte du service Tanéo du 28 juin.</p>
+<p>Ces résultats mesurent une accessibilité potentielle. Ils ne reconstituent ni les déplacements individuels, ni la congestion et le stationnement du jour du vote. La branche Tanéo utilise une offre GTFS reconstruite à partir d’un samedi disponible après la réorganisation du 22 juin : ce n’est ni une archive exacte du 28 juin, ni le service réellement observé ce jour-là.</p>
 </div>
 </div>
 </section>

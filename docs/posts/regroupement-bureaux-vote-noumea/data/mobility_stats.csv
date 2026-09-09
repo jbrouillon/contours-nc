@@ -1,16 +1,19 @@
-"mode","scenario","variable","population_couverte","part_population_couverte","moyenne","mediane","p90","part_pop_plus_15","part_pop_plus_30"
-"walk","bureaux_complets","bureaux_complets",85976,100,12.0432498848804,9.56340193225006,20.6774689743108,21.252782273662,3.86190088856009
-"walk","centres_8","centres_8",85976,100,22.7452058971719,19.6479859887719,44.7206516181986,69.9485360158784,19.6627759780783
-"walk","centres_9","centres_9",85976,100,19.6552999657378,17.1295911676566,32.4657675012313,60.8982850111097,12.0789953887049
-"car","bureaux_complets","car_bureaux_complets",85976,100,6.65076664981266,6.61841000130867,8.28701905446631,1.8567163727272,0
-"car","centres_8","car_centres_8",85976,100,8.85579934572314,8.40011228420158,12.7144937696786,2.45429007334028,0
-"car","centres_9","car_centres_9",85976,100,8.29436788141666,7.95945521643232,10.8810461555004,2.06036413779424,0
-"car_only","bureaux_complets","car_motorized_bureaux_complets",85831.273164382,99.8316660049106,7.0113139236615,6.6395294443137,8.28701905446631,1.77683215678787,0
-"car_only","centres_8","car_motorized_centres_8",85831.273164382,99.8316660049106,8.92087531689554,8.3978646949704,12.6955525387524,2.41071332250771,0
-"car_only","centres_9","car_motorized_centres_9",85831.273164382,99.8316660049106,8.38608187616993,7.964217137395,10.8328173584296,2.0161231575728,0
-"bus","bureaux_complets","bus_bureaux_complets",85976,100,11.3631321661208,9.42691130396573,17.8683045541872,16.648986085895,3.30613137092602
-"bus","centres_8","bus_centres_8",85976,100,20.3281192489467,15.9305788644798,39.2429742854627,63.967384570583,15.9118301843789
-"bus","centres_9","bus_centres_9",85976,100,17.6003622308346,15.1677505616844,27.9186788133929,54.9171335658142,8.63215005250023
-"bus_only","bureaux_complets","bus_transit_bureaux_complets",85482.5278501769,99.4260349983448,21.5246424812045,16.1181114404858,37.857692612232,70.4545235573694,22.3134786304224
-"bus_only","centres_8","bus_transit_centres_8",85482.5278501769,99.4260349983448,28.5360537291624,22.5079374181308,57.9360211708927,89.5552587477772,31.9657719459233
-"bus_only","centres_9","bus_transit_centres_9",85482.5278501769,99.4260349983448,25.3577020375499,22.228817913346,39.6115328650942,89.454382821114,27.3598149007024
+"mode","method","method_label","scenario","variable","indicator","population_couverte","part_population_couverte","moyenne","mediane","p90","part_pop_plus_15","part_pop_plus_30"
+"walk","nearest","Bureau de vote le plus proche","bureaux_complets","bureaux_complets","marche à 5 km/h",85976,100,12.0432498848804,9.56340193225006,20.6774689743108,21.252782273662,3.86190088856009
+"walk","nearest","Bureau de vote le plus proche","centres_8","centres_8","marche à 5 km/h",85976,100,22.7452058971719,19.6479859887719,44.7206516181986,69.9485360158784,19.6627759780783
+"walk","nearest","Bureau de vote le plus proche","centres_9","centres_9","marche à 5 km/h",85976,100,19.6552999657378,17.1295911676566,32.4657675012313,60.8982850111097,12.0789953887049
+"walk","assigned","Bureau attribué","bureaux_complets","assigned_bureaux_complets","marche à 5 km/h",85976,100,14.5389249352634,11.8765493826551,26.8044118179946,33.1789650051452,7.70810345922737
+"walk","assigned","Bureau attribué","centres_8","assigned_centres_8","marche à 5 km/h",85976,100,24.782615686284,22.2388556301116,45.6438935257701,73.9584853796472,28.5284088199438
+"walk","assigned","Bureau attribué","centres_9","assigned_centres_9","marche à 5 km/h",85976,100,21.7637028146493,19.0315493857705,38.5232559144954,64.9469726174682,21.0280945876501
+"car","nearest","Bureau de vote le plus proche","bureaux_complets","car_nearest_bureaux_complets","minimum marche ou voiture, forfait 5 min",85976,100,6.65076664981266,6.61841000130867,8.28701905446631,1.8567163727272,0
+"car","nearest","Bureau de vote le plus proche","centres_8","car_nearest_centres_8","minimum marche ou voiture, forfait 5 min",85976,100,8.85579934572314,8.40011228420158,12.7144937696786,2.45429007334028,0
+"car","nearest","Bureau de vote le plus proche","centres_9","car_nearest_centres_9","minimum marche ou voiture, forfait 5 min",85976,100,8.29436788141666,7.95945521643232,10.8810461555004,2.06036413779424,0
+"car","assigned","Bureau attribué","bureaux_complets","car_assigned_bureaux_complets","minimum marche ou voiture, forfait 5 min",85976,100,7.23470594398051,7.01670321687152,9.18886312073272,1.86460736905879,0
+"car","assigned","Bureau attribué","centres_8","car_assigned_centres_8","minimum marche ou voiture, forfait 5 min",85976,100,9.24330737138788,8.91720070063311,12.9717077198782,2.58057546638197,0
+"car","assigned","Bureau attribué","centres_9","car_assigned_centres_9","minimum marche ou voiture, forfait 5 min",85976,100,8.69832682134588,8.28752620934908,11.8154280820096,2.18664953083593,0
+"bus","nearest","Bureau de vote le plus proche","bureaux_complets","bus_nearest_bureaux_complets","médiane des cinq valeurs marche ou Tanéo",85976,100,11.3631321661208,9.42691130396573,17.8683045541872,16.648986085895,3.30613137092602
+"bus","nearest","Bureau de vote le plus proche","centres_8","bus_nearest_centres_8","médiane des cinq valeurs marche ou Tanéo",85976,100,20.3281192489467,15.9305788644798,39.2429742854627,63.967384570583,15.9118301843789
+"bus","nearest","Bureau de vote le plus proche","centres_9","bus_nearest_centres_9","médiane des cinq valeurs marche ou Tanéo",85976,100,17.6003622308346,15.1677505616844,27.9186788133929,54.9171335658142,8.63215005250023
+"bus","assigned","Bureau attribué","bureaux_complets","bus_assigned_bureaux_complets","médiane des cinq valeurs marche ou Tanéo",85976,100,13.7694861512516,11.471459451995,23.3575196561325,29.0669879497049,6.32422680680467
+"bus","assigned","Bureau attribué","centres_8","bus_assigned_centres_8","médiane des cinq valeurs marche ou Tanéo",85976,100,22.5674925162109,19.2747787463436,39.4981226081866,70.64301209231,23.1838092480642
+"bus","assigned","Bureau attribué","centres_9","bus_assigned_centres_9","médiane des cinq valeurs marche ou Tanéo",85976,100,20.0448533726482,17.5792678878437,35.6806286621042,61.6314993301309,16.603483599851

@@ -315,9 +315,9 @@
     const chart = base(root, 500, 900);
     const { svg, rc, width } = chart;
     const fields = [
-      { key: "bureaux_complets", label: "Bureaux habituels", color: green },
-      { key: "centres_8", label: "8 centres", color: orange },
-      { key: "centres_9", label: "9 centres", color: red }
+      { key: "bureaux_complets", label: "37 lieux habituels", color: green },
+      { key: "centres_8", label: "8 lieux", color: orange },
+      { key: "centres_9", label: "9 lieux", color: red }
     ];
     label(svg, "La distribution entière se décale", 24, 30, {
       family: "Cabin Sketch, sans-serif", size: 25, weight: 700
@@ -442,7 +442,7 @@
     label(svg, "Ménages sans véhicule", (margin.left + width - margin.right) / 2, 592, {
       anchor: "middle", size: 12, weight: 800, color: muted
     });
-    const yTitle = label(svg, "Hausse moyenne avec 9 centres", 20, (margin.top + 620 - margin.bottom) / 2, {
+    const yTitle = label(svg, "Hausse moyenne avec 9 lieux", 20, (margin.top + 620 - margin.bottom) / 2, {
       anchor: "middle", size: 12, weight: 800, color: muted
     });
     yTitle.attr("transform", `rotate(-90,20,${(margin.top + 620 - margin.bottom) / 2})`);
@@ -483,7 +483,7 @@
       {
         key: "municipal",
         title: "Municipales 2026",
-        subtitle: "8 centres · premier tour",
+        subtitle: "8 lieux · premier tour",
         field: "abstention_municipales",
         enrolled: "inscrits_municipales",
         thresholds: [40, 45, 50, 55, 60],
@@ -492,7 +492,7 @@
       {
         key: "provincial",
         title: "Provinciales 2026",
-        subtitle: "9 centres · scrutin du 28 juin",
+        subtitle: "9 lieux · scrutin du 28 juin",
         field: "abstention_provinciales",
         enrolled: "inscrits_provinciales",
         thresholds: [20, 25, 30, 35, 40],
@@ -879,13 +879,13 @@
   function drawAbstentionDots(root, rows) {
     const modes = {
       municipal: {
-        title: "Municipales 2026", subtitle: "8 centres regroupés",
+        title: "Municipales 2026", subtitle: "8 lieux regroupés",
         field: "abstention_municipales", enrolled: "inscrits_municipales",
         voters: "votants_municipales", abstentions: "abstentions_municipales",
         name: "bureau_nom_resultats_municipales", color: orange
       },
       provincial: {
-        title: "Provinciales 2026", subtitle: "9 centres regroupés",
+        title: "Provinciales 2026", subtitle: "9 lieux regroupés",
         field: "abstention_provinciales", enrolled: "inscrits_provinciales",
         voters: "votants_provinciales", abstentions: "abstentions_provinciales",
         name: "bureau_nom_provinciales", color: blue
@@ -1195,7 +1195,7 @@
         size: 10.8, weight: 760, color: muted
       }).call(wrap, nodeWidth - 22, 1);
     });
-    label(svg, "Hypothèse commune : marche à 5 km/h vers le lieu le plus proche.", width - 25, 254, {
+    label(svg, "Hypothèse commune : marche à 5 km/h vers le bureau de vote le plus proche.", width - 25, 254, {
       anchor: "end", size: 11, weight: 760, color: muted
     });
   }

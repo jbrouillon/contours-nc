@@ -34,13 +34,13 @@
       note: "Échelle commune aux trois modes · plus court entre marche directe et voiture porte-à-porte"
     },
     bus: {
-      label: "À pied ou en bus",
-      buttonLabel: "Pied ou bus",
+      label: "À pied ou avec Tanéo",
+      buttonLabel: "Pied ou Tanéo",
       prefix: "bus_",
       thresholds: [10, 15, 20, 30, 45, 60],
       legend: ["< 10", "10–15", "15–20", "20–30", "30–45", "45–60", "≥ 60"],
       legendTitle: "MEILLEUR TEMPS, MARCHE DIRECTE OU TANÉO · MINUTES",
-      note: "Échelle commune aux trois modes · plus court entre marche directe et Tanéo"
+      note: "médiane de cinq départs · à chaque horaire, plus court entre marche directe et Tanéo"
     }
   };
   const scenarioDefinitions = {
@@ -241,10 +241,8 @@
   }
 
   function fieldFor(mode, scenario, destinationMethod = "nearest") {
-    if (mode === "walk" && destinationMethod === "assigned") {
-      return `assigned_${scenario}`;
-    }
-    return `${modeDefinitions[mode].prefix}${scenario}`;
+    if (mode === "walk") return destinationMethod === "assigned" ? `assigned_${scenario}` : scenario;
+    return `${mode}_${destinationMethod}_${scenario}`;
   }
 
   function draw([cells, boundary, routes, points, stats, metadata, iris, busStops, methodStats]) {
@@ -293,7 +291,7 @@
     assignmentSelect.className = "habitat-map-select";
     assignmentSelect.setAttribute("aria-label", "Méthode d’affectation du lieu de vote");
     [
-      ["nearest", "Lieu le plus proche"],
+      ["nearest", "Bureau de vote le plus proche"],
       ["assigned", "Bureau attribué au secteur"]
     ].forEach(([value, text]) => {
       const option = document.createElement("option");
@@ -641,12 +639,11 @@
     }
 
     function statFor(mode, scenario) {
-      if (mode === "walk") {
-        return methodStats.find((row) => (
-          row.method === activeDestinationMethod && row.scenario === scenario
-        ));
-      }
-      return stats.find((row) => row.mode === mode && row.scenario === scenario);
+      return stats.find((row) => (
+        row.mode === mode &&
+        row.method === activeDestinationMethod &&
+        row.scenario === scenario
+      ));
     }
 
     function showTooltip(event, datum) {
@@ -664,16 +661,16 @@
         ? `<div class="access-tip-stop"><span>Arrêt actif le plus proche</span><b>${datum.bus_arret_proche}</b> · ${format1.format(datum.bus_marche_arret_min)} min à pied</div>`
         : "";
       const assignedGroupedId = datum[`assigned_${activeScenario}_id`];
-      const assignedDetails = activeMode === "walk" && activeDestinationMethod === "assigned"
+      const assignedDetails = activeDestinationMethod === "assigned"
         ? `<div class="access-tip-stop"><span>Secteur attribué</span><b>${String(datum.code_bv_affectation).padStart(4, "0")} · ${datum.secteur_affectation}</b><br><span>Lieu regroupé</span><b>${sourceLabels[assignedGroupedId] || assignedGroupedId}</b></div>`
         : "";
       const fastestMode = (scenarioKey) => {
         if (activeMode === "walk") return "";
-        const walkingValue = datum[scenarioKey];
+        const walkingValue = datum[fieldFor("walk", scenarioKey, activeDestinationMethod)];
         const walking = walkingValue == null ? NaN : Number(walkingValue);
         const alternativeField = activeMode === "car"
-          ? `car_motorized_${scenarioKey}`
-          : `bus_transit_${scenarioKey}`;
+          ? `car_motorized_${activeDestinationMethod}_${scenarioKey}`
+          : `bus_transit_${activeDestinationMethod}_${scenarioKey}_median`;
         const alternativeValue = datum[alternativeField];
         const alternative = alternativeValue == null ? NaN : Number(alternativeValue);
         if (!Number.isFinite(alternative) || walking <= alternative) return " · marche directe";
@@ -684,7 +681,7 @@
         irisName,
         `<strong>${format0.format(datum.pop)} habitants estimés</strong>`,
         `<div class="access-tip-comparison">`,
-        `<span><i class="access-tip-dot access-tip-dot--reference"></i>57 bureaux <b>${Number.isFinite(leftValue) ? `${format1.format(leftValue)} min${fastestMode("bureaux_complets")}` : "non calculé"}</b></span>`,
+        `<span><i class="access-tip-dot access-tip-dot--reference"></i>37 lieux · 57 bureaux <b>${Number.isFinite(leftValue) ? `${format1.format(leftValue)} min${fastestMode("bureaux_complets")}` : "non calculé"}</b></span>`,
         `<span><i class="access-tip-dot access-tip-dot--grouped"></i>${scenario.short.toLowerCase()} <b>${Number.isFinite(rightValue) ? `${format1.format(rightValue)} min${fastestMode(activeScenario)}` : "non calculé"}</b></span>`,
         `</div>`,
         Number.isFinite(difference)
@@ -692,7 +689,7 @@
           : "",
         assignedDetails,
         busStop,
-        `<div class="habitat-tooltip-note">${modeDefinitions[activeMode].label} · ${activeMode === "walk" && activeDestinationMethod === "assigned" ? "bureau attribué" : "lieu le plus proche"} · valeur modélisée</div>`
+        `<div class="habitat-tooltip-note">${modeDefinitions[activeMode].label} · ${activeDestinationMethod === "assigned" ? "bureau attribué" : "bureau de vote le plus proche"}${activeMode === "bus" ? " · médiane de cinq départs" : ""} · valeur modélisée</div>`
       ].join("");
       positionTooltip(tooltip, event);
     }
@@ -767,11 +764,9 @@
       const rightField = fieldFor(activeMode, activeScenario, activeDestinationMethod);
       title.text(`Atteindre un lieu de vote ${definition.label.toLowerCase()} : deux Nouméa côte à côte`);
       subtitle.text(
-        activeMode === "walk" && activeDestinationMethod === "assigned"
-          ? "Destination imposée par le secteur électoral · marche à 5 km/h · 20 min = 40 min aller-retour"
-          : definition.note
+        `${activeDestinationMethod === "assigned" ? "Destination attribuée au secteur" : "Bureau de vote le plus proche · scénario favorable"} · ${definition.note}`
       );
-      assignmentLabel.hidden = activeMode !== "walk";
+      assignmentLabel.hidden = false;
       const panelSettings = [
         { field: leftField, scenario: "bureaux_complets", kicker: "MAILLAGE HABITUEL · 57 BUREAUX", source: "bureaux_complets" },
         { field: rightField, scenario: activeScenario, kicker: `REGROUPEMENT · ${scenario.short}`, source: scenario.sourceGroup }

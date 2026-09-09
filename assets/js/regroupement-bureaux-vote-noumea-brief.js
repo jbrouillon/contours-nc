@@ -335,7 +335,7 @@
   }
 
   function drawMeshFallback(svg, rc) {
-    addLabel(svg, "57 bureaux", 105, 24, { anchor: "middle", size: 14, weight: 850 });
+    addLabel(svg, "37 lieux · 57 bureaux", 105, 24, { anchor: "middle", size: 12.5, weight: 850 });
     addLabel(svg, "9 lieux", 315, 24, { anchor: "middle", size: 14, weight: 850 });
     addRough(svg, rc.rectangle(27, 39, 156, 175, {
       ...baseOptions("#efe7d8", 850), fillStyle: "solid", strokeWidth: 1.2
@@ -413,7 +413,7 @@
   function drawMiniSourceMap(svg, rc, boundary, points) {
     const selection = d3.select(svg);
     const panels = [
-      { key: "bureaux_complets", label: "57 bureaux administratifs", extent: [[12, 35], [202, 207]], color: colors.red },
+      { key: "bureaux_complets", label: "37 lieux · 57 bureaux", extent: [[12, 35], [202, 207]], color: colors.red },
       { key: "centres_9", label: "9 lieux regroupés", extent: [[218, 35], [408, 207]], color: colors.green }
     ];
     panels.forEach((panel, panelIndex) => {
@@ -850,10 +850,10 @@
       const rc = window.rough.svg(svg);
       const type = svg.dataset.voteBriefSketch;
       if (type === "mesh") drawMeshFallback(svg, rc);
-      if (type === "pair9") drawTime(svg, rc, "57 bureaux", "14,5 min", "9 lieux", "21,8 min");
-      if (type === "pair8") drawTime(svg, rc, "8 lieux", "24,8 min", "9 lieux", "21,8 min");
-      if (type === "carpair") drawTime(svg, rc, "57 bureaux", "6,7 min", "9 lieux", "8,3 min");
-      if (type === "buspair") drawTime(svg, rc, "57 bureaux", "11,4 min", "9 lieux", "17,6 min");
+      if (type === "pair9") drawTime(svg, rc, "37 lieux", "données", "9 lieux", "recalculées");
+      if (type === "pair8") drawTime(svg, rc, "8 lieux", "données", "9 lieux", "recalculées");
+      if (type === "carpair") drawTime(svg, rc, "37 lieux", "données", "9 lieux", "recalculées");
+      if (type === "buspair") drawTime(svg, rc, "37 lieux", "données", "9 lieux", "recalculées");
       if (type === "time9") drawDistance(svg, rc);
       if (type === "gain9") drawGainFallback(svg, rc);
       if (type === "vehicle") drawVehicle(svg, rc);
@@ -888,7 +888,7 @@
           legend: "temps aller à pied · minutes",
           legendLabels: ["< 10", "10–15", "15–20", "20–30", "30–45", "45–60", "60+"],
           panels: [
-            { field: "assigned_bureaux_complets", source: "bureaux_complets", label: "57 bureaux" },
+            { field: "assigned_bureaux_complets", source: "bureaux_complets", label: "37 lieux · 57 bureaux" },
             { field: "assigned_centres_9", source: "centres_9", label: "9 lieux" }
           ]
         });
@@ -909,19 +909,19 @@
           legend: "meilleur temps : marche ou voiture · minutes",
           legendLabels: ["< 10", "10–15", "15–20", "20–30", "30–45", "45–60", "60+"],
           panels: [
-            { field: "car_bureaux_complets", source: "bureaux_complets", label: "57 bureaux" },
-            { field: "car_centres_9", source: "centres_9", label: "9 lieux" }
+            { field: "car_assigned_bureaux_complets", source: "bureaux_complets", label: "37 lieux · 57 bureaux" },
+            { field: "car_assigned_centres_9", source: "centres_9", label: "9 lieux" }
           ]
         });
         if (type === "buspair") drawMiniPairMap(svg, rc, cells, boundary, points, {
           type,
           showBusStops: true,
           thresholds: [10, 15, 20, 30, 45, 60],
-          legend: "meilleur temps : marche directe ou Tanéo · minutes",
+          legend: "médiane : marche directe ou Tanéo · minutes",
           legendLabels: ["< 10", "10–15", "15–20", "20–30", "30–45", "45–60", "60+"],
           panels: [
-            { field: "bus_bureaux_complets", source: "bureaux_complets", label: "57 bureaux" },
-            { field: "bus_centres_9", source: "centres_9", label: "9 lieux" }
+            { field: "bus_assigned_bureaux_complets", source: "bureaux_complets", label: "37 lieux · 57 bureaux" },
+            { field: "bus_assigned_centres_9", source: "centres_9", label: "9 lieux" }
           ]
         }, busStops);
         if (type === "vehicle") drawMiniAreaMap(svg, rc, boundary, iris, "percent_menages_sans_vehicules", "vehicles");

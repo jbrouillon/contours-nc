@@ -186,9 +186,130 @@ compute_car_scenario <- function(source_points, scenario_id) {
   result
 }
 
-car_motorized_full <- compute_car_scenario(bureaux_sf, "bureaux_complets")
-car_motorized_8 <- compute_car_scenario(centres_8_sf, "centres_8")
-car_motorized_9 <- compute_car_scenario(centres_9_sf, "centres_9")
+compute_car_assigned_scenario <- function(
+  source_points,
+  assignment_ids,
+  scenario_id
+) {
+  if (length(assignment_ids) != nrow(car_target_snap) || anyNA(assignment_ids)) {
+    stop("Affectations voiture absentes ou incomplètes pour ", scenario_id, ".")
+  }
+  source_points <- source_points |>
+    filter(source_id %in% unique(assignment_ids))
+  if (!setequal(source_points$source_id, unique(assignment_ids))) {
+    stop("Destination voiture attribuée absente pour ", scenario_id, ".")
+  }
+
+  source_snap <- source_points |>
+    bind_cols(snap_to_segments(source_points, motor_routes))
+  source_data <- source_snap |>
+    mutate(sink = paste0("__car_assigned_", scenario_id, "_", source_id, "__"))
+
+  source_connectors <- bind_rows(
+    source_data |>
+      st_drop_geometry() |>
+      filter(seg_sens_circulation %in% c("D", "SV")) |>
+      transmute(
+        from = node_deb,
+        to = sink,
+        weight = snap_m / car_access_speed_m_min +
+          along_from_deb_m /
+          (pmin(as.numeric(seg_vitesse_max), car_effective_speed_cap_kmh) * 1000 / 60)
+      ),
+    source_data |>
+      st_drop_geometry() |>
+      filter(seg_sens_circulation %in% c("D", "SO")) |>
+      transmute(
+        from = node_fin,
+        to = sink,
+        weight = snap_m / car_access_speed_m_min +
+          (route_length_m - along_from_deb_m) /
+          (pmin(as.numeric(seg_vitesse_max), car_effective_speed_cap_kmh) * 1000 / 60)
+      )
+  ) |>
+    group_by(from, to) |>
+    summarise(weight = min(weight), .groups = "drop")
+
+  reverse_edges_df <- bind_rows(motor_edges, source_connectors) |>
+    transmute(from_reverse = to, to_reverse = from, weight) |>
+    rename(from = from_reverse, to = to_reverse)
+  graph_reverse <- graph_from_data_frame(reverse_edges_df, directed = TRUE)
+  target_nodes <- unique(c(car_target_snap$node_deb, car_target_snap$node_fin))
+  distance_matrix <- distances(
+    graph_reverse,
+    v = V(graph_reverse)[source_data$sink],
+    to = V(graph_reverse)[target_nodes],
+    mode = "out",
+    weights = E(graph_reverse)$weight
+  )
+  source_row <- match(assignment_ids, source_data$source_id)
+  node_deb_column <- match(car_target_snap$node_deb, colnames(distance_matrix))
+  node_fin_column <- match(car_target_snap$node_fin, colnames(distance_matrix))
+  if (anyNA(source_row) || anyNA(node_deb_column) || anyNA(node_fin_column)) {
+    stop("Indexation voiture incomplète pour ", scenario_id, ".")
+  }
+
+  target_speed <- pmin(
+    as.numeric(car_target_snap$seg_vitesse_max),
+    car_effective_speed_cap_kmh
+  ) * 1000 / 60
+  via_nodes <- pmin(
+    ifelse(
+      car_target_snap$seg_sens_circulation %in% c("D", "SO"),
+      car_target_snap$snap_m / car_access_speed_m_min +
+        car_target_snap$along_from_deb_m / target_speed +
+        distance_matrix[cbind(source_row, node_deb_column)],
+      Inf
+    ),
+    ifelse(
+      car_target_snap$seg_sens_circulation %in% c("D", "SV"),
+      car_target_snap$snap_m / car_access_speed_m_min +
+        (car_target_snap$route_length_m - car_target_snap$along_from_deb_m) /
+        target_speed + distance_matrix[cbind(source_row, node_fin_column)],
+      Inf
+    ),
+    na.rm = TRUE
+  )
+
+  source_plain <- st_drop_geometry(source_data)[source_row, ]
+  differences <- source_plain$along_from_deb_m - car_target_snap$along_from_deb_m
+  same_route <- car_target_snap$route_id == source_plain$route_id
+  allowed <- same_route & case_when(
+    car_target_snap$seg_sens_circulation == "D" ~ TRUE,
+    car_target_snap$seg_sens_circulation == "SV" ~ differences >= 0,
+    car_target_snap$seg_sens_circulation == "SO" ~ differences <= 0,
+    .default = FALSE
+  )
+  direct_time <- rep(Inf, nrow(car_target_snap))
+  direct_time[allowed] <-
+    car_target_snap$snap_m[allowed] / car_access_speed_m_min +
+    abs(differences[allowed]) / target_speed[allowed] +
+    source_plain$snap_m[allowed] / car_access_speed_m_min
+
+  result <- pmin(via_nodes, direct_time)
+  result[is.finite(result)] <- result[is.finite(result)] +
+    car_door_to_door_overhead_min
+  result[!is.finite(result)] <- NA_real_
+  message(sprintf(
+    "Voiture attribuée — %s : %.1f %% de la population couverte.",
+    scenario_id,
+    100 * sum(pop_data$pop[is.finite(result)]) / sum(pop_data$pop)
+  ))
+  result
+}
+
+car_motorized_nearest_full <- compute_car_scenario(bureaux_sf, "bureaux_complets")
+car_motorized_nearest_8 <- compute_car_scenario(centres_8_sf, "centres_8")
+car_motorized_nearest_9 <- compute_car_scenario(centres_9_sf, "centres_9")
+car_motorized_assigned_full <- compute_car_assigned_scenario(
+  bureaux_sf, pop_data$assigned_bureaux_complets_id, "bureaux_complets"
+)
+car_motorized_assigned_8 <- compute_car_assigned_scenario(
+  centres_8_sf, pop_data$assigned_centres_8_id, "centres_8"
+)
+car_motorized_assigned_9 <- compute_car_assigned_scenario(
+  centres_9_sf, pop_data$assigned_centres_9_id, "centres_9"
+)
 
 # À très courte distance, prendre la voiture n'est pas un choix réaliste : le
 # forfait de cinq minutes écraserait artificiellement les valeurs autour des
@@ -201,9 +322,18 @@ best_available_time <- function(walk_time, alternative_time) {
   result
 }
 
-car_full <- best_available_time(scenario_full$time, car_motorized_full)
-car_8 <- best_available_time(scenario_8$time, car_motorized_8)
-car_9 <- best_available_time(scenario_9$time, car_motorized_9)
+car_nearest_full <- best_available_time(scenario_full$time, car_motorized_nearest_full)
+car_nearest_8 <- best_available_time(scenario_8$time, car_motorized_nearest_8)
+car_nearest_9 <- best_available_time(scenario_9$time, car_motorized_nearest_9)
+car_assigned_full <- best_available_time(
+  scenario_full_assigned$time, car_motorized_assigned_full
+)
+car_assigned_8 <- best_available_time(
+  scenario_8_assigned$time, car_motorized_assigned_8
+)
+car_assigned_9 <- best_available_time(
+  scenario_9_assigned$time, car_motorized_assigned_9
+)
 
 message("Reconstitution des temps en bus Tanéo…")
 
@@ -246,8 +376,21 @@ gtfs_routes <- gtfs_read("routes.txt")
 
 # Pour le 28 juin, le SMTU a annoncé une circulation selon l’offre du samedi,
 # de 6 h à 18 h. L’archive exacte de ce dimanche n’étant pas disponible,
-# le calcul applique le service du samedi du flux postérieur à la réorganisation du 22 juin.
-representative_saturday <- 20260905
+# le calcul applique le premier samedi actif disponible dans le flux postérieur
+# à la réorganisation du 22 juin.
+active_calendar_dates <- as.Date(
+  as.character(gtfs_calendar_dates$date), format = "%Y%m%d"
+)
+saturday_candidates <- active_calendar_dates[
+  gtfs_calendar_dates$exception_type == 1 &
+    active_calendar_dates >= as.Date("2026-06-22") &
+    as.POSIXlt(active_calendar_dates)$wday == 6
+]
+if (!length(saturday_candidates)) {
+  stop("Le GTFS Tanéo ne contient aucun samedi actif après le 22 juin 2026.")
+}
+representative_saturday_date <- min(saturday_candidates)
+representative_saturday <- as.integer(format(representative_saturday_date, "%Y%m%d"))
 saturday_services <- gtfs_calendar_dates |>
   filter(date == representative_saturday, exception_type == 1) |>
   pull(service_id)
@@ -373,22 +516,27 @@ for (i in seq_len(nrow(pop_pts))) {
     bus_walk_speed_m_sec
 }
 
-bus_egress <- function(source_points) {
+bus_egress_matrix <- function(source_points) {
   distances <- st_distance(stops_sf, source_points)
-  minimum <- apply(
-    matrix(as.numeric(distances), nrow = nrow(stops_sf)),
-    1,
-    min
+  distances <- matrix(
+    as.numeric(distances),
+    nrow = nrow(stops_sf),
+    ncol = nrow(source_points)
   )
-  time <- bus_walk_distance_factor * minimum / bus_walk_speed_m_sec
-  time[minimum > bus_egress_limit_m] <- Inf
+  time <- bus_walk_distance_factor * distances / bus_walk_speed_m_sec
+  time[distances > bus_egress_limit_m] <- Inf
+  colnames(time) <- source_points$source_id
   time
 }
-egress_time <- cbind(
-  bus_egress(bureaux_sf),
-  bus_egress(centres_8_sf),
-  bus_egress(centres_9_sf)
+bus_scenario_keys <- c("bureaux_complets", "centres_8", "centres_9")
+bus_source_sets <- list(bureaux_sf, centres_8_sf, centres_9_sf)
+names(bus_source_sets) <- bus_scenario_keys
+bus_assignment_sets <- list(
+  bureaux_complets = pop_data$assigned_bureaux_complets_id,
+  centres_8 = pop_data$assigned_centres_8_id,
+  centres_9 = pop_data$assigned_centres_9_id
 )
+bus_egress_matrices <- lapply(bus_source_sets, bus_egress_matrix)
 
 # Graphe horaire à deux états : avant et après le premier trajet en bus. Cette distinction
 # empêche qu’un simple trajet à pied jusqu’à un arrêt soit compté comme un
@@ -477,43 +625,91 @@ bus_graph_edges <- bind_rows(
     )
 )
 
-bus_node_distances <- lapply(seq_len(ncol(egress_time)), function(scenario) {
-  sink <- paste0("__bus_sink_", scenario, "__")
-  sink_edges <- active_events |>
-    transmute(
-      from = state_name(1, event),
-      to = sink,
-      weight = egress_time[stop + 1L, scenario]
-    ) |>
+# Chaque départ de bus peut déboucher sur la marche directe. Pour éviter de
+# dupliquer le graphe horaire pour chaque destination, tous les événements d'un
+# même arrêt rejoignent un nœud de sortie commun ; les sorties sont ensuite
+# reliées aux destinations `nearest` et `assigned`.
+bus_exit_name <- function(stop) paste0("__bus_exit_", stop, "__")
+bus_exit_edges <- active_events |>
+  distinct(event, stop) |>
+  transmute(
+    from = state_name(1, event),
+    to = bus_exit_name(stop),
+    weight = 0
+  )
+
+bus_sink_lookup <- list(nearest = character(), assigned = list())
+bus_sink_edges_parts <- list()
+part_index <- 0L
+for (scenario_key in bus_scenario_keys) {
+  egress <- bus_egress_matrices[[scenario_key]]
+  nearest_sink <- paste0("__bus_nearest_", scenario_key, "__")
+  bus_sink_lookup$nearest[scenario_key] <- nearest_sink
+  nearest_egress <- apply(egress, 1, min)
+  part_index <- part_index + 1L
+  bus_sink_edges_parts[[part_index]] <- tibble(
+    from = bus_exit_name(seq_len(nrow(stops_sf)) - 1L),
+    to = nearest_sink,
+    weight = nearest_egress
+  ) |>
     filter(is.finite(weight))
-  graph_reverse <- bind_rows(bus_graph_edges, sink_edges) |>
-    transmute(from_reverse = to, to_reverse = from, weight) |>
-    rename(from = from_reverse, to = to_reverse) |>
-    graph_from_data_frame(directed = TRUE)
-  vertices <- V(graph_reverse)$name
-  keep <- vertices != sink
-  result <- as.numeric(distances(
-    graph_reverse,
-    v = sink,
-    to = V(graph_reverse)[keep],
-    mode = "out",
-    weights = E(graph_reverse)$weight
-  ))
-  names(result) <- vertices[keep]
-  message(sprintf(
-    "Scénario bus %s : %s/%s nœuds horaires atteignent une destination.",
-    scenario, sum(is.finite(result)), length(result)
-  ))
-  result
-})
+
+  assigned_sinks <- setNames(
+    paste0("__bus_assigned_", scenario_key, "_", colnames(egress), "__"),
+    colnames(egress)
+  )
+  bus_sink_lookup$assigned[[scenario_key]] <- assigned_sinks
+  assigned_parts <- lapply(seq_len(ncol(egress)), function(source_i) {
+    tibble(
+      from = bus_exit_name(seq_len(nrow(stops_sf)) - 1L),
+      to = assigned_sinks[source_i],
+      weight = egress[, source_i]
+    ) |>
+      filter(is.finite(weight))
+  })
+  part_index <- part_index + 1L
+  bus_sink_edges_parts[[part_index]] <- bind_rows(assigned_parts)
+}
+bus_sink_edges <- bind_rows(bus_sink_edges_parts)
+bus_sinks <- unique(bus_sink_edges$to)
+bus_graph_reverse <- bind_rows(bus_graph_edges, bus_exit_edges, bus_sink_edges) |>
+  transmute(from_reverse = to, to_reverse = from, weight) |>
+  rename(from = from_reverse, to = to_reverse) |>
+  graph_from_data_frame(directed = TRUE)
+bus_state_zero <- intersect(
+  unique(state_name(0, active_events$event)),
+  V(bus_graph_reverse)$name
+)
+bus_distance_matrix <- distances(
+  bus_graph_reverse,
+  v = V(bus_graph_reverse)[bus_sinks],
+  to = V(bus_graph_reverse)[bus_state_zero],
+  mode = "out",
+  weights = E(bus_graph_reverse)$weight
+)
+message(sprintf(
+  "Tanéo : %s destinations (nearest + assigned) calculées sur %s nœuds horaires.",
+  nrow(bus_distance_matrix), ncol(bus_distance_matrix)
+))
 
 event_lookup_by_stop <- lapply(events_by_stop, function(events) {
   events[order(events$departure_sec), c("event", "departure_sec")]
 })
-bus_cube <- array(
+bus_transit_cube <- array(
   NA_real_,
-  dim = c(nrow(pop_pts), length(bus_departures_sec), ncol(egress_time))
+  dim = c(
+    nrow(pop_pts), length(bus_departures_sec), length(bus_scenario_keys), 2L
+  ),
+  dimnames = list(
+    NULL,
+    sprintf("h%02d", bus_departures_sec / 3600),
+    bus_scenario_keys,
+    c("nearest", "assigned")
+  )
 )
+bus_distance_columns <- setNames(seq_len(ncol(bus_distance_matrix)), colnames(bus_distance_matrix))
+bus_distance_rows <- setNames(seq_len(nrow(bus_distance_matrix)), rownames(bus_distance_matrix))
+
 for (origin in seq_len(nrow(pop_pts))) {
   candidates <- which(access_stop[origin, ] >= 0)
   if (!length(candidates)) next
@@ -533,27 +729,70 @@ for (origin in seq_len(nrow(pop_pts))) {
     }) |>
       bind_rows()
     if (!nrow(access_events)) next
-    for (scenario in seq_len(ncol(egress_time))) {
-      remaining <- unname(
-        bus_node_distances[[scenario]][state_name(0, access_events$event)]
+    state_columns <- unname(bus_distance_columns[state_name(0, access_events$event)])
+    keep_access <- is.finite(state_columns)
+    access_events <- access_events[keep_access, ]
+    state_columns <- state_columns[keep_access]
+    if (!nrow(access_events)) next
+    for (scenario_key in bus_scenario_keys) {
+      assigned_id <- bus_assignment_sets[[scenario_key]][origin]
+      sinks <- c(
+        nearest = bus_sink_lookup$nearest[[scenario_key]],
+        assigned = bus_sink_lookup$assigned[[scenario_key]][[assigned_id]]
       )
-      candidates_time <- access_events$departure - start + remaining
-      best <- suppressWarnings(min(candidates_time, na.rm = TRUE))
-      if (is.finite(best)) bus_cube[origin, start_i, scenario] <- best / 60
+      for (method in names(sinks)) {
+        sink_row <- bus_distance_rows[[sinks[[method]]]]
+        remaining <- bus_distance_matrix[sink_row, state_columns]
+        candidates_time <- access_events$departure - start + remaining
+        best <- suppressWarnings(min(candidates_time, na.rm = TRUE))
+        if (is.finite(best)) {
+          bus_transit_cube[origin, start_i, scenario_key, method] <- best / 60
+        }
+      }
     }
   }
 }
-bus_transit_median <- apply(bus_cube, c(1, 3), median, na.rm = TRUE)
-bus_transit_median[!is.finite(bus_transit_median)] <- NA_real_
 
-# Le calcul horaire ci-dessus impose au moins un trajet à bord. Pour mesurer
-# l'accès réellement disponible sans voiture, on conserve toutefois la marche
-# directe lorsqu'elle est plus rapide — notamment au voisinage immédiat d'un
-# lieu de vote — ou lorsqu'aucun itinéraire Tanéo n'est calculable.
-bus_median <- cbind(
-  best_available_time(scenario_full$time, bus_transit_median[, 1]),
-  best_available_time(scenario_8$time, bus_transit_median[, 2]),
-  best_available_time(scenario_9$time, bus_transit_median[, 3])
+bus_walk_times <- list(
+  nearest = cbind(
+    bureaux_complets = scenario_full$time,
+    centres_8 = scenario_8$time,
+    centres_9 = scenario_9$time
+  ),
+  assigned = cbind(
+    bureaux_complets = scenario_full_assigned$time,
+    centres_8 = scenario_8_assigned$time,
+    centres_9 = scenario_9_assigned$time
+  )
+)
+bus_available_cube <- bus_transit_cube
+for (method in c("nearest", "assigned")) {
+  for (scenario_key in bus_scenario_keys) {
+    for (start_i in seq_along(bus_departures_sec)) {
+      bus_available_cube[, start_i, scenario_key, method] <- best_available_time(
+        bus_walk_times[[method]][, scenario_key],
+        bus_transit_cube[, start_i, scenario_key, method]
+      )
+    }
+  }
+}
+
+finite_summary <- function(x, fun) {
+  x <- x[is.finite(x)]
+  if (!length(x)) return(NA_real_)
+  fun(x)
+}
+bus_available_min <- apply(bus_available_cube, c(1, 3, 4), min)
+bus_available_median <- apply(bus_available_cube, c(1, 3, 4), median)
+bus_available_max <- apply(bus_available_cube, c(1, 3, 4), max)
+bus_transit_min <- apply(
+  bus_transit_cube, c(1, 3, 4), finite_summary, fun = min
+)
+bus_transit_median <- apply(
+  bus_transit_cube, c(1, 3, 4), finite_summary, fun = median
+)
+bus_transit_max <- apply(
+  bus_transit_cube, c(1, 3, 4), finite_summary, fun = max
 )
 nearest_bus_stop_index <- max.col(-distance_cells_stops, ties.method = "first")
 nearest_bus_stop_distance_m <- distance_cells_stops[
@@ -562,41 +801,123 @@ nearest_bus_stop_distance_m <- distance_cells_stops[
 
 cell_df <- cell_df |>
   mutate(
-    car_motorized_bureaux_complets = car_motorized_full,
-    car_motorized_centres_8 = car_motorized_8,
-    car_motorized_centres_9 = car_motorized_9,
-    car_bureaux_complets = car_full,
-    car_centres_8 = car_8,
-    car_centres_9 = car_9,
-    bus_transit_bureaux_complets = bus_transit_median[, 1],
-    bus_transit_centres_8 = bus_transit_median[, 2],
-    bus_transit_centres_9 = bus_transit_median[, 3],
-    bus_bureaux_complets = bus_median[, 1],
-    bus_centres_8 = bus_median[, 2],
-    bus_centres_9 = bus_median[, 3],
+    car_motorized_nearest_bureaux_complets = car_motorized_nearest_full,
+    car_motorized_nearest_centres_8 = car_motorized_nearest_8,
+    car_motorized_nearest_centres_9 = car_motorized_nearest_9,
+    car_motorized_assigned_bureaux_complets = car_motorized_assigned_full,
+    car_motorized_assigned_centres_8 = car_motorized_assigned_8,
+    car_motorized_assigned_centres_9 = car_motorized_assigned_9,
+    car_nearest_bureaux_complets = car_nearest_full,
+    car_nearest_centres_8 = car_nearest_8,
+    car_nearest_centres_9 = car_nearest_9,
+    car_assigned_bureaux_complets = car_assigned_full,
+    car_assigned_centres_8 = car_assigned_8,
+    car_assigned_centres_9 = car_assigned_9,
+    # Alias historiques : ils restent explicitement équivalents à `nearest`.
+    car_motorized_bureaux_complets = car_motorized_nearest_full,
+    car_motorized_centres_8 = car_motorized_nearest_8,
+    car_motorized_centres_9 = car_motorized_nearest_9,
+    car_bureaux_complets = car_nearest_full,
+    car_centres_8 = car_nearest_8,
+    car_centres_9 = car_nearest_9,
+    bus_transit_nearest_bureaux_complets_min = bus_transit_min[, "bureaux_complets", "nearest"],
+    bus_transit_nearest_bureaux_complets_median = bus_transit_median[, "bureaux_complets", "nearest"],
+    bus_transit_nearest_bureaux_complets_max = bus_transit_max[, "bureaux_complets", "nearest"],
+    bus_transit_nearest_centres_8_min = bus_transit_min[, "centres_8", "nearest"],
+    bus_transit_nearest_centres_8_median = bus_transit_median[, "centres_8", "nearest"],
+    bus_transit_nearest_centres_8_max = bus_transit_max[, "centres_8", "nearest"],
+    bus_transit_nearest_centres_9_min = bus_transit_min[, "centres_9", "nearest"],
+    bus_transit_nearest_centres_9_median = bus_transit_median[, "centres_9", "nearest"],
+    bus_transit_nearest_centres_9_max = bus_transit_max[, "centres_9", "nearest"],
+    bus_transit_assigned_bureaux_complets_min = bus_transit_min[, "bureaux_complets", "assigned"],
+    bus_transit_assigned_bureaux_complets_median = bus_transit_median[, "bureaux_complets", "assigned"],
+    bus_transit_assigned_bureaux_complets_max = bus_transit_max[, "bureaux_complets", "assigned"],
+    bus_transit_assigned_centres_8_min = bus_transit_min[, "centres_8", "assigned"],
+    bus_transit_assigned_centres_8_median = bus_transit_median[, "centres_8", "assigned"],
+    bus_transit_assigned_centres_8_max = bus_transit_max[, "centres_8", "assigned"],
+    bus_transit_assigned_centres_9_min = bus_transit_min[, "centres_9", "assigned"],
+    bus_transit_assigned_centres_9_median = bus_transit_median[, "centres_9", "assigned"],
+    bus_transit_assigned_centres_9_max = bus_transit_max[, "centres_9", "assigned"],
+    bus_nearest_bureaux_complets_min = bus_available_min[, "bureaux_complets", "nearest"],
+    bus_nearest_bureaux_complets_median = bus_available_median[, "bureaux_complets", "nearest"],
+    bus_nearest_bureaux_complets_max = bus_available_max[, "bureaux_complets", "nearest"],
+    bus_nearest_centres_8_min = bus_available_min[, "centres_8", "nearest"],
+    bus_nearest_centres_8_median = bus_available_median[, "centres_8", "nearest"],
+    bus_nearest_centres_8_max = bus_available_max[, "centres_8", "nearest"],
+    bus_nearest_centres_9_min = bus_available_min[, "centres_9", "nearest"],
+    bus_nearest_centres_9_median = bus_available_median[, "centres_9", "nearest"],
+    bus_nearest_centres_9_max = bus_available_max[, "centres_9", "nearest"],
+    bus_assigned_bureaux_complets_min = bus_available_min[, "bureaux_complets", "assigned"],
+    bus_assigned_bureaux_complets_median = bus_available_median[, "bureaux_complets", "assigned"],
+    bus_assigned_bureaux_complets_max = bus_available_max[, "bureaux_complets", "assigned"],
+    bus_assigned_centres_8_min = bus_available_min[, "centres_8", "assigned"],
+    bus_assigned_centres_8_median = bus_available_median[, "centres_8", "assigned"],
+    bus_assigned_centres_8_max = bus_available_max[, "centres_8", "assigned"],
+    bus_assigned_centres_9_min = bus_available_min[, "centres_9", "assigned"],
+    bus_assigned_centres_9_median = bus_available_median[, "centres_9", "assigned"],
+    bus_assigned_centres_9_max = bus_available_max[, "centres_9", "assigned"],
+    # La médiane des cinq horaires est l'indicateur principal.
+    bus_nearest_bureaux_complets = bus_available_median[, "bureaux_complets", "nearest"],
+    bus_nearest_centres_8 = bus_available_median[, "centres_8", "nearest"],
+    bus_nearest_centres_9 = bus_available_median[, "centres_9", "nearest"],
+    bus_assigned_bureaux_complets = bus_available_median[, "bureaux_complets", "assigned"],
+    bus_assigned_centres_8 = bus_available_median[, "centres_8", "assigned"],
+    bus_assigned_centres_9 = bus_available_median[, "centres_9", "assigned"],
+    # Alias historiques, désormais documentés comme `nearest` et médiane.
+    bus_transit_bureaux_complets = bus_transit_median[, "bureaux_complets", "nearest"],
+    bus_transit_centres_8 = bus_transit_median[, "centres_8", "nearest"],
+    bus_transit_centres_9 = bus_transit_median[, "centres_9", "nearest"],
+    bus_bureaux_complets = bus_available_median[, "bureaux_complets", "nearest"],
+    bus_centres_8 = bus_available_median[, "centres_8", "nearest"],
+    bus_centres_9 = bus_available_median[, "centres_9", "nearest"],
     bus_arret_proche = stops_used$stop_name[nearest_bus_stop_index],
     bus_marche_arret_min = bus_walk_distance_factor *
       nearest_bus_stop_distance_m / bus_walk_speed_m_sec / 60
   )
 
-mobility_variables <- tribble(
-  ~mode, ~scenario, ~variable,
-  "walk", "bureaux_complets", "bureaux_complets",
-  "walk", "centres_8", "centres_8",
-  "walk", "centres_9", "centres_9",
-  "car", "bureaux_complets", "car_bureaux_complets",
-  "car", "centres_8", "car_centres_8",
-  "car", "centres_9", "car_centres_9",
-  "car_only", "bureaux_complets", "car_motorized_bureaux_complets",
-  "car_only", "centres_8", "car_motorized_centres_8",
-  "car_only", "centres_9", "car_motorized_centres_9",
-  "bus", "bureaux_complets", "bus_bureaux_complets",
-  "bus", "centres_8", "bus_centres_8",
-  "bus", "centres_9", "bus_centres_9",
-  "bus_only", "bureaux_complets", "bus_transit_bureaux_complets",
-  "bus_only", "centres_8", "bus_transit_centres_8",
-  "bus_only", "centres_9", "bus_transit_centres_9"
-)
+for (method in c("nearest", "assigned")) {
+  for (scenario_key in bus_scenario_keys) {
+    for (start_i in seq_along(bus_departures_sec)) {
+      hour_key <- sprintf("h%02d", bus_departures_sec[start_i] / 3600)
+      cell_df[[paste("bus", method, scenario_key, hour_key, sep = "_")]] <-
+        bus_available_cube[, start_i, scenario_key, method]
+    }
+  }
+}
+
+mobility_field <- function(mode, method, scenario) {
+  switch(
+    mode,
+    walk = if (method == "assigned") paste0("assigned_", scenario) else scenario,
+    car = paste("car", method, scenario, sep = "_"),
+    bus = paste("bus", method, scenario, sep = "_"),
+    stop("Mode inconnu : ", mode)
+  )
+}
+mobility_variables <- bind_rows(lapply(c("walk", "car", "bus"), function(mode) {
+  mode_key <- mode
+  bind_rows(lapply(c("nearest", "assigned"), function(method) {
+    method_key <- method
+    tibble(
+      mode = mode_key,
+      method = method_key,
+      method_label = ifelse(
+        method_key == "assigned", "Bureau attribué", "Bureau de vote le plus proche"
+      ),
+      scenario = bus_scenario_keys,
+      variable = vapply(
+        bus_scenario_keys,
+        function(scenario) mobility_field(mode_key, method_key, scenario),
+        character(1)
+      ),
+      indicator = case_when(
+        mode_key == "walk" ~ "marche à 5 km/h",
+        mode_key == "car" ~ "minimum marche ou voiture, forfait 5 min",
+        TRUE ~ "médiane des cinq valeurs marche ou Tanéo"
+      )
+    )
+  }))
+}))
 mobility_stats <- mobility_variables |>
   rowwise() |>
   mutate(
@@ -609,6 +930,61 @@ mobility_stats <- mobility_variables |>
     part_pop_plus_30 = weighted_share(cell_df[[variable]] > 30, cell_df$pop)
   ) |>
   ungroup()
+
+sensitivity_variants <- tribble(
+  ~mode, ~variant, ~variant_label, ~is_main,
+  "walk", "walk_5", "Marche à 5 km/h", TRUE,
+  "walk", "walk_4", "Marche à 4 km/h", FALSE,
+  "car", "car_5", "Voiture · forfait 5 min", TRUE,
+  "car", "car_10", "Voiture · forfait 10 min", FALSE,
+  "bus", "bus_median", "Tanéo · médiane des 5 départs", TRUE,
+  "bus", "bus_best", "Tanéo · meilleur des 5 départs", FALSE
+)
+sensitivity_time <- function(mode, method, scenario, variant) {
+  walk_field <- mobility_field("walk", method, scenario)
+  walk_time <- cell_df[[walk_field]]
+  if (mode == "walk") {
+    return(if (variant == "walk_4") walk_time * 5 / 4 else walk_time)
+  }
+  if (mode == "car") {
+    car_field <- paste("car_motorized", method, scenario, sep = "_")
+    motorized <- cell_df[[car_field]]
+    if (variant == "car_10") motorized[is.finite(motorized)] <- motorized[is.finite(motorized)] + 5
+    return(best_available_time(walk_time, motorized))
+  }
+  bus_suffix <- if (variant == "bus_best") "min" else "median"
+  cell_df[[paste("bus", method, scenario, bus_suffix, sep = "_")]]
+}
+sensitivity_specs <- merge(
+  sensitivity_variants,
+  expand.grid(
+    method = c("nearest", "assigned"),
+    scenario = bus_scenario_keys,
+    stringsAsFactors = FALSE
+  ),
+  all = TRUE
+) |>
+  arrange(mode, method, variant, match(scenario, bus_scenario_keys))
+sensitivity_stats <- bind_rows(lapply(seq_len(nrow(sensitivity_specs)), function(i) {
+  spec <- sensitivity_specs[i, ]
+  current <- sensitivity_time(spec$mode, spec$method, spec$scenario, spec$variant)
+  reference <- sensitivity_time(
+    spec$mode, spec$method, "bureaux_complets", spec$variant
+  )
+  increase <- current - reference
+  tibble(
+    mode = spec$mode,
+    method = spec$method,
+    scenario = spec$scenario,
+    variant = spec$variant,
+    variant_label = spec$variant_label,
+    is_main = spec$is_main,
+    moyenne = weighted_mean(current, cell_df$pop),
+    augmentation_moyenne = weighted_mean(increase, cell_df$pop),
+    part_pop_plus_30 = weighted_share(current > 30, cell_df$pop),
+    part_pop_hausse_plus_5 = weighted_share(increase > 5, cell_df$pop)
+  )
+}))
 
 mobility_metadata <- list(
   car = list(
@@ -624,6 +1000,7 @@ mobility_metadata <- list(
       " km/h pour représenter une progression urbaine"
     ),
     fixed_overhead_min = car_door_to_door_overhead_min,
+    sensitivity_fixed_overhead_min = 10,
     fixed_overhead_definition = paste0(
       "accès au véhicule, mise en route, stationnement et marche finale ; ",
       "la congestion exceptionnelle reste exclue"
@@ -639,9 +1016,11 @@ mobility_metadata <- list(
     service_window = "06:00-18:00",
     sampled_departures = bus_departures_sec / 3600,
     selection_rule = paste0(
-      "minimum cellule par cellule entre marche directe et trajet Tanéo complet ; ",
-      "la marche est conservée si aucun trajet Tanéo n'est calculable"
+      "à chaque horaire, minimum cellule par cellule entre marche directe et trajet ",
+      "Tanéo complet ; médiane des cinq valeurs comme indicateur principal"
     ),
+    favorable_rule = "minimum des cinq valeurs comme horaire le plus favorable",
+    unavailable_rule = "marche directe si aucun trajet Tanéo n'est calculable à l'horaire",
     access_walk_limit_m = bus_access_limit_m,
     egress_walk_limit_m = bus_egress_limit_m,
     transfer_walk_limit_m = bus_transfer_limit_m,

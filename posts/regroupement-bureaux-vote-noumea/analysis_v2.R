@@ -230,6 +230,10 @@ if (
 read_provinciales_noumea_bv <- function(path) {
   pdftotext <- Sys.which("pdftotext")
   if (!nzchar(pdftotext)) {
+    bundled_pdftotext <- "C:/Program Files/Git/mingw64/bin/pdftotext.exe"
+    if (file.exists(bundled_pdftotext)) pdftotext <- bundled_pdftotext
+  }
+  if (!nzchar(pdftotext)) {
     stop(
       "Le programme pdftotext est nécessaire pour lire le tableau officiel ",
       "des provinciales 2026 par bureau."
@@ -1013,12 +1017,12 @@ scenario_stats <- scenario_vars |>
 
 destination_method_vars <- tribble(
   ~method, ~method_label, ~scenario, ~scenario_label, ~variable,
-  "nearest", "Lieu le plus proche", "bureaux_complets", "57 bureaux habituels", "bureaux_complets",
-  "nearest", "Lieu le plus proche", "centres_8", "8 centres municipaux", "centres_8",
-  "nearest", "Lieu le plus proche", "centres_9", "9 centres provinciaux", "centres_9",
-  "assigned", "Bureau attribué", "bureaux_complets", "57 bureaux habituels", "assigned_bureaux_complets",
-  "assigned", "Bureau attribué", "centres_8", "8 centres municipaux", "assigned_centres_8",
-  "assigned", "Bureau attribué", "centres_9", "9 centres provinciaux", "assigned_centres_9"
+  "nearest", "Bureau de vote le plus proche", "bureaux_complets", "37 lieux habituels (57 bureaux)", "bureaux_complets",
+  "nearest", "Bureau de vote le plus proche", "centres_8", "8 lieux municipaux", "centres_8",
+  "nearest", "Bureau de vote le plus proche", "centres_9", "9 lieux provinciaux", "centres_9",
+  "assigned", "Bureau attribué", "bureaux_complets", "37 lieux habituels (57 bureaux)", "assigned_bureaux_complets",
+  "assigned", "Bureau attribué", "centres_8", "8 lieux municipaux", "assigned_centres_8",
+  "assigned", "Bureau attribué", "centres_9", "9 lieux provinciaux", "assigned_centres_9"
 )
 destination_method_stats <- destination_method_vars |>
   rowwise() |>
@@ -1145,6 +1149,7 @@ write_csv_utf8(
 )
 write_csv_utf8(delta_stats, file.path(out_web_dir, "delta_stats.csv"))
 write_csv_utf8(mobility_stats, file.path(out_web_dir, "mobility_stats.csv"))
+write_csv_utf8(sensitivity_stats, file.path(out_web_dir, "sensitivity_stats.csv"))
 write_csv_utf8(iris_stats, file.path(out_web_dir, "iris_stats.csv"))
 write_csv_utf8(vote_context, file.path(out_web_dir, "vote_context_bureaux.csv"))
 
@@ -1175,13 +1180,39 @@ source_audit <- bind_rows(
 )
 write_csv_utf8(source_audit, file.path(out_web_dir, "audit_rattachement_sources.csv"))
 
-assigned_source_audit <- bind_rows(
-  scenario_full_assigned$audit,
-  scenario_8_assigned$audit,
-  scenario_9_assigned$audit
-)
+assigned_destination_audit <- sector_destination_map |>
+  left_join(
+    bureaux_sf |>
+      st_drop_geometry() |>
+      select(
+        assigned_bureaux_complets_id = source_id,
+        lieu_habituel = source_nom
+      ),
+    by = "assigned_bureaux_complets_id"
+  ) |>
+  left_join(
+    centres_8_sf |>
+      st_drop_geometry() |>
+      select(assigned_centres_8_id = source_id, lieu_municipales = source_nom),
+    by = "assigned_centres_8_id"
+  ) |>
+  left_join(
+    centres_9_sf |>
+      st_drop_geometry() |>
+      select(assigned_centres_9_id = source_id, lieu_provinciales = source_nom),
+    by = "assigned_centres_9_id"
+  ) |>
+  arrange(code_bv)
+if (
+  nrow(assigned_destination_audit) != 57 ||
+  anyNA(assigned_destination_audit$lieu_habituel) ||
+  anyNA(assigned_destination_audit$lieu_municipales) ||
+  anyNA(assigned_destination_audit$lieu_provinciales)
+) {
+  stop("L'audit des destinations doit contenir 57 affectations complètes.")
+}
 write_csv_utf8(
-  assigned_source_audit,
+  assigned_destination_audit,
   file.path(out_web_dir, "audit_destinations_attribuees.csv")
 )
 write_csv_utf8(
@@ -1337,9 +1368,14 @@ metadata <- list(
   ),
   mobility = mobility_metadata,
   destination_methods = list(
-    nearest = "temps minimal vers n'importe quel lieu ouvert dans la configuration",
+    nearest = "temps minimal vers n'importe quel bureau de vote ouvert dans la configuration",
     assigned = paste0(
       "temps vers le bureau ou le lieu attribué au secteur électoral de la cellule"
+    ),
+    modes = c("walk", "car", "bus"),
+    comparison_rule = paste0(
+      "pour chaque mode, assigned et nearest utilisent la même destination ",
+      "pour la marche directe et l'alternative motorisée"
     ),
     municipal_assignments_url = municipal_centres_url,
     provincial_assignments_url = electoral_sectors_url,
@@ -1348,8 +1384,14 @@ metadata <- list(
     population_joined_to_nearest_sector = sector_assignment_audit$population_secteur_proche,
     maximum_nearest_sector_distance_m = sector_assignment_audit$distance_secteur_proche_max_m
   ),
+  sensitivity = list(
+    walk_speed_kmh = c(main = 5, alternative = 4),
+    car_door_to_door_overhead_min = c(main = 5, alternative = 10),
+    bus_departure_summary = c(main = "median", favorable = "minimum")
+  ),
   sources = list(
     bureaux_habituels = nrow(bureaux_sf),
+    lieux_habituels = 37,
     bureaux_habituels_url = bureaux_reference_url,
     bureaux_habituels_reference = "Ville de Nouméa — BureauVote_gdb",
     centres_8 = nrow(centres_8_sf),
