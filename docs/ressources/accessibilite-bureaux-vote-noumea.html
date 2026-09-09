@@ -165,7 +165,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul class="collapse">
-  <li><a href="#scripts-r" id="toc-scripts-r" class="nav-link active" data-scroll-target="#scripts-r">Scripts R</a></li>
+  <li><a href="#périmètre-historique-des-scénarios" id="toc-périmètre-historique-des-scénarios" class="nav-link active" data-scroll-target="#périmètre-historique-des-scénarios">Périmètre historique des scénarios</a></li>
+  <li><a href="#scripts-r" id="toc-scripts-r" class="nav-link" data-scroll-target="#scripts-r">Scripts R</a></li>
   <li><a href="#ce-que-calcule-la-chaîne" id="toc-ce-que-calcule-la-chaîne" class="nav-link" data-scroll-target="#ce-que-calcule-la-chaîne">Ce que calcule la chaîne</a></li>
   <li><a href="#fichiers-directement-réutilisables" id="toc-fichiers-directement-réutilisables" class="nav-link" data-scroll-target="#fichiers-directement-réutilisables">Fichiers directement réutilisables</a></li>
   <li><a href="#sources-et-conventions" id="toc-sources-et-conventions" class="nav-link" data-scroll-target="#sources-et-conventions">Sources et conventions</a></li>
@@ -202,6 +203,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Cette page accompagne l’article <a href="../posts/regroupement-bureaux-vote-noumea/">Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</a>. Elle rassemble au même endroit les scripts, les hypothèses de calcul et les fichiers légers utilisés par les cartes interactives.</p>
+<section id="périmètre-historique-des-scénarios" class="level2">
+<h2 class="anchored" data-anchor-id="périmètre-historique-des-scénarios">Périmètre historique des scénarios</h2>
+<p>Le regroupement des lieux de vote avait déjà été utilisé à Nouméa lors des législatives anticipées de 2024 : les bureaux avaient alors été réunis dans huit lieux dans le contexte qui suivait les violences de mai.</p>
+<p>Les trois configurations comparées dans l’article correspondent aux repères suivants :</p>
+<ul>
+<li><code>bureaux_complets</code> désigne le maillage arrêté en août 2025 pour préparer les municipales de 2026 : 57 bureaux administratifs répartis dans 37 lieux physiques ;</li>
+<li><code>centres_8</code> désigne les huit lieux finalement utilisés pour les municipales de mars 2026. Cette configuration reprend le principe de regroupement déjà appliqué en 2024, mais les affectations utilisées dans le calcul sont bien celles publiées pour les municipales de 2026 ;</li>
+<li><code>centres_9</code> désigne les neuf lieux utilisés pour les provinciales de juin 2026.</li>
+</ul>
+<p>Le scénario à 37 lieux sert donc de maillage de référence pour mesurer la perte de proximité. Il ne décrit pas l’organisation effectivement observée lors des législatives de 2024 ni lors des deux scrutins de 2026.</p>
+</section>
 <section id="scripts-r" class="level2">
 <h2 class="anchored" data-anchor-id="scripts-r">Scripts R</h2>
 <ul>
@@ -216,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
 <ol type="1">
 <li>La grille de population SPC est découpée sur Nouméa et recalée sur la population municipale de référence de 2025.</li>
 <li>Chaque cellule habitée est raccordée à BDROUTE-NC et à l’un des 57 secteurs électoraux. Deux destinations sont calculées pour chaque mode : <code>assigned</code>, le bureau ou le lieu effectivement attribué au secteur, et <code>nearest</code>, le bureau de vote ouvert le plus proche. <code>Assigned</code> constitue l’indicateur principal ; <code>nearest</code> est un scénario favorable théorique.</li>
-<li>Les destinations attribuées aux municipales proviennent de la liste publiée par la Ville ; celles des provinciales utilisent le champ <code>site</code> de la couche des secteurs électoraux mise à jour en juin 2026.</li>
+<li>Les destinations attribuées aux huit lieux des municipales proviennent de la liste publiée par la Ville pour le scrutin de 2026 ; celles des neuf lieux des provinciales utilisent le champ <code>site</code> de la couche des secteurs électoraux mise à jour en juin 2026. Le précédent regroupement des législatives de 2024 est rappelé pour situer l’historique, mais ses affectations ne sont pas utilisées dans les calculs.</li>
 <li>Le module complémentaire calcule un ordre de grandeur porte-à-porte en voiture et reconstitue les trajets Tanéo à partir du GTFS. La marche et l’alternative motorisée visent toujours la même destination, qu’elle soit <code>assigned</code> ou <code>nearest</code>.</li>
 <li>Pour Tanéo, cinq départs sont testés à 8 h, 10 h, 12 h, 14 h et 16 h. À chaque horaire, la valeur est le minimum entre la marche directe et le trajet Tanéo complet ; si Tanéo est indisponible, la marche est conservée. Le minimum, la médiane et le maximum des cinq valeurs sont exportés. La médiane est l’indicateur principal et le minimum représente l’horaire le plus favorable.</li>
 <li>Le test de sensibilité compare une marche à 5 et 4 km/h, un forfait voiture de 5 et 10 minutes, puis la médiane et le meilleur des cinq départs Tanéo.</li>
