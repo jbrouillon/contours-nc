@@ -15,6 +15,10 @@ __pycache__/
 *.html
 !docs/**/*.html
 !includes/**/*.html
+# Exports et gabarits de diffusion conservés uniquement en local.
+/social/
+/posts/*/social/
+/posts/*/tiktok/
 *.log
 *.aux
 # Données locales lourdes : à garder hors Git si nécessaire

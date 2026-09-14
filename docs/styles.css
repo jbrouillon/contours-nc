@@ -2119,7 +2119,7 @@ main.content > aside.review-notice.column-body > div {
 }
 
 main.content:has(.contours-section-sketch) > #title-block-header {
-  display: none;
+  display: none !important;
 }
 
 .contours-section-sketch {
@@ -2259,6 +2259,16 @@ main.content:has(.contours-section-sketch) > #title-block-header {
 .home-text-links a:focus-visible {
   color: var(--red);
   text-decoration: underline;
+}
+
+.home-text-links .home-text-links__contribute {
+  flex-basis: 100%;
+  max-width: 70ch;
+}
+
+.home-text-links__contribute span {
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .home-dossier-block {

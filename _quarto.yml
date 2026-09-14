@@ -15,6 +15,7 @@ project:
     - "articles/*.qmd"
     - "cartes/*.qmd"
     - "contact/*.qmd"
+    - "contribuer/*.qmd"
     - "dossiers/index.qmd"
     - "dossiers/*/index.qmd"
     - "newsletter/*.qmd"
@@ -33,6 +34,7 @@ website:
   open-graph: true
   twitter-card: true
   navbar:
+    collapse-below: xxl
     logo: images/contours-hexagon-256.png
     title: "Contours"
     left:
@@ -55,6 +57,8 @@ website:
       - text: "Newsletter"
         href: newsletter/index.qmd
     right:
+      - text: "Contribuer"
+        href: contribuer/index.qmd
       - text: "À propos"
         href: about.qmd
   page-footer:

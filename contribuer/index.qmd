@@ -1,0 +1,126 @@
+---
+title: "Contribuer à contours.nc"
+description: "Proposer une contribution à contours.nc : recherches, cartes, données et datavisualisations sur la Nouvelle-Calédonie et le Pacifique."
+image: "../images/contours-banner.png"
+page-layout: full
+toc: true
+toc-depth: 2
+---
+
+<div id="contours-section-contribuer" class="contours-section-sketch"></div>
+
+<script type="module">
+  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
+
+  renderContoursSectionBanner("#contours-section-contribuer", {
+    sectionTitle: "Contribuer à contours.nc"
+  }).catch((error) => {
+    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
+  });
+</script>
+
+```{=html}
+<section class="resource-intro">
+  <p class="resource-lede">Vous travaillez sur la Nouvelle-Calédonie ou le Pacifique ? Vous avez une analyse, des données, une carte, une visualisation ou des résultats de recherche à partager ?</p>
+  <p><strong><span class="contours-word">contours.nc</span> est ouvert aux contributions extérieures.</strong></p>
+  <p>L’objectif est de faire circuler des connaissances, des données et des analyses sur la Nouvelle-Calédonie et le Pacifique dans des formats documentés, accessibles et adaptés au web.</p>
+  <p>Chercheurs, doctorants, postdoctorants, jeunes chercheurs, étudiants, professionnels, experts et producteurs de données peuvent proposer une contribution.</p>
+</section>
+```
+
+## Que peut-on proposer ?
+
+```{=html}
+<section class="resource-grid" aria-label="Formats de contribution">
+  <article class="resource-card">
+    <h3>Note de recherche</h3>
+    <p>Premiers résultats, analyse exploratoire, prolongement d’un travail de recherche ou synthèse accessible d’une étude.</p>
+  </article>
+
+  <article class="resource-card">
+    <h3>Carte ou datavisualisation</h3>
+    <p>Une représentation originale permettant d’explorer un territoire, un phénomène ou un jeu de données.</p>
+  </article>
+
+  <article class="resource-card">
+    <h3>Éclairage</h3>
+    <p>Une analyse documentée d’une question contemporaine à partir de données, de travaux scientifiques ou de sources clairement identifiées.</p>
+  </article>
+
+  <article class="resource-card">
+    <h3>Données et méthodes</h3>
+    <p>Présentation d’un jeu de données, d’un indicateur, d’une méthode ou d’un outil susceptible d’être utile à d’autres.</p>
+  </article>
+
+  <article class="resource-card">
+    <h3>Autour d’un mémoire, d’une thèse ou d’un stage</h3>
+    <p>Un résultat, une analyse ou une production qui mérite de circuler au-delà de son cadre académique initial.</p>
+  </article>
+</section>
+```
+
+Les contributions peuvent relever des sciences sociales, de la démographie, de la géographie, de l’économie, de l’environnement ou d’autres disciplines dès lors qu’elles apportent un éclairage documenté sur la Nouvelle-Calédonie ou le Pacifique.
+
+## Une idée suffit pour commencer
+
+Il n’est pas nécessaire d’avoir déjà rédigé un article complet.
+
+Pour un premier échange, quelques lignes suffisent pour présenter :
+
+- le sujet ou la question ;
+- ce que vous souhaitez montrer ;
+- les données, sources ou matériaux mobilisés ;
+- éventuellement un lien vers un travail, une publication, un jeu de données ou une visualisation existante.
+
+Le format de publication peut ensuite être discuté et adapté à [contours.nc]{.contours-word}.
+
+## Comment ça se passe ?
+
+```{=html}
+<section class="presse-list" aria-label="Étapes d’une contribution">
+  <article class="presse-item">
+    <div class="presse-item__meta">01 — Proposition</div>
+    <div class="presse-item__body">
+      <p>Vous présentez votre idée en quelques lignes.</p>
+    </div>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">02 — Échange</div>
+    <div class="presse-item__body">
+      <p>Si la proposition correspond à la ligne éditoriale de <span class="contours-word">contours.nc</span>, nous définissons ensemble le format le plus adapté.</p>
+    </div>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">03 — Préparation et relecture</div>
+    <div class="presse-item__body">
+      <p>La contribution est préparée puis relue afin d’assurer sa clarté, son caractère documenté et la transparence des sources et méthodes mobilisées.</p>
+    </div>
+  </article>
+
+  <article class="presse-item">
+    <div class="presse-item__meta">04 — Publication</div>
+    <div class="presse-item__body">
+      <p>La contribution est publiée sur <span class="contours-word">contours.nc</span>. L’auteur ou l’autrice est clairement identifié·e, avec son affiliation lorsqu’elle est pertinente et les informations nécessaires pour citer le contenu.</p>
+    </div>
+  </article>
+</section>
+```
+
+## Un espace complémentaire
+
+[contours.nc]{.contours-word} n’est pas une revue académique et les contributions publiées n’ont pas vocation à se substituer aux publications scientifiques classiques.
+
+Le site propose un espace complémentaire pour **rendre visibles des recherches, données, cartes et analyses dans des formats plus libres, visuels et accessibles**.
+
+Résultats intermédiaires, prolongements d’un mémoire ou d’une thèse, explorations de données, méthodes, cartes ou visualisations peuvent ainsi trouver un espace supplémentaire de diffusion et toucher un public au-delà des seuls circuits académiques.
+
+## Proposer une contribution
+
+```{=html}
+<section class="presse-contact" aria-label="Proposer une contribution">
+  <h3>Quelques lignes suffisent pour commencer.</h3>
+  <a class="presse-contact__mail" href="mailto:contributions@contours.nc">contributions@contours.nc</a>
+</section>
+```
