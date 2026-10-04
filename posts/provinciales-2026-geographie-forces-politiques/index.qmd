@@ -4,6 +4,8 @@ subtitle: "Une comparaison 2019–2026 par commune et par bureau de vote, des fa
 author: "Jonas Brouillon"
 date: "2026-10-04"
 draft: false
+research-note: true
+note-number: "2026-07"
 lang: fr
 rubrique: "Politique et élections"
 categories:

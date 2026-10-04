@@ -24,6 +24,8 @@ listing:
   });
 </script>
 
-Une sélection d’analyses de Contours fondées sur des données documentées, une méthode explicite et des résultats discutés.
+Les notes de recherche présentent une question délimitée, des données ou un corpus identifiés, une méthode explicitée dans le texte, des résultats interprétés et leurs principales limites.
 
-Le statut de « Note de recherche » signale un niveau renforcé de formalisation et de documentation ; il ne correspond pas à une évaluation par les pairs.
+Elles privilégient des sources traçables et, lorsque le matériau le permet, une chaîne de calcul ou d’audit reproductible. Une note peut relever d’une démarche quantitative, qualitative ou documentaire.
+
+Ce statut décrit un format éditorial renforcé ; il ne correspond pas à une évaluation par les pairs et ne signifie pas que les autres articles seraient moins solides.

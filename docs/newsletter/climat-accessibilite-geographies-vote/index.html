@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jonas Brouillon">
+<meta name="description" content="Depuis août, contours.nc publie une dataviz sur le climat du Pacifique, refond l’étude sur l’accès au vote, cartographie les recompositions électorales et ouvre le site aux contributions.">
 
-<title>Notes de recherche – Contours</title>
+<title>Du climat du Pacifique aux géographies du vote – Contours</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,26 +31,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/contours-hexagon-256.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/contours-hexagon-256.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,95 +76,39 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Recherche"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../styles.css">
-<meta property="og:title" content="Notes de recherche – Contours">
-<meta property="og:description" content="Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation">
-<meta property="og:image" content="https://contours.nc/images/contours-banner.png">
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Du climat du Pacifique aux géographies du vote – Contours">
+<meta property="og:description" content="Depuis août, contours.nc publie une dataviz sur le climat du Pacifique, refond l’étude sur l’accès au vote, cartographie les recompositions électorales et ouvre le site aux contributions.">
+<meta property="og:image" content="https://contours.nc/images/previews/provinciales-2026-geographie-forces-politiques.png">
 <meta property="og:site_name" content="Contours">
-<meta property="og:image:height" content="1040">
-<meta property="og:image:width" content="2800">
-<meta name="twitter:title" content="Notes de recherche – Contours">
-<meta name="twitter:description" content="Carnet de recherche sur la Nouvelle-Calédonie et le Pacifique : sciences sociales, cartographie, données et datavisualisation">
-<meta name="twitter:image" content="https://contours.nc/images/contours-banner.png">
-<meta name="twitter:image-height" content="1040">
-<meta name="twitter:image-width" content="2800">
+<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:alt" content="Trois cartes crayonnées montrant les évolutions des forces politiques entre les provinciales de 2019 et de 2026">
+<meta name="twitter:title" content="Du climat du Pacifique aux géographies du vote – Contours">
+<meta name="twitter:description" content="Depuis août, contours.nc publie une dataviz sur le climat du Pacifique, refond l’étude sur l’accès au vote, cartographie les recompositions électorales et ouvre le site aux contributions.">
+<meta name="twitter:image" content="https://contours.nc/images/previews/provinciales-2026-geographie-forces-politiques.png">
+<meta name="twitter:image-height" content="630">
+<meta name="twitter:image-width" content="1200">
+<meta name="twitter:image:alt" content="Trois cartes crayonnées montrant les évolutions des forces politiques entre les provinciales de 2019 et de 2026">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://contours.nc/notes/">
+<link rel="canonical" href="https://contours.nc/newsletter/climat-accessibilite-geographies-vote/">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-xxl " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/contours-hexagon-256.png" alt="" class="navbar-logo light-content">
-    <img src="../images/contours-hexagon-256.png" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/contours-hexagon-256.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/contours-hexagon-256.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Contours</span>
     </a>
   </div>
@@ -180,47 +124,47 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-articles">    
         <li>
-    <a class="dropdown-item" href="../articles/index.html">
+    <a class="dropdown-item" href="../../articles/index.html">
  <span class="dropdown-text">Tous les articles</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../notes/index.html">
+    <a class="dropdown-item" href="../../notes/index.html">
  <span class="dropdown-text">Notes de recherche</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../dossiers/index.html"> 
+    <a class="nav-link" href="../../dossiers/index.html"> 
 <span class="menu-text">Dossiers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../cartes/index.html"> 
+    <a class="nav-link" href="../../cartes/index.html"> 
 <span class="menu-text">Cartes et visualisations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../ressources/index.html"> 
+    <a class="nav-link" href="../../ressources/index.html"> 
 <span class="menu-text">Ressources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../presse/index.html"> 
+    <a class="nav-link" href="../../presse/index.html"> 
 <span class="menu-text">Presse</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../contact/index.html"> 
+    <a class="nav-link" href="../../contact/index.html"> 
 <span class="menu-text">Contact</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../newsletter/index.html"> 
+    <a class="nav-link" href="../../newsletter/index.html"> 
 <span class="menu-text">Newsletter</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../contribuer/index.html"> 
+    <a class="nav-link" href="../../contribuer/index.html"> 
 <span class="menu-text">Contribuer</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">À propos</span></a>
   </li>  
 </ul>
@@ -231,254 +175,114 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Du climat du Pacifique aux géographies du vote</h1>
+            <p class="subtitle lead">Trois temps forts, des données plus ouvertes et un appel à contributions</p>
+                  <div>
+        <div class="description">
+          Depuis août, contours.nc publie une dataviz sur le climat du Pacifique, refond l’étude sur l’accès au vote, cartographie les recompositions électorales et ouvre le site aux contributions.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Newsletter</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Auteur·rice</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jonas Brouillon </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Date de publication</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">4 octobre 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Notes de recherche</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<div id="contours-section-notes" class="contours-section-sketch">
-
-</div>
-<script type="module">
-  import { renderContoursSectionBanner } from "../assets/js/contours-sketch.js";
-
-  renderContoursSectionBanner("#contours-section-notes", {
-    sectionTitle: "Notes de recherche"
-  }).catch((error) => {
-    console.error("[contours-section] La banniere n'a pas pu etre affichee.", error);
-  });
-</script>
-<p>Les notes de recherche présentent une question délimitée, des données ou un corpus identifiés, une méthode explicitée dans le texte, des résultats interprétés et leurs principales limites.</p>
-<p>Elles privilégient des sources traçables et, lorsque le matériau le permet, une chaîne de calcul ou d’audit reproductible. Une note peut relever d’une démarche quantitative, qualitative ou documentaire.</p>
-<p>Ce statut décrit un format éditorial renforcé ; il ne correspond pas à une évaluation par les pairs et ne signifie pas que les autres articles seraient moins solides.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ0NhcnRvZ3JhcGhpZSUyQ0J1cmVhdXglMjBkZSUyMHZvdGU=" data-listing-date-sort="1791032400000" data-listing-file-modified-sort="1791082770937" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="23" data-listing-word-count-sort="4554">
-<div class="thumbnail"><a href="../posts/provinciales-2026-geographie-forces-politiques/index.html" class="no-external">
 
-<img loading="lazy" src="../images/previews/provinciales-2026-geographie-forces-politiques.png" class="thumbnail-image" alt="Trois cartes crayonnées des communes : évolution de la droite loyaliste dans le Sud et de l’UC-FLNKS dans le Nord entre 2019 et 2026, score de Nation autochtone aux Îles en 2026">
+<p>Bonjour à toutes et à tous,</p>
+<p>Depuis la dernière newsletter, publiée le 16 août, <span class="contours-word">contours.nc</span> a changé plusieurs fois d’échelle.</p>
+<p>Une nouvelle datavisualisation replace la Nouvelle-Calédonie dans les trajectoires climatiques du Pacifique. La première étude du site sur l’accessibilité électorale a été entièrement refondue pour suivre les déplacements jusqu’au lieu de vote réellement attribué. Enfin, un nouvel article revient sur les provinciales de 2026, cette fois au plus près des communes et des bureaux de vote.</p>
+<p>Ces publications ont aussi été l’occasion d’ouvrir davantage les données et les méthodes du site, de créer un espace pour les notes de recherche et de proposer une nouvelle manière de contribuer à <span class="contours-word">contours.nc</span>.</p>
+<hr>
+<section id="trois-publications-trois-échelles" class="level2">
+<h2 class="anchored" data-anchor-id="trois-publications-trois-échelles">Trois publications, trois échelles</h2>
+<section id="empreintes-climatiques-du-pacifique" class="level3">
+<h3 class="anchored" data-anchor-id="empreintes-climatiques-du-pacifique">Empreintes climatiques du Pacifique</h3>
+<p><a href="https://contours.nc/posts/pacific-climate-fingerprints/"><strong>Empreintes climatiques du Pacifique</strong></a> est une datavisualisation interactive consacrée à vingt-deux territoires du Pacifique.</p>
+<p>Elle rassemble jusqu’à quatre signaux observés dans le temps : la température de surface de l’océan, la température des terres, les précipitations et le niveau marin. L’objectif n’est pas de réduire chaque territoire à une seule tendance, mais de faire apparaître à la fois un signal commun de réchauffement et des trajectoires locales très différentes, en particulier pour les pluies.</p>
+<p>Les couleurs représentent des écarts à une référence propre à chaque territoire, et non des climats absolus. Les périodes disponibles varient selon les indicateurs et les valeurs manquantes ne sont pas interpolées. Les données utilisées et les précautions de lecture sont accessibles directement depuis la visualisation.</p>
+<p>Ce travail constitue la contribution de <span class="contours-word">contours.nc</span> au <strong>Pacific Dataviz Challenge 2026</strong>, consacré au changement climatique.</p>
+</section>
+<section id="une-nouvelle-version-de-létude-sur-laccès-au-vote" class="level3">
+<h3 class="anchored" data-anchor-id="une-nouvelle-version-de-létude-sur-laccès-au-vote">Une nouvelle version de l’étude sur l’accès au vote</h3>
+<p>La première publication de <span class="contours-word">contours.nc</span> a fait l’objet d’une refonte complète : <a href="https://contours.nc/posts/regroupement-bureaux-vote-noumea/"><strong>Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</strong></a></p>
+<p>La première version, publiée en mai, estimait la marche vers le bureau le plus proche. La V2 suit désormais le <strong>bureau réellement attribué à chaque secteur électoral</strong>. Elle compare le maillage préparé en 2025 — 57 bureaux administratifs répartis dans 37 lieux — aux huit lieux utilisés pour les municipales de 2026 et aux neuf lieux des provinciales.</p>
+<p>L’analyse ne porte plus seulement sur la marche. Elle estime aussi les trajets avec une voiture et en combinant marche et réseau Tanéo. Elle montre où le regroupement allonge le plus fortement les déplacements, rappelle que près de trois ménages nouméens sur dix ne disposent d’aucun véhicule et décrit les écarts d’abstention entre secteurs, sans en déduire un lien de causalité avec la distance.</p>
+<p>La version publiée en mai reste consultable dans les archives. Les scripts R, les hypothèses, les fichiers produits et les contrôles sont maintenant réunis dans une <a href="https://contours.nc/ressources/accessibilite-bureaux-vote-noumea.html"><strong>page de méthode dédiée</strong></a>.</p>
+</section>
+<section id="où-les-forces-politiques-ont-elles-gagné-du-terrain" class="level3">
+<h3 class="anchored" data-anchor-id="où-les-forces-politiques-ont-elles-gagné-du-terrain">Où les forces politiques ont-elles gagné du terrain ?</h3>
+<p>Le nouvel article <a href="https://contours.nc/posts/provinciales-2026-geographie-forces-politiques/"><strong>Provinciales 2026 : où les forces politiques ont-elles gagné du terrain ?</strong></a> compare les scrutins de 2019 et de 2026 dans les trois provinces.</p>
+<p>Les cartes permettent de passer des familles politiques aux listes, puis de l’échelle communale aux bureaux de vote. Des graphiques suivent également les bureaux présents aux deux élections afin de distinguer une progression générale d’un déplacement plus localisé.</p>
+<p>Trois recompositions apparaissent. Dans le Sud, la droite loyaliste progresse largement tandis que le centre se fragmente. Dans le Nord, le vote indépendantiste reste stable, mais l’UC repasse devant l’UNI sans effacer les bastions de cette dernière. Aux Îles, la participation recule et Nation autochtone installe un troisième pôle, particulièrement fort à Maré.</p>
+<p>L’article propose aussi un nouveau résumé <strong>« En bref »</strong> en huit écrans, pensé pour parcourir les principaux résultats avant d’entrer dans les cartes et la méthode.</p>
+<hr>
+</section>
+</section>
+<section id="des-données-et-des-méthodes-plus-faciles-à-retrouver" class="level2">
+<h2 class="anchored" data-anchor-id="des-données-et-des-méthodes-plus-faciles-à-retrouver">Des données et des méthodes plus faciles à retrouver</h2>
+<p>Une nouvelle page <a href="https://contours.nc/notes/"><strong>Notes de recherche</strong></a> rassemble les analyses fondées sur des données documentées, une méthode explicite et des résultats discutés. Ce statut signale un niveau renforcé de formalisation ; il ne correspond pas à une évaluation par les pairs.</p>
+<p>La page <a href="https://contours.nc/ressources/"><strong>Ressources</strong></a> accueille désormais la chaîne reproductible de l’étude sur l’accessibilité électorale : scripts, données légères, paramètres de calcul et fichiers d’audit. Les données climatiques et leurs notes méthodologiques sont également téléchargeables depuis la datavisualisation.</p>
+<p>Enfin, la galerie <a href="https://contours.nc/cartes/"><strong>Cartes et visualisations</strong></a> s’est enrichie des empreintes climatiques du Pacifique et des nouvelles cartes des provinciales.</p>
+<hr>
+</section>
+<section id="contours.nc-souvre-aux-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="contours.nc-souvre-aux-contributions">contours.nc s’ouvre aux contributions</h2>
+<p>Une page <a href="https://contours.nc/contribuer/"><strong>Contribuer à contours.nc</strong></a> est maintenant en ligne.</p>
+<p>Chercheurs, étudiants, professionnels, experts et producteurs de données peuvent proposer une note de recherche, une carte, une datavisualisation, un éclairage ou la présentation d’une méthode. Il n’est pas nécessaire d’arriver avec un article déjà rédigé : quelques lignes sur le sujet, les résultats attendus et les sources mobilisées suffisent pour commencer l’échange.</p>
+<p><span class="contours-word">contours.nc</span> n’est pas une revue académique. L’objectif est d’offrir un espace complémentaire pour faire circuler des travaux sur la Nouvelle-Calédonie et le Pacifique dans des formats documentés, accessibles et adaptés au web.</p>
+<p>Les propositions peuvent être adressées à <a href="mailto:contributions@contours.nc"><strong>contributions@contours.nc</strong></a>.</p>
+<hr>
+</section>
+<section id="et-aussi" class="level2">
+<h2 class="anchored" data-anchor-id="et-aussi">Et aussi</h2>
+<p>Avec la publication climatique, la présentation de <span class="contours-word">contours.nc</span> mentionne désormais explicitement le <strong>Pacifique</strong>, aux côtés de la Nouvelle-Calédonie. Cette ouverture élargit le terrain du site sans changer sa méthode : partir de données documentées, les replacer dans leur contexte et rendre les résultats lisibles.</p>
+<p>Le débat sur le regroupement des lieux de vote à Nouméa a connu un nouveau prolongement juridictionnel, relayé le 4 septembre par <a href="https://www.lnc.nc/article/noumea-vers-un-retour-a-37-lieux-de-vote"><strong>Les Nouvelles calédoniennes</strong></a>. Cette reprise a été ajoutée à la page <a href="https://contours.nc/presse/"><strong>Presse et interventions</strong></a>.</p>
+<p>Vous pouvez aussi suivre les nouvelles publications de <span class="contours-word">contours.nc</span> sur <a href="https://www.tiktok.com/@contours.nc"><strong>TikTok</strong></a>, en plus de Facebook et LinkedIn.</p>
+<hr>
+<p>Merci pour vos lectures, vos partages, vos remarques et les idées de contribution que vous m’envoyez. Ils participent directement à faire de <span class="contours-word">contours.nc</span> un espace de travail public sur la Nouvelle-Calédonie et le Pacifique.</p>
+<p>À très bientôt,</p>
+<p><strong>Jonas Brouillon</strong><br>
+<em>Fondateur de <span class="contours-word">contours.nc</span></em></p>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/provinciales-2026-geographie-forces-politiques/index.html" class="no-external">Provinciales 2026 : où les forces politiques ont-elles gagné du terrain ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/provinciales-2026-geographie-forces-politiques/index.html" class="no-external">Une comparaison 2019–2026 par commune et par bureau de vote, des familles politiques aux listes</a>
-</div>
-<div class="delink listing-description"><a href="../posts/provinciales-2026-geographie-forces-politiques/index.html" class="no-external">
-<p>Cartes interactives des provinciales de 2019 et 2026 en Nouvelle-Calédonie : où chaque famille politique et chaque liste a gagné ou perdu du terrain, par commune et par bureau de vote, dans les trois provinces.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/provinciales-2026-geographie-forces-politiques/index.html" class="no-external">
-<div class="listing-date">
-4 oct. 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="QnVyZWF1eCUyMGRlJTIwdm90ZSUyQ1BhcnRpY2lwYXRpb24lMkNJbiVDMyVBOWdhbGl0JUMzJUE5cw==" data-listing-date-sort="1788699600000" data-listing-file-modified-sort="1789255323454" data-listing-date-modified-sort="1788872400000" data-listing-reading-time-sort="30" data-listing-word-count-sort="5869">
-<div class="thumbnail"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
 
-<img loading="lazy" src="../images/previews/noumea-accessibilite-walk-centres_9-contours-nc.png" class="thumbnail-image" alt="Deux cartes comparant les temps de trajet vers les lieux de vote à Nouméa">
+</section>
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">[Version 2] Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">Quand les bureaux sont réunis dans neuf lieux, qui s’éloigne des urnes ?</a>
-</div>
-<div class="delink listing-description"><a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
-<p>À Nouméa, le regroupement des bureaux de vote allonge-t-il les temps d’accès à pied, avec une voiture ou en combinant marche et bus ?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/regroupement-bureaux-vote-noumea/index.html" class="no-external">
-<div class="listing-date">
-7 sept. 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Tm91bSVDMyVBOWElMkNEJUMzJUE5bW9ncmFwaGllJTJDQ2FydG9ncmFwaGll" data-listing-date-sort="1784293200000" data-listing-file-modified-sort="1788666513017" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="76" data-listing-word-count-sort="15017">
-<div class="thumbnail"><a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/chart-concentration-contours-nc.png" class="thumbnail-image" alt="Courbes de concentration de la population autour de Nouméa depuis 1956">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">Pourquoi la population se concentre autour de Nouméa ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">Grand Nouméa, migrations, emplois et villes principales du Pacifique</a>
-</div>
-<div class="delink listing-description"><a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">
-<p>La concentration démographique calédonienne ne se limite plus à la commune de Nouméa : elle se joue à l’échelle du Grand Nouméa. Recensements, migrations, emplois et comparaison avec le Pacifique permettent d’en comprendre les mécanismes.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/concentration-population-noumea-pacifique/index.html" class="no-external">
-<div class="listing-date">
-18 juil. 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1NpbXVsYXRpb24lMkNNJUMzJUE5dGhvZGVz" data-listing-date-sort="1783688400000" data-listing-file-modified-sort="1788666499099" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="46" data-listing-word-count-sort="9112">
-<div class="thumbnail"><a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/provinciales-2026-congres-proportionnelle-nc.png" class="thumbnail-image" alt="Simulation des 40 sièges de l&amp;#039;assemblée de la Province Sud selon plusieurs seuils et méthodes de répartition">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">Et si on changeait les seuils des assemblées ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">Assemblées provinciales, Congrès actuel, Congrès sans clé provinciale et clé Bougival à partir des résultats 2026</a>
-</div>
-<div class="delink listing-description"><a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">
-<p>Simulation des assemblées provinciales et du Congrès de la Nouvelle-Calédonie avec seuils en inscrits ou exprimés, Congrès sans clé provinciale, clé Bougival, et comparaison Jefferson/D’Hondt contre Sainte-Laguë.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/provinciales-2026-congres-proportionnelle-nc/index.html" class="no-external">
-<div class="listing-date">
-11 juil. 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="UHJvdmluY2lhbGVzJTIwMjAyNiUyQ1Byb2dyYW1tZXMlMkNBbmFseXNlJTIwdGV4dHVlbGxl" data-listing-date-sort="1781960400000" data-listing-file-modified-sort="1788666485150" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="18" data-listing-word-count-sort="3460">
-<div class="thumbnail"><a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/provinciales-2026-professions-foi.webp" class="thumbnail-image" alt="Nuages de mots-signatures des listes de la Province Sud aux provinciales 2026">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">Provinciales 2026 : qui propose quoi ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">Priorités, propositions et lignes de partage entre les listes</a>
-</div>
-<div class="delink listing-description"><a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">
-<p>Une analyse textuelle et une lecture détaillée des 22 professions de foi numériques des provinciales 2026 : thèmes dominants, mesures proposées et degré de précision des programmes.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/provinciales-2026-professions-foi/index.html" class="no-external">
-<div class="listing-date">
-21 juin 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Tm91bSVDMyVBOWElMkNQYXJ0aWNpcGF0aW9uJTJDSW4lQzMlQTlnYWxpdCVDMyVBOXM=" data-listing-date-sort="1780750800000" data-listing-file-modified-sort="1788666471208" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6850">
-<div class="thumbnail"><a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/ecart-participation-noumea-2020-2026.jpg" class="thumbnail-image" alt="Carte des écarts de participation entre les municipales 2020 et 2026 à Nouméa">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">Regroupement des bureaux de vote à Nouméa : le débat est-il vraiment clos ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">Ce que dit, et ne dit pas, la participation en hausse aux municipales 2026</a>
-</div>
-<div class="delink listing-description"><a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">
-<p>Une vérification prudente de l’argument de la participation en hausse aux municipales 2026, dans le débat sur le regroupement des bureaux de vote à Nouméa.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/participation-accessibilite-bureaux-noumea/index.html" class="no-external">
-<div class="listing-date">
-7 juin 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="SW4lQzMlQTlnYWxpdCVDMyVBOXMlMkNDYXJ0b2dyYXBoaWU=" data-listing-date-sort="1779973200000" data-listing-file-modified-sort="1788666457317" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="39" data-listing-word-count-sort="7736">
-<div class="thumbnail"><a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">
-
-<img loading="lazy" src="../images/previews/capital-socio-economique-nc.jpg" class="thumbnail-image" alt="Carte lissée du capital socio-économique en Nouvelle-Calédonie">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">Cartographier le capital socio-économique en Nouvelle-Calédonie</a>
-</h3>
-<div class="listing-subtitle">
-<a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">Une lecture exploratoire des contrastes territoriaux à partir du RGP 2019</a>
-</div>
-<div class="delink listing-description"><a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">
-<p>Construction d’un indice synthétique de capital socio-économique à l’échelle des IRIS, puis lecture statistique et cartographique des contrastes territoriaux en Nouvelle-Calédonie.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="../posts/capital-socio-economique-nouvelle-caledonie/index.html" class="no-external">
-<div class="listing-date">
-29 mai 2026
-</div>
-<div class="listing-author">
-Jonas Brouillon
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">Aucun article correspondant</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 (() => {
@@ -541,7 +345,7 @@ Jonas Brouillon
 
 <nav class="floating-social" aria-label="Contacts et réseaux">
 
-  <a class="floating-social__link" href="../contact/" aria-label="Contacter Contours.nc">
+  <a class="floating-social__link" href="../../contact/" aria-label="Contacter Contours.nc">
 
     <i class="bi bi-envelope-fill" aria-hidden="true"></i>
 
@@ -549,7 +353,7 @@ Jonas Brouillon
 
   </a>
 
-  <a class="floating-social__link" href="../newsletter/" aria-label="Newsletter Contours.nc">
+  <a class="floating-social__link" href="../../newsletter/" aria-label="Newsletter Contours.nc">
 
     <i class="bi bi-envelope-paper-fill" aria-hidden="true"></i>
 
@@ -2162,7 +1966,7 @@ Jonas Brouillon
 </div>
   </div>
 </footer>
-<script type="module" src="../assets/js/sketch-labels.js"></script>
+<script type="module" src="../../assets/js/sketch-labels.js"></script>
 <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
   <button class="image-lightbox__close" type="button" aria-label="Fermer l’image agrandie">×</button>
   <figure class="image-lightbox__figure figure">

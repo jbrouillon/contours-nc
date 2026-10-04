@@ -1,0 +1,96 @@
+---
+title: "Du climat du Pacifique aux géographies du vote"
+subtitle: "Trois temps forts, des données plus ouvertes et un appel à contributions"
+author: "Jonas Brouillon"
+date: "2026-10-04"
+categories:
+  - Newsletter
+description: "Depuis août, contours.nc publie une dataviz sur le climat du Pacifique, refond l’étude sur l’accès au vote, cartographie les recompositions électorales et ouvre le site aux contributions."
+image: "../../images/previews/provinciales-2026-geographie-forces-politiques.png"
+image-alt: "Trois cartes crayonnées montrant les évolutions des forces politiques entre les provinciales de 2019 et de 2026"
+toc: false
+title-block-banner: true
+---
+
+Bonjour à toutes et à tous,
+
+Depuis la dernière newsletter, publiée le 16 août, [contours.nc]{.contours-word} a changé plusieurs fois d’échelle.
+
+Une nouvelle datavisualisation replace la Nouvelle-Calédonie dans les trajectoires climatiques du Pacifique. La première étude du site sur l’accessibilité électorale a été entièrement refondue pour suivre les déplacements jusqu’au lieu de vote réellement attribué. Enfin, un nouvel article revient sur les provinciales de 2026, cette fois au plus près des communes et des bureaux de vote.
+
+Ces publications ont aussi été l’occasion d’ouvrir davantage les données et les méthodes du site, de créer un espace pour les notes de recherche et de proposer une nouvelle manière de contribuer à [contours.nc]{.contours-word}.
+
+------------------------------------------------------------------------
+
+## Trois publications, trois échelles
+
+### Empreintes climatiques du Pacifique
+
+[**Empreintes climatiques du Pacifique**](https://contours.nc/posts/pacific-climate-fingerprints/) est une datavisualisation interactive consacrée à vingt-deux territoires du Pacifique.
+
+Elle rassemble jusqu’à quatre signaux observés dans le temps : la température de surface de l’océan, la température des terres, les précipitations et le niveau marin. L’objectif n’est pas de réduire chaque territoire à une seule tendance, mais de faire apparaître à la fois un signal commun de réchauffement et des trajectoires locales très différentes, en particulier pour les pluies.
+
+Les couleurs représentent des écarts à une référence propre à chaque territoire, et non des climats absolus. Les périodes disponibles varient selon les indicateurs et les valeurs manquantes ne sont pas interpolées. Les données utilisées et les précautions de lecture sont accessibles directement depuis la visualisation.
+
+Ce travail constitue la contribution de [contours.nc]{.contours-word} au **Pacific Dataviz Challenge 2026**, consacré au changement climatique.
+
+### Une nouvelle version de l’étude sur l’accès au vote
+
+La première publication de [contours.nc]{.contours-word} a fait l’objet d’une refonte complète : [**Quel est l’effet du regroupement des bureaux de vote sur les temps de trajet à Nouméa ?**](https://contours.nc/posts/regroupement-bureaux-vote-noumea/)
+
+La première version, publiée en mai, estimait la marche vers le bureau le plus proche. La V2 suit désormais le **bureau réellement attribué à chaque secteur électoral**. Elle compare le maillage préparé en 2025 — 57 bureaux administratifs répartis dans 37 lieux — aux huit lieux utilisés pour les municipales de 2026 et aux neuf lieux des provinciales.
+
+L’analyse ne porte plus seulement sur la marche. Elle estime aussi les trajets avec une voiture et en combinant marche et réseau Tanéo. Elle montre où le regroupement allonge le plus fortement les déplacements, rappelle que près de trois ménages nouméens sur dix ne disposent d’aucun véhicule et décrit les écarts d’abstention entre secteurs, sans en déduire un lien de causalité avec la distance.
+
+La version publiée en mai reste consultable dans les archives. Les scripts R, les hypothèses, les fichiers produits et les contrôles sont maintenant réunis dans une [**page de méthode dédiée**](https://contours.nc/ressources/accessibilite-bureaux-vote-noumea.html).
+
+### Où les forces politiques ont-elles gagné du terrain ?
+
+Le nouvel article [**Provinciales 2026 : où les forces politiques ont-elles gagné du terrain ?**](https://contours.nc/posts/provinciales-2026-geographie-forces-politiques/) compare les scrutins de 2019 et de 2026 dans les trois provinces.
+
+Les cartes permettent de passer des familles politiques aux listes, puis de l’échelle communale aux bureaux de vote. Des graphiques suivent également les bureaux présents aux deux élections afin de distinguer une progression générale d’un déplacement plus localisé.
+
+Trois recompositions apparaissent. Dans le Sud, la droite loyaliste progresse largement tandis que le centre se fragmente. Dans le Nord, le vote indépendantiste reste stable, mais l’UC repasse devant l’UNI sans effacer les bastions de cette dernière. Aux Îles, la participation recule et Nation autochtone installe un troisième pôle, particulièrement fort à Maré.
+
+L’article propose aussi un nouveau résumé **« En bref »** en huit écrans, pensé pour parcourir les principaux résultats avant d’entrer dans les cartes et la méthode.
+
+------------------------------------------------------------------------
+
+## Des données et des méthodes plus faciles à retrouver
+
+Une nouvelle page [**Notes de recherche**](https://contours.nc/notes/) rassemble les analyses fondées sur des données documentées, une méthode explicite et des résultats discutés. Ce statut signale un niveau renforcé de formalisation ; il ne correspond pas à une évaluation par les pairs.
+
+La page [**Ressources**](https://contours.nc/ressources/) accueille désormais la chaîne reproductible de l’étude sur l’accessibilité électorale : scripts, données légères, paramètres de calcul et fichiers d’audit. Les données climatiques et leurs notes méthodologiques sont également téléchargeables depuis la datavisualisation.
+
+Enfin, la galerie [**Cartes et visualisations**](https://contours.nc/cartes/) s’est enrichie des empreintes climatiques du Pacifique et des nouvelles cartes des provinciales.
+
+------------------------------------------------------------------------
+
+## contours.nc s’ouvre aux contributions
+
+Une page [**Contribuer à contours.nc**](https://contours.nc/contribuer/) est maintenant en ligne.
+
+Chercheurs, étudiants, professionnels, experts et producteurs de données peuvent proposer une note de recherche, une carte, une datavisualisation, un éclairage ou la présentation d’une méthode. Il n’est pas nécessaire d’arriver avec un article déjà rédigé : quelques lignes sur le sujet, les résultats attendus et les sources mobilisées suffisent pour commencer l’échange.
+
+[contours.nc]{.contours-word} n’est pas une revue académique. L’objectif est d’offrir un espace complémentaire pour faire circuler des travaux sur la Nouvelle-Calédonie et le Pacifique dans des formats documentés, accessibles et adaptés au web.
+
+Les propositions peuvent être adressées à [**contributions\@contours.nc**](mailto:contributions@contours.nc).
+
+------------------------------------------------------------------------
+
+## Et aussi
+
+Avec la publication climatique, la présentation de [contours.nc]{.contours-word} mentionne désormais explicitement le **Pacifique**, aux côtés de la Nouvelle-Calédonie. Cette ouverture élargit le terrain du site sans changer sa méthode : partir de données documentées, les replacer dans leur contexte et rendre les résultats lisibles.
+
+Le débat sur le regroupement des lieux de vote à Nouméa a connu un nouveau prolongement juridictionnel, relayé le 4 septembre par [**Les Nouvelles calédoniennes**](https://www.lnc.nc/article/noumea-vers-un-retour-a-37-lieux-de-vote). Cette reprise a été ajoutée à la page [**Presse et interventions**](https://contours.nc/presse/).
+
+Vous pouvez aussi suivre les nouvelles publications de [contours.nc]{.contours-word} sur [**TikTok**](https://www.tiktok.com/@contours.nc), en plus de Facebook et LinkedIn.
+
+------------------------------------------------------------------------
+
+Merci pour vos lectures, vos partages, vos remarques et les idées de contribution que vous m’envoyez. Ils participent directement à faire de [contours.nc]{.contours-word} un espace de travail public sur la Nouvelle-Calédonie et le Pacifique.
+
+À très bientôt,
+
+**Jonas Brouillon**\
+*Fondateur de [contours.nc]{.contours-word}*
