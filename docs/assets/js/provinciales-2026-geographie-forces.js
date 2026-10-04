@@ -1954,6 +1954,32 @@
       return valueCache.get(cacheKey);
     }
 
+    // Même marqueur dans les nuages et leur légende : un aplat léger sous des
+    // hachures rough.js. Le rayon varie, mais le langage graphique reste identique.
+    function drawScatterMarker(parent, rc, { x, y, radius, fill, active = true, unstable = false, seedKey }) {
+      parent.append("circle")
+        .attr("cx", x).attr("cy", y).attr("r", radius)
+        .attr("fill", unstable ? paper : fill)
+        .attr("fill-opacity", active ? 0.42 : 0.35);
+      roughCircle(parent, rc, x, y, radius * 2, {
+        fill: unstable ? "none" : fill,
+        fillStyle: "hachure",
+        hachureGap: Math.max(1.4, radius * 0.38),
+        hachureAngle: -41,
+        fillWeight: active ? 0.9 : 0.6,
+        stroke: active ? ink : "#b9b1a5",
+        strokeWidth: unstable ? 1.1 : 0.7,
+        roughness: 0.9,
+        seed: seedKey
+      });
+      if (unstable) {
+        parent.append("circle")
+          .attr("cx", x).attr("cy", y).attr("r", radius + 2.5)
+          .attr("fill", "none").attr("stroke", ink).attr("stroke-width", 0.8)
+          .attr("stroke-dasharray", "2 2");
+      }
+    }
+
     function optionsFor(year) {
       const yearLists = Array.from(listInfo.entries())
         .filter(([, d]) => d.annee === year)
@@ -1983,10 +2009,18 @@
         button.className = "geography-scatter-chip";
         button.dataset.commune = value;
         if (value) {
-          const swatch = document.createElement("span");
-          swatch.className = "geography-scatter-swatch";
-          swatch.style.background = communeColor.get(value);
+          const swatch = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          swatch.setAttribute("class", "geography-scatter-swatch");
+          swatch.setAttribute("viewBox", "0 0 18 18");
           swatch.setAttribute("aria-hidden", "true");
+          const swatchSelection = d3.select(swatch);
+          drawScatterMarker(swatchSelection, rough.svg(swatch), {
+            x: 9,
+            y: 9,
+            radius: 6,
+            fill: communeColor.get(value),
+            seedKey: `${uid}-legend-${value}`
+          });
           button.appendChild(swatch);
         }
         button.appendChild(document.createTextNode(text));
@@ -2149,25 +2183,15 @@
         const active = isActive(site);
         const fill = active ? communeColor.get(site.commune) : "#d9d3c8";
         const r = radius(site.inscrits2026);
-        dots.append("circle")
-          .attr("cx", x(site.x)).attr("cy", y(site.y)).attr("r", r)
-          .attr("fill", site.unstable ? paper : fill)
-          .attr("fill-opacity", active ? 0.42 : 0.35);
-        roughCircle(dots, rc, x(site.x), y(site.y), r * 2, {
-          fill: site.unstable ? "none" : fill,
-          fillStyle: "hachure",
-          hachureGap: Math.max(1.4, r * 0.38),
-          hachureAngle: -41,
-          fillWeight: active ? 0.9 : 0.6,
-          stroke: active ? ink : "#b9b1a5",
-          strokeWidth: site.unstable ? 1.1 : 0.7,
-          roughness: 0.9,
-          seed: `${uid}-${chart.index}-${site.commune}-${site.code2026}`
+        drawScatterMarker(dots, rc, {
+          x: x(site.x),
+          y: y(site.y),
+          radius: r,
+          fill,
+          active,
+          unstable: site.unstable,
+          seedKey: `${uid}-${chart.index}-${site.commune}-${site.code2026}`
         });
-        if (site.unstable) {
-          dots.append("circle").attr("cx", x(site.x)).attr("cy", y(site.y)).attr("r", r + 2.5)
-            .attr("fill", "none").attr("stroke", ink).attr("stroke-width", 0.8).attr("stroke-dasharray", "2 2");
-        }
       });
 
       // Corrélation (chaque bureau compte une fois).

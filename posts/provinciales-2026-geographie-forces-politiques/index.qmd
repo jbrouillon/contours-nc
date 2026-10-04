@@ -319,7 +319,7 @@ Le centre recule presque en miroir. Représenté en 2019 par Calédonie ensemble
 
 ### Comparer les résultats bureau par bureau {#nuages-sud}
 
-Le centre n’a pas disparu, il s’est dispersé. Les deux graphiques suivent les `r paires_n("Province Sud")` bureaux présents aux deux scrutins. À gauche, Calédonie ensemble en 2019 face à Une Province pour tous, la liste qui portait l’étiquette Calédonie ensemble en 2026 ; à droite, face à Nous, réunis !, conduite par Philippe Dunoyer. Les deux listes restent plus fortes là où Calédonie ensemble l’était, mais à un niveau bien plus bas : Une Province pour tous ne fait mieux que Calédonie ensemble que dans `r en_bureaux(nuage_hausses("Province Sud", "liste:2019-11", "liste:2026-05"))`, Nous, réunis ! dans `r en_bureaux(nuage_hausses("Province Sud", "liste:2019-11", "liste:2026-09"))`. Les menus permettent aussi de suivre l’Éveil océanien, qui progresse dans `r nuage_hausses("Province Sud", "oceanien", "oceanien")` bureaux sur `r paires_n("Province Sud")`.
+Le centre n’a pas disparu, il s’est dispersé. Les deux graphiques suivent les `r paires_n("Province Sud")` bureaux présents aux deux scrutins. À gauche, Calédonie ensemble en 2019 est comparée à Une Province pour tous, la liste qui portait l’étiquette Calédonie ensemble en 2026 ; à droite, elle est comparée aux trois listes du centre non-indépendantiste réunies en 2026. Une Province pour tous ne fait mieux que Calédonie ensemble que dans `r en_bureaux(nuage_hausses("Province Sud", "liste:2019-11", "liste:2026-05"))`, tandis que le centre réuni recule dans `r en_bureaux(nuage_reculs("Province Sud", "centre_non_ind", "centre_non_ind"))`. Les menus permettent aussi de suivre séparément Nous, réunis ! ou l’Éveil océanien, qui progresse dans `r nuage_hausses("Province Sud", "oceanien", "oceanien")` bureaux sur `r paires_n("Province Sud")`.
 
 ::: column-page
 ```{=html}
@@ -329,7 +329,7 @@ Le centre n’a pas disparu, il s’est dispersé. Les deux graphiques suivent l
   data-provinciales-scatter
   data-province="sud"
   data-x-a="liste:2019-11" data-y-a="liste:2026-05"
-  data-x-b="liste:2019-11" data-y-b="liste:2026-09"
+  data-x-b="liste:2019-11" data-y-b="centre_non_ind"
   data-points="data/bureaux_forces_2019_2026.csv"
   data-summary="data/synthese_province.csv"
   data-lists="data/listes_2019_2026.csv"
