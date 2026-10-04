@@ -5,7 +5,8 @@
   // communale et intra-communale, croquis des diapositives « En bref ».
   const mapRoots = Array.from(document.querySelectorAll("[data-provinciales-geographie]"));
   const briefRoots = Array.from(document.querySelectorAll("[data-provinciales-brief]"));
-  if ((!mapRoots.length && !briefRoots.length) || !window.d3 || !window.rough) return;
+  const scatterRoots = Array.from(document.querySelectorAll("[data-provinciales-scatter]"));
+  if ((!mapRoots.length && !briefRoots.length && !scatterRoots.length) || !window.d3 || !window.rough) return;
 
   const ink = "#282522";
   const muted = "#625d55";
@@ -404,17 +405,19 @@
 
   function loadData(element) {
     const set = element.dataset;
+    const optional = (url, type, fallback) => (url ? request(url, type) : Promise.resolve(fallback));
     return Promise.all([
-      set.points ? request(set.points, "csv") : Promise.resolve([]),
-      request(set.boundary, "json"),
-      request(set.communes, "json"),
-      set.summary ? request(set.summary, "csv") : Promise.resolve([]),
-      request(set.communeSummary, "csv"),
-      set.metadata ? request(set.metadata, "json") : Promise.resolve({}),
-      set.lists ? request(set.lists, "csv") : Promise.resolve([]),
-      set.listVotes ? request(set.listVotes, "csv") : Promise.resolve([])
-    ]).then(([points, boundaries, communes, summary, communeSummary, metadata, lists, listVotes]) => ({
-      points, boundaries, communes, summary, communeSummary, metadata, lists, listVotes
+      optional(set.points, "csv", []),
+      optional(set.boundary, "json", null),
+      optional(set.communes, "json", null),
+      optional(set.summary, "csv", []),
+      optional(set.communeSummary, "csv", []),
+      optional(set.metadata, "json", {}),
+      optional(set.lists, "csv", []),
+      optional(set.listVotes, "csv", []),
+      optional(set.matches, "csv", [])
+    ]).then(([points, boundaries, communes, summary, communeSummary, metadata, lists, listVotes, matches]) => ({
+      points, boundaries, communes, summary, communeSummary, metadata, lists, listVotes, matches
     }));
   }
 
@@ -432,17 +435,28 @@
       });
   }
 
+  function startScatter(root) {
+    if (root.dataset.scatterStarted) return;
+    root.dataset.scatterStarted = "true";
+    loadData(root)
+      .then((data) => mountScatter(root, data))
+      .catch((error) => {
+        root.innerHTML = `<p class="geography-map-error">Le graphique n’a pas pu être chargé (${escapeHtml(error.message)}).</p>`;
+      });
+  }
+
+  const starters = new Map([...mapRoots.map((root) => [root, start]), ...scatterRoots.map((root) => [root, startScatter])]);
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
-        start(entry.target);
+        starters.get(entry.target)(entry.target);
       });
     }, { rootMargin: "600px 0px" });
-    mapRoots.forEach((root) => observer.observe(root));
+    starters.forEach((_, root) => observer.observe(root));
   } else {
-    mapRoots.forEach(start);
+    starters.forEach((launch, root) => launch(root));
   }
 
   function mount(root, data) {
@@ -1344,9 +1358,11 @@
         bureaux: "résultats par lieu de vote",
         smooth: `estimation lissée sur ${formatKm.format(bandwidthKm)} km`
       }[mode];
+      // Formulation neutre, valable pour une famille, une liste ou la
+      // participation, quel que soit le genre du nom.
       const question = series.kind === "list"
-        ? "où la liste est-elle implantée ?"
-        : "où gagne-t-elle, où recule-t-elle ?";
+        ? `implantation en ${series.years[0]}`
+        : "gains et reculs";
       if (compact) {
         const maxChars = Math.floor((layout.width - 20) / 10);
         const titleText = series.label.length > maxChars ? `${series.label.slice(0, maxChars - 1)}…` : series.label;
@@ -1832,6 +1848,418 @@
   }
 
   // ---------------------------------------------------------------------------
+  // Nuages de points : bureaux appariés, 2019 en abscisse, 2026 en ordonnée
+  // ---------------------------------------------------------------------------
+
+  // Score de chaque bureau (clé « commune|numéro ») pour une famille, une liste
+  // (« liste:2019-11 »), la participation ou l'abstention.
+  function seriesBureauValues(points, listVotes, province, key, year) {
+    const values = new Map();
+    if (String(key).startsWith("liste:")) {
+      const id = key.slice(6);
+      const base = new Map(
+        points
+          .filter((d) => d.province === province && d.annee === year && d.force === "participation")
+          .map((d) => [`${d.commune}|${Number(d.code_bv)}`, d.exprimes])
+      );
+      listVotes
+        .filter((d) => d.province === province && d.liste_id === id && d.annee === year)
+        .forEach((d) => {
+          const exprimes = base.get(`${d.commune}|${Number(d.code_bv)}`);
+          if (exprimes > 0) values.set(`${d.commune}|${Number(d.code_bv)}`, 100 * d.voix / exprimes);
+        });
+    } else {
+      const force = key === "abstention" ? "participation" : key;
+      points
+        .filter((d) => d.province === province && d.annee === year && d.force === force)
+        .forEach((d) => {
+          values.set(`${d.commune}|${Number(d.code_bv)}`, key === "abstention" ? 100 - d.pct : d.pct);
+        });
+    }
+    return values;
+  }
+
+  function matchedPairs(matches, province) {
+    return matches
+      .filter((d) => d.province === province && (d.methode === "nom" || d.methode === "numero"))
+      .map((d) => ({
+        commune: d.commune,
+        code2019: Number(d.code_bv_2019),
+        code2026: Number(d.code_bv_2026),
+        name2019: d.nom_2019,
+        name2026: d.nom_2026,
+        inscrits2019: d.inscrits_2019,
+        inscrits2026: d.inscrits_2026,
+        // Électorat modifié de plus de 40 % : comparaison fragile.
+        unstable: !(d.inscrits_2026 / d.inscrits_2019 >= 0.6 && d.inscrits_2026 / d.inscrits_2019 <= 1.6)
+      }));
+  }
+
+  function mountScatter(root, data) {
+    const { points, summary, lists, listVotes, matches } = data;
+    const uid = root.id || `nuage-${scatterRoots.indexOf(root) + 1}`;
+    const province = provinceFromSlug[root.dataset.province] || "Province Sud";
+    const defaults = [
+      [root.dataset.xA, root.dataset.yA],
+      [root.dataset.xB, root.dataset.yB]
+    ];
+    let compact = root.clientWidth < 700;
+    let highlight = "";
+
+    // Bureaux appariés de la province (audit : appariement_bureaux_2019_2026.csv).
+    const pairs = matchedPairs(matches, province);
+    // Couleur par commune : palette catégorielle ; les communes qui comptent le
+    // plus de bureaux reçoivent les teintes les plus distinctes.
+    const communePalette = [
+      "#4e79a7", "#e15759", "#59a14f", "#f28e2b", "#b07aa1", "#76b7b2", "#edc948", "#9c755f", "#ff9da7",
+      "#499894", "#d37295", "#86bcb6", "#8cd17d", "#a0cbe8", "#ffbe7d", "#bab0ac", "#f1ce63", "#79706e"
+    ];
+    const communeCounts = d3.rollup(pairs, (values) => values.length, (d) => d.commune);
+    const communesList = Array.from(communeCounts.keys()).sort((a, b) =>
+      d3.descending(communeCounts.get(a), communeCounts.get(b)) || a.localeCompare(b, "fr")
+    );
+    const communeColor = new Map(communesList.map((name, index) => [name, communePalette[index % communePalette.length]]));
+
+    // --- Séries disponibles ----------------------------------------------------
+    const families = summary
+      .filter((d) => d.province === province && d.annee === 2026 && d.force !== "participation")
+      .sort((a, b) => d3.ascending(a.ordre, b.ordre));
+    const familyInfo = new Map(families.map((d) => [d.force, d]));
+    const listInfo = new Map(lists.filter((d) => d.province === province).map((d) => [`liste:${d.liste_id}`, d]));
+    const valueCache = new Map();
+
+    function seriesLabel(key, year) {
+      if (key === "participation") return "Participation";
+      if (key === "abstention") return "Abstention";
+      if (listInfo.has(key)) return listInfo.get(key).liste_label;
+      return familyInfo.get(key)?.force_label || key;
+    }
+
+    function seriesColor(key) {
+      if (key === "participation") return "#d18b24";
+      if (key === "abstention") return "#6f6a8f";
+      if (listInfo.has(key)) return listInfo.get(key).couleur;
+      return familyInfo.get(key)?.couleur || ink;
+    }
+
+    function seriesUnit(key) {
+      return key === "participation" || key === "abstention" ? "des inscrits" : "des exprimés";
+    }
+
+    function valuesFor(key, year) {
+      const cacheKey = `${key}|${year}`;
+      if (!valueCache.has(cacheKey)) {
+        valueCache.set(cacheKey, seriesBureauValues(points, listVotes, province, key, year));
+      }
+      return valueCache.get(cacheKey);
+    }
+
+    function optionsFor(year) {
+      const yearLists = Array.from(listInfo.entries())
+        .filter(([, d]) => d.annee === year)
+        .sort((a, b) => d3.ascending(a[1].ordre, b[1].ordre));
+      return [
+        ["Familles politiques", families.map((d) => [d.force, d.force_label])],
+        [`Listes ${year}`, yearLists.map(([key, d]) => [key, `${d.liste_label} (${format1.format(d.score)} %)`])],
+        ["Mobilisation", [["participation", "Participation"], ["abstention", "Abstention"]]]
+      ];
+    }
+
+    // --- Structure ------------------------------------------------------------------
+    root.innerHTML = "";
+    root.classList.add("geography-scatter", "habitat-sketch--mobile-fluid");
+    const toolbar = document.createElement("div");
+    toolbar.className = "geography-map-controls";
+    // Légende des communes : chaque bouton met sa commune en évidence dans les
+    // deux graphiques ; un second clic, ou « Toutes », rétablit l'ensemble.
+    const legend = document.createElement("div");
+    legend.className = "geography-scatter-legend";
+    legend.setAttribute("role", "group");
+    legend.setAttribute("aria-label", "Communes : mettre une commune en évidence");
+    const legendButtons = [["", "Toutes"], ...communesList.map((name) => [name, titleCaseCommune(name, province)])]
+      .map(([value, text]) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "geography-scatter-chip";
+        button.dataset.commune = value;
+        if (value) {
+          const swatch = document.createElement("span");
+          swatch.className = "geography-scatter-swatch";
+          swatch.style.background = communeColor.get(value);
+          swatch.setAttribute("aria-hidden", "true");
+          button.appendChild(swatch);
+        }
+        button.appendChild(document.createTextNode(text));
+        legend.appendChild(button);
+        return button;
+      });
+    toolbar.appendChild(legend);
+    root.appendChild(toolbar);
+
+    const grid = document.createElement("div");
+    grid.className = "geography-scatter-grid";
+    root.appendChild(grid);
+    const tooltip = document.createElement("div");
+    tooltip.className = "habitat-tooltip geography-map-tooltip";
+    tooltip.setAttribute("role", "status");
+    root.appendChild(tooltip);
+
+    const charts = defaults.map(([xKey, yKey], index) => {
+      const card = document.createElement("figure");
+      card.className = "geography-scatter-card";
+      const controls = document.createElement("div");
+      controls.className = "geography-scatter-controls";
+      const makeSelect = (year, selected, text) => {
+        const labelNode = document.createElement("label");
+        labelNode.className = "habitat-map-control-label";
+        labelNode.appendChild(document.createTextNode(text));
+        const select = document.createElement("select");
+        select.className = "habitat-map-select";
+        select.setAttribute("aria-label", `${text}, graphique ${index + 1}`);
+        optionsFor(year).forEach(([title, options]) => {
+          if (!options.length) return;
+          const group = document.createElement("optgroup");
+          group.label = title;
+          options.forEach(([value, label]) => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = label;
+            group.appendChild(option);
+          });
+          select.appendChild(group);
+        });
+        select.value = selected;
+        if (select.value !== selected) select.selectedIndex = 0;
+        labelNode.appendChild(select);
+        controls.appendChild(labelNode);
+        return select;
+      };
+      const xSelect = makeSelect(2019, xKey, "2019 (abscisse)");
+      const ySelect = makeSelect(2026, yKey, "2026 (ordonnée)");
+      card.appendChild(controls);
+      const svgNode = d3.select(card).append("svg").attr("role", "img").attr("tabindex", 0);
+      const caption = document.createElement("figcaption");
+      caption.className = "geography-scatter-caption";
+      card.appendChild(caption);
+      grid.appendChild(card);
+      const chart = { index, xSelect, ySelect, svg: svgNode, caption, focus: -1, sites: [] };
+      xSelect.addEventListener("change", () => draw(chart));
+      ySelect.addEventListener("change", () => draw(chart));
+      return chart;
+    });
+
+    function showTip(chart, site, pointer) {
+      const xKey = chart.xSelect.value;
+      const yKey = chart.ySelect.value;
+      const delta = site.y - site.x;
+      const sameSeries = xKey === yKey;
+      tooltip.innerHTML = [
+        `<strong>${escapeHtml(placeName([site.name2026]))}</strong>`,
+        `<span>${escapeHtml(titleCaseCommune(site.commune, province))} · bureau nᵒ ${site.code2019}${site.code2019 !== site.code2026 ? ` (nᵒ ${site.code2026} en 2026)` : ""}</span>`,
+        `<div class="geography-tip-grid">`,
+        `<span>2019 · ${escapeHtml(seriesLabel(xKey))}</span><b>${format1.format(site.x)} %</b>`,
+        `<span>2026 · ${escapeHtml(seriesLabel(yKey))}</span><b>${format1.format(site.y)} %</b>`,
+        sameSeries ? `<span>Évolution</span><b class="${delta >= 0 ? "is-up" : "is-down"}">${signed1.format(delta)} pts</b>` : "",
+        `<span>Inscrits</span><b>${format0.format(site.inscrits2019)} → ${format0.format(site.inscrits2026)}</b>`,
+        `</div>`,
+        site.unstable ? `<span class="habitat-tooltip-note">Électorat modifié de plus de 40 % : comparaison fragile.</span>` : ""
+      ].join("");
+      positionTooltip(root, tooltip, pointer);
+    }
+
+    function draw(chart) {
+      const xKey = chart.xSelect.value;
+      const yKey = chart.ySelect.value;
+      const xs = valuesFor(xKey, 2019);
+      const ys = valuesFor(yKey, 2026);
+      const sites = pairs
+        .map((pair) => ({
+          ...pair,
+          x: xs.get(`${pair.commune}|${pair.code2019}`),
+          y: ys.get(`${pair.commune}|${pair.code2026}`)
+        }))
+        .filter((d) => Number.isFinite(d.x) && Number.isFinite(d.y))
+        .sort((a, b) => d3.ascending(a.x, b.x));
+      chart.sites = sites;
+      chart.focus = -1;
+
+      const width = compact ? Math.max(300, Math.min(440, root.clientWidth - 8)) : 560;
+      const height = compact ? width + 40 : 520;
+      const margin = { top: 74, right: 18, bottom: 54, left: 52 };
+      // Chaque axe suit l'étendue de ses propres résultats : un petit score
+      // reste lisible au lieu d'être écrasé par l'échelle de l'autre axe.
+      const niceMax = (value) => Math.min(100, d3.scaleLinear().domain([0, Math.max(4, value * 1.06)]).nice().domain()[1]);
+      const xMax = niceMax(d3.max(sites, (d) => d.x) || 10);
+      const yMax = niceMax(d3.max(sites, (d) => d.y) || 10);
+      const plotWidth = width - margin.left - margin.right;
+      const plotHeight = height - margin.top - margin.bottom;
+      const x = d3.scaleLinear().domain([0, xMax]).range([margin.left, margin.left + plotWidth]);
+      const y = d3.scaleLinear().domain([0, yMax]).range([margin.top + plotHeight, margin.top]);
+      const radius = d3.scaleSqrt().domain([0, d3.max(pairs, (d) => d.inscrits2026) || 1]).range([2.5, compact ? 8 : 10]);
+      const svg = chart.svg;
+      svg.selectAll("*").remove();
+      svg.attr("viewBox", `0 0 ${width} ${height}`);
+      const rc = rough.svg(svg.node());
+
+      // Titre court : libellés sans sigle entre parenthèses, tronqués à la largeur.
+      const short = (key) => seriesLabel(key).replace(/\s*\(.*\)\s*$/, "");
+      const maxChars = Math.floor((width - 20) / 9);
+      const titleText = `${short(xKey)} → ${short(yKey)}`;
+      label(svg, titleText.length > maxChars ? `${titleText.slice(0, maxChars - 1)}…` : titleText, 10, 18, {
+        family: "Cabin Sketch, sans-serif", size: compact ? 16 : 18, weight: 700
+      });
+      label(svg, `${sites.length} bureaux présents en 2019 et en 2026 · ${titleCaseCommune(highlight, province) || provinceDisplay[province]}`, 10, 40, {
+        size: 11, weight: 750, color: muted
+      });
+
+      // Axes et grille.
+      const axis = svg.append("g").attr("pointer-events", "none");
+      const tickFormat = (tick) => `${new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 }).format(tick)} %`;
+      x.ticks(compact ? 4 : 6).forEach((tick) => {
+        axis.append("line").attr("x1", x(tick)).attr("x2", x(tick)).attr("y1", y(0)).attr("y2", y(yMax))
+          .attr("stroke", frame).attr("stroke-width", 0.7).attr("stroke-dasharray", tick ? "3 3" : null);
+        label(axis, tickFormat(tick), x(tick), y(0) + 14, { anchor: "middle", size: 10, weight: 700, color: muted });
+      });
+      y.ticks(compact ? 4 : 6).forEach((tick) => {
+        axis.append("line").attr("x1", x(0)).attr("x2", x(xMax)).attr("y1", y(tick)).attr("y2", y(tick))
+          .attr("stroke", frame).attr("stroke-width", 0.7).attr("stroke-dasharray", tick ? "3 3" : null);
+        label(axis, tickFormat(tick), x(0) - 6, y(tick), { anchor: "end", size: 10, weight: 700, color: muted });
+      });
+      label(axis, `2019 · % ${seriesUnit(xKey)}`, x(xMax), y(0) + 34, { anchor: "end", size: 10.5, weight: 800, color: muted });
+      label(axis, `2026 · % ${seriesUnit(yKey)}`, x(0), y(yMax) - 10, { size: 10.5, weight: 800, color: muted });
+      // Diagonale : même score en 2019 et en 2026, tracée jusqu'au plus petit
+      // des deux maximums (les axes n'ont pas la même échelle).
+      const diagonal = Math.min(xMax, yMax);
+      roughPath(svg, rc, `M${x(0)},${y(0)}L${x(diagonal)},${y(diagonal)}`, {
+        stroke: ink, strokeWidth: 0.9, roughness: 1.1, opacity: 0.55, seed: `${uid}-diag-${chart.index}`
+      });
+      label(svg, "même score", x(diagonal * 0.72) + 6, y(diagonal * 0.72) + 2, {
+        size: 10, weight: 800, color: muted, halo: true
+      });
+
+      // Points crayonnés : aplat léger puis hachures dans la couleur de la
+      // commune. Les plus gros d'abord, pour garder les petits visibles ; la
+      // commune mise en évidence passe au premier plan.
+      const isActive = (site) => !highlight || site.commune === highlight;
+      const ordered = sites.slice().sort((a, b) =>
+        d3.ascending(isActive(a), isActive(b)) || d3.descending(a.inscrits2026, b.inscrits2026)
+      );
+      const dots = svg.append("g").attr("class", "geography-scatter-dots").attr("pointer-events", "none");
+      ordered.forEach((site) => {
+        const active = isActive(site);
+        const fill = active ? communeColor.get(site.commune) : "#d9d3c8";
+        const r = radius(site.inscrits2026);
+        dots.append("circle")
+          .attr("cx", x(site.x)).attr("cy", y(site.y)).attr("r", r)
+          .attr("fill", site.unstable ? paper : fill)
+          .attr("fill-opacity", active ? 0.42 : 0.35);
+        roughCircle(dots, rc, x(site.x), y(site.y), r * 2, {
+          fill: site.unstable ? "none" : fill,
+          fillStyle: "hachure",
+          hachureGap: Math.max(1.4, r * 0.38),
+          hachureAngle: -41,
+          fillWeight: active ? 0.9 : 0.6,
+          stroke: active ? ink : "#b9b1a5",
+          strokeWidth: site.unstable ? 1.1 : 0.7,
+          roughness: 0.9,
+          seed: `${uid}-${chart.index}-${site.commune}-${site.code2026}`
+        });
+        if (site.unstable) {
+          dots.append("circle").attr("cx", x(site.x)).attr("cy", y(site.y)).attr("r", r + 2.5)
+            .attr("fill", "none").attr("stroke", ink).attr("stroke-width", 0.8).attr("stroke-dasharray", "2 2");
+        }
+      });
+
+      // Corrélation (chaque bureau compte une fois).
+      const r = sites.length > 2 ? pearson(sites) : NaN;
+      const corrText = Number.isFinite(r) ? `r = ${new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 2, minimumFractionDigits: 2 }).format(r)}` : "";
+      label(svg, corrText, x(0) + 8, y(yMax) + 12, { size: 11.5, weight: 850, halo: true });
+
+      const marker = svg.append("circle").attr("r", 9).attr("fill", "none").attr("stroke", ink).attr("stroke-width", 2)
+        .attr("opacity", 0).attr("pointer-events", "none");
+      const delaunay = d3.Delaunay.from(sites, (d) => x(d.x), (d) => y(d.y));
+      const focusSite = (site, pointer) => {
+        marker.attr("cx", x(site.x)).attr("cy", y(site.y)).attr("opacity", 1);
+        showTip(chart, site, pointer);
+      };
+      svg.append("rect")
+        .attr("x", margin.left - 8).attr("y", margin.top - 8)
+        .attr("width", plotWidth + 16).attr("height", plotHeight + 16)
+        .attr("fill", "transparent")
+        .on("pointermove pointerdown", (event) => {
+          const [px, py] = d3.pointer(event, svg.node());
+          const index = delaunay.find(px, py);
+          const site = sites[index];
+          if (!site || Math.hypot(x(site.x) - px, y(site.y) - py) > 24) {
+            marker.attr("opacity", 0);
+            tooltip.style.opacity = 0;
+            return;
+          }
+          chart.focus = index;
+          focusSite(site, event);
+        })
+        .on("pointerleave", () => { marker.attr("opacity", 0); tooltip.style.opacity = 0; });
+      svg.on("keydown", (event) => {
+        if (!["ArrowRight", "ArrowLeft", "Escape"].includes(event.key) || !sites.length) return;
+        event.preventDefault();
+        if (event.key === "Escape") { marker.attr("opacity", 0); tooltip.style.opacity = 0; return; }
+        chart.focus = (chart.focus + (event.key === "ArrowRight" ? 1 : -1) + sites.length) % sites.length;
+        const site = sites[chart.focus];
+        const box = svg.node().getBoundingClientRect();
+        const scale = box.width / width;
+        focusSite(site, { clientX: box.left + x(site.x) * scale, clientY: box.top + y(site.y) * scale });
+      });
+      svg.on("blur", () => { marker.attr("opacity", 0); tooltip.style.opacity = 0; });
+
+      roughRect(svg, rc, 2, 2, width - 4, height - 4, { stroke: frame, strokeWidth: 0.7, roughness: 1.4, seed: `${uid}-frame-${chart.index}` });
+      label(svg, "contours.nc", width - 10, height - 10, { anchor: "end", family: "Cabin Sketch, sans-serif", size: 11, weight: 700, color: "#777066" });
+      svg.attr(
+        "aria-label",
+        `Nuage de points, ${provinceDisplay[province]} : ${sites.length} bureaux de vote présents en 2019 et 2026. ` +
+        `En abscisse, ${seriesLabel(xKey)} en 2019 ; en ordonnée, ${seriesLabel(yKey)} en 2026` +
+        (corrText ? ` ; corrélation ${corrText}.` : ".") +
+        " Flèches gauche et droite pour parcourir les bureaux."
+      );
+      const unstable = sites.filter((d) => d.unstable).length;
+      chart.caption.textContent =
+        (xKey === yKey
+          ? "Au-dessus de la diagonale, le score progresse dans le bureau ; en dessous, il recule. "
+          : "La diagonale sert de repère : au-dessus, la série de 2026 fait mieux dans le bureau que celle de 2019. ") +
+        "Couleur selon la commune, taille selon les inscrits de 2026 ; les deux axes ont chacun leur échelle." +
+        (unstable ? ` Cercles en pointillé : ${unstable} bureau${unstable > 1 ? "x" : ""} dont l’électorat a changé de plus de 40 %.` : "");
+    }
+
+    function pearson(sites) {
+      const mx = d3.mean(sites, (d) => d.x);
+      const my = d3.mean(sites, (d) => d.y);
+      const sxy = d3.sum(sites, (d) => (d.x - mx) * (d.y - my));
+      const sxx = d3.sum(sites, (d) => (d.x - mx) ** 2);
+      const syy = d3.sum(sites, (d) => (d.y - my) ** 2);
+      return sxx > 0 && syy > 0 ? sxy / Math.sqrt(sxx * syy) : NaN;
+    }
+
+    function updateLegend() {
+      legendButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.commune === highlight)));
+    }
+    legendButtons.forEach((button) => button.addEventListener("click", () => {
+      highlight = highlight === button.dataset.commune ? "" : button.dataset.commune;
+      updateLegend();
+      charts.forEach(draw);
+    }));
+    updateLegend();
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        compact = root.clientWidth < 700;
+        charts.forEach(draw);
+      }, 180);
+    });
+    charts.forEach(draw);
+    root.dataset.scatterReady = "true";
+  }
+
+  // ---------------------------------------------------------------------------
   // Croquis des diapositives « En bref » : cartes communales simplifiées
   // ---------------------------------------------------------------------------
 
@@ -1854,133 +2282,140 @@
     if (briefRoot.contoursBrief?.isOpen()) draw(briefRoot.contoursBrief.dialog);
   });
 
-  // Croquis de méthode : à gauche les bureaux (résultats observés), à droite
-  // la surface lissée calculée à partir d'eux, avec la même portée et les
-  // mêmes classes que la carte principale.
-  function drawMethodSketch(node, data) {
+  // Croquis de nuage de points : un point par bureau présent aux deux
+  // scrutins, en vert s'il progresse, en rouge s'il recule. Même échelle sur les
+  // deux axes, pour que la diagonale « même score » soit lisible d'un coup d'œil.
+  function drawScatterSketch(node, data) {
     const province = provinceFromSlug[node.dataset.province];
-    const force = node.dataset.force;
-    const year = Number(node.dataset.year) || 2026;
+    const xKey = node.dataset.x;
+    const yKey = node.dataset.y;
     const svg = d3.select(node);
     svg.selectAll("*").remove();
     const rc = rough.svg(node);
-    const rows = data.points.filter(
-      (d) => d.province === province && d.annee === year && d.force === force && d.spatial_include !== false
-    );
-    const color = rows[0]?.couleur || ink;
-    const bandwidth = Number(data.metadata.smoothing?.bandwidth_km?.[province]) || 12;
-    const radius = Number(data.metadata.smoothing?.display_radius_km?.[province]) || bandwidth * 3;
-    const boundary = {
-      type: "FeatureCollection",
-      features: data.boundaries.features.filter((feature) => feature.properties.province === province)
-    };
-    const panels = [[8, 30, 196, 192], [216, 30, 404, 192]];
-    const projections = panels.map(([x0, y0, x1, y1]) => d3.geoMercator().fitExtent([[x0, y0], [x1, y1]], boundary));
+    const xs = seriesBureauValues(data.points, data.listVotes, province, xKey, 2019);
+    const ys = seriesBureauValues(data.points, data.listVotes, province, yKey, 2026);
+    const sites = matchedPairs(data.matches, province)
+      .map((pair) => ({
+        ...pair,
+        x: xs.get(`${pair.commune}|${pair.code2019}`),
+        y: ys.get(`${pair.commune}|${pair.code2026}`)
+      }))
+      .filter((d) => Number.isFinite(d.x) && Number.isFinite(d.y));
+    const maxValue = Math.min(100, d3.scaleLinear()
+      .domain([0, (d3.max(sites, (d) => Math.max(d.x, d.y)) || 10) * 1.05]).nice().domain()[1]);
+    const minValue = Math.max(0, d3.scaleLinear()
+      .domain([(d3.min(sites, (d) => Math.min(d.x, d.y)) || 0) * 0.95, maxValue]).nice().domain()[0]);
+    const x = d3.scaleLinear().domain([minValue, maxValue]).range([48, 238]);
+    const y = d3.scaleLinear().domain([minValue, maxValue]).range([206, 16]);
+    const radius = d3.scaleSqrt().domain([0, d3.max(sites, (d) => d.inscrits2026) || 1]).range([2.2, 7]);
+    // Pour un indicateur dont la hausse est défavorable (abstention), le
+    // rouge signale la hausse.
+    const inverse = node.dataset.inverse === "true";
+    const upColor = inverse ? decrease : increase;
+    const downColor = inverse ? increase : decrease;
 
-    // Lissage sur une grille fine (2 px) dans un plan local, puis bandes de
-    // classes vectorielles et lavis des zones éloignées, comme sur la carte.
-    const projection = projections[1];
-    const path = d3.geoPath(projection);
-    const step = 2;
-    const [x0, y0, x1, y1] = panels[1];
-    const nx = Math.ceil((x1 - x0) / step) + 2;
-    const ny = Math.ceil((y1 - y0) / step) + 2;
-    const grid = { nx, ny, ox: x0 - step, oy: y0 - step, step };
-    const canvas = document.createElement("canvas");
-    canvas.width = nx;
-    canvas.height = ny;
-    const context = canvas.getContext("2d", { willReadFrequently: true });
-    context.setTransform(1 / step, 0, 0, 1 / step, -grid.ox / step, -grid.oy / step);
-    context.beginPath();
-    d3.geoPath(projection, context)(boundary);
-    context.fill();
-    const mask = context.getImageData(0, 0, nx, ny).data;
-    const center = projection.invert([(x0 + x1) / 2, (y0 + y1) / 2]);
-    const kmX = 111.32 * Math.cos(center[1] * Math.PI / 180);
-    const kmY = 110.574;
-    const values = new Float64Array(nx * ny).fill(NODATA);
-    const near = new Float64Array(nx * ny).fill(-1);
-    for (let j = 1; j < ny - 1; j += 1) {
-      for (let i = 1; i < nx - 1; i += 1) {
-        if (mask[4 * (j * nx + i) + 3] < 128) continue;
-        const geographic = projection.invert([grid.ox + (i + 0.5) * step, grid.oy + (j + 0.5) * step]);
-        if (!geographic) continue;
-        let numerator = 0;
-        let denominator = 0;
-        let nearest = Infinity;
-        rows.forEach((row) => {
-          const dx = (row.longitude - geographic[0]) * kmX;
-          const dy = (row.latitude - geographic[1]) * kmY;
-          const distance2 = dx * dx + dy * dy;
-          if (distance2 < nearest) nearest = distance2;
-          const weight = Math.exp(-0.5 * distance2 / (bandwidth * bandwidth));
-          numerator += weight * row.voix;
-          denominator += weight * row.denominateur;
+    [minValue, maxValue].forEach((tick) => {
+      label(svg, `${format0.format(tick)} %`, x(tick), 220, { anchor: "middle", size: 9, weight: 750, color: muted });
+      label(svg, `${format0.format(tick)} %`, 42, y(tick), { anchor: "end", size: 9, weight: 750, color: muted });
+    });
+    svg.append("rect").attr("x", 48).attr("y", 16).attr("width", 190).attr("height", 190)
+      .attr("fill", "none").attr("stroke", frame).attr("stroke-width", 0.8);
+    label(svg, "2019 →", 238, 234, { anchor: "end", size: 9.5, weight: 850, color: muted });
+    label(svg, "2026 ↑", 48, 9, { size: 9.5, weight: 850, color: muted });
+    roughPath(svg, rc, `M${x(minValue)},${y(minValue)}L${x(maxValue)},${y(maxValue)}`, {
+      stroke: ink, strokeWidth: 1, roughness: 1, opacity: 0.6, seed: `brief-diag-${node.dataset.briefSketch}`
+    });
+    sites
+      .slice()
+      .sort((a, b) => d3.descending(a.inscrits2026, b.inscrits2026))
+      .forEach((site, index) => {
+        const up = site.y > site.x;
+        const fill = up ? upColor : downColor;
+        roughCircle(svg, rc, x(site.x), y(site.y), radius(site.inscrits2026) * 2, {
+          fill, fillStyle: "hachure", hachureGap: 1.6, fillWeight: 0.8, stroke: ink, strokeWidth: 0.55,
+          roughness: 0.8, seed: `brief-${node.dataset.briefSketch}-${index}`
         });
-        near[j * nx + i] = Math.sqrt(nearest);
-        if (nearest <= radius * radius && denominator > 0) values[j * nx + i] = 100 * numerator / denominator;
-      }
-    }
-    const classes = scoreClasses(color, Array.from(values), 5);
-    const clipId = `brief-method-clip-${node.dataset.briefSketch}`;
-    svg.append("defs").append("clipPath").attr("id", clipId).append("path").attr("d", path(boundary));
-    const surface = svg.append("g").attr("clip-path", `url(#${clipId})`);
-    surface.append("path").attr("d", path(boundary)).attr("fill", noData);
-    classBands(grid, values, classes.thresholds).forEach((band) => {
-      if (band.d) {
-        surface.append("path").attr("d", band.d).attr("fill", classes.colors[band.index]).attr("fill-rule", "evenodd");
-      }
-    });
-    const [farContour] = d3.contours().size([nx, ny]).thresholds([bandwidth])(near);
-    const farPath = farContour ? ringsToPath(farContour, (x, y) => [grid.ox + x * step, grid.oy + y * step]) : "";
-    if (farPath) {
-      surface.append("path").attr("d", farPath)
-        .attr("fill", paper).attr("fill-opacity", 0.5)
-        .attr("stroke", ink).attr("stroke-opacity", 0.4).attr("stroke-width", 0.6)
-        .attr("stroke-dasharray", "1.5 3");
-    }
+      });
 
-    projections.forEach((panelProjection, index) => {
-      roughPath(svg, rc, d3.geoPath(panelProjection)(boundary), {
-        stroke: ink, strokeWidth: 1, roughness: 1.1, seed: `brief-method-coast-${index}`
+    // Décompte, à droite du graphique.
+    const ups = sites.filter((d) => d.y > d.x).length;
+    const downs = sites.length - ups;
+    label(svg, `${ups}`, 262, 64, { family: "Cabin Sketch, sans-serif", size: 34, weight: 700, color: upColor });
+    label(svg, `bureau${ups > 1 ? "x" : ""} en hausse`, 262, 90, { size: 11.5, weight: 850, color: upColor });
+    label(svg, `${downs}`, 262, 138, { family: "Cabin Sketch, sans-serif", size: 34, weight: 700, color: downColor });
+    label(svg, `bureau${downs > 1 ? "x" : ""} en recul`, 262, 164, { size: 11.5, weight: 850, color: downColor });
+    label(svg, "au-dessus de la diagonale : hausse", 262, 196, { size: 8.6, weight: 700, color: muted });
+    label(svg, "contours.nc", 410, 237, { anchor: "end", size: 7.5, weight: 760, color: muted });
+  }
+
+  // Triptyque : une petite carte d'évolution par province, en vert les
+  // communes où l'indicateur progresse, en rouge celles où il recule.
+  function drawTriptychSketch(node, data) {
+    const svg = d3.select(node);
+    svg.selectAll("*").remove();
+    const rc = rough.svg(node);
+    const panels = (node.dataset.panels || "").split(";").map((item) => {
+      const [slug, force, title] = item.split("|");
+      return { province: provinceFromSlug[slug], force, title };
+    });
+    const width = 420 / panels.length;
+    panels.forEach((panel, panelIndex) => {
+      const x0 = panelIndex * width;
+      const rows = data.communeSummary.filter(
+        (d) => d.province === panel.province && d.force === panel.force && d.annee === 2026
+      );
+      const byKey = new Map(rows.map((row) => [communeKey(row.commune, panel.province), row]));
+      const classes = deltaClasses(rows.map((row) => row.evolution_points));
+      const boundary = {
+        type: "FeatureCollection",
+        features: data.boundaries.features.filter((feature) => feature.properties.province === panel.province)
+      };
+      const projection = d3.geoMercator().fitExtent([[x0 + 6, 34], [x0 + width - 6, 200]], boundary);
+      const path = d3.geoPath(projection);
+      data.communes.features
+        .filter((feature) => feature.properties.province === panel.province && feature.geometry && feature.geometry.coordinates.length)
+        .forEach((feature, index) => {
+          const row = byKey.get(communeKey(feature.properties.commune, panel.province));
+          const classId = classIndex(classes, row ? row.evolution_points : NaN);
+          const fill = classId < 0 ? noData : classes.colors[classId];
+          const pathData = path(feature);
+          svg.append("path").attr("d", pathData).attr("fill", fill)
+            .attr("stroke", "#5b544c").attr("stroke-width", 0.35).attr("stroke-opacity", 0.6);
+          const hatch = classId < 0 ? null : classes.hatch[classId];
+          if (hatch) {
+            roughPath(svg, rc, pathData, {
+              fill: hatchColor(fill), fillStyle: "hachure", hachureAngle: hatch.angle, hachureGap: hatch.gap,
+              fillWeight: 0.5, stroke: "none", strokeWidth: 0, roughness: 1.3, opacity: 0.5,
+              seed: `brief-tri-${panelIndex}-${index}`
+            });
+          }
+        });
+      roughPath(svg, rc, path(boundary), {
+        stroke: ink, strokeWidth: 0.9, roughness: 1.1, seed: `brief-tri-coast-${panelIndex}`
+      });
+      label(svg, panel.title, x0 + width / 2, 14, { anchor: "middle", size: 11.5, weight: 850 });
+      label(svg, provinceDisplay[panel.province].replace(/^province /, ""), x0 + width / 2, 28, {
+        anchor: "middle", size: 9.5, weight: 750, color: muted
       });
     });
-    // Bureaux observés, colorés selon les mêmes classes.
-    rows.forEach((row, index) => {
-      const xy = projections[0]([row.longitude, row.latitude]);
-      if (!xy) return;
-      svg.append("circle")
-        .attr("cx", xy[0]).attr("cy", xy[1]).attr("r", 2.6)
-        .attr("fill", classes.colors[classIndex(classes, row.pct)])
-        .attr("stroke", ink).attr("stroke-width", 0.6)
-        .attr("data-index", index);
-    });
-
-    label(svg, "Observé : un point par bureau", 102, 14, { anchor: "middle", size: 12, weight: 850 });
-    label(svg, `Estimé : lissage sur ${format0.format(bandwidth)} km`, 310, 14, { anchor: "middle", size: 12, weight: 850 });
-    label(svg, "→", 206, 105, { anchor: "middle", family: "Cabin Sketch, sans-serif", size: 22, weight: 700 });
-
-    const count = classes.colors.length;
-    const itemWidth = 300 / count;
-    classes.colors.forEach((fill, index) => {
-      const x = 12 + index * itemWidth;
-      svg.append("rect").attr("x", x).attr("y", 206).attr("width", itemWidth - 3).attr("height", 9).attr("fill", fill);
-      label(svg, classes.labels[index], x + (itemWidth - 3) / 2, 225, {
-        anchor: "middle", size: 8.6, weight: 750, color: muted
-      });
-    });
-    svg.append("rect").attr("x", 322).attr("y", 206).attr("width", 12).attr("height", 9)
-      .attr("fill", classes.colors[count - 1]).attr("opacity", 0.5);
-    const unit = force === "participation" ? "% des inscrits" : "% des exprimés";
-    label(svg, `${rows[0]?.force_label || ""} · ${year} · ${unit}`, 12, 237, { size: 7.5, weight: 760, color: muted });
-    label(svg, "pâli : loin", 338, 211, { size: 8.6, weight: 750, color: muted });
-    label(svg, "d’un bureau", 338, 222, { size: 8.6, weight: 750, color: muted });
+    // Légende commune aux trois cartes.
+    svg.append("rect").attr("x", 112).attr("y", 214).attr("width", 14).attr("height", 9).attr("fill", deltaColors[5]);
+    label(svg, "hausse", 131, 219, { size: 9.5, weight: 800, color: muted });
+    svg.append("rect").attr("x", 190).attr("y", 214).attr("width", 14).attr("height", 9).attr("fill", deltaColors[1]);
+    label(svg, "recul", 209, 219, { size: 9.5, weight: 800, color: muted });
+    svg.append("rect").attr("x", 258).attr("y", 214).attr("width", 14).attr("height", 9).attr("fill", deltaColors[3])
+      .attr("stroke", "#b9b1a5").attr("stroke-width", 0.5);
+    label(svg, "stable", 277, 219, { size: 9.5, weight: 800, color: muted });
     label(svg, "contours.nc", 410, 237, { anchor: "end", size: 7.5, weight: 760, color: muted });
   }
 
   function drawBriefSketch(node, data) {
-    if (node.dataset.briefSketch === "method") {
-      drawMethodSketch(node, data);
+    if (node.dataset.sketchType === "scatter") {
+      drawScatterSketch(node, data);
+      return;
+    }
+    if (node.dataset.sketchType === "triptych") {
+      drawTriptychSketch(node, data);
       return;
     }
     const province = provinceFromSlug[node.dataset.province];

@@ -1,0 +1,349 @@
+province,commune,code_bv_2019,code_bv_2026,nom_2019,nom_2026,inscrits_2019,inscrits_2026,methode
+Province Nord,Bélep,0001,0001,Mairie,Mairie,912,941,nom
+Province Nord,Canala,0001,0001,Mairie,Mairie,369,402,nom
+Province Nord,Canala,0002,0002,Nakéty,Nakéty (Marie annexe),791,510,nom
+Province Nord,Canala,0003,0003,Nanon-Kénérou,Nanon - Kénérou (maison commune),458,463,nom
+Province Nord,Canala,0004,0004,Méhoué,Méhoué (maison commune de Méhoué),778,820,nom
+Province Nord,Canala,0005,0005,Gélima,Gélima (maison commune),704,752,nom
+Province Nord,Canala,0006,0006,Mérénémé,Mérénémé (maison commune),284,317,nom
+Province Nord,Canala,NA,0007,NA,Tenda Koumendi (école de Ného situé à la tribu de tenda-Koumendi),NA,345,non apparie (2026)
+Province Nord,Hienghène,0001,0001,Mairie,Mairie,541,574,nom
+Province Nord,Hienghène,0002,0002,Tendo,Tendo,216,228,nom
+Province Nord,Hienghène,0003,0003,Bas-Coulna,Bas-Coulna,112,116,nom
+Province Nord,Hienghène,0004,0004,Haut-Coulna,Haut-Coulna,102,99,nom
+Province Nord,Hienghène,0005,0005,Ouayaguette,Ouayaguette,181,188,nom
+Province Nord,Hienghène,0006,0006,Ouaième,Ouaième,212,206,nom
+Province Nord,Hienghène,0007,0007,Oué-Hawa,Oué-Hawa,70,67,nom
+Province Nord,Hienghène,0008,0008,Tiendanite,Tiendanite,97,106,nom
+Province Nord,Hienghène,0009,0009,Ouaré,Ouaré,585,590,nom
+Province Nord,Hienghène,0010,0010,Léwarap,Léwarap,288,306,nom
+Province Nord,Houaïlou,0001,NA,Mairie,NA,417,NA,non apparie (2019)
+Province Nord,Houaïlou,NA,0001,NA,Salle Paul NEDJA (ancienne mairie),NA,429,non apparie (2026)
+Province Nord,Houaïlou,0002,NA,Warai,NA,659,NA,non apparie (2019)
+Province Nord,Houaïlou,NA,0002,NA,Nediouen (maison commune),NA,664,non apparie (2026)
+Province Nord,Houaïlou,0003,0003,Bâ,Bâ (école primaire),370,375,nom
+Province Nord,Houaïlou,0004,0004,Nessakoéa,Nessakoéa (maison commune),296,312,nom
+Province Nord,Houaïlou,0005,0005,Poro,Poro (foyer socio-culturel),522,567,nom
+Province Nord,Houaïlou,0006,0006,Coula,Coula (maison commune),488,482,nom
+Province Nord,Houaïlou,0007,0007,Néaoua,Néaoua (maison commune),328,328,nom
+Province Nord,Houaïlou,0008,0008,Nédivin,Nédivin (maison commune),499,537,nom
+Province Nord,Kaala-Gomen,0001,0001,Mairie,Mairie,485,559,nom
+Province Nord,Kaala-Gomen,0002,0002,Oueholle,Ouéholle,357,393,nom
+Province Nord,Kaala-Gomen,0003,0003,Maison Commune de Païta,Maison Commune de Païta,274,289,nom
+Province Nord,Kaala-Gomen,0004,0004,Maison Commune de Gamaï,Maison Commune de Gamaï,182,191,nom
+Province Nord,Kaala-Gomen,0005,0005,Maison Commune de Baoui,Maison Commune de Baoui,122,143,nom
+Province Nord,Kaala-Gomen,0006,0006,Ouaco,Ouaco,191,216,nom
+Province Nord,Koné,0001,NA,Mairie,NA,631,NA,non apparie (2019)
+Province Nord,Koné,NA,0001,NA,Salle Au Pitiri,NA,675,non apparie (2026)
+Province Nord,Koné,0002,0002,Poindah,Poindah,162,182,nom
+Province Nord,Koné,0003,0003,Netchaot,Netchaot,390,407,nom
+Province Nord,Koné,0004,0004,Tiaoué,Tiaoué,258,286,nom
+Province Nord,Koné,0005,0005,Atéou,Atéou,129,127,nom
+Province Nord,Koné,0006,0006,Bopope,Bopope,211,234,nom
+Province Nord,Koné,0007,0007,Neami,Neami,206,234,nom
+Province Nord,Koné,0008,0008,Baco,Baco,400,467,nom
+Province Nord,Koné,0009,0009,Ecole Primaire Les Cigales,Ecole Primaire Les Cigales,649,799,nom
+Province Nord,Koné,0010,0010,Noëlly,Noëlly,212,218,nom
+Province Nord,Koné,0011,NA,Mairie 2,NA,487,NA,non apparie (2019)
+Province Nord,Koné,NA,0011,NA,Ecole Téari,NA,698,non apparie (2026)
+Province Nord,Koné,0012,0012,Les Allamandas,Les Allamandas,394,538,nom
+Province Nord,Kouaoua,0001,NA,Mairie,NA,539,NA,non apparie (2019)
+Province Nord,Kouaoua,NA,0001,NA,Centre administratif de Niminra 1,NA,571,non apparie (2026)
+Province Nord,Kouaoua,0002,NA,Ouérou-Piment,NA,259,NA,non apparie (2019)
+Province Nord,Kouaoua,NA,0002,NA,Centre administratif de Niminra 2,NA,286,non apparie (2026)
+Province Nord,Kouaoua,0003,NA,Koh,NA,143,NA,non apparie (2019)
+Province Nord,Kouaoua,NA,0003,NA,Centre administratif de Niminra 3,NA,148,non apparie (2026)
+Province Nord,Kouaoua,0004,NA,Méa-Mébara,NA,168,NA,non apparie (2019)
+Province Nord,Kouaoua,NA,0004,NA,Centre administratif de Niminra 4,NA,190,non apparie (2026)
+Province Nord,Koumac,0001,0001,Mairie 1 et Centralisateur,Mairie,1157,1304,numero
+Province Nord,Koumac,0002,NA,Ecole Primaire Charles Mermoud 2,NA,1482,NA,non apparie (2019)
+Province Nord,Koumac,NA,0002,NA,Médiathèque Louis BASTIEN,NA,1594,non apparie (2026)
+Province Nord,Ouégoa,0001,NA,Mairie,NA,799,NA,non apparie (2019)
+Province Nord,Ouégoa,NA,0001,NA,Salle polyvalente de Ouégoné,NA,834,non apparie (2026)
+Province Nord,Ouégoa,0002,0002,Bondé,Bondé,802,857,nom
+Province Nord,Ouégoa,0003,0003,Paimboas,Paimboas,386,383,nom
+Province Nord,Ouégoa,0004,0004,Tiari,Tiari,143,152,nom
+Province Nord,Poindimié,0001,0001,Mairie,Mairie,1120,1184,nom
+Province Nord,Poindimié,0002,0002,Ouindo,Ouindo,503,519,nom
+Province Nord,Poindimié,0003,0003,Bayes,Bayes,553,585,nom
+Province Nord,Poindimié,0004,0004,Amoa,Amoa,489,505,nom
+Province Nord,Poindimié,0005,0005,Tye,Tyé,559,564,nom
+Province Nord,Poindimié,0006,0006,Tiwaka,Tiwaka,322,324,nom
+Province Nord,Poindimié,0007,0007,Tiéti,Tiéti,544,602,nom
+Province Nord,Ponérihouen,0001,0001,Mairie,Mairie,480,493,nom
+Province Nord,Ponérihouen,0002,0002,Monéo,Monéo,447,453,nom
+Province Nord,Ponérihouen,0003,0003,Tchamba,Tchamba,312,317,nom
+Province Nord,Ponérihouen,0004,0004,Goa,Goa,384,408,nom
+Province Nord,Ponérihouen,0005,0005,Grondu,Grondu,492,509,nom
+Province Nord,Ponérihouen,0006,0006,Mou,Mou,164,169,nom
+Province Nord,Ponérihouen,0007,0007,Goyetta,Goyetta,326,334,nom
+Province Nord,Pouembout,0001,0001,Mairie,Mairie,1097,948,nom
+Province Nord,Pouembout,0002,NA,Paouta,NA,156,NA,non apparie (2019)
+Province Nord,Pouembout,NA,0002,NA,Cantine école primaire,NA,790,non apparie (2026)
+Province Nord,Pouembout,0003,NA,Ouaté,NA,134,NA,non apparie (2019)
+Province Nord,Poum,0001,0001,Mairie,Mairie,601,653,nom
+Province Nord,Poum,0002,0002,Tiabet,Tiabet,392,448,nom
+Province Nord,Poum,0003,0003,Arama,La maison des femmes d'Arama,388,418,numero
+Province Nord,Pouébo,0001,0001,Mairie,Mairie,718,750,nom
+Province Nord,Pouébo,0002,NA,Saint Denis Ballade,NA,533,NA,non apparie (2019)
+Province Nord,Pouébo,NA,0002,NA,Saint Denis Balade,NA,587,non apparie (2026)
+Province Nord,Pouébo,0003,0003,Yambé,Yambé,387,405,nom
+Province Nord,Pouébo,0004,0004,Saint-Louis,Saint-Louis,546,542,nom
+Province Nord,Pouébo,0005,0005,Colnett,Colnett,117,119,nom
+Province Nord,Poya Nord,0001,0001,Mairie 1,Salle ancienne mairie,510,574,numero
+Province Nord,Poya Nord,0002,0002,Gohapin,Gohapin,447,493,nom
+Province Nord,Poya Nord,0003,0003,Népoui,Salle des fêtes de Népoui,685,761,numero
+Province Nord,Poya Nord,0004,0004,Montfaoué,Montfaoué,250,264,nom
+Province Nord,Poya Nord,0006,0006,Nékliai,Nékliai,186,203,nom
+Province Nord,Touho,0001,0001,Mairie,Mairie,966,1013,nom
+Province Nord,Touho,0002,NA,Tiouandé,NA,221,NA,non apparie (2019)
+Province Nord,Touho,NA,0002,NA,Téganpaîk,NA,234,non apparie (2026)
+Province Nord,Touho,0003,0003,Kokingone,Kokingone,302,316,nom
+Province Nord,Touho,0004,0004,Paola,Paola,405,408,nom
+Province Nord,Voh,0001,0001,Mairie,Mairie,817,727,nom
+Province Nord,Voh,0002,0002,Témala,Témala,813,317,nom
+Province Nord,Voh,0003,0003,Ouengo,Ouengo,47,54,nom
+Province Nord,Voh,0004,0004,Tieta,Local socio-éducatif de TIETA,264,277,numero
+Province Nord,Voh,0005,0005,Oundjo,Local socio-éducatif de OUNDJO,329,359,numero
+Province Nord,Voh,NA,0006,NA,Ecole publique de BOYEN,NA,202,non apparie (2026)
+Province Nord,Voh,NA,0007,NA,Local socio-éducatif de TEMALA,NA,358,non apparie (2026)
+Province Nord,Voh,NA,0008,NA,Socio-éducatif de GATOPE,NA,138,non apparie (2026)
+Province Sud,Boulouparis,0001,0001,Mairie,Mairie,1514,880,nom
+Province Sud,Boulouparis,0002,NA,Centre Culturel,NA,1145,NA,non apparie (2019)
+Province Sud,Boulouparis,NA,0002,NA,Maison des associations du village de Boulouparis,NA,714,non apparie (2026)
+Province Sud,Boulouparis,NA,0003,NA,Centre culturel de Boulouparis,NA,762,non apparie (2026)
+Province Sud,Boulouparis,NA,0004,NA,Maison des associations du village de Tomo,NA,716,non apparie (2026)
+Province Sud,Bourail,0001,0001,Mairie,Mairie,604,886,nom
+Province Sud,Bourail,0002,0002,Pothé,Pothé,801,900,nom
+Province Sud,Bourail,0003,0003,Colisée,Colisée 1,854,934,numero
+Province Sud,Bourail,0004,0004,Ecole Les Lys D'Eau,Ecole Les Lys D'Eau,841,805,nom
+Province Sud,Bourail,0005,NA,Ecole Louise Michel,NA,849,NA,non apparie (2019)
+Province Sud,Bourail,NA,0005,NA,Colisée 2,NA,936,non apparie (2026)
+Province Sud,Dumbéa,0001,0001,Hôtel de Ville 1,Hôtel de Ville 1,805,903,nom
+Province Sud,Dumbéa,0002,0002,Hôtel de Ville 2,Hôtel de Ville 2,646,887,nom
+Province Sud,Dumbéa,0003,0003,Hôtel de Ville 3,Hôtel de Ville 3,692,1009,nom
+Province Sud,Dumbéa,0004,NA,Ecole primaire Mainguet 1,NA,734,NA,non apparie (2019)
+Province Sud,Dumbéa,NA,0004,NA,Salle omnisports d'Auteuil Ernest Chambonnier 1,NA,974,non apparie (2026)
+Province Sud,Dumbéa,0005,NA,Ecole primaire Mainguet 2,NA,600,NA,non apparie (2019)
+Province Sud,Dumbéa,NA,0005,NA,Salle omnisports d'Auteuil Ernest Chambonnier 2,NA,643,non apparie (2026)
+Province Sud,Dumbéa,NA,0006,NA,Salle omnisports d'Auteuil Ernest Chambonnier 3,NA,785,non apparie (2026)
+Province Sud,Dumbéa,NA,0007,NA,Salle omnisports d'Auteuil Ernest Chambonnier 4,NA,998,non apparie (2026)
+Province Sud,Dumbéa,0008,NA,Centre Culturel de Dumbéa 1,NA,761,NA,non apparie (2019)
+Province Sud,Dumbéa,NA,0008,NA,Salle omnisports d'Auteuil Ernest Chambonnier 5,NA,765,non apparie (2026)
+Province Sud,Dumbéa,0009,NA,Centre Culturel de Dumbéa 2,NA,784,NA,non apparie (2019)
+Province Sud,Dumbéa,NA,0009,NA,Salle omnisports d'Auteuil Ernest Chambonnier 6,NA,398,non apparie (2026)
+Province Sud,Dumbéa,0006,0010,Maison de la Jeunesse 1,Maison de la Jeunesse 1,741,878,nom
+Province Sud,Dumbéa,0010,NA,Centre Culturel de Dumbéa 3,NA,630,NA,non apparie (2019)
+Province Sud,Dumbéa,0007,0011,Maison de la Jeunesse 2,Maison de la Jeunesse 2,709,782,nom
+Province Sud,Dumbéa,0011,0012,Ecole primaire Gustave Clain 1,Ecole primaire Gustave Clain 1,699,868,nom
+Province Sud,Dumbéa,0012,0013,Ecole primaire Gustave Clain 2,Ecole primaire Gustave Clain 2,625,821,nom
+Province Sud,Dumbéa,0013,0014,Ecole maternelle l'Oasis 1,Ecole maternelle l'Oasis 1,679,727,nom
+Province Sud,Dumbéa,0014,0015,Ecole maternelle l'Oasis 2,Ecole maternelle l'Oasis 2,634,739,nom
+Province Sud,Dumbéa,0015,0016,Groupe scolaire Michelle Delacharlerie-Rolly 1,Groupe scolaire Michelle Delacharlerie-Rolly 1,425,648,nom
+Province Sud,Dumbéa,0016,0017,Groupe scolaire Michelle Delacharlerie-Rolly 2,Groupe scolaire Michelle Delacharlerie-Rolly 2,496,778,nom
+Province Sud,Dumbéa,0017,0018,Groupe scolaire Renée Fong 1,Groupe scolaire Renée Fong 1,499,840,nom
+Province Sud,Dumbéa,0018,0019,Groupe scolaire Renée Fong 2,Groupe scolaire Renée Fong 2,602,1223,nom
+Province Sud,Dumbéa,0019,0020,Mairie du Nord 1,Mairie du Nord 1,638,714,nom
+Province Sud,Dumbéa,0020,0021,Mairie du Nord 2,Mairie du Nord 2,557,652,nom
+Province Sud,Dumbéa,0021,0022,Mairie du Nord 3,Mairie du Nord 3,594,715,nom
+Province Sud,Dumbéa,0022,0023,Ecole primaire Paul Duboisé 1,Ecole primaire Paul Duboisé 1,767,905,nom
+Province Sud,Dumbéa,0023,0024,Ecole primaire Paul Duboisé 2,Ecole primaire Paul Duboisé 2,734,827,nom
+Province Sud,Dumbéa,0024,0025,Ecole maternelle les Colibris,Ecole maternelle les Colibris,736,802,nom
+Province Sud,Dumbéa,NA,0026,NA,Groupe scolaire Frédéric-Louis Dorbritz 1,NA,629,non apparie (2026)
+Province Sud,Farino,0001,0001,Mairie,Mairie,568,635,nom
+Province Sud,Ile des Pins,0001,0001,Mairie 1,Mairie 1,971,1030,nom
+Province Sud,Ile des Pins,0002,0002,Batiment Communal Point 1,Batiment Communal Point 1,741,825,nom
+Province Sud,La Foa,0001,0001,Centre Socio-Culturel 1,Centre Socio-Culturel 1,865,866,nom
+Province Sud,La Foa,0002,0002,Centre Socio Culturel 2,Centre Socio Culturel 2,677,775,nom
+Province Sud,La Foa,0003,0003,Centre Socio-Culturel 3,Centre Socio-Culturel 3,795,767,nom
+Province Sud,La Foa,0004,0004,Centre Socio-Culturel 4,Centre Socio-Culturel 4,568,753,nom
+Province Sud,Moindou,0001,0001,Mairie,Mairie,755,819,nom
+Province Sud,Mont-Dore,0001,0001,Mairie,Mairie de BOULARI,640,830,numero
+Province Sud,Mont-Dore,0002,0002,Groupe scolaire Hélène CHANEL,Groupe scolaire Hélène CHANEL,448,575,nom
+Province Sud,Mont-Dore,0003,0003,Ecole primaire Adolphe BOUTAN,Ecole primaire Adolphe BOUTAN,739,801,nom
+Province Sud,Mont-Dore,0004,0004,Ecole primaire Louis Henri GALINE 1,Ecole primaire Louis Henri GALINE 1,747,828,nom
+Province Sud,Mont-Dore,0005,0005,Ecole La Rizière 1,Ecole La Rizière 1,993,1112,nom
+Province Sud,Mont-Dore,0006,0006,Ecole primaire du Vallon-Dore,Ecole primaire du Vallon-Dore,732,807,nom
+Province Sud,Mont-Dore,0020,0007,Groupe scolaire de Plum,Groupe scolaire de Plum,513,720,nom
+Province Sud,Mont-Dore,0007,NA,Ouara (maison commune),NA,88,NA,non apparie (2019)
+Province Sud,Mont-Dore,0008,0008,Groupe scolaire de Boulari 1,Groupe scolaire de Boulari 1,763,871,nom
+Province Sud,Mont-Dore,0009,0009,Mairie Annexe De Plum 1,Mairie Annexe De Plum 1,858,988,nom
+Province Sud,Mont-Dore,0010,0010,Ecole La Rizière 2,Ecole La Rizière 2,785,952,nom
+Province Sud,Mont-Dore,0011,0011,Groupe scolaire de Boulari 2,Groupe scolaire de Boulari 2,702,709,nom
+Province Sud,Mont-Dore,0012,0012,Groupe scolaire de Saint-Michel 1,Groupe scolaire de Saint-Michel 1,613,757,nom
+Province Sud,Mont-Dore,0013,0013,Ecole maternelle Les Fougères,Ecole maternelle Les Fougères,398,486,nom
+Province Sud,Mont-Dore,0014,0014,Ecole maternelle les Dauphins,Ecole maternelle les Dauphins,721,866,nom
+Province Sud,Mont-Dore,0015,0015,Ecole Maternelle Les Coccinelles,Ecole Maternelle Les Coccinelles,978,1187,nom
+Province Sud,Mont-Dore,0016,0016,Ecole Saint-Joseph de CLUNY,Ecole Saint-Joseph de CLUNY,984,1024,nom
+Province Sud,Mont-Dore,0017,0017,Ecole primaire Louis Henri GALINE 2,Ecole primaire Louis Henri GALINE 2,762,842,nom
+Province Sud,Mont-Dore,0018,0018,Groupe scolaire Boulari 3,Groupe scolaire Boulari 3,770,923,nom
+Province Sud,Mont-Dore,0019,0019,Groupe scolaire Saint-Michel 2,Groupe scolaire Saint-Michel 2,584,613,nom
+Province Sud,Mont-Dore,0021,0020,Ecole La Rizière 3,Ecole La Rizière 3,581,625,nom
+Province Sud,Mont-Dore,NA,0021,NA,Ecole de La Briqueterie 1,NA,760,non apparie (2026)
+Province Sud,Mont-Dore,0022,NA,Groupe scolaire de la Briqueterie 1,NA,613,NA,non apparie (2019)
+Province Sud,Mont-Dore,NA,0022,NA,Ecole de La Briqueterie 2,NA,665,non apparie (2026)
+Province Sud,Mont-Dore,0024,0023,Mairie 2,Mairie 2,445,517,nom
+Province Sud,Mont-Dore,0023,NA,Groupe scolaire de la Briqueterie 2,NA,595,NA,non apparie (2019)
+Province Sud,Mont-Dore,0025,0024,Groupe scolaire de Yahoué,Groupe scolaire de Yahoué,706,783,nom
+Province Sud,Nouméa,0001,0001,Mairie 1,Mairie 1,561,630,nom
+Province Sud,Nouméa,0002,0002,Mairie 2,Mairie 2,871,1192,nom
+Province Sud,Nouméa,0003,0003,Ecole Frédéric Surleau,Ecole Frédéric Surleau,666,756,nom
+Province Sud,Nouméa,0004,0004,Ecole Marguerite Lefrançois,Ecole Marguerite Lefrançois,685,737,nom
+Province Sud,Nouméa,0005,0005,Ecole Yvonne Dupont 1,Ecole Yvonne Dupont 1,725,706,nom
+Province Sud,Nouméa,0006,0006,Ecole Eloi Franc 1,Ecole Eloi Franc 1,805,913,nom
+Province Sud,Nouméa,0007,0007,Ecole Eloi Franc 2,Ecole Eloi Franc 2,708,772,nom
+Province Sud,Nouméa,0008,0008,Ecole Fernande Leriche 1,Ecole Fernande Leriche 1,635,705,nom
+Province Sud,Nouméa,0009,0009,Ecole Fernande Leriche 2,Ecole Fernande Leriche 2,814,812,nom
+Province Sud,Nouméa,0010,0010,Ecole Jean Mermoud 1,Ecole Jean Mermoud 1,726,806,nom
+Province Sud,Nouméa,0011,0011,Ecole Jean Mermoud 2,Ecole Jean Mermoud 2,820,965,nom
+Province Sud,Nouméa,0012,0012,Ecole Ernest Risbec 1,Ecole Ernest Risbec 1,767,851,nom
+Province Sud,Nouméa,0013,0013,Ecole Ernest Risbec 2,Ecole Ernest Risbec 2,785,798,nom
+Province Sud,Nouméa,0014,0014,Ecole Paul Boyer 1,Ecole Paul Boyer 1,665,706,nom
+Province Sud,Nouméa,0015,0015,Ecole Les Capucines,Ecole Les Capucines,744,761,nom
+Province Sud,Nouméa,0016,0016,Ecole Candide Koch 1,Ecole Candide Koch 1,767,811,nom
+Province Sud,Nouméa,0017,0017,Ecole Candide Koch 2,Ecole Candide Koch 2,862,884,nom
+Province Sud,Nouméa,0018,NA,Ecole Emily Panné 1,NA,766,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0018,NA,Ecole Suzanne Russier 1,NA,774,non apparie (2026)
+Province Sud,Nouméa,0019,NA,Ecole Emily Panné 2,NA,808,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0019,NA,Ecole Suzanne Russier 2,NA,887,non apparie (2026)
+Province Sud,Nouméa,0020,0020,Ecole Antoinette Charbonneaux,Ecole Antoinette Charbonneaux,775,766,nom
+Province Sud,Nouméa,0021,0021,Ecole Marie Havet 1,Ecole Marie Havet 1,815,896,nom
+Province Sud,Nouméa,0022,0022,Ecole Marie Havet 2,Ecole Marie Havet 2,857,944,nom
+Province Sud,Nouméa,0023,0023,Ecole Chistine Boletti 1,Ecole Chistine Boletti 1,818,902,nom
+Province Sud,Nouméa,0024,0024,Ecole Chistine Boletti 2,Ecole Chistine Boletti 2,915,1070,nom
+Province Sud,Nouméa,0025,0025,Ecole Michel Cacot 1,Ecole Michel Cacot 1,888,969,nom
+Province Sud,Nouméa,0026,0026,Ecole Michel Cacot 2,Ecole Michel Cacot 2,807,872,nom
+Province Sud,Nouméa,0027,0027,Ecole C. T. de Laubarède,Ecole C. T. de Laubarède,847,997,nom
+Province Sud,Nouméa,0028,0028,Ecole Gustave Mouchet 1,Ecole Gustave Mouchet 1,946,1075,nom
+Province Sud,Nouméa,0029,0029,Ecole Gustave Mouchet 2,Ecole Gustave Mouchet 2,821,959,nom
+Province Sud,Nouméa,0030,0030,Ecole Mathilde Broquet 1,Ecole Mathilde Broquet 1,1024,1165,nom
+Province Sud,Nouméa,0031,0031,Ecole Marie Courtot 1,Ecole Marie Courtot 1,1056,1250,nom
+Province Sud,Nouméa,0032,0032,Ecole Marie Courtot 2,Ecole Marie Courtot 2,851,880,nom
+Province Sud,Nouméa,0033,NA,Ecole Suzanne Berton,NA,926,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0033,NA,Ecole Robert Burck,NA,960,non apparie (2026)
+Province Sud,Nouméa,0034,0034,Ecole Les Roses,Ecole Les Roses,866,909,nom
+Province Sud,Nouméa,0035,0035,Ecole Les Oeillets,Ecole Les Oeillets,845,894,nom
+Province Sud,Nouméa,0036,0036,Ecole Jacques Trouillot,Ecole Jacques Trouillot,828,871,nom
+Province Sud,Nouméa,0037,NA,Ecole Mauricette Devambez 1,NA,1076,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0037,NA,Ecole Les Hibiscus 1,NA,1378,non apparie (2026)
+Province Sud,Nouméa,0038,NA,Ecole Mauricette Devambez 2,NA,1021,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0038,NA,Ecole Les Hibiscus 2,NA,1110,non apparie (2026)
+Province Sud,Nouméa,0039,0039,Ecole Adrienne Lomont 1,Ecole Adrienne Lomont 1,698,705,nom
+Province Sud,Nouméa,0040,0040,Ecole Adrienne Lomont 2,Ecole Adrienne Lomont 2,1167,1463,nom
+Province Sud,Nouméa,0041,0041,Ecole Gustave Lods 1,Ecole Gustave Lods 1,943,1068,nom
+Province Sud,Nouméa,0042,0042,Ecole Gustave Lods 2,Ecole Gustave Lods 2,1110,1257,nom
+Province Sud,Nouméa,0043,0043,Ecole Daniel Talon,Ecole Daniel Talon,1486,1848,nom
+Province Sud,Nouméa,0044,NA,Ecole Louise Vergès,NA,946,NA,non apparie (2019)
+Province Sud,Nouméa,NA,0044,NA,Ecole Maurice Fonrobert,NA,1058,non apparie (2026)
+Province Sud,Nouméa,0045,0045,Ecole Mathilde Broquet 2,Ecole Mathilde Broquet 2,1168,1338,nom
+Province Sud,Nouméa,0046,0046,Ecole Yvonne Dupont 2,Ecole Yvonne Dupont 2,546,585,nom
+Province Sud,Nouméa,0047,0047,Ecole Paul Boyer 2,Ecole Paul Boyer 2,737,706,nom
+Province Sud,Nouméa,0048,0048,Ecole Marguerite Arsapin,Ecole Marguerite Arsapin,844,925,nom
+Province Sud,Nouméa,0049,0049,Ecole Les Pervenches,Ecole Les Pervenches,835,896,nom
+Province Sud,Nouméa,0050,0050,Ecole Albert Perraud,Ecole Albert Perraud,1220,1545,nom
+Province Sud,Nouméa,0051,0051,Ecole Michel Amiot,Ecole Michel Amiot,929,1032,nom
+Province Sud,Nouméa,0052,0052,Ecole Charles Bichon,Ecole Charles Bichon,575,679,nom
+Province Sud,Nouméa,0053,0053,Ecole Les Lys,Ecole Les Lys,682,777,nom
+Province Sud,Nouméa,0054,0054,Ecole Le petit poucet,Ecole Le petit poucet,938,1023,nom
+Province Sud,Nouméa,0055,0055,Ecole Serge Laigle,Ecole Serge Laigle,934,1071,nom
+Province Sud,Nouméa,0056,0056,Ecole Guy Champmoreau,Ecole Guy Champmoreau,1168,1306,nom
+Province Sud,Nouméa,0057,0057,Mairie 3,Mairie 3,108,62,nom
+Province Sud,Païta,0001,NA,Dock Socioculturel 1,NA,457,NA,non apparie (2019)
+Province Sud,Païta,NA,0001,NA,Arène du sud 1,NA,654,non apparie (2026)
+Province Sud,Païta,0002,NA,Dock Socioculturel 2,NA,618,NA,non apparie (2019)
+Province Sud,Païta,NA,0002,NA,Arène du sud 2,NA,750,non apparie (2026)
+Province Sud,Païta,0016,0003,Ecole Robert ABEL 1,Ecole Robert ABEL 1,471,754,nom
+Province Sud,Païta,0003,NA,Dock Socioculturel 3,NA,640,NA,non apparie (2019)
+Province Sud,Païta,0004,NA,Dock Socioculturel 4,NA,345,NA,non apparie (2019)
+Province Sud,Païta,NA,0004,NA,Dock socio-culturel 1,NA,766,non apparie (2026)
+Province Sud,Païta,0005,NA,Dock Socioculturel 5,NA,712,NA,non apparie (2019)
+Province Sud,Païta,NA,0005,NA,ecole Patrice JEAN 1,NA,829,non apparie (2026)
+Province Sud,Païta,0006,0006,Mairie,Mairie,702,828,nom
+Province Sud,Païta,0007,NA,Ecole Vi Vete,NA,731,NA,non apparie (2019)
+Province Sud,Païta,NA,0007,NA,Ecole Patrice JEAN 2,NA,830,non apparie (2026)
+Province Sud,Païta,0008,NA,Ecole James Paddon,NA,700,NA,non apparie (2019)
+Province Sud,Païta,NA,0008,NA,Ecole Patrice JEAN 3,NA,866,non apparie (2026)
+Province Sud,Païta,0009,NA,Ecole Élémentaire Les Scheffleras - 1,NA,698,NA,non apparie (2019)
+Province Sud,Païta,NA,0009,NA,Dock socio-culturel 2,NA,840,non apparie (2026)
+Province Sud,Païta,0010,NA,Ecole Élémentaire Les Scheffleras - 2,NA,734,NA,non apparie (2019)
+Province Sud,Païta,NA,0010,NA,Dock socio-culturel 3,NA,939,non apparie (2026)
+Province Sud,Païta,0011,NA,Ecole Maternelle Les Scheffleras - 1,NA,721,NA,non apparie (2019)
+Province Sud,Païta,NA,0011,NA,Dock socio-culturel 4,NA,817,non apparie (2026)
+Province Sud,Païta,0012,NA,Ecole Maternelle Les Scheffleras - 2,NA,557,NA,non apparie (2019)
+Province Sud,Païta,NA,0012,NA,Dock socio-culturel 5,NA,703,non apparie (2026)
+Province Sud,Païta,0013,NA,Ecole primaire Jean Ounou COTTIN 1,NA,738,NA,non apparie (2019)
+Province Sud,Païta,NA,0013,NA,Ecole Henri Martinet 1,NA,715,non apparie (2026)
+Province Sud,Païta,0014,NA,Ecole primaire Jean Ounou COTTIN 2,NA,761,NA,non apparie (2019)
+Province Sud,Païta,NA,0014,NA,Ecole Henri Martinet 2,NA,592,non apparie (2026)
+Province Sud,Païta,0015,NA,Tontouta,NA,556,NA,non apparie (2019)
+Province Sud,Païta,NA,0015,NA,Ecole Henri Martinet 3,NA,667,non apparie (2026)
+Province Sud,Païta,0017,0016,Ecole Robert ABEL 2,Ecole Robert ABEL 2,553,598,nom
+Province Sud,Païta,NA,0017,NA,Ecole Robert ABEL 3,NA,993,non apparie (2026)
+Province Sud,Païta,NA,0018,NA,Ecole Patrice JEAN 4,NA,1052,non apparie (2026)
+Province Sud,Païta,NA,0019,NA,Ecole Henri Martinet 4,NA,562,non apparie (2026)
+Province Sud,Poya Sud,0005,NA,Mairie 2,NA,164,NA,non apparie (2019)
+Province Sud,Poya Sud,NA,0005,NA,Maison commune de Moindah,NA,202,non apparie (2026)
+Province Sud,Sarraméa,0001,0001,Mairie,Mairie,502,533,nom
+Province Sud,Thio,0001,0001,Mairie 1,Mairie,784,870,numero
+Province Sud,Thio,0002,0002,Mairie 2,Mairie (annexe),560,615,numero
+Province Sud,Thio,0003,0003,Grand Borendy,Grand Borendy,305,312,nom
+Province Sud,Thio,0004,0004,Saint-Pierre,Saint-Pierre,442,481,nom
+Province Sud,Yaté,0001,0001,Mairie,Mairie,274,303,numero
+Province Sud,Yaté,0002,NA,Touaourou,NA,461,NA,non apparie (2019)
+Province Sud,Yaté,NA,0002,NA,Mairie (Waho central),NA,484,non apparie (2026)
+Province Sud,Yaté,0003,0003,Goro,Goro,219,242,nom
+Province Sud,Yaté,0004,0004,Unia,Unia,750,793,nom
+Province des Iles,Lifou,0001,NA,Mairie De We,NA,575,NA,non apparie (2019)
+Province des Iles,Lifou,NA,0001,NA,Salle de mariage - mairie de Lifou,NA,645,non apparie (2026)
+Province des Iles,Lifou,0002,0002,Xepenehe,Xépénéhé,722,625,nom
+Province des Iles,Lifou,0003,0003,Drueulu,Drueulu,736,747,nom
+Province des Iles,Lifou,0004,0004,Jozip,Jozip,377,387,nom
+Province des Iles,Lifou,0005,0005,Jokin,Jokin,422,456,nom
+Province des Iles,Lifou,0006,0006,Hmelek,Hmelek,585,394,nom
+Province des Iles,Lifou,0007,0007,Mou,Mou,547,546,nom
+Province des Iles,Lifou,0008,0008,Hnathalo,Hnathalo,558,641,nom
+Province des Iles,Lifou,0009,0009,Hnacaom,Hnacaöm,228,222,nom
+Province des Iles,Lifou,0010,0010,Siloam,Siloam,329,345,nom
+Province des Iles,Lifou,0011,0011,Wasany,Wasany,348,353,nom
+Province des Iles,Lifou,0012,0012,Tiga,Tiga,199,175,nom
+Province des Iles,Lifou,0013,0013,Luecila,Luecila,696,744,nom
+Province des Iles,Lifou,0014,0014,Hapetra,Hapetra,435,415,nom
+Province des Iles,Lifou,0015,0015,Nang,Nang,407,406,nom
+Province des Iles,Lifou,0016,0016,Xodre,Xodre,174,173,nom
+Province des Iles,Lifou,0017,0017,Huiwatrul,Huiwatrul,415,450,nom
+Province des Iles,Lifou,0018,0018,Wedrumel,Wedrumel,354,371,nom
+Province des Iles,Lifou,0019,0019,Traput,Traput,379,402,nom
+Province des Iles,Lifou,0020,0020,Kedeigne,Kedeigne,467,470,nom
+Province des Iles,Lifou,0021,0021,Tingeting,Tingeting,273,297,nom
+Province des Iles,Lifou,0022,0022,Hunëtë,Hunëtë,230,234,nom
+Province des Iles,Lifou,0023,0023,Luengoni,Luengoni,350,342,nom
+Province des Iles,Lifou,0024,0024,Hnanemuhaetra,Hnanemuhaetra,146,155,nom
+Province des Iles,Lifou,0025,0025,Hnasse,Hnassé,225,250,nom
+Province des Iles,Lifou,0026,0026,Kirinata,Kirinata,166,174,nom
+Province des Iles,Lifou,NA,0027,NA,Thuahaick,NA,241,non apparie (2026)
+Province des Iles,Lifou,NA,0028,NA,Easo-Ewë,NA,132,non apparie (2026)
+Province des Iles,Maré,0001,NA,Faré Municipal,NA,922,NA,non apparie (2019)
+Province des Iles,Maré,NA,0001,NA,Tadine,NA,586,non apparie (2026)
+Province des Iles,Maré,0002,0002,Hnawayetche,Hnawayetche,645,644,nom
+Province des Iles,Maré,0003,0003,Tenane,Tenane,365,363,nom
+Province des Iles,Maré,0004,0004,Atha,Atha,327,347,nom
+Province des Iles,Maré,0005,0005,Tawainedre,Tawainedre,406,444,nom
+Province des Iles,Maré,0006,0006,Penelo,Penelo,733,779,nom
+Province des Iles,Maré,0007,0007,Wabao,Wabao,604,645,nom
+Province des Iles,Maré,0008,NA,Netché,NA,778,NA,non apparie (2019)
+Province des Iles,Maré,NA,0008,NA,Nece,NA,762,non apparie (2026)
+Province des Iles,Maré,0009,0009,Ménaku,Ménaku,240,275,nom
+Province des Iles,Maré,0010,0010,Mebuet,Mebuet,332,360,nom
+Province des Iles,Maré,0011,0011,Roh,Roh,285,287,nom
+Province des Iles,Maré,0012,0012,Eni,Eni,328,375,nom
+Province des Iles,Maré,0013,0013,La Roche,La Roche,597,671,nom
+Province des Iles,Maré,NA,0014,NA,Tuo,NA,435,non apparie (2026)
+Province des Iles,Ouvéa,0001,0001,Mairie,Mairie,914,955,nom
+Province des Iles,Ouvéa,0002,0002,Fayaoué,Fayaoué,849,844,nom
+Province des Iles,Ouvéa,0003,NA,Eot,NA,564,NA,non apparie (2019)
+Province des Iles,Ouvéa,NA,0003,NA,Heo,NA,550,non apparie (2026)
+Province des Iles,Ouvéa,0004,0004,Mouli,Mouli,404,392,nom
+Province des Iles,Ouvéa,0005,0005,Wénéki,Wénéki,830,840,nom
+Province des Iles,Ouvéa,0006,0006,Ognahut,Ognahut,433,447,nom
+Province des Iles,Ouvéa,0007,NA,Lekiny,NA,306,NA,non apparie (2019)
+Province des Iles,Ouvéa,NA,0007,NA,Lekine,NA,300,non apparie (2026)

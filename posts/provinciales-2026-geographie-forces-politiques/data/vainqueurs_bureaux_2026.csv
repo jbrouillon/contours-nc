@@ -18,7 +18,7 @@ Province Nord,Hienghène,0008,Tiendanite,106,83,83,3,UC-FLNKS,UC-FLNKS,79,95.180
 Province Nord,Hienghène,0009,Ouaré,590,351,335,3,UC-FLNKS,UC-FLNKS,179,53.43283582089552,164.93523458965643,-20.673024668353836
 Province Nord,Hienghène,0010,Léwarap,306,175,173,3,UC-FLNKS,UC-FLNKS,129,74.56647398843931,164.92837654735197,-20.722390044785012
 Province Nord,Houaïlou,0001,Salle Paul NEDJA (ancienne mairie),429,243,240,3,UC-FLNKS,UC-FLNKS,131,54.583333333333336,165.6260919909217,-21.278284372962112
-Province Nord,Houaïlou,0002,Nediouen (maison commune),664,431,415,3,UC-FLNKS,UC-FLNKS,297,71.56626506024097,165.76989808558005,-21.33124821435679
+Province Nord,Houaïlou,0002,Nediouen (maison commune),664,431,415,3,UC-FLNKS,UC-FLNKS,297,71.56626506024097,165.615714,-21.264735
 Province Nord,Houaïlou,0003,Bâ (école primaire),375,214,212,5,Union nationale pour l'indépendance,UNI,96,45.283018867924525,165.55842620966266,-21.19827944865936
 Province Nord,Houaïlou,0004,Nessakoéa (maison commune),312,168,168,3,UC-FLNKS,UC-FLNKS,115,68.45238095238095,165.5267547278778,-21.28421939373571
 Province Nord,Houaïlou,0005,Poro (foyer socio-culturel),567,301,295,3,UC-FLNKS,UC-FLNKS,151,51.186440677966104,165.70953015747588,-21.30262511634177
@@ -31,7 +31,7 @@ Province Nord,Kaala-Gomen,0003,Maison Commune de Païta,289,175,172,5,Union nati
 Province Nord,Kaala-Gomen,0004,Maison Commune de Gamaï,191,120,119,3,UC-FLNKS,UC-FLNKS,74,62.18487394957983,164.486749878062,-20.6941126404856
 Province Nord,Kaala-Gomen,0005,Maison Commune de Baoui,143,111,110,5,Union nationale pour l'indépendance,UNI,67,60.90909090909091,164.463552597488,-20.6891303658536
 Province Nord,Kaala-Gomen,0006,Ouaco,216,145,143,1,Agissons ensemble pour le Nord,LL-LR Nord,61,42.65734265734266,164.471215971078,-20.8375035625753
-Province Nord,Koné,0001,Salle Au Pitiri,675,417,410,1,Agissons ensemble pour le Nord,LL-LR Nord,236,57.5609756097561,164.866375124843,-21.0740850901806
+Province Nord,Koné,0001,Salle Au Pitiri,675,417,410,1,Agissons ensemble pour le Nord,LL-LR Nord,236,57.5609756097561,164.86328,-21.059973
 Province Nord,Koné,0002,Poindah,182,116,115,3,UC-FLNKS,UC-FLNKS,62,53.91304347826087,164.964442641559,-21.0372102738018
 Province Nord,Koné,0003,Netchaot,407,291,288,5,Union nationale pour l'indépendance,UNI,239,82.98611111111111,165.022902317548,-21.0054157631335
 Province Nord,Koné,0004,Tiaoué,286,230,228,3,UC-FLNKS,UC-FLNKS,185,81.14035087719299,164.916802108,-21.0000621217301
@@ -41,14 +41,14 @@ Province Nord,Koné,0007,Neami,234,155,154,5,Union nationale pour l'indépendanc
 Province Nord,Koné,0008,Baco,467,325,317,5,Union nationale pour l'indépendance,UNI,155,48.89589905362776,164.895177171264,-21.0667090848805
 Province Nord,Koné,0009,Ecole Primaire Les Cigales,799,533,527,5,Union nationale pour l'indépendance,UNI,176,33.396584440227706,164.8701529762,-21.0521518022935
 Province Nord,Koné,0010,Noëlly,218,165,163,5,Union nationale pour l'indépendance,UNI,116,71.16564417177914,164.947538773364,-21.0048750710989
-Province Nord,Koné,0011,Ecole Téari,698,384,372,1,Agissons ensemble pour le Nord,LL-LR Nord,169,45.43010752688172,164.82630681362,-21.0553442775238
+Province Nord,Koné,0011,Ecole Téari,698,384,372,1,Agissons ensemble pour le Nord,LL-LR Nord,169,45.43010752688172,164.867168,-21.074849
 Province Nord,Koné,0012,Les Allamandas,538,365,356,1,Agissons ensemble pour le Nord,LL-LR Nord,205,57.58426966292135,164.856461111321,-21.052040276968
 Province Nord,Kouaoua,0001,Centre administratif de Niminra 1,571,337,330,3,UC-FLNKS,UC-FLNKS,166,50.303030303030305,165.82856671021466,-21.396045166693337
 Province Nord,Kouaoua,0002,Centre administratif de Niminra 2,286,162,160,3,UC-FLNKS,UC-FLNKS,87,54.375,165.72221294003012,-21.49791198784617
 Province Nord,Kouaoua,0003,Centre administratif de Niminra 3,148,97,96,3,UC-FLNKS,UC-FLNKS,66,68.75,165.83542921955194,-21.536184530370736
 Province Nord,Kouaoua,0004,Centre administratif de Niminra 4,190,105,105,3,UC-FLNKS,UC-FLNKS,67,63.80952380952381,165.78859040310297,-21.469132110021317
 Province Nord,Koumac,0001,Mairie,1304,772,756,1,Agissons ensemble pour le Nord,LL-LR Nord,309,40.87301587301587,164.280241420927,-20.5602050455624
-Province Nord,Koumac,0002,Médiathèque Louis BASTIEN,1594,970,952,1,Agissons ensemble pour le Nord,LL-LR Nord,577,60.609243697478995,164.282519595968,-20.5572929814306
+Province Nord,Koumac,0002,Médiathèque Louis BASTIEN,1594,970,952,1,Agissons ensemble pour le Nord,LL-LR Nord,577,60.609243697478995,164.285534,-20.561181
 Province Nord,Ouégoa,0001,Salle polyvalente de Ouégoné,834,543,534,1,Agissons ensemble pour le Nord,LL-LR Nord,352,65.91760299625469,164.43943670837254,-20.34408534785039
 Province Nord,Ouégoa,0002,Bondé,857,525,522,3,UC-FLNKS,UC-FLNKS,261,50,164.4324943000077,-20.429158724947957
 Province Nord,Ouégoa,0003,Paimboas,383,201,200,5,Union nationale pour l'indépendance,UNI,120,60,164.52279333171543,-20.52170436626958
@@ -68,7 +68,7 @@ Province Nord,Ponérihouen,0005,Grondu,509,347,343,5,Union nationale pour l'ind�
 Province Nord,Ponérihouen,0006,Mou,169,90,90,5,Union nationale pour l'indépendance,UNI,39,43.333333333333336,165.44259083569398,-21.09696482410325
 Province Nord,Ponérihouen,0007,Goyetta,334,202,201,3,UC-FLNKS,UC-FLNKS,102,50.74626865671642,165.38150315716302,-21.17209523739158
 Province Nord,Pouembout,0001,Mairie,948,612,598,1,Agissons ensemble pour le Nord,LL-LR Nord,315,52.675585284280935,164.901099514933,-21.1214333298182
-Province Nord,Pouembout,0002,Cantine école primaire,790,535,530,3,UC-FLNKS,UC-FLNKS,219,41.320754716981135,165.004824198459,-21.061258041708
+Province Nord,Pouembout,0002,Cantine école primaire,790,535,530,3,UC-FLNKS,UC-FLNKS,219,41.320754716981135,164.90077,-21.12369
 Province Nord,Poum,0001,Mairie,653,411,402,5,Union nationale pour l'indépendance,UNI,168,41.791044776119406,164.02565823453438,-20.232335490929035
 Province Nord,Poum,0002,Tiabet,448,280,279,5,Union nationale pour l'indépendance,UNI,142,50.89605734767025,164.0259384508845,-20.127138518272172
 Province Nord,Poum,0003,La maison des femmes d'Arama,418,245,244,3,UC-FLNKS,UC-FLNKS,149,61.0655737704918,164.20258021961365,-20.252916819670393
@@ -83,7 +83,7 @@ Province Nord,Poya Nord,0003,Salle des fêtes de Népoui,761,463,448,1,Agissons 
 Province Nord,Poya Nord,0004,Montfaoué,264,165,163,3,UC-FLNKS,UC-FLNKS,55,33.74233128834356,165.2933124776928,-21.277955211764784
 Province Nord,Poya Nord,0006,Nékliai,203,148,148,3,UC-FLNKS,UC-FLNKS,89,60.13513513513514,165.1862986905251,-21.29493580556391
 Province Nord,Touho,0001,Mairie,1013,623,613,5,Union nationale pour l'indépendance,UNI,271,44.208809135399676,165.23869122747195,-20.77975735338533
-Province Nord,Touho,0002,Téganpaîk,234,120,114,3,UC-FLNKS,UC-FLNKS,62,54.3859649122807,165.04706639545026,-20.742192862631615
+Province Nord,Touho,0002,Téganpaîk,234,120,114,3,UC-FLNKS,UC-FLNKS,62,54.3859649122807,165.066398,-20.738499
 Province Nord,Touho,0003,Kokingone,316,188,186,5,Union nationale pour l'indépendance,UNI,94,50.53763440860215,165.25551905392797,-20.85522530725118
 Province Nord,Touho,0004,Paola,408,254,253,5,Union nationale pour l'indépendance,UNI,183,72.33201581027669,165.1103595238747,-20.77393379422664
 Province Nord,Voh,0001,Mairie,727,441,426,1,Agissons ensemble pour le Nord,LL-LR Nord,223,52.347417840375584,164.686182051524,-20.9488288857597
@@ -91,42 +91,42 @@ Province Nord,Voh,0002,Témala,317,219,214,1,Agissons ensemble pour le Nord,LL-L
 Province Nord,Voh,0003,Ouengo,54,41,41,5,Union nationale pour l'indépendance,UNI,41,100,164.74217311646055,-20.784454291123556
 Province Nord,Voh,0004,Local socio-éducatif de TIETA,277,189,189,5,Union nationale pour l'indépendance,UNI,122,64.55026455026454,164.740133724095,-20.9210724511979
 Province Nord,Voh,0005,Local socio-éducatif de OUNDJO,359,225,221,5,Union nationale pour l'indépendance,UNI,159,71.94570135746606,164.697579851987,-21.0373781816945
-Province Nord,Voh,0006,Ecole publique de BOYEN,202,137,134,5,Union nationale pour l'indépendance,UNI,59,44.02985074626866,164.666715225632,-20.9652133930634
-Province Nord,Voh,0007,Local socio-éducatif de TEMALA,358,265,263,5,Union nationale pour l'indépendance,UNI,211,80.22813688212928,164.740133724095,-20.9210724511979
+Province Nord,Voh,0006,Ecole publique de BOYEN,202,137,134,5,Union nationale pour l'indépendance,UNI,59,44.02985074626866,164.617398,-20.824466
+Province Nord,Voh,0007,Local socio-éducatif de TEMALA,358,265,263,5,Union nationale pour l'indépendance,UNI,211,80.22813688212928,164.68996,-20.871392
 Province Nord,Voh,0008,Socio-éducatif de GATOPE,138,93,88,5,Union nationale pour l'indépendance,UNI,43,48.86363636363637,164.66949443382563,-20.965828575807695
 Province Sud,Boulouparis,0001,Mairie,880,599,580,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,271,46.724137931034484,166.047711423762,-21.8654175541592
-Province Sud,Boulouparis,0002,Maison des associations du village de Boulouparis,714,578,570,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,406,71.2280701754386,166.049037015845,-21.8654352350015
-Province Sud,Boulouparis,0003,Centre culturel de Boulouparis,762,587,577,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,360,62.39168110918544,166.047082551458,-21.8655893376649
-Province Sud,Boulouparis,0004,Maison des associations du village de Tomo,716,492,470,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,202,42.97872340425532,166.049037015845,-21.8654352350015
+Province Sud,Boulouparis,0002,Maison des associations du village de Boulouparis,714,578,570,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,406,71.2280701754386,166.047083,-21.865589
+Province Sud,Boulouparis,0003,Centre culturel de Boulouparis,762,587,577,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,360,62.39168110918544,166.049037,-21.865435
+Province Sud,Boulouparis,0004,Maison des associations du village de Tomo,716,492,470,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,202,42.97872340425532,166.15105,-21.95844
 Province Sud,Bourail,0001,Mairie,886,605,593,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,322,54.30016863406408,165.497503614793,-21.5680444203004
 Province Sud,Bourail,0002,Pothé,900,535,526,2,Kanaky pour tous,FLNKS,276,52.47148288973384,165.491900847299,-21.4547330481005
 Province Sud,Bourail,0003,Colisée 1,934,718,700,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,431,61.57142857142857,165.49385205691,-21.5656940047007
 Province Sud,Bourail,0004,Ecole Les Lys D'Eau,805,585,574,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,359,62.54355400696864,165.49748641875,-21.5730483252455
-Province Sud,Bourail,0005,Colisée 2,936,663,650,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,406,62.46153846153846,165.497379452405,-21.57045570157
+Province Sud,Bourail,0005,Colisée 2,936,663,650,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,406,62.46153846153846,165.493852,-21.565694
 Province Sud,Dumbéa,0001,Hôtel de Ville 1,903,632,621,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,443,71.33655394524959,166.457501065839,-22.1675460417822
 Province Sud,Dumbéa,0002,Hôtel de Ville 2,887,534,527,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,178,33.776091081593925,166.457501065839,-22.1675460417822
 Province Sud,Dumbéa,0003,Hôtel de Ville 3,1009,613,596,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,181,30.369127516778523,166.457501065839,-22.1675460417822
-Province Sud,Dumbéa,0004,Salle omnisports d'Auteuil Ernest Chambonnier 1,974,591,585,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,213,36.41025641025641,166.474584305922,-22.2148395317313
-Province Sud,Dumbéa,0005,Salle omnisports d'Auteuil Ernest Chambonnier 2,643,330,317,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,83,26.182965299684543,166.474584305922,-22.2148395317313
-Province Sud,Dumbéa,0006,Salle omnisports d'Auteuil Ernest Chambonnier 3,785,469,453,1,Un autre monde est possible !,Éveil océanien,161,35.54083885209713,166.474913290828,-22.2056811434969
-Province Sud,Dumbéa,0007,Salle omnisports d'Auteuil Ernest Chambonnier 4,998,617,600,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,185,30.833333333333332,166.474913290828,-22.2056811434969
-Province Sud,Dumbéa,0008,Salle omnisports d'Auteuil Ernest Chambonnier 5,765,515,498,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,269,54.01606425702811,166.474126141924,-22.2081759337081
-Province Sud,Dumbéa,0009,Salle omnisports d'Auteuil Ernest Chambonnier 6,398,211,209,2,Kanaky pour tous,FLNKS,51,24.401913875598087,166.474126141924,-22.2081759337081
-Province Sud,Dumbéa,0010,Maison de la Jeunesse 1,878,605,588,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,301,51.19047619047619,166.474126141924,-22.2081759337081
-Province Sud,Dumbéa,0011,Maison de la Jeunesse 2,782,540,530,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,315,59.43396226415094,166.460870510376,-22.2089353285944
+Province Sud,Dumbéa,0004,Salle omnisports d'Auteuil Ernest Chambonnier 1,974,591,585,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,213,36.41025641025641,166.475894,-22.206094
+Province Sud,Dumbéa,0005,Salle omnisports d'Auteuil Ernest Chambonnier 2,643,330,317,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,83,26.182965299684543,166.475894,-22.206094
+Province Sud,Dumbéa,0006,Salle omnisports d'Auteuil Ernest Chambonnier 3,785,469,453,1,Un autre monde est possible !,Éveil océanien,161,35.54083885209713,166.475894,-22.206094
+Province Sud,Dumbéa,0007,Salle omnisports d'Auteuil Ernest Chambonnier 4,998,617,600,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,185,30.833333333333332,166.475894,-22.206094
+Province Sud,Dumbéa,0008,Salle omnisports d'Auteuil Ernest Chambonnier 5,765,515,498,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,269,54.01606425702811,166.475894,-22.206094
+Province Sud,Dumbéa,0009,Salle omnisports d'Auteuil Ernest Chambonnier 6,398,211,209,2,Kanaky pour tous,FLNKS,51,24.401913875598087,166.475894,-22.206094
+Province Sud,Dumbéa,0010,Maison de la Jeunesse 1,878,605,588,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,301,51.19047619047619,166.474913,-22.205681
+Province Sud,Dumbéa,0011,Maison de la Jeunesse 2,782,540,530,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,315,59.43396226415094,166.474913,-22.205681
 Province Sud,Dumbéa,0012,Ecole primaire Gustave Clain 1,868,523,511,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,235,45.98825831702544,166.460870510376,-22.2089353285944
-Province Sud,Dumbéa,0013,Ecole primaire Gustave Clain 2,821,492,484,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,209,43.18181818181818,166.461460951246,-22.2085634346196
+Province Sud,Dumbéa,0013,Ecole primaire Gustave Clain 2,821,492,484,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,209,43.18181818181818,166.460871,-22.208935
 Province Sud,Dumbéa,0014,Ecole maternelle l'Oasis 1,727,501,494,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,270,54.65587044534413,166.461460951246,-22.2085634346196
-Province Sud,Dumbéa,0015,Ecole maternelle l'Oasis 2,739,487,474,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,225,47.46835443037975,166.445998676866,-22.2013803961715
+Province Sud,Dumbéa,0015,Ecole maternelle l'Oasis 2,739,487,474,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,225,47.46835443037975,166.461461,-22.208563
 Province Sud,Dumbéa,0016,Groupe scolaire Michelle Delacharlerie-Rolly 1,648,383,371,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,121,32.61455525606469,166.445998676866,-22.2013803961715
-Province Sud,Dumbéa,0017,Groupe scolaire Michelle Delacharlerie-Rolly 2,778,402,394,2,Kanaky pour tous,FLNKS,117,29.695431472081218,166.44418672502,-22.192372203396
+Province Sud,Dumbéa,0017,Groupe scolaire Michelle Delacharlerie-Rolly 2,778,402,394,2,Kanaky pour tous,FLNKS,117,29.695431472081218,166.445999,-22.20138
 Province Sud,Dumbéa,0018,Groupe scolaire Renée Fong 1,840,601,590,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,387,65.59322033898304,166.44418672502,-22.192372203396
-Province Sud,Dumbéa,0019,Groupe scolaire Renée Fong 2,1223,724,712,2,Kanaky pour tous,FLNKS,197,27.668539325842698,166.457501065839,-22.1675460417822
+Province Sud,Dumbéa,0019,Groupe scolaire Renée Fong 2,1223,724,712,2,Kanaky pour tous,FLNKS,197,27.668539325842698,166.444187,-22.192372
 Province Sud,Dumbéa,0020,Mairie du Nord 1,714,491,484,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,327,67.56198347107438,166.457501065839,-22.1675460417822
 Province Sud,Dumbéa,0021,Mairie du Nord 2,652,493,486,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,322,66.2551440329218,166.457501065839,-22.1675460417822
-Province Sud,Dumbéa,0022,Mairie du Nord 3,715,433,421,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,188,44.65558194774347,166.434846490836,-22.1399347171588
+Province Sud,Dumbéa,0022,Mairie du Nord 3,715,433,421,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,188,44.65558194774347,166.457501,-22.167546
 Province Sud,Dumbéa,0023,Ecole primaire Paul Duboisé 1,905,645,635,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,389,61.25984251968504,166.434846490836,-22.1399347171588
-Province Sud,Dumbéa,0024,Ecole primaire Paul Duboisé 2,827,512,489,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,184,37.627811860940696,166.436047169124,-22.1394710088392
+Province Sud,Dumbéa,0024,Ecole primaire Paul Duboisé 2,827,512,489,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,184,37.627811860940696,166.434846,-22.139935
 Province Sud,Dumbéa,0025,Ecole maternelle les Colibris,802,516,508,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,267,52.55905511811024,166.436047169124,-22.1394710088392
 Province Sud,Dumbéa,0026,Groupe scolaire Frédéric-Louis Dorbritz 1,629,494,490,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,353,72.04081632653062,166.437530865088,-22.1944939226253
 Province Sud,Farino,0001,Mairie,635,500,481,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,293,60.91476091476091,165.77595416144513,-21.666848976720875
@@ -143,24 +143,24 @@ Province Sud,Mont-Dore,0003,Ecole primaire Adolphe BOUTAN,801,617,600,10,Les Loy
 Province Sud,Mont-Dore,0004,Ecole primaire Louis Henri GALINE 1,828,568,546,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,258,47.252747252747255,166.512755378687,-22.2163077194956
 Province Sud,Mont-Dore,0005,Ecole La Rizière 1,1112,686,662,2,Kanaky pour tous,FLNKS,519,78.3987915407855,166.573975497183,-22.2332233282141
 Province Sud,Mont-Dore,0006,Ecole primaire du Vallon-Dore,807,545,524,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,267,50.954198473282446,166.571853310489,-22.2757480668132
-Province Sud,Mont-Dore,0007,Groupe scolaire de Plum,720,440,432,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,168,38.888888888888886,166.84029773306233,-22.42316008394107
+Province Sud,Mont-Dore,0007,Groupe scolaire de Plum,720,440,432,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,168,38.888888888888886,166.640486,-22.277131
 Province Sud,Mont-Dore,0008,Groupe scolaire de Boulari 1,871,612,600,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,385,64.16666666666667,166.520855451452,-22.2274992832452
 Province Sud,Mont-Dore,0009,Mairie Annexe De Plum 1,988,542,510,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,172,33.72549019607843,166.623268718041,-22.2730906933136
 Province Sud,Mont-Dore,0010,Ecole La Rizière 2,952,558,538,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,194,36.059479553903344,166.573975497183,-22.2332233282141
 Province Sud,Mont-Dore,0011,Groupe scolaire de Boulari 2,709,516,507,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,323,63.70808678500986,166.520855451452,-22.2274992832452
-Province Sud,Mont-Dore,0012,Groupe scolaire de Saint-Michel 1,757,476,459,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,161,35.07625272331155,166.499920849353,-22.2240498676639
+Province Sud,Mont-Dore,0012,Groupe scolaire de Saint-Michel 1,757,476,459,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,161,35.07625272331155,166.529983,-22.224807
 Province Sud,Mont-Dore,0013,Ecole maternelle Les Fougères,486,312,305,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,127,41.63934426229508,166.841440737558,-22.4256696418669
 Province Sud,Mont-Dore,0014,Ecole maternelle les Dauphins,866,620,604,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,346,57.28476821192053,166.57252708408,-22.2768294716869
 Province Sud,Mont-Dore,0015,Ecole Maternelle Les Coccinelles,1187,756,724,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,277,38.25966850828729,166.56758162382,-22.2502864537601
 Province Sud,Mont-Dore,0016,Ecole Saint-Joseph de CLUNY,1024,717,702,2,Kanaky pour tous,FLNKS,214,30.484330484330485,166.499920601202,-22.2239776205159
 Province Sud,Mont-Dore,0017,Ecole primaire Louis Henri GALINE 2,842,557,539,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,266,49.35064935064935,166.512755378687,-22.2163077194956
 Province Sud,Mont-Dore,0018,Groupe scolaire Boulari 3,923,616,606,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,307,50.66006600660066,166.520855451452,-22.2274992832452
-Province Sud,Mont-Dore,0019,Groupe scolaire Saint-Michel 2,613,413,392,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,239,60.96938775510204,166.499920849353,-22.2240498676639
-Province Sud,Mont-Dore,0020,Ecole La Rizière 3,625,346,329,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,155,47.11246200607903,166.489906860567,-22.2084828348965
-Province Sud,Mont-Dore,0021,Ecole de La Briqueterie 1,760,468,449,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,188,41.87082405345212,166.573975497183,-22.2332233282141
+Province Sud,Mont-Dore,0019,Groupe scolaire Saint-Michel 2,613,413,392,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,239,60.96938775510204,166.529983,-22.224807
+Province Sud,Mont-Dore,0020,Ecole La Rizière 3,625,346,329,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,155,47.11246200607903,166.57398,-22.23322
+Province Sud,Mont-Dore,0021,Ecole de La Briqueterie 1,760,468,449,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,188,41.87082405345212,166.56645,-22.26251
 Province Sud,Mont-Dore,0022,Ecole de La Briqueterie 2,665,430,417,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,255,61.15107913669065,166.566445622614,-22.2625090934915
-Province Sud,Mont-Dore,0023,Mairie 2,517,330,320,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,208,65,166.566445622614,-22.2625090934915
-Province Sud,Mont-Dore,0024,Groupe scolaire de Yahoué,783,492,485,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,198,40.824742268041234,166.523259425452,-22.2297495527098
+Province Sud,Mont-Dore,0023,Mairie 2,517,330,320,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,208,65,166.52326,-22.22975
+Province Sud,Mont-Dore,0024,Groupe scolaire de Yahoué,783,492,485,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,198,40.824742268041234,166.490039,-22.208543
 Province Sud,Nouméa,0001,Mairie 1,630,383,380,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,194,51.05263157894737,166.439401925184,-22.2714056104229
 Province Sud,Nouméa,0002,Mairie 2,1192,545,539,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,210,38.96103896103896,166.439401925184,-22.2714056104229
 Province Sud,Nouméa,0003,Ecole Frédéric Surleau,756,504,499,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,326,65.33066132264528,166.446180272936,-22.2732842135737
@@ -178,8 +178,8 @@ Province Sud,Nouméa,0014,Ecole Paul Boyer 1,706,472,469,10,Les Loyalistes et Le
 Province Sud,Nouméa,0015,Ecole Les Capucines,761,571,566,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,448,79.15194346289752,166.457228804171,-22.2753677119578
 Province Sud,Nouméa,0016,Ecole Candide Koch 1,811,574,568,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,406,71.47887323943662,166.456450040223,-22.2745660873879
 Province Sud,Nouméa,0017,Ecole Candide Koch 2,884,677,667,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,529,79.3103448275862,166.456450040223,-22.2745660873879
-Province Sud,Nouméa,0018,Ecole Suzanne Russier 1,774,544,534,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,375,70.2247191011236,166.454860512437,-22.2689261325801
-Province Sud,Nouméa,0019,Ecole Suzanne Russier 2,887,597,589,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,379,64.34634974533107,166.454860512437,-22.2689261325801
+Province Sud,Nouméa,0018,Ecole Suzanne Russier 1,774,544,534,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,375,70.2247191011236,166.446654,-22.269689
+Province Sud,Nouméa,0019,Ecole Suzanne Russier 2,887,597,589,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,379,64.34634974533107,166.446654,-22.269689
 Province Sud,Nouméa,0020,Ecole Antoinette Charbonneaux,766,606,602,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,499,82.89036544850498,166.46666463723,-22.273716213111
 Province Sud,Nouméa,0021,Ecole Marie Havet 1,896,674,667,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,546,81.85907046476761,166.471138313555,-22.2828880563017
 Province Sud,Nouméa,0022,Ecole Marie Havet 2,944,710,702,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,554,78.91737891737891,166.471138313555,-22.2828880563017
@@ -194,21 +194,21 @@ Province Sud,Nouméa,0030,Ecole Mathilde Broquet 1,1165,730,710,10,Les Loyaliste
 Province Sud,Nouméa,0031,Ecole Marie Courtot 1,1250,798,775,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,425,54.83870967741935,166.470464378859,-22.2425220070829
 Province Sud,Nouméa,0032,Ecole Marie Courtot 2,880,687,680,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,538,79.11764705882354,166.470464378859,-22.2425220070829
 Province Sud,Nouméa,0033,Ecole Robert Burck,960,595,585,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,166,28.376068376068375,166.463601949873,-22.2382604330193
-Province Sud,Nouméa,0034,Ecole Les Roses,909,576,561,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,244,43.49376114081996,166.443135087106,-22.2929071476207
-Province Sud,Nouméa,0035,Ecole Les Oeillets,894,589,580,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,270,46.55172413793103,166.443135087106,-22.2929071476207
+Province Sud,Nouméa,0034,Ecole Les Roses,909,576,561,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,244,43.49376114081996,166.464696,-22.23767
+Province Sud,Nouméa,0035,Ecole Les Oeillets,894,589,580,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,270,46.55172413793103,166.468679,-22.230344
 Province Sud,Nouméa,0036,Ecole Jacques Trouillot,871,576,560,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,228,40.714285714285715,166.471000599479,-22.2283599819501
-Province Sud,Nouméa,0037,Ecole Les Hibiscus 1,1378,685,668,2,Kanaky pour tous,FLNKS,220,32.93413173652694,166.468616034294,-22.2680303864914
-Province Sud,Nouméa,0038,Ecole Les Hibiscus 2,1110,726,716,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,373,52.09497206703911,166.468616034294,-22.2680303864914
+Province Sud,Nouméa,0037,Ecole Les Hibiscus 1,1378,685,668,2,Kanaky pour tous,FLNKS,220,32.93413173652694,166.475456,-22.232258
+Province Sud,Nouméa,0038,Ecole Les Hibiscus 2,1110,726,716,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,373,52.09497206703911,166.475456,-22.232258
 Province Sud,Nouméa,0039,Ecole Adrienne Lomont 1,705,391,384,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,132,34.375,166.484157216578,-22.2206462260252
 Province Sud,Nouméa,0040,Ecole Adrienne Lomont 2,1463,891,874,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,432,49.4279176201373,166.484157216578,-22.2206462260252
 Province Sud,Nouméa,0041,Ecole Gustave Lods 1,1068,607,580,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,199,34.310344827586206,166.435430928496,-22.2381371662114
 Province Sud,Nouméa,0042,Ecole Gustave Lods 2,1257,714,691,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,303,43.849493487698986,166.435430928496,-22.2381371662114
 Province Sud,Nouméa,0043,Ecole Daniel Talon,1848,1048,1009,2,Kanaky pour tous,FLNKS,327,32.40832507433102,166.429735177846,-22.2343498153878
-Province Sud,Nouméa,0044,Ecole Maurice Fonrobert,1058,575,566,2,Kanaky pour tous,FLNKS,265,46.81978798586572,166.486016745804,-22.2343408388225
+Province Sud,Nouméa,0044,Ecole Maurice Fonrobert,1058,575,566,2,Kanaky pour tous,FLNKS,265,46.81978798586572,166.42901,-22.231823
 Province Sud,Nouméa,0045,Ecole Mathilde Broquet 2,1338,874,866,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,513,59.237875288683604,166.467549840387,-22.256293239868
 Province Sud,Nouméa,0046,Ecole Yvonne Dupont 2,585,454,453,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,386,85.20971302428256,166.442173657352,-22.2926748814035
 Province Sud,Nouméa,0047,Ecole Paul Boyer 2,706,532,530,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,433,81.69811320754717,166.452482969153,-22.2781620536236
-Province Sud,Nouméa,0048,Ecole Marguerite Arsapin,925,536,521,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,198,38.00383877159309,166.454280714904,-22.2790060967446
+Province Sud,Nouméa,0048,Ecole Marguerite Arsapin,925,536,521,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,198,38.00383877159309,166.462764,-22.228627
 Province Sud,Nouméa,0049,Ecole Les Pervenches,896,648,639,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,484,75.7433489827856,166.463935144665,-22.2575766179093
 Province Sud,Nouméa,0050,Ecole Albert Perraud,1545,793,776,2,Kanaky pour tous,FLNKS,274,35.30927835051546,166.467888234029,-22.2619636836771
 Province Sud,Nouméa,0051,Ecole Michel Amiot,1032,752,741,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,509,68.69095816464238,166.468616034294,-22.2680303864914
@@ -218,25 +218,25 @@ Province Sud,Nouméa,0054,Ecole Le petit poucet,1023,635,619,10,Les Loyalistes e
 Province Sud,Nouméa,0055,Ecole Serge Laigle,1071,853,847,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,675,79.69303423848878,166.486016745804,-22.2343408388225
 Province Sud,Nouméa,0056,Ecole Guy Champmoreau,1306,817,808,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,509,62.995049504950494,166.452313565802,-22.2892161943525
 Province Sud,Nouméa,0057,Mairie 3,62,3,3,8,Pour une Calédonie française,Pour une Calédonie française,2,66.66666666666667,166.439401925184,-22.2714056104229
-Province Sud,Païta,0001,Arène du sud 1,654,360,352,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,123,34.94318181818182,166.366370328351,-22.1294955354086
-Province Sud,Païta,0002,Arène du sud 2,750,499,496,1,Un autre monde est possible !,Éveil océanien,219,44.153225806451616,166.366370328351,-22.1294955354086
-Province Sud,Païta,0003,Ecole Robert ABEL 1,754,484,475,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,196,41.26315789473684,166.366370328351,-22.1294955354086
+Province Sud,Païta,0001,Arène du sud 1,654,360,352,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,123,34.94318181818182,166.367971,-22.141531
+Province Sud,Païta,0002,Arène du sud 2,750,499,496,1,Un autre monde est possible !,Éveil océanien,219,44.153225806451616,166.367971,-22.141531
+Province Sud,Païta,0003,Ecole Robert ABEL 1,754,484,475,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,196,41.26315789473684,166.379189,-22.138498
 Province Sud,Païta,0004,Dock socio-culturel 1,766,530,518,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,292,56.37065637065637,166.366370328351,-22.1294955354086
-Province Sud,Païta,0005,ecole Patrice JEAN 1,829,556,537,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,250,46.554934823091244,166.366370328351,-22.1294955354086
+Province Sud,Païta,0005,ecole Patrice JEAN 1,829,556,537,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,250,46.554934823091244,166.342408,-22.120368
 Province Sud,Païta,0006,Mairie,828,551,544,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,198,36.39705882352941,166.361658608639,-22.1291986951984
-Province Sud,Païta,0007,Ecole Patrice JEAN 2,830,528,517,1,Un autre monde est possible !,Éveil océanien,222,42.94003868471954,166.356291724406,-22.134484419519
-Province Sud,Païta,0008,Ecole Patrice JEAN 3,866,572,558,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,307,55.017921146953405,166.359353160601,-22.1337644237458
-Province Sud,Païta,0009,Dock socio-culturel 2,840,483,470,1,Un autre monde est possible !,Éveil océanien,157,33.40425531914894,166.36989887391,-22.1257398247667
-Province Sud,Païta,0010,Dock socio-culturel 3,939,555,539,1,Un autre monde est possible !,Éveil océanien,185,34.32282003710575,166.36989887391,-22.1257398247667
-Province Sud,Païta,0011,Dock socio-culturel 4,817,568,558,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,226,40.50179211469534,166.36989887391,-22.1257398247667
-Province Sud,Païta,0012,Dock socio-culturel 5,703,493,482,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,274,56.84647302904564,166.36989887391,-22.1257398247667
-Province Sud,Païta,0013,Ecole Henri Martinet 1,715,447,430,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,201,46.74418604651163,166.265966445473,-22.0605318544913
-Province Sud,Païta,0014,Ecole Henri Martinet 2,592,400,393,2,Kanaky pour tous,FLNKS,187,47.58269720101781,166.265966445473,-22.0605318544913
-Province Sud,Païta,0015,Ecole Henri Martinet 3,667,423,414,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,211,50.966183574879224,166.22014428712,-22.0130384994051
+Province Sud,Païta,0007,Ecole Patrice JEAN 2,830,528,517,1,Un autre monde est possible !,Éveil océanien,222,42.94003868471954,166.342408,-22.120368
+Province Sud,Païta,0008,Ecole Patrice JEAN 3,866,572,558,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,307,55.017921146953405,166.342408,-22.120368
+Province Sud,Païta,0009,Dock socio-culturel 2,840,483,470,1,Un autre monde est possible !,Éveil océanien,157,33.40425531914894,166.36637,-22.1295
+Province Sud,Païta,0010,Dock socio-culturel 3,939,555,539,1,Un autre monde est possible !,Éveil océanien,185,34.32282003710575,166.36637,-22.1295
+Province Sud,Païta,0011,Dock socio-culturel 4,817,568,558,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,226,40.50179211469534,166.36637,-22.1295
+Province Sud,Païta,0012,Dock socio-culturel 5,703,493,482,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,274,56.84647302904564,166.36637,-22.1295
+Province Sud,Païta,0013,Ecole Henri Martinet 1,715,447,430,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,201,46.74418604651163,166.22357,-22.011002
+Province Sud,Païta,0014,Ecole Henri Martinet 2,592,400,393,2,Kanaky pour tous,FLNKS,187,47.58269720101781,166.22357,-22.011002
+Province Sud,Païta,0015,Ecole Henri Martinet 3,667,423,414,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,211,50.966183574879224,166.22357,-22.011002
 Province Sud,Païta,0016,Ecole Robert ABEL 2,598,473,466,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,366,78.54077253218884,166.379189029935,-22.1384982889128
 Province Sud,Païta,0017,Ecole Robert ABEL 3,993,668,657,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,296,45.053272450532724,166.379189029935,-22.1384982889128
-Province Sud,Païta,0018,Ecole Patrice JEAN 4,1052,689,673,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,237,35.21545319465082,166.359353160601,-22.1337644237458
-Province Sud,Païta,0019,Ecole Henri Martinet 4,562,381,370,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,226,61.08108108108108,166.265966445473,-22.0605318544913
+Province Sud,Païta,0018,Ecole Patrice JEAN 4,1052,689,673,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,237,35.21545319465082,166.342408,-22.120368
+Province Sud,Païta,0019,Ecole Henri Martinet 4,562,381,370,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,226,61.08108108108108,166.22357,-22.011002
 Province Sud,Poya Sud,0005,Maison commune de Moindah,202,163,162,10,Les Loyalistes et Le Rassemblement - Forts et unis,LL-LR,134,82.71604938271605,165.2454695470807,-21.4084575263513
 Province Sud,Sarraméa,0001,Mairie,533,364,356,2,Kanaky pour tous,FLNKS,179,50.28089887640449,165.85386596919105,-21.642344787633757
 Province Sud,Thio,0001,Mairie,870,574,564,2,Kanaky pour tous,FLNKS,185,32.801418439716315,166.21553174553168,-21.610374938390603
@@ -244,7 +244,7 @@ Province Sud,Thio,0002,Mairie (annexe),615,374,373,2,Kanaky pour tous,FLNKS,165,
 Province Sud,Thio,0003,Grand Borendy,312,194,191,2,Kanaky pour tous,FLNKS,82,42.931937172774866,166.45075740277505,-21.738718340168145
 Province Sud,Thio,0004,Saint-Pierre,481,289,287,2,Kanaky pour tous,FLNKS,157,54.70383275261324,166.14983539215794,-21.67410856554519
 Province Sud,Yaté,0001,Mairie,303,211,209,2,Kanaky pour tous,FLNKS,143,68.42105263157895,166.94326054599946,-22.16058963447543
-Province Sud,Yaté,0002,Mairie (Waho central),484,347,347,2,Kanaky pour tous,FLNKS,226,65.12968299711815,166.97497872151834,-22.190244269832505
+Province Sud,Yaté,0002,Mairie (Waho central),484,347,347,2,Kanaky pour tous,FLNKS,226,65.12968299711815,166.94326,-22.16058
 Province Sud,Yaté,0003,Goro,242,165,165,2,Kanaky pour tous,FLNKS,106,64.24242424242425,167.0163659290303,-22.286011229502463
 Province Sud,Yaté,0004,Unia,793,585,581,2,Kanaky pour tous,FLNKS,323,55.593803786574874,166.89998901288348,-22.06107261844911
 Province des Iles,Lifou,0001,Salle de mariage - mairie de Lifou,645,349,346,7,Union pour construire dans le consensus,UCC,113,32.65895953757225,164.9011843365689,-21.121493041727785
@@ -254,14 +254,14 @@ Province des Iles,Lifou,0004,Jozip,387,243,241,1,Palika Îles,Palika Îles,131,5
 Province des Iles,Lifou,0005,Jokin,456,217,212,5,UC-FLNKS Îles,UC-FLNKS Îles,85,40.094339622641506,167.16447665584124,-20.703384020726688
 Province des Iles,Lifou,0006,Hmelek,394,157,153,5,UC-FLNKS Îles,UC-FLNKS Îles,65,42.48366013071895,167.28575148149378,-21.047986298100245
 Province des Iles,Lifou,0007,Mou,546,269,268,5,UC-FLNKS Îles,UC-FLNKS Îles,97,36.19402985074627,167.41341301025318,-21.092299627592674
-Province des Iles,Lifou,0008,Hnathalo,641,376,373,5,UC-FLNKS Îles,UC-FLNKS Îles,224,60.05361930294906,167.20569292168463,-20.72173372554335
+Province des Iles,Lifou,0008,Hnathalo,641,376,373,5,UC-FLNKS Îles,UC-FLNKS Îles,224,60.05361930294906,167.254491,-20.788984
 Province des Iles,Lifou,0009,Hnacaöm,222,104,102,5,UC-FLNKS Îles,UC-FLNKS Îles,60,58.8235294117647,167.20569292168463,-20.72173372554335
 Province des Iles,Lifou,0010,Siloam,345,188,182,5,UC-FLNKS Îles,UC-FLNKS Îles,139,76.37362637362638,167.10495154784974,-20.76013449602238
 Province des Iles,Lifou,0011,Wasany,353,158,156,5,UC-FLNKS Îles,UC-FLNKS Îles,58,37.17948717948718,167.37793880476198,-21.00787866730366
 Province des Iles,Lifou,0012,Tiga,175,47,47,4,Nation autochtone,Nation autochtone / DA,25,53.191489361702125,167.79672481501146,-21.094104177809253
 Province des Iles,Lifou,0013,Luecila,744,454,449,7,Union pour construire dans le consensus,UCC,230,51.224944320712694,167.25787949950455,-20.900908884449866
 Province des Iles,Lifou,0014,Hapetra,415,252,249,1,Palika Îles,Palika Îles,109,43.77510040160642,167.14706004416075,-20.93025342048714
-Province des Iles,Lifou,0015,Nang,406,204,199,5,UC-FLNKS Îles,UC-FLNKS Îles,82,41.20603015075377,167.2237643213265,-20.78244820991056
+Province des Iles,Lifou,0015,Nang,406,204,199,5,UC-FLNKS Îles,UC-FLNKS Îles,82,41.20603015075377,167.226623,-20.808567
 Province des Iles,Lifou,0016,Xodre,173,74,74,5,UC-FLNKS Îles,UC-FLNKS Îles,35,47.2972972972973,167.41059644422373,-21.127373900931634
 Province des Iles,Lifou,0017,Huiwatrul,450,255,252,5,UC-FLNKS Îles,UC-FLNKS Îles,121,48.01587301587302,167.34969330586503,-21.090299188696775
 Province des Iles,Lifou,0018,Wedrumel,371,208,207,5,UC-FLNKS Îles,UC-FLNKS Îles,122,58.93719806763285,167.1109551627598,-20.984726331890663

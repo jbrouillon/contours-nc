@@ -170,6 +170,102 @@
   color: #c54832;
 }
 
+.geography-scatter {
+  padding-top: 0.4rem;
+}
+
+.geography-scatter-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.geography-scatter-chip {
+  align-items: center;
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.25);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 750;
+  gap: 0.35rem;
+  line-height: 1.1;
+  padding: 0.28rem 0.6rem;
+}
+
+.geography-scatter-chip:hover {
+  background: #f3efe6;
+}
+
+.geography-scatter-chip:focus-visible {
+  outline: 3px solid rgba(214, 162, 31, 0.75);
+  outline-offset: 2px;
+}
+
+.geography-scatter-chip[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fffdf8;
+}
+
+.geography-scatter-swatch {
+  border: 1px solid rgba(40, 37, 34, 0.55);
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.7rem;
+  width: 0.7rem;
+}
+
+.geography-scatter-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0.4rem 0.55rem 0.6rem;
+}
+
+.geography-scatter-card {
+  margin: 0;
+  min-width: 0;
+}
+
+.geography-scatter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.geography-scatter-controls .habitat-map-control-label {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.geography-scatter-controls .habitat-map-select {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.geography-scatter-card svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.geography-scatter-card svg:focus-visible {
+  outline: 3px solid rgba(214, 162, 31, 0.75);
+  outline-offset: 2px;
+}
+
+.geography-scatter-caption {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.38;
+  margin: 0.35rem 0.2rem 0;
+}
+
 .geography-map-error {
   color: var(--red);
   margin: 0;
@@ -222,6 +318,10 @@
 }
 
 @media (max-width: 760px) {
+  .geography-scatter-grid {
+    grid-template-columns: 1fr;
+  }
+
   .geography-map-controls {
     align-items: stretch;
     flex-direction: column;

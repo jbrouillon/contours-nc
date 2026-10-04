@@ -76,6 +76,80 @@ bureaux_total <- function(year) {
     pull(bureaux) |>
     sum()
 }
+
+# Nuages de points : bureaux présents en 2019 et en 2026 (voir analysis.R).
+appariement <- read_csv(
+  file.path(data_dir, "appariement_bureaux_2019_2026.csv"),
+  show_col_types = FALSE,
+  col_types = cols(code_bv_2019 = col_character(), code_bv_2026 = col_character())
+)
+paires <- appariement |> filter(methode %in% c("nom", "numero"))
+bureaux_forces <- read_csv(
+  file.path(data_dir, "bureaux_forces_2019_2026.csv"),
+  show_col_types = FALSE, col_types = cols(code_bv = col_character())
+)
+bureaux_listes <- read_csv(
+  file.path(data_dir, "bureaux_listes_2019_2026.csv"),
+  show_col_types = FALSE, col_types = cols(code_bv = col_character())
+)
+paires_n <- function(province_name) sum(paires$province == province_name)
+
+# Score d'une série par bureau : famille, liste ("liste:2019-11"), participation
+# ou abstention, en % des exprimés (ou des inscrits pour la mobilisation).
+serie_bureaux <- function(province_name, key, year) {
+  base <- bureaux_forces |> filter(province == province_name, annee == year)
+  if (key == "abstention") {
+    return(base |> filter(force == "participation") |> transmute(commune, code_bv, valeur = 100 - pct))
+  }
+  if (startsWith(key, "liste:")) {
+    exprimes <- base |> filter(force == "participation") |> select(commune, code_bv, exprimes)
+    return(
+      bureaux_listes |>
+        filter(province == province_name, annee == year, liste_id == sub("liste:", "", key, fixed = TRUE)) |>
+        inner_join(exprimes, by = c("commune", "code_bv")) |>
+        transmute(commune, code_bv, valeur = 100 * voix / exprimes)
+    )
+  }
+  base |> filter(force == key) |> transmute(commune, code_bv, valeur = pct)
+}
+
+nuage <- function(province_name, x_key, y_key) {
+  paires |>
+    filter(province == province_name) |>
+    inner_join(serie_bureaux(province_name, x_key, 2019) |> rename(x = valeur),
+               by = c("commune", "code_bv_2019" = "code_bv")) |>
+    inner_join(serie_bureaux(province_name, y_key, 2026) |> rename(y = valeur),
+               by = c("commune", "code_bv_2026" = "code_bv"))
+}
+nuage_r <- function(...) {
+  d <- nuage(...)
+  number(cor(d$x, d$y), accuracy = 0.01, decimal.mark = ",")
+}
+nuage_hausses <- function(...) {
+  d <- nuage(...)
+  sum(d$y > d$x)
+}
+en_bureaux <- function(n) {
+  if (n == 0) "aucun" else paste(n, if (n > 1) "bureaux" else "bureau")
+}
+nuage_reculs <- function(...) {
+  d <- nuage(...)
+  sum(d$y < d$x)
+}
+
+# Commune où une force progresse le plus entre 2019 et 2026.
+commune_max <- function(province_name, force_name) {
+  commune_summary |>
+    filter(province == province_name, force == force_name, annee == 2026, !is.na(evolution_points)) |>
+    slice_max(evolution_points, n = 1, with_ties = FALSE)
+}
+
+# Corrections de géolocalisation (scripts/geoloc_bureaux_provinciales.py).
+geoloc <- read_csv(
+  here::here("data", "elections", "metadata", "geoloc_bureaux_provinciales_2019_2026.csv"),
+  show_col_types = FALSE, col_types = cols(.default = col_character())
+)
+geoloc_n <- function(year, status = "corrige") sum(geoloc$annee == year & geoloc$statut == status)
 ```
 
 ```{=html}
@@ -86,9 +160,9 @@ bureaux_total <- function(year) {
 <script src="../../assets/vendor/rough.v4.js"></script>
 ```
 
-Le [premier bilan des provinciales de 2026](../provinciales-2026-premier-bilan/) montrait trois mouvements à l’échelle des provinces : la concentration du vote loyaliste dans le Sud, le retour de l’UC devant l’UNI dans le Nord et une compétition indépendantiste profondément recomposée aux Îles. Mais une moyenne provinciale ne dit pas **où** ces déplacements se produisent.
+Le [premier bilan des provinciales de 2026](../provinciales-2026-premier-bilan/) a montré trois grands mouvements : la droite loyaliste s’impose dans le Sud, l’UC repasse devant l’UNI dans le Nord et la compétition se recompose aux Îles. Mais **où**, exactement, ces changements se sont-ils produits ? Cet article descend à l’échelle des communes et des bureaux de vote pour le voir sur la carte.
 
-Cette nouvelle lecture descend donc à l’échelle des bureaux de vote. Elle compare les mêmes grandes forces en 2019 et en 2026, puis lisse leurs résultats dans l’espace pour faire apparaître des continuités territoriales. Chaque province a sa propre carte, suivie d’une synthèse commune par commune et bureau par bureau. Les cartes affichent d’abord les résultats communaux observés ; un lissage spatial, plus fragile, est proposé en option pour faire apparaître des continuités territoriales.
+Pour chaque province, une carte compare 2019 et 2026, puis deux graphiques suivent les mêmes bureaux d’un scrutin à l’autre. Tout est interactif : on peut choisir une famille politique ou une liste, zoomer sur le Grand Nouméa et survoler chaque commune ou chaque bureau pour lire ses résultats.
 
 ```{=html}
 <div class="habitat-stat-grid" aria-label="Trois évolutions marquantes entre 2019 et 2026">
@@ -123,108 +197,97 @@ Cette nouvelle lecture descend donc à l’échelle des bureaux de vote. Elle co
   data-communes="data/communes.geojson"
   data-commune-summary="data/synthese_communes.csv"
   data-points="data/bureaux_forces_2019_2026.csv"
-  data-metadata="data/metadata.json">
+  data-lists="data/listes_2019_2026.csv"
+  data-list-votes="data/bureaux_listes_2019_2026.csv"
+  data-matches="data/appariement_bureaux_2019_2026.csv">
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">1 · Sud · droite loyaliste</p>
-      <h3>Dans le Sud, la droite loyaliste gagne `r fmt_pts(value_at("Province Sud", "loyaliste", "evolution_points"))`, bien au-delà de Nouméa.</h3>
+      <h3>Dans le Sud, la droite loyaliste progresse presque partout, bien au-delà de Nouméa.</h3>
       <p class="contours-brief-big"><span>`r fmt_pct(value_at("Province Sud", "loyaliste", "score_2019"))`</span><span aria-hidden="true">→</span><span class="`r trend_class(value_at("Province Sud", "loyaliste", "evolution_points"))`">`r fmt_pct(value_at("Province Sud", "loyaliste"))`</span></p>
-      <p>Elle atteint `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste"))` à Farino, contre `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste", "score_2019"))` en 2019, et `r fmt_pct(commune_at("Province Sud", "Poya Sud", "loyaliste"))` à Poya Sud. Le repère de 2019 est l’Avenir en confiance, celui de 2026 LL-LR.</p>
+      <p>À Farino, elle passe de `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste", "score_2019"))` à `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste"))` ; à Poya Sud, elle atteint `r fmt_pct(commune_at("Province Sud", "Poya Sud", "loyaliste"))`. En 2019, cet espace était représenté par l’Avenir en confiance ; en 2026, par LL-LR.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-loyaliste" data-province="sud" data-force="loyaliste" data-variable="evolution_points" data-highlight="Farino|Poya Sud|Nouméa" aria-label="Carte des communes de la province Sud colorées selon l’évolution de la droite loyaliste entre 2019 et 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-loyaliste" data-province="sud" data-force="loyaliste" data-variable="evolution_points" data-highlight="Farino|Poya Sud|Nouméa" aria-label="Carte des communes de la province Sud : la droite loyaliste progresse dans presque toutes les communes entre 2019 et 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
-      <p class="contours-brief-step">2 · Sud · centre non-indépendantiste</p>
-      <h3>L’ancien centre recule presque en miroir.</h3>
-      <p class="contours-brief-big"><span>`r fmt_pct(value_at("Province Sud", "centre_non_ind", "score_2019"))`</span><span aria-hidden="true">→</span><span class="`r trend_class(value_at("Province Sud", "centre_non_ind", "evolution_points"))`">`r fmt_pct(value_at("Province Sud", "centre_non_ind"))`</span></p>
-      <p>Le recul atteint `r fmt_pts(commune_at("Province Sud", "Farino", "centre_non_ind", "evolution_points"))` à Farino et `r fmt_pts(commune_at("Province Sud", "Poya Sud", "centre_non_ind", "evolution_points"))` à Poya Sud. Cette coïncidence territoriale ne prouve pas un transfert individuel de voix.</p>
+      <p class="contours-brief-step">2 · Sud · centre</p>
+      <h3>Le centre recule dans presque tous les bureaux.</h3>
+      <p class="contours-brief-big"><span class="is-down">`r nuage_reculs("Province Sud", "centre_non_ind", "centre_non_ind")`</span><span>/ `r paires_n("Province Sud")` bureaux</span></p>
+      <p>Chaque point est un bureau présent aux deux scrutins : Calédonie ensemble en 2019, puis les trois listes du centre réunies en 2026. Sous la diagonale, le score baisse. Au total, cet espace passe de `r fmt_pct(value_at("Province Sud", "centre_non_ind", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "centre_non_ind"))`.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-centre" data-province="sud" data-force="centre_non_ind" data-variable="evolution_points" data-highlight="Farino|Poya Sud" aria-label="Carte des communes de la province Sud colorées selon l’évolution du centre non-indépendantiste entre 2019 et 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-centre-nuage" data-sketch-type="scatter" data-province="sud" data-x="centre_non_ind" data-y="centre_non_ind" aria-label="Nuage de points des bureaux de la province Sud : presque tous sont sous la diagonale, le centre recule entre 2019 et 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">3 · Sud · Éveil océanien</p>
-      <h3>L’Éveil océanien garde Païta et prend pied sur la côte Est.</h3>
-      <p class="contours-brief-big"><span>`r fmt_pct(value_at("Province Sud", "oceanien", "score_2019"))`</span><span aria-hidden="true">→</span><span class="`r trend_class(value_at("Province Sud", "oceanien", "evolution_points"))`">`r fmt_pct(value_at("Province Sud", "oceanien"))`</span></p>
-      <p>Païta reste son principal appui (`r fmt_pct(commune_at("Province Sud", "Païta", "oceanien"))`), mais Thio passe à `r fmt_pct(commune_at("Province Sud", "Thio", "oceanien"))`, soit `r fmt_pts(commune_at("Province Sud", "Thio", "oceanien", "evolution_points"))` depuis 2019.</p>
+      <h3>L’Éveil océanien gagne du terrain, jusque sur la côte Est.</h3>
+      <p class="contours-brief-big"><span class="is-up">`r nuage_hausses("Province Sud", "oceanien", "oceanien")`</span><span>/ `r paires_n("Province Sud")` bureaux en hausse</span></p>
+      <p>Il passe de `r fmt_pct(value_at("Province Sud", "oceanien", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "oceanien"))` dans la province. Païta reste son premier appui (`r fmt_pct(commune_at("Province Sud", "Païta", "oceanien"))`), mais c’est à Thio qu’il progresse le plus : `r fmt_pts(commune_at("Province Sud", "Thio", "oceanien", "evolution_points"))`.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-oceanien" data-province="sud" data-force="oceanien" data-variable="score_2026" data-highlight="Païta|Thio" aria-label="Carte des communes de la province Sud colorées selon le score de l’Éveil océanien en 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="sud-oceanien" data-province="sud" data-force="oceanien" data-variable="evolution_points" data-highlight="Païta|Thio" aria-label="Carte des communes de la province Sud colorées selon l’évolution de l’Éveil océanien entre 2019 et 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
-      <p class="contours-brief-step">4 · Nord · équilibre indépendantiste</p>
-      <h3>Dans le Nord, le total indépendantiste ne bouge presque pas, mais l’équilibre interne bascule.</h3>
+      <p class="contours-brief-step">4 · Nord · UC et UNI</p>
+      <h3>Dans le Nord, l’UC repasse devant l’UNI.</h3>
       <p class="contours-brief-big"><span class="is-up">UC `r fmt_num(value_at("Province Nord", "uc_flnks", "evolution_points"))`</span><span aria-hidden="true">·</span><span class="is-down">UNI `r fmt_num(value_at("Province Nord", "uni_palika", "evolution_points"))`</span></p>
-      <p>Le bloc indépendantiste passe de `r fmt_pct(value_at("Province Nord", "bloc_independantiste", "score_2019"))` à `r fmt_pct(value_at("Province Nord", "bloc_independantiste"))`. L’UC progresse notamment à Touho, ancien bastion UNI, de `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks", "score_2019"))` à `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks"))`.</p>
+      <p>Le vote indépendantiste reste stable (`r fmt_pct(value_at("Province Nord", "bloc_independantiste"))`), mais l’équilibre change en son sein. L’UC progresse le plus à `r commune_max("Province Nord", "uc_flnks")$commune` (`r fmt_pts(commune_max("Province Nord", "uc_flnks")$evolution_points)`) et avance à Touho, ancien bastion de l’UNI.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="nord-uc" data-province="nord" data-force="uc_flnks" data-variable="evolution_points" data-highlight="Touho|Hienghène" aria-label="Carte des communes de la province Nord colorées selon l’évolution de l’UC-FLNKS entre 2019 et 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="nord-uc" data-province="nord" data-force="uc_flnks" data-variable="evolution_points" data-highlight="`r commune_max("Province Nord", "uc_flnks")$commune`|Touho" aria-label="Carte des communes de la province Nord colorées selon l’évolution de l’UC-FLNKS entre 2019 et 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">5 · Nord · UNI-Palika</p>
-      <h3>L’UNI conserve un axe solide autour de Poindimié et Touho.</h3>
+      <h3>L’UNI garde son axe Poindimié – Touho.</h3>
       <p class="contours-brief-big"><span>`r fmt_pct(commune_at("Province Nord", "Poindimié", "uni_palika"))`</span></p>
-      <p>C’est son score à Poindimié en 2026 ; elle obtient `r fmt_pct(commune_at("Province Nord", "Touho", "uni_palika"))` à Touho. La bascule provinciale tient à l’addition de gains de l’UC, pas à la disparition du bassin électoral de l’UNI.</p>
+      <p>C’est son score à Poindimié en 2026 ; elle obtient `r fmt_pct(commune_at("Province Nord", "Touho", "uni_palika"))` à Touho. Le recul provincial de l’UNI ne fait pas disparaître ses bastions.</p>
     </div>
     <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="nord-uni" data-province="nord" data-force="uni_palika" data-variable="score_2026" data-highlight="Poindimié|Touho" aria-label="Carte des communes de la province Nord colorées selon le score de l’UNI-Palika en 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
-      <p class="contours-brief-step">6 · Îles · participation</p>
-      <h3>Aux Îles, la participation recule dans les trois communes.</h3>
-      <p class="contours-brief-big"><span class="is-down">`r fmt_pts(value_at("Province des Iles", "participation", "evolution_points"))`</span></p>
-      <p>Le recul est de `r fmt_abs_pts(commune_at("Province des Iles", "Lifou", "participation", "evolution_points"))` à Lifou, `r fmt_abs_pts(commune_at("Province des Iles", "Maré", "participation", "evolution_points"))` à Maré et `r fmt_abs_pts(commune_at("Province des Iles", "Ouvéa", "participation", "evolution_points"))` à Ouvéa.</p>
+      <p class="contours-brief-step">6 · Îles · abstention</p>
+      <h3>Aux Îles, l’abstention augmente presque partout.</h3>
+      <p class="contours-brief-big"><span class="is-down">`r nuage_hausses("Province des Iles", "abstention", "abstention")`</span><span>/ `r paires_n("Province des Iles")` bureaux</span></p>
+      <p>Au-dessus de la diagonale, l’abstention progresse. La participation recule de `r fmt_abs_pts(value_at("Province des Iles", "participation", "evolution_points"))` dans la province, et de `r fmt_abs_pts(commune_at("Province des Iles", "Ouvéa", "participation", "evolution_points"))` à Ouvéa.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="iles-participation" data-province="iles" data-force="participation" data-variable="evolution_points" data-highlight="Lifou|Maré|Ouvéa" aria-label="Carte des communes de la province des Îles colorées selon l’évolution de la participation entre 2019 et 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="iles-abstention-nuage" data-sketch-type="scatter" data-province="iles" data-x="abstention" data-y="abstention" data-inverse="true" aria-label="Nuage de points des bureaux de la province des Îles : presque tous sont au-dessus de la diagonale, l’abstention augmente entre 2019 et 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
-      <p class="contours-brief-step">7 · Îles · Dynamique autochtone</p>
-      <h3>Maré devient le cœur du troisième pôle.</h3>
+      <p class="contours-brief-step">7 · Îles · Nation autochtone</p>
+      <h3>Maré devient le cœur d’un troisième pôle.</h3>
       <p class="contours-brief-big"><span>`r fmt_pct(commune_at("Province des Iles", "Maré", "dynamique_autochtone"))`</span></p>
-      <p>C’est le score de Nation autochtone à Maré. À l’échelle de la province, cet espace passe de `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone", "score_2019"))` (LKS en 2019) à `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone"))`, avec `r fmt_pct(commune_at("Province des Iles", "Ouvéa", "dynamique_autochtone"))` à Ouvéa et `r fmt_pct(commune_at("Province des Iles", "Lifou", "dynamique_autochtone"))` à Lifou.</p>
+      <p>C’est le score de Nation autochtone à Maré. Dans la province, elle obtient `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone"))`, presque autant que l’UC (`r fmt_pct(value_at("Province des Iles", "uc_flnks"))`), avec `r fmt_pct(commune_at("Province des Iles", "Ouvéa", "dynamique_autochtone"))` à Ouvéa et `r fmt_pct(commune_at("Province des Iles", "Lifou", "dynamique_autochtone"))` à Lifou.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="iles-autochtone" data-province="iles" data-force="dynamique_autochtone" data-variable="score_2026" data-highlight="Maré|Ouvéa|Lifou" aria-label="Carte des communes de la province des Îles colorées selon le score de la Dynamique autochtone en 2026"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="iles-autochtone" data-province="iles" data-force="dynamique_autochtone" data-variable="score_2026" data-highlight="Maré|Ouvéa|Lifou" aria-label="Carte des communes de la province des Îles colorées selon le score de Nation autochtone en 2026"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
-      <p class="contours-brief-step">8 · Méthode · le lissage, une option</p>
-      <h3>Les bureaux donnent des résultats observés ; le lissage, en option, estime la couleur entre eux.</h3>
-      <p class="contours-brief-big"><span>12 km</span></p>
-      <p>Chaque point combine les bureaux voisins, pondérés selon leur distance (12 km dans le Sud et le Nord, 8 km aux Îles, 1,5 km pour le Grand Nouméa). Loin des bureaux, la couleur pâlit : les cartes s’ouvrent donc sur les résultats communaux, et la vue « Bureaux » montre chaque lieu de vote.</p>
-      <a class="contours-brief-read" href="#lire-les-cartes">Lire la méthode ↓</a>
+      <p class="contours-brief-step">8 · En résumé</p>
+      <h3>Trois provinces, trois recompositions.</h3>
+      <p>Dans le Sud, la droite loyaliste s’étend et le centre se fragmente. Dans le Nord, l’UC prend l’avantage sur l’UNI au sein d’un camp indépendantiste stable. Aux Îles, la participation recule et un troisième pôle s’affirme. Partout, la moyenne provinciale cache des mouvements locaux de sens opposés.</p>
+      <a class="contours-brief-read" href="#conclusion">Lire la conclusion ↓</a>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="method" data-province="sud" data-force="loyaliste" data-year="2026" aria-label="Deux cartes de la province Sud pour la droite loyaliste en 2026 : à gauche, un point coloré par bureau de vote ; à droite, la surface lissée calculée à partir de ces bureaux"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="triptyque" data-sketch-type="triptych" data-panels="sud|loyaliste|Droite loyaliste;nord|uc_flnks|UC-FLNKS;iles|participation|Participation" aria-label="Trois cartes d’évolution entre 2019 et 2026 : la droite loyaliste dans le Sud, l’UC-FLNKS dans le Nord et la participation aux Îles"></svg>
   </article>
 </section>
 ```
 
-## Lire les cartes {#lire-les-cartes}
+## Comment lire les cartes {#lire-les-cartes}
 
-Chaque province a sa carte. Le menu propose deux niveaux de lecture. Les **familles politiques** regroupent des listes comparables entre 2019 et 2026 : les deux premiers panneaux montrent alors 2019 et 2026 avec **les mêmes classes de couleurs**, le troisième l’évolution. Les **listes**, elles, sont présentées une à une, pour leur seule année : d’un scrutin à l’autre, elles ne se succèdent pas terme à terme, et les comparer directement n’aurait pas de sens.
+Chaque carte montre une famille politique, une liste ou la participation. Plus la couleur est foncée, plus le score est élevé. Sur la carte « Évolution », le vert signale une hausse entre 2019 et 2026, le rouge un recul.
 
-Plus la teinte est foncée et les hachures serrées, plus le score est élevé. Les seuils sont choisis pour que chaque classe couvre une part comparable des communes ou du territoire : ils changent donc d’une famille ou d’une liste à l’autre, et la légende les indique. Sur la carte d’évolution, le vert, hachuré dans un sens, indique une hausse ; le rouge, hachuré dans l’autre, un recul ; le beige, une variation inférieure à un point.
+- **Communes**, la vue par défaut, donne le résultat officiel de chaque commune.
+- **Bureaux** place un cercle par lieu de vote, pour voir les différences à l’intérieur d’une commune.
+- **Lissage** dessine une surface estimée à partir des bureaux voisins : utile pour repérer de grands ensembles, à lire avec prudence.
 
-Trois vues sont proposées, de la plus sûre à la plus interprétative :
+Sous chaque carte, un graphique classe les communes et montre l’écart entre leurs bureaux. Plus bas, deux nuages de points comparent les mêmes bureaux en 2019 et en 2026 : un point au-dessus de la diagonale signale une progression. Les détails de méthode sont réunis [en fin d’article](#methode).
 
-- **Communes**, la vue par défaut, colore chaque commune selon son résultat observé sur l’ensemble de ses bureaux. C’est le résultat officiel, sans estimation.
-- **Bureaux** descend au niveau du lieu de vote : chaque cercle est coloré selon son résultat observé et dimensionné selon ses inscrits. Cette vue montre les contrastes à l’intérieur des communes. Elle ne cartographie pas l’évolution, car la liste et les périmètres des bureaux changent d’un scrutin à l’autre.
-- **Lissage** estime une surface continue à partir des bureaux voisins. Elle fait apparaître des bassins électoraux, mais reste une estimation : les cercles y gardent la couleur de leur résultat réel, et un cercle qui tranche avec la surface autour signale un bureau atypique que le lissage atténue.
+## Sud : la droite loyaliste progresse, le centre se fragmente
 
-Un encadré « Comment lire cette carte », sous les boutons, rappelle ce que montre la vue choisie. Survoler la carte donne la valeur de chaque année et l’écart ; survoler un cercle donne le résultat du lieu de vote, avec ses numéros de bureaux. Dans la province Sud, le bouton **Zoom : Grand Nouméa** agrandit l’agglomération et sépare les lieux de vote très rapprochés.
-
-Sous chaque carte, une synthèse reprend **commune par commune** le score de 2019 et celui de 2026 (ou celui de l’année de la liste choisie), puis place chaque bureau sur la même échelle. L’étendue de ces traits montre l’écart interne à la commune : une moyenne communale élevée peut recouvrir des bureaux très contrastés.
-
-<p class="habitat-caption">
-
-En option, le lissage fait ressortir des bassins électoraux, pas les limites exactes des secteurs de vote. Pour chaque point de la carte, les voix et les suffrages exprimés des bureaux voisins sont pondérés par une courbe gaussienne, puis rapportés l’un à l’autre. La portée est de **12 km dans le Sud et le Nord**, et de **8 km aux Îles**, où les bureaux sont plus rapprochés. La vue agrandie du Grand Nouméa utilise une portée de **1,5 km** : à Nouméa, chaque lieu de vote est le plus souvent à moins d’un kilomètre de son voisin le plus proche (0,6 km en médiane, 1,5 km au plus), et une portée de 12 km donnerait à l’agglomération une couleur presque uniforme. Au-delà d’une portée du bureau le plus proche, la couleur est extrapolée : la carte la pâlit et en marque la limite d’un pointillé. Au-delà de trois portées, la zone reste grise. Les scores affichés sous les années sont des résultats bruts, non lissés : ceux de la province, ou, en vue agrandie, ceux des quatre communes de Nouméa, Dumbéa, Mont-Dore et Païta.
-
-</p>
-
-## Sud : la droite loyaliste absorbe l’ancien centre
-
-En 2019, la géographie sudiste opposait déjà les espaces urbains et la côte Ouest, plus favorables à l’Avenir en confiance, aux bastions indépendantistes de la côte Est et du Sud insulaire. Elle faisait aussi apparaître deux implantations distinctes : Calédonie ensemble dans le centre rural, et l’Éveil océanien dans le Grand Nouméa. La carte de 2026 ne supprime pas ces contrastes, mais elle redistribue leur intensité.
+En 2019, le Sud opposait déjà Nouméa et la côte Ouest, plus favorables à l’Avenir en confiance, aux communes indépendantistes de la côte Est et de l’Île des Pins. Calédonie ensemble pesait dans le centre rural, l’Éveil océanien dans le Grand Nouméa. En 2026, ces contrastes demeurent, mais leur intensité change.
 
 ::: column-page
 ```{=html}
@@ -248,19 +311,42 @@ En 2019, la géographie sudiste opposait déjà les espaces urbains et la côte 
 ```
 :::
 
-La droite loyaliste passe de `r fmt_pct(value_at("Province Sud", "loyaliste", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "loyaliste"))` des exprimés. Sa progression n’est pas seulement nouméenne : elle atteint `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste"))` à Farino, contre `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste", "score_2019"))` en 2019, et `r fmt_pct(commune_at("Province Sud", "Poya Sud", "loyaliste"))` à Poya Sud. À Nouméa, le regroupement LL-LR atteint `r fmt_pct(commune_at("Province Sud", "Nouméa", "loyaliste"))`, soit `r fmt_pts(commune_at("Province Sud", "Nouméa", "loyaliste", "evolution_points"))` de plus que l’Avenir en confiance en 2019.
+La droite loyaliste passe de `r fmt_pct(value_at("Province Sud", "loyaliste", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "loyaliste"))` des suffrages exprimés. Sa progression ne se limite pas à Nouméa : à Farino, elle passe de `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste", "score_2019"))` à `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste"))`, et elle atteint `r fmt_pct(commune_at("Province Sud", "Poya Sud", "loyaliste"))` à Poya Sud. À Nouméa, LL-LR obtient `r fmt_pct(commune_at("Province Sud", "Nouméa", "loyaliste"))`, soit `r fmt_pts(commune_at("Province Sud", "Nouméa", "loyaliste", "evolution_points"))` de plus que l’Avenir en confiance en 2019.
 
-La carte du centre évolue presque en miroir. Dans cette comparaison, le repère de 2019 est Calédonie ensemble ; celui de 2026 additionne Une Province pour tous, Nous, réunis et Un espoir pour demain. Cet espace passe de `r fmt_pct(value_at("Province Sud", "centre_non_ind", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "centre_non_ind"))`. Le recul atteint `r fmt_pts(commune_at("Province Sud", "Farino", "centre_non_ind", "evolution_points"))` à Farino et `r fmt_pts(commune_at("Province Sud", "Poya Sud", "centre_non_ind", "evolution_points"))` à Poya Sud. Cette coïncidence territoriale suggère une recomposition de l’offre, mais elle ne permet pas de suivre individuellement les électeurs d’une liste à l’autre.
+Le centre recule presque en miroir. Représenté en 2019 par Calédonie ensemble, il se présente en 2026 divisé en trois listes : Une Province pour tous, Nous, réunis ! et Un espoir pour demain. Ensemble, elles passent de `r fmt_pct(value_at("Province Sud", "centre_non_ind", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "centre_non_ind"))`. Le recul est le plus marqué là où la droite loyaliste progresse le plus, comme à Farino (`r fmt_pts(commune_at("Province Sud", "Farino", "centre_non_ind", "evolution_points"))`) et à Poya Sud (`r fmt_pts(commune_at("Province Sud", "Poya Sud", "centre_non_ind", "evolution_points"))`). Cette coïncidence ne suffit pas à dire que les mêmes électeurs ont changé de vote.
 
-### L’Éveil océanien dépasse son premier archipel urbain
+### Comparer les résultats bureau par bureau {#nuages-sud}
 
-L’Éveil océanien progresse de `r fmt_pct(value_at("Province Sud", "oceanien", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "oceanien"))`. Païta reste son principal point d’appui communal, avec `r fmt_pct(commune_at("Province Sud", "Païta", "oceanien"))`, mais le changement le plus net se situe à Thio : `r fmt_pct(commune_at("Province Sud", "Thio", "oceanien"))` en 2026, soit `r fmt_pts(commune_at("Province Sud", "Thio", "oceanien", "evolution_points"))` depuis 2019. La force océanienne garde donc son assise dans l’agglomération, tout en acquérant de nouveaux relais sur la côte Est.
+Le centre n’a pas disparu, il s’est dispersé. Les deux graphiques suivent les `r paires_n("Province Sud")` bureaux présents aux deux scrutins. À gauche, Calédonie ensemble en 2019 face à Une Province pour tous, la liste qui portait l’étiquette Calédonie ensemble en 2026 ; à droite, face à Nous, réunis !, conduite par Philippe Dunoyer. Les deux listes restent plus fortes là où Calédonie ensemble l’était, mais à un niveau bien plus bas : Une Province pour tous ne fait mieux que Calédonie ensemble que dans `r en_bureaux(nuage_hausses("Province Sud", "liste:2019-11", "liste:2026-05"))`, Nous, réunis ! dans `r en_bureaux(nuage_hausses("Province Sud", "liste:2019-11", "liste:2026-09"))`. Les menus permettent aussi de suivre l’Éveil océanien, qui progresse dans `r nuage_hausses("Province Sud", "oceanien", "oceanien")` bureaux sur `r paires_n("Province Sud")`.
 
-Le bloc indépendantiste, lui, progresse légèrement à l’échelle provinciale (`r fmt_pts(value_at("Province Sud", "bloc_independantiste", "evolution_points"))`). Mais sa géographie interne bouge : il monte fortement à l’Île des Pins (`r fmt_pts(commune_at("Province Sud", "Ile des Pins", "bloc_independantiste", "evolution_points"))`) tandis qu’il recule à Thio et Sarraméa. Une stabilité provinciale peut donc recouvrir des déplacements locaux en sens opposés.
+::: column-page
+```{=html}
+<div
+  id="nuage-sud"
+  class="habitat-sketch geography-scatter"
+  data-provinciales-scatter
+  data-province="sud"
+  data-x-a="liste:2019-11" data-y-a="liste:2026-05"
+  data-x-b="liste:2019-11" data-y-b="liste:2026-09"
+  data-points="data/bureaux_forces_2019_2026.csv"
+  data-summary="data/synthese_province.csv"
+  data-lists="data/listes_2019_2026.csv"
+  data-list-votes="data/bureaux_listes_2019_2026.csv"
+  data-matches="data/appariement_bureaux_2019_2026.csv">
+  <p class="habitat-sketch-loading">Chargement des nuages de points de la province Sud…</p>
+</div>
+```
+:::
+
+### L’Éveil océanien s’étend au-delà de l’agglomération
+
+L’Éveil océanien passe de `r fmt_pct(value_at("Province Sud", "oceanien", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "oceanien"))`. Païta reste sa première commune, avec `r fmt_pct(commune_at("Province Sud", "Païta", "oceanien"))`, mais le changement le plus net se produit à Thio : `r fmt_pct(commune_at("Province Sud", "Thio", "oceanien"))` en 2026, soit `r fmt_pts(commune_at("Province Sud", "Thio", "oceanien", "evolution_points"))` depuis 2019. Le parti garde son assise dans l’agglomération et trouve de nouveaux appuis sur la côte Est.
+
+Le vote indépendantiste, lui, progresse légèrement dans la province (`r fmt_pts(value_at("Province Sud", "bloc_independantiste", "evolution_points"))`), mais pas partout : il monte fortement à l’Île des Pins (`r fmt_pts(commune_at("Province Sud", "Ile des Pins", "bloc_independantiste", "evolution_points"))`) et recule à Thio et à Sarraméa. Une moyenne stable peut cacher des mouvements locaux en sens opposés.
 
 ## Nord : l’UC avance, sans effacer l’axe UNI
 
-Le total indépendantiste reste remarquablement stable : `r fmt_pct(value_at("Province Nord", "bloc_independantiste", "score_2019"))` en 2019 et `r fmt_pct(value_at("Province Nord", "bloc_independantiste"))` en 2026. La transformation est interne. L’UC-FLNKS gagne `r fmt_pts(value_at("Province Nord", "uc_flnks", "evolution_points"))`, tandis que l’UNI-Palika recule de `r fmt_abs_pts(value_at("Province Nord", "uni_palika", "evolution_points"))`.
+Dans le Nord, le vote indépendantiste reste remarquablement stable : `r fmt_pct(value_at("Province Nord", "bloc_independantiste", "score_2019"))` en 2019, `r fmt_pct(value_at("Province Nord", "bloc_independantiste"))` en 2026. Le changement se joue à l’intérieur de ce camp : l’UC-FLNKS gagne `r fmt_pts(value_at("Province Nord", "uc_flnks", "evolution_points"))`, l’UNI-Palika en perd `r fmt_abs_pts(value_at("Province Nord", "uni_palika", "evolution_points"))`.
 
 ::: column-page
 ```{=html}
@@ -284,15 +370,38 @@ Le total indépendantiste reste remarquablement stable : `r fmt_pct(value_at("Pr
 ```
 :::
 
-L’UC renforce d’abord ses territoires les plus favorables : `r fmt_pct(commune_at("Province Nord", "Hienghène", "uc_flnks"))` à Hienghène et `r fmt_pct(commune_at("Province Nord", "Kouaoua", "uc_flnks"))` à Kouaoua. Elle progresse aussi à Touho, ancien bastion UNI, de `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks", "score_2019"))` à `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks"))`. À Ponérihouen, le recul de l’UNI est encore plus spectaculaire, mais il bénéficie à la fois à l’UC et à Alternative Nord : le changement ne se résume donc pas à un transfert entre les deux grandes formations.
+L’UC se renforce d’abord là où elle était déjà forte : `r fmt_pct(commune_at("Province Nord", "Hienghène", "uc_flnks"))` à Hienghène et `r fmt_pct(commune_at("Province Nord", "Kouaoua", "uc_flnks"))` à Kouaoua. Sa plus forte progression se produit à `r commune_max("Province Nord", "uc_flnks")$commune` (`r fmt_pts(commune_max("Province Nord", "uc_flnks")$evolution_points)`). Elle avance aussi à Touho, ancien bastion de l’UNI, de `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks", "score_2019"))` à `r fmt_pct(commune_at("Province Nord", "Touho", "uc_flnks"))`. À Ponérihouen, le recul de l’UNI profite à la fois à l’UC et à Alternative Nord : le changement ne se résume pas à un échange entre les deux grandes formations.
 
-L’UNI conserve néanmoins une géographie cohérente. Elle reste majoritaire à Poindimié (`r fmt_pct(commune_at("Province Nord", "Poindimié", "uni_palika"))`) et à Touho (`r fmt_pct(commune_at("Province Nord", "Touho", "uni_palika"))`), et progresse à Pouébo. La bascule provinciale tient à l’addition de plusieurs gains UC, pas à la disparition du bassin électoral UNI.
+L’UNI garde pourtant ses bastions. Elle reste majoritaire à Poindimié (`r fmt_pct(commune_at("Province Nord", "Poindimié", "uni_palika"))`) et à Touho (`r fmt_pct(commune_at("Province Nord", "Touho", "uni_palika"))`), et progresse à Pouébo. La bascule provinciale vient d’une série de gains de l’UC, pas de la disparition de l’électorat de l’UNI.
 
-Le pôle non-indépendantiste se resserre également. Agissons ensemble pour le Nord obtient `r fmt_pct(value_at("Province Nord", "non_ind_nord"))`, contre `r fmt_pct(value_at("Province Nord", "non_ind_nord", "score_2019"))` pour Agissons et Calédonie ensemble réunis en 2019. Koumac demeure son principal point d’appui avec `r fmt_pct(commune_at("Province Nord", "Koumac", "non_ind_nord"))`, mais ce niveau recule de `r fmt_abs_pts(commune_at("Province Nord", "Koumac", "non_ind_nord", "evolution_points"))`.
+### Comparer les résultats bureau par bureau {#nuages-nord}
+
+Bureau par bureau, la carte de l’UC est très stable : ses meilleurs bureaux de 2019 restent ses meilleurs en 2026, et elle progresse dans `r nuage_hausses("Province Nord", "uc_flnks", "uc_flnks")` des `r paires_n("Province Nord")` bureaux présents aux deux scrutins. L’UNI ne progresse que dans `r nuage_hausses("Province Nord", "uni_palika", "uni_palika")` d’entre eux.
+
+::: column-page
+```{=html}
+<div
+  id="nuage-nord"
+  class="habitat-sketch geography-scatter"
+  data-provinciales-scatter
+  data-province="nord"
+  data-x-a="uc_flnks" data-y-a="uc_flnks"
+  data-x-b="uni_palika" data-y-b="uni_palika"
+  data-points="data/bureaux_forces_2019_2026.csv"
+  data-summary="data/synthese_province.csv"
+  data-lists="data/listes_2019_2026.csv"
+  data-list-votes="data/bureaux_listes_2019_2026.csv"
+  data-matches="data/appariement_bureaux_2019_2026.csv">
+  <p class="habitat-sketch-loading">Chargement des nuages de points de la province Nord…</p>
+</div>
+```
+:::
+
+Le camp non indépendantiste se resserre lui aussi. Agissons ensemble pour le Nord obtient `r fmt_pct(value_at("Province Nord", "non_ind_nord"))`, contre `r fmt_pct(value_at("Province Nord", "non_ind_nord", "score_2019"))` pour Agissons et Calédonie ensemble réunis en 2019. Koumac reste son principal point d’appui, avec `r fmt_pct(commune_at("Province Nord", "Koumac", "non_ind_nord"))`, mais en recul de `r fmt_abs_pts(commune_at("Province Nord", "Koumac", "non_ind_nord", "evolution_points"))`.
 
 ## Îles : une nouvelle tripolarisation, sur fond de démobilisation
 
-Aux Îles, le premier fait géographique n’est pas le score d’une liste mais la participation. Elle recule dans les trois communes : `r fmt_pts(commune_at("Province des Iles", "Lifou", "participation", "evolution_points"))` à Lifou, `r fmt_pts(commune_at("Province des Iles", "Maré", "participation", "evolution_points"))` à Maré et `r fmt_pts(commune_at("Province des Iles", "Ouvéa", "participation", "evolution_points"))` à Ouvéa. La couleur de la carte se contracte presque partout, avec un décrochage particulièrement net dans le nord d’Ouvéa et dans plusieurs secteurs de Lifou.
+Aux Îles, le premier changement n’est pas le score d’une liste mais la participation. Elle recule dans les trois communes : `r fmt_pts(commune_at("Province des Iles", "Lifou", "participation", "evolution_points"))` à Lifou, `r fmt_pts(commune_at("Province des Iles", "Maré", "participation", "evolution_points"))` à Maré et `r fmt_pts(commune_at("Province des Iles", "Ouvéa", "participation", "evolution_points"))` à Ouvéa.
 
 ::: column-page
 ```{=html}
@@ -316,21 +425,62 @@ Aux Îles, le premier fait géographique n’est pas le score d’une liste mais
 ```
 :::
 
-Dans les exprimés, Nation autochtone dessine la transformation la plus forte. La comparaison agrège sous « Dynamique autochtone » la liste LKS de 2019 et Nation autochtone en 2026. Cet espace passe de `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone", "score_2019"))` à `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone"))`. Son cœur reste Maré, où il atteint `r fmt_pct(commune_at("Province des Iles", "Maré", "dynamique_autochtone"))`, mais son implantation devient réellement interinsulaire : `r fmt_pct(commune_at("Province des Iles", "Ouvéa", "dynamique_autochtone"))` à Ouvéa et `r fmt_pct(commune_at("Province des Iles", "Lifou", "dynamique_autochtone"))` à Lifou.
+Parmi les suffrages exprimés, le changement le plus fort vient de Nation autochtone, qui prolonge la liste Dynamique autochtone de 2019. Cet espace passe de `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone", "score_2019"))` à `r fmt_pct(value_at("Province des Iles", "dynamique_autochtone"))`. Son cœur reste Maré, où il atteint `r fmt_pct(commune_at("Province des Iles", "Maré", "dynamique_autochtone"))`, mais il s’étend aux autres îles : `r fmt_pct(commune_at("Province des Iles", "Ouvéa", "dynamique_autochtone"))` à Ouvéa et `r fmt_pct(commune_at("Province des Iles", "Lifou", "dynamique_autochtone"))` à Lifou.
 
-L’UC-FLNKS conserve la première place provinciale avec `r fmt_pct(value_at("Province des Iles", "uc_flnks"))`, mais sa carte se déplace : elle recule fortement à Lifou et progresse de plus de dix points à Ouvéa. Palika suit un mouvement en partie inverse, en hausse à Lifou mais en baisse à Ouvéa et Maré. Le résultat provincial presque entièrement indépendantiste (`r fmt_pct(value_at("Province des Iles", "bloc_independantiste"))`) recouvre ainsi trois géographies concurrentes, auxquelles s’ajoutent Baselaia, S’engager pour les Îles et l’UCC.
+### Comparer les résultats bureau par bureau {#nuages-iles}
 
-## Ce que le lissage permet — et ce qu’il interdit de conclure
+Les graphiques confirment ces deux mouvements. L’abstention augmente dans `r nuage_hausses("Province des Iles", "abstention", "abstention")` des `r paires_n("Province des Iles")` bureaux présents aux deux scrutins. Nation autochtone fait mieux que la Dynamique autochtone de 2019 dans `r nuage_hausses("Province des Iles", "liste:2019-05", "liste:2026-04")` d’entre eux, en gardant les mêmes zones de force.
 
-Le lissage spatial répond à une question précise : **les bureaux proches présentent-ils des résultats voisins ?** Il fait apparaître des bassins continus là où une carte de points serait difficile à lire. Il ne transforme pas pour autant ces surfaces en résultats observés. Entre deux bureaux, la couleur est estimée ; sur un territoire vaste et peu dense, elle doit être lue comme une tendance.
+::: column-page
+```{=html}
+<div
+  id="nuage-iles"
+  class="habitat-sketch geography-scatter"
+  data-provinciales-scatter
+  data-province="iles"
+  data-x-a="abstention" data-y-a="abstention"
+  data-x-b="liste:2019-05" data-y-b="liste:2026-04"
+  data-points="data/bureaux_forces_2019_2026.csv"
+  data-summary="data/synthese_province.csv"
+  data-lists="data/listes_2019_2026.csv"
+  data-list-votes="data/bureaux_listes_2019_2026.csv"
+  data-matches="data/appariement_bureaux_2019_2026.csv">
+  <p class="habitat-sketch-loading">Chargement des nuages de points de la province des Îles…</p>
+</div>
+```
+:::
 
-Trois précautions sont particulièrement importantes :
+L’UC-FLNKS reste en tête dans la province avec `r fmt_pct(value_at("Province des Iles", "uc_flnks"))`, mais sa carte se déplace : elle recule fortement à Lifou et progresse de plus de dix points à Ouvéa. Le Palika suit un mouvement en partie inverse, en hausse à Lifou, en baisse à Ouvéa et à Maré. Le vote presque entièrement indépendantiste de la province (`r fmt_pct(value_at("Province des Iles", "bloc_independantiste"))`) recouvre ainsi trois géographies concurrentes, auxquelles s’ajoutent Baselaia, S’engager pour les Îles et l’UCC.
 
-- les scores sont pondérés par les suffrages exprimés — ou par les inscrits pour la participation — afin qu’un petit bureau ne pèse pas autant qu’un grand dans l’interpolation ;
-- les comparaisons portent sur des **familles reconstruites**, pas toujours sur une organisation identique : par exemple, l’ancien centre sudiste s’est présenté sous plusieurs listes en 2026 ;
-- la juxtaposition d’une baisse et d’une hausse au même endroit ne démontre pas un transfert individuel de voix. Les corps électoraux, la participation et l’offre politique ont eux aussi changé.
+## En conclusion : trois provinces, trois recompositions {#conclusion}
 
-Le fichier comprend **`r bureaux_total(2019)` bureaux en 2019 et `r bureaux_total(2026)` en 2026**. Les bureaux de Lifou physiquement délocalisés hors de la province des Îles ne participent pas au lissage : un en 2019 et trois en 2026. Leurs suffrages restent cependant inclus dans tous les totaux provinciaux et communaux affichés dans le texte et sous les cartes.
+Vue de près, chaque province raconte une histoire différente.
+
+- **Dans le Sud**, la droite loyaliste devient majoritaire (`r fmt_pct(value_at("Province Sud", "loyaliste"))`) et progresse jusque dans les communes rurales où le centre était fort. Divisé en trois listes, le centre recule dans `r nuage_reculs("Province Sud", "centre_non_ind", "centre_non_ind")` des `r paires_n("Province Sud")` bureaux comparables, tandis que l’Éveil océanien gagne du terrain dans la plupart d’entre eux et trouve de nouveaux appuis sur la côte Est.
+- **Dans le Nord**, le camp indépendantiste ne bouge presque pas, mais l’UC repasse devant l’UNI (`r fmt_pct(value_at("Province Nord", "uc_flnks"))` contre `r fmt_pct(value_at("Province Nord", "uni_palika"))`), en progressant dans une majorité de bureaux, sans effacer l’ancrage de l’UNI autour de Poindimié et de Touho.
+- **Aux Îles**, la participation recule presque partout : l’abstention augmente dans `r nuage_hausses("Province des Iles", "abstention", "abstention")` des `r paires_n("Province des Iles")` bureaux comparables. Nation autochtone s’impose à Maré et s’étend à Ouvéa et à Lifou, au point de rivaliser avec l’UC (`r fmt_pct(value_at("Province des Iles", "dynamique_autochtone"))` contre `r fmt_pct(value_at("Province des Iles", "uc_flnks"))`).
+
+Partout, la moyenne provinciale cache des mouvements locaux de sens opposés : c’est ce que les cartes rendent visible. Elles montrent où les rapports de force ont changé ; elles ne disent pas comment chaque électeur a voté.
+
+## Méthode {#methode}
+
+<details class="note-deroulable">
+
+<summary>Données, cartes et comparaison des bureaux</summary>
+
+**Résultats.** Les résultats de 2026 proviennent des procès-verbaux par bureau publiés par le Haut-commissariat ; ils ont été contrôlés ligne par ligne contre les totaux officiels de chaque liste. Ceux de 2019 viennent des résultats définitifs du même scrutin. Le fichier compte `r bureaux_total(2019)` bureaux en 2019 et `r bureaux_total(2026)` en 2026. Les bureaux de Lifou installés hors de la province des Îles (un en 2019, trois en 2026) n’apparaissent pas sur les cartes, mais leurs voix sont comptées dans tous les totaux.
+
+**Familles et listes.** Les familles politiques regroupent des listes comparables d’un scrutin à l’autre ; leur composition est détaillée ci-dessous. Les listes ne se succèdent pas terme à terme : elles sont donc présentées une par une, pour leur seule année. Les couleurs sont réparties en classes qui couvrent chacune une part comparable des communes ou du territoire ; les seuils changent donc d’une carte à l’autre et sont indiqués dans la légende.
+
+**Lissage.** En option, chaque point de la carte combine les voix et les suffrages des bureaux voisins, pondérés selon leur distance par une courbe gaussienne. La portée est de 12 km dans le Sud et le Nord, de 8 km aux Îles et de 1,5 km dans la vue agrandie du Grand Nouméa, où les lieux de vote sont très rapprochés (0,6 km en médiane entre deux lieux voisins à Nouméa). Au-delà d’une portée du bureau le plus proche, la couleur pâlit ; au-delà de trois portées, la zone reste grise. Les scores sous les années sont toujours des résultats réels, non lissés.
+
+**Comparaison des bureaux.** Les bureaux changent parfois de numéro ou de lieu entre deux scrutins (Dumbéa a par exemple renuméroté les siens). Un bureau de 2026 est rattaché à celui de 2019 d’abord par son nom, puis par son numéro si les deux noms restent compatibles. `r paires_n("Province Sud") + paires_n("Province Nord") + paires_n("Province des Iles")` bureaux sur `r bureaux_total(2019)` sont ainsi comparés ; les autres sont exclus des nuages de points. Un cercle en pointillé signale un bureau dont le nombre d’inscrits a varié de plus de 40 %. La correspondance complète est publiée avec les données de l’article.
+
+**Localisation des bureaux.** Les bureaux sont placés sur leur lieu de vote. Pour `r geoloc_n(2026)` bureaux de 2026 (renumérotés, déplacés ou mal placés dans le référentiel initial) et `r geoloc_n(2019)` bureaux de 2019, la position a été corrigée à partir des établissements et bâtiments publics de la Nouvelle-Calédonie, et, pour deux cas, d’OpenStreetMap. `r geoloc_n(2026, "non_resolu")` lieux de 2026 n’ont pas pu être retrouvés (Niminra à Kouaoua, Ouégoné à Ouégoa, l’ancienne mairie de Poya) : ils gardent leur position précédente. Ces corrections ne modifient que l’emplacement des bureaux sur les cartes, jamais les résultats.
+
+**Précautions.** Les familles politiques sont des regroupements : l’ancien centre sudiste, par exemple, s’est présenté sous plusieurs listes en 2026. Une baisse et une hausse au même endroit ne prouvent pas qu’un électeur est passé d’une liste à l’autre : le corps électoral, la participation et l’offre politique ont eux aussi changé.
+
+</details>
 
 <details class="note-deroulable">
 
@@ -372,6 +522,7 @@ Aux **Îles**, l’UC-FLNKS, l’UNI-Palika et la Dynamique autochtone/Nation au
 
 - [Résultats des provinciales 2026 par bureau de vote — Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2026/Elections-provinciales-2026/Resultats). Les trois PDF officiels par province ont été contrôlés ligne par ligne contre les totaux provinciaux publiés.
 - [Résultats définitifs des provinciales 2019 — Haut-commissariat de la République](https://www.nouvelle-caledonie.gouv.fr/Actions-de-l-Etat/Elections/Elections-2019/Provinciales-2019/RESULTATS).
+- [Bâtiments publics — Gouvernement de la Nouvelle-Calédonie, DITTT, bureau de la cartographie](https://dtsi-sgt.maps.arcgis.com/home/item.html?id=bc802de2e3f848c6bfa77cd9f8505c80), licence CC BY-NC-ND 4.0, consulté le 4 octobre 2026 ; établissements publics de la Nouvelle-Calédonie ; © contributeurs [OpenStreetMap](https://www.openstreetmap.org/copyright) (ODbL), pour deux lieux de vote.
 - Référentiel géolocalisé des bureaux de vote et limites administratives conservés dans les données du projet Contours.nc.
 
 ```{=html}

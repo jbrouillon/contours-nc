@@ -27,6 +27,7 @@ source_listes_2019 <- file.path(
   project_dir, "data", "outputs_provinciales_candidats",
   "provinciales_referentiel_listes_politiques_2019_2026.csv"
 )
+source_geoloc <- file.path(project_dir, "data", "elections", "metadata", "geoloc_bureaux_provinciales_2019_2026.csv")
 source_communes_geo <- file.path(
   project_dir, "data", "elections", "data_raw", "referentiels_geographiques",
   "communes", "communes_rgp_2019_v2.geojson"
@@ -78,7 +79,7 @@ pdf_specs <- list(
 required_files <- c(
   vapply(pdf_specs, `[[`, character(1), "file"),
   source_2026_province, source_2019_bureaux, source_2019_listes,
-  source_geo, source_provinces, source_communes_geo, source_listes_2019
+  source_geo, source_provinces, source_communes_geo, source_listes_2019, source_geoloc
 )
 missing_files <- required_files[!file.exists(required_files)]
 if (length(missing_files) > 0) {
@@ -258,6 +259,54 @@ bureaux_2026_wide <- bureaux_2026_wide |>
     )
   )
 
+# Corrections de géolocalisation. En 2026, le référentiel suit la numérotation
+# de 2019, que plusieurs communes ont modifiée (Païta, Dumbéa, Mont-Dore…) ; en
+# 2019 comme en 2026, il plaçait aussi certains lieux loin de leur emplacement
+# réel. Les bureaux concernés sont replacés sur le lieu nommé dans les
+# résultats officiels. Table et sources : scripts/geoloc_bureaux_provinciales.py.
+geoloc_corrections <- read_csv(
+  source_geoloc,
+  show_col_types = FALSE,
+  col_types = cols(
+    annee = col_integer(), code_bv = col_character(),
+    longitude = col_double(), latitude = col_double(), .default = col_character()
+  )
+) |>
+  filter(statut == "corrige")
+
+appliquer_geoloc <- function(bureaux, year, nom_colonne) {
+  corrections <- geoloc_corrections |> filter(annee == year)
+  controle <- corrections |>
+    left_join(
+      bureaux |> select(province, commune, code_bv, nom_officiel = all_of(nom_colonne)),
+      by = c("province", "commune", "code_bv")
+    ) |>
+    filter(is.na(nom_officiel) | str_to_lower(str_squish(nom_officiel)) != str_to_lower(str_squish(bureau_nom)))
+  if (nrow(controle) > 0) {
+    stop("Correction de géolocalisation ", year, " sans bureau de même nom :\n",
+         paste(capture.output(controle), collapse = "\n"))
+  }
+  bureaux |>
+    left_join(
+      corrections |> select(province, commune, code_bv, lon_corrigee = longitude, lat_corrigee = latitude, source_corrigee = source),
+      by = c("province", "commune", "code_bv")
+    ) |>
+    mutate(
+      corrige = !is.na(lon_corrigee),
+      longitude = if_else(corrige, lon_corrigee, longitude),
+      latitude = if_else(corrige, lat_corrigee, latitude),
+      geo_source = if ("geo_source" %in% names(bureaux)) {
+        if_else(corrige, paste0("correction_", year, "_", source_corrigee), geo_source)
+      } else NULL,
+      # L'IRIS hérité de l'ancien emplacement n'est plus fiable.
+      iris_codgeo = replace(iris_codgeo, corrige, NA),
+      iris_libgeo = replace(iris_libgeo, corrige, NA)
+    ) |>
+    select(-lon_corrigee, -lat_corrigee, -source_corrigee, -corrige)
+}
+
+bureaux_2026_wide <- appliquer_geoloc(bureaux_2026_wide, 2026L, "bureau_nom_pdf")
+
 if (anyNA(bureaux_2026_wide$longitude) || anyNA(bureaux_2026_wide$latitude)) {
   missing_geo <- bureaux_2026_wide |>
     filter(is.na(longitude) | is.na(latitude)) |>
@@ -310,7 +359,8 @@ bureaux_2019 <- read_csv(
     spatial_include = !(
       province == "Province des Iles" & commune == "Lifou" & code_bv == "0001"
     )
-  )
+  ) |>
+  appliquer_geoloc(2019L, "bureau_nom")
 bureaux_2019_long <- read_csv(
   source_2019_listes,
   show_col_types = FALSE,
@@ -620,6 +670,73 @@ write_csv(
 )
 write_csv(office_winners_2026, file.path(out_dir, "vainqueurs_bureaux_2026.csv"))
 
+# Appariement des bureaux 2019 et 2026 ---------------------------------------
+# Les numéros de bureau ne sont pas stables partout (renumérotation à Dumbéa,
+# par exemple). Un bureau 2026 est rattaché à un bureau 2019 de la même commune
+# d'abord par son nom complet, numéro final compris, s'il est unique des deux
+# côtés ; sinon par son numéro, si les deux noms restent compatibles (l'un
+# contient l'autre une fois accents, parenthèses et numéros retirés). Les autres
+# bureaux ne sont pas appariés et restent hors des nuages de points.
+normalise_nom_bureau <- function(x, garder_numero = TRUE) {
+  x <- str_to_lower(stringi::stri_trans_general(x, "Latin-ASCII"))
+  x <- str_remove_all(x, "\\(.*?\\)")
+  x <- str_replace_all(x, "[^a-z0-9 ]", " ")
+  if (!garder_numero) x <- str_remove_all(x, "\\b[0-9]+\\b")
+  str_squish(x)
+}
+noms_bureau_compatibles <- function(a, b) {
+  a <- normalise_nom_bureau(a, FALSE)
+  b <- normalise_nom_bureau(b, FALSE)
+  nzchar(a) & nzchar(b) & (a == b | str_detect(b, fixed(a)) | str_detect(a, fixed(b)))
+}
+noms_uniques <- function(d) d |> add_count(province, commune, cle) |> filter(n == 1) |> select(-n)
+
+bureaux_noms_2019 <- bureaux_2019 |>
+  transmute(
+    province, commune, code_bv_2019 = code_bv, nom_2019 = bureau_nom,
+    inscrits_2019 = inscrits, cle = normalise_nom_bureau(bureau_nom)
+  )
+bureaux_noms_2026 <- bureaux_2026_wide |>
+  transmute(
+    province, commune, code_bv_2026 = code_bv, nom_2026 = bureau_nom,
+    inscrits_2026 = inscrits, cle = normalise_nom_bureau(bureau_nom)
+  )
+apparies_par_nom <- inner_join(
+  noms_uniques(bureaux_noms_2019), noms_uniques(bureaux_noms_2026),
+  by = c("province", "commune", "cle")
+) |>
+  mutate(methode = "nom")
+apparies_par_numero <- inner_join(
+  bureaux_noms_2019 |> anti_join(apparies_par_nom, by = c("province", "commune", "code_bv_2019")),
+  bureaux_noms_2026 |>
+    anti_join(apparies_par_nom, by = c("province", "commune", "code_bv_2026")) |>
+    mutate(code_bv_2019 = code_bv_2026),
+  by = c("province", "commune", "code_bv_2019")
+) |>
+  filter(noms_bureau_compatibles(nom_2019, nom_2026)) |>
+  mutate(methode = "numero")
+appariement_bureaux <- bind_rows(apparies_par_nom, apparies_par_numero) |>
+  select(province, commune, code_bv_2019, code_bv_2026, nom_2019, nom_2026, inscrits_2019, inscrits_2026, methode)
+
+if (anyDuplicated(appariement_bureaux[c("province", "commune", "code_bv_2019")]) ||
+    anyDuplicated(appariement_bureaux[c("province", "commune", "code_bv_2026")])) {
+  stop("Un bureau est apparié deux fois entre 2019 et 2026.")
+}
+
+# Fichier complet, bureaux non appariés compris, pour l'audit.
+appariement_audit <- bind_rows(
+  appariement_bureaux,
+  bureaux_noms_2019 |>
+    anti_join(appariement_bureaux, by = c("province", "commune", "code_bv_2019")) |>
+    transmute(province, commune, code_bv_2019, nom_2019, inscrits_2019, methode = "non apparie (2019)"),
+  bureaux_noms_2026 |>
+    anti_join(appariement_bureaux, by = c("province", "commune", "code_bv_2026")) |>
+    transmute(province, commune, code_bv_2026, nom_2026, inscrits_2026, methode = "non apparie (2026)")
+) |>
+  arrange(province, commune, coalesce(code_bv_2026, code_bv_2019))
+write_csv(appariement_audit, file.path(out_dir, "appariement_bureaux_2019_2026.csv"))
+print(count(appariement_audit, province, methode))
+
 province_labels <- c(
   "PROVINCE SUD" = "Province Sud",
   "PROVINCE NORD" = "Province Nord",
@@ -693,7 +810,9 @@ metadata <- list(
     results_2026_bureaux = vapply(pdf_specs, function(x) file.path("data/elections/data_raw/provinciales_2026", basename(x$file)), character(1)),
     results_2026_official_totals = "data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_province_listes.csv",
     results_2019 = "data/elections/data_processed/provinciales_2019_listes_long_geolocalisees.csv",
-    geolocation = "data/elections/data_processed/bureaux_reference_geolocalises.csv"
+    geolocation = "data/elections/data_processed/bureaux_reference_geolocalises.csv",
+    geolocation_corrections = "data/elections/metadata/geoloc_bureaux_provinciales_2019_2026.csv",
+    bureaux_matching = "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv"
   )
 )
 write_json(metadata, file.path(out_dir, "metadata.json"), pretty = TRUE, auto_unbox = TRUE)

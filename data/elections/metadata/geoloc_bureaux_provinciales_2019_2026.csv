@@ -1,0 +1,79 @@
+annee,province,commune,code_bv,bureau_nom,longitude,latitude,source,source_detail,precision,statut,note
+2019,Province Nord,Koné,0001,Mairie,164.861419,-21.061604,etablissements_publics_nc,ident 110015 Mairie de Koné,batiment,corrige,"Erreur du référentiel (1,5 km)."
+2019,Province Nord,Koné,0011,Mairie 2,164.861419,-21.061604,etablissements_publics_nc,ident 110015 Mairie de Koné,batiment,corrige,"Erreur du référentiel (3,7 km)."
+2019,Province Sud,Mont-Dore,0012,Groupe scolaire de Saint-Michel 1,166.529983,-22.224807,etablissements_publics_nc,ident 170010 Ecole primaire de Saint-Michel,batiment,corrige,Erreur du référentiel (3 km).
+2019,Province Sud,Mont-Dore,0019,Groupe scolaire Saint-Michel 2,166.529983,-22.224807,etablissements_publics_nc,ident 170010 Ecole primaire de Saint-Michel,batiment,corrige,Erreur du référentiel (3 km).
+2019,Province Sud,Mont-Dore,0020,Groupe scolaire de Plum,166.640486,-22.277131,batiments_publics_nc,"objectid 2971, 2976, 2984, 2986, 2990, 3005, 3017, 3018, 3019, 3034, 4546 Groupe scolaire de Plum",batiment,corrige,Le référentiel plaçait l'école de Plum aux coordonnées de celle de Yahoué.
+2019,Province Sud,Nouméa,0034,Ecole Les Roses,166.464696,-22.237670,etablissements_publics_nc,ident 180278 Ecole pré-élementaire Les Roses,batiment,corrige,"Erreur du référentiel (6,5 km)."
+2019,Province Sud,Nouméa,0035,Ecole Les Oeillets,166.468679,-22.230344,etablissements_publics_nc,ident 180297 Ecole pré-élementaire Les Oeillets,batiment,corrige,"Erreur du référentiel (7,4 km)."
+2019,Province Sud,Nouméa,0037,Ecole Mauricette Devambez 1,166.470726,-22.232760,batiments_publics_nc,"objectid 3845, 3876, 3969, 4131, 4333 Ecole élémentaire Mauricette DEVAMBEZ",batiment,corrige,"Erreur du référentiel (3,9 km)."
+2019,Province Sud,Nouméa,0038,Ecole Mauricette Devambez 2,166.470726,-22.232760,batiments_publics_nc,"objectid 3845, 3876, 3969, 4131, 4333 Ecole élémentaire Mauricette DEVAMBEZ",batiment,corrige,"Erreur du référentiel (3,9 km)."
+2019,Province Sud,Nouméa,0044,Ecole Louise Vergès,166.421805,-22.230440,batiments_publics_nc,"objectid 3080, 3168, 3730 Ecole élémentaire Louise VERGES",batiment,corrige,"Erreur du référentiel (6,6 km)."
+2019,Province Sud,Nouméa,0048,Ecole Marguerite Arsapin,166.462764,-22.228627,batiments_publics_nc,"objectid 4134, 4178, 4255 Ecole élémentaire Marguerite ARSAPIN",batiment,corrige,"Erreur du référentiel (5,6 km)."
+2019,Province des Iles,Lifou,0008,Hnathalo,167.254491,-20.788984,batiments_publics_nc,objectid 1292 Maison commune de Hnathalo,batiment,corrige,Erreur du référentiel (9 km) : maison commune de la tribu.
+2019,Province des Iles,Lifou,0015,Nang,167.226623,-20.808567,batiments_publics_nc,objectid 1291 Maison commune de Nang,batiment,corrige,Erreur du référentiel (3 km) : maison commune de la tribu.
+2026,Province Sud,Boulouparis,0002,Maison des associations du village de Boulouparis,166.047083,-21.865589,etablissements_publics_nc,ident 020004 Maison des Associations,batiment,corrige,
+2026,Province Sud,Boulouparis,0003,Centre culturel de Boulouparis,166.049037,-21.865435,etablissements_publics_nc,ident 020046 Centre socio-culturel,batiment,corrige,"Centre socio-culturel du village, seul équipement culturel recensé."
+2026,Province Sud,Boulouparis,0004,Maison des associations du village de Tomo,166.151050,-21.958440,openstreetmap,place=village Tomo,village,corrige,Bâtiment non recensé : centre du village de Tomo.
+2026,Province Sud,Bourail,0005,Colisée 2,165.493852,-21.565694,etablissements_publics_nc,ident 030114 Le Colisée - Salle de spectacle,batiment,corrige,
+2026,Province Sud,Dumbéa,0004,Salle omnisports d'Auteuil Ernest Chambonnier 1,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0005,Salle omnisports d'Auteuil Ernest Chambonnier 2,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0006,Salle omnisports d'Auteuil Ernest Chambonnier 3,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0007,Salle omnisports d'Auteuil Ernest Chambonnier 4,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0008,Salle omnisports d'Auteuil Ernest Chambonnier 5,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0009,Salle omnisports d'Auteuil Ernest Chambonnier 6,166.475894,-22.206094,etablissements_publics_nc,ident 050028 Salle omnisports Ernest CHAMBONNIER du complexe sportif d'Auteuil,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0010,Maison de la Jeunesse 1,166.474913,-22.205681,etablissements_publics_nc,ident 050090 Maison de la jeunesse,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0011,Maison de la Jeunesse 2,166.474913,-22.205681,etablissements_publics_nc,ident 050090 Maison de la jeunesse,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0013,Ecole primaire Gustave Clain 2,166.460871,-22.208935,etablissements_publics_nc,ident 050003 Ecole élémentaire Gustave CLAIN,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0015,Ecole maternelle l'Oasis 2,166.461461,-22.208563,etablissements_publics_nc,ident 050002 Ecole pré-élementaire L'Oasis,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0017,Groupe scolaire Michelle Delacharlerie-Rolly 2,166.445999,-22.201380,etablissements_publics_nc,ident 050129 Groupe scolaire Michelle Delacharlerie-Rolly,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0019,Groupe scolaire Renée Fong 2,166.444187,-22.192372,etablissements_publics_nc,ident 050021 Groupe scolaire Renée FONG,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0022,Mairie du Nord 3,166.457501,-22.167546,etablissements_publics_nc,ident 050105 Mairie du Nord de Dumbéa,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Dumbéa,0024,Ecole primaire Paul Duboisé 2,166.434846,-22.139935,etablissements_publics_nc,ident 050016 Ecole élémentaire Paul DUBOISE,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Mont-Dore,0007,Groupe scolaire de Plum,166.640486,-22.277131,batiments_publics_nc,"objectid 2971, 2976, 2984, 2986, 2990, 3005, 3017, 3018, 3019, 3034, 4546 Groupe scolaire de Plum",batiment,corrige,Le référentiel plaçait l'école de Plum aux coordonnées de celle de Yahoué.
+2026,Province Sud,Mont-Dore,0020,Ecole La Rizière 3,166.573980,-22.233220,referentiel,"École La Rizière (référentiel, n° 0005)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Mont-Dore,0021,Ecole de La Briqueterie 1,166.566450,-22.262510,referentiel,"École de la Briqueterie (référentiel, n° 0022)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Mont-Dore,0023,Mairie 2,166.523260,-22.229750,referentiel,"Mairie 2 (référentiel, n° 0024)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Mont-Dore,0024,Groupe scolaire de Yahoué,166.490039,-22.208543,batiments_publics_nc,"objectid 4038, 4375, 4379 Groupe scolaire de Yahoué",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Nouméa,0018,Ecole Suzanne Russier 1,166.446654,-22.269689,etablissements_publics_nc,ident 180304 Ecole élémentaire Suzanne RUSSIER,batiment,corrige,
+2026,Province Sud,Nouméa,0019,Ecole Suzanne Russier 2,166.446654,-22.269689,etablissements_publics_nc,ident 180304 Ecole élémentaire Suzanne RUSSIER,batiment,corrige,
+2026,Province Sud,Nouméa,0035,Ecole Les Oeillets,166.468679,-22.230344,etablissements_publics_nc,ident 180297 Ecole pré-élementaire Les Oeillets,batiment,corrige,"Le référentiel plaçait l'école à 7 km, hors de Rivière-Salée ; seul établissement de ce nom recensé."
+2026,Province Sud,Nouméa,0037,Ecole Les Hibiscus 1,166.475456,-22.232258,etablissements_publics_nc,ident 180295 Ecole pré-élementaire Les Hibiscus,batiment,corrige,
+2026,Province Sud,Nouméa,0038,Ecole Les Hibiscus 2,166.475456,-22.232258,etablissements_publics_nc,ident 180295 Ecole pré-élementaire Les Hibiscus,batiment,corrige,
+2026,Province Sud,Nouméa,0044,Ecole Maurice Fonrobert,166.429010,-22.231823,etablissements_publics_nc,ident 180625 Ecole primaire Maurice FONROBERT,batiment,corrige,
+2026,Province Sud,Païta,0001,Arène du sud 1,166.367971,-22.141531,etablissements_publics_nc,ident 210024 Arène du Sud,batiment,corrige,Nouveau lieu de vote en 2026.
+2026,Province Sud,Païta,0002,Arène du sud 2,166.367971,-22.141531,etablissements_publics_nc,ident 210024 Arène du Sud,batiment,corrige,Nouveau lieu de vote en 2026.
+2026,Province Sud,Païta,0003,Ecole Robert ABEL 1,166.379189,-22.138498,etablissements_publics_nc,ident 210011 Ecole élémentaire Robert ABEL,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0005,ecole Patrice JEAN 1,166.342408,-22.120368,batiments_publics_nc,"objectid 4773, 4774, 4775, 4776, 4777, 4778, 4779 Ecole Patrice JEAN",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0007,Ecole Patrice JEAN 2,166.342408,-22.120368,batiments_publics_nc,"objectid 4773, 4774, 4775, 4776, 4777, 4778, 4779 Ecole Patrice JEAN",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0008,Ecole Patrice JEAN 3,166.342408,-22.120368,batiments_publics_nc,"objectid 4773, 4774, 4775, 4776, 4777, 4778, 4779 Ecole Patrice JEAN",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0018,Ecole Patrice JEAN 4,166.342408,-22.120368,batiments_publics_nc,"objectid 4773, 4774, 4775, 4776, 4777, 4778, 4779 Ecole Patrice JEAN",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0009,Dock socio-culturel 2,166.366370,-22.129500,referentiel,"Dock socio-culturel (référentiel, n° 0001 à 0005)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0010,Dock socio-culturel 3,166.366370,-22.129500,referentiel,"Dock socio-culturel (référentiel, n° 0001 à 0005)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0011,Dock socio-culturel 4,166.366370,-22.129500,referentiel,"Dock socio-culturel (référentiel, n° 0001 à 0005)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0012,Dock socio-culturel 5,166.366370,-22.129500,referentiel,"Dock socio-culturel (référentiel, n° 0001 à 0005)",batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0013,Ecole Henri Martinet 1,166.223570,-22.011002,etablissements_publics_nc,ident 210002 Groupe scolaire Henri MARTINET,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0014,Ecole Henri Martinet 2,166.223570,-22.011002,etablissements_publics_nc,ident 210002 Groupe scolaire Henri MARTINET,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0015,Ecole Henri Martinet 3,166.223570,-22.011002,etablissements_publics_nc,ident 210002 Groupe scolaire Henri MARTINET,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Païta,0019,Ecole Henri Martinet 4,166.223570,-22.011002,etablissements_publics_nc,ident 210002 Groupe scolaire Henri MARTINET,batiment,corrige,Renumérotation 2026.
+2026,Province Sud,Yaté,0002,Mairie (Waho central),166.943260,-22.160580,referentiel,"Mairie (référentiel, n° 0001)",batiment,corrige,Bureau déplacé de Touaourou à la mairie de Waho.
+2026,Province Nord,Houaïlou,0002,Nediouen (maison commune),165.615714,-21.264735,batiments_publics_nc,objectid 1380 Maison commune de Nédiouen,batiment,corrige,
+2026,Province Nord,Koumac,0002,Médiathèque Louis BASTIEN,164.285534,-20.561181,etablissements_publics_nc,ident 120030 Médiathèque Louis BASTIEN,batiment,corrige,
+2026,Province Nord,Pouembout,0002,Cantine école primaire,164.900770,-21.123690,openstreetmap,amenity=school École publique Léonie AVRIL,batiment,corrige,Rattachement probable : école primaire publique du village.
+2026,Province Nord,Touho,0002,Téganpaîk,165.066398,-20.738499,batiments_publics_nc,objectid 1439 Maison commune de Téganpaïk,batiment,corrige,Maison commune de Téganpaïk.
+2026,Province Nord,Voh,0006,Ecole publique de BOYEN,164.617398,-20.824466,etablissements_publics_nc,ident 310007 Ancienne école maternelle de Boyen,batiment,corrige,Le référentiel plaçait ce bureau au foyer de Gatope.
+2026,Province Nord,Voh,0007,Local socio-éducatif de TEMALA,164.689960,-20.871392,etablissements_publics_nc,ident 310032 Foyer socio-éducatif de Témala-Ouélis,batiment,corrige,Nouveau bureau en 2026.
+2026,Province Nord,Koné,0001,Salle Au Pitiri,164.863280,-21.059973,etablissements_publics_nc,ident 110062 Centre culturel de Koné - Le pitiri,batiment,corrige,
+2026,Province Nord,Koné,0011,Ecole Téari,164.867168,-21.074849,etablissements_publics_nc,ident 110117 Ecole primaire publique Téari,batiment,corrige,
+2026,Province Sud,Mont-Dore,0012,Groupe scolaire de Saint-Michel 1,166.529983,-22.224807,etablissements_publics_nc,ident 170010 Ecole primaire de Saint-Michel,batiment,corrige,Erreur du référentiel (3 km).
+2026,Province Sud,Mont-Dore,0019,Groupe scolaire Saint-Michel 2,166.529983,-22.224807,etablissements_publics_nc,ident 170010 Ecole primaire de Saint-Michel,batiment,corrige,Erreur du référentiel (3 km).
+2026,Province Sud,Nouméa,0034,Ecole Les Roses,166.464696,-22.237670,etablissements_publics_nc,ident 180278 Ecole pré-élementaire Les Roses,batiment,corrige,"Erreur du référentiel (6,5 km)."
+2026,Province Sud,Nouméa,0048,Ecole Marguerite Arsapin,166.462764,-22.228627,batiments_publics_nc,"objectid 4134, 4178, 4255 Ecole élémentaire Marguerite ARSAPIN",batiment,corrige,"Erreur du référentiel (5,6 km)."
+2026,Province des Iles,Lifou,0008,Hnathalo,167.254491,-20.788984,batiments_publics_nc,objectid 1292 Maison commune de Hnathalo,batiment,corrige,Erreur du référentiel (9 km) : maison commune de la tribu.
+2026,Province des Iles,Lifou,0015,Nang,167.226623,-20.808567,batiments_publics_nc,objectid 1291 Maison commune de Nang,batiment,corrige,Erreur du référentiel (3 km) : maison commune de la tribu.
+2026,Province Nord,Kouaoua,0001,Centre administratif de Niminra 1,,,,,,non_resolu,Lieu absent des sources consultées : position antérieure conservée.
+2026,Province Nord,Kouaoua,0002,Centre administratif de Niminra 2,,,,,,non_resolu,Lieu absent des sources consultées : position antérieure conservée.
+2026,Province Nord,Kouaoua,0003,Centre administratif de Niminra 3,,,,,,non_resolu,Lieu absent des sources consultées : position antérieure conservée.
+2026,Province Nord,Kouaoua,0004,Centre administratif de Niminra 4,,,,,,non_resolu,Lieu absent des sources consultées : position antérieure conservée.
+2026,Province Nord,Ouégoa,0001,Salle polyvalente de Ouégoné,,,,,,non_resolu,Lieu absent des sources consultées : position antérieure (mairie) conservée.
+2026,Province Nord,Poya Nord,0001,Salle ancienne mairie,,,,,,non_resolu,Emplacement de l'ancienne mairie non établi : position antérieure conservée.

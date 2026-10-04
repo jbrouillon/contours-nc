@@ -51,6 +51,8 @@
     "results_2026_bureaux": ["data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PSUD_Resultats_BV.pdf", "data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PNORD_Resultats_BV.pdf", "data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PIL_Resultats_BV.pdf"],
     "results_2026_official_totals": "data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_province_listes.csv",
     "results_2019": "data/elections/data_processed/provinciales_2019_listes_long_geolocalisees.csv",
-    "geolocation": "data/elections/data_processed/bureaux_reference_geolocalises.csv"
+    "geolocation": "data/elections/data_processed/bureaux_reference_geolocalises.csv",
+    "geolocation_corrections": "data/elections/metadata/geoloc_bureaux_provinciales_2019_2026.csv",
+    "bureaux_matching": "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv"
   }
 }
