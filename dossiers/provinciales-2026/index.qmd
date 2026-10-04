@@ -123,6 +123,23 @@ toc: false
   </article>
 
   <article class="dossier-card">
+    <a class="dossier-card__image" href="../../posts/provinciales-2026-geographie-forces-politiques/">
+      <img src="../../images/previews/provinciales-2026-geographie-forces-politiques.png" alt="Trois cartes crayonnées des communes : évolution de la droite loyaliste dans le Sud et de l’UC-FLNKS dans le Nord entre 2019 et 2026, score de Nation autochtone aux Îles en 2026">
+    </a>
+    <div class="dossier-card__body">
+      <span class="dossier-card__phase">Résultats</span>
+      <h3><a href="../../posts/provinciales-2026-geographie-forces-politiques/">Provinciales 2026 : où les forces politiques ont-elles gagné du terrain ?</a></h3>
+      <p>Trois cartes interactives, par commune et par bureau de vote, pour situer les gains et les reculs de chaque famille politique et de chaque liste depuis 2019.</p>
+      <div class="dossier-card__meta">
+        <span class="dossier-tag">4 octobre 2026</span>
+        <span class="dossier-tag">Cartographie</span>
+        <span class="dossier-tag">Bureaux de vote</span>
+      </div>
+      <a class="dossier-card__link" href="../../posts/provinciales-2026-geographie-forces-politiques/">Explorer les cartes</a>
+    </div>
+  </article>
+
+  <article class="dossier-card">
     <a class="dossier-card__image" href="../../posts/provinciales-2026-troisieme-voie/">
       <img src="../../images/previews/provinciales-2026-troisieme-voie-positionnement.webp" alt="Graphique de positionnement des listes entre ancrage français, souveraineté partagée, rigueur et intervention sociale">
     </a>

@@ -1,0 +1,56 @@
+{
+  "title": "Géographie des forces politiques aux provinciales 2026",
+  "geographic_scope": "Nouvelle-Calédonie, trois provinces",
+  "years": [2019, 2026],
+  "smoothing": {
+    "method": "Noyau gaussien pondéré par les suffrages exprimés ou les inscrits",
+    "bandwidth_km": {
+      "Province Sud": 12,
+      "Province Nord": 12,
+      "Province des Iles": 8
+    },
+    "display_radius_km": {
+      "Province Sud": 36,
+      "Province Nord": 36,
+      "Province des Iles": 24
+    },
+    "note": "Chaque score lissé est le rapport entre les voix et les exprimés lissés séparément. Pour la participation, le numérateur est le nombre de votants et le dénominateur le nombre d'inscrits.",
+    "zoom_views": {
+      "grand_noumea": {
+        "label": "Grand Nouméa",
+        "province": "Province Sud",
+        "communes": ["Nouméa", "Dumbéa", "Mont-Dore", "Païta"],
+        "bbox": [166.34, -22.32, 166.64, -22.11],
+        "bandwidth_km": 1.5,
+        "display_radius_km": 4.5
+      }
+    }
+  },
+  "counts": {
+    "bureaux_2019": {
+      "Province Nord": 92,
+      "Province Sud": 148,
+      "Province des Iles": 46
+    },
+    "bureaux_2026": {
+      "Province Nord": 95,
+      "Province Sud": 153,
+      "Province des Iles": 49
+    },
+    "bureaux_hors_carte": {
+      "2019": 1,
+      "2026": 3
+    }
+  },
+  "checks": {
+    "arithmetic_rows_2026": true,
+    "official_list_totals_2026": true,
+    "geolocation_complete_2026": true
+  },
+  "sources": {
+    "results_2026_bureaux": ["data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PSUD_Resultats_BV.pdf", "data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PNORD_Resultats_BV.pdf", "data/elections/data_raw/provinciales_2026/PROVINCIALES_2026_PIL_Resultats_BV.pdf"],
+    "results_2026_official_totals": "data/elections/data_processed/provinciales_2026/provinciales_2026_resultats_province_listes.csv",
+    "results_2019": "data/elections/data_processed/provinciales_2019_listes_long_geolocalisees.csv",
+    "geolocation": "data/elections/data_processed/bureaux_reference_geolocalises.csv"
+  }
+}

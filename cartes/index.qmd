@@ -45,6 +45,27 @@ toc: false
   </article>
 
   <article class="viz-gallery-card">
+    <a class="viz-gallery-card__image" href="../posts/provinciales-2026-geographie-forces-politiques/">
+      <img src="../images/previews/provinciales-2026-geographie-forces-politiques.png" alt="Trois cartes crayonnées des communes : évolution de la droite loyaliste dans le Sud et de l’UC-FLNKS dans le Nord entre 2019 et 2026, score de Nation autochtone aux Îles en 2026">
+    </a>
+    <div class="viz-gallery-card__body">
+      <span class="viz-gallery-card__meta">Trois provinces · cartes interactives</span>
+      <h3><a href="../posts/provinciales-2026-geographie-forces-politiques/">Provinciales 2019–2026 : la géographie des forces politiques</a></h3>
+      <p>Familles politiques et listes, par commune, par bureau de vote ou en surface lissée, avec un zoom sur le Grand Nouméa.</p>
+      <div class="viz-gallery-card__tags">
+        <span class="viz-gallery-tag">carte interactive</span>
+        <span class="viz-gallery-tag">analyse électorale</span>
+        <span class="viz-gallery-tag">bureaux de vote</span>
+      </div>
+      <div class="viz-gallery-card__actions">
+        <a class="viz-gallery-card__link" href="../posts/provinciales-2026-geographie-forces-politiques/#carte-sud">Carte du Sud</a>
+        <a class="viz-gallery-card__secondary" href="../posts/provinciales-2026-geographie-forces-politiques/#carte-nord">Nord</a>
+        <a class="viz-gallery-card__secondary" href="../posts/provinciales-2026-geographie-forces-politiques/#carte-iles">Îles</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="viz-gallery-card">
     <a class="viz-gallery-card__image" href="../posts/disparites-territoriales-nouvelle-caledonie/">
       <img src="../images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux">
     </a>

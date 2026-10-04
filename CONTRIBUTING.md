@@ -35,9 +35,27 @@ Les anciennes métadonnées mélangeaient rubriques, sujets et méthodes dans `c
 
 La convention actuelle évite les tags décoratifs ou interchangeables. Un tag doit signaler un vrai point d'entrée éditorial, par exemple `Participation`, `Inégalités`, `Accessibilité`, `Analyse électorale`, `Programmes`, `Congrès`, `Cartographie` ou `Données`.
 
-## Encadré En bref
+## Résumé En bref
 
-Les articles longs ou structurants peuvent commencer par :
+Les articles longs ou structurants comportent désormais un résumé « En bref » en diapositives, construit avec le composant commun `assets/js/contours-brief.js` et `assets/css/contours-brief.css` :
+
+```html
+<section class="contours-brief" data-contours-brief data-brief-lede="Six écrans pour…">
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">1 · Thème</p>
+      <h3>Une phrase-résultat.</h3>
+      <p class="contours-brief-big"><span>40,6 %</span><span aria-hidden="true">→</span><span class="is-up">50,1 %</span></p>
+      <p>La précision : repère de comparaison, source ou limite.</p>
+    </div>
+  </article>
+</section>
+<script src="../../assets/js/contours-brief.js"></script>
+```
+
+Exemple complet : `posts/provinciales-2026-geographie-forces-politiques/index.qmd`. Les règles détaillées (nombre d’écrans, croquis, accessibilité, contrôles) figurent dans `AGENTS.md`.
+
+Pour une note courte ou un article historique, l’ancien encadré reste possible :
 
 ```markdown
 ::: {.en-bref}
@@ -49,4 +67,4 @@ Les articles longs ou structurants peuvent commencer par :
 :::
 ```
 
-L’encadré doit reprendre uniquement des résultats explicitement présents dans l’article. Ne pas ajouter de chiffre nouveau sans source ou calcul déjà documenté dans le texte.
+Diapositives comme encadré doivent reprendre uniquement des résultats explicitement présents dans l’article. Ne pas ajouter de chiffre nouveau sans source ou calcul déjà documenté dans le texte.
