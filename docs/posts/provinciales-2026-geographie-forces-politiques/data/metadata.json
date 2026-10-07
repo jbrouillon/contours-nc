@@ -53,6 +53,7 @@
     "results_2019": "data/elections/data_processed/provinciales_2019_listes_long_geolocalisees.csv",
     "geolocation": "data/elections/data_processed/bureaux_reference_geolocalises.csv",
     "geolocation_corrections": "data/elections/metadata/geoloc_bureaux_provinciales_2019_2026.csv",
-    "bureaux_matching": "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv"
+    "bureaux_matching": "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv",
+    "noumea_sectors": "data/02_geospatial/vecteurs/secteurs_electoraux_noumea.geojson"
   }
 }

@@ -65,7 +65,9 @@ commune_at <- function(province_name, commune_name, force_name, variable = "scor
 
 fmt_pct <- function(x) paste0(number(x, accuracy = 0.1, decimal.mark = ","), " %")
 fmt_pts <- function(x) {
-  paste0(number(x, accuracy = 0.1, decimal.mark = ",", style_positive = "plus", style_negative = "minus"), " points")
+  # « point » reste au singulier en dessous de 2 (règle typographique française).
+  unite <- ifelse(abs(round(x, 1)) < 2, " point", " points")
+  paste0(number(x, accuracy = 0.1, decimal.mark = ",", style_positive = "plus", style_negative = "minus"), unite)
 }
 fmt_abs_pts <- function(x) paste0(number(abs(x), accuracy = 0.1, decimal.mark = ","), " points")
 fmt_num <- function(x) {
@@ -85,7 +87,7 @@ appariement <- read_csv(
   show_col_types = FALSE,
   col_types = cols(code_bv_2019 = col_character(), code_bv_2026 = col_character())
 )
-paires <- appariement |> filter(methode %in% c("nom", "numero"))
+paires <- appariement |> filter(methode %in% c("nom", "numero", "secteur"))
 bureaux_forces <- read_csv(
   file.path(data_dir, "bureaux_forces_2019_2026.csv"),
   show_col_types = FALSE, col_types = cols(code_bv = col_character())
@@ -138,6 +140,15 @@ nuage_reculs <- function(...) {
   d <- nuage(...)
   sum(d$y < d$x)
 }
+
+# Nouméa, droite loyaliste : évolution par bureau (donc par secteur électoral)
+# selon son niveau de 2019. Seuils de lecture : moins de 25 % et 55 % ou plus.
+noumea_loy <- nuage("Province Sud", "loyaliste", "loyaliste") |>
+  filter(commune == "Nouméa") |>
+  mutate(evolution = y - x)
+stopifnot(nrow(noumea_loy) == sum(paires$commune == "Nouméa"))
+noumea_faible <- noumea_loy |> filter(x < 25)
+noumea_fort <- noumea_loy |> filter(x >= 55)
 
 # Commune où une force progresse le plus entre 2019 et 2026.
 commune_max <- function(province_name, force_name) {
@@ -282,7 +293,7 @@ Pour chaque province, une carte compare 2019 et 2026, puis deux graphiques suive
 Chaque carte montre une famille politique, une liste ou la participation. Plus la couleur est foncée, plus le score est élevé. Sur la carte « Évolution », le vert signale une hausse entre 2019 et 2026, le rouge un recul.
 
 - **Communes**, la vue par défaut, donne le résultat officiel de chaque commune.
-- **Bureaux** place un cercle par lieu de vote, pour voir les différences à l’intérieur d’une commune.
+- **Bureaux** place un cercle par bureau, à l’adresse de son bureau de rattachement, pour voir les différences à l’intérieur d’une commune.
 - **Lissage** dessine une surface estimée à partir des bureaux voisins : utile pour repérer de grands ensembles, à lire avec prudence.
 
 Sous chaque carte, un graphique classe les communes et montre l’écart entre leurs bureaux. Plus bas, deux nuages de points comparent les mêmes bureaux en 2019 et en 2026 : un point au-dessus de la diagonale signale une progression. Les détails de méthode sont réunis [en fin d’article](#methode).
@@ -314,6 +325,8 @@ En 2019, le Sud opposait déjà Nouméa et la côte Ouest, plus favorables à l�
 :::
 
 La droite loyaliste passe de `r fmt_pct(value_at("Province Sud", "loyaliste", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "loyaliste"))` des suffrages exprimés. Sa progression ne se limite pas à Nouméa : à Farino, elle passe de `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste", "score_2019"))` à `r fmt_pct(commune_at("Province Sud", "Farino", "loyaliste"))`, et elle atteint `r fmt_pct(commune_at("Province Sud", "Poya Sud", "loyaliste"))` à Poya Sud. À Nouméa, LL-LR obtient `r fmt_pct(commune_at("Province Sud", "Nouméa", "loyaliste"))`, soit `r fmt_pts(commune_at("Province Sud", "Nouméa", "loyaliste", "evolution_points"))` de plus que l’Avenir en confiance en 2019.
+
+À l’intérieur de Nouméa, cette progression s’ajoute surtout là où la droite loyaliste était déjà forte. Dans les `r nrow(noumea_fort)` secteurs électoraux où elle dépassait 55 % en 2019, elle gagne `r fmt_pts(median(noumea_fort$evolution))` en médiane ; dans les `r nrow(noumea_faible)` où elle restait sous 25 %, notamment à Montravel, Kaméré, Tindu et Rivière-Salée, elle est quasiment stable (`r fmt_pts(median(noumea_faible$evolution))` en médiane). Ces écarts décrivent des secteurs, pas des électeurs : ils ne disent pas qui a changé de vote.
 
 Le centre recule presque en miroir. Représenté en 2019 par Calédonie ensemble, il se présente en 2026 divisé en trois listes : Une Province pour tous, Nous, réunis ! et Un espoir pour demain. Ensemble, elles passent de `r fmt_pct(value_at("Province Sud", "centre_non_ind", "score_2019"))` à `r fmt_pct(value_at("Province Sud", "centre_non_ind"))`. Le recul est le plus marqué là où la droite loyaliste progresse le plus, comme à Farino (`r fmt_pts(commune_at("Province Sud", "Farino", "centre_non_ind", "evolution_points"))`) et à Poya Sud (`r fmt_pts(commune_at("Province Sud", "Poya Sud", "centre_non_ind", "evolution_points"))`). Cette coïncidence ne suffit pas à dire que les mêmes électeurs ont changé de vote.
 
@@ -474,11 +487,11 @@ Partout, la moyenne provinciale cache des mouvements locaux de sens opposés : c
 
 **Familles et listes.** Les familles politiques regroupent des listes comparables d’un scrutin à l’autre ; leur composition est détaillée ci-dessous. Les listes ne se succèdent pas terme à terme : elles sont donc présentées une par une, pour leur seule année. Les couleurs sont réparties en classes qui couvrent chacune une part comparable des communes ou du territoire ; les seuils changent donc d’une carte à l’autre et sont indiqués dans la légende.
 
-**Lissage.** En option, chaque point de la carte combine les voix et les suffrages des bureaux voisins, pondérés selon leur distance par une courbe gaussienne. La portée est de 12 km dans le Sud et le Nord, de 8 km aux Îles et de 1,5 km dans la vue agrandie du Grand Nouméa, où les lieux de vote sont très rapprochés (0,6 km en médiane entre deux lieux voisins à Nouméa). Au-delà d’une portée du bureau le plus proche, la couleur pâlit ; au-delà de trois portées, la zone reste grise. Les scores sous les années sont toujours des résultats réels, non lissés.
+**Lissage.** En option, chaque point de la carte combine les voix et les suffrages des bureaux voisins, pondérés selon leur distance par une courbe gaussienne. La portée est de 12 km dans le Sud et le Nord, de 8 km aux Îles et de 1,5 km dans la vue agrandie du Grand Nouméa, où les adresses de rattachement des bureaux sont très rapprochées (0,6 km en médiane entre deux adresses voisines à Nouméa). Au-delà d’une portée du bureau le plus proche, la couleur pâlit ; au-delà de trois portées, la zone reste grise. Les scores sous les années sont toujours des résultats réels, non lissés.
 
-**Comparaison des bureaux.** Les bureaux changent parfois de numéro ou de lieu entre deux scrutins (Dumbéa a par exemple renuméroté les siens). Un bureau de 2026 est rattaché à celui de 2019 d’abord par son nom, puis par son numéro si les deux noms restent compatibles. `r paires_n("Province Sud") + paires_n("Province Nord") + paires_n("Province des Iles")` bureaux sur `r bureaux_total(2019)` sont ainsi comparés ; les autres sont exclus des nuages de points. Un cercle en pointillé signale un bureau dont le nombre d’inscrits a varié de plus de 40 %. La correspondance complète est publiée avec les données de l’article.
+**Comparaison des bureaux.** Les bureaux changent parfois de numéro ou de lieu entre deux scrutins (Dumbéa a par exemple renuméroté les siens). Un bureau de 2026 est rattaché à celui de 2019 d’abord par son nom, puis par son numéro si les deux noms restent compatibles. À Nouméa, où chaque bureau correspond à un secteur électoral, un bureau dont l’école a été renommée ou déplacée garde son numéro de secteur : il est rattaché par ce numéro, si ses inscrits évoluent comme ailleurs (`r sum(appariement$methode == "secteur")` bureaux). `r paires_n("Province Sud") + paires_n("Province Nord") + paires_n("Province des Iles")` bureaux sur `r bureaux_total(2019)` sont ainsi comparés ; les autres sont exclus des nuages de points. Un cercle en pointillé signale un bureau dont le nombre d’inscrits a varié de plus de 40 %. La correspondance complète est publiée avec les données de l’article.
 
-**Localisation des bureaux.** Les bureaux sont placés sur leur lieu de vote. Pour `r geoloc_n(2026)` bureaux de 2026 (renumérotés, déplacés ou mal placés dans le référentiel initial) et `r geoloc_n(2019)` bureaux de 2019, la position a été corrigée à partir des établissements et bâtiments publics de la Nouvelle-Calédonie, et, pour deux cas, d’OpenStreetMap. `r geoloc_n(2026, "non_resolu")` lieux de 2026 n’ont pas pu être retrouvés (Niminra à Kouaoua, Ouégoné à Ouégoa, l’ancienne mairie de Poya) : ils gardent leur position précédente. Ces corrections ne modifient que l’emplacement des bureaux sur les cartes, jamais les résultats.
+**Localisation des bureaux.** Chaque bureau est placé à l’adresse de son bureau de rattachement, en général l’école de son secteur. À Nouméa, les bureaux de 2026 ont été réunis dans neuf lieux le jour du scrutin (voir [l’article sur le regroupement des bureaux de vote](../regroupement-bureaux-vote-noumea/index.qmd)) : les cartes les situent à leur adresse de rattachement, qui correspond au secteur des électeurs inscrits, et non au lieu physique du vote. Pour `r geoloc_n(2026)` bureaux de 2026 (renumérotés, déplacés ou mal placés dans le référentiel initial) et `r geoloc_n(2019)` bureaux de 2019, la position a été corrigée à partir des établissements et bâtiments publics de la Nouvelle-Calédonie, et, pour deux cas, d’OpenStreetMap. `r geoloc_n(2026, "non_resolu")` lieux de 2026 n’ont pas pu être retrouvés (Niminra à Kouaoua, Ouégoné à Ouégoa, l’ancienne mairie de Poya) : ils gardent leur position précédente. Ces corrections ne modifient que l’emplacement des bureaux sur les cartes, jamais les résultats.
 
 **Précautions.** Les familles politiques sont des regroupements : l’ancien centre sudiste, par exemple, s’est présenté sous plusieurs listes en 2026. Une baisse et une hausse au même endroit ne prouvent pas qu’un électeur est passé d’une liste à l’autre : le corps électoral, la participation et l’offre politique ont eux aussi changé.
 

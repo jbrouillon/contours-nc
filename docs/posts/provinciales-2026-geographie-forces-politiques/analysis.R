@@ -32,6 +32,10 @@ source_communes_geo <- file.path(
   project_dir, "data", "elections", "data_raw", "referentiels_geographiques",
   "communes", "communes_rgp_2019_v2.geojson"
 )
+# Secteurs électoraux de Nouméa (Ville de Nouméa, couche mise à jour en juin 2026).
+source_secteurs_noumea <- file.path(
+  project_dir, "data", "02_geospatial", "vecteurs", "secteurs_electoraux_noumea.geojson"
+)
 
 pdf_specs <- list(
   list(
@@ -79,7 +83,8 @@ pdf_specs <- list(
 required_files <- c(
   vapply(pdf_specs, `[[`, character(1), "file"),
   source_2026_province, source_2019_bureaux, source_2019_listes,
-  source_geo, source_provinces, source_communes_geo, source_listes_2019, source_geoloc
+  source_geo, source_provinces, source_communes_geo, source_listes_2019, source_geoloc,
+  source_secteurs_noumea
 )
 missing_files <- required_files[!file.exists(required_files)]
 if (length(missing_files) > 0) {
@@ -675,7 +680,8 @@ write_csv(office_winners_2026, file.path(out_dir, "vainqueurs_bureaux_2026.csv")
 # par exemple). Un bureau 2026 est rattaché à un bureau 2019 de la même commune
 # d'abord par son nom complet, numéro final compris, s'il est unique des deux
 # côtés ; sinon par son numéro, si les deux noms restent compatibles (l'un
-# contient l'autre une fois accents, parenthèses et numéros retirés). Les autres
+# contient l'autre une fois accents, parenthèses et numéros retirés) ; enfin, à
+# Nouméa, par son numéro de secteur électoral (voir plus bas). Les autres
 # bureaux ne sont pas appariés et restent hors des nuages de points.
 normalise_nom_bureau <- function(x, garder_numero = TRUE) {
   x <- str_to_lower(stringi::stri_trans_general(x, "Latin-ASCII"))
@@ -715,7 +721,32 @@ apparies_par_numero <- inner_join(
 ) |>
   filter(noms_bureau_compatibles(nom_2019, nom_2026)) |>
   mutate(methode = "numero")
-appariement_bureaux <- bind_rows(apparies_par_nom, apparies_par_numero) |>
+
+# À Nouméa, chaque bureau correspond à un secteur électoral numéroté. Un
+# bureau resté non apparié parce que son école a été renommée ou déplacée
+# garde son numéro, donc son secteur : il est apparié par numéro de secteur,
+# si ce numéro existe dans la couche des secteurs et si ses inscrits évoluent
+# dans la fourchette observée ailleurs (rapport 2026/2019 entre 0,5 et 1,5).
+secteurs_noumea <- st_read(source_secteurs_noumea, quiet = TRUE) |>
+  st_drop_geometry() |>
+  transmute(code_bv_2026 = sprintf("%04d", as.integer(num_bv)))
+if (anyDuplicated(secteurs_noumea$code_bv_2026)) stop("Numéro de secteur en double à Nouméa.")
+deja_apparies <- bind_rows(apparies_par_nom, apparies_par_numero)
+apparies_par_secteur <- inner_join(
+  bureaux_noms_2019 |>
+    filter(commune == "Nouméa") |>
+    anti_join(deja_apparies, by = c("province", "commune", "code_bv_2019")),
+  bureaux_noms_2026 |>
+    filter(commune == "Nouméa") |>
+    anti_join(deja_apparies, by = c("province", "commune", "code_bv_2026")) |>
+    semi_join(secteurs_noumea, by = "code_bv_2026") |>
+    mutate(code_bv_2019 = code_bv_2026),
+  by = c("province", "commune", "code_bv_2019")
+) |>
+  filter(between(inscrits_2026 / inscrits_2019, 0.5, 1.5)) |>
+  mutate(methode = "secteur")
+
+appariement_bureaux <- bind_rows(apparies_par_nom, apparies_par_numero, apparies_par_secteur) |>
   select(province, commune, code_bv_2019, code_bv_2026, nom_2019, nom_2026, inscrits_2019, inscrits_2026, methode)
 
 if (anyDuplicated(appariement_bureaux[c("province", "commune", "code_bv_2019")]) ||
@@ -812,7 +843,8 @@ metadata <- list(
     results_2019 = "data/elections/data_processed/provinciales_2019_listes_long_geolocalisees.csv",
     geolocation = "data/elections/data_processed/bureaux_reference_geolocalises.csv",
     geolocation_corrections = "data/elections/metadata/geoloc_bureaux_provinciales_2019_2026.csv",
-    bureaux_matching = "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv"
+    bureaux_matching = "posts/provinciales-2026-geographie-forces-politiques/data/appariement_bureaux_2019_2026.csv",
+    noumea_sectors = "data/02_geospatial/vecteurs/secteurs_electoraux_noumea.geojson"
   )
 )
 write_json(metadata, file.path(out_dir, "metadata.json"), pretty = TRUE, auto_unbox = TRUE)

@@ -202,10 +202,8 @@ Province Sud,Nouméa,0014,0014,Ecole Paul Boyer 1,Ecole Paul Boyer 1,665,706,nom
 Province Sud,Nouméa,0015,0015,Ecole Les Capucines,Ecole Les Capucines,744,761,nom
 Province Sud,Nouméa,0016,0016,Ecole Candide Koch 1,Ecole Candide Koch 1,767,811,nom
 Province Sud,Nouméa,0017,0017,Ecole Candide Koch 2,Ecole Candide Koch 2,862,884,nom
-Province Sud,Nouméa,0018,NA,Ecole Emily Panné 1,NA,766,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0018,NA,Ecole Suzanne Russier 1,NA,774,non apparie (2026)
-Province Sud,Nouméa,0019,NA,Ecole Emily Panné 2,NA,808,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0019,NA,Ecole Suzanne Russier 2,NA,887,non apparie (2026)
+Province Sud,Nouméa,0018,0018,Ecole Emily Panné 1,Ecole Suzanne Russier 1,766,774,secteur
+Province Sud,Nouméa,0019,0019,Ecole Emily Panné 2,Ecole Suzanne Russier 2,808,887,secteur
 Province Sud,Nouméa,0020,0020,Ecole Antoinette Charbonneaux,Ecole Antoinette Charbonneaux,775,766,nom
 Province Sud,Nouméa,0021,0021,Ecole Marie Havet 1,Ecole Marie Havet 1,815,896,nom
 Province Sud,Nouméa,0022,0022,Ecole Marie Havet 2,Ecole Marie Havet 2,857,944,nom
@@ -219,22 +217,18 @@ Province Sud,Nouméa,0029,0029,Ecole Gustave Mouchet 2,Ecole Gustave Mouchet 2,8
 Province Sud,Nouméa,0030,0030,Ecole Mathilde Broquet 1,Ecole Mathilde Broquet 1,1024,1165,nom
 Province Sud,Nouméa,0031,0031,Ecole Marie Courtot 1,Ecole Marie Courtot 1,1056,1250,nom
 Province Sud,Nouméa,0032,0032,Ecole Marie Courtot 2,Ecole Marie Courtot 2,851,880,nom
-Province Sud,Nouméa,0033,NA,Ecole Suzanne Berton,NA,926,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0033,NA,Ecole Robert Burck,NA,960,non apparie (2026)
+Province Sud,Nouméa,0033,0033,Ecole Suzanne Berton,Ecole Robert Burck,926,960,secteur
 Province Sud,Nouméa,0034,0034,Ecole Les Roses,Ecole Les Roses,866,909,nom
 Province Sud,Nouméa,0035,0035,Ecole Les Oeillets,Ecole Les Oeillets,845,894,nom
 Province Sud,Nouméa,0036,0036,Ecole Jacques Trouillot,Ecole Jacques Trouillot,828,871,nom
-Province Sud,Nouméa,0037,NA,Ecole Mauricette Devambez 1,NA,1076,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0037,NA,Ecole Les Hibiscus 1,NA,1378,non apparie (2026)
-Province Sud,Nouméa,0038,NA,Ecole Mauricette Devambez 2,NA,1021,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0038,NA,Ecole Les Hibiscus 2,NA,1110,non apparie (2026)
+Province Sud,Nouméa,0037,0037,Ecole Mauricette Devambez 1,Ecole Les Hibiscus 1,1076,1378,secteur
+Province Sud,Nouméa,0038,0038,Ecole Mauricette Devambez 2,Ecole Les Hibiscus 2,1021,1110,secteur
 Province Sud,Nouméa,0039,0039,Ecole Adrienne Lomont 1,Ecole Adrienne Lomont 1,698,705,nom
 Province Sud,Nouméa,0040,0040,Ecole Adrienne Lomont 2,Ecole Adrienne Lomont 2,1167,1463,nom
 Province Sud,Nouméa,0041,0041,Ecole Gustave Lods 1,Ecole Gustave Lods 1,943,1068,nom
 Province Sud,Nouméa,0042,0042,Ecole Gustave Lods 2,Ecole Gustave Lods 2,1110,1257,nom
 Province Sud,Nouméa,0043,0043,Ecole Daniel Talon,Ecole Daniel Talon,1486,1848,nom
-Province Sud,Nouméa,0044,NA,Ecole Louise Vergès,NA,946,NA,non apparie (2019)
-Province Sud,Nouméa,NA,0044,NA,Ecole Maurice Fonrobert,NA,1058,non apparie (2026)
+Province Sud,Nouméa,0044,0044,Ecole Louise Vergès,Ecole Maurice Fonrobert,946,1058,secteur
 Province Sud,Nouméa,0045,0045,Ecole Mathilde Broquet 2,Ecole Mathilde Broquet 2,1168,1338,nom
 Province Sud,Nouméa,0046,0046,Ecole Yvonne Dupont 2,Ecole Yvonne Dupont 2,546,585,nom
 Province Sud,Nouméa,0047,0047,Ecole Paul Boyer 2,Ecole Paul Boyer 2,737,706,nom

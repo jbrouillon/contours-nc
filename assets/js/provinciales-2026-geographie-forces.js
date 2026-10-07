@@ -377,7 +377,7 @@
   // numéros finaux (« Hôtel de Ville 1 », « 2 »…) sont retirés.
   function placeName(names) {
     const stems = Array.from(new Set(names.map((name) => String(name || "").replace(/\s+\d+$/, "").trim())));
-    return stems.filter(Boolean).join(" · ") || "Lieu de vote";
+    return stems.filter(Boolean).join(" · ") || "Bureau de vote";
   }
 
   // ---------------------------------------------------------------------------
@@ -1019,7 +1019,7 @@
             `<div class="geography-tip-score">${format1.format(d.pct)} %</div>`,
             `<span>${format0.format(d.voix)} sur ${format0.format(d.denominateur)} ${unit}</span>`,
             d.bureaux > 1
-              ? `<span class="habitat-tooltip-note">Résultat cumulé des bureaux installés dans ce lieu.</span>`
+              ? `<span class="habitat-tooltip-note">Résultat cumulé des bureaux rattachés à cette adresse.</span>`
               : ""
           ].join("");
           positionTooltip(root, tooltip, event.type === "focus" ? focusPointer(this) : event);
@@ -1321,7 +1321,7 @@
       const next = (lineCount) => { cursor += 13 * lineCount + 9; };
       if (mode === "bureaux") {
         roughCircle(notes, rc, x + 9, cursor, 12, { fill: paper, fillStyle: "solid", seed: `${uid}-note-office` });
-        noteText(notes, "Un cercle par lieu de vote, de taille proportionnelle aux inscrits.", x + 26, cursor, textWidth);
+        noteText(notes, "Un cercle par adresse de rattachement des bureaux, de taille proportionnelle aux inscrits.", x + 26, cursor, textWidth);
         return;
       }
       notes.append("rect")
@@ -1347,7 +1347,7 @@
         x + 26, cursor, textWidth
       ));
       roughCircle(notes, rc, x + 9, cursor, 11, { fill: "#5b79ad", fillStyle: "solid", seed: `${uid}-note-real` });
-      noteText(notes, "Cercle : résultat réel du lieu de vote, sur la même échelle.", x + 26, cursor, textWidth);
+      noteText(notes, "Cercle : résultat réel des bureaux de cette adresse, sur la même échelle.", x + 26, cursor, textWidth);
     }
 
     function drawTitle(series) {
@@ -1355,7 +1355,7 @@
       const period = series.years.join(" → ");
       const method = {
         communes: "résultats par commune",
-        bureaux: "résultats par lieu de vote",
+        bureaux: "résultats par bureau de rattachement",
         smooth: `estimation lissée sur ${formatKm.format(bandwidthKm)} km`
       }[mode];
       // Formulation neutre, valable pour une famille, une liste ou la
@@ -1389,14 +1389,14 @@
           two
             ? "Les deux premières cartes partagent la même échelle ; la troisième montre l’écart en points entre 2019 et 2026."
             : `La liste n’existant qu’en ${series.years[0]}, une seule carte est présentée.`,
-          "Les cercles blancs situent les lieux de vote. Pour voir les écarts à l’intérieur d’une commune, passez à la vue <strong>Bureaux</strong>."
+          "Les cercles blancs situent les bureaux à leur adresse de rattachement, pas forcément le lieu physique du vote. Pour voir les écarts à l’intérieur d’une commune, passez à la vue <strong>Bureaux</strong>."
         ],
         bureaux: [
-          "Chaque cercle est un lieu de vote, coloré selon son résultat observé et de taille proportionnelle à ses inscrits. C’est la lecture la plus fine, sans aucune estimation.",
+          "Chaque cercle regroupe les bureaux d’une même adresse de rattachement, coloré selon leur résultat observé et de taille proportionnelle à ses inscrits. C’est la lecture la plus fine, sans aucune estimation.",
           two
             ? "L’évolution n’est pas cartographiée bureau par bureau : la liste des bureaux et leurs périmètres changent d’un scrutin à l’autre. Comparez les deux années côte à côte, ou revenez à la vue <strong>Communes</strong>."
-            : "Survolez un cercle pour lire le nom du lieu, les numéros de bureaux et le résultat.",
-          "Dans le Grand Nouméa, le bouton <strong>Zoom</strong> sépare les lieux de vote très rapprochés."
+            : "Survolez un cercle pour lire le nom du bureau, les numéros de bureaux et le résultat.",
+          "Dans le Grand Nouméa, le bouton <strong>Zoom</strong> sépare les bureaux très rapprochés."
         ].slice(0, activeProvince === "Province Sud" ? 3 : 2),
         smooth: [
           `<strong>Estimation.</strong> La couleur de chaque point combine les bureaux voisins dans un rayon d’environ ${formatKm.format(bandwidthKm)} km, en donnant plus de poids aux plus proches et aux plus grands : on lit des tendances territoriales, pas des résultats.`,
@@ -1574,7 +1574,7 @@
       const baseLabel = series.participation ? "% DES INSCRITS" : "% DES EXPRIMÉS";
       const scoreTitle = {
         communes: `SCORE COMMUNAL (${baseLabel})`,
-        bureaux: `SCORE DU LIEU DE VOTE (${baseLabel})`,
+        bureaux: `SCORE PAR BUREAU DE RATTACHEMENT (${baseLabel})`,
         smooth: `SCORE LISSÉ ET DES BUREAUX (${baseLabel})`
       }[mode];
       drawLegend(
@@ -1594,15 +1594,15 @@
       svg.attr(
         "aria-label",
         two
-          ? `${series.label} dans ${place}, ${{ communes: "par commune", bureaux: "par lieu de vote", smooth: "scores lissés" }[mode]} : ` +
+          ? `${series.label} dans ${place}, ${{ communes: "par commune", bureaux: "par bureau de rattachement", smooth: "scores lissés" }[mode]} : ` +
             `${format1.format(raw[2019])} % en 2019, ${format1.format(raw[2026])} % en 2026, ` +
             `soit ${signed1.format(rawDelta)} points. Trois cartes : 2019, 2026 et évolution locale.`
-          : `${series.label} dans ${place} en ${series.years[0]}, ${{ communes: "par commune", bureaux: "par lieu de vote", smooth: "scores lissés" }[mode]} : ` +
+          : `${series.label} dans ${place} en ${series.years[0]}, ${{ communes: "par commune", bureaux: "par bureau de rattachement", smooth: "scores lissés" }[mode]} : ` +
             `${format1.format(raw[series.years[0]])} % des exprimés.`
       );
       status.textContent = {
         communes: "Vue Communes : résultats observés par commune.",
-        bureaux: "Vue Bureaux : résultats observés par lieu de vote.",
+        bureaux: "Vue Bureaux : résultats observés par bureau, à son adresse de rattachement.",
         smooth: `Vue Lissage : estimation sur ${formatKm.format(bandwidthKm)} km${activeZoom ? ", plus fine que la vue provinciale" : ""}.`
       }[mode];
       drawCommuneChart();
@@ -1881,7 +1881,7 @@
 
   function matchedPairs(matches, province) {
     return matches
-      .filter((d) => d.province === province && (d.methode === "nom" || d.methode === "numero"))
+      .filter((d) => d.province === province && (d.methode === "nom" || d.methode === "numero" || d.methode === "secteur"))
       .map((d) => ({
         commune: d.commune,
         code2019: Number(d.code_bv_2019),
