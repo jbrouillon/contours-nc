@@ -251,12 +251,19 @@
 
   let clipCounter = 0;
 
-  // Panneau d'une emprise du Grand Nouméa : cadre de papier, IRIS, côte.
-  function drawPanel(svg, rc, data, definition, box, { bbox, seedKey, names = null, nameSize = 7.5, title = null }) {
+  // Panneau d'une emprise du Grand Nouméa : cadre de papier, IRIS, côte. Le
+  // titre éventuel occupe un bandeau au-dessus de la carte, pour ne rien masquer.
+  function drawPanel(svg, rc, data, definition, box, { bbox, seedKey, title = null }) {
     const [[x0, y0], [x1, y1]] = box;
     svg.append("rect").attr("x", x0).attr("y", y0).attr("width", x1 - x0).attr("height", y1 - y0).attr("fill", paper);
     roughRect(svg, rc, x0, y0, x1 - x0, y1 - y0, { stroke: "#b9b1a5", strokeWidth: 0.8, seed: `brief-${seedKey}-cadre` });
-    const inner = [[x0 + 3, y0 + 3], [x1 - 3, y1 - 3]];
+    const header = title ? 13 : 0;
+    if (title) {
+      label(svg, title, x0 + 5, y0 + 7.5, { size: 9.5, weight: 850 });
+      svg.append("line").attr("x1", x0 + 3).attr("x2", x1 - 3).attr("y1", y0 + header + 1).attr("y2", y0 + header + 1)
+        .attr("stroke", "#b9b1a5").attr("stroke-width", 0.5);
+    }
+    const inner = [[x0 + 3, y0 + 3 + header], [x1 - 3, y1 - 3]];
     const projection = boxProjection(inner, bbox);
     const path = d3.geoPath(projection);
     const id = `brief-clip-${++clipCounter}`;
@@ -265,38 +272,83 @@
     const g = svg.append("g").attr("clip-path", `url(#${id})`);
     drawIris(g, rc, data, path, definition, { seedKey, gap: 2.6, irisStroke: 0.35 });
     drawCoast(g, rc, path, data.area, seedKey, 8, 0.8);
-    if (names) quartierLabels(svg, data, path, inner, nameSize, names);
-    if (title) label(svg, title, x0 + 5, y0 + 9, { size: 9.5, weight: 850, halo: true });
-    return projection;
+    return { projection, path, inner };
   }
 
+  // Noms de repère dans le Grand Nouméa : IRIS regroupés par quartier. Pour ne
+  // jamais masquer la carte, chaque nom est posé dans la mer, relié à son
+  // quartier par un point et un trait de rappel ; sans place libre, il est omis.
   const quartiers = [
     [/^Centre ville/, "Centre-ville"], [/^Anse Vata/, "Anse Vata"], [/^Ouémo/, "Ouémo"], [/Magenta/, "Magenta"],
     [/^Rivi.re Sal.e/, "Rivière-Salée"], [/^Ducos$/, "Ducos"], [/^Nouville/, "Nouville"], [/^Koutio/, "Koutio"],
     [/^Boulari/, "Boulari"], [/^Val Plaisance/, "Val Plaisance"], [/^N'Géa/, "N’Géa"], [/^Normandie/, "Normandie"]
   ];
 
-  function quartierLabels(svg, data, path, box, size, only) {
+  // Masque terre / mer de la vue (unités du viewBox), dessiné dans un canevas.
+  function landMask(data, path, [[x0, y0], [x1, y1]]) {
+    const scale = 2;
+    const width = Math.ceil((x1 - x0) * scale);
+    const height = Math.ceil((y1 - y0) * scale);
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    context.setTransform(scale, 0, 0, scale, -x0 * scale, -y0 * scale);
+    context.beginPath();
+    d3.geoPath(path.projection(), context)({ type: "FeatureCollection", features: data.features });
+    context.fill();
+    const pixels = context.getImageData(0, 0, width, height).data;
+    return (x, y) => {
+      const i = Math.round((x - x0) * scale);
+      const j = Math.round((y - y0) * scale);
+      if (i < 0 || j < 0 || i >= width || j >= height) return true;
+      return pixels[4 * (j * width + i) + 3] > 32;
+    };
+  }
+
+  function calloutLabels(svg, rc, data, path, box, size, names, reserved = [], seedKey = "rappel") {
+    const isLand = landMask(data, path, box);
     const groups = d3.rollups(
       data.features.filter((f) => GN.includes(f.properties.commune))
         .map((f) => [quartiers.find(([pattern]) => pattern.test(f.properties.map_label || ""))?.[1], f])
-        .filter(([name]) => name && only.includes(name)),
-      (items) => {
-        const shape = { type: "FeatureCollection", features: items.map(([, f]) => f) };
-        return { area: path.area(shape), xy: path.centroid(shape) };
-      },
+        .filter(([name]) => name && names.includes(name)),
+      (items) => path.centroid({ type: "FeatureCollection", features: items.map(([, f]) => f) }),
       ([name]) => name
-    ).sort((a, b) => d3.descending(a[1].area, b[1].area));
-    const placed = [];
-    groups.forEach(([name, g]) => {
-      const [x, y] = g.xy;
-      if (!Number.isFinite(x)) return;
-      const half = (name.length * size * 0.55) / 2 + 2;
-      const b = [x - half, y - size * 0.6, x + half, y + size * 0.6];
-      if (b[0] < box[0][0] || b[2] > box[1][0] || b[1] < box[0][1] || b[3] > box[1][1]) return;
-      if (placed.some((o) => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1])) return;
-      placed.push(b);
-      label(svg, name, x, y, { anchor: "middle", size, weight: 800, color: "#3f3a35", halo: true, haloWidth: 2.2 });
+    ).sort((a, b) => names.indexOf(a[0]) - names.indexOf(b[0]));
+    const pad = size * 0.25;
+    const taken = reserved.map(([[a, b], [c, d]]) => [a - pad, b - pad, c + pad, d + pad]);
+    const [[bx0, by0], [bx1, by1]] = box;
+    const angles = d3.range(0, 360, 22.5).sort((a, b) => Math.abs(Math.cos(b * Math.PI / 180)) - Math.abs(Math.cos(a * Math.PI / 180)));
+    groups.forEach(([name, [ax, ay]]) => {
+      if (!Number.isFinite(ax) || ax < bx0 || ax > bx1 || ay < by0 || ay > by1) return;
+      const w = name.length * size * 0.56 + size * 0.5;
+      const h = size * 1.3;
+      let found = null;
+      for (const radius of [1.6, 2.4, 3.3, 4.4, 5.6, 7].map((k) => k * size)) {
+        for (const angle of angles) {
+          const cx = ax + radius * Math.cos(angle * Math.PI / 180);
+          const cy = ay + radius * Math.sin(angle * Math.PI / 180);
+          const r = [cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2];
+          if (r[0] < bx0 + 2 || r[2] > bx1 - 2 || r[1] < by0 + 2 || r[3] > by1 - 2) continue;
+          if (taken.some((o) => r[0] < o[2] && r[2] > o[0] && r[1] < o[3] && r[3] > o[1])) continue;
+          let wet = true;
+          for (let x = r[0]; x <= r[2] && wet; x += 1.5) {
+            for (let y = r[1]; y <= r[3]; y += 1.5) {
+              if (isLand(x, y)) { wet = false; break; }
+            }
+          }
+          if (wet) { found = { r, cx, cy }; break; }
+        }
+        if (found) break;
+      }
+      if (!found) return;
+      const { r, cx, cy } = found;
+      taken.push([r[0] - pad, r[1] - pad, r[2] + pad, r[3] + pad]);
+      const ex = Math.max(r[0], Math.min(ax, r[2]));
+      const ey = Math.max(r[1], Math.min(ay, r[3]));
+      roughLine(svg, rc, ax, ay, ex, ey, { strokeWidth: 0.6, roughness: 0.5, opacity: 0.8, seed: `brief-${seedKey}-${name}` });
+      svg.append("circle").attr("cx", ax).attr("cy", ay).attr("r", 1.6).attr("fill", ink).attr("stroke", paper).attr("stroke-width", 0.6);
+      label(svg, name, cx, cy, { anchor: "middle", size, weight: 800, color: "#3f3a35", halo: true, haloWidth: 2 });
     });
   }
 
@@ -377,10 +429,7 @@
       const definition = definitionOf(node.dataset.metric);
       const seedKey = `gn-${definition.key}`;
       const box = [[2, 2], [418, 196]];
-      const projection = drawPanel(svg, rc, data, definition, box, {
-        bbox: AGGLO_BBOX, seedKey, nameSize: 9.5,
-        names: ["Rivière-Salée", "Ducos", "Magenta", "Ouémo", "Anse Vata", "Koutio", "Nouville", "Boulari", "Val Plaisance"]
-      });
+      const { projection, path, inner } = drawPanel(svg, rc, data, definition, box, { bbox: AGGLO_BBOX, seedKey });
       // Repère de situation dans le premier coin du cadre qui tombe en mer.
       const w = 74;
       const h = 46;
@@ -395,6 +444,9 @@
       const [bx, by] = loc([east, south]);
       svg.append("rect").attr("x", ax - 1.5).attr("y", ay - 1.5).attr("width", bx - ax + 3).attr("height", by - ay + 3)
         .attr("fill", "none").attr("stroke", trendColor).attr("stroke-width", 1.2);
+      calloutLabels(svg, rc, data, path, inner, 9.5,
+        ["Nouville", "Centre-ville", "Magenta", "Ouémo", "Anse Vata", "Rivière-Salée", "Ducos", "Koutio", "Boulari"],
+        [[[corner[0] - 2, corner[1] - 2], [corner[0] + w + 2, corner[1] + h + 2]]], seedKey);
       drawLegend(svg, rc, definition, 6, 206, 330, seedKey);
       signature(svg);
     },
@@ -406,9 +458,8 @@
         const definition = definitionOf(key);
         const x0 = index ? 213 : 2;
         label(svg, definition.label, x0 + 2, 7, { size: 9, weight: 850, color: definition.colors[5] });
-        drawPanel(svg, rc, data, definition, [[x0, 14], [x0 + 205, 200]], {
-          bbox: AGGLO_BBOX, seedKey: `deux-${key}`, nameSize: 8.5, names: ["Rivière-Salée", "Magenta", "Anse Vata", "Koutio"]
-        });
+        const { path, inner } = drawPanel(svg, rc, data, definition, [[x0, 14], [x0 + 205, 200]], { bbox: AGGLO_BBOX, seedKey: `deux-${key}` });
+        calloutLabels(svg, rc, data, path, inner, 8.5, ["Magenta", "Anse Vata", "Rivière-Salée", "Koutio", "Nouville"], [], `deux-${key}`);
         drawCompactLegend(svg, rc, definition, x0 + 4, 206, 197, `deux-${key}`);
       });
       signature(svg);
