@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Modération des commentaires</title>
+<style>
+  :root {
+    --bg: #f7f7f4;
+    --surface: #fffdf8;
+    --surface-soft: #fbf7ee;
+    --ink: #252525;
+    --muted: #66645e;
+    --border: #e4ded2;
+    --red: #c54832;
+    --green: #2f6b45;
+    --yellow: #d6a21f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 1.5rem 1rem 3rem;
+    color: var(--ink);
+    background: var(--bg);
+    font: 16px/1.5 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  main { max-width: 52rem; margin: 0 auto; }
+  h1 { margin: 0 0 1rem; font-size: 1.6rem; }
+  a { color: var(--green); }
+  button, input, textarea { font: inherit; }
+  button {
+    padding: 0.45rem 0.8rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  button:hover, button:focus-visible { border-color: var(--ink); }
+  button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--yellow) 70%, transparent);
+    outline-offset: 2px;
+  }
+  .primary { color: #fff; background: var(--green); border-color: var(--green); }
+  .danger { color: var(--red); }
+  .login, .comment {
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .login label { display: block; margin-bottom: 0.4rem; font-weight: 700; }
+  .login div { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .login input { flex: 1 1 16rem; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 9px; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin-bottom: 1rem; }
+  .toolbar [aria-pressed="true"] { color: #fff; background: var(--ink); border-color: var(--ink); }
+  .toolbar .spacer { flex: 1; }
+  #list { display: grid; gap: 0.9rem; }
+  .comment header { display: flex; flex-wrap: wrap; gap: 0.2rem 0.8rem; margin-bottom: 0.5rem; color: var(--muted); font-size: 0.92rem; }
+  .comment header strong { color: var(--ink); }
+  .badge { padding: 0 0.45rem; border-radius: 99px; background: var(--surface-soft); border: 1px solid var(--border); }
+  .body { margin: 0 0 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  details { margin-top: 0.7rem; }
+  summary { cursor: pointer; color: var(--muted); }
+  textarea { width: 100%; min-height: 6rem; margin: 0.5rem 0; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 9px; }
+  .reply { margin: 0 0 0.8rem; padding-left: 0.8rem; border-left: 3px solid var(--yellow); white-space: pre-wrap; }
+  #message { min-height: 1.5rem; color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Commentaires de contours.nc</h1>
+
+  <form class="login" id="login">
+    <label for="token">Jeton d'administration</label>
+    <div>
+      <input id="token" type="password" autocomplete="current-password" required>
+      <button class="primary" type="submit">Se connecter</button>
+    </div>
+  </form>
+
+  <section id="app" hidden>
+    <div class="toolbar" role="group" aria-label="Filtrer les commentaires">
+      <button type="button" data-status="pending" aria-pressed="true">En attente</button>
+      <button type="button" data-status="approved" aria-pressed="false">Publiés</button>
+      <button type="button" data-status="rejected" aria-pressed="false">Refusés</button>
+      <span class="spacer"></span>
+      <button type="button" id="logout">Se déconnecter</button>
+    </div>
+    <p id="message" role="status"></p>
+    <div id="list"></div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const STATUS_LABELS = { pending: "En attente", approved: "Publiés", rejected: "Refusés" };
+  const dateFormat = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeStyle: "short" });
+  const $ = (selector) => document.querySelector(selector);
+  let token = "";
+  let status = "pending";
+
+  try { token = sessionStorage.getItem("contours-comments-token") || ""; } catch {}
+
+  const element = (tag, props = {}, ...children) => {
+    const node = Object.assign(document.createElement(tag), props);
+    node.append(...children);
+    return node;
+  };
+
+  const api = async (path, options = {}) => {
+    const response = await fetch(path, {
+      ...options,
+      headers: { authorization: `Bearer ${token}`, "content-type": "application/json" }
+    });
+    const data = await response.json().catch(() => ({}));
+    if (response.status === 401) {
+      logout("Jeton refusé.");
+      throw new Error("unauthorized");
+    }
+    if (!response.ok) throw new Error(data.error || `Erreur ${response.status}`);
+    return data;
+  };
+
+  const logout = (message = "") => {
+    token = "";
+    try { sessionStorage.removeItem("contours-comments-token"); } catch {}
+    $("#app").hidden = true;
+    $("#login").hidden = false;
+    $("#message").textContent = "";
+    if (message) alert(message);
+  };
+
+  const act = async (comment, action, extra = {}) => {
+    if (action === "delete" && !confirm(`Supprimer définitivement le commentaire de ${comment.author} ?`)) return;
+    try {
+      await api(`/api/admin/comments/${comment.id}`, {
+        method: "POST",
+        body: JSON.stringify({ action, ...extra })
+      });
+      await load();
+    } catch (error) {
+      if (error.message !== "unauthorized") $("#message").textContent = error.message;
+    }
+  };
+
+  const renderComment = (comment) => {
+    const article = element("article", { className: "comment" });
+    const header = element("header", {},
+      element("strong", { textContent: comment.author }),
+      element("span", { textContent: dateFormat.format(new Date(comment.created_at)) }),
+      element("a", {
+        href: `https://contours.nc${comment.page}`,
+        target: "_blank",
+        rel: "noopener",
+        textContent: comment.page_title || comment.page
+      })
+    );
+    if (status === "all") header.append(element("span", { className: "badge", textContent: comment.status }));
+
+    const actions = element("div", { className: "actions" });
+    if (comment.status !== "approved") {
+      actions.append(element("button", { type: "button", className: "primary", textContent: "Publier", onclick: () => act(comment, "approve") }));
+    }
+    if (comment.status !== "rejected") {
+      actions.append(element("button", { type: "button", textContent: "Refuser", onclick: () => act(comment, "reject") }));
+    }
+    actions.append(element("button", { type: "button", className: "danger", textContent: "Supprimer", onclick: () => act(comment, "delete") }));
+
+    const replyField = element("textarea", { value: comment.reply || "", maxLength: 4000 });
+    replyField.setAttribute("aria-label", `Réponse à ${comment.author}`);
+    const replyBox = element("details", { open: Boolean(comment.reply) },
+      element("summary", { textContent: comment.reply ? "Modifier la réponse publiée" : "Répondre sous ce commentaire" }),
+      replyField,
+      element("button", {
+        type: "button",
+        textContent: "Enregistrer la réponse",
+        onclick: () => act(comment, "reply", { reply: replyField.value })
+      })
+    );
+
+    article.append(header, element("p", { className: "body", textContent: comment.body }));
+    if (comment.reply) {
+      article.append(element("p", { className: "reply", textContent: `Réponse publiée : ${comment.reply}` }));
+    }
+    article.append(actions, replyBox);
+    return article;
+  };
+
+  const load = async () => {
+    $("#message").textContent = "Chargement…";
+    try {
+      const data = await api(`/api/admin/comments?status=${status}`);
+      const counts = Object.fromEntries(data.counts.map((row) => [row.status, row.total]));
+      document.querySelectorAll("[data-status]").forEach((button) => {
+        const key = button.dataset.status;
+        button.textContent = `${STATUS_LABELS[key]} (${counts[key] || 0})`;
+        button.setAttribute("aria-pressed", String(key === status));
+      });
+      $("#list").replaceChildren(...data.comments.map(renderComment));
+      $("#message").textContent = data.comments.length ? "" : "Aucun commentaire dans cette catégorie.";
+    } catch (error) {
+      if (error.message !== "unauthorized") $("#message").textContent = error.message;
+    }
+  };
+
+  const start = () => {
+    $("#login").hidden = true;
+    $("#app").hidden = false;
+    load();
+  };
+
+  $("#login").addEventListener("submit", (event) => {
+    event.preventDefault();
+    token = $("#token").value.trim();
+    try { sessionStorage.setItem("contours-comments-token", token); } catch {}
+    start();
+  });
+  $("#logout").addEventListener("click", () => logout());
+  document.querySelectorAll("[data-status]").forEach((button) => {
+    button.addEventListener("click", () => {
+      status = button.dataset.status;
+      load();
+    });
+  });
+
+  if (token) start();
+})();
+</script>
+</body>
+</html>

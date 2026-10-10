@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/articles/index.html",
     "items": [
       "/posts/provinciales-2026-geographie-forces-politiques/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "listing": "/articles/index.html",
+    "listing": "/index.html",
     "items": [
       "/posts/provinciales-2026-geographie-forces-politiques/index.html",
       "/posts/regroupement-bureaux-vote-noumea/index.html",

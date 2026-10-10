@@ -7550,203 +7550,279 @@ qui reste ?”</span> June 15. <a href="https://contours.nc/posts/provinciales
 </script>
 
 <script>
-
 (() => {
-
   const normalizePath = (value) => {
-
     const path = value.replace(/\/index\.html$/, "/");
-
     return path.endsWith("/") ? path : `${path}/`;
-
   };
 
-
-
   const currentPath = normalizePath(window.location.pathname);
-
   if (!/\/posts\/[^/]+\/$/.test(currentPath)) return;
 
-
+  // Service de commentaires sur Cloudflare : voir infra/commentaires/README.md.
+  const COMMENTS_API = "https://commentaires.contours.nc";
+  const TURNSTILE_SITEKEY = "0x4AAAAAAFS1y8zqybhsyhgy";
 
   const main = document.querySelector("main.content");
-
-  if (!main || main.querySelector("#cusdis_thread")) return;
-
-
+  if (!main || main.querySelector(".article-comments")) return;
 
   const meta = (name) => document.querySelector(`meta[name="${name}"]`)?.content?.trim() || "";
-
   const canonical = meta("citation_fulltext_html_url")
-
     || document.querySelector('link[rel="canonical"]')?.href
-
     || window.location.href;
-
   const pageUrl = new URL(canonical, window.location.href);
-
   pageUrl.hash = "";
-
   pageUrl.search = "";
 
-
-
   const pagePath = normalizePath(pageUrl.pathname);
-
   const pageTitle = meta("citation_title")
-
     || document.querySelector("h1.title, h1")?.textContent?.trim()
-
     || document.title.replace(/\s*[-|]\s*Contours\s*$/i, "").trim();
-
   const reviewMode = document.body.classList.contains("review-version");
 
-
-
   const section = document.createElement("section");
-
   section.className = "article-comments";
-
   section.setAttribute("aria-labelledby", "article-comments-title");
 
-
-
   const title = document.createElement("h2");
-
   title.className = "article-comments__title";
-
   title.id = "article-comments-title";
-
   title.textContent = reviewMode ? "Commentaires sur cette version" : "Commentaires";
 
-
-
   const thread = document.createElement("div");
-
-  thread.id = "cusdis_thread";
-
-  thread.dataset.host = "https://cusdis.com";
-
-  thread.dataset.appId = "fc8f899f-0955-4999-99f3-9c70d4d66c5b";
-
-  thread.dataset.pageId = pagePath.replace(/\/$/, "") || "/";
-
-  thread.dataset.pageUrl = pageUrl.href;
-
-  thread.dataset.pageTitle = pageTitle;
-
-
+  thread.className = "article-comments__thread";
+  thread.innerHTML = '<p class="article-comments__status" role="status">Chargement des commentaires…</p>';
 
   section.append(title, thread);
 
-
-
   main.appendChild(section);
 
-
-
   if (reviewMode) {
-
     const reviewLinks = document.querySelectorAll('a[href="#article-comments-title"]');
-
     const scrollToComments = (event) => {
-
       event.preventDefault();
-
       section.scrollIntoView({
-
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-
         block: "start"
-
       });
-
     };
-
     reviewLinks.forEach((link) => link.addEventListener("click", scrollToComments));
 
-
-
     const floatingButton = document.createElement("button");
-
     floatingButton.type = "button";
-
     floatingButton.className = "review-comment-button";
-
     floatingButton.setAttribute("aria-label", "Ajouter un commentaire sur cette version");
-
     floatingButton.innerHTML = '<i class="bi bi-chat-left-text" aria-hidden="true"></i><span>Commenter</span>';
-
     floatingButton.addEventListener("click", scrollToComments);
-
     document.body.appendChild(floatingButton);
-
   }
-
-
 
   const endTargets = [main.querySelector(".article-share"), section].filter(Boolean);
-
   if (window.IntersectionObserver && endTargets.length) {
-
     const visibleTargets = new WeakMap();
-
     const setTocVisibility = (entries) => {
-
       entries.forEach((entry) => {
-
         visibleTargets.set(entry.target, entry.isIntersecting);
-
       });
-
       const articleEndIsVisible = endTargets.some((target) => visibleTargets.get(target));
-
       document.body.classList.toggle("article-end-active", articleEndIsVisible);
-
     };
 
-
-
     const observer = new IntersectionObserver(setTocVisibility, {
-
       rootMargin: "0px 0px -18% 0px",
-
       threshold: 0.01
-
     });
 
-
-
     endTargets.forEach((target) => observer.observe(target));
-
   }
 
+  const showUnavailable = () => {
+    thread.innerHTML = '<p class="article-comments__status" role="status">Les commentaires sont momentanément indisponibles. '
+      + 'Vous pouvez réagir à cet article via la <a href="/contact/">page Contact</a>.</p>';
+  };
 
+  const dateFormat = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" });
 
-  if (document.querySelector('script[src="https://cusdis.com/js/cusdis.es.js"]')) {
+  const renderComment = (comment) => {
+    const item = document.createElement("li");
+    item.className = "article-comment";
 
-    window.CUSDIS?.renderTo?.(thread);
+    const header = document.createElement("p");
+    header.className = "article-comment__meta";
+    const author = document.createElement("strong");
+    author.textContent = comment.author;
+    const time = document.createElement("time");
+    time.dateTime = comment.created_at;
+    time.textContent = dateFormat.format(new Date(comment.created_at));
+    header.append(author, " · ", time);
 
-    return;
+    const body = document.createElement("div");
+    body.className = "article-comment__body";
+    body.textContent = comment.body;
 
+    item.append(header, body);
+
+    if (comment.reply) {
+      const reply = document.createElement("div");
+      reply.className = "article-comment__reply";
+      const label = document.createElement("p");
+      label.className = "article-comment__meta";
+      label.innerHTML = "<strong>Réponse de Contours</strong>";
+      const replyBody = document.createElement("div");
+      replyBody.className = "article-comment__body";
+      replyBody.textContent = comment.reply;
+      reply.append(label, replyBody);
+      item.append(reply);
+    }
+    return item;
+  };
+
+  const renderList = (comments) => {
+    if (!comments.length) {
+      thread.innerHTML = '<p class="article-comments__status">Aucun commentaire pour l’instant.</p>';
+      return;
+    }
+    const list = document.createElement("ol");
+    list.className = "article-comments__list";
+    list.append(...comments.map(renderComment));
+    thread.replaceChildren(list);
+  };
+
+  // Turnstile (anti-spam Cloudflare) n'est chargé qu'au premier usage du formulaire.
+  let turnstileToken = "";
+  let turnstileWidget = null;
+  let turnstileLoading = null;
+
+  const loadTurnstile = (container) => {
+    if (turnstileLoading) return turnstileLoading;
+    turnstileLoading = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.addEventListener("load", () => {
+        turnstileWidget = window.turnstile.render(container, {
+          sitekey: TURNSTILE_SITEKEY,
+          language: "fr",
+          appearance: "interaction-only",
+          callback: (token) => { turnstileToken = token; },
+          "expired-callback": () => { turnstileToken = ""; },
+          "error-callback": () => { turnstileToken = ""; }
+        });
+        resolve();
+      });
+      script.addEventListener("error", reject);
+      document.head.appendChild(script);
+    });
+    return turnstileLoading;
+  };
+
+  const waitForToken = async (timeout = 10000) => {
+    const start = Date.now();
+    while (!turnstileToken && Date.now() - start < timeout) {
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+    return turnstileToken;
+  };
+
+  const renderForm = () => {
+    const form = document.createElement("form");
+    form.className = "article-comments__form";
+    form.innerHTML = `
+      <h3 class="article-comments__form-title">Laisser un commentaire</h3>
+      <label for="comment-author">Nom ou pseudonyme</label>
+      <input id="comment-author" name="author" type="text" required minlength="2" maxlength="80" autocomplete="name">
+      <label for="comment-body">Commentaire</label>
+      <textarea id="comment-body" name="body" required minlength="2" maxlength="4000" rows="5"></textarea>
+      <div class="article-comments__hp" aria-hidden="true">
+        <label for="comment-website">Ne pas remplir</label>
+        <input id="comment-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="article-comments__turnstile"></div>
+      <div class="article-comments__actions">
+        <button type="submit">Envoyer</button>
+        <p class="article-comments__feedback" role="status"></p>
+      </div>
+      <p class="article-comments__note">
+        Les commentaires sont relus avant publication. Seuls le nom et le message sont publiés ;
+        aucune adresse e-mail n’est demandée. Une vérification anti-spam Cloudflare Turnstile s’exécute à l’envoi.
+      </p>`;
+
+    const button = form.querySelector('button[type="submit"]');
+    const feedback = form.querySelector(".article-comments__feedback");
+    const turnstileContainer = form.querySelector(".article-comments__turnstile");
+    const startTurnstile = () => loadTurnstile(turnstileContainer).catch(() => {
+      feedback.textContent = "La vérification anti-spam n’a pas pu se charger (bloqueur de contenu ?).";
+    });
+
+    form.addEventListener("focusin", startTurnstile, { once: true });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      button.disabled = true;
+      feedback.textContent = "Envoi…";
+      try {
+        await startTurnstile();
+        const token = await waitForToken();
+        if (!token) throw new Error("La vérification anti-spam n’a pas abouti. Réessayez dans un instant.");
+
+        const response = await fetch(`${COMMENTS_API}/api/comments`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            page: pagePath,
+            page_title: pageTitle,
+            author: form.elements.author.value,
+            body: form.elements.body.value,
+            website: form.elements.website.value,
+            token
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "L’envoi a échoué. Réessayez plus tard.");
+
+        form.reset();
+        feedback.textContent = "Merci ! Votre commentaire sera publié après relecture.";
+      } catch (error) {
+        feedback.textContent = error instanceof TypeError
+          ? "L’envoi a échoué. Vérifiez votre connexion et réessayez."
+          : error.message;
+      } finally {
+        button.disabled = false;
+        turnstileToken = "";
+        if (turnstileWidget !== null) window.turnstile?.reset(turnstileWidget);
+      }
+    });
+
+    section.appendChild(form);
+  };
+
+  // Le fil n'est chargé qu'à l'approche de la fin de l'article.
+  const loadComments = async () => {
+    try {
+      const response = await fetch(`${COMMENTS_API}/api/comments?page=${encodeURIComponent(pagePath)}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      renderList(data.comments || []);
+      renderForm();
+    } catch (error) {
+      showUnavailable();
+    }
+  };
+
+  if (window.IntersectionObserver) {
+    const loadObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loadObserver.disconnect();
+      loadComments();
+    }, { rootMargin: "800px 0px" });
+    loadObserver.observe(section);
+  } else {
+    loadComments();
   }
-
-
-
-  const script = document.createElement("script");
-
-  script.async = true;
-
-  script.defer = true;
-
-  script.src = "https://cusdis.com/js/cusdis.es.js";
-
-  document.body.appendChild(script);
-
 })();
-
 </script>
-
 <script>
 
 (() => {

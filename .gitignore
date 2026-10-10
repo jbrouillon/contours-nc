@@ -86,3 +86,6 @@ posts/**/index_files/
 
 /.quarto/
 **/*.quarto_ipynb
+# Service de commentaires : secrets locaux de déploiement
+infra/commentaires/.local.json
+!infra/commentaires/admin.html
