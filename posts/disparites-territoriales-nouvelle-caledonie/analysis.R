@@ -52,6 +52,12 @@ fmt_pct <- function(x, digits = 1) {
   paste0(fmt_num(x, digits), " %")
 }
 
+# Espaces insécables dans les nombres des diapositives « En bref » : un nombre
+# comme 182 341 ou 67,2 % ne doit pas être coupé en fin de ligne.
+nbsp <- function(x) {
+  gsub(" ", "\u00a0", x, fixed = TRUE)
+}
+
 fmt_signed_pp <- function(x, digits = 1) {
   paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits), " points")
 }
@@ -637,6 +643,52 @@ nc_correlations <- nc_data |>
       use = "complete.obs"
     )
   )
+
+# Résultats des diapositives « En bref », communs avec la campagne sociale
+# (dépôt contours-nc-social, articles/disparites-territoriales-nouvelle-caledonie).
+# Les seuils sont ceux des classes de la carte des IRIS (ncMetricDefinitions
+# dans assets/js/disparites-territoriales-nouvelle-caledonie.js) : une valeur
+# égale au seuil appartient à la classe supérieure. Chaque IRIS peuplé compte
+# une fois, quelle que soit sa population ; les corrélations sont des r de
+# Pearson, comme dans le nuage de points de l'article. Pour le grand public, le
+# résumé parle de « zones » plutôt que d'IRIS.
+brief_gn_communes <- c("Nouméa", "Dumbéa", "Mont-Dore", "Païta")
+
+brief_nc_data <- nc_data |>
+  filter(population > 0) |>
+  mutate(grand_noumea = commune %in% brief_gn_communes)
+
+brief_internet_haut <- brief_nc_data |> filter(taux_sans_internet >= 80)
+brief_internet_bas <- brief_nc_data |> filter(taux_sans_internet < 20)
+brief_chomage_haut <- brief_nc_data |> filter(taux_chomage >= 30)
+brief_chomage_bas <- brief_nc_data |> filter(taux_chomage < 8)
+brief_bac3_haut <- brief_nc_data |> filter(taux_bac3_plus >= 35)
+brief_bac3_mediane <- median(brief_nc_data$taux_bac3_plus, na.rm = TRUE)
+
+brief_pearson <- function(x, y) {
+  cor(x, y, method = "pearson", use = "complete.obs")
+}
+brief_r_internet_chomage <- brief_pearson(
+  brief_nc_data$taux_sans_internet,
+  brief_nc_data$taux_chomage
+)
+brief_r_nes_bac3 <- brief_pearson(
+  brief_nc_data$taux_nes_hors_nc,
+  brief_nc_data$taux_bac3_plus
+)
+
+# Les phrases des diapositives affirment ces résultats : le rendu s'arrête
+# s'ils ne sont plus vrais.
+stopifnot(
+  nrow(nc_data) == 162,
+  nrow(brief_nc_data) == 155,
+  sum(brief_internet_haut$grand_noumea) == 2,
+  sum(brief_chomage_haut$grand_noumea) == 1,
+  nrow(brief_bac3_haut) > 0,
+  all(brief_bac3_haut$commune == "Nouméa"),
+  brief_r_internet_chomage > 0.6,
+  brief_r_nes_bac3 > 0.6
+)
 
 nc_explorer_table <- nc_data |>
   filter(population > 0) |>

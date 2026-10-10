@@ -6,6 +6,7 @@ aliases:
   - "/posts/segregations-territoriales-nouvelle-caledonie/index.html"
 author: "Jonas Brouillon"
 date: "2026-08-16"
+date-modified: "2026-10-10"
 rubrique: "Cartes et visualisations"
 categories:
   - Nouvelle-Calédonie
@@ -71,8 +72,9 @@ nc_explorer_metrics <- c(
 
 ```{=html}
 <link rel="stylesheet" href="../../assets/css/habitat.css">
-<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/roughjs@4/bundled/rough.js"></script>
+<link rel="stylesheet" href="../../assets/css/contours-brief.css">
+<script src="../../assets/vendor/d3.v7.min.js"></script>
+<script src="../../assets/vendor/rough.v4.js"></script>
 <script src="../../assets/js/disparites-territoriales-nouvelle-caledonie.js"></script>
 ```
 
@@ -90,6 +92,73 @@ Un **IRIS** est une petite zone statistique utilisée pour diffuser les résulta
 Les six visualisations offrent trois façons de regarder les données : les cartes montrent **où** se situent les écarts, les nuages de points indiquent si deux phénomènes évoluent ensemble, et les matrices résument plusieurs indicateurs à la fois. Elles décrivent des territoires, pas les personnes une par une. Une association visible sur une carte ou dans un graphique ne prouve donc pas qu’un phénomène en cause un autre.
 
 Deux indicateurs demandent une attention particulière. La part des personnes **résidant en tribu** décrit une situation résidentielle et foncière ; elle ne mesure pas l’appartenance communautaire. Dans le Grand Nouméa, la connaissance déclarée d’une langue kanak est utilisée comme **indicateur spatial indirect**. Elle ne définit pas davantage l’identité des habitants. Ces deux variables servent seulement à observer comment différentes réalités se rencontrent dans l’espace.
+
+## En bref
+
+```{=html}
+<section
+  id="en-bref-disparites-territoriales"
+  class="contours-brief"
+  data-contours-brief
+  data-disparites-brief
+  data-brief-lede="Six écrans pour voir où se creusent les écarts entre les zones de recensement du pays, et ce que ces écarts disent ou ne disent pas.">
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">1 · Accès à internet</p>
+      <h3>Une moyenne pour tout le pays cache de grands écarts.</h3>
+      <p class="contours-brief-big"><span>`r nbsp(fmt_int(nrow(brief_internet_haut)))`</span><span>zones</span></p>
+      <p>Dans ces zones de recensement (les IRIS), au moins 80&nbsp;% des ménages n’ont pas accès à internet. Seules `r nbsp(fmt_int(sum(brief_internet_haut$grand_noumea)))` sont dans le Grand Nouméa, qui regroupe à l’inverse `r nbsp(fmt_int(sum(brief_internet_bas$grand_noumea)))` des `r nbsp(fmt_int(nrow(brief_internet_bas)))` zones sous 20&nbsp;%.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="carte" data-metric="taux_sans_internet" aria-label="Carte des 162 zones de recensement de Nouvelle-Calédonie selon la part des ménages sans accès à internet en 2019, avec un agrandissement du Grand Nouméa : les parts les plus élevées se trouvent hors du Grand Nouméa, les plus faibles dans l’agglomération"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">2 · Emploi</p>
+      <h3>Le chômage dessine la même géographie.</h3>
+      <p class="contours-brief-big"><span>`r nbsp(fmt_int(nrow(brief_chomage_haut)))`</span><span>zones</span></p>
+      <p>Le chômage y touche au moins 30&nbsp;% des actifs. Une seule est dans le Grand Nouméa, qui regroupe `r nbsp(fmt_int(sum(brief_chomage_bas$grand_noumea)))` des `r nbsp(fmt_int(nrow(brief_chomage_bas)))` zones sous 8&nbsp;%.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="carte" data-metric="taux_chomage" aria-label="Carte des 162 zones de recensement de Nouvelle-Calédonie selon le taux de chômage en 2019, avec un agrandissement du Grand Nouméa : les taux les plus élevés se trouvent hors du Grand Nouméa"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">3 · Diplômes</p>
+      <h3>Les zones les plus diplômées sont toutes à Nouméa.</h3>
+      <p class="contours-brief-big"><span>`r nbsp(fmt_int(nrow(brief_bac3_haut)))` sur `r nbsp(fmt_int(nrow(brief_bac3_haut)))`</span></p>
+      <p>Ce sont les zones où la part de diplômés d’un bac&nbsp;+3 ou plus atteint au moins 35&nbsp;%, toutes dans la commune de Nouméa. Dans la moitié des zones du pays, cette part reste sous `r nbsp(fmt_pct(brief_bac3_mediane))`.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="grand-noumea" data-metric="taux_bac3_plus" aria-label="Carte des zones de recensement de l’agglomération de Nouméa selon la part des diplômés d’un bac +3 ou plus en 2019 : les parts les plus élevées se concentrent dans le sud et l’est de la presqu’île de Nouméa"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">4 · Origine et diplômes</p>
+      <h3>Nés hors du pays, diplômés du supérieur&nbsp;: deux cartes qui se ressemblent.</h3>
+      <p class="contours-brief-big"><span>r = `r nbsp(fmt_num(brief_r_nes_bac3, 2))`</span></p>
+      <p>C’est la corrélation entre la part des personnes nées hors de Nouvelle-Calédonie et celle des diplômés d’un bac&nbsp;+3 ou plus, dans les `r nbsp(fmt_int(nrow(brief_nc_data)))` zones habitées. Le lieu de naissance ne dit pas l’appartenance communautaire&nbsp;: ce lien décrit des zones, pas des personnes.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="deux-cartes" data-gauche="taux_nes_hors_nc" data-droite="taux_bac3_plus" aria-label="Deux cartes de l’agglomération de Nouméa en 2019 : à gauche la part des personnes nées hors de Nouvelle-Calédonie, à droite celle des diplômés d’un bac +3 ou plus ; les deux parts sont élevées dans les mêmes zones du sud de la presqu’île"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">5 · Cumul des écarts</p>
+      <h3>Chômage élevé et absence d’internet vont souvent de pair.</h3>
+      <p class="contours-brief-big"><span>r = `r nbsp(fmt_num(brief_r_internet_chomage, 2))`</span></p>
+      <p>Chaque point est une zone&nbsp;: plus elle compte de ménages sans internet, plus son taux de chômage tend à être élevé. Les zones du Grand Nouméa se regroupent en bas à gauche. Ce lien ne dit ni la cause, ni la situation de chaque habitant.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="nuage" data-x="taux_sans_internet" data-y="taux_chomage" aria-label="Nuage de points des zones habitées : plus la part des ménages sans internet est élevée, plus le chômage l’est aussi ; les zones du Grand Nouméa sont regroupées en bas à gauche"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">6 · Lire ces cartes</p>
+      <h3>Ces écarts décrivent des territoires, pas des personnes.</h3>
+      <p class="contours-brief-big"><span>`r nbsp(fmt_int(nrow(brief_nc_data)))`</span><span>zones habitées</span></p>
+      <p>Les calculs portent sur les zones habitées parmi les `r nbsp(fmt_int(nrow(nc_data)))` du pays&nbsp;; chaque zone compte une fois, quelle que soit sa population. Une corrélation entre zones ne démontre ni une cause ni une relation individuelle. Les cartes interactives proposent vingt indicateurs et les quartiers du Grand Nouméa en 2014 et 2019.</p>
+      <a class="contours-brief-read" href="#nouvelle-caledonie">Explorer les cartes ↓</a>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="carte" data-metric="taux_sans_internet" data-minimal="true" aria-label="Croquis de la carte des zones de recensement de Nouvelle-Calédonie"></svg>
+  </article>
+</section>
+```
 
 ## Nouvelle-Calédonie : 162 IRIS en 2019 {#nouvelle-caledonie}
 
@@ -362,6 +431,11 @@ knitr::kable(explorer_table, align = c("r", "l", "l", rep("r", 12)))
 :::
 
 </details>
+
+```{=html}
+<script src="../../assets/js/contours-brief.js"></script>
+<script src="../../assets/js/disparites-territoriales-nouvelle-caledonie-brief.js"></script>
+```
 
 ## À lire aussi
 

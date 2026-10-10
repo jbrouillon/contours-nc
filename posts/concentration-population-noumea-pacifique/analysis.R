@@ -60,6 +60,16 @@ fmt_pp <- function(x, digits = 1) {
   paste0(ifelse(x > 0, "+", ""), fmt_num(x, digits), " pt")
 }
 
+trend_class <- function(x) {
+  ifelse(x >= 0, "is-up", "is-down")
+}
+
+# Espaces insécables dans les nombres des diapositives « En bref » : un nombre
+# comme 182 341 ou 67,2 % ne doit pas être coupé en fin de ligne.
+nbsp <- function(x) {
+  gsub(" ", "\u00a0", x, fixed = TRUE)
+}
+
 clean_population <- function(x) {
   x <- as.character(x)
   out <- rep(NA_real_, length(x))
@@ -974,3 +984,61 @@ create_preview <- function(path = image_path("previews", "concentration-populati
   grDevices::dev.off()
   invisible(TRUE)
 }
+
+# Résultats des diapositives « En bref », communs avec la campagne sociale
+# (dépôt contours-nc-social, articles/concentration-population-noumea-pacifique).
+brief_communes_2019 <- map_population |>
+  filter(annee == 2019)
+
+brief_couronne_1956 <- zone_series |>
+  filter(zone == "Couronne périurbaine", annee == 1956) |>
+  slice(1)
+
+brief_noumea_pic <- zone_series |>
+  filter(zone == "Nouméa") |>
+  slice_max(part, n = 1, with_ties = FALSE)
+
+brief_gn_parts <- zone_series |>
+  filter(zone == "Grand Nouméa") |>
+  arrange(annee) |>
+  pull(part)
+
+brief_internal_gn <- internal_region_migrations |>
+  filter(region == "Grand Nouméa")
+
+brief_internal_leaders <- internal_region_migrations |>
+  group_by(periode) |>
+  slice_max(solde_interne, n = 1, with_ties = FALSE) |>
+  ungroup()
+
+brief_external_parts <- external_region_migrations |>
+  group_by(periode) |>
+  summarise(
+    part = 100 * sum(total_externe_entrant[region == "Grand Nouméa"], na.rm = TRUE) /
+      sum(total_externe_entrant, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+brief_papeete <- pacific_capital_examples |>
+  filter(cas == "Polynésie française") |>
+  slice(1)
+
+brief_pacific_rank <- pacific_capital_examples |>
+  filter(!is.na(noyau), !is.na(elargi)) |>
+  arrange(desc(elargi)) |>
+  mutate(rang = row_number())
+
+# Les phrases des diapositives affirment ces résultats : le rendu s'arrête
+# s'ils ne sont plus vrais.
+stopifnot(
+  grand_noumea_2019$population == noumea_2019$population + couronne_2019$population,
+  sum(brief_communes_2019$isGrandNoumea) == 4,
+  all(diff(brief_gn_parts) > 0),
+  nrow(brief_internal_gn) == 5,
+  all(brief_internal_gn$solde_interne > 0),
+  all(brief_internal_leaders$region[brief_internal_leaders$periode != "2009-2014"] == "Grand Nouméa"),
+  brief_internal_leaders$region[brief_internal_leaders$periode == "2009-2014"] == "Nord Ouest",
+  all(brief_external_parts$part > 80),
+  nrow(brief_papeete) == 1,
+  brief_pacific_rank$rang[brief_pacific_rank$cas == "Nouvelle-Calédonie"] <= 3
+)

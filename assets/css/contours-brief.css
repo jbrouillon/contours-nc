@@ -399,6 +399,29 @@ body.contours-brief-is-open {
   }
 }
 
+@media (max-width: 480px) {
+  .contours-brief-nav {
+    gap: 0.25rem;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    padding-inline: 0.45rem;
+  }
+
+  .contours-brief-nav > button {
+    font-size: 0.74rem;
+    padding: 0.46rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  .contours-brief-dots {
+    gap: 0.32rem;
+  }
+
+  .contours-brief-dot {
+    height: 0.72rem;
+    width: 0.72rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .contours-brief-open,
   .contours-brief-close,

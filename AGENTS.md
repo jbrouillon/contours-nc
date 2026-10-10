@@ -26,6 +26,8 @@ Le dépôt alimente **contours.nc**, un carnet de recherche en sciences sociales
 - Ne pas transformer chaque élément en effet crayonné. Rough.js sert la hiérarchie et la matérialité du graphique ; les données, libellés et contrôles restent nets et lisibles.
 - Préserver les changements déjà présents dans le worktree. Ne jamais nettoyer, restaurer, déplacer ou reformater des fichiers hors du périmètre demandé.
 - Préférer une modification ciblée à une refonte. Ne pas moderniser du code historique sans lien direct avec la tâche.
+- Toute campagne pour les réseaux sociaux — textes, sources, exports, vidéos et calendrier Buffer — vit dans le dépôt frère `../contours-nc-social/`. Le présent dépôt ne conserve que les articles, leurs données, leurs visualisations et les composants « En bref » qui alimentent ces campagnes.
+- Toute vidéo de campagne (TikTok, Reels, Shorts, format vertical animé) se termine par l'outro animée de contours.nc : `campagnes/lancement-tiktok/contours-nc-outro.mp4` du dépôt social, ajoutée avec l'option `--outro` de `scripts/produire_video.py`. Ne jamais livrer ni programmer une vidéo sans elle.
 
 ## Carte du dépôt
 
@@ -63,7 +65,8 @@ Le dépôt alimente **contours.nc**, un carnet de recherche en sciences sociales
 | `_freeze/` | Résultats d'exécution gelés par Quarto | Artefacts générés, parfois suivis par Git. Ne pas les éditer manuellement. |
 | `docs/` | Site HTML généré et publié par GitHub Pages | Sortie suivie par Git, jamais source de vérité. Ne pas éditer à la main. |
 | `.quarto/` | Cache et fichiers temporaires locaux | Ignoré par Git. Ne jamais versionner ni utiliser comme source. |
-| `social/` | Gabarits et exports locaux de diffusion | Ignoré par Git ; ne pas compter dessus pour rendre le site reproductible. |
+| `../contours-nc-social/` | Source de vérité des campagnes pour les réseaux sociaux | Pour toute demande de campagne, vérifier aussi son worktree et travailler sous `articles/<slug>/` ou `campagnes/` selon les conventions de ce dépôt. Ne pas créer de nouveau chantier dans `social/` ici. |
+| `social/` | Ancien emplacement local ignoré | Ne pas y créer ni y maintenir de campagne ; migrer tout brouillon utile vers `../contours-nc-social/`. |
 | `CNAME`, `.nojekyll` | Configuration de publication | Doivent se retrouver dans `docs/` après un rendu complet. |
 | `README.md`, `CONTRIBUTING.md`, `README_PREMIER_ARTICLE.md` | Documentation humaine du dépôt | Les consulter et les maintenir cohérents si une modification change les commandes ou conventions décrites. |
 | `Contours-NC.Rproj`, `.vscode/` | Configuration locale RStudio/éditeur | Ne pas modifier sauf demande liée à l'environnement de développement. |
@@ -157,6 +160,7 @@ Les diapositives « En bref » sont la norme du site pour résumer un article. E
 - Les diapositives ne contiennent que des résultats démontrés dans l'article. Les chiffres sont produits par le code (R inline ou données), jamais recopiés à la main. Le sens d'une évolution est marqué explicitement par `is-up` ou `is-down`, calculé à partir du signe.
 - Un croquis optionnel `svg.contours-brief-sketch[data-brief-sketch]` (viewBox `0 0 420 240`, `role="img"` et `aria-label` descriptif) est dessiné par le script de l'article à l'écoute de l'événement `contours-brief:open` (`event.detail.dialog`). Il réutilise les classes, couleurs et graines déterministes de la visualisation principale et porte la signature `contours.nc`.
 - Vérifier ouverture, fermeture (Échap, bouton, clic hors du panneau), navigation clavier, lien direct, rendu mobile et absence d'erreur console.
+- Le résumé et la campagne sociale d'un article (`../contours-nc-social/articles/<slug>/`) racontent la même chose : mêmes écrans, mêmes chiffres, mêmes règles de calcul (un bloc `brief_*` d'`analysis.R` avec `stopifnot` qui vérifie les phrases). Écrire pour le grand public et garder les textes des croquis lisibles sur mobile (au moins 8,5 unités du viewBox). Les croquis étant dessinés dans des diapositives masquées, ne pas mesurer la largeur d'un texte avec `getComputedTextLength()` : elle vaut 0.
 
 ### R et calculs intégrés
 
