@@ -197,9 +197,9 @@ Ces chiffres décrivent des moyennes, pas des destins individuels. **Le lieu de 
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">8 · Quartiers</p>
-      <h3>Natifs et personnes nées en métropole vivent souvent dans des quartiers différents.</h3>
-      <p class="contours-brief-big"><span>`r pct(dissim_metro)`</span></p>
-      <p>des personnes nées en métropole devraient changer de quartier (IRIS) pour être réparties comme les natifs, et `r pct(dissim_metro_noumea)` entre les seuls quartiers de Nouméa. Dans `r en_lettres(brief_iris_forte_metro)` d’entre eux, elles forment au moins `r pct(seuil_metro)` des habitants.</p>
+      <h3>`r maj(en_lettres(brief_iris_forte_metro))` quartiers de Nouméa comptent au moins `r pct(seuil_metro)` d’habitants nés en métropole.</h3>
+      <p class="contours-brief-big"><span>`r pct(part_metro_dans_forte)`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r pct(part_nc_dans_forte)`</span></p>
+      <p>Part des personnes nées en métropole, puis des natifs, qui vivent dans ces quartiers (IRIS), tous âges confondus. À l’inverse, dans `r ent(nrow(iris_faible_metro))` IRIS, dont `r ent(n_faible_metro_hors_sud)` dans le Nord ou aux îles Loyauté, les personnes nées en métropole représentent moins de 2&nbsp;% des habitants.</p>
     </div>
     <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="carte-gn" data-metric="pct_metro" aria-label="Carte du Grand Nouméa par IRIS : la part des habitants nés en métropole ou dans un DOM atteint au moins `r pct(seuil_metro)` dans `r en_lettres(brief_iris_forte_metro)` quartiers, tous situés à Nouméa"></svg>
   </article>
@@ -412,8 +412,6 @@ Le recensement ne mesure pas les revenus. L’enquête Budget des familles de l�
 
 Un IRIS est une petite zone statistique, de la taille d’un quartier. Les chiffres par IRIS portent sur l’ensemble des habitants, tous âges confondus. Dans `r en_lettres(brief_iris_forte_metro)` des `r ent(nrow(iris_habites))` IRIS habités, tous situés à Nouméa, au moins `r pct(seuil_metro)` des habitants sont nés en métropole ; ces derniers sont majoritaires dans `r en_lettres(nrow(iris_majorite_metro))` d’entre eux. Ces quartiers regroupent `r pct(part_metro_dans_forte)` des personnes nées en métropole, mais seulement `r pct(part_nc_dans_forte)` des natifs. À l’inverse, dans `r ent(nrow(iris_faible_metro))` IRIS, dont `r ent(n_faible_metro_hors_sud)` dans le Nord ou aux îles Loyauté, les personnes nées en métropole représentent moins de 2 % des habitants.
 
-L’indice de dissimilarité résume ces écarts de répartition : il faudrait redistribuer `r pct(dissim_metro)` des personnes nées en métropole entre les IRIS pour obtenir la même répartition territoriale que celle des natifs. Ce résultat ne tient pas seulement à l’opposition entre Nouméa et le reste du pays : calculé sur les `r ent(nrow(iris_noumea))` IRIS habités de Nouméa, l’indice atteint `r pct(dissim_metro_noumea)`. Il est plus faible entre les natifs et les personnes nées à l’étranger (`r pct(dissim_etranger)`) ou à Wallis-et-Futuna et en Polynésie française (`r pct(dissim_wf_pf)`).
-
 ```{r fig-carte, results="asis"}
 figure_origines(
   "figure-carte",
@@ -479,7 +477,7 @@ Le diplôme le plus élevé est regroupé en six niveaux, d’aucun diplôme à 
 
 **Pauvreté.** Les données viennent de l’enquête Budget des familles 2019-2020 de l’Isee. L’article compare la part des personnes nées ici dans la population et parmi les personnes pauvres ; il n’en déduit pas le taux de pauvreté de chaque groupe. Cette source ne distingue pas les personnes nées en métropole et, comme toute enquête par sondage, comporte une marge d’incertitude.
 
-**Carte et quartiers.** Les données par IRIS viennent de PopGIS3 et portent sur l’ensemble des habitants, tous âges confondus. Chaque IRIS est rattaché à la commune avec laquelle il partage la plus grande surface. Les zones sans habitant sont exclues et les contours sont simplifiés pour le web. L’indice de dissimilarité de Duncan est calculé sur les `r ent(nrow(iris_habites))` IRIS habités : il vaut 0 % si deux groupes sont répartis de la même façon entre les IRIS, 100 % s’ils ne partagent aucun IRIS.
+**Carte et quartiers.** Les données par IRIS viennent de PopGIS3 et portent sur l’ensemble des habitants, tous âges confondus. Chaque IRIS est rattaché à la commune avec laquelle il partage la plus grande surface. Les zones sans habitant sont exclues et les contours sont simplifiés pour le web.
 
 **Limites.** Les données datent de 2019, avant les événements de mai 2024, et les réponses sont déclaratives. Les écarts entre groupes ne mesurent pas un effet du lieu de naissance : ils mêlent l’histoire des migrations, le milieu social, la géographie et les parcours scolaires.
 

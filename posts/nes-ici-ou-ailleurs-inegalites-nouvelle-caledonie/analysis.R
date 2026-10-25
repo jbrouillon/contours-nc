@@ -789,21 +789,8 @@ stopifnot(
   all(!is.na(iris_habites$pct_hors_2014))
 )
 
-# Indice de dissimilarité de Duncan : part d'un des deux groupes qui devrait
-# changer d'IRIS pour que les deux soient répartis de la même façon.
-dissimilarite <- function(a, b) 0.5 * sum(abs(a / sum(a) - b / sum(b)))
-dissim_hors <- 100 * with(iris_habites, dissimilarite(nes_nc, nes_hors))
-dissim_metro <- 100 * with(iris_habites, dissimilarite(nes_nc, nes_metro))
-dissim_wf_pf <- 100 * with(iris_habites, dissimilarite(nes_nc, nes_wf_pf))
-dissim_etranger <- 100 * with(iris_habites, dissimilarite(nes_nc, nes_etranger))
-dissim_metro_wf_pf <- 100 * with(iris_habites, dissimilarite(nes_metro, nes_wf_pf))
-# Même indice limité aux IRIS de Nouméa : l'écart de répartition ne tient pas
-# seulement à l'opposition entre Nouméa et le reste du pays.
-iris_noumea <- iris_habites |> filter(commune == "Nouméa")
-dissim_metro_noumea <- 100 * with(iris_noumea, dissimilarite(nes_nc, nes_metro))
 # Installations récentes : personnes qui résidaient hors du pays en 2014,
 # natifs revenus compris (question posée aux 5 ans ou plus).
-dissim_2014 <- 100 * with(iris_habites, dissimilarite(nes_nc, hors_nc_2014))
 part_natifs_venus_2014 <- 100 * venus_2014_natifs / venus_2014
 
 iris_majorite_hors <- iris_habites |> filter(pct_hors >= 50)
@@ -1198,14 +1185,10 @@ stopifnot(
   vl("Sud", NC, "surpeuplement") / vl("Sud", METRO, "surpeuplement") > 2.8,
   vl("Sud", NC, "surpeuplement") / vl("Sud", METRO, "surpeuplement") < 3.4,
   vl("Sud", NC, "sans_internet") / vl("Sud", METRO, "sans_internet") > 6,
-  # 8 Quartiers : la dissimilarité avec les natifs est plus forte pour les
-  #   personnes nées en métropole que pour les autres lieux de naissance ;
-  #   les IRIS à au moins 40 % de personnes nées en métropole sont tous à
-  #   Nouméa, au nombre de dix au plus (écrit en lettres).
-  dissim_metro > dissim_wf_pf, dissim_metro > dissim_etranger,
-  # Entre les seuls IRIS de Nouméa, l'indice « atteint » au moins le niveau
-  # du pays.
-  dissim_metro_noumea >= dissim_metro,
+  # 8 Quartiers : les IRIS à au moins 40 % de personnes nées en métropole sont
+  #   tous à Nouméa, au nombre de dix au plus (écrit en lettres) ; ils
+  #   regroupent une part bien plus forte des personnes nées en métropole que
+  #   des natifs.
   # IRIS à moins de 2 % de personnes nées en métropole : la plupart hors de
   # la province Sud.
   n_faible_metro_hors_sud > nrow(iris_faible_metro) / 2,

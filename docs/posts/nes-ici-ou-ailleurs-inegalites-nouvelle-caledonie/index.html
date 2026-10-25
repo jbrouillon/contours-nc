@@ -339,9 +339,9 @@ ul.task-list li input[type="checkbox"] {
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">8 · Quartiers</p>
-      <h3 class="anchored">Natifs et personnes nées en métropole vivent souvent dans des quartiers différents.</h3>
-      <p class="contours-brief-big"><span>49&nbsp;%</span></p>
-      <p>des personnes nées en métropole devraient changer de quartier (IRIS) pour être réparties comme les natifs, et 52&nbsp;% entre les seuls quartiers de Nouméa. Dans dix d’entre eux, elles forment au moins 40&nbsp;% des habitants.</p>
+      <h3 class="anchored">Dix quartiers de Nouméa comptent au moins 40&nbsp;% d’habitants nés en métropole.</h3>
+      <p class="contours-brief-big"><span>24&nbsp;%</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>3,5&nbsp;%</span></p>
+      <p>Part des personnes nées en métropole, puis des natifs, qui vivent dans ces quartiers (IRIS), tous âges confondus. À l’inverse, dans 52 IRIS, dont 33 dans le Nord ou aux îles Loyauté, les personnes nées en métropole représentent moins de 2&nbsp;% des habitants.</p>
     </div>
     <svg class="contours-brief-sketch" viewbox="0 0 420 240" role="img" data-brief-sketch="carte-gn" data-metric="pct_metro" aria-label="Carte du Grand Nouméa par IRIS : la part des habitants nés en métropole ou dans un DOM atteint au moins 40&nbsp;% dans dix quartiers, tous situés à Nouméa"></svg>
   </article>
@@ -467,7 +467,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="geographie" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="geographie">À Nouméa, une présence très inégale selon les quartiers</h3>
 <p>Un IRIS est une petite zone statistique, de la taille d’un quartier. Les chiffres par IRIS portent sur l’ensemble des habitants, tous âges confondus. Dans dix des 155 IRIS habités, tous situés à Nouméa, au moins 40&nbsp;% des habitants sont nés en métropole ; ces derniers sont majoritaires dans trois d’entre eux. Ces quartiers regroupent 24&nbsp;% des personnes nées en métropole, mais seulement 3,5&nbsp;% des natifs. À l’inverse, dans 52 IRIS, dont 33 dans le Nord ou aux îles Loyauté, les personnes nées en métropole représentent moins de 2&nbsp;% des habitants.</p>
-<p>L’indice de dissimilarité résume ces écarts de répartition : il faudrait redistribuer 49&nbsp;% des personnes nées en métropole entre les IRIS pour obtenir la même répartition territoriale que celle des natifs. Ce résultat ne tient pas seulement à l’opposition entre Nouméa et le reste du pays : calculé sur les 45 IRIS habités de Nouméa, l’indice atteint 52&nbsp;%. Il est plus faible entre les natifs et les personnes nées à l’étranger (38&nbsp;%) ou à Wallis-et-Futuna et en Polynésie française (37&nbsp;%).</p>
 <div class="column-page">
 <figure id="figure-carte" class="habitat-sketch habitat-sketch--mobile-fluid origines-figure figure" data-origines-chart="carte" data-src="data/iris-origines.json" data-default-metric="pct_metro" data-title="Dix quartiers de Nouméa comptent au moins 40&nbsp;% d’habitants nés en métropole" data-source="Sources : Isee, recensement de la population 2019 ; IRIS du RGP 2019 diffusés par PopGIS3 ; calculs Contours NC." data-filename="nes-ici-en-metropole-carte">
   <p class="habitat-sketch-loading">Chargement de la figure…</p>
@@ -509,7 +508,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Le diplôme le plus élevé est regroupé en six niveaux, d’aucun diplôme à bac +3 ou plus.</p>
 <p><strong>Comparaisons.</strong> Certains résultats sont recalculés comme si les groupes avaient la même répartition par âge et sexe que l’ensemble des 25-64 ans (standardisation directe sur quatre classes d’âge décennales et le sexe). Pour le chômage et les postes de cadre, le calcul tient aussi compte des six grands niveaux de diplôme. Il ne prend pas en compte la spécialité du diplôme, l’expérience ou le lieu de résidence précis. Les classes d’âge sont observées en 2019, pas suivies dans le temps. Les groupes de moins de 200 personnes sont signalés dans les figures.</p>
 <p><strong>Pauvreté.</strong> Les données viennent de l’enquête Budget des familles 2019-2020 de l’Isee. L’article compare la part des personnes nées ici dans la population et parmi les personnes pauvres ; il n’en déduit pas le taux de pauvreté de chaque groupe. Cette source ne distingue pas les personnes nées en métropole et, comme toute enquête par sondage, comporte une marge d’incertitude.</p>
-<p><strong>Carte et quartiers.</strong> Les données par IRIS viennent de PopGIS3 et portent sur l’ensemble des habitants, tous âges confondus. Chaque IRIS est rattaché à la commune avec laquelle il partage la plus grande surface. Les zones sans habitant sont exclues et les contours sont simplifiés pour le web. L’indice de dissimilarité de Duncan est calculé sur les 155 IRIS habités : il vaut 0 % si deux groupes sont répartis de la même façon entre les IRIS, 100 % s’ils ne partagent aucun IRIS.</p>
+<p><strong>Carte et quartiers.</strong> Les données par IRIS viennent de PopGIS3 et portent sur l’ensemble des habitants, tous âges confondus. Chaque IRIS est rattaché à la commune avec laquelle il partage la plus grande surface. Les zones sans habitant sont exclues et les contours sont simplifiés pour le web.</p>
 <p><strong>Limites.</strong> Les données datent de 2019, avant les événements de mai 2024, et les réponses sont déclaratives. Les écarts entre groupes ne mesurent pas un effet du lieu de naissance : ils mêlent l’histoire des migrations, le milieu social, la géographie et les parcours scolaires.</p>
 <p><strong>Reproduire.</strong> Les fichiers sources et les commandes sont documentés dans <code>data/population/README.md</code> et <code>data/revenus/README.md</code>. Le script <code>analysis.R</code> vérifie les totaux, les phrases chiffrées du résumé et les principaux constats.</p>
 <p class="habitat-source">
