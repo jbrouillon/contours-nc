@@ -1,0 +1,70 @@
+/* Article « Nés ici ou en métropole ». Les figures reprennent les
+   composants de habitat.css (cadre, outils, sélecteurs, boutons à états,
+   infobulle, tableaux de données repliés). */
+
+.origines-figure {
+  min-height: 280px;
+}
+
+.origines-figure svg {
+  background: #fffdf8;
+}
+
+.origines-figure .habitat-sketch-tools {
+  justify-content: space-between;
+}
+
+.origines-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.origines-figure .access-mode-buttons button {
+  padding: 0.42rem 0.6rem;
+}
+
+.origines-hit {
+  cursor: crosshair;
+}
+
+.origines-hit:focus-visible,
+.origines-iris:focus-visible {
+  outline: none;
+  stroke: var(--red);
+  stroke-width: 1.8px;
+}
+
+.origines-iris {
+  cursor: crosshair;
+}
+
+.origines-tooltip {
+  max-width: 290px;
+}
+
+.origines-tip-grid {
+  column-gap: 0.7rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 0.25rem;
+}
+
+.origines-tip-grid b {
+  text-align: right;
+}
+
+.origines-error {
+  color: var(--red);
+}
+
+@media (max-width: 640px) {
+  .origines-figure .habitat-sketch-tools {
+    justify-content: flex-start;
+  }
+
+  .origines-figure .habitat-map-select {
+    max-width: 100%;
+  }
+}

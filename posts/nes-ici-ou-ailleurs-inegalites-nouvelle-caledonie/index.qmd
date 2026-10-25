@@ -1,0 +1,630 @@
+---
+title: "Nés ici ou en métropole : des inégalités de diplôme, d’emploi et de logement"
+subtitle: "Des écarts que l’âge et le sexe n’expliquent pas, et le diplôme seulement en partie"
+author: "Jonas Brouillon"
+date: "2026-10-25"
+draft: false
+lang: fr
+rubrique: "Territoires et société"
+categories:
+  - Inégalités
+  - Recensement
+  - Démographie
+description: "Recensement de 2019 : à âge et sexe comparables, les personnes nées en Nouvelle-Calédonie sont bien moins souvent diplômées du supérieur, plus souvent au chômage et plus souvent en logement surpeuplé que celles nées en métropole."
+image: "../../images/previews/nes-ici-ou-ailleurs-inegalites-nouvelle-caledonie.png"
+image-alt: "Visuel « Bac +3 : plus de 4 fois plus fréquent chez les personnes nées en métropole » : 9,3 % des natifs de 25 à 64 ans ont un bac +3 ou plus, contre 43 % des personnes nées en métropole ; barres comparant aussi l’absence de diplôme, 26 % contre 3,8 %, recensement de 2019."
+title-block-banner: true
+toc: true
+toc-depth: 3
+resources:
+  - "data/**"
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+article_dir <- dirname(knitr::current_input(dir = TRUE))
+source(
+  file.path(article_dir, "analysis.R"),
+  local = knitr::knit_global(),
+  encoding = "UTF-8"
+)
+
+# Valeur formatée d'un indicateur pour un groupe (taux observé par défaut).
+g <- function(groupe, indicateur, territoire = "nc", col = "taux") {
+  pct(v(groupe, indicateur, territoire, col))
+}
+pts <- function(x) nbsp(fmt_num(x, 1))
+# Écart en points, accordé (« 1,5 point », « 14,7 points »).
+pts_txt <- function(x) nbsp(paste(fmt_num(x, 1), if (abs(x) >= 2) "points" else "point"))
+p1 <- function(x) nbsp(fmt_pct(x, 1))
+fcfp <- function(x) nbsp(paste(fmt_int(x), "F CFP"))
+pb <- function(modalite) pct(pauvrete_bdf$taux[pauvrete_bdf$modalite == modalite])
+# Valeur formatée d'une case génération × date d'installation.
+gi <- function(groupe, classe, indicateur) pct(vgi(groupe, classe, indicateur))
+age_med <- function(groupe, classe) ans(vgi(groupe, classe, "bac3", "age_arrivee_median"))
+# Étendue « de x à y » (ou « x à y ») entre les périodes d'installation ou les classes d'âge.
+de_a <- function(x) paste("de", pct(x[1]), "à", pct(x[2]))
+a_de <- function(x) paste(pct(x[1]), "à", pct(x[2]))
+# Petits nombres en lettres.
+en_lettres <- function(n) {
+  if (n >= 1 && n <= 10) c("un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix")[n] else ent(n)
+}
+maj <- function(x) paste0(toupper(substr(x, 1, 1)), substr(x, 2, nchar(x)))
+
+attr_html <- function(x) {
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("\"", "&quot;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  gsub(">", "&gt;", x, fixed = TRUE)
+}
+# Figure crayonnée : balise <figure data-origines-chart> dont les attributs
+# portent la source des données et les textes (chunk `results="asis"`).
+figure_origines <- function(id, chart, ..., chargement = "Chargement de la figure…") {
+  attrs <- list(...)
+  noms <- paste0("data-", gsub("_", "-", names(attrs)))
+  html <- paste0(
+    '<figure id="', id, '" class="habitat-sketch habitat-sketch--mobile-fluid origines-figure" data-origines-chart="', chart, '"',
+    paste0("\n  ", noms, '="', vapply(attrs, attr_html, ""), '"', collapse = ""),
+    '>\n  <p class="habitat-sketch-loading">', chargement, "</p>\n</figure>"
+  )
+  fence <- strrep("`", 3)
+  cat("::: column-page\n", fence, "{=html}\n", html, "\n", fence, "\n:::\n", sep = "")
+}
+source_rp <- "Source : Isee, recensement de la population 2019, fichiers détaillés Individus et Logements ; calculs Contours NC."
+
+# Tableaux de données repliés.
+table_profils <- function(territoire_id, regroupements) {
+  profils |>
+    filter(
+      territoire == territoire_id,
+      regroupement %in% regroupements,
+      groupe != "Nouvelle-Calédonie"
+    ) |>
+    distinct(groupe, indicateur, .keep_all = TRUE) |>
+    mutate(groupe = factor(groupe, levels = unique(c(
+      "Ensemble des 25-64 ans", NC, METRO, naissance_niveaux[-(1:2)], HORS, anciennete_niveaux[-1],
+      as.vector(outer(naissance_niveaux[-1], anciennete_niveaux[-1], paste, sep = " · "))
+    )))) |>
+    mutate(valeur = pct(taux)) |>
+    select(groupe, indicateur, valeur, n_champ) |>
+    group_by(groupe) |>
+    mutate(effectif = max(n_champ)) |>
+    ungroup() |>
+    select(-n_champ) |>
+    pivot_wider(names_from = indicateur, values_from = valeur) |>
+    arrange(groupe) |>
+    mutate(effectif = ent(effectif)) |>
+    rename_with(~ indicateurs$court[match(.x, indicateurs$id)], any_of(indicateurs$id)) |>
+    rename(Groupe = groupe, `Effectif (25-64 ans)` = effectif)
+}
+```
+
+```{=html}
+<link rel="stylesheet" href="../../assets/css/habitat.css">
+<link rel="stylesheet" href="../../assets/css/contours-brief.css">
+<link rel="stylesheet" href="../../assets/css/nes-ici-venus-dailleurs.css">
+<script src="../../assets/vendor/d3.v7.min.js"></script>
+<script src="../../assets/vendor/rough.v4.js"></script>
+```
+
+En 2019, `r g(NC, "bac3")` des 25-64 ans nés en Nouvelle-Calédonie ont un bac +3 ou plus, contre `r g(METRO, "bac3")` de ceux nés en métropole ou dans un DOM. Parmi les actifs, le chômage déclaré touche `r g(NC, "chomage")` des premiers et `r g(METRO, "chomage")` des seconds. Les écarts concernent aussi le logement et les quartiers de résidence.
+
+Les personnes nées en métropole forment les deux tiers (`r pct(part_metro_hors)`) des 25-64 ans nés hors du pays. Les réunir avec celles nées à Wallis-et-Futuna, en Polynésie française ou à l’étranger sous l’étiquette « nés ailleurs » masquerait des situations très différentes, parfois opposées. Cet article compare donc d’abord les personnes nées en Nouvelle-Calédonie à celles nées en métropole ; les autres lieux de naissance servent de repères.
+
+L’analyse porte sur `r ent(n_adultes)` personnes de 25 à 64 ans recensées en 2019. Pour celles nées en métropole, l’année de la dernière installation permet de distinguer les arrivées récentes des installations plus anciennes.
+
+Ces chiffres décrivent des moyennes, pas des destins individuels. **Le lieu de naissance n’est ni une appartenance communautaire, ni une cause des inégalités.** Les personnes nées dans le pays relèvent de toutes les communautés, et le fichier utilisé ne renseigne pas l’appartenance communautaire. Le recensement regroupe en outre la métropole, les DOM et les autres territoires français, hors Wallis-et-Futuna et Polynésie : cette catégorie ne peut pas être détaillée. Les données datent enfin de 2019, avant les événements de mai 2024.
+
+## En bref
+
+```{=html}
+<section
+  id="en-bref-nes-ici-venus-dailleurs"
+  class="contours-brief"
+  data-contours-brief
+  data-origines-brief
+  data-profils-src="data/profils-25-64-ans.csv"
+  data-diplome-src="data/diplome-egal.csv"
+  data-generations-src="data/generations-installation.csv"
+  data-iris-src="data/iris-origines.json"
+  data-brief-lede="Neuf écrans pour comprendre les écarts entre personnes nées ici et en métropole — et les limites de cette comparaison.">
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">1 · Diplôme</p>
+      <h3>Les personnes nées en métropole sont plus de quatre fois plus souvent diplômées d’un bac +3.</h3>
+      <p class="contours-brief-big"><span>`r g(NC, "bac3")`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r g(METRO, "bac3")`</span></p>
+      <p>Part des diplômés d’un bac&nbsp;+3 ou plus parmi les 25-64 ans nés en Nouvelle-Calédonie, puis parmi ceux nés en métropole ou dans un DOM. Donner aux deux groupes la même répartition par âge et sexe ne change presque pas l’écart.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="ecart" data-indicateur="bac3" aria-label="Deux barres : `r g(NC, "bac3")` des 25-64 ans nés en Nouvelle-Calédonie sont diplômés d’un bac +3 ou plus, contre `r g(METRO, "bac3")` de ceux nés en métropole ou dans un DOM"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">2 · Lieu de naissance</p>
+      <h3>« Nés ailleurs » mêle des situations opposées.</h3>
+      <p class="contours-brief-big"><span>`r g("Wallis-et-Futuna", "bac3")`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r g(METRO, "bac3")`</span></p>
+      <p>Part des diplômés d’un bac&nbsp;+3 ou plus parmi les personnes nées à Wallis-et-Futuna, puis parmi celles nées en métropole : la plus faible et la plus forte de tous les lieux de naissance, de part et d’autre des natifs (`r g(NC, "bac3")`). Les personnes nées en métropole forment les deux tiers des 25-64 ans nés hors du pays.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="origines" data-indicateur="bac3" aria-label="Barres classées : part des diplômés d’un bac +3 ou plus selon le lieu de naissance, de la métropole (`r g(METRO, "bac3")`) à Wallis-et-Futuna (`r g("Wallis-et-Futuna", "bac3")`), les personnes nées en Nouvelle-Calédonie se situant à `r g(NC, "bac3")`"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">3 · Emploi</p>
+      <h3>Parmi les actifs, le chômage déclaré est près de cinq fois plus fréquent chez les personnes nées ici.</h3>
+      <p class="contours-brief-big"><span>`r g(NC, "chomage")`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r g(METRO, "chomage")`</span></p>
+      <p>Part des chômeurs parmi les actifs de 25 à 64 ans nés en Nouvelle-Calédonie, puis nés en métropole. Le taux d’emploi est de `r g(NC, "emploi")` dans le premier groupe et de `r g(METRO, "emploi")` dans le second.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="paires" data-indicateurs="chomage,emploi" aria-label="Barres groupées : chômage déclaré de `r g(NC, "chomage")` chez les personnes nées en Nouvelle-Calédonie contre `r g(METRO, "chomage")` chez celles nées en métropole ; taux d’emploi de `r g(NC, "emploi")` contre `r g(METRO, "emploi")`"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">4 · À profil comparable</p>
+      <h3>Le diplôme n’explique qu’une partie de l’écart de chômage.</h3>
+      <p class="contours-brief-big"><span>`r pct(brief_chomage_std_nc)`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r pct(brief_chomage_std_metro)`</span></p>
+      <p>Chômage déclaré des personnes nées ici, puis en métropole, après avoir donné aux deux groupes la même répartition par âge, sexe et grand niveau de diplôme. Plus des deux tiers de l’écart initial subsistent.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="diplome-egal" aria-label="Pour chacun des six niveaux de diplôme, deux points : le chômage déclaré des personnes nées en Nouvelle-Calédonie dépasse celui des personnes nées en métropole, de `r pct(vde("chomage", "Aucun diplôme", NC))` contre `r pct(vde("chomage", "Aucun diplôme", METRO))` sans diplôme à `r pct(vde("chomage", "Bac +3 ou plus", NC))` contre `r pct(vde("chomage", "Bac +3 ou plus", METRO))` avec un bac +3 ou plus"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">5 · Année d’arrivée</p>
+      <h3>Même installées avant 1990, les personnes nées en métropole ont près de quatre fois plus souvent un bac +3.</h3>
+      <p class="contours-brief-big"><span>`r pct(brief_bac3_metro_ancien)`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r g(NC, "bac3")`</span></p>
+      <p>Part des diplômés d’un bac&nbsp;+3 ou plus parmi les personnes nées en métropole et installées avant 1990, puis parmi les natifs. Elle atteint `r pct(brief_bac3_metro_recent)` pour les arrivées de 2015-2019. Parmi ces dernières, `r pct(brief_public_metro_recent)` des personnes en emploi travaillent dans le secteur public.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="anciennete" data-indicateur="bac3" aria-label="Barres : parmi les personnes nées en métropole, `r pct(brief_bac3_metro_recent)` de celles installées en 2015-2019 ont un bac +3 ou plus, contre `r pct(brief_bac3_metro_ancien)` de celles installées avant 1990 et `r g(NC, "bac3")` des personnes nées en Nouvelle-Calédonie"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">6 · Âge à l’arrivée</p>
+      <h3>Même une arrivée avant 16 ans ne referme pas l’écart de bac +3.</h3>
+      <p class="contours-brief-big"><span>`r pct(brief_gen_bac3_enfants)`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r pct(brief_gen_bac3_nc)`</span></p>
+      <p>Parmi les 25-34 ans nés en métropole et arrivés avant 16&nbsp;ans, `r pct(brief_gen_bac3_enfants)` ont un bac&nbsp;+3 ou plus, contre `r pct(brief_gen_bac3_nc)` des natifs du même âge. Ces jeunes ont pourtant, en principe, suivi une partie de leur scolarité dans le pays.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="generation" data-indicateur="bac3" data-classe="25-34" aria-label="Barres : parmi les 25-34 ans, `r gi(NC, "25-34", "bac3")` des personnes nées en Nouvelle-Calédonie ont un bac +3 ou plus, contre `r gi(ENFANTS, "25-34", "bac3")` des personnes nées en métropole arrivées avant 16 ans, `r gi("Arrivés à 16-24 ans", "25-34", "bac3")` de celles arrivées à 16-24 ans et `r gi(ADULTES, "25-34", "bac3")` de celles arrivées à 25 ans ou plus"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">7 · Logement</p>
+      <h3>Les personnes nées ici vivent près de quatre fois plus souvent dans un logement surpeuplé.</h3>
+      <p class="contours-brief-big"><span>`r g(NC, "surpeuplement")`</span><span aria-hidden="true">·</span><span class="visually-hidden">contre</span><span>`r g(METRO, "surpeuplement")`</span></p>
+      <p>Part des personnes vivant dans un logement surpeuplé, nées ici puis en métropole. Les natifs sont aussi `r g(NC, "sans_internet")` à vivre sans internet, contre `r g(METRO, "sans_internet")`. Seule la propriété joue en leur faveur&nbsp;: `r g(NC, "proprietaire")` vivent dans un ménage propriétaire, contre `r g(METRO, "proprietaire")`.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="paires" data-indicateurs="surpeuplement,sans_internet" aria-label="Barres groupées : `r g(NC, "surpeuplement")` des personnes nées en Nouvelle-Calédonie vivent dans un logement surpeuplé contre `r g(METRO, "surpeuplement")` des personnes nées en métropole ; `r g(NC, "sans_internet")` vivent sans internet contre `r g(METRO, "sans_internet")`"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">8 · Quartiers</p>
+      <h3>Natifs et personnes nées en métropole vivent souvent dans des quartiers différents.</h3>
+      <p class="contours-brief-big"><span>`r pct(dissim_metro)`</span></p>
+      <p>des personnes nées en métropole devraient changer de quartier (IRIS) pour être réparties comme les natifs, et `r pct(dissim_metro_noumea)` entre les seuls quartiers de Nouméa. Dans `r en_lettres(brief_iris_forte_metro)` d’entre eux, elles forment au moins `r pct(seuil_metro)` des habitants.</p>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="carte-gn" data-metric="pct_metro" aria-label="Carte du Grand Nouméa par IRIS : la part des habitants nés en métropole ou dans un DOM atteint au moins `r pct(seuil_metro)` dans `r en_lettres(brief_iris_forte_metro)` quartiers, tous situés à Nouméa"></svg>
+  </article>
+  <article class="contours-brief-slide">
+    <div class="contours-brief-copy">
+      <p class="contours-brief-step">9 · Lire ces chiffres</p>
+      <h3>Le lieu de naissance est un marqueur de trajectoires, pas une cause.</h3>
+      <p class="contours-brief-big"><span>`r ent(n_adultes)`</span><span>personnes</span></p>
+      <p>de 25 à 64 ans dans le fichier anonymisé, dont `r pct(part_metro_adultes)` nées en métropole ou dans un DOM. Il ne contient ni l’appartenance communautaire, ni les revenus, et ne permet pas d’expliquer les écarts observés.</p>
+      <a class="contours-brief-read" href="#methode">Lire la méthode ↓</a>
+    </div>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="composition" aria-label="Barres : répartition des 25-64 ans selon le lieu de naissance, `r pct(part_nc_adultes)` nés en Nouvelle-Calédonie, `r pct(part_metro_adultes)` en métropole ou dans un DOM, le reste à l’étranger, à Wallis-et-Futuna ou en Polynésie française"></svg>
+  </article>
+</section>
+```
+
+## « Nés ailleurs » : une catégorie qui mêle des situations opposées {#origines}
+
+Les personnes nées hors du pays sont d’abord celles nées en métropole : elles représentent `r pct(part_metro_hors)` des 25-64 ans concernés. Leur poids tire la moyenne vers le haut : `r g(HORS, "bac3")` des personnes nées hors du pays ont un bac +3 ou plus. Derrière cette moyenne, la proportion va de `r g("Wallis-et-Futuna", "bac3")` parmi les personnes nées à Wallis-et-Futuna, moins diplômées que les natifs (`r g(NC, "bac3")`), à `r g(METRO, "bac3")` parmi celles nées en métropole. Elle est de `r g("Polynésie française", "bac3")` parmi les personnes nées en Polynésie française, proche de celle des natifs, et de `r g("Étranger", "bac3")` parmi celles nées à l’étranger.
+
+```{r fig-diplomes, results="asis"}
+figure_origines(
+  "figure-diplomes",
+  "diplomes",
+  src = "data/diplomes-lieu-naissance.csv",
+  title = paste0(
+    "Un bac +3 pour ", g(METRO, "bac3"),
+    " des personnes nées en métropole, contre ", g(NC, "bac3"),
+    " des natifs et ", g("Wallis-et-Futuna", "bac3"), " des personnes nées à Wallis-et-Futuna"
+  ),
+  source = source_rp,
+  filename = "nes-ici-en-metropole-diplomes"
+)
+```
+
+<p class="habitat-caption">
+
+Répartition des 25-64 ans selon leur diplôme le plus élevé. Les teintes vont du plus bas (clair) au plus élevé (foncé) ; les valeurs sont écrites dans les segments assez larges.
+
+</p>
+
+Le contraste se retrouve parmi les salariés : `r g(METRO, "cadres")` de ceux nés en métropole sont cadres, contre `r g(NC, "cadres")` de ceux nés ici et `r g("Wallis-et-Futuna", "cadres")` de ceux nés à Wallis-et-Futuna. Ces profils reflètent en partie l’histoire des migrations : les arrivées de Wallis-et-Futuna ont notamment répondu aux besoins de main-d’œuvre des mines et du bâtiment ([Deruelle et Sodter, 1999](https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers16-08/010017956.pdf)), tandis que la population active venue de métropole était déjà décrite au début des années 2000 comme sa composante la plus qualifiée ([Bar, Baudchon et Rallu, 2004](https://doi.org/10.4000/eps.250)). Dans la plupart des pays, la propension à migrer augmente d’ailleurs avec le niveau d’études ([Bernard et Bell, 2018](https://doi.org/10.4054/DemRes.2018.39.29)) : les personnes nées en métropole qui vivent en Nouvelle-Calédonie ne reflètent pas la population de la métropole.
+
+La suite de l’article compare donc les personnes nées en Nouvelle-Calédonie à celles nées en métropole. Les autres lieux de naissance restent consultables dans la [figure d’exploration](#explorer) et dans les tableaux de données.
+
+## Sept indicateurs sur huit sont plus favorables aux personnes nées en métropole {#ecarts}
+
+L’écart est net dès le diplôme : `r g(METRO, "bac3")` des personnes nées en métropole ont un bac +3 ou plus, contre `r g(NC, "bac3")` des personnes nées en Nouvelle-Calédonie. À l’autre bout de l’échelle, `r g(NC, "sans_diplome")` des natifs n’ont aucun diplôme, contre `r g(METRO, "sans_diplome")` des personnes nées en métropole. Le chômage déclaré touche `r g(NC, "chomage")` des actifs nés ici, contre `r g(METRO, "chomage")` de ceux nés en métropole. Sur les huit indicateurs de la figure, un seul est à l’avantage des personnes nées ici : elles vivent plus souvent dans un ménage propriétaire de son logement (`r g(NC, "proprietaire")` contre `r g(METRO, "proprietaire")`).
+
+La structure par âge et sexe change très peu la comparaison. Si les deux groupes avaient la même répartition par âge et sexe, aucun des huit écarts ne varierait de plus de `r pts_txt(ecart_gap_std_metro)`. La part des diplômés d’un bac +3 ou plus serait alors de `r g(METRO, "bac3", col = "taux_std")` parmi les personnes nées en métropole, contre `r g(NC, "bac3", col = "taux_std")` parmi celles nées ici.
+
+```{r fig-ecarts, results="asis"}
+figure_origines(
+  "figure-ecarts",
+  "ecarts",
+  src = "data/profils-25-64-ans.csv",
+  title = "Un seul des huit indicateurs est à l’avantage des personnes nées ici : vivre dans un ménage propriétaire",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-ecarts"
+)
+```
+
+<p class="habitat-caption">
+
+Chaque ligne relie la part observée chez les personnes nées en Nouvelle-Calédonie (rond vert) et chez celles nées en métropole ou dans un DOM (carré bleu). Le trait noir situe l’ensemble des 25-64 ans, tous lieux de naissance confondus. Le champ de chaque indicateur est précisé dans la [méthode](#methode).
+
+</p>
+
+## Les profils varient selon le moment de l’arrivée {#installation}
+
+Une personne arrivée de métropole depuis quelques mois n’a pas le même parcours qu’une personne installée depuis plusieurs décennies. L’année de la dernière installation permet de distinguer ces trajectoires.
+
+### Récente ou ancienne, l’installation ne referme pas l’écart de diplôme {#anciennete}
+
+Parmi les personnes nées en métropole, `r pct(brief_bac3_metro_recent)` de celles installées en 2015-2019 ont un bac +3 ou plus, contre `r pct(brief_bac3_metro_ancien)` de celles installées avant 1990. Une partie de cet écart tient à l’âge, les personnes installées avant 1990 étant plus âgées : à âge et sexe comparables, les deux proportions sont de `r pct(bac3_metro_recent_std)` et `r pct(bac3_metro_ancien_std)`. Même installées de longue date, les personnes nées en métropole restent près de quatre fois plus souvent diplômées d’un bac +3 que les natifs (`r g(NC, "bac3")`). La progression selon la date d’arrivée est plus forte encore parmi les personnes nées à l’étranger ; elle est absente parmi celles nées à Wallis-et-Futuna.
+
+```{r fig-arrivees, results="asis"}
+figure_origines(
+  "figure-arrivees",
+  "arrivees",
+  src = "data/profils-25-64-ans.csv",
+  title = "Quelle que soit la période d’installation, le bac +3 est bien plus fréquent parmi les personnes nées en métropole que parmi les natifs",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-arrivees"
+)
+```
+
+<p class="habitat-caption">
+
+Part des diplômés d’un bac +3 ou plus selon le lieu de naissance et la période de la dernière installation ; le trait épais correspond aux personnes nées en métropole ou dans un DOM. Le trait vert situe les personnes nées en Nouvelle-Calédonie ; un point pâle signale un groupe de moins de 200 personnes.
+
+</p>
+
+Les personnes nées en métropole et installées en 2015-2019 travaillent aussi plus souvent dans le secteur public : c’est le cas de `r pct(brief_public_metro_recent)` des personnes en emploi, contre `r g(NC, "public")` des natifs. Seules `r pct(brief_proprio_metro_recent)` vivent dans un ménage propriétaire de son logement, contre `r pct(brief_proprio_metro_ancien)` de celles, plus âgées, installées avant 1990. Ce profil peut correspondre à des séjours professionnels temporaires, mais le recensement n’en indique ni le motif ni la durée prévue.
+
+::: habitat-method-note
+**Près d’une personne sur cinq ne renseigne pas son année d’arrivée.** Parmi les personnes nées en métropole recensées en 2019, `r pct(part_metro_sans_annee)` n’ont pas déclaré d’année d’installation. L’année retenue est celle de la *dernière* installation : une personne partie puis revenue est comptée à son retour.
+:::
+
+### Chez les plus jeunes, l’écart est plus faible sans diplôme mais plus large au niveau bac +3 {#generations}
+
+Les deux extrémités de l’échelle des diplômes ne racontent pas la même histoire. Pour l’absence de diplôme, l’écart entre personnes nées ici et en métropole est de `r pts_txt(ecart_sans_diplome_aines)` chez les 55-64 ans et de `r pts_txt(ecart_sans_diplome_jeunes)` chez les 25-34 ans. Pour le bac +3 ou plus, il est au contraire plus large chez les jeunes : `r pts_txt(ecart_bac3_jeunes)`, contre `r pts(ecart_bac3_aines)` chez les 55-64 ans.
+
+```{r fig-generations, results="asis"}
+figure_origines(
+  "figure-generations",
+  "generations",
+  src = "data/generations-diplome.csv",
+  title = "Chez les 25-34 ans, l’écart est plus faible sans diplôme mais plus large au niveau bac +3",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-generations"
+)
+```
+
+<p class="habitat-caption">
+
+Part des personnes sans aucun diplôme, puis des diplômés d’un bac +3 ou plus, dans chaque classe d’âge en 2019. Les plus âgés sont à gauche.
+
+</p>
+
+Il s’agit de classes d’âge observées en 2019, pas des mêmes personnes suivies dans le temps. De plus, `r pct(part_recents_25_34)` des 25-34 ans nés en métropole se sont installés depuis 2015. Le niveau de diplôme des plus jeunes dépend donc aussi du profil des personnes récemment arrivées.
+
+### Même arrivés avant 16 ans, les jeunes nés en métropole ont bien plus souvent un bac +3 {#generation-installation}
+
+Parmi les 25-34 ans, `r gi(ENFANTS, "25-34", "bac3")` des personnes nées en métropole et arrivées avant 16 ans ont un bac +3 ou plus, contre `r gi(NC, "25-34", "bac3")` de celles nées en Nouvelle-Calédonie : près de quatre fois plus. Leur dernière installation datant d’avant leurs 16 ans, elles ont pourtant, en principe, suivi au moins une partie de leur scolarité dans le pays et y vivent depuis. Leur chômage déclaré est aussi bien plus faible : `r gi(ENFANTS, "25-34", "chomage")` des actifs, contre `r gi(NC, "25-34", "chomage")`. En province Sud, où vivent `r pct(part_sud_enfants_25_34)` d’entre elles, l’écart de bac +3 demeure : `r pct(vcs(ENFANTS, "bac3"))` contre `r pct(vcs(NC, "bac3"))` parmi les natifs du même âge.
+
+```{r fig-generations-installation, results="asis"}
+figure_origines(
+  "figure-generations-installation",
+  "generations-installation",
+  src = "data/generations-installation.csv",
+  profils_src = "data/profils-25-64-ans.csv",
+  default_indicator = "bac3",
+  default_regroupement = "age_arrivee",
+  title = paste0(
+    "Arrivées avant 16 ans : ", gi(ENFANTS, "25-34", "bac3"),
+    " de bac +3 chez les 25-34 ans nés en métropole, contre ", gi(NC, "25-34", "bac3"),
+    " parmi les natifs du même âge"
+  ),
+  source = source_rp,
+  filename = "nes-ici-en-metropole-generations-installation"
+)
+```
+
+<p class="habitat-caption">
+
+Chaque ligne correspond à une classe d’âge en 2019 et chaque colonne à un groupe. Le trait vert situe les personnes du même âge nées en Nouvelle-Calédonie. Le menu change d’indicateur ; les boutons affichent soit l’âge à l’arrivée des personnes nées en métropole, soit la période de leur dernière installation. Une barre en pointillé signale un groupe de moins de 200 personnes.
+
+</p>
+
+Cette comparaison situe l’écart sans en expliquer la cause. Le recensement ne renseigne pas le milieu social des familles, qui pourrait éclairer ces parcours.
+
+## À chaque niveau de diplôme, le chômage reste plus élevé chez les personnes nées ici {#diplome-egal}
+
+Les différences de diplôme ne suffisent pas à expliquer l’écart de chômage : celui-ci se retrouve dans chacun des six niveaux étudiés. Parmi les titulaires d’un CAP ou d’un BEP, par exemple, `r pct(vde("chomage", "CAP ou BEP", NC))` des actifs nés en Nouvelle-Calédonie se déclarent au chômage, contre `r pct(vde("chomage", "CAP ou BEP", METRO))` de ceux nés en métropole.
+
+Si les deux groupes avaient la même répartition par âge, sexe et niveau de diplôme, le chômage serait encore de `r pct(brief_chomage_std_nc)` chez les personnes nées ici, contre `r pct(brief_chomage_std_metro)` chez celles nées en métropole. Plus des deux tiers de l’écart observé subsistent. En province Sud aussi, un écart demeure : `r pct(vn(chomage_std_sud, NC))` contre `r pct(vn(chomage_std_sud, METRO))` à structure identique.
+
+```{r fig-diplome-egal, results="asis"}
+figure_origines(
+  "figure-diplome-egal",
+  "diplome-egal",
+  src = "data/diplome-egal.csv",
+  title = "Le diplôme ne fait pas disparaître les écarts de chômage et d’accès aux postes de cadre",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-diplome-egal"
+)
+```
+
+<p class="habitat-caption">
+
+Pour chacun des six niveaux de diplôme, la figure compare le chômage parmi les actifs et les postes de cadre parmi les salariés, nés en Nouvelle-Calédonie ou en métropole. Les deux dernières lignes montrent l’ensemble observé, puis la comparaison après ajustement sur l’âge, le sexe et le niveau de diplôme.
+
+</p>
+
+L’accès aux postes de cadre est lui aussi moins fréquent parmi les personnes nées ici. Chez les salariés diplômés d’un bac +3 ou plus, `r pct(vn(cadres_bac3_obs, NC))` des natifs sont cadres, contre `r pct(vn(cadres_bac3_obs, METRO))` des personnes nées en métropole. Ces dernières ont plus souvent un bac +5 ou plus (`r pct(vn(part_bac5, METRO))` des 25-64 ans diplômés d’un bac +3 ou plus, contre `r pct(vn(part_bac5, NC))`). Après ajustement sur l’âge, le sexe et ce niveau (bac +3 ou +4, bac +5 ou plus), l’écart se réduit sans disparaître : `r pct(vn(cadres_bac3_std, NC))` contre `r pct(vn(cadres_bac3_std, METRO))`.
+
+Ces chiffres ne permettent ni de prouver ni d’écarter une discrimination. Le domaine d’études, l’expérience, les réseaux, le lieu de résidence ou le fait de s’installer avec un emploi déjà trouvé peuvent aussi intervenir. Le recensement ne permet pas de départager ces explications.
+
+## Les écarts concernent aussi le logement et les quartiers {#territoires}
+
+### Les personnes nées ici vivent plus souvent dans un ménage propriétaire — mais aussi dans un logement surpeuplé {#logement}
+
+Les personnes nées en Nouvelle-Calédonie vivent plus souvent dans un logement surpeuplé (`r g(NC, "surpeuplement")` contre `r g(METRO, "surpeuplement")` pour celles nées en métropole) ou sans internet (`r g(NC, "sans_internet")` contre `r g(METRO, "sans_internet")`). Elles vivent aussi plus souvent dans un ménage propriétaire de son logement : `r g(NC, "proprietaire")` contre `r g(METRO, "proprietaire")`. Être propriétaire ne met pas à l’abri du surpeuplement : dans les ménages propriétaires, `r pct(vsp(NC))` des natifs vivent dans un logement surpeuplé, contre `r pct(vsp(METRO))` des personnes nées en métropole.
+
+La répartition géographique compte dans cette comparaison : `r pct(part_natifs_hors_sud)` des natifs vivent dans le Nord ou aux îles Loyauté, contre `r pct(part_metro_hors_sud)` des personnes nées en métropole. Mais le contraste demeure en province Sud : le surpeuplement y est trois fois plus fréquent parmi les natifs, l’absence d’internet plus de six fois. L’avantage des natifs pour la propriété y est en revanche bien plus faible : `r g(NC, "proprietaire", "sud")` vivent dans un ménage propriétaire, contre `r g(METRO, "proprietaire", "sud")` des personnes nées en métropole.
+
+```{r fig-logement, results="asis"}
+figure_origines(
+  "figure-logement",
+  "logement",
+  src = "data/logement-provinces.csv",
+  title = "Même en province Sud, les personnes nées ici vivent plus souvent dans un logement surpeuplé ou sans internet",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-logement"
+)
+```
+
+<p class="habitat-caption">
+
+Personnes de 25 à 64 ans vivant en logement ordinaire, selon la province de résidence. Aux îles Loyauté, les personnes nées en métropole ne sont que `r ent(n_metro_iles_logement)` : leurs taux sont à lire avec prudence.
+
+</p>
+
+### Parmi les personnes pauvres, celles nées ici sont surreprésentées {#revenus}
+
+Le recensement ne mesure pas les revenus. L’enquête Budget des familles de l’Isee indique toutefois que `r pct(part_natifs_pauvres)` des personnes vivant sous le seuil de pauvreté en 2019, fixé à la moitié du niveau de vie médian, sont nées en Nouvelle-Calédonie ([Buffière, 2021](https://isee.nc/sites/default/files/2025-11/bdf2019-synthese52.pdf)), alors qu’elles représentent `r pct(part_natifs_population)` de la population recensée. Il s’agit d’une surreprésentation parmi les personnes pauvres, pas d’une mesure directe du taux de pauvreté de chacun des groupes. Cette publication ne distingue pas les personnes nées en métropole des autres personnes nées hors du pays.
+
+### À Nouméa, une présence très inégale selon les quartiers {#geographie}
+
+Un IRIS est une petite zone statistique, de la taille d’un quartier. Les chiffres par IRIS portent sur l’ensemble des habitants, tous âges confondus. Dans `r en_lettres(brief_iris_forte_metro)` des `r ent(nrow(iris_habites))` IRIS habités, tous situés à Nouméa, au moins `r pct(seuil_metro)` des habitants sont nés en métropole ; ces derniers sont majoritaires dans `r en_lettres(nrow(iris_majorite_metro))` d’entre eux. Ces quartiers regroupent `r pct(part_metro_dans_forte)` des personnes nées en métropole, mais seulement `r pct(part_nc_dans_forte)` des natifs. À l’inverse, dans `r ent(nrow(iris_faible_metro))` IRIS, dont `r ent(n_faible_metro_hors_sud)` dans le Nord ou aux îles Loyauté, les personnes nées en métropole représentent moins de 2 % des habitants.
+
+L’indice de dissimilarité résume ces écarts de répartition : il faudrait redistribuer `r pct(dissim_metro)` des personnes nées en métropole entre les IRIS pour obtenir la même répartition territoriale que celle des natifs. Ce résultat ne tient pas seulement à l’opposition entre Nouméa et le reste du pays : calculé sur les `r ent(nrow(iris_noumea))` IRIS habités de Nouméa, l’indice atteint `r pct(dissim_metro_noumea)`. Il est plus faible entre les natifs et les personnes nées à l’étranger (`r pct(dissim_etranger)`) ou à Wallis-et-Futuna et en Polynésie française (`r pct(dissim_wf_pf)`).
+
+```{r fig-carte, results="asis"}
+figure_origines(
+  "figure-carte",
+  "carte",
+  src = "data/iris-origines.json",
+  default_metric = "pct_metro",
+  title = paste0(maj(en_lettres(brief_iris_forte_metro)), " quartiers de Nouméa comptent au moins ", pct(seuil_metro), " d’habitants nés en métropole"),
+  source = "Sources : Isee, recensement de la population 2019 ; IRIS du RGP 2019 diffusés par PopGIS3 ; calculs Contours NC.",
+  filename = "nes-ici-en-metropole-carte"
+)
+```
+
+<p class="habitat-caption">
+
+Le menu change d’indicateur ; chaque indicateur a sa propre échelle de couleurs, commune à la vue d’ensemble et à l’agrandissement. Le cadre noir situe l’agrandissement du Grand Nouméa. Les parts portent sur l’ensemble des habitants, tous âges confondus. L’indicateur « Vivaient hors du pays cinq ans plus tôt » inclut les personnes nées ici qui sont revenues entre 2014 et 2019.
+
+</p>
+
+## Des écarts nets, que l’âge et le diplôme ne suffisent pas à expliquer {#conclusion}
+
+Entre les personnes nées en Nouvelle-Calédonie et celles nées en métropole, les écarts de diplôme, d’emploi et de logement sont nets en 2019, et les deux groupes habitent souvent des quartiers différents. Parmi les 25-34 ans, l’écart d’absence de diplôme est plus faible que parmi les 55-64 ans, mais celui du bac +3 est plus large ; il demeure même face aux jeunes nés en métropole arrivés avant 16 ans. À âge, sexe et niveau de diplôme comparables, le chômage reste bien plus fréquent parmi les natifs.
+
+Le lieu de naissance est donc un **marqueur de trajectoires**, pas une explication. Le recensement situe les écarts ; il ne mesure pas le rôle respectif du milieu social, des parcours scolaires, des réseaux, du marché du travail ou des discriminations. Les travaux qui disposent de l’appartenance communautaire, absente de ce fichier, documentent de leur côté des inégalités ethniques à l’école ([Hadj et al., 2012](https://doi.org/10.4000/formationemploi.3855)) et dans l’accès à l’emploi ([Ris, 2013](https://doi.org/10.3406/estat.2013.10229)). Quant à la catégorie « nés ailleurs », elle masque des profils opposés : les personnes nées à Wallis-et-Futuna, en particulier, sont moins souvent diplômées que les natifs.
+
+## Explorer les inégalités indicateur par indicateur {#explorer}
+
+La figure suivante reprend les dix indicateurs du recensement pour les personnes nées ici, celles nées en métropole selon leur période d’installation, et les autres lieux de naissance. Elle permet de limiter la comparaison à la province Sud ou de donner aux groupes la même répartition par âge et sexe.
+
+```{r fig-profils, results="asis"}
+figure_origines(
+  "figure-profils",
+  "profils",
+  src = "data/profils-25-64-ans.csv",
+  default_indicator = "bac3",
+  title = "Selon le lieu de naissance et l’année d’arrivée",
+  source = source_rp,
+  filename = "nes-ici-en-metropole-profils"
+)
+```
+
+<p class="habitat-caption">
+
+Chaque barre donne la part des personnes concernées dans le groupe. Le trait rouge situe l’ensemble des 25-64 ans. Le menu change d’indicateur ; les boutons limitent le calcul à la province Sud ou donnent à chaque groupe la même structure par âge et sexe. Survolez une barre ou placez-y le focus au clavier pour lire les effectifs.
+
+</p>
+
+## Données et méthode {#methode}
+
+**Données.** Les calculs utilisent les fichiers anonymisés Individus (`r ent(n_total)` personnes) et Logements (`r ent(nrow(logements))` logements) du recensement de 2019. La résidence n’y est connue qu’à l’échelle de la province et les questions sur l’appartenance communautaire ou la tribu n’y figurent pas. Le recensement étant exhaustif, aucune pondération n’est appliquée. L’article retient les 25-64 ans : à ces âges, la plupart des personnes ont terminé leurs études sans être encore à la retraite.
+
+**Groupes.** Le lieu de naissance compte cinq modalités : Nouvelle-Calédonie, Wallis-et-Futuna, Polynésie française, étranger, et « métropole, DOM ou autre territoire français ». Faute de détail, l’article désigne cette dernière modalité par « nés en métropole » : elle inclut les personnes nées dans un DOM. L’année de la dernière installation n’est demandée qu’aux personnes nées hors du pays : celles nées ici, parties puis revenues, ne peuvent pas être isolées.
+
+**Indicateurs.** Tous portent sur les 25-64 ans, mais pas toujours sur la même population de référence :
+
+- diplômes et taux d’emploi : toutes les personnes de 25 à 64 ans ;
+- chômage : actifs en emploi, en apprentissage ou au chômage. Il s’agit du chômage déclaré, différent de la définition du Bureau international du travail ;
+- cadres et contrats : salariés, seuls à avoir une catégorie socioprofessionnelle dans le fichier ; secteur public (salariés du public) : personnes en emploi ;
+- ménage propriétaire, surpeuplement, accès à internet : personnes vivant en logement ordinaire, selon les caractéristiques du logement de leur ménage. Le surpeuplement suit l’indicateur de peuplement du fichier Logements.
+
+Le diplôme le plus élevé est regroupé en six niveaux, d’aucun diplôme à bac +3 ou plus.
+
+**Comparaisons.** Certains résultats sont recalculés comme si les groupes avaient la même répartition par âge et sexe que l’ensemble des 25-64 ans (standardisation directe sur quatre classes d’âge décennales et le sexe). Pour le chômage et les postes de cadre, le calcul tient aussi compte des six grands niveaux de diplôme. Il ne prend pas en compte la spécialité du diplôme, l’expérience ou le lieu de résidence précis. Les classes d’âge sont observées en 2019, pas suivies dans le temps. Les groupes de moins de 200 personnes sont signalés dans les figures.
+
+**Pauvreté.** Les données viennent de l’enquête Budget des familles 2019-2020 de l’Isee. L’article compare la part des personnes nées ici dans la population et parmi les personnes pauvres ; il n’en déduit pas le taux de pauvreté de chaque groupe. Cette source ne distingue pas les personnes nées en métropole et, comme toute enquête par sondage, comporte une marge d’incertitude.
+
+**Carte et quartiers.** Les données par IRIS viennent de PopGIS3 et portent sur l’ensemble des habitants, tous âges confondus. Chaque IRIS est rattaché à la commune avec laquelle il partage la plus grande surface. Les zones sans habitant sont exclues et les contours sont simplifiés pour le web. L’indice de dissimilarité de Duncan est calculé sur les `r ent(nrow(iris_habites))` IRIS habités : il vaut 0 % si deux groupes sont répartis de la même façon entre les IRIS, 100 % s’ils ne partagent aucun IRIS.
+
+**Limites.** Les données datent de 2019, avant les événements de mai 2024, et les réponses sont déclaratives. Les écarts entre groupes ne mesurent pas un effet du lieu de naissance : ils mêlent l’histoire des migrations, le milieu social, la géographie et les parcours scolaires.
+
+**Reproduire.** Les fichiers sources et les commandes sont documentés dans `data/population/README.md` et `data/revenus/README.md`. Le script `analysis.R` vérifie les totaux, les phrases chiffrées du résumé et les principaux constats.
+
+<p class="habitat-source">
+
+Sources : Isee, [recensement de la population 2019, données détaillées](https://www.isee.nc/population/recensement) (fichiers Individus et Logements) et tableau « Population par origine » ; Isee, [revenus et inégalités](https://isee.nc/revenus-et-inegalites) : enquête Budget des familles 2019-2020 ; <a href="https://ncl.popgis.spc.int/">PopGIS3 Nouvelle-Calédonie</a>, IRIS du RGP 2019 ; calculs et visualisations : Contours NC. Données de l’article : [profils par groupe](data/profils-25-64-ans.csv), [diplômes par lieu de naissance](data/diplomes-lieu-naissance.csv), [diplômes par classe d’âge](data/generations-diplome.csv), [classe d’âge et date d’installation](data/generations-installation.csv), [chômage et cadres par diplôme](data/diplome-egal.csv), [logement par province](data/logement-provinces.csv), [pauvreté 2019](data/pauvrete-bdf-2019.csv), [indicateurs par IRIS](data/iris-origines.csv) (CSV).
+
+</p>
+
+<details class="habitat-data-details">
+
+<summary>Voir les indicateurs par lieu de naissance (Nouvelle-Calédonie, 25-64 ans)</summary>
+
+::: {}
+```{r table-groupes}
+knitr::kable(table_profils("nc", c("ensemble", "naissance2", "naissance")))
+```
+:::
+
+</details>
+
+<details class="habitat-data-details">
+
+<summary>Voir les indicateurs par lieu de naissance et période d’arrivée</summary>
+
+::: {}
+```{r table-croisement}
+knitr::kable(table_profils("nc", "naissance_anciennete"))
+```
+:::
+
+</details>
+
+<details class="habitat-data-details">
+
+<summary>Voir les indicateurs par classe d’âge et date d’installation (personnes nées en métropole)</summary>
+
+::: {}
+```{r table-generations}
+generations_installation |>
+  as_tibble() |>
+  filter(regroupement == "anciennete" | groupe %in% age_arrivee_niveaux[2:4]) |>
+  mutate(
+    groupe = factor(groupe, levels = c(anciennete_niveaux, age_arrivee_niveaux[2:4])),
+    classe_age = factor(classe_age, levels = rev(classes_age)),
+    valeur = pct(taux)
+  ) |>
+  group_by(classe_age, groupe) |>
+  mutate(effectif = max(effectif_champ)) |>
+  ungroup() |>
+  select(classe_age, groupe, effectif, indicateur, valeur) |>
+  pivot_wider(names_from = indicateur, values_from = valeur) |>
+  arrange(classe_age, groupe) |>
+  mutate(classe_age = paste(classe_age, "ans"), effectif = ent(effectif)) |>
+  rename_with(~ indicateurs$court[match(.x, indicateurs$id)], any_of(indicateurs$id)) |>
+  rename(`Classe d’âge (2019)` = classe_age, Groupe = groupe, Effectif = effectif) |>
+  knitr::kable()
+```
+:::
+
+</details>
+
+<details class="habitat-data-details">
+
+<summary>Voir le chômage et les cadres par niveau de diplôme</summary>
+
+::: {}
+```{r table-diplome-egal}
+diplome_egal |>
+  as_tibble() |>
+  mutate(
+    colonne = paste(
+      if_else(indicateur == "chomage", "Chômage", "Cadres"),
+      if_else(groupe == NC, "nés ici", "nés en métropole"),
+      sep = ", "
+    ),
+    valeur = pct(taux),
+    niveau = factor(niveau, levels = c(diplome_niveaux, "Ensemble (taux observé)", "Ensemble, à âge, sexe et diplôme identiques"))
+  ) |>
+  select(niveau, colonne, valeur) |>
+  pivot_wider(names_from = colonne, values_from = valeur) |>
+  arrange(niveau) |>
+  select(Diplôme = niveau, `Chômage, nés ici`, `Chômage, nés en métropole`, `Cadres, nés ici`, `Cadres, nés en métropole`) |>
+  knitr::kable(align = c("l", rep("r", 4)))
+```
+:::
+
+</details>
+
+<details class="habitat-data-details">
+
+<summary>Voir les indicateurs des IRIS</summary>
+
+::: {}
+```{r table-iris}
+iris_data |>
+  filter(population > 0) |>
+  transmute(
+    IRIS = iris,
+    Commune = commune,
+    Habitants = ent(population),
+    `Métropole ou DOM` = pct(pct_metro),
+    `Nés hors du pays` = pct(pct_hors),
+    `Wallis-et-Futuna ou Polynésie` = pct(pct_wf_pf),
+    `Étranger` = pct(pct_etranger),
+    `Hors du pays en 2014` = pct(pct_hors_2014)
+  ) |>
+  knitr::kable(align = c("l", "l", rep("r", 6)))
+```
+:::
+
+</details>
+
+## Repères bibliographiques
+
+- Aude Bernard et Martin Bell, [« Educational selectivity of internal migrants: A global assessment »](https://doi.org/10.4054/DemRes.2018.39.29), *Demographic Research*, vol. 39, 2018, p. 835-854.
+- Laeticia Bar, Gérard Baudchon et Jean-Louis Rallu, [« Les dynamiques socio-démographiques dans les TOM du Pacifique : vers un développement durablement assisté »](https://doi.org/10.4000/eps.250), *Espace populations sociétés*, 2004/2, p. 373-386.
+- Bertrand Buffière, [« En 2019, le taux de pauvreté reste stable en Nouvelle-Calédonie »](https://isee.nc/sites/default/files/2025-11/bdf2019-synthese52.pdf), Isee, *Synthèse* n° 52, août 2021.
+- Valérie Deruelle et François Sodter, [« Les minorités dans la ville : l’immigration des Ni-Vanuatu et des Wallisiens et Futuniens en Nouvelle-Calédonie »](https://horizon.documentation.ird.fr/exl-doc/pleins_textes/divers16-08/010017956.pdf), dans Gilbert David, Dominique Guillaud et Patrick Pillon (dir.), *La Nouvelle-Calédonie à la croisée des chemins : 1989-1997*, Société des Océanistes-IRD, 1999, p. 271-285.
+- Laure Hadj, Gaël Lagadec, Gérard Lavigne et Catherine Ris, [« Vingt ans de politiques de rééquilibrage en Nouvelle-Calédonie : démocratisation de l’école mais persistance des inégalités ethniques »](https://doi.org/10.4000/formationemploi.3855), *Formation emploi*, n° 120, 2012, p. 101-125.
+- Catherine Ris, [« Les inégalités ethniques dans l’accès à l’emploi en Nouvelle-Calédonie »](https://doi.org/10.3406/estat.2013.10229), *Économie et Statistique*, n° 464-466, 2013, p. 59-72.
+- Pascal Rivoilan, [« La croissance démographique fléchit nettement en Nouvelle-Calédonie entre 2014 et 2019 »](https://www.insee.fr/fr/statistiques/4924021), *Insee Première*, n° 1823, 2020.
+
+```{=html}
+<script src="../../assets/js/contours-brief.js"></script>
+<script src="../../assets/js/nes-ici-venus-dailleurs.js"></script>
+```
+
+## À lire aussi
+
+```{=html}
+<section class="article-related">
+<div class="article-related-grid">
+  <a class="article-related-link" href="../disparites-territoriales-nouvelle-caledonie/">
+    <span class="article-related-kicker">Inégalités territoriales</span>
+    <span class="article-related-title">Explorer les disparités territoriales en Nouvelle-Calédonie</span>
+    <span class="article-related-note">Vingt indicateurs comparés entre les 162 IRIS du pays et les quartiers du Grand Nouméa.</span>
+  </a>
+  <a class="article-related-link" href="../concentration-population-noumea-pacifique/">
+    <span class="article-related-kicker">Grand Nouméa</span>
+    <span class="article-related-title">Pourquoi la population se concentre autour de Nouméa ?</span>
+    <span class="article-related-note">Les dynamiques démographiques et migratoires qui structurent l’agglomération.</span>
+  </a>
+</div>
+</section>
+```

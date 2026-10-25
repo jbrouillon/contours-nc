@@ -1,0 +1,401 @@
+"regroupement","classe_age","naissance","groupe","indicateur","effectif_champ","effectif","taux","age_arrivee_median"
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","bac3",861,356,41.3473,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","cadres",622,111,17.8457,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","cdd",614,120,19.544,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","chomage",824,46,5.5825,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","emploi",861,778,90.36,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","proprietaire",859,451,52.5029,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","public",778,204,26.2211,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","sans_diplome",861,34,3.9489,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","sans_internet",859,91,10.5937,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés avant 16 ans","surpeuplement",859,71,8.2654,6
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","bac3",1159,491,42.3641,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","cadres",838,167,19.9284,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","cdd",834,147,17.6259,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","chomage",1126,37,3.286,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","emploi",1159,1089,93.9603,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","proprietaire",1147,462,40.279,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","public",1089,271,24.8852,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","sans_diplome",1159,21,1.8119,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","sans_internet",1147,89,7.7594,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 16-24 ans","surpeuplement",1147,64,5.5798,23
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","bac3",3031,1655,54.6024,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","cadres",2252,629,27.9307,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","cdd",2244,643,28.6542,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","chomage",2900,105,3.6207,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","emploi",3031,2795,92.2138,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","proprietaire",2902,635,21.8815,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","public",2795,982,35.1342,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_diplome",3031,38,1.2537,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_internet",2902,155,5.3411,28
+"age_arrivee","25-34","Métropole ou DOM","Arrivés à 25 ans ou plus","surpeuplement",2902,181,6.2371,28
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",31275,3369,10.7722,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",18754,1280,6.8252,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",18342,5488,29.9204,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",26829,5738,21.3873,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",31275,21091,67.4373,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",30891,18410,59.5966,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",21091,4370,20.7197,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",31275,5295,16.9305,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",30891,15861,51.3451,
+"age_arrivee","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",30891,7956,25.7551,
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","bac3",590,245,41.5254,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","cadres",408,118,28.9216,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","cdd",408,45,11.0294,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","chomage",555,10,1.8018,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","emploi",590,545,92.3729,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","proprietaire",588,398,67.6871,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","public",545,214,39.2661,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","sans_diplome",590,22,3.7288,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","sans_internet",588,49,8.3333,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés avant 16 ans","surpeuplement",588,37,6.2925,7
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","bac3",758,285,37.5989,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","cadres",521,148,28.4069,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","cdd",521,50,9.5969,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","chomage",725,13,1.7931,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","emploi",758,712,93.9314,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","proprietaire",756,498,65.873,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","public",712,244,34.2697,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","sans_diplome",758,24,3.1662,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","sans_internet",756,52,6.8783,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 16-24 ans","surpeuplement",756,51,6.746,23
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","bac3",5165,2648,51.2682,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","cadres",3595,1166,32.4339,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","cdd",3592,610,16.9822,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","chomage",4854,157,3.2344,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","emploi",5165,4697,90.939,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","proprietaire",5121,2027,39.5821,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","public",4697,1753,37.3217,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_diplome",5165,81,1.5682,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_internet",5121,190,3.7102,33
+"age_arrivee","35-44","Métropole ou DOM","Arrivés à 25 ans ou plus","surpeuplement",5121,333,6.5026,33
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",28452,3003,10.5546,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",17748,1522,8.5756,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",17642,3501,19.8447,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",24157,3666,15.1757,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",28452,20491,72.0195,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",28206,18509,65.6208,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",20491,5197,25.3624,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",28452,6243,21.9422,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",28206,13637,48.3479,
+"age_arrivee","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",28206,6426,22.7824,
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","bac3",677,236,34.8597,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","cadres",456,128,28.0702,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","cdd",455,41,9.011,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","chomage",627,18,2.8708,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","emploi",677,609,89.9557,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","proprietaire",674,529,78.4866,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","public",609,197,32.3481,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","sans_diplome",677,58,8.5672,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","sans_internet",674,52,7.7151,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés avant 16 ans","surpeuplement",674,32,4.7478,5
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","bac3",808,262,32.4257,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","cadres",510,151,29.6078,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","cdd",510,57,11.1765,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","chomage",750,17,2.2667,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","emploi",808,733,90.7178,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","proprietaire",806,598,74.1935,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","public",733,236,32.1965,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","sans_diplome",808,44,5.4455,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","sans_internet",806,45,5.5831,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 16-24 ans","surpeuplement",806,33,4.0943,22
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","bac3",4804,2103,43.776,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","cadres",3061,1005,32.8324,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","cdd",3060,365,11.9281,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","chomage",4441,172,3.873,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","emploi",4804,4269,88.8634,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","proprietaire",4782,2488,52.0284,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","public",4269,1489,34.8794,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_diplome",4804,157,3.2681,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_internet",4782,197,4.1196,38
+"age_arrivee","45-54","Métropole ou DOM","Arrivés à 25 ans ou plus","surpeuplement",4782,210,4.3915,38
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",26487,2163,8.1663,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",15763,1301,8.2535,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",15711,2675,17.0263,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",21249,2396,11.2758,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",26487,18853,71.1783,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",26263,18690,71.1648,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",18853,4686,24.8555,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",26487,8649,32.6538,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",26263,11968,45.5698,
+"age_arrivee","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",26263,4686,17.8426,
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","bac3",514,136,26.4591,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","cadres",174,41,23.5632,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","cdd",174,31,17.8161,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","chomage",272,6,2.2059,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","emploi",514,266,51.751,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","proprietaire",512,418,81.6406,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","public",266,76,28.5714,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","sans_diplome",514,48,9.3385,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","sans_internet",512,45,8.7891,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés avant 16 ans","surpeuplement",512,13,2.5391,8
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","bac3",509,142,27.8978,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","cadres",186,46,24.7312,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","cdd",186,24,12.9032,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","chomage",287,0,0,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","emploi",509,287,56.3851,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","proprietaire",508,395,77.7559,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","public",287,80,27.8746,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","sans_diplome",509,46,9.0373,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","sans_internet",508,43,8.4646,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 16-24 ans","surpeuplement",508,14,2.7559,21
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","bac3",3165,1268,40.0632,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","cadres",1462,487,33.3105,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","cdd",1460,195,13.3562,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","chomage",2297,57,2.4815,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","emploi",3165,2240,70.7741,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","proprietaire",3151,1786,56.6804,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","public",2240,771,34.4196,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_diplome",3165,131,4.139,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","sans_internet",3151,152,4.8239,42
+"age_arrivee","55-64","Métropole ou DOM","Arrivés à 25 ans ou plus","surpeuplement",3151,84,2.6658,42
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",18403,1199,6.5152,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",6206,681,10.9733,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",6197,1196,19.2997,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",8758,560,6.3942,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",18403,8198,44.5471,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",18306,14050,76.7508,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",8198,1885,22.9934,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",18403,6759,36.7277,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",18306,8468,46.2581,
+"age_arrivee","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",18306,2612,14.2685,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","bac3",1046,340,32.5048,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","cadres",805,116,14.4099,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","cdd",804,303,37.6866,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","chomage",987,39,3.9514,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","emploi",1046,948,90.631,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","proprietaire",865,308,35.6069,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","public",948,408,43.038,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","sans_diplome",1046,42,4.0153,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","sans_internet",865,122,14.104,
+"anciennete","25-34","Métropole ou DOM","Année non déclarée","surpeuplement",865,85,9.8266,
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","bac3",110,48,43.6364,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","cadres",79,17,21.519,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","cdd",79,17,21.519,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","chomage",101,3,2.9703,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","emploi",110,98,89.0909,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","proprietaire",110,51,46.3636,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","public",98,36,36.7347,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","sans_diplome",110,4,3.6364,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","sans_internet",110,7,6.3636,1
+"anciennete","25-34","Métropole ou DOM","Arrivés avant 1990","surpeuplement",110,10,9.0909,1
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","bac3",730,302,41.3699,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","cadres",531,95,17.8908,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","cdd",524,102,19.4656,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","chomage",705,38,5.3901,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","emploi",730,667,91.3699,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","proprietaire",728,392,53.8462,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","public",667,168,25.1874,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","sans_diplome",730,28,3.8356,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","sans_internet",728,84,11.5385,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 1990-2004","surpeuplement",728,55,7.5549,7
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","bac3",1599,776,48.5303,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","cadres",1147,303,26.4167,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","cdd",1138,156,13.7083,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","chomage",1565,35,2.2364,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","emploi",1599,1530,95.6848,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","proprietaire",1592,755,47.4246,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","public",1530,383,25.0327,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","sans_diplome",1599,25,1.5635,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","sans_internet",1592,118,7.4121,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2005-2014","surpeuplement",1592,93,5.8417,24
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","bac3",2612,1376,52.6799,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","cadres",1955,492,25.1662,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","cdd",1951,635,32.5474,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","chomage",2479,112,4.518,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","emploi",2612,2367,90.6202,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","proprietaire",2478,350,14.1243,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","public",2367,870,36.7554,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","sans_diplome",2612,36,1.3783,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","sans_internet",2478,126,5.0847,28
+"anciennete","25-34","Métropole ou DOM","Arrivés en 2015-2019","surpeuplement",2478,158,6.3761,28
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",31275,3369,10.7722,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",18754,1280,6.8252,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",18342,5488,29.9204,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",26829,5738,21.3873,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",31275,21091,67.4373,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",30891,18410,59.5966,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",21091,4370,20.7197,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",31275,5295,16.9305,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",30891,15861,51.3451,
+"anciennete","25-34","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",30891,7956,25.7551,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","bac3",1175,453,38.5532,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","cadres",820,192,23.4146,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","cdd",820,169,20.6098,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","chomage",1079,26,2.4096,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","emploi",1175,1053,89.617,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","proprietaire",1106,597,53.9783,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","public",1053,385,36.5622,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","sans_diplome",1175,47,4,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","sans_internet",1106,122,11.0307,
+"anciennete","35-44","Métropole ou DOM","Année non déclarée","surpeuplement",1106,81,7.3237,
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","bac3",370,169,45.6757,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","cadres",264,82,31.0606,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","cdd",264,29,10.9848,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","chomage",346,4,1.1561,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","emploi",370,342,92.4324,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","proprietaire",370,256,69.1892,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","public",342,137,40.0585,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","sans_diplome",370,13,3.5135,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","sans_internet",370,25,6.7568,4
+"anciennete","35-44","Métropole ou DOM","Arrivés avant 1990","surpeuplement",370,29,7.8378,4
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","bac3",1128,486,43.0851,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","cadres",760,225,29.6053,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","cdd",760,77,10.1316,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","chomage",1085,20,1.8433,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","emploi",1128,1065,94.4149,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","proprietaire",1123,764,68.0321,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","public",1065,391,36.7136,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","sans_diplome",1128,30,2.6596,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","sans_internet",1123,82,7.3019,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 1990-2004","surpeuplement",1123,53,4.7195,22
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","bac3",2827,1482,52.4231,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","cadres",1893,679,35.869,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","cdd",1890,228,12.0635,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","chomage",2749,65,2.3645,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","emploi",2827,2684,94.9416,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","proprietaire",2823,1629,57.7046,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","public",2684,729,27.161,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","sans_diplome",2827,50,1.7687,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","sans_internet",2823,127,4.4988,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2005-2014","surpeuplement",2823,187,6.6242,30
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","bac3",2188,1041,47.5777,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","cadres",1607,446,27.7536,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","cdd",1607,371,23.0865,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","chomage",1954,91,4.6571,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","emploi",2188,1863,85.1463,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","proprietaire",2149,274,12.7501,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","public",1863,954,51.2077,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","sans_diplome",2188,34,1.5539,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","sans_internet",2149,57,2.6524,37
+"anciennete","35-44","Métropole ou DOM","Arrivés en 2015-2019","surpeuplement",2149,152,7.0731,37
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",28452,3003,10.5546,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",17748,1522,8.5756,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",17642,3501,19.8447,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",24157,3666,15.1757,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",28452,20491,72.0195,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",28206,18509,65.6208,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",20491,5197,25.3624,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",28452,6243,21.9422,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",28206,13637,48.3479,
+"anciennete","35-44","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",28206,6426,22.7824,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","bac3",1229,371,30.1871,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","cadres",792,178,22.4747,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","cdd",789,137,17.3638,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","chomage",1114,43,3.86,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","emploi",1229,1071,87.144,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","proprietaire",1183,708,59.8478,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","public",1071,351,32.7731,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","sans_diplome",1229,103,8.3808,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","sans_internet",1183,129,10.9045,
+"anciennete","45-54","Métropole ou DOM","Année non déclarée","surpeuplement",1183,74,6.2553,
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","bac3",989,320,32.3559,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","cadres",647,187,28.9026,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","cdd",646,56,8.6687,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","chomage",904,28,3.0973,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","emploi",989,876,88.5743,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","proprietaire",984,758,77.0325,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","public",876,294,33.5616,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","sans_diplome",989,82,8.2912,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","sans_internet",984,71,7.2154,9
+"anciennete","45-54","Métropole ou DOM","Arrivés avant 1990","surpeuplement",984,44,4.4715,9
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","bac3",2293,1059,46.184,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","cadres",1407,473,33.6176,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","cdd",1407,134,9.5238,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","chomage",2184,46,2.1062,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","emploi",2293,2138,93.2403,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","proprietaire",2290,1691,73.8428,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","public",2138,705,32.9747,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","sans_diplome",2293,76,3.3144,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","sans_internet",2290,104,4.5415,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 1990-2004","surpeuplement",2290,84,3.6681,28
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","bac3",1645,651,39.5745,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","cadres",1025,338,32.9756,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","cdd",1025,125,12.1951,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","chomage",1537,45,2.9278,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","emploi",1645,1492,90.6991,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","proprietaire",1642,991,60.3532,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","public",1492,341,22.8552,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","sans_diplome",1645,53,3.2219,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","sans_internet",1642,67,4.0804,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2005-2014","surpeuplement",1642,80,4.8721,39
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","bac3",1362,571,41.9236,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","cadres",948,286,30.1688,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","cdd",947,148,15.6283,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","chomage",1193,88,7.3764,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","emploi",1362,1105,81.1307,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","proprietaire",1346,175,13.0015,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","public",1105,582,52.6697,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","sans_diplome",1362,48,3.5242,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","sans_internet",1346,52,3.8633,47
+"anciennete","45-54","Métropole ou DOM","Arrivés en 2015-2019","surpeuplement",1346,67,4.9777,47
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",26487,2163,8.1663,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",15763,1301,8.2535,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",15711,2675,17.0263,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",21249,2396,11.2758,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",26487,18853,71.1783,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",26263,18690,71.1648,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",18853,4686,24.8555,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",26487,8649,32.6538,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",26263,11968,45.5698,
+"anciennete","45-54","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",26263,4686,17.8426,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","bac3",870,240,27.5862,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","cadres",428,117,27.3364,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","cdd",428,91,21.2617,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","chomage",614,16,2.6059,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","emploi",870,598,68.7356,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","proprietaire",857,574,66.9778,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","public",598,198,33.1104,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","sans_diplome",870,94,10.8046,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","sans_internet",857,104,12.1354,
+"anciennete","55-64","Métropole ou DOM","Année non déclarée","surpeuplement",857,43,5.0175,
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","bac3",1513,506,33.4435,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","cadres",564,152,26.9504,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","cdd",564,84,14.8936,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","chomage",866,10,1.1547,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","emploi",1513,856,56.5763,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","proprietaire",1510,1187,78.6093,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","public",856,267,31.1916,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","sans_diplome",1513,118,7.7991,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","sans_internet",1510,121,8.0132,21
+"anciennete","55-64","Métropole ou DOM","Arrivés avant 1990","surpeuplement",1510,38,2.5166,21
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","bac3",1326,508,38.3107,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","cadres",585,181,30.9402,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","cdd",585,63,10.7692,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","chomage",992,19,1.9153,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","emploi",1326,973,73.3786,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","proprietaire",1321,944,71.461,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","public",973,282,28.9825,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","sans_diplome",1326,63,4.7511,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","sans_internet",1321,57,4.3149,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 1990-2004","surpeuplement",1321,31,2.3467,37
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","bac3",743,258,34.7241,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","cadres",309,103,33.3333,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","cdd",307,50,16.2866,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","chomage",558,16,2.8674,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","emploi",743,542,72.9475,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","proprietaire",737,397,53.867,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","public",542,110,20.2952,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","sans_diplome",743,27,3.6339,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","sans_internet",737,37,5.0204,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2005-2014","surpeuplement",737,23,3.1208,49
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","bac3",606,274,45.2145,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","cadres",364,138,37.9121,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","cdd",364,53,14.5604,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","chomage",440,18,4.0909,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","emploi",606,422,69.637,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","proprietaire",603,71,11.7745,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","public",422,268,63.5071,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","sans_diplome",606,17,2.8053,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","sans_internet",603,25,4.1459,57
+"anciennete","55-64","Métropole ou DOM","Arrivés en 2015-2019","surpeuplement",603,19,3.1509,57
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","bac3",18403,1199,6.5152,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cadres",6206,681,10.9733,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","cdd",6197,1196,19.2997,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","chomage",8758,560,6.3942,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","emploi",18403,8198,44.5471,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","proprietaire",18306,14050,76.7508,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","public",8198,1885,22.9934,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_diplome",18403,6759,36.7277,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","sans_internet",18306,8468,46.2581,
+"anciennete","55-64","Nouvelle-Calédonie","Nés en Nouvelle-Calédonie","surpeuplement",18306,2612,14.2685,

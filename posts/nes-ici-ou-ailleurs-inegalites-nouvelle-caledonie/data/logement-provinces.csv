@@ -1,0 +1,13 @@
+"province","groupe","indicateur","effectif_champ","taux"
+"Sud","Nés en Nouvelle-Calédonie","surpeuplement",70987,17.1398
+"Sud","Métropole ou DOM","surpeuplement",23748,5.4952
+"Nord","Nés en Nouvelle-Calédonie","surpeuplement",23820,24.3199
+"Nord","Métropole ou DOM","surpeuplement",1808,4.2035
+"Iles","Nés en Nouvelle-Calédonie","surpeuplement",8859,41.9912
+"Iles","Métropole ou DOM","surpeuplement",261,9.5785
+"Sud","Nés en Nouvelle-Calédonie","sans_internet",70987,39.041
+"Sud","Métropole ou DOM","sans_internet",23748,5.8994
+"Nord","Nés en Nouvelle-Calédonie","sans_internet",23820,62.2712
+"Nord","Métropole ou DOM","sans_internet",1808,9.5686
+"Iles","Nés en Nouvelle-Calédonie","sans_internet",8859,83.3841
+"Iles","Métropole ou DOM","sans_internet",261,24.1379

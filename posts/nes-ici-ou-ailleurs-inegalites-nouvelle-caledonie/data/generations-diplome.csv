@@ -1,0 +1,17 @@
+"classe_age","groupe","indicateur","effectif","taux"
+"25-34","Nés en Nouvelle-Calédonie","sans_diplome",31275,16.9305
+"35-44","Nés en Nouvelle-Calédonie","sans_diplome",28452,21.9422
+"45-54","Nés en Nouvelle-Calédonie","sans_diplome",26487,32.6538
+"55-64","Nés en Nouvelle-Calédonie","sans_diplome",18403,36.7277
+"25-34","Métropole ou DOM","sans_diplome",6097,2.2142
+"35-44","Métropole ou DOM","sans_diplome",7688,2.2633
+"45-54","Métropole ou DOM","sans_diplome",7518,4.8151
+"55-64","Métropole ou DOM","sans_diplome",5058,6.3068
+"25-34","Nés en Nouvelle-Calédonie","bac3",31275,10.7722
+"35-44","Nés en Nouvelle-Calédonie","bac3",28452,10.5546
+"45-54","Nés en Nouvelle-Calédonie","bac3",26487,8.1663
+"55-64","Nés en Nouvelle-Calédonie","bac3",18403,6.5152
+"25-34","Métropole ou DOM","bac3",6097,46.6131
+"35-44","Métropole ou DOM","bac3",7688,47.2294
+"45-54","Métropole ou DOM","bac3",7518,39.5318
+"55-64","Métropole ou DOM","bac3",5058,35.3104

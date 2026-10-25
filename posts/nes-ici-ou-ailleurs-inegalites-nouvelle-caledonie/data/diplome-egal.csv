@@ -1,0 +1,33 @@
+"indicateur","niveau","groupe","effectif_champ","taux"
+"chomage","CAP ou BEP","Métropole ou DOM",3007,5.2877
+"chomage","Aucun diplôme","Nés en Nouvelle-Calédonie",17342,23.9419
+"chomage","Baccalauréat","Nés en Nouvelle-Calédonie",17761,10.6863
+"chomage","CAP ou BEP","Nés en Nouvelle-Calédonie",22135,18.5814
+"chomage","CEP ou brevet","Nés en Nouvelle-Calédonie",8052,18.1694
+"chomage","Bac +2","Métropole ou DOM",4244,2.8746
+"chomage","Bac +3 ou plus","Métropole ou DOM",10511,2.0455
+"chomage","Bac +3 ou plus","Nés en Nouvelle-Calédonie",8872,4.0352
+"chomage","Bac +2","Nés en Nouvelle-Calédonie",6831,5.5043
+"chomage","Aucun diplôme","Métropole ou DOM",761,8.0158
+"chomage","Baccalauréat","Métropole ou DOM",4244,4.1235
+"chomage","CEP ou brevet","Métropole ou DOM",685,4.3796
+"chomage","Ensemble (taux observé)","Métropole ou DOM",23452,3.2492
+"chomage","Ensemble (taux observé)","Nés en Nouvelle-Calédonie",80993,15.2606
+"chomage","Ensemble, à âge, sexe et diplôme identiques","Nés en Nouvelle-Calédonie",,13.3551
+"chomage","Ensemble, à âge, sexe et diplôme identiques","Métropole ou DOM",,5.0662
+"cadres","Aucun diplôme","Nés en Nouvelle-Calédonie",10468,2.2736
+"cadres","Baccalauréat","Nés en Nouvelle-Calédonie",14163,6.3475
+"cadres","CAP ou BEP","Nés en Nouvelle-Calédonie",15274,2.7432
+"cadres","CEP ou brevet","Nés en Nouvelle-Calédonie",5490,3.1148
+"cadres","Bac +2","Métropole ou DOM",3177,22.3796
+"cadres","Bac +3 ou plus","Métropole ou DOM",8087,42.7847
+"cadres","Bac +3 ou plus","Nés en Nouvelle-Calédonie",7374,30.5262
+"cadres","Bac +2","Nés en Nouvelle-Calédonie",5702,14.1354
+"cadres","Aucun diplôme","Métropole ou DOM",445,8.764
+"cadres","Baccalauréat","Métropole ou DOM",2986,12.8265
+"cadres","CAP ou BEP","Métropole ou DOM",1805,8.9197
+"cadres","CEP ou brevet","Métropole ou DOM",430,10.6977
+"cadres","Ensemble (taux observé)","Nés en Nouvelle-Calédonie",58471,8.1818
+"cadres","Ensemble (taux observé)","Métropole ou DOM",16930,28.352
+"cadres","Ensemble, à âge, sexe et diplôme identiques","Nés en Nouvelle-Calédonie",,10.9238
+"cadres","Ensemble, à âge, sexe et diplôme identiques","Métropole ou DOM",,17.4717

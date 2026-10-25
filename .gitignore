@@ -73,6 +73,10 @@ posts/**/index_files/
 /_freeze/posts/migrations-externes-nouvelle-caledonie/
 /images/previews/migrations-externes-nouvelle-caledonie*.png
 /data/population/RP2019NC_OD_ind_*.xlsx
+/data/population/RP2019NC_OD_logements.xlsx
+/data/population/rp2019-dictionnaire-variables-logements.pdf
+# CSV recréés par scripts/convertir_rp2019_open_data.py
+/data/population/rp2019_od/
 /data/population/habitat-social.xls
 /data/population/logements-gn.xlsx
 /data/population/rp-structure-communautes.xls
