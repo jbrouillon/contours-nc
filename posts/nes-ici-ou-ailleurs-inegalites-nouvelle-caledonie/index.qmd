@@ -481,8 +481,6 @@ Le diplôme le plus élevé est regroupé en six niveaux, d’aucun diplôme à 
 
 **Limites.** Les données datent de 2019, avant les événements de mai 2024, et les réponses sont déclaratives. Les écarts entre groupes ne mesurent pas un effet du lieu de naissance : ils mêlent l’histoire des migrations, le milieu social, la géographie et les parcours scolaires.
 
-**Reproduire.** Les fichiers sources et les commandes sont documentés dans `data/population/README.md` et `data/revenus/README.md`. Le script `analysis.R` vérifie les totaux, les phrases chiffrées du résumé et les principaux constats.
-
 <p class="habitat-source">
 
 Sources : Isee, [recensement de la population 2019, données détaillées](https://www.isee.nc/population/recensement) (fichiers Individus et Logements) et tableau « Population par origine » ; Isee, [revenus et inégalités](https://isee.nc/revenus-et-inegalites) : enquête Budget des familles 2019-2020 ; <a href="https://ncl.popgis.spc.int/">PopGIS3 Nouvelle-Calédonie</a>, IRIS du RGP 2019 ; calculs et visualisations : Contours NC. Données de l’article : [profils par groupe](data/profils-25-64-ans.csv), [diplômes par lieu de naissance](data/diplomes-lieu-naissance.csv), [diplômes par classe d’âge](data/generations-diplome.csv), [classe d’âge et date d’installation](data/generations-installation.csv), [chômage et cadres par diplôme](data/diplome-egal.csv), [logement par province](data/logement-provinces.csv), [pauvreté 2019](data/pauvrete-bdf-2019.csv), [indicateurs par IRIS](data/iris-origines.csv) (CSV).
