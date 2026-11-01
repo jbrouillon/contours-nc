@@ -49,6 +49,10 @@ PREVIEWS = [
         / "previews"
         / "provinciales-2026-professions-foi.webp",
     },
+    {
+        "source": Path("images") / "previews" / "inegalites-nc-echelle-contours-nc.png",
+        "output": Path("images") / "previews" / "inegalites-nc-echelle-1200x630.jpg",
+    },
 ]
 
 

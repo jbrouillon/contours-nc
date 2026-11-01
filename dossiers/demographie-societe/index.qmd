@@ -123,7 +123,7 @@ toc: false
 
   <article class="dossier-card">
     <a class="dossier-card__image" href="../../posts/inegalites-revenus-nouvelle-caledonie-monde/">
-      <img src="../../images/previews/inegalites-revenus-nouvelle-caledonie-monde.png" alt="Globe centré sur le Pacifique, colorié selon l’écart entre les 20 % les plus aisés et les 20 % les plus modestes de chaque pays : la Nouvelle-Calédonie est en orange, l’Australie voisine en vert ; 35 pays sur 164 seulement ont un écart plus grand">
+      <img src="../../images/previews/inegalites-nc-echelle-1200x630.jpg" alt="Échelle des niveaux de vie en Nouvelle-Calédonie (2019) et en France métropolitaine (2018), rapportés au niveau de vie médian : le seuil d’entrée des 10 % les plus aisés vaut 7,1 fois celui des 10 % les plus modestes en Nouvelle-Calédonie, contre 3,5 fois en France">
     </a>
     <div class="dossier-card__body">
       <span class="dossier-card__phase">Inégalités sociales</span>

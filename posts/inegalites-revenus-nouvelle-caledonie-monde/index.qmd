@@ -10,8 +10,8 @@ categories:
   - Inégalités
   - Économie
 description: "Quelle part des revenus va aux 10 % les plus aisés ? Combien d’habitants vivent sous le seuil de pauvreté ? Cinq façons simples de mesurer les inégalités de revenus, et ce qu’elles disent de la Nouvelle-Calédonie face à la France, aux Outre-mer, aux pays riches et au reste du monde (Isee 2019, Banque mondiale, OCDE)."
-image: "../../images/previews/inegalites-revenus-nouvelle-caledonie-monde.png"
-image-alt: "Globe centré sur le Pacifique, colorié selon l’écart entre les 20 % les plus aisés et les 20 % les plus modestes de chaque pays : la Nouvelle-Calédonie est en orange, l’Australie voisine en vert ; 35 pays sur 164 seulement ont un écart plus grand."
+image: "../../images/previews/inegalites-nc-echelle-1200x630.jpg"
+image-alt: "Échelle des niveaux de vie en Nouvelle-Calédonie (2019) et en France métropolitaine (2018), rapportés au niveau de vie médian : le seuil d’entrée des 10 % les plus aisés vaut 7,1 fois celui des 10 % les plus modestes en Nouvelle-Calédonie, contre 3,5 fois en France."
 title-block-banner: true
 toc: true
 toc-depth: 3
