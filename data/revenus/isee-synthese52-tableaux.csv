@@ -1,0 +1,37 @@
+tableau,page,territoire,annee,source_enquete,definition,indicateur,valeur,note
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Avec autoconsommation et redistribution,gini,0.411,
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Avant redistribution,gini,0.442,
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Sans autoconsommation,gini,0.428,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Avec autoconsommation et redistribution,gini,0.393,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Avant redistribution,gini,0.430,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Sans autoconsommation,gini,0.413,
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Avec autoconsommation et redistribution,taux_pauvrete,18.6,
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Avant redistribution,taux_pauvrete,21.5,
+variantes,4,Nouvelle-Calédonie,2008,Isee BCM 2008,Sans autoconsommation,taux_pauvrete,20.5,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Avec autoconsommation et redistribution,taux_pauvrete,18.3,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Avant redistribution,taux_pauvrete,22.5,
+variantes,4,Nouvelle-Calédonie,2019,Isee BDF 2019,Sans autoconsommation,taux_pauvrete,20.7,
+comparaison,6,Nouvelle-Calédonie,2019,Isee BDF 2019,Niveau de vie monétaire,gini,0.419,
+comparaison,6,Nouvelle-Calédonie,2019,Isee BDF 2019,Niveau de vie monétaire,d9_d1,8.7,
+comparaison,6,Nouvelle-Calédonie,2019,Isee BDF 2019,Niveau de vie monétaire,s80_s20,10.2,
+comparaison,6,France,2018,Insee ERFS 2018,Niveau de vie,gini,0.298,
+comparaison,6,France,2018,Insee ERFS 2018,Niveau de vie,d9_d1,3.5,
+comparaison,6,France,2018,Insee ERFS 2018,Niveau de vie,s80_s20,4.4,
+comparaison,6,Guyane,2017,Insee BDF 2017,Niveau de vie,gini,0.429,
+comparaison,6,Guyane,2017,Insee BDF 2017,Niveau de vie,d9_d1,7.8,
+comparaison,6,Guyane,2017,Insee BDF 2017,Niveau de vie,s80_s20,10.5,
+comparaison,6,Guadeloupe,2017,Insee BDF 2017,Niveau de vie,gini,0.341,
+comparaison,6,Guadeloupe,2017,Insee BDF 2017,Niveau de vie,d9_d1,4.9,
+comparaison,6,Guadeloupe,2017,Insee BDF 2017,Niveau de vie,s80_s20,5.9,
+comparaison,6,Martinique,2017,Insee BDF 2017,Niveau de vie,gini,,« - » dans le tableau
+comparaison,6,Martinique,2017,Insee BDF 2017,Niveau de vie,d9_d1,4.9,
+comparaison,6,Martinique,2017,Insee BDF 2017,Niveau de vie,s80_s20,5.7,
+comparaison,6,La Réunion,2017,Insee BDF 2017,Niveau de vie,gini,0.361,
+comparaison,6,La Réunion,2017,Insee BDF 2017,Niveau de vie,d9_d1,4.4,
+comparaison,6,La Réunion,2017,Insee BDF 2017,Niveau de vie,s80_s20,5.4,
+comparaison,6,Mayotte,2017,Insee BDF 2017,Niveau de vie,gini,,« - » dans le tableau
+comparaison,6,Mayotte,2017,Insee BDF 2017,Niveau de vie,d9_d1,,« - » dans le tableau
+comparaison,6,Mayotte,2017,Insee BDF 2017,Niveau de vie,s80_s20,,« >80 » dans le tableau
+comparaison,6,Polynésie française,2015,ISPF EBF 2015,Niveau de vie,gini,0.530,
+comparaison,6,Polynésie française,2015,ISPF EBF 2015,Niveau de vie,d9_d1,9.2,
+comparaison,6,Polynésie française,2015,ISPF EBF 2015,Niveau de vie,s80_s20,,« - » dans le tableau

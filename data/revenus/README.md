@@ -23,3 +23,16 @@ for f in bdf2019-pauvrete.xls bdf2019-inegalites.xls bdf2019-pauvrete-inegalites
   curl -L -o "data/revenus/$f" "https://isee.nc/sites/default/files/2025-11/$f"
 done
 ```
+
+## Indice de Gini : tableaux de la synthèse n° 52 et courbe de Lorenz
+
+`isee-synthese52-tableaux.csv` recopie deux tableaux de la synthèse n° 52 (PDF consulté le 26 octobre 2026, SHA-256 `6ad290a6d4274d65976eae46315b3537c23fd031d4e27dad3cfc6ed848613e7c`), absents des fichiers tableurs :
+
+- p. 4, « Taux et intensité de la pauvreté et indice de Gini comparés 2008 et 2019 » (`tableau = variantes`) : indice de Gini avec autoconsommation et redistribution (définition officielle : 0,411 en 2008, 0,393 en 2019), avant redistribution et sans autoconsommation ; taux de pauvreté (`indicateur = taux_pauvrete`, en %) selon les mêmes définitions (officiel : 18,6 % en 2008, 18,3 % en 2019 ; sans autoconsommation, dit « taux de pauvreté monétaire » : 20,5 % et 20,7 %). Consulté de nouveau le 30 octobre 2026, même SHA-256 ;
+- p. 6, « Indicateurs d'inégalités - indice de Gini, rapport interdécile et rapport interquintile des masses de niveau de vie » (`tableau = comparaison`) : Nouvelle-Calédonie 2019, France 2018 (Insee, ERFS, qui couvre la France métropolitaine), DOM 2017 (Insee, BDF) et Polynésie française 2015 (ISPF, EBF). Pour cette comparaison, l'Isee retient le niveau de vie monétaire de la Nouvelle-Calédonie, hors autoconsommation (note 4 de la p. 6) : l'indice vaut alors 0,419.
+
+Les cases « - » du tableau sont laissées vides, avec une note ; le rapport interquintile de Mayotte, publié « >80 », aussi. La valeur de la Polynésie française (0,530) n'a pas pu être rapprochée d'une publication de l'ISPF (site data.ispf.pf injoignable le 26 octobre 2026) ; l'IEOM cite 0,40 pour 2009. Elle n'est pas utilisée.
+
+La feuille « Courbe de Lorenz » de `bdf2019-inegalites.xls` comporte 1 141 points. Sa colonne des parts cumulées de population est décalée d'une ligne : le libellé « population » occupe la place de la première valeur, et la dernière (1) n'a pas de revenu en regard. Chaque part cumulée de niveau de vie se lit donc avec la part de population de la ligne suivante : avec cette lecture, la courbe de 2019 reste convexe et redonne l'indice publié à 0,001 près. La courbe de 2008 est donnée sur la même grille de population (valeurs répétées) et s'arrête à 0,9991. Le traitement est fait par `posts/inegalites-revenus-nouvelle-caledonie-monde/analysis.R`.
+
+Les données mondiales de la Banque mondiale utilisées par le même article sont décrites dans `banque-mondiale/README.md`, celles de l'OCDE (rapport D9/D1, rapport S80/S20, indice de Gini et taux de pauvreté de 43 pays) dans `ocde/README.md`, celles de l'Insee (déciles et parts des niveaux de vie en France métropolitaine, 2018) dans `insee/README.md`.

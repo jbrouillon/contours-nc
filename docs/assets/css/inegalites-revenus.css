@@ -1,0 +1,562 @@
+/* Article « Inégalités de revenus : où se situe la Nouvelle-Calédonie ? ».
+   Les figures reprennent les composants de habitat.css (cadre, outils,
+   boutons à états, infobulle, tableaux de données repliés, carte de calcul
+   du ménage). */
+
+/* Lien « Afficher … sur le globe », en fin de présentation d'un outil. */
+.gini-globe-link {
+  border: 1px dashed rgba(65, 58, 48, 0.35);
+  border-radius: 6px;
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  text-decoration: none;
+}
+
+.gini-globe-link:hover,
+.gini-globe-link:focus-visible {
+  background: #fbf7ee;
+  text-decoration: underline;
+}
+
+/* Boîte à outils : une fiche par indicateur, avec un petit croquis. */
+.gini-tools {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  list-style: none;
+  margin: 1.1rem 0 1.6rem;
+  padding: 0;
+}
+
+.gini-tool {
+  background: #fffdf8;
+  border: 1px solid rgba(65, 58, 48, 0.18);
+  border-radius: 8px;
+  border-top: 5px solid var(--red);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0.75rem 0.9rem 0.8rem;
+}
+
+.gini-tool-sketch {
+  display: block;
+  height: auto;
+  margin: 0 auto 0.35rem;
+  max-width: 200px;
+  width: 100%;
+}
+
+.gini-tool-step {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.gini-tool .gini-tool-name {
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 1.28rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.gini-tool-what {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0 0 0.55rem;
+}
+
+.gini-tool-values {
+  border-top: 1px dashed rgba(65, 58, 48, 0.25);
+  font-size: 0.86rem;
+  margin: auto 0 0.45rem;
+  padding-top: 0.45rem;
+}
+
+.gini-tool-values > div {
+  align-items: baseline;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  line-height: 1.3;
+  padding: 0.12rem 0;
+}
+
+.gini-tool-values dt {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.gini-tool-values dd {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.gini-tool-values .is-nc dt,
+.gini-tool-values .is-nc dd {
+  color: var(--red);
+}
+
+.gini-tool-values .is-nc dd {
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 1.2rem;
+}
+
+.gini-tool-link {
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+/* Calcul du niveau de vie d'un ménage imaginaire. */
+.gini-menage {
+  margin: 1rem 0 1.4rem;
+}
+
+.gini-menage-sketch {
+  display: block;
+  height: auto;
+  margin: 0 auto 0.2rem;
+  max-width: 380px;
+  width: 100%;
+}
+
+.gini-figure {
+  min-height: 280px;
+}
+
+.gini-figure svg {
+  background: #fffdf8;
+}
+
+.gini-figure .habitat-sketch-tools {
+  justify-content: space-between;
+}
+
+.gini-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.gini-figure .access-mode-buttons {
+  flex-wrap: wrap;
+}
+
+.gini-figure .access-mode-buttons button {
+  padding: 0.42rem 0.6rem;
+}
+
+.gini-hit,
+.gini-dot {
+  cursor: crosshair;
+}
+
+.gini-hit:focus-visible,
+.gini-dot:focus-visible {
+  outline: none;
+  stroke: var(--red);
+  stroke-width: 2px;
+}
+
+.gini-tooltip {
+  max-width: 290px;
+}
+
+.gini-error {
+  color: var(--red);
+}
+
+/* Globe : SVG (globe, légende, source) et panneau HTML du pays choisi, côte
+   à côte au-delà de 860 px, l'un sous l'autre en dessous. Deux classes pour
+   l'emporter sur `figure.figure { display: block }` de Quarto. */
+.gini-figure.gini-figure--globe {
+  column-gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: visible;
+}
+
+.gini-figure--globe .habitat-sketch-tools {
+  grid-column: 1 / -1;
+}
+
+.gini-figure--globe .gini-controls {
+  gap: 0.5rem 0.8rem;
+}
+
+/* Groupe de boutons précédé de son libellé (« Outil », « Centrer sur »). */
+.gini-control {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
+  max-width: 100%;
+}
+
+.gini-control-label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gini-figure--globe svg.is-draggable {
+  cursor: grab;
+  touch-action: none;
+}
+
+.gini-figure--globe svg.is-draggable:active {
+  cursor: grabbing;
+}
+
+.gini-figure--globe .gini-pays.has-data,
+.gini-figure--globe .gini-globe-point {
+  cursor: pointer;
+}
+
+.gini-figure--globe .gini-globe-moving {
+  visibility: hidden;
+}
+
+.gini-figure--globe svg.is-moving .gini-globe-moving {
+  visibility: visible;
+}
+
+.gini-figure--globe svg.is-moving .gini-globe-settled {
+  visibility: hidden;
+}
+
+.gini-globe-panel {
+  border-top: 1px dashed rgba(65, 58, 48, 0.28);
+  margin: 0 0.4rem 0.6rem;
+  padding: 0.7rem 0.3rem 0;
+}
+
+.gini-globe-panel p {
+  margin: 0 0 0.45rem;
+}
+
+.gini-globe-kicker {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gini-globe-name {
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.gini-globe-value {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.5rem;
+}
+
+.gini-globe-value > span:last-child {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.gini-globe-big {
+  font-family: "Cabin Sketch", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Teinte du pays sur le globe, à côté de sa valeur. */
+.gini-globe-class {
+  align-items: center;
+  display: flex;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 0.45rem;
+}
+
+.gini-globe-chip {
+  border: 1px solid rgba(40, 37, 34, 0.55);
+  border-radius: 2px;
+  display: inline-block;
+  flex: none;
+  height: 0.85rem;
+  width: 1.25rem;
+}
+
+.gini-globe-meta,
+.gini-globe-note,
+.gini-globe-hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.38;
+}
+
+.gini-globe-rank,
+.gini-globe-share {
+  font-size: 0.92rem;
+  line-height: 1.42;
+}
+
+.gini-globe-subtitle {
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin-top: 0.7rem !important;
+}
+
+.gini-figure--globe svg.gini-globe-deciles {
+  background: transparent;
+  margin: 0.1rem 0 0.35rem;
+  max-width: 380px;
+}
+
+.gini-globe-hint {
+  border-left: 3px solid var(--yellow);
+  padding-left: 0.5rem;
+}
+
+/* Les cinq outils du pays sélectionné ; chaque outil s'affiche sur le globe
+   d'un clic. */
+.gini-globe-outils {
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  margin: 0.7rem 0 0.3rem;
+  width: 100%;
+}
+
+.gini-globe-outils caption {
+  caption-side: top;
+  font-weight: 800;
+  padding: 0 0 0.3rem;
+  text-align: left;
+}
+
+.gini-globe-outils th,
+.gini-globe-outils td {
+  border-bottom: 1px dashed rgba(65, 58, 48, 0.2);
+  padding: 0.2rem 0.3rem;
+  vertical-align: baseline;
+}
+
+.gini-globe-outils thead th {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.gini-globe-outils thead th:first-child {
+  text-align: left;
+}
+
+.gini-globe-outils td {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  text-align: right;
+}
+
+.gini-globe-outils td:last-child:not(:nth-child(2)) {
+  color: var(--red);
+}
+
+.gini-globe-outils button {
+  background: none;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  text-decoration: underline dotted rgba(65, 58, 48, 0.45);
+  text-underline-offset: 0.18em;
+}
+
+.gini-globe-outils button:focus-visible {
+  outline: 3px solid rgba(47, 107, 69, 0.28);
+  outline-offset: 2px;
+}
+
+.gini-globe-outils tr.is-active th,
+.gini-globe-outils tr.is-active td {
+  background: #fbf3dc;
+}
+
+.gini-globe-outils tr.is-active button {
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.gini-globe-sources {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.38;
+}
+
+/* Classe posée par le script selon la largeur de la figure (860 px). */
+.gini-figure--globe.is-wide {
+  grid-template-columns: minmax(0, 1.65fr) minmax(250px, 1fr);
+}
+
+.gini-figure--globe.is-wide > svg {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.gini-figure--globe.is-wide .gini-globe-panel {
+  align-self: start;
+  border-left: 1px dashed rgba(65, 58, 48, 0.28);
+  border-top: 0;
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0.6rem 0.6rem 0.6rem 0;
+  padding: 0.3rem 0 0 1rem;
+}
+
+.gini-table {
+  font-size: 0.86rem;
+  width: 100%;
+}
+
+.gini-table caption {
+  caption-side: top;
+  color: var(--muted);
+  font-size: 0.84rem;
+  padding: 0 0 0.4rem;
+  text-align: left;
+}
+
+.gini-table th[scope="row"] {
+  font-weight: 700;
+}
+
+.gini-table .is-num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.gini-table--ocde th.is-num {
+  white-space: normal;
+}
+
+.gini-table-nc th,
+.gini-table-nc td {
+  background: rgba(197, 72, 50, 0.09);
+  color: var(--red);
+}
+
+.gini-table-placeholder {
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .gini-figure .habitat-sketch-tools {
+    justify-content: flex-start;
+  }
+
+  /* Boutons : chaque groupe occupe toute la largeur et ses boutons se
+     répartissent par lignes selon leur libellé, au lieu de la grille à
+     trois colonnes de habitat.css qui coupe les libellés longs. */
+  .gini-figure .gini-controls,
+  .gini-figure .gini-control {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .gini-figure .access-mode-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .gini-figure .access-mode-buttons button {
+    flex: 1 1 auto;
+    font-size: 0.82rem;
+    line-height: 1.25;
+    padding: 0.45rem 0.55rem;
+  }
+
+  /* Liste des pays : elle prend la place restante sans imposer la largeur
+     de son option la plus longue. */
+  .gini-figure .habitat-map-control-label {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .gini-figure .habitat-map-select {
+    width: 0;
+  }
+
+  .gini-table:not(.gini-table--ocde) th:nth-child(2),
+  .gini-table:not(.gini-table--ocde) td:nth-child(2) {
+    display: none;
+  }
+
+  .gini-table--ocde {
+    font-size: 0.78rem;
+  }
+}
+
+/* Fiches sur une seule colonne : le croquis passe à gauche du numéro et du
+   nom de l'outil, pour raccourcir la liste. */
+@media (max-width: 560px) {
+  .gini-tool {
+    align-items: center;
+    column-gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+  }
+
+  .gini-tool-sketch {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+    max-width: none;
+  }
+
+  .gini-tool-step,
+  .gini-tool .gini-tool-name {
+    grid-column: 2;
+  }
+
+  .gini-tool-step {
+    align-self: end;
+  }
+
+  .gini-tool .gini-tool-name {
+    align-self: start;
+  }
+
+  .gini-tool-what,
+  .gini-tool-values,
+  .gini-tool-link {
+    grid-column: 1 / -1;
+  }
+
+  .gini-tool-what {
+    margin-top: 0.45rem;
+  }
+}
+
+/* Résumé « En bref » : la dernière diapositive n'a pas de croquis ; son texte
+   occupe la largeur au lieu de laisser une colonne vide à droite. */
+.contours-brief-stage .contours-brief-slide:not(:has(.contours-brief-sketch)) {
+  grid-template-columns: minmax(0, 46rem);
+}
