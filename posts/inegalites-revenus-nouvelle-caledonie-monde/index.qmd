@@ -255,15 +255,15 @@ Part du total des niveaux de vie, calculée à partir de la courbe de Lorenz de 
 
 ## La boîte à outils : cinq indicateurs {#boite-a-outils}
 
-Dix parts, cela fait encore beaucoup de chiffres pour comparer deux pays ou deux années. On les résume donc par un indicateur. Il en existe cinq principaux, qui ne répondent pas tout à fait à la même question : les trois premiers regardent les extrémités de la file, le quatrième résume toute la file, le cinquième compte les personnes qui décrochent du reste de la population.
+Dix parts, cela fait encore beaucoup de chiffres pour comparer deux pays ou deux années. On les résume par un indicateur. Les cinq principaux ne posent pas tout à fait la même question : les trois premiers regardent les extrémités de la file, le quatrième la file entière, le cinquième ceux qui décrochent du reste de la population. Déroulez un outil pour voir sa figure, sa valeur en Nouvelle-Calédonie et en France, ce qu’il voit et ce qu’il laisse de côté.
 
 ```{=html}
 <ul class="gini-tools" aria-label="Les cinq indicateurs de la boîte à outils">
   <li class="gini-tool">
     <svg class="gini-tool-sketch" viewBox="0 0 160 84" aria-hidden="true" data-gini-icon="part_haut10" data-parts="`r parts_2019`"></svg>
     <p class="gini-tool-step">Outil 1</p>
-    <p class="gini-tool-name">La part des 10 % les plus aisés</p>
-    <p class="gini-tool-what">Quelle part du gâteau reçoivent les 10 % les mieux lotis ?</p>
+    <p class="gini-tool-name">La part des 10&nbsp;% les plus aisés</p>
+    <p class="gini-tool-what">Quelle part du gâteau reçoivent les 10&nbsp;% les mieux lotis ?</p>
     <dl class="gini-tool-values">
       <div><dt>À égalité parfaite</dt><dd>10 %</dd></div>
       <div class="is-nc"><dt>Nouvelle-Calédonie, 2019</dt><dd>`r pct(part_haut10)`</dd></div>
@@ -275,7 +275,7 @@ Dix parts, cela fait encore beaucoup de chiffres pour comparer deux pays ou deux
     <svg class="gini-tool-sketch" viewBox="0 0 160 84" aria-hidden="true" data-gini-icon="s80_s20" data-bas="`r part_bas20`" data-haut="`r part_haut20`" data-ratio="`r s80_s20_2019`"></svg>
     <p class="gini-tool-step">Outil 2</p>
     <p class="gini-tool-name">Le rapport S80/S20</p>
-    <p class="gini-tool-what">Combien de fois plus reçoivent, ensemble, les 20 % les plus aisés que les 20 % les plus modestes ?</p>
+    <p class="gini-tool-what">Combien de fois plus reçoivent, ensemble, les 20&nbsp;% les plus aisés que les 20&nbsp;% les plus modestes ?</p>
     <dl class="gini-tool-values">
       <div><dt>À égalité parfaite</dt><dd>1</dd></div>
       <div class="is-nc"><dt>Nouvelle-Calédonie, 2019</dt><dd>`r ratio(s80_s20_2019)`</dd></div>
@@ -287,7 +287,7 @@ Dix parts, cela fait encore beaucoup de chiffres pour comparer deux pays ou deux
     <svg class="gini-tool-sketch" viewBox="0 0 160 84" aria-hidden="true" data-gini-icon="d9_d1" data-d1="`r liste(d1_2019)`" data-d9="`r liste(d9_2019)`" data-ratio="`r d9_d1_2019`"></svg>
     <p class="gini-tool-step">Outil 3</p>
     <p class="gini-tool-name">Le rapport D9/D1</p>
-    <p class="gini-tool-what">Combien de fois plus gagne-t-on à l’entrée des 10 % les plus aisés qu’à la limite des 10 % les plus modestes ?</p>
+    <p class="gini-tool-what">Combien de fois plus gagne-t-on à l’entrée des 10&nbsp;% les plus aisés qu’à la limite des 10&nbsp;% les plus modestes ?</p>
     <dl class="gini-tool-values">
       <div><dt>À égalité parfaite</dt><dd>1</dd></div>
       <div class="is-nc"><dt>Nouvelle-Calédonie, 2019</dt><dd>`r ratio(d9_d1_2019)`</dd></div>
@@ -322,11 +322,9 @@ Dix parts, cela fait encore beaucoup de chiffres pour comparer deux pays ou deux
 </ul>
 ```
 
-Pour la Nouvelle-Calédonie, les cinq outils vont dans le même sens, mais pas avec la même force, et ces différences sont instructives. Chacun est présenté ci-dessous de la même façon : la question qu’il pose, une illustration, sa valeur en Nouvelle-Calédonie et en France, puis ce qu’il voit et ce qu’il laisse de côté. Un lien permet ensuite de l’afficher sur le [globe](#globe), qui le compare au reste du monde.
-
 ### Outil 1 : la part des 10 % les plus aisés {#part-des-plus-aises}
 
-**La question.** C’est l’outil le plus simple : quelle part du gâteau revient aux 10 % les mieux lotis ? À égalité parfaite, elle vaudrait 10 %.
+L’outil le plus simple : la part du gâteau qui revient aux 10 % les mieux lotis. À égalité parfaite, elle vaudrait 10 %.
 
 ```{r fig-gateau, results="asis"}
 figure_gini(
@@ -345,15 +343,15 @@ figure_gini(
 )
 ```
 
-**En Nouvelle-Calédonie**, elle est de `r pct(part_haut10)` en 2019, contre `r pct(part_haut10_2008)` en 2008. Plus d’un quart du total des niveaux de vie va donc à un habitant sur dix. **En France**, la Banque mondiale l’estime à `r pct(part_haut10_pays("FRA"))` en `r annee_pays("FRA")`, à peine moins.
+**En Nouvelle-Calédonie**, elle est de `r pct(part_haut10)` en 2019 (`r pct(part_haut10_2008)` en 2008) : plus d’un quart du total des niveaux de vie pour un habitant sur dix. **En France**, à peine moins : `r pct(part_haut10_pays("FRA"))` en `r annee_pays("FRA")` (Banque mondiale).
 
-**Ce qu’il voit, ce qu’il ne voit pas.** Il renseigne sur le haut de l’échelle, mais ne dit rien du bas. Or c’est à l’autre bout de la file que la Nouvelle-Calédonie se distingue le plus : les 20 % les plus modestes n’y reçoivent que `r pct(part_bas20)` du total. L’Isee fait le même constat en comparant les niveaux de vie avec ceux des Outre-mer, à pouvoir d’achat égal : Mayotte mise à part, les Calédoniens les plus modestes ont les niveaux de vie les plus bas, avec ceux de Guyane, alors que les 30 % les plus aisés sont au niveau des autres territoires (synthèse n° 52, p. 6). Les outils suivants, qui regardent aussi le bas de l’échelle, le confirment.
+**Ce qu’il voit, ce qu’il ne voit pas.** Il ne regarde que le haut de l’échelle. Or la Nouvelle-Calédonie se distingue surtout par le bas : les 20 % les plus modestes n’y reçoivent que `r pct(part_bas20)` du total. L’Isee le constate aussi face aux Outre-mer, à pouvoir d’achat égal : Mayotte mise à part, les Calédoniens les plus modestes ont les niveaux de vie les plus bas, avec ceux de Guyane, alors que les 30 % les plus aisés sont au niveau des autres territoires (synthèse n° 52, p. 6).
 
 [Afficher la part des 10 % les plus aisés sur le globe ↓](#figure-globe){.gini-globe-link data-globe-indicateur="part_haut10"}
 
 ### Outil 2 : le rapport S80/S20 {#s80-s20}
 
-**La question.** Combien de fois plus reçoivent, ensemble, les 20 % les plus aisés que les 20 % les plus modestes ? À égalité parfaite, le rapport vaut 1 : chaque cinquième de la population reçoit autant.
+Il divise ce que reçoivent ensemble les 20 % les plus aisés par ce que reçoivent les 20 % les plus modestes. À égalité parfaite, il vaut 1.
 
 ```{r fig-quintiles, results="asis"}
 figure_gini(
@@ -376,15 +374,15 @@ figure_gini(
 )
 ```
 
-**En Nouvelle-Calédonie**, en 2019, les 20 % les plus aisés reçoivent `r pct(part_haut20)` du total des niveaux de vie, les 20 % les plus modestes `r pct(part_bas20)`. Les premiers reçoivent donc `r fois(s80_s20_2019)` plus que les seconds (`r fois(s80_s20_2008)` en 2008). **En France métropolitaine**, les 20 % les plus aisés reçoivent `r pct(part_haut20_france)` du total, les 20 % les plus modestes `r pct(part_bas20_france)` : le rapport est de `r ratio(s80_s20_france_2018)` (Insee, 2018). L’écart calédonien est presque deux fois plus grand.
+**En Nouvelle-Calédonie**, en 2019, les 20 % les plus aisés reçoivent `r pct(part_haut20)` du total des niveaux de vie, les 20 % les plus modestes `r pct(part_bas20)` : `r fois(s80_s20_2019)` plus (`r fois(s80_s20_2008)` en 2008). **En France métropolitaine**, `r pct(part_haut20_france)` contre `r pct(part_bas20_france)`, pour un rapport de `r ratio(s80_s20_france_2018)` (Insee, 2018) : l’écart calédonien est presque deux fois plus grand.
 
-**Ce qu’il voit, ce qu’il ne voit pas.** Il regarde les deux bouts de la file à la fois : il réagit donc à la faiblesse des plus petits revenus autant qu’à la concentration des plus hauts. Il ignore en revanche les 60 % de la population situés entre les deux.
+**Ce qu’il voit, ce qu’il ne voit pas.** Il réagit à la faiblesse des plus petits revenus autant qu’à la concentration des plus hauts, mais ignore les 60 % de la population situés entre les deux.
 
 [Afficher le rapport S80/S20 sur le globe ↓](#figure-globe){.gini-globe-link data-globe-indicateur="s80_s20"}
 
 ### Outil 3 : le rapport D9/D1 {#d9-d1}
 
-**La question.** Cette fois, on ne compare plus des parts du gâteau, mais deux personnes. La première se trouve à la limite des 10 % les plus modestes : son niveau de vie est appelé premier décile, ou D1. La seconde se trouve à l’entrée des 10 % les plus aisés : son niveau de vie est le neuvième décile, ou D9. Le rapport D9/D1 dit combien de fois la seconde dispose de plus que la première. À égalité parfaite, il vaut 1.
+Il compare non plus des parts du gâteau, mais deux personnes : celle qui se trouve à la limite des 10 % les plus modestes (son niveau de vie est le premier décile, D1) et celle qui entre dans les 10 % les plus aisés (le neuvième décile, D9). Le rapport dit combien de fois la seconde dispose de plus que la première ; à égalité parfaite, il vaut 1.
 
 ```{r fig-echelle, results="asis"}
 figure_gini(
@@ -410,22 +408,15 @@ figure_gini(
 )
 ```
 
-**En Nouvelle-Calédonie**, en 2019, les 10 % les plus modestes vivent avec moins de `r fcfp(d1_2019)` par mois et par unité de consommation, les 10 % les plus aisés avec plus de `r fcfp(d9_2019)`. Le second montant est `r fois(d9_d1_2019)` plus élevé que le premier (`r fois(d9_d1_2008)` en 2008). La moitié de la population vit avec moins de `r fcfp(mediane_2019)` par mois et par unité de consommation : c’est le niveau de vie médian.
+**En Nouvelle-Calédonie**, en 2019, les 10 % les plus modestes vivent avec moins de `r fcfp(d1_2019)` par mois et par unité de consommation, les 10 % les plus aisés avec plus de `r fcfp(d9_2019)` : `r fois(d9_d1_2019)` plus (`r fois(d9_d1_2008)` en 2008). **En France métropolitaine**, moins de `r euros(d1_france)` et plus de `r euros(d9_france)` (Insee, 2018) : le rapport, `r ratio(d9_d1_france_2018)`, est deux fois plus faible. Pour comparer sans convertir les monnaies ni corriger les écarts de prix, la figure rapporte chaque seuil au niveau de vie médian de son territoire, celui qui partage la population en deux : `r fcfp(mediane_2019)` par mois en Nouvelle-Calédonie, `r euros(mediane_france)` en France.
 
-**En France métropolitaine**, les 10 % les plus modestes vivent avec moins de `r euros(d1_france)` par mois et par unité de consommation, les 10 % les plus aisés avec plus de `r euros(d9_france)` (Insee, 2018). Le rapport est de `r ratio(d9_d1_france_2018)`, deux fois moins. Pour comparer les deux échelles sans convertir les monnaies ni corriger les écarts de prix, la figure place chaque seuil par rapport au niveau de vie médian de son territoire : `r fcfp(mediane_2019)` par mois en Nouvelle-Calédonie, `r euros(mediane_france)` en France.
-
-**Ce qu’il voit, ce qu’il ne voit pas.** Ce rapport a un avantage : il ignore les revenus tout en haut et tout en bas de l’échelle, que les enquêtes mesurent souvent mal. Il a l’inconvénient symétrique : il ne voit pas la concentration des très hauts revenus.
+**Ce qu’il voit, ce qu’il ne voit pas.** Il écarte les revenus tout en haut et tout en bas de l’échelle, que les enquêtes mesurent souvent mal ; il ne voit donc pas non plus la concentration des très hauts revenus.
 
 [Afficher le rapport D9/D1 sur le globe ↓](#figure-globe){.gini-globe-link data-globe-indicateur="d9_d1"}
 
 ### Outil 4 : l’indice de Gini {#gini}
 
-**La question.** C’est l’outil le plus complet, et le plus utilisé pour comparer les pays : au lieu de regarder les deux bouts de la file, il tient compte de toute la population. Il porte le nom du statisticien italien Corrado Gini, qui en a posé les bases en 1912. Il est compris entre 0 et 1 :
-
-- **0** correspond à l’égalité parfaite : chacun reçoit la même chose ;
-- **1** correspond à l’inégalité maximale : une seule personne reçoit tout, les autres rien.
-
-Entre les deux, plus l’indice est élevé, plus les revenus sont concentrés entre quelques mains. Il ne se lit pas comme un pourcentage : il se compare, d’une année à l’autre ou d’un pays à l’autre. On le trouve parfois multiplié par 100 (32 au lieu de 0,32), par exemple dans les indicateurs de développement de la Banque mondiale. La France est à `r gp("FRA")`, le Brésil à `r gp("BRA")`.
+L’outil le plus complet, et le plus utilisé pour comparer les pays : il tient compte de toute la population, pas seulement des deux bouts de la file. Il porte le nom du statisticien italien Corrado Gini, qui en a posé les bases en 1912, et va de **0**, si chacun reçoit la même chose, à **1**, si une seule personne reçoit tout. Il ne se lit pas comme un pourcentage, mais se compare d’un pays ou d’une année à l’autre ; la Banque mondiale le multiplie parfois par 100 (32 au lieu de 0,32). La France est à `r gp("FRA")`, le Brésil à `r gp("BRA")`.
 
 ```{r fig-explication, results="asis"}
 figure_gini(
@@ -449,35 +440,19 @@ figure_gini(
 )
 ```
 
-#### La courbe de Lorenz, ou l’indice en image {#lorenz}
+**La courbe de Lorenz, ou l’indice en image.** On empile les dix parts : les 10 %, 20 %, 30 %… les plus modestes reçoivent ensemble telle part du revenu total. Ces points dessinent la courbe de Lorenz, du nom de l’économiste américain Max Lorenz (1905) : c’est le panneau de droite de la figure. À égalité parfaite, elle se confond avec la diagonale ; plus les revenus sont inégaux, plus elle se creuse. L’indice de Gini mesure ce creux : la surface hachurée, rapportée à tout le triangle situé sous la diagonale.
 
-Pour passer des dix parts à un seul chiffre, on les empile. On lit, pour les 10 %, 20 %, 30 %… les plus modestes, quelle part du revenu total ils reçoivent ensemble. Les points obtenus dessinent une courbe, dite de Lorenz, du nom de l’économiste américain Max Lorenz qui l’a proposée en 1905 : c’est le panneau de droite de la figure.
+**Une lecture plus concrète.** Entre deux personnes prises au hasard, l’écart de revenu vaut en moyenne deux fois l’indice, en part du revenu moyen : `r pct(100 * ecart_moyen("FRA"))` du revenu moyen avec `r gp("FRA")`, comme en France ; à peu près le revenu moyen avec `r gp("BRA")`, comme au Brésil.
 
-En cas d’égalité parfaite, la courbe se confond avec la diagonale : les 30 % les plus modestes reçoivent 30 % du revenu, la moitié en reçoit la moitié. Plus les revenus sont inégaux, plus la courbe se creuse sous la diagonale.
+**En Nouvelle-Calédonie**, l’indice vaut `r g2(gini_2019)` en 2019, contre `r g2(gini_2008)` en 2008 (Isee) : une baisse légère, des inégalités qui restent élevées. Sans l’autoconsommation, comme pour l’Insee, il monte à `r g2(gini_2019_harmonise)` ; sans les prestations sociales et les impôts directs, il serait d’environ 0,04 plus élevé, à `r g2(gini_2019_avant_redistribution)`. **En France métropolitaine**, il est de `r g2(gini_france_2018)` (Insee, 2018).
 
-L’indice de Gini mesure ce creux : c’est la surface hachurée entre la diagonale et la courbe, rapportée à toute la surface du triangle situé sous la diagonale. Elle est nulle en cas d’égalité. Si les 10 % les plus aisés recevaient tout, l’indice vaudrait `r fmt_num(gini_10_extreme, 1)` sur cette figure, et non 1 : les membres de ce dernier groupe se partageraient encore tout à parts égales. Il n’atteint 1 que si une seule personne reçoit tout.
-
-Calculé ainsi sur dix groupes, l’indice est un peu plus bas que l’indice officiel, calculé personne par personne, car il ne voit pas les écarts à l’intérieur de chaque groupe.
-
-#### Une autre façon de le lire {#ecart-moyen}
-
-L’indice a une lecture plus concrète. Prenons deux personnes au hasard et mesurons l’écart entre leurs revenus. En moyenne, cet écart vaut deux fois l’indice de Gini, en part du revenu moyen. Avec un indice de `r gp("FRA")`, comme en France, deux personnes prises au hasard sont séparées en moyenne par `r pct(100 * ecart_moyen("FRA"))` du revenu moyen. Avec `r gp("BRA")`, comme au Brésil, cet écart égale à peu près le revenu moyen.
-
-#### En Nouvelle-Calédonie et en France {#gini-nc}
-
-**En Nouvelle-Calédonie**, l’indice de Gini des niveaux de vie vaut `r g2(gini_2019)` en 2019, contre `r g2(gini_2008)` en 2008, selon les enquêtes de l’Isee sur le budget des familles. La baisse est légère : les inégalités restent élevées. Sans l’autoconsommation, comme pour l’Insee, il monte à `r g2(gini_2019_harmonise)`. Les prestations sociales et les impôts directs réduisent les écarts : sans eux, d’après l’Isee, l’indice serait d’environ 0,04 plus élevé, à `r g2(gini_2019_avant_redistribution)`.
-
-**En France métropolitaine**, l’indice est de `r g2(gini_france_2018)` (Insee, 2018).
-
-**Ce qu’il voit, ce qu’il ne voit pas.** Il résume tout le partage en un seul chiffre. Mais un même indice peut correspondre à des situations différentes : des plus modestes très pauvres, ou une petite minorité qui concentre les revenus. D’où l’intérêt de le lire avec les autres outils ([voir les limites](#limites)).
+**Ce qu’il voit, ce qu’il ne voit pas.** Il résume tout le partage en un chiffre, mais un même indice peut recouvrir des situations différentes : des plus modestes très pauvres, ou une petite minorité qui concentre les revenus. D’où l’intérêt de le lire avec les autres outils.
 
 [Afficher l’indice de Gini sur le globe ↓](#figure-globe){.gini-globe-link data-globe-indicateur="gini"}
 
 ### Outil 5 : le taux de pauvreté {#pauvrete}
 
-**La question.** Le dernier outil ne mesure pas l’écart entre les plus modestes et les plus aisés : il compte les personnes qui décrochent du reste de la population. On fixe un seuil de pauvreté, puis on calcule la part de la population qui vit en dessous.
-
-En Nouvelle-Calédonie, ce seuil est relatif : il est fixé à la moitié du niveau de vie médian, celui qui partage la population en deux moitiés. En 2019, le niveau de vie médian était de `r fcfp(mediane_2019)` par mois et par unité de consommation. Le seuil était donc de `r fcfp(seuil_pauvrete_2019)` par mois pour une personne seule, et de `r fcfp(seuil_pauvrete_couple_2_enfants)` pour un couple avec deux enfants de moins de 14 ans. L’OCDE publie un taux au même seuil de 50 % pour tous ses pays. En France, l’Insee retient le plus souvent un seuil plus haut, à 60 % du niveau de vie médian : nous utilisons ici le seuil de 50 % partout.
+Il ne mesure pas un écart, mais compte les personnes qui décrochent du reste de la population : la part qui vit sous un seuil de pauvreté. Ce seuil est relatif : la moitié du niveau de vie médian, soit `r fcfp(seuil_pauvrete_2019)` par mois pour une personne seule en 2019, et `r fcfp(seuil_pauvrete_couple_2_enfants)` pour un couple avec deux enfants de moins de 14 ans. L’OCDE publie un taux au même seuil de 50 % pour tous ses pays ; l’Insee retient le plus souvent un seuil de 60 %, que nous n’utilisons pas ici.
 
 ```{r fig-pauvrete, results="asis"}
 figure_gini(
@@ -498,11 +473,9 @@ figure_gini(
 )
 ```
 
-**En Nouvelle-Calédonie**, `r taux(pauvrete_2019)` de la population vit sous ce seuil en 2019, soit `r ent(population_pauvre_2019)` personnes : près d’une sur cinq. Le taux était de `r taux(pauvrete_2008)` en 2008. Sans les prestations sociales et les impôts directs, il atteindrait `r taux(pauvrete_2019_avant_redistribution)`.
+**En Nouvelle-Calédonie**, `r taux(pauvrete_2019)` de la population vit sous ce seuil en 2019, soit `r ent(population_pauvre_2019)` personnes : près d’une sur cinq (`r taux(pauvrete_2008)` en 2008). Sans les prestations sociales et les impôts directs, le taux atteindrait `r taux(pauvrete_2019_avant_redistribution)`. **En France**, il est de `r taux(ocde_val("FRA", "pauvrete"))` en `r annee_ocde("FRA")`, au même seuil (OCDE).
 
-**En France**, d’après l’OCDE, le taux est de `r taux(ocde_val("FRA", "pauvrete"))` en `r annee_ocde("FRA")`, au même seuil de 50 %.
-
-**Ce qu’il voit, ce qu’il ne voit pas.** Comme les autres outils, ce taux est relatif : il mesure la distance au reste de la population, pas le manque de nourriture ou de logement. Si tous les revenus doublaient du jour au lendemain, il ne changerait pas.
+**Ce qu’il voit, ce qu’il ne voit pas.** Il mesure la distance au reste de la population, pas le manque de nourriture ou de logement : si tous les revenus doublaient du jour au lendemain, il ne changerait pas.
 
 [Afficher le taux de pauvreté sur le globe ↓](#figure-globe){.gini-globe-link data-globe-indicateur="pauvrete"}
 
@@ -563,16 +536,6 @@ figure_gini(
 
 Choisissez un outil, faites tourner le globe ou centrez-le sur une région : les couleurs dessinent une géographie, du bleu, où les écarts sont les plus faibles, au rouge. Pour le pays choisi, le panneau donne aussi la valeur des cinq outils, à côté de celle de la Nouvelle-Calédonie.
 
-**Rapport S80/S20, affiché d’abord.** Il va de `r ratio(s80_monde(s80_extremes[1]))` en `r nm(s80_extremes[1])` à `r ratio(s80_monde(s80_extremes[2]))` en `r nm(s80_extremes[2])`. Avec `r ratio(s80_s20_2019)`, la Nouvelle-Calédonie n’est dépassée que par `r n_monde_s80_au_dessus` des `r n_monde` pays. Des trois outils disponibles pour tous les pays, c’est celui où elle se classe le plus haut, ce qui confirme le constat précédent : c’est par le bas de l’échelle qu’elle se distingue.
-
-**Indice de Gini.** Les pays les plus inégalitaires, en orange et en rouge (`r g2(seuil_haut)` ou plus), se trouvent tous en Amérique latine, dans les Caraïbes ou en Afrique subsaharienne. Les plus égalitaires, en bleu (moins de `r g2(seuil_bas)`), sont surtout européens : `r n_sous_seuil_bas_europe` sur `r n_sous_seuil_bas` se trouvent en Europe ou en Asie centrale. L’indice va de `r gp("IND")` en Inde à `r gp("HTI")` en Haïti, dont la dernière enquête date de `r annee_pays("HTI")`. La Nouvelle-Calédonie se situe au-dessus de la plupart des pays : sept sur dix ont un indice plus bas que le sien (`r g2(gini_2019)`), et même quatre sur cinq si on le calcule sans l’autoconsommation (`r g2(gini_2019_harmonise)`).
-
-**Part des 10 % les plus aisés.** Elle va de `r pct(part_haut10_monde(part_haut10_extremes[1]))` en `r nm(part_haut10_extremes[1])` à `r pct(part_haut10_monde(part_haut10_extremes[2]))` en `r nm(part_haut10_extremes[2])`. La Nouvelle-Calédonie (`r pct(part_haut10)`) se trouve au milieu du classement : `r n_monde_haut10_au_dessus` des `r n_monde` pays ont une part plus élevée.
-
-**Rapport D9/D1 et taux de pauvreté.** Le globe ne montre alors que les `r n_ocde` pays suivis par l’OCDE, en grande majorité des pays riches. Ils sont comparés plus bas, [parmi les pays riches](#pays-riches).
-
-Ces comparaisons demandent quelques précautions, détaillées juste après.
-
 ```{=html}
 <details class="habitat-data-details" data-gini-table="monde" data-src="data/gini-monde.csv" data-nc-src="data/indicateurs-nc.csv">
   <summary>Voir l’indice de Gini, la part des 10 % les plus aisés et le rapport S80/S20 par pays</summary>
@@ -584,15 +547,23 @@ Ces comparaisons demandent quelques précautions, détaillées juste après.
 
 ### Comparer avec prudence {#comparabilite}
 
-Ces comparaisons donnent des ordres de grandeur. Quelques centièmes d’écart entre deux pays peuvent tenir à la façon de mesurer : mieux vaut retenir les grands écarts. Quatre différences invitent à la prudence.
+Ces comparaisons donnent des ordres de grandeur : quelques centièmes d’écart entre deux pays peuvent tenir à la façon de mesurer, mieux vaut retenir les grands écarts.
 
-**Ce que l’on mesure : le revenu ou la consommation.** Dans beaucoup de pays d’Afrique, d’Asie et du Pacifique insulaire, les enquêtes de la Banque mondiale mesurent ce que les ménages consomment plutôt que ce qu’ils gagnent : c’est souvent plus fiable quand une grande partie des ressources vient de l’agriculture, du travail indépendant ou de l’économie informelle. C’est le cas de l’Inde, en bas de l’échelle. Or la consommation est en général moins inégale que le revenu : les ménages aisés épargnent une partie de leurs revenus, et la consommation varie moins d’une année à l’autre. Dans les `r n_deux_mesures` enquêtes où la Banque mondiale publie les deux mesures pour un même pays et une même année, le revenu donne un indice de Gini plus élevé sept fois sur dix. L’OCDE, elle, mesure toujours le revenu, comme l’Isee.
+<details class="habitat-data-details" id="comparabilite-mesures">
 
-**Comment on tient compte de la taille du ménage.** La Banque mondiale divise le revenu du ménage par le nombre de ses membres, sans tenir compte des économies que permet la vie à plusieurs. Cela accentue un peu les écarts : pour la France de 2018, elle obtient un indice de Gini de `r g2(gini_france_pip_2018)`, contre `r g2(gini_france_2018)` pour l’Insee. L’OCDE, qui tient compte de ces économies d’une autre façon, obtient des chiffres très proches de ceux de l’Insee. Mesurée comme la Banque mondiale, la Nouvelle-Calédonie paraîtrait donc probablement un peu plus inégalitaire, pas moins.
+<summary>Quatre différences de mesure entre les pays</summary>
 
-**Avec ou sans autoconsommation.** L’OCDE et la Banque mondiale ne comptent que les revenus en argent. En Nouvelle-Calédonie, l’autoconsommation réduit les écarts. C’est pourquoi les figures montrent deux valeurs calédoniennes : la plus comparable aux autres pays est celle sans autoconsommation.
+::: {}
+**Revenu ou consommation.** Dans beaucoup de pays d’Afrique, d’Asie et du Pacifique insulaire, comme l’Inde, la Banque mondiale mesure ce que les ménages consomment plutôt que ce qu’ils gagnent. Or la consommation est en général moins inégale, car les ménages aisés épargnent une partie de leurs revenus : dans les `r n_deux_mesures` enquêtes où la Banque mondiale publie les deux mesures pour un même pays et une même année, le revenu donne un indice de Gini plus élevé sept fois sur dix. L’OCDE mesure toujours le revenu, comme l’Isee.
 
-**Des années différentes.** Les dernières enquêtes de la Banque mondiale s’étalent de `r annees_enquetes[1]` à `r annees_enquetes[2]` selon les pays, les données de l’OCDE retenues de `r annees_ocde[1]` à `r annees_ocde[2]`. L’enquête calédonienne date de 2019.
+**Taille du ménage.** La Banque mondiale divise le revenu du ménage par le nombre de ses membres, sans tenir compte des économies que permet la vie à plusieurs, ce qui accentue un peu les écarts : pour la France de 2018, elle obtient un indice de `r g2(gini_france_pip_2018)`, contre `r g2(gini_france_2018)` pour l’Insee ; l’OCDE obtient des chiffres très proches de ceux de l’Insee. Mesurée ainsi, la Nouvelle-Calédonie paraîtrait probablement un peu plus inégalitaire, pas moins.
+
+**Autoconsommation.** L’OCDE et la Banque mondiale ne comptent que les revenus en argent. En Nouvelle-Calédonie, l’autoconsommation réduit les écarts : des deux valeurs calédoniennes des figures, la plus comparable aux autres pays est celle sans autoconsommation.
+
+**Années.** Les dernières enquêtes de la Banque mondiale vont de `r annees_enquetes[1]` à `r annees_enquetes[2]` selon les pays, les données de l’OCDE retenues de `r annees_ocde[1]` à `r annees_ocde[2]` ; l’enquête calédonienne date de 2019.
+:::
+
+</details>
 
 ### Parmi les pays riches, un écart rarement atteint {#pays-riches}
 
@@ -628,7 +599,7 @@ Les boutons de la figure affichent les autres outils. Ils vont dans le même sen
 
 Au total, même avec sa définition officielle, qui lui est la plus favorable, seuls `r en_lettres(length(ocde_toujours_au_dessus))` pays dépassent la Nouvelle-Calédonie sur les quatre indicateurs de l’OCDE à la fois : `r noms(ocde_toujours_au_dessus)`. Sans l’autoconsommation, il ne reste que `r noms(ocde_toujours_au_dessus_harmonise)`. Ses deux grands voisins, l’Australie et la Nouvelle-Zélande, sont nettement en dessous sur chacun. Les États-Unis, souvent cités comme le plus inégalitaire des grands pays riches, sont proches de la Nouvelle-Calédonie pour l’indice de Gini, le rapport S80/S20 et le taux de pauvreté, mais ont un rapport D9/D1 plus faible (`r ratio(ocde_val("USA", "d9_d1"))`).
 
-La base plus large de la Banque mondiale confirme ce constat. Sur ses `r n_hic` pays à revenu élevé, `r en_lettres(length(hic_au_dessus))` seulement ont un indice de Gini plus élevé que la Nouvelle-Calédonie (`r noms(hic_au_dessus)`), et `r en_lettres(length(hic_s80_au_dessus))` un rapport S80/S20 plus élevé (`r noms(hic_s80_au_dessus)`). Mesurée comme la Banque mondiale, qui accentue un peu les écarts ([voir plus haut](#comparabilite)), la Nouvelle-Calédonie se classerait probablement encore un peu plus haut.
+La base plus large de la Banque mondiale confirme ce constat. Sur ses `r n_hic` pays à revenu élevé, `r en_lettres(length(hic_au_dessus))` seulement ont un indice de Gini plus élevé que la Nouvelle-Calédonie (`r noms(hic_au_dessus)`), et `r en_lettres(length(hic_s80_au_dessus))` un rapport S80/S20 plus élevé (`r noms(hic_s80_au_dessus)`). Mesurée comme la Banque mondiale, qui accentue un peu les écarts ([voir plus haut](#comparabilite-mesures)), la Nouvelle-Calédonie se classerait probablement encore un peu plus haut.
 
 ```{=html}
 <details class="habitat-data-details" data-gini-table="ocde" data-src="data/indicateurs-ocde.csv" data-nc-src="data/indicateurs-nc.csv">

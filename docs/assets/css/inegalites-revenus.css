@@ -20,62 +20,81 @@
   text-decoration: underline;
 }
 
-/* Boîte à outils : une fiche par indicateur, avec un petit croquis. */
+/* Boîte à outils : un bandeau par indicateur, avec un petit croquis. Avec
+   JavaScript, chaque bandeau déroule dessous la présentation de son outil,
+   en accordéon (voir inegalites-revenus.js). Bandeau étroit : croquis à
+   gauche du numéro et du nom, le reste dessous ; bandeau large : tout sur
+   une ligne, bouton à droite. */
 .gini-tools {
+  container-type: inline-size;
   display: grid;
-  gap: 0.85rem;
-  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 0.6rem;
+  grid-template-columns: minmax(0, 1fr);
   list-style: none;
   margin: 1.1rem 0 1.6rem;
   padding: 0;
 }
 
 .gini-tool {
+  align-items: center;
   background: #fffdf8;
   border: 1px solid rgba(65, 58, 48, 0.18);
+  border-left: 5px solid var(--red);
   border-radius: 8px;
-  border-top: 5px solid var(--red);
-  display: flex;
-  flex-direction: column;
+  column-gap: 0.85rem;
+  display: grid;
+  grid-template-areas:
+    "sketch step"
+    "sketch name"
+    "what what"
+    "values values"
+    "action action";
+  grid-template-columns: 6.5rem minmax(0, 1fr);
   margin: 0;
-  padding: 0.75rem 0.9rem 0.8rem;
+  padding: 0.7rem 0.9rem 0.75rem;
+  scroll-margin-top: 4rem;
 }
 
 .gini-tool-sketch {
   display: block;
+  grid-area: sketch;
   height: auto;
-  margin: 0 auto 0.35rem;
-  max-width: 200px;
   width: 100%;
 }
 
 .gini-tool-step {
+  align-self: end;
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 800;
+  grid-area: step;
   letter-spacing: 0.04em;
   margin: 0;
   text-transform: uppercase;
 }
 
 .gini-tool .gini-tool-name {
+  align-self: start;
   font-family: "Cabin Sketch", sans-serif;
   font-size: 1.28rem;
   font-weight: 700;
+  grid-area: name;
   line-height: 1.1;
-  margin: 0.15rem 0 0.4rem;
+  margin: 0.15rem 0 0;
 }
 
 .gini-tool-what {
   font-size: 0.9rem;
+  grid-area: what;
   line-height: 1.4;
-  margin: 0 0 0.55rem;
+  margin: 0.5rem 0;
 }
 
 .gini-tool-values {
   border-top: 1px dashed rgba(65, 58, 48, 0.25);
   font-size: 0.86rem;
-  margin: auto 0 0.45rem;
+  grid-area: values;
+  margin: 0 0 0.5rem;
   padding-top: 0.45rem;
 }
 
@@ -114,6 +133,194 @@
 .gini-tool-link {
   font-size: 0.84rem;
   font-weight: 700;
+  grid-area: action;
+}
+
+/* Bouton « Dérouler » : il couvre tout le bandeau ; sur un bandeau étroit,
+   il en occupe le bas sur toute la largeur. */
+.gini-tool:has(.gini-tool-toggle) {
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.gini-tool:has(.gini-tool-toggle):hover {
+  background: #fbf7ee;
+  border-color: rgba(65, 58, 48, 0.42);
+  border-left-color: var(--red);
+}
+
+.gini-tool-toggle {
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(65, 58, 48, 0.45);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 0.88rem;
+  font-weight: 800;
+  gap: 0.5rem;
+  grid-area: action;
+  justify-content: center;
+  padding: 0.38rem 0.95rem;
+  white-space: nowrap;
+}
+
+.gini-tool-toggle::after {
+  border-radius: 8px;
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+
+.gini-tool-toggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.gini-tool:has(.gini-tool-toggle:focus-visible) {
+  border-color: var(--ink);
+  border-left-color: var(--red);
+}
+
+/* Chevron : vers le bas pour dérouler, vers le haut pour enrouler. */
+.gini-tool-chevron {
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  display: inline-block;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  width: 0.5rem;
+}
+
+.gini-tool.is-open {
+  background: #fbf4ea;
+  border-color: var(--red);
+  box-shadow: inset 0 0 0 1px var(--red);
+}
+
+.gini-tool.is-open .gini-tool-toggle {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fffdf8;
+}
+
+.gini-tool.is-open .gini-tool-chevron {
+  margin-top: 0.25rem;
+  transform: rotate(-135deg);
+}
+
+/* Pointe sous le bandeau déroulé, vers sa présentation. */
+.gini-tool.is-open::after {
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--red);
+  bottom: -11px;
+  content: "";
+  left: 2.6rem;
+  position: absolute;
+}
+
+@container (min-width: 680px) {
+  .gini-tool {
+    column-gap: 1.2rem;
+    grid-template-areas:
+      "sketch step values action"
+      "sketch name values action"
+      "sketch what values action";
+    grid-template-columns: 7.5rem minmax(0, 1fr) minmax(11.5rem, 13.5rem) auto;
+    padding: 0.75rem 1rem;
+  }
+
+  .gini-tool-what {
+    align-self: start;
+    margin: 0.35rem 0 0;
+  }
+
+  .gini-tool-values {
+    align-self: center;
+    border-left: 1px dashed rgba(65, 58, 48, 0.25);
+    border-top: 0;
+    margin: 0;
+    padding: 0 0 0 1rem;
+  }
+
+  .gini-tool-toggle,
+  .gini-tool-link {
+    justify-self: end;
+  }
+}
+
+/* Outil déroulé : sa présentation suit son bandeau ; les bandeaux suivants
+   reprennent dessous. */
+.gini-tools:has(+ .gini-tool-panel:not(.is-collapsed)) {
+  margin-bottom: 1.2rem;
+}
+
+.gini-tools + .gini-tool-panel > h3 {
+  margin-top: 0.6rem;
+}
+
+.gini-tool-panel + .gini-tools--suite {
+  margin-top: 1.6rem;
+}
+
+.gini-tool-panel > h3:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.gini-tool-panel {
+  scroll-margin-top: 1rem;
+}
+
+/* Présentation enroulée : sans hauteur, mais dans la page (le sommaire de
+   Quarto repère les sections par leur position). */
+.gini-tool-panel.is-collapsed {
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  visibility: hidden;
+}
+
+/* Bas de la présentation d'un outil : outil voisin, ou l'enrouler. */
+.gini-tool-nav {
+  border-top: 1px dashed rgba(65, 58, 48, 0.3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0.4rem;
+  padding-top: 0.85rem;
+}
+
+.gini-tool-nav button {
+  background: transparent;
+  border: 1px dashed rgba(65, 58, 48, 0.35);
+  border-radius: 6px;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  text-align: left;
+}
+
+.gini-tool-nav button:hover,
+.gini-tool-nav button:focus-visible {
+  background: #fbf7ee;
+  text-decoration: underline;
+}
+
+.gini-tool-nav .is-next {
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gini-tool:has(.gini-tool-toggle),
+  .gini-tool-chevron {
+    transition: none;
+  }
 }
 
 /* Calcul du niveau de vie d'un ménage imaginaire. */
@@ -218,6 +425,12 @@
 
 .gini-figure--globe svg.is-draggable:active {
   cursor: grabbing;
+}
+
+/* Écran tactile : le glissement horizontal tourne le globe, le vertical fait
+   défiler la page. */
+.gini-figure--globe svg.is-swipeable {
+  touch-action: pan-y pinch-zoom;
 }
 
 .gini-figure--globe .gini-pays.has-data,
@@ -511,47 +724,6 @@
 
   .gini-table--ocde {
     font-size: 0.78rem;
-  }
-}
-
-/* Fiches sur une seule colonne : le croquis passe à gauche du numéro et du
-   nom de l'outil, pour raccourcir la liste. */
-@media (max-width: 560px) {
-  .gini-tool {
-    align-items: center;
-    column-gap: 0.75rem;
-    display: grid;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
-  }
-
-  .gini-tool-sketch {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    margin: 0;
-    max-width: none;
-  }
-
-  .gini-tool-step,
-  .gini-tool .gini-tool-name {
-    grid-column: 2;
-  }
-
-  .gini-tool-step {
-    align-self: end;
-  }
-
-  .gini-tool .gini-tool-name {
-    align-self: start;
-  }
-
-  .gini-tool-what,
-  .gini-tool-values,
-  .gini-tool-link {
-    grid-column: 1 / -1;
-  }
-
-  .gini-tool-what {
-    margin-top: 0.45rem;
   }
 }
 

@@ -24,7 +24,11 @@
   // - Liens a[data-globe-indicateur] ou a[data-globe-vue] : choisissent
   //   l'outil ou la région du globe vers lequel ils pointent.
   // - Fiches de la boîte à outils et ménage : svg[data-gini-icon], petits
-  //   croquis dont les valeurs figurent aussi dans le texte.
+  //   croquis dont les valeurs figurent aussi dans le texte. Chaque bandeau
+  //   (.gini-tools .gini-tool) déroule dessous la présentation de son outil,
+  //   enroulée par défaut.
+  // - Pied des figures : une phrase de lecture (LECTURES) dit comment
+  //   interpréter l'outil montré.
   // - Croquis du résumé « En bref » : svg[data-brief-sketch] dans la section
   //   [data-gini-brief], dessinés à la première ouverture du résumé
   //   (événement « contours-brief:open »), avec les mêmes couleurs.
@@ -82,8 +86,9 @@
   ];
   const media = (query) => Boolean(window.matchMedia && window.matchMedia(query).matches);
   const reducedMotion = media("(prefers-reduced-motion: reduce)");
-  // Sur écran tactile, le globe ne capte pas le glissement (la page doit
-  // défiler) : il tourne avec les boutons, la liste ou en touchant un pays.
+  // Sur écran tactile, seul le glissement horizontal fait tourner le globe :
+  // le glissement vertical reste au défilement de la page. Le globe tourne
+  // aussi avec les boutons, la liste ou en touchant un pays.
   const finePointer = media("(pointer: fine)");
 
   const GROUPES = [
@@ -175,6 +180,16 @@
   // Globe du résumé « En bref » : le rapport S80/S20, comme le globe de
   // l'article à l'ouverture.
   const GLOBE_S80 = GLOBE_OUTILS.find((o) => o.id === "s80_s20");
+  // Phrase de lecture de chaque outil, au pied des figures qui le montrent
+  // (outils 1 à 5, France et Outre-mer, globe, pays de l'OCDE) : comment
+  // interpréter sa valeur, et ce qu'il vaudrait à égalité parfaite.
+  const LECTURES = {
+    part_haut10: "plus la part des 10 % les plus aisés est élevée, plus les revenus se concentrent en haut de l’échelle ; à égalité parfaite, elle serait de 10 %.",
+    s80_s20: "le rapport S80/S20 dit combien de fois plus reçoivent les 20 % les plus aisés que les 20 % les plus modestes ; plus il est élevé, plus l’écart entre les deux bouts de la file est grand (1 à égalité parfaite).",
+    d9_d1: "le rapport D9/D1 dit combien de fois plus dispose la personne qui entre dans les 10 % les plus aisés que celle à la limite des 10 % les plus modestes ; plus il est élevé, plus l’échelle des niveaux de vie est étirée (1 à égalité parfaite).",
+    gini: "l’indice de Gini va de 0, si chacun reçoit la même chose, à 1, si une seule personne reçoit tout ; plus il est élevé, plus le partage est inégal.",
+    pauvrete: "plus le taux de pauvreté est élevé, plus nombreux sont ceux qui décrochent du reste de la population ; il mesure une distance au niveau de vie médian, pas le manque de nourriture ou de logement."
+  };
   const globeColor = (outil, value) => GLOBE_COULEURS[globeClass(outil, value)];
   const globeClass = (outil, value) => outil.seuils.filter((t) => value >= t).length;
   // Fourchette calédonienne : définition officielle, puis niveau de vie
@@ -388,6 +403,19 @@
     }), options.opacity);
   }
 
+  // Ancre visée par un lien vers la page elle-même, sinon `null`. Servie en
+  // HTTP, la page voit ses liens « #… » réécrits en adresses complètes par
+  // Quarto (quarto-nav.js) : l'attribut href ne suffit pas.
+  function pageAnchor(link) {
+    const strip = (path) => path.replace(/\/index\.html$/, "/");
+    if (!link.hash || link.origin !== window.location.origin || strip(link.pathname) !== strip(window.location.pathname)) return null;
+    try {
+      return decodeURIComponent(link.hash.slice(1));
+    } catch (error) {
+      return null;
+    }
+  }
+
   function positionTooltip(container, tooltip, event) {
     const bounds = container.getBoundingClientRect();
     const margin = 8;
@@ -506,8 +534,14 @@
     return y + 10;
   }
 
-  // Source et signature ; renvoie la hauteur totale.
+  // Phrase de lecture (`ctx.lecture`, interprétation de l'outil montré),
+  // source et signature ; renvoie la hauteur totale.
   function drawFooter(svg, rc, ctx, width, y) {
+    if (ctx.lecture) {
+      y = paragraph(svg, `Lecture : ${ctx.lecture}`, 18, y + 8, width - 36, {
+        size: ctx.compact ? 11 : 12, lineHeight: ctx.compact ? 15 : 16, weight: 700
+      }) + 2;
+    }
     roughLine(svg, rc, 18, y, width - 18, y, { stroke: frame, strokeWidth: 0.7, roughness: 0.6, seed: `${ctx.key}-pied` });
     const yy = y + 15;
     const lines = wrap(ctx.source, ctx.compact ? Math.floor((width - 120) / 5.8) : Math.floor((width - 140) / 6.2));
@@ -523,7 +557,7 @@
   // Ajuste la hauteur et le résumé accessible d'une figure.
   function finish(svg, ctx, width, height, aria) {
     svg.attr("viewBox", `0 0 ${width} ${height}`).attr("width", width).attr("height", height);
-    svg.attr("aria-label", `${ctx.title}. ${aria}`);
+    svg.attr("aria-label", `${ctx.title}. ${aria}${ctx.lecture ? ` Lecture : ${ctx.lecture}` : ""}`);
   }
 
   function buttonGroup(name, options, current, onChange) {
@@ -881,6 +915,7 @@
         const preset = ctx.presets[ctx.state.preset];
         const { points, gini: g } = lorenzOf(preset.parts);
         const key = `${ctx.key}-${ctx.state.preset}`;
+        ctx.lecture = "plus la courbe de Lorenz se creuse sous la diagonale, plus la surface hachurée est grande et l’indice de Gini élevé ; il va de 0, si chacun reçoit la même chose, à 1, si une seule personne reçoit tout.";
         let y = drawHeader(svg, ctx, W, preset.sub);
 
         // Valeur de l'indice, au-dessus des deux panneaux.
@@ -1111,7 +1146,7 @@
         hint.className = "gini-globe-hint";
         hint.textContent = finePointer
           ? "Faites glisser le globe pour le tourner. Cliquez sur un pays, ou choisissez-le dans la liste, pour l’afficher ici."
-          : "Touchez un pays, choisissez une région ou un pays dans la liste pour l’afficher ici.";
+          : "Faites glisser le globe de côté pour le tourner. Touchez un pays, ou choisissez-le dans la liste, pour l’afficher ici.";
         panel.append(live, body, hint);
         ctx.root.appendChild(panel);
         Object.assign(ctx.globe, { views, outils, select, panelBody: body, live });
@@ -1145,10 +1180,11 @@
         const bm = outil.source === "bm";
         const { svg, key } = ctx;
         svg.interrupt("rotation");
-        svg.on(".drag", null);
+        svg.on(".drag", null).on(".swipe", null);
         svg.selectAll("*").remove();
         // Titre, source et nom du fichier exporté suivent l'outil affiché.
         ctx.title = outil.title;
+        ctx.lecture = LECTURES[outil.id];
         ctx.source = [bm ? ctx.root.dataset.source : ctx.root.dataset.sourceOcde, outil.note].filter(Boolean).join(" ");
         ctx.root.dataset.filename = `${G.filename}-${outil.id.replace(/_/g, "-")}`;
         const download = ctx.root.querySelector(".habitat-sketch-download");
@@ -1248,6 +1284,11 @@
         const ncValue = label(ncMarker, `${fourchette(outil, nc)} (Isee)`, 0, 0, { size: compact ? 10.5 : 11.5, weight: 700, halo: true, haloWidth: 3.5 });
         const selectedPoint = globe.append("circle")
           .attr("r", compact ? 7 : 8).attr("fill", "none").attr("stroke", ink).attr("stroke-width", 1.6).attr("pointer-events", "none");
+        // Pays choisi, autre que la Nouvelle-Calédonie : son nom et sa valeur
+        // sur le globe, comme pour elle.
+        const selMarker = globe.append("g").attr("pointer-events", "none");
+        const selTitle = label(selMarker, "", 0, 0, { family: fontSketch, size: compact ? 13 : 15, weight: 700, halo: true, haloWidth: 4 });
+        const selValue = label(selMarker, "", 0, 0, { size: compact ? 10.5 : 11.5, weight: 700, halo: true, haloWidth: 3.5 });
         // Contour du globe, fixe : un trait net qui borde exactement la
         // sphère (les terres ne le dépassent jamais), doublé d'un trait de
         // crayon juste à l'extérieur. Un cercle rough.js de cette taille
@@ -1309,6 +1350,53 @@
           const anchor = right ? "start" : "end";
           ncTitle.attr("x", tx).attr("y", ny + 2).attr("text-anchor", anchor);
           ncValue.attr("x", tx).attr("y", ny + (compact ? 17 : 19)).attr("text-anchor", anchor);
+          // Pays choisi : à droite ou à gauche de son repère, sinon dessous ou
+          // dessus ; la première place qui ne touche pas l'étiquette de la
+          // Nouvelle-Calédonie et reste dans la figure.
+          const showSel = !selected.nc && visible(selected.centre);
+          selMarker.attr("display", showSel ? null : "none");
+          if (showSel) {
+            const [sx, sy] = project(selected.centre);
+            const selValueNum = globeValue(selected, outil);
+            const selValueText = selValueNum == null ? "pas de valeur" : outil.fmt(selValueNum);
+            selTitle.text(selected.name);
+            selValue.text(selValueText);
+            const lineGap = compact ? 17 : 19;
+            // Boîte d'une étiquette à deux lignes : titre centré sur y + 2,
+            // valeur sur y + lineGap.
+            const boxOf = (x, y, anchor, w) => {
+              const x0 = anchor === "start" ? x : anchor === "end" ? x - w : x - w / 2;
+              return [x0, y - 7, x0 + w, y + lineGap + 7];
+            };
+            const overlap = (a, b) => Math.max(0, Math.min(a[2], b[2]) - Math.max(a[0], b[0])) * Math.max(0, Math.min(a[3], b[3]) - Math.max(a[1], b[1]));
+            // Obstacles : l'étiquette de la Nouvelle-Calédonie et son anneau.
+            const ncBoxes = visible(ncCentre)
+              ? [
+                boxOf(tx, ny, anchor, Math.max(textW("Nouvelle-Calédonie", compact ? 14 : 16), textW(ncValue.text(), compact ? 10.5 : 11.5))),
+                [nx - ringR - 3, ny - ringR - 3, nx + ringR + 3, ny + ringR + 3]
+              ]
+              : [];
+            const selW = Math.max(textW(selected.name, compact ? 13 : 15), textW(selValueText, compact ? 10.5 : 11.5));
+            const gap = feature ? 8 : 12;
+            const sides = [[sx + gap, sy, "start"], [sx - gap, sy, "end"]];
+            if (sx >= cx + R * 0.3) sides.reverse();
+            const candidates = [
+              ...sides,
+              [sx, sy + gap + 22, "middle"], [sx, sy - gap - lineGap - 16, "middle"],
+              [sx, sy + gap + 44, "middle"], [sx, sy - gap - lineGap - 38, "middle"]
+            ];
+            // Gêne d'une place : chevauchement avec la Nouvelle-Calédonie, ou
+            // sortie de la figure.
+            const gene = ([x, y, a]) => {
+              const b = boxOf(x, y, a, selW);
+              const dehors = Math.max(0, 2 - b[0]) + Math.max(0, b[2] - (W - 2));
+              return d3.sum(ncBoxes, (box) => overlap(b, box)) + dehors * 100;
+            };
+            const [sTx, sTy, sAnchor] = candidates.find((c) => gene(c) === 0)
+              || candidates.reduce((best, c) => (gene(c) < gene(best) ? c : best));
+            selTitle.attr("x", sTx).attr("y", sTy + 2).attr("text-anchor", sAnchor);
+            selValue.attr("x", sTx).attr("y", sTy + lineGap).attr("text-anchor", sAnchor);
+          }
           if (settled) {
             settledPaths.forEach((p) => p.attr("d", path));
             drawRough();
@@ -1355,16 +1443,24 @@
           positionTooltip(ctx.root, ctx.tooltip, event);
         };
         const hideTip = () => { ctx.tooltip.style.opacity = 0; };
+        // Un « clic » qui suit de près un glissement tactile est ignoré : il
+        // recentrerait le globe sur le pays touché en fin de geste.
+        let lastSwipe = 0;
+        const tap = (iso3) => {
+          if (Date.now() - lastSwipe > 400) select(iso3, true);
+        };
         d3.selectAll([...countries.nodes(), ncShape.node()])
           .on("pointerenter pointermove", (event, d) => showTip(event, tipFor(d.properties.iso3, d.properties.nom)))
           .on("pointerleave", hideTip)
-          .on("click", (event, d) => select(d.properties.iso3, true));
+          .on("click", (event, d) => tap(d.properties.iso3));
         pointMarks
           .on("pointerenter pointermove", (event, d) => showTip(event, tipFor(d.iso3)))
           .on("pointerleave", hideTip)
-          .on("click", (event, d) => select(d.iso3, true));
+          .on("click", (event, d) => tap(d.iso3));
 
         function rotateTo(lonLat) {
+          // Cible mémorisée : un redessin en pleine rotation la reprend.
+          ctx.state.cible = lonLat;
           const start = projection.rotate();
           const target = [-lonLat[0], Math.max(-70, Math.min(70, -lonLat[1])), 0];
           // Plus court chemin en longitude.
@@ -1374,6 +1470,7 @@
           const finish = () => {
             projection.rotate(target);
             ctx.state.rotation = target;
+            ctx.state.cible = null;
             update(true);
           };
           const distance = d3.geoDistance(lonLat, centre());
@@ -1419,6 +1516,7 @@
           svg.call(d3.drag()
             .on("start", (event) => {
               svg.interrupt("rotation");
+              ctx.state.cible = null;
               event.subject.rotation = projection.rotate();
               event.subject.pointer = [event.x, event.y];
               pending = null;
@@ -1448,7 +1546,54 @@
               update(true);
             }));
         } else {
-          svg.classed("is-draggable", false);
+          // Écran tactile : un glissement horizontal fait tourner le globe
+          // d'est en ouest ; un glissement vertical fait défiler la page
+          // (touch-action: pan-y), et le navigateur annule alors le geste
+          // (pointercancel). Le globe ne bascule pas : la latitude reste celle
+          // de la vue choisie.
+          svg.classed("is-draggable", false).classed("is-swipeable", true);
+          const k = 180 / Math.PI / R;
+          let swipe = null;
+          let frame = null;
+          const endSwipe = () => {
+            if (frame !== null) window.cancelAnimationFrame(frame);
+            frame = null;
+            const done = swipe;
+            swipe = null;
+            if (!done || !done.pending) return;
+            lastSwipe = Date.now();
+            projection.rotate(done.pending);
+            ctx.state.rotation = done.pending;
+            setPressed(G.views, null);
+            update(true);
+          };
+          svg
+            .on("pointerdown.swipe", (event) => {
+              if (event.pointerType === "mouse" || swipe) return;
+              swipe = { id: event.pointerId, x: d3.pointer(event, svg.node())[0], rotation: projection.rotate(), pending: null };
+            })
+            .on("pointermove.swipe", (event) => {
+              if (!swipe || event.pointerId !== swipe.id) return;
+              const dx = d3.pointer(event, svg.node())[0] - swipe.x;
+              // Petit seuil : un simple appui reste une sélection.
+              if (!swipe.pending && Math.abs(dx) < 8) return;
+              if (!swipe.pending) {
+                svg.interrupt("rotation");
+                ctx.state.cible = null;
+                hideTip();
+              }
+              swipe.pending = [swipe.rotation[0] + dx * k, swipe.rotation[1], 0];
+              if (frame !== null) return;
+              frame = window.requestAnimationFrame(() => {
+                frame = null;
+                if (!swipe || !swipe.pending) return;
+                projection.rotate(swipe.pending);
+                update(false);
+              });
+            })
+            .on("pointerup.swipe pointercancel.swipe", (event) => {
+              if (swipe && event.pointerId === swipe.id) endSwipe();
+            });
         }
 
         // Légende : rampe des six classes, de même largeur ; un trait par
@@ -1530,7 +1675,10 @@
           kx += width + 16;
         });
 
-        update(true);
+        // Un redessin pendant une rotation (le panneau a changé de hauteur,
+        // par exemple) la reprend vers sa cible au lieu de l'arrêter en route.
+        if (ctx.state.cible) rotateTo(ctx.state.cible);
+        else update(true);
         renderGlobePanel(ctx);
         const height = drawFooter(svg, rc, ctx, W, ly + 22);
         const pays = Array.from(G.entries.values()).filter((e) => !e.nc);
@@ -1555,6 +1703,7 @@
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
         const ind = OUTRE_MER.find((o) => o.id === ctx.state.indicateur);
+        ctx.lecture = LECTURES[ind.id];
         const data = rows.filter((d) => Number.isFinite(d[ind.id])).sort((a, b) => b[ind.id] - a[ind.id]);
         const missing = rows.filter((d) => !Number.isFinite(d[ind.id])).map((d) => d.territoire);
         let y = drawHeader(svg, ctx, W, `${ind.label} des niveaux de vie ; Nouvelle-Calédonie sans l’autoconsommation, comme pour l’Insee`);
@@ -1619,6 +1768,7 @@
           return row.part;
         });
         const half = d3.sum(parts.slice(0, 5));
+        ctx.lecture = "à égalité parfaite, chaque dixième de la population recevrait 10 francs ; plus les piles s’écartent de ce trait, plus le partage est inégal.";
         let y = drawHeader(svg, ctx, W, compact
           ? `Sur 100 francs de niveaux de vie, ce que reçoit chaque dixième de la population (${annee})`
           : `Sur 100 francs de niveaux de vie, ce que reçoit chaque dixième de la population en ${annee}, du plus modeste au plus aisé`);
@@ -1691,6 +1841,7 @@
         const { svg, width: W, compact } = ctx;
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
+        ctx.lecture = LECTURES.d9_d1;
         const d = ctx.root.dataset;
         const seuilsOf = (rows, annee) => d3.range(1, 10).map((k) => {
           const row = rows.find((r) => r.annee === annee && r.decile === k);
@@ -1833,6 +1984,7 @@
         const { svg, width: W, compact } = ctx;
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
+        ctx.lecture = LECTURES.pauvrete;
         const d = ctx.root.dataset;
         const panels = [
           { name: "Nouvelle-Calédonie", meta: d.ncMeta, value: Number(d.nc), extra: Number(d.ncHarmonise), color: colorNc },
@@ -1916,6 +2068,7 @@
         const { svg, width: W, compact } = ctx;
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
+        ctx.lecture = LECTURES.part_haut10;
         const annee = Number(ctx.root.dataset.annee) || 2019;
         const ncParts = d3.range(1, 11).map((k) => {
           const row = deciles.find((d) => d.annee === annee && d.decile === k);
@@ -2001,6 +2154,7 @@
         const { svg, width: W, compact } = ctx;
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
+        ctx.lecture = LECTURES.s80_s20;
         const d = ctx.root.dataset;
         const quintilesOf = (rows, annee) => d3.range(5).map((q) => {
           const pair = rows.filter((r) => r.annee === annee && Math.ceil(r.decile / 2) === q + 1);
@@ -2141,6 +2295,7 @@
         svg.selectAll("*").remove();
         const rc = rough.svg(svg.node());
         const regle = REGLES.find((r) => r.id === ctx.state.indicateur);
+        ctx.lecture = LECTURES[regle.id];
         const ncRow = ncRows.find((d) => d.indicateur === regle.id);
         if (!ncRow || !Number.isFinite(ncRow.nc_2019)) throw new Error(`Indicateur calédonien absent : ${regle.id}`);
         const nc = { low: ncRow.nc_2019, high: Number.isFinite(ncRow.nc_2019_harmonise) ? ncRow.nc_2019_harmonise : null };
@@ -2367,7 +2522,7 @@
   // chargé, le choix est noté sur la figure et repris au chargement.
   document.querySelectorAll("a[data-globe-indicateur], a[data-globe-vue]").forEach((link) => {
     link.addEventListener("click", () => {
-      const root = document.getElementById(String(link.getAttribute("href") || "").replace(/^#/, ""));
+      const root = document.getElementById(pageAnchor(link) || "");
       if (!root) return;
       const { globeIndicateur: outil, globeVue: vue } = link.dataset;
       if (root.giniGlobe) {
@@ -2574,6 +2729,159 @@
       svg.selectAll("*").remove();
     }
   });
+
+  // ---------------------------------------------------------------------------
+  // Boîte à outils : chaque bandeau déroule la présentation de son outil
+  // ---------------------------------------------------------------------------
+
+  // Les présentations des cinq outils (sections visées par les liens des
+  // bandeaux) sont enroulées. Le bouton d'un bandeau déroule la sienne juste
+  // dessous, en accordéon : la liste est coupée après ce bandeau, et les
+  // suivants reprennent sous la présentation, dans une seconde liste. Un seul
+  // outil est déroulé à la fois ; en bas de chacun, des boutons mènent à
+  // l'outil voisin ou l'enroulent. Sans JavaScript, les liens des bandeaux
+  // mènent aux sections, affichées à la suite. Une section enroulée
+  // (.is-collapsed, inert) n'a plus de hauteur mais reste dans la page : le
+  // sommaire de Quarto choisit son entrée active d'après la position des
+  // sections, et les figures s'y dessinent à leur largeur.
+  const toolbox = document.querySelector(".gini-tools");
+  const toolItems = (toolbox ? Array.from(toolbox.querySelectorAll(".gini-tool")) : []).map((card, index) => {
+    const link = card.querySelector("a.gini-tool-link");
+    const section = link && document.getElementById(pageAnchor(link) || "");
+    const heading = section && section.querySelector("h2, h3");
+    if (!heading) return null;
+    const name = (card.querySelector(".gini-tool-name") || heading).textContent.trim();
+    return { card, link, section, heading, n: index + 1, name };
+  }).filter(Boolean);
+  // Seconde liste : les bandeaux qui suivent l'outil déroulé.
+  const toolboxSuite = document.createElement("ul");
+  if (toolbox) {
+    toolboxSuite.className = `${toolbox.className} gini-tools--suite`;
+    toolboxSuite.setAttribute("aria-label", "Suite de la boîte à outils");
+  }
+
+  // Adresse de la page : l'outil déplié, pour un lien direct ou un
+  // rechargement.
+  function setHash(id) {
+    try {
+      window.history.replaceState(window.history.state, "", `#${id}`);
+    } catch (error) {
+      // Adresse inchangée.
+    }
+  }
+
+  function setTool(item, open) {
+    item.section.classList.toggle("is-collapsed", !open);
+    item.section.inert = !open;
+    item.card.classList.toggle("is-open", open);
+    item.toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    item.toggleText.textContent = open ? "Enrouler" : "Dérouler";
+  }
+
+  // Glisse l'outil déroulé sous son bandeau ; `null` remet tous les bandeaux
+  // dans la première liste. Seuls les bandeaux de la seconde liste bougent.
+  function placeTool(item) {
+    Array.from(toolboxSuite.children).forEach((card) => toolbox.appendChild(card));
+    toolboxSuite.remove();
+    if (!item) return;
+    toolbox.after(item.section);
+    const suivants = toolItems.filter((other) => other.n > item.n);
+    if (!suivants.length) return;
+    suivants.forEach((other) => toolboxSuite.appendChild(other.card));
+    item.section.after(toolboxSuite);
+  }
+
+  // Déroule un outil et enroule les autres ; `null` les enroule tous.
+  // `scroll` amène son bandeau en haut de l'écran ; `focus` (« bouton » ou
+  // « titre ») rend le focus, perdu si le bandeau a changé de liste.
+  function showTool(item, { scroll = false, focus = null } = {}) {
+    toolItems.forEach((other) => setTool(other, other === item));
+    placeTool(item);
+    if (!item) return;
+    if (focus) (focus === "titre" ? item.heading : item.toggle).focus({ preventScroll: true });
+    if (scroll) item.card.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+  }
+
+  const toolboxId = () => toolbox.closest("section[id]")?.id || "";
+  const lowerFirst = (text) => text.charAt(0).toLowerCase() + text.slice(1);
+  toolItems.forEach((item, index) => {
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "gini-tool-toggle";
+    toggle.setAttribute("aria-controls", item.section.id);
+    // « Dérouler » ou « Enrouler » visible ; le nom accessible précise
+    // l'outil.
+    const toggleText = document.createElement("span");
+    const toggleName = document.createElement("span");
+    toggleName.className = "visually-hidden";
+    toggleName.textContent = ` l’outil ${item.n}`;
+    const chevron = document.createElement("span");
+    chevron.className = "gini-tool-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    toggle.append(toggleText, toggleName, chevron);
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      showTool(open ? item : null, { scroll: open, focus: "bouton" });
+      if (!open) toggle.focus({ preventScroll: true });
+      setHash(open ? item.section.id : toolboxId());
+    });
+    item.link.replaceWith(toggle);
+    item.toggle = toggle;
+    item.toggleText = toggleText;
+    item.heading.setAttribute("tabindex", "-1");
+    item.section.classList.add("gini-tool-panel");
+
+    const nav = document.createElement("nav");
+    nav.className = "gini-tool-nav";
+    nav.setAttribute("aria-label", `Boîte à outils, depuis l’outil ${item.n}`);
+    const add = (text, className, onClick) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = className;
+      button.textContent = text;
+      button.addEventListener("click", onClick);
+      nav.appendChild(button);
+    };
+    const goTo = (other) => () => {
+      showTool(other, { scroll: true, focus: "titre" });
+      setHash(other.section.id);
+    };
+    const prev = toolItems[index - 1];
+    const next = toolItems[index + 1];
+    if (prev) add(`← Outil ${prev.n}`, "is-prev", goTo(prev));
+    add(`Enrouler l’outil ${item.n} ↑`, "is-back", () => {
+      showTool(null);
+      setHash(toolboxId());
+      item.card.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+      toggle.focus({ preventScroll: true });
+    });
+    if (next) add(`Outil ${next.n} : ${lowerFirst(next.name)} →`, "is-next", goTo(next));
+    item.section.appendChild(nav);
+  });
+  if (toolItems.length) showTool(null);
+
+  // Lien vers un passage replié (outil, ou bloc <details> fermé) depuis le
+  // sommaire, le texte ou l'adresse de la page : il est déplié avant que la
+  // page défile.
+  function reveal(id) {
+    const target = id ? document.getElementById(id) : null;
+    if (!target) return null;
+    const item = toolItems.find((t) => t.section.contains(target));
+    if (item && item.section.classList.contains("is-collapsed")) showTool(item);
+    for (let node = target; node; node = node.parentElement) {
+      if (node.tagName === "DETAILS" && !node.open) node.open = true;
+    }
+    return target;
+  }
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest ? event.target.closest("a[href]") : null;
+    if (link) reveal(pageAnchor(link));
+  }, true);
+  window.addEventListener("hashchange", () => {
+    const target = reveal(pageAnchor(window.location));
+    if (target) target.scrollIntoView();
+  });
+  reveal(pageAnchor(window.location));
 
   // ---------------------------------------------------------------------------
   // Croquis du résumé « En bref » (viewBox 420 × 240)
