@@ -172,7 +172,9 @@
       subtitle: "Part de la population qui vit avec moins de la moitié du revenu médian, dernière année depuis 2015 ; les autres pays restent en gris"
     }
   ];
-  const GLOBE_GINI = GLOBE_OUTILS.find((o) => o.id === "gini");
+  // Globe du résumé « En bref » : le rapport S80/S20, comme le globe de
+  // l'article à l'ouverture.
+  const GLOBE_S80 = GLOBE_OUTILS.find((o) => o.id === "s80_s20");
   const globeColor = (outil, value) => GLOBE_COULEURS[globeClass(outil, value)];
   const globeClass = (outil, value) => outil.seuils.filter((t) => value >= t).length;
   // Fourchette calédonienne : définition officielle, puis niveau de vie
@@ -2603,11 +2605,18 @@
   }
 
   const sketches = {
+    // Globe du rapport S80/S20, comme le globe de l'article à l'ouverture :
+    // centré sur le Pacifique, la Nouvelle-Calédonie figurée par un disque de
+    // la couleur de sa classe (l'île, trop petite, ne montrerait qu'un trait).
     globe(svg, rc, node, data) {
+      const ncRow = data.nc.find((d) => d.indicateur === "s80_s20");
+      if (!ncRow || !Number.isFinite(ncRow.nc_2019)) throw new Error("Rapport S80/S20 calédonien absent");
+      const ncValue = ncRow.nc_2019;
       const features = rewindFeatures(data.geo);
       const byIso = new Map(data.monde.map((d) => [d.iso3, d]));
       const withShape = new Set(features.map((f) => f.properties.iso3));
-      const projection = d3.geoOrthographic().scale(100).translate([118, 116]).rotate([25, -8, 0]).clipAngle(90).precision(0.6);
+      const centre = [165.6, -13.3];
+      const projection = d3.geoOrthographic().scale(100).translate([118, 116]).rotate([-centre[0], -centre[1], 0]).clipAngle(90).precision(0.6);
       const path = d3.geoPath(projection);
       const defs = svg.append("defs");
       const pattern = defs.append("pattern").attr("id", "brief-globe-sans-donnee").attr("patternUnits", "userSpaceOnUse")
@@ -2617,22 +2626,29 @@
       svg.append("path").datum({ type: "Sphere" }).attr("d", path).attr("fill", oceanColor);
       svg.append("path").datum(d3.geoGraticule10()).attr("d", path).attr("fill", "none").attr("stroke", "#cfc6b6").attr("stroke-width", 0.4).attr("stroke-dasharray", "2 3");
       features.forEach((feature) => {
-        const row = byIso.get(feature.properties.iso3);
-        svg.append("path").datum(feature).attr("d", path)
-          .attr("fill", row ? globeColor(GLOBE_GINI, row.gini) : feature.properties.iso3 === "ATA" ? landColor : "url(#brief-globe-sans-donnee)")
-          .attr("stroke", paper).attr("stroke-width", 0.4);
+        const iso3 = feature.properties.iso3;
+        const row = byIso.get(iso3);
+        const fill = iso3 === "NCL" ? globeColor(GLOBE_S80, ncValue)
+          : row ? globeColor(GLOBE_S80, row.s80_s20) : iso3 === "ATA" ? landColor : "url(#brief-globe-sans-donnee)";
+        svg.append("path").datum(feature).attr("d", path).attr("fill", fill).attr("stroke", paper).attr("stroke-width", 0.4);
       });
-      const centre = [-25, 8];
       data.monde.filter((d) => !withShape.has(d.iso3) && Number.isFinite(d.lon) && d3.geoDistance([d.lon, d.lat], centre) < Math.PI / 2 - 0.05)
         .forEach((d) => {
           const [px, py] = projection([d.lon, d.lat]);
-          svg.append("circle").attr("cx", px).attr("cy", py).attr("r", 2.6).attr("fill", globeColor(GLOBE_GINI, d.gini)).attr("stroke", ink).attr("stroke-width", 0.7);
+          svg.append("circle").attr("cx", px).attr("cy", py).attr("r", 2.6).attr("fill", globeColor(GLOBE_S80, d.s80_s20)).attr("stroke", ink).attr("stroke-width", 0.7);
         });
       svg.append("circle").attr("cx", 118).attr("cy", 116).attr("r", 100).attr("fill", "none").attr("stroke", ink).attr("stroke-width", 0.9);
       appendRough(svg, rc.circle(118, 116, 205, { stroke: ink, strokeWidth: 0.8, roughness: 0.7, curveFitting: 0.995, seed: seed("brief-globe-sphere") }), 0.55);
-      // Échelle des couleurs, et place de la Nouvelle-Calédonie (absente de
-      // cette face du globe) sur cette échelle.
-      label(svg, "Indice de Gini", 236, 30, { family: fontSketch, size: 15, weight: 700 });
+      // La Nouvelle-Calédonie : disque de sa couleur, anneau et nom dessous.
+      const ncFeature = features.find((f) => f.properties.iso3 === "NCL");
+      if (!ncFeature) throw new Error("Contour de la Nouvelle-Calédonie absent");
+      const [nx, ny] = projection(mainCentroid(ncFeature));
+      svg.append("circle").attr("cx", nx).attr("cy", ny).attr("r", 6.5).attr("fill", globeColor(GLOBE_S80, ncValue)).attr("stroke", ink).attr("stroke-width", 1.6);
+      label(svg, "Nouvelle-Calédonie", nx, ny + 16, { anchor: "middle", size: 9.5, weight: 700, halo: true });
+      // Échelle des couleurs, et place de la Nouvelle-Calédonie sur cette
+      // échelle.
+      label(svg, "Rapport S80/S20", 236, 30, { family: fontSketch, size: 15, weight: 700 });
+      label(svg, "20 % les plus aisés ÷ 20 % les plus modestes", 236, 46, { size: 8.5, weight: 700, color: muted });
       const lx0 = 236;
       const lx1 = 408;
       const ly = 124;
@@ -2640,22 +2656,22 @@
       GLOBE_COULEURS.forEach((color, i) => {
         svg.append("rect").attr("x", lx0 + i * cw).attr("y", ly).attr("width", cw).attr("height", 14).attr("fill", color);
       });
-      GLOBE_GINI.seuils.forEach((t, i) => {
+      GLOBE_S80.seuils.forEach((t, i) => {
         const tx = lx0 + (i + 1) * cw;
         svg.append("line").attr("x1", tx).attr("x2", tx).attr("y1", ly + 14).attr("y2", ly + 18).attr("stroke", muted);
-        if (i % 2 === 0) label(svg, gini(t), tx, ly + 27, { anchor: "middle", size: 9.5, weight: 700, color: muted });
+        if (i % 2 === 0) label(svg, GLOBE_S80.tick(t), tx, ly + 27, { anchor: "middle", size: 9.5, weight: 700, color: muted });
       });
       label(svg, "← égalitaire", lx0, ly + 44, { size: 9, weight: 700, color: muted });
       label(svg, "inégalitaire →", lx1, ly + 44, { anchor: "end", size: 9, weight: 700, color: muted });
-      const bounds = [GLOBE_GINI.bornes[0], ...GLOBE_GINI.seuils, GLOBE_GINI.bornes[1]];
-      const k = globeClass(GLOBE_GINI, data.gini);
-      const mx = lx0 + cw * (k + (data.gini - bounds[k]) / (bounds[k + 1] - bounds[k]));
+      const bounds = [GLOBE_S80.bornes[0], ...GLOBE_S80.seuils, GLOBE_S80.bornes[1]];
+      const k = globeClass(GLOBE_S80, ncValue);
+      const mx = lx0 + cw * (k + (ncValue - bounds[k]) / (bounds[k + 1] - bounds[k]));
       svg.append("path").attr("d", `M${mx},${ly - 2}l-6,-9h12z`).attr("fill", colorNc);
-      label(svg, gini(data.gini), mx, ly - 22, { anchor: "middle", family: fontSketch, size: 18, weight: 700, color: colorNc, halo: true });
-      label(svg, "Nouvelle-Calédonie", mx, ly - 44, { anchor: "middle", size: 11, weight: 700, color: colorNc, halo: true });
+      label(svg, GLOBE_S80.fmt(ncValue), mx, ly - 22, { anchor: "middle", family: fontSketch, size: 18, weight: 700, color: colorNc, halo: true });
+      label(svg, "Nouvelle-Calédonie", Math.min(mx, lx1 - 50), ly - 44, { anchor: "middle", size: 11, weight: 700, color: colorNc, halo: true });
       svg.append("rect").attr("x", lx0).attr("y", 188).attr("width", 18).attr("height", 12)
         .attr("fill", "url(#brief-globe-sans-donnee)").attr("stroke", noDataStroke).attr("stroke-width", 0.5);
-      label(svg, "pas d’indice", lx0 + 24, 194, { size: 9.5, weight: 700, color: muted });
+      label(svg, "pas de donnée", lx0 + 24, 194, { size: 9.5, weight: 700, color: muted });
       caption(svg, "Dernière enquête depuis 2010 · Banque mondiale, Isee");
       signature(svg);
     },

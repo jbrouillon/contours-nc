@@ -922,11 +922,13 @@ stopifnot(
   # 5 Parmi la France et les Outre-mer comparés, « seule la Guyane » a un
   #   indice de Gini plus élevé que la Nouvelle-Calédonie.
   identical(outre_mer[!is.na(gini) & gini > gini_2019_harmonise, territoire], "Guyane"),
-  # 6 « Sept pays sur dix » ont un indice de Gini plus bas, de l'Inde à
-  #   Haïti ; le croquis place la Nouvelle-Calédonie dans la classe 0,35-0,40
-  #   du globe, en vert clair (GLOBE_OUTILS dans inegalites-revenus.js).
-  round(part_sous_nc / 10) == 7, setequal(extremes, c("IND", "HTI")),
-  gini_2019_officiel >= 0.35, gini_2019_officiel < 0.40,
+  # 6 Rapport S80/S20 : « seulement » une minorité des pays a un rapport
+  #   plus élevé, de l'Inde à Haïti ; le croquis place la Nouvelle-Calédonie
+  #   dans la classe 8-12 du globe, en orange, et l'Australie dans une classe
+  #   verte, 4-6 (GLOBE_OUTILS dans inegalites-revenus.js).
+  n_monde_s80_au_dessus < 0.25 * n_monde, setequal(s80_extremes, c("IND", "HTI")),
+  s80_s20_2019 >= 8, s80_s20_2019 < 12,
+  s80_monde("AUS") >= 4, s80_monde("AUS") < 6,
   # 7 Pays de l'OCDE : « seulement » quelques pays au-dessus pour le rapport
   #   S80/S20 ; l'Australie, la Nouvelle-Zélande et la France « loin
   #   derrière » (moins de 70 % de la valeur calédonienne).

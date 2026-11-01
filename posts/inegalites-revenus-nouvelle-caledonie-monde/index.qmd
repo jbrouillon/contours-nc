@@ -11,7 +11,7 @@ categories:
   - Économie
 description: "Quelle part des revenus va aux 10 % les plus aisés ? Combien d’habitants vivent sous le seuil de pauvreté ? Cinq façons simples de mesurer les inégalités de revenus, et ce qu’elles disent de la Nouvelle-Calédonie face à la France, aux Outre-mer, aux pays riches et au reste du monde (Isee 2019, Banque mondiale, OCDE)."
 image: "../../images/previews/inegalites-revenus-nouvelle-caledonie-monde.png"
-image-alt: "Indice de Gini de 164 pays selon leur groupe de revenu (Banque mondiale) : une bande rouge situe la Nouvelle-Calédonie entre 0,39 et 0,42, au-dessus de la plupart des pays à revenu élevé."
+image-alt: "Globe centré sur le Pacifique, colorié selon l’écart entre les 20 % les plus aisés et les 20 % les plus modestes de chaque pays : la Nouvelle-Calédonie est en orange, l’Australie voisine en vert ; 35 pays sur 164 seulement ont un écart plus grand."
 title-block-banner: true
 toc: true
 toc-depth: 3
@@ -158,11 +158,11 @@ Ce partage est-il très inégal ? Plus ou moins qu’en France, en Australie ou 
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">
       <p class="contours-brief-step">6 · Monde</p>
-      <h3>Dans le monde, `r en_lettres(round(part_sous_nc / 10))` pays sur dix ont un indice de Gini plus bas que la Nouvelle-Calédonie.</h3>
-      <p class="contours-brief-big"><span>`r g2(gini_2019)`</span></p>
-      <p>Il va de `r gp("IND")` en Inde à `r gp("HTI")` en Haïti (dernière enquête de `r n_monde` pays depuis 2010, Banque mondiale). Les mesures diffèrent d’un pays à l’autre : ces comparaisons donnent des ordres de grandeur.</p>
+      <h3>Dans le monde, `r n_monde_s80_au_dessus` pays sur `r n_monde` seulement ont un écart plus grand qu’en Nouvelle-Calédonie.</h3>
+      <p class="contours-brief-big"><span>`r n_monde_s80_au_dessus`</span><span aria-hidden="true">/</span><span class="visually-hidden">sur</span><span>`r n_monde`</span></p>
+      <p>L’écart mesuré : combien de fois plus reçoivent les 20 % les plus aisés que les 20 % les plus modestes (rapport S80/S20), `r ratio(s80_s20_2019)` en Nouvelle-Calédonie. Il va de `r ratio(s80_monde(s80_extremes[1]))` en `r nm(s80_extremes[1])` à `r ratio(s80_monde(s80_extremes[2]))` en `r nm(s80_extremes[2])` (dernière enquête de `r n_monde` pays depuis 2010, Banque mondiale). Les mesures diffèrent d’un pays à l’autre : ces comparaisons donnent des ordres de grandeur.</p>
     </div>
-    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="globe" aria-label="Globe centré sur l’Atlantique, du bleu (indice de Gini bas) au rouge (indice élevé) : les teintes orange et rouge se concentrent en Amérique latine et dans le sud de l’Afrique, l’Europe est surtout en bleu et en vert. Sur l’échelle des couleurs, la Nouvelle-Calédonie (`r g2(gini_2019)`) se place au milieu, en vert clair"></svg>
+    <svg class="contours-brief-sketch" viewBox="0 0 420 240" role="img" data-brief-sketch="globe" aria-label="Globe centré sur le Pacifique, colorié du bleu (rapport S80/S20 bas) au rouge (élevé) : la Nouvelle-Calédonie (`r ratio(s80_s20_2019)`) est en orange, dans l’avant-dernière classe, l’Australie voisine en vert ; sur `r n_monde` pays, `r n_monde_s80_au_dessus` ont un rapport plus élevé"></svg>
   </article>
   <article class="contours-brief-slide">
     <div class="contours-brief-copy">

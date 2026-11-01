@@ -58,37 +58,6 @@ listing:
 </section>
 ```
 
-```{=html}
-<section class="home-dossier-block" aria-label="Dossiers à suivre">
-  <h2>Dossiers à suivre</h2>
-  <div class="dossier-grid dossier-hub-grid home-dossier-grid">
-    <article class="dossier-card">
-      <a class="dossier-card__image" href="dossiers/provinciales-2026/">
-        <img src="images/previews/chart-voix-nuances-congres-contours-nc.png" alt="Voix au Congrès par nuances politiques depuis 1989">
-      </a>
-      <div class="dossier-card__body">
-        <span class="dossier-card__phase">Élections · dossier ouvert</span>
-        <h3><a href="dossiers/provinciales-2026/">Provinciales 2026</a></h3>
-        <p>Candidatures, programmes, résultats, Congrès, troisième voie et simulations électorales.</p>
-        <a class="dossier-card__link" href="dossiers/provinciales-2026/">Ouvrir le dossier</a>
-      </div>
-    </article>
-
-    <article class="dossier-card">
-      <a class="dossier-card__image" href="dossiers/demographie-societe/">
-        <img src="images/previews/carte-segregations-quartiers-contours-nc.png" alt="Deux cartes crayonnées comparant des indicateurs territoriaux en Nouvelle-Calédonie">
-      </a>
-      <div class="dossier-card__body">
-        <span class="dossier-card__phase">Territoires · dossier ouvert</span>
-        <h3><a href="dossiers/demographie-societe/">Démographie et société</a></h3>
-        <p>Population, mobilités, concentration urbaine et contrastes socio-économiques en Nouvelle-Calédonie.</p>
-        <a class="dossier-card__link" href="dossiers/demographie-societe/">Ouvrir le dossier</a>
-      </div>
-    </article>
-  </div>
-</section>
-```
-
 ## Derniers articles
 
 ::: {#recent-posts}
